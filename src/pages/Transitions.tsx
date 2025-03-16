@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { PracticeTransitions, practiceData } from "@/components/sections/PracticeTransitions";
@@ -74,7 +75,7 @@ const Transitions = () => {
                   <div className="text-gray-500 text-sm mb-1">Operatories</div>
                   <div className="font-semibold">{practice.operatories}</div>
                 </div>
-                {practice.date && (
+                {practice.status === "sold" && "date" in practice && (
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <div className="text-gray-500 text-sm mb-1">Date</div>
                     <div className="font-semibold">{practice.date}</div>
@@ -108,7 +109,7 @@ const Transitions = () => {
                   location={practice.location}
                   description={practice.description}
                   imageSrc={practice.imageSrc}
-                  date={practice.date}
+                  date={practice.status === "sold" ? (practice as any).date : undefined}
                   url={`/transitions/${practice.id}`}
                   metadata={[
                     { label: "Revenue", value: practice.revenue },
@@ -134,7 +135,7 @@ const Transitions = () => {
   // If no ID parameter, show the list view
   return (
     <>
-      <Section background="accent" className="pt-32 pb-16">
+      <Section background="light" className="pt-32 pb-16">
         <div className="text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">Practice Transitions</h1>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto animate-fade-in animate-delay-100">
