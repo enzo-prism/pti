@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { ArrowRight, FileCheck, Handshake, Users, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,6 +6,7 @@ import { ServiceCard } from "@/components/ui/service-card";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { Cta } from "@/components/ui/cta";
 import { useState, useEffect } from "react";
+import { PracticeTransitions } from "@/components/sections/PracticeTransitions";
 
 const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -152,6 +152,9 @@ const Home = () => {
           </Button>
         </div>
       </Section>
+
+      {/* Practice Transitions Section - New! */}
+      <PracticeTransitions />
 
       {/* Testimonials Section */}
       <Section>
