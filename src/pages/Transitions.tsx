@@ -7,13 +7,12 @@ import { Cta } from "@/components/ui/cta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PracticeCard } from "@/components/ui/practice-card";
-import { MapPin, ArrowRight } from "lucide-react";
+import { MapPin, ArrowRight, DollarSign, Grid } from "lucide-react";
 
 const Transitions = () => {
   const { id } = useParams();
   
   // If we have an ID parameter, we should show the detail view
-  // For now we'll just show a placeholder since we don't have the full detail implementation
   if (id) {
     // Find the practice in our data
     const practice = [...practiceData.available, ...practiceData.sold].find(
@@ -31,6 +30,9 @@ const Transitions = () => {
       );
     }
     
+    // Default image if none provided
+    const defaultImage = "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80";
+    
     return (
       <>
         <Section background="light">
@@ -47,36 +49,40 @@ const Transitions = () => {
               </Badge>
               <h1 className="text-4xl font-bold mb-4">{practice.title}</h1>
               <div className="flex items-center text-gray-600 mb-6">
-                <MapPin className="h-5 w-5 mr-2" />
+                <MapPin className="h-5 w-5 mr-2 text-primary" />
                 <span className="text-lg">{practice.location}</span>
               </div>
             </div>
             
-            {practice.imageSrc && (
-              <div className="rounded-lg overflow-hidden mb-8 shadow-md">
-                <img 
-                  src={practice.imageSrc} 
-                  alt={practice.title} 
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-            )}
+            <div className="rounded-lg overflow-hidden mb-8 shadow-md">
+              <img 
+                src={practice.imageSrc || defaultImage} 
+                alt={practice.title} 
+                className="w-full h-auto object-cover aspect-video"
+              />
+            </div>
             
-            <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <div className="bg-white rounded-lg shadow-sm p-6 mb-8 border border-gray-200">
               <h2 className="text-2xl font-semibold mb-4">Practice Overview</h2>
               <p className="text-gray-700 mb-6">{practice.description}</p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <div className="text-gray-500 text-sm mb-1">Revenue</div>
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <div className="flex items-center text-gray-500 text-sm mb-1">
+                    <DollarSign className="h-4 w-4 mr-1 text-primary" />
+                    <span>Revenue</span>
+                  </div>
                   <div className="font-semibold">{practice.revenue}</div>
                 </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <div className="text-gray-500 text-sm mb-1">Operatories</div>
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <div className="flex items-center text-gray-500 text-sm mb-1">
+                    <Grid className="h-4 w-4 mr-1 text-primary" />
+                    <span>Operatories</span>
+                  </div>
                   <div className="font-semibold">{practice.operatories}</div>
                 </div>
                 {practice.status === "sold" && "date" in practice && (
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
                     <div className="text-gray-500 text-sm mb-1">Date</div>
                     <div className="font-semibold">{practice.date}</div>
                   </div>
