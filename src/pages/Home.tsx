@@ -13,22 +13,34 @@ const Home = () => {
   
   const testimonials = [
     {
-      quote: "PTI made the sale of my practice seamless. Their professionalism and expertise are unmatched in the industry.",
-      author: "Dr. Sarah Johnson",
+      quote: "I recently sold my dental practice after 41 years. I was primarily concerned to find a dentist who matched my treatment planning philosophy and to take good care of my wonderful patients and staff. Because Michael is a dentist with general practice experience, he has a great understanding of the important aspects for a transfer of a practice, not only for the seller but also for the buyer. I am quite happy that I had Dr Njo to help me navigate my sale!",
+      author: "Gregory Baird",
       role: "General Dentist",
-      company: "Sold practice in 2022"
+      company: "Sold practice in 2023"
     },
     {
-      quote: "The valuation provided by PTI was critical in my negotiations and ended up being incredibly accurate when I finally sold.",
-      author: "Dr. Michael Chen",
-      role: "Orthodontist",
+      quote: "Michael was able to match a buyer within 2 weeks and completed the transaction within 45 days. He was so amazingly efficient throughout the transition process. I highly recommend him to any dentist interested in selling or buying a dental practice. Thanks again, Mike, you are my Superman.",
+      author: "Tony Choi",
+      role: "Practice Seller",
       company: "Los Angeles, CA"
     },
     {
-      quote: "As a first-time buyer, I was nervous about the process. PTI guided me through every step, making a complex transaction feel manageable.",
-      author: "Dr. David Rodriguez",
-      role: "Pediatric Dentist",
+      quote: "Going through selling your practice is similar to getting ready to treat a complex dental patient. Working with a professional like Michael, who has developed a well thought out linear path when it comes to selling dental practices, ensured that I was set up with the right candidate and the sale process was executed flawlessly.",
+      author: "Dr. Reza",
+      role: "Practice Seller",
       company: "San Francisco, CA"
+    },
+    {
+      quote: "\"Be careful what you ask for, because I will get it for you\". That is what Michael from PTI said to me at our first face-to-face meeting. We were referred to Michael after our practice was on the market for a year with few inquiries. We closed four months later with full cash offer to a wonderful couple.",
+      author: "Keith Long",
+      role: "Practice Seller",
+      company: "Sold practice in 2023"
+    },
+    {
+      quote: "I feel extremely fortunate to have found and chosen Fred Heppner to help me through the process of selling my practice. I enjoyed Fred's straightforward demeanor, and his ability to simplify for me what would have been an overly complex endeavor. The sale happened very quickly and efficiently!",
+      author: "Jeff Lewis, DDS, FACP",
+      role: "Orthodontist",
+      company: "Practice Seller"
     }
   ];
   
