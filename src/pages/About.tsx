@@ -8,28 +8,22 @@ import { Button } from "@/components/ui/button";
 const About = () => {
   const teamMembers = [
     {
-      name: "Dr. Sarah Williams",
-      role: "Founder & CEO",
-      bio: "Former practice owner with over 25 years of clinical experience and a passion for helping dentists achieve successful transitions.",
+      name: "Dr. Michael Njo, DDS",
+      role: "Co-founder & Lead Transition Consultant",
+      bio: "Former clinician whose career pivot led him to become a renowned expert in dental practice transitions, known for hands-on guidance and extensive industry network.",
       image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3"
     },
     {
-      name: "Michael Chen",
-      role: "Chief Financial Advisor",
-      bio: "Certified Valuation Analyst with expertise in dental practice economics and maximizing practice value.",
+      name: "Fred Heppner",
+      role: "Co-founder & Transition Specialist",
+      bio: "Brings decades of experience as a broker and consultant; recognized for his ability to facilitate seamless, well-vetted matches between sellers and buyers.",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3"
     },
     {
-      name: "Jennifer Lopez",
-      role: "Transition Specialist",
-      bio: "Experienced in structuring associateships and partnerships with a focus on creating equitable arrangements for all parties.",
+      name: "Liz Armato",
+      role: "COO & Client Services Lead",
+      bio: "Former executive at Pride Institute with over 20 years in dental operations, focused on streamlining client services and ensuring personalized guidance.",
       image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3"
-    },
-    {
-      name: "Robert Thompson",
-      role: "Legal Counsel",
-      bio: "Healthcare attorney specializing in dental practice transitions, contracts, and regulatory compliance.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3"
     }
   ];
 
@@ -41,7 +35,7 @@ const About = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">About Practice Transitions Institute</h1>
             <p className="text-xl text-gray-700 animate-fade-in animate-delay-100">
-              Dedicated to helping dental professionals navigate the complex journey of practice transitions
+              Dedicated to helping dental professionals navigate practice transitions with care, integrity, and personalized guidance
             </p>
           </div>
         </div>
@@ -55,13 +49,13 @@ const About = () => {
               Our Story
             </h2>
             <p className="text-gray-600 mb-4">
-              Practice Transitions Institute was founded in 2010 by Dr. Sarah Williams after experiencing firsthand the challenges of dental practice transitions. Having sold her own practice and helped colleagues through similar processes, she recognized the need for specialized guidance in this complex area.
+              Practice Transitions Institute was founded by experienced dental professionals after a tenure at Pride Institute. PTI was built to move beyond transactional brokers into trusted, relationship-driven consultants.
             </p>
             <p className="text-gray-600 mb-4">
-              What began as a small consulting practice has grown into a comprehensive transitions firm with a team of experts in finance, law, and practice management. Today, PTI has facilitated over 500 successful transitions across the United States.
+              Our mission is to help dentists transition their practices with care, integrity, and personalized guidance. We emphasize preserving the legacy of each practice while ensuring win-win outcomes for all parties involved.
             </p>
             <p className="text-gray-600">
-              Our mission remains constant: to provide expert, ethical guidance that helps dentists protect the value of their life's work while creating opportunities for the next generation of practitioners.
+              What began as a vision to provide better service has grown into a comprehensive transitions firm with a team of experts dedicated to guiding dental professionals through major career milestones.
             </p>
           </div>
           <div className="animate-fade-in animate-delay-100">
@@ -110,32 +104,32 @@ const About = () => {
               <li className="flex items-start">
                 <Award className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
-                  <h3 className="font-semibold text-lg">Specialized Experience</h3>
-                  <p className="text-gray-600">We focus exclusively on dental practice transitions, giving us unparalleled expertise in this specialized field.</p>
+                  <h3 className="font-semibold text-lg">Relationship-Driven Consulting</h3>
+                  <p className="text-gray-600">We focus on building trusted relationships, not just transactions, giving us unparalleled insight into your needs.</p>
                 </div>
               </li>
               
               <li className="flex items-start">
                 <Users className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
-                  <h3 className="font-semibold text-lg">Multidisciplinary Team</h3>
-                  <p className="text-gray-600">Our team includes experts in finance, valuation, law, and practice management, providing comprehensive guidance.</p>
+                  <h3 className="font-semibold text-lg">Experienced Team</h3>
+                  <p className="text-gray-600">Our team includes former practicing dentists and industry executives who understand the unique challenges you face.</p>
                 </div>
               </li>
               
               <li className="flex items-start">
                 <Clock className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
-                  <h3 className="font-semibold text-lg">Long-term Relationships</h3>
-                  <p className="text-gray-600">We build lasting relationships with our clients, guiding them through various transition phases throughout their careers.</p>
+                  <h3 className="font-semibold text-lg">Personalized Guidance</h3>
+                  <p className="text-gray-600">We provide hands-on support throughout your transition journey, with clear, responsive communication at every step.</p>
                 </div>
               </li>
               
               <li className="flex items-start">
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
-                  <h3 className="font-semibold text-lg">Proven Track Record</h3>
-                  <p className="text-gray-600">Our success is measured by hundreds of satisfied clients who have achieved their transition goals.</p>
+                  <h3 className="font-semibold text-lg">Trusted Matchmaking</h3>
+                  <p className="text-gray-600">We carefully screen and match buyers and sellers to ensure compatible values and practice philosophy.</p>
                 </div>
               </li>
             </ul>
@@ -157,7 +151,7 @@ const About = () => {
           Meet the experienced professionals dedicated to your practice transition success
         </SectionSubtitle>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+        <div className="grid md:grid-cols-3 gap-8 mt-8">
           {teamMembers.map((member, index) => (
             <div 
               key={index} 
@@ -204,6 +198,40 @@ const About = () => {
         </div>
       </Section>
 
+      {/* Client Experiences Section */}
+      <Section background="light">
+        <SectionTitle centered>Client Experiences</SectionTitle>
+        <div className="grid md:grid-cols-2 gap-8 mt-8">
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in">
+            <h3 className="text-xl font-semibold mb-3 text-primary">Seamless Process</h3>
+            <p className="text-gray-600">
+              Clients consistently praise PTI for making a stressful process smooth and efficient, citing responsive, hands-on support from our team throughout their transition journey.
+            </p>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-100">
+            <h3 className="text-xl font-semibold mb-3 text-primary">Trusted Matchmaking</h3>
+            <p className="text-gray-600">
+              Dentists value our careful screening and personalized approach, which ensures only qualified and well-matched buyers are presented, preserving the legacy of their practice.
+            </p>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-200">
+            <h3 className="text-xl font-semibold mb-3 text-primary">Educational Value</h3>
+            <p className="text-gray-600">
+              Our seminars and workshops provide practical, actionable guidance, earning high marks from participants who frequently become long-term clients after attending.
+            </p>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-300">
+            <h3 className="text-xl font-semibold mb-3 text-primary">Outcome Satisfaction</h3>
+            <p className="text-gray-600">
+              Numerous testimonials reflect deep gratitude for our role in securing favorable deals and enhancing the quality of life for dentists facing major career transitions.
+            </p>
+          </div>
+        </div>
+      </Section>
+
       {/* CTA Section */}
       <Section background="light" className="mb-8">
         <Cta 
@@ -211,6 +239,7 @@ const About = () => {
           description="Schedule a complimentary consultation with our expert team to explore your options."
           buttonText="Book Your Consultation"
           buttonUrl="/contact"
+          background="primary"
         />
       </Section>
     </>
