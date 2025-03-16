@@ -1,6 +1,7 @@
 
 import { cn } from "@/lib/utils";
 import { Quote } from "lucide-react";
+import { CSSProperties } from "react";
 
 interface TestimonialCardProps {
   quote: string;
@@ -9,6 +10,7 @@ interface TestimonialCardProps {
   company?: string;
   className?: string;
   imageUrl?: string;
+  style?: CSSProperties;
 }
 
 export function TestimonialCard({
@@ -18,12 +20,14 @@ export function TestimonialCard({
   company,
   className,
   imageUrl,
+  style,
 }: TestimonialCardProps) {
   return (
     <div className={cn(
       "bg-white p-6 sm:p-8 rounded-lg shadow-sm border border-gray-100 flex flex-col h-full animate-fade-in",
       className
-    )}>
+    )}
+    style={style}>
       <Quote className="text-primary mb-4 h-8 w-8 opacity-60" />
       <blockquote className="mb-6 flex-grow">
         <p className="text-gray-700 italic">{quote}</p>
