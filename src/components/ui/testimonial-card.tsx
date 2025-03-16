@@ -24,28 +24,28 @@ export function TestimonialCard({
 }: TestimonialCardProps) {
   return (
     <div className={cn(
-      "bg-white p-6 sm:p-8 rounded-lg shadow-sm border border-gray-100 flex flex-col h-full animate-fade-in",
+      "bg-white p-5 rounded-lg shadow-sm border border-gray-100 flex flex-col h-full animate-fade-in",
       className
     )}
     style={style}>
-      <Quote className="text-primary mb-4 h-8 w-8 opacity-60" />
-      <blockquote className="mb-6 flex-grow">
-        <p className="text-gray-700 italic">{quote}</p>
+      <Quote className="text-primary mb-3 h-6 w-6 opacity-60" />
+      <blockquote className="mb-4 flex-grow">
+        <p className="text-gray-700 italic text-sm md:text-base line-clamp-6 md:line-clamp-none">{quote}</p>
       </blockquote>
       <div className="flex items-center">
         {imageUrl && (
-          <div className="mr-4">
+          <div className="mr-3">
             <img 
               src={imageUrl} 
               alt={author} 
-              className="h-12 w-12 rounded-full object-cover"
+              className="h-10 w-10 rounded-full object-cover"
             />
           </div>
         )}
         <div>
-          <p className="font-medium text-gray-900">{author}</p>
+          <p className="font-medium text-gray-900 text-sm md:text-base">{author}</p>
           {(role || company) && (
-            <p className="text-sm text-gray-500">
+            <p className="text-xs md:text-sm text-gray-500">
               {role}{role && company && ", "}{company}
             </p>
           )}

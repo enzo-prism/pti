@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { ArrowRight, FileCheck, Handshake, Users, Award, ChevronRight } from "lucide-react";
+import { ArrowRight, Award, ChevronRight, FileCheck, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { ServiceCard } from "@/components/ui/service-card";
@@ -167,7 +167,7 @@ const Home = () => {
         </SectionSubtitle>
         
         <div className="mt-6 md:mt-8 max-w-3xl mx-auto px-4">
-          <div className="relative h-72 sm:h-64">
+          <div className="relative h-[320px] md:h-64">
             {testimonials.map((testimonial, index) => (
               <div 
                 key={index} 
@@ -176,18 +176,19 @@ const Home = () => {
                     ? "opacity-100 translate-x-0" 
                     : "opacity-0 translate-x-8"
                 }`}
+                aria-hidden={index !== currentTestimonial}
               >
                 <TestimonialCard {...testimonial} />
               </div>
             ))}
           </div>
           
-          <div className="flex justify-center mt-4 md:mt-6">
+          <div className="flex justify-center mt-4">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentTestimonial(index)}
-                className={`w-2.5 h-2.5 rounded-full mx-1.5 ${
+                className={`w-2.5 h-2.5 rounded-full mx-1.5 transition-colors ${
                   index === currentTestimonial ? "bg-primary" : "bg-gray-300"
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
@@ -195,7 +196,7 @@ const Home = () => {
             ))}
           </div>
           
-          <div className="text-center mt-6 md:mt-8">
+          <div className="text-center mt-6">
             <Button asChild variant="outline" size={isMobile ? "default" : "lg"}>
               <Link to="/testimonials" className="flex items-center">
                 Read more testimonials <ArrowRight className="ml-2 h-4 w-4" />

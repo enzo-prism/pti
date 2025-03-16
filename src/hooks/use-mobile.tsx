@@ -15,15 +15,27 @@ export function useIsMobile() {
     setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
 
     // Create handler for window resize with debounce
+    let timeoutId: number | null = null
     const handleResize = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+      if (timeoutId) {
+        window.clearTimeout(timeoutId)
+      }
+      
+      timeoutId = window.setTimeout(() => {
+        setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+      }, 150)
     }
 
     // Add event listener
     window.addEventListener("resize", handleResize)
     
     // Clean up
-    return () => window.removeEventListener("resize", handleResize)
+    return () => {
+      if (timeoutId) {
+        window.clearTimeout(timeoutId)
+      }
+      window.removeEventListener("resize", handleResize)
+    }
   }, [])
 
   // Only return the true isMobile value when component is mounted
