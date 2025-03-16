@@ -1,5 +1,6 @@
+
 import { Link } from "react-router-dom";
-import { ArrowRight, FileCheck, Handshake, Users, Award } from "lucide-react";
+import { ArrowRight, FileCheck, Handshake, Users, Award, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { ServiceCard } from "@/components/ui/service-card";
@@ -7,9 +8,11 @@ import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { Cta } from "@/components/ui/cta";
 import { useState, useEffect } from "react";
 import { PracticeTransitions } from "@/components/sections/PracticeTransitions";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const isMobile = useIsMobile();
   
   const testimonials = [
     {
@@ -54,22 +57,22 @@ const Home = () => {
   
   return (
     <>
-      {/* Hero Section */}
-      <section className="pt-28 pb-16 md:pt-32 md:pb-20 lg:pt-44 lg:pb-28 bg-gradient-to-br from-white to-accent relative overflow-hidden">
-        <div className="container relative z-10">
+      {/* Hero Section - Mobile Optimized */}
+      <section className="pt-20 pb-10 md:pt-32 md:pb-20 lg:pt-44 lg:pb-28 bg-gradient-to-br from-white to-accent relative overflow-hidden">
+        <div className="container relative z-10 px-4 sm:px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 animate-fade-in">
               Your Practice, <span className="text-primary">Your Legacy</span>
             </h1>
-            <p className="text-xl text-gray-700 mb-8 animate-fade-in animate-delay-100">
+            <p className="text-lg md:text-xl text-gray-700 mb-6 md:mb-8 animate-fade-in animate-delay-100">
               Expert guidance for dental practice transitions, helping you build and preserve your professional legacy.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in animate-delay-200">
-              <Button asChild size="lg">
-                <Link to="/contact">Book a Complimentary Consultation</Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 animate-fade-in animate-delay-200">
+              <Button asChild size={isMobile ? "default" : "lg"} className="w-full sm:w-auto">
+                <Link to="/contact">Book a Consultation</Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link to="/services">Explore Our Services</Link>
+              <Button asChild variant="outline" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto mt-3 sm:mt-0">
+                <Link to="/services">Explore Services</Link>
               </Button>
             </div>
           </div>
@@ -77,47 +80,47 @@ const Home = () => {
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1588776814546-daab30f310ce?ixlib=rb-4.0.3')] bg-no-repeat bg-cover opacity-5"></div>
       </section>
 
-      {/* Value Proposition */}
-      <Section background="white">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center p-6 animate-fade-in">
-            <div className="mx-auto bg-accent rounded-full w-16 h-16 flex items-center justify-center mb-4">
-              <Award className="h-8 w-8 text-primary" />
+      {/* Value Proposition - Mobile Optimized */}
+      <Section background="white" className="py-10 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="text-center p-4 md:p-6 animate-fade-in bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+            <div className="mx-auto bg-accent rounded-full w-14 h-14 flex items-center justify-center mb-3 md:mb-4">
+              <Award className="h-7 w-7 text-primary" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">Trusted Experience</h3>
-            <p className="text-gray-600">
+            <h3 className="text-lg md:text-xl font-semibold mb-2">Trusted Experience</h3>
+            <p className="text-sm md:text-base text-gray-600">
               Years of specialized experience in dental practice transitions across the United States.
             </p>
           </div>
-          <div className="text-center p-6 animate-fade-in animate-delay-100">
-            <div className="mx-auto bg-accent rounded-full w-16 h-16 flex items-center justify-center mb-4">
-              <Handshake className="h-8 w-8 text-primary" />
+          <div className="text-center p-4 md:p-6 animate-fade-in animate-delay-100 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+            <div className="mx-auto bg-accent rounded-full w-14 h-14 flex items-center justify-center mb-3 md:mb-4">
+              <Handshake className="h-7 w-7 text-primary" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">Personalized Approach</h3>
-            <p className="text-gray-600">
+            <h3 className="text-lg md:text-xl font-semibold mb-2">Personalized Approach</h3>
+            <p className="text-sm md:text-base text-gray-600">
               Tailored solutions for your unique practice, ensuring optimal outcomes for every transition.
             </p>
           </div>
-          <div className="text-center p-6 animate-fade-in animate-delay-200">
-            <div className="mx-auto bg-accent rounded-full w-16 h-16 flex items-center justify-center mb-4">
-              <FileCheck className="h-8 w-8 text-primary" />
+          <div className="text-center p-4 md:p-6 animate-fade-in animate-delay-200 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+            <div className="mx-auto bg-accent rounded-full w-14 h-14 flex items-center justify-center mb-3 md:mb-4">
+              <FileCheck className="h-7 w-7 text-primary" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">Comprehensive Services</h3>
-            <p className="text-gray-600">
+            <h3 className="text-lg md:text-xl font-semibold mb-2">Comprehensive Services</h3>
+            <p className="text-sm md:text-base text-gray-600">
               Complete transition support from valuation to finalization, with expert guidance at every step.
             </p>
           </div>
         </div>
       </Section>
 
-      {/* Services Section */}
-      <Section background="light">
-        <SectionTitle centered>Our Services</SectionTitle>
-        <SectionSubtitle centered>
+      {/* Services Section - Mobile Optimized */}
+      <Section background="light" className="py-10 md:py-16">
+        <SectionTitle centered className="text-2xl md:text-3xl mb-2">Our Services</SectionTitle>
+        <SectionSubtitle centered className="text-sm md:text-base mb-6 md:mb-8 px-4">
           Comprehensive transition solutions tailored to your dental practice needs
         </SectionSubtitle>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 px-4 sm:px-6">
           <ServiceCard
             title="Opinion of Value"
             description="Accurate, market-driven valuations to understand your practice's true worth."
@@ -144,8 +147,8 @@ const Home = () => {
           />
         </div>
         
-        <div className="text-center mt-10 animate-fade-in">
-          <Button asChild variant="outline">
+        <div className="text-center mt-8 md:mt-10 animate-fade-in">
+          <Button asChild variant="outline" size={isMobile ? "default" : "lg"}>
             <Link to="/services" className="flex items-center">
               View all services <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
@@ -153,18 +156,18 @@ const Home = () => {
         </div>
       </Section>
 
-      {/* Practice Transitions Section - Enhanced! */}
-      <PracticeTransitions limit={3} />
+      {/* Practice Transitions Section - Already Optimized */}
+      <PracticeTransitions limit={isMobile ? 2 : 3} />
 
-      {/* Testimonials Section */}
-      <Section>
-        <SectionTitle centered>What Our Clients Say</SectionTitle>
-        <SectionSubtitle centered>
+      {/* Testimonials Section - Mobile Optimized */}
+      <Section className="py-10 md:py-16">
+        <SectionTitle centered className="text-2xl md:text-3xl mb-2">What Our Clients Say</SectionTitle>
+        <SectionSubtitle centered className="text-sm md:text-base mb-6 md:mb-8 px-4">
           Trusted by dental professionals across the country
         </SectionSubtitle>
         
-        <div className="mt-8 max-w-3xl mx-auto">
-          <div className="relative h-64">
+        <div className="mt-6 md:mt-8 max-w-3xl mx-auto px-4">
+          <div className="relative h-72 sm:h-64">
             {testimonials.map((testimonial, index) => (
               <div 
                 key={index} 
@@ -179,12 +182,12 @@ const Home = () => {
             ))}
           </div>
           
-          <div className="flex justify-center mt-6">
+          <div className="flex justify-center mt-4 md:mt-6">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentTestimonial(index)}
-                className={`w-2.5 h-2.5 rounded-full mx-1 ${
+                className={`w-2.5 h-2.5 rounded-full mx-1.5 ${
                   index === currentTestimonial ? "bg-primary" : "bg-gray-300"
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
@@ -192,8 +195,8 @@ const Home = () => {
             ))}
           </div>
           
-          <div className="text-center mt-8">
-            <Button asChild variant="outline">
+          <div className="text-center mt-6 md:mt-8">
+            <Button asChild variant="outline" size={isMobile ? "default" : "lg"}>
               <Link to="/testimonials" className="flex items-center">
                 Read more testimonials <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -202,44 +205,45 @@ const Home = () => {
         </div>
       </Section>
 
-      {/* About Us Section */}
-      <Section background="light">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      {/* About Us Section - Mobile Optimized */}
+      <Section background="light" className="py-10 md:py-16">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center px-4 sm:px-6">
           <div className="order-2 md:order-1 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">About Practice Transitions Institute</h2>
-            <p className="text-gray-600 mb-4">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">About Practice Transitions Institute</h2>
+            <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4">
               Founded with the mission to provide expert guidance to dental professionals throughout their career journey, 
               Practice Transitions Institute specializes in seamless practice transitions.
             </p>
-            <p className="text-gray-600 mb-6">
+            <p className="text-sm md:text-base text-gray-600 mb-4 md:mb-6">
               Our team of experienced professionals understands the unique challenges and opportunities 
               in the dental industry, offering personalized solutions tailored to your specific goals.
             </p>
-            <Button asChild>
+            <Button asChild size={isMobile ? "default" : "lg"}>
               <Link to="/about" className="flex items-center">
-                Learn more about us <ArrowRight className="ml-2 h-4 w-4" />
+                Learn more about us <ChevronRight className="ml-1 h-4 w-4" />
               </Link>
             </Button>
           </div>
-          <div className="order-1 md:order-2 animate-fade-in animate-delay-100">
+          <div className="order-1 md:order-2 animate-fade-in animate-delay-100 mb-6 md:mb-0">
             <div className="rounded-lg overflow-hidden shadow-md">
               <img 
                 src="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png" 
                 alt="PTI team members with dental professionals" 
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover aspect-4/3"
               />
             </div>
           </div>
         </div>
       </Section>
 
-      {/* CTA Section */}
-      <Section className="mb-8">
+      {/* CTA Section - Mobile Optimized */}
+      <Section className="py-10 md:py-16 mb-4 md:mb-8">
         <Cta 
           title="Ready to Discuss Your Practice Transition?"
-          description="Schedule a complimentary consultation with our team of experts to explore your options and create a personalized transition plan."
-          buttonText="Book Your Consultation Today"
+          description="Schedule a consultation with our team of experts to explore your options and create a personalized transition plan."
+          buttonText="Book Your Consultation"
           buttonUrl="/contact"
+          className="px-4"
         />
       </Section>
     </>

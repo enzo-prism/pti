@@ -14,7 +14,7 @@ export function useIsMobile() {
     // Set the initial value
     setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
 
-    // Create handler for window resize
+    // Create handler for window resize with debounce
     const handleResize = () => {
       setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
     }

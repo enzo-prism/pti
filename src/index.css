@@ -35,6 +35,7 @@
 
   body {
     @apply bg-background text-foreground font-sans;
+    -webkit-tap-highlight-color: transparent;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -42,19 +43,19 @@
   }
 
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
+    @apply text-3xl md:text-5xl lg:text-6xl;
   }
 
   h2 {
-    @apply text-3xl md:text-4xl;
+    @apply text-2xl md:text-4xl;
   }
 
   h3 {
-    @apply text-2xl md:text-3xl;
+    @apply text-xl md:text-3xl;
   }
 
   h4 {
-    @apply text-xl md:text-2xl;
+    @apply text-lg md:text-2xl;
   }
 
   p {
@@ -66,7 +67,7 @@
   }
 
   .section {
-    @apply py-12 md:py-16 lg:py-20;
+    @apply py-10 md:py-16 lg:py-20;
   }
 
   .animate-delay-100 {
@@ -85,6 +86,15 @@
   a, button {
     @apply font-medium;
   }
+
+  /* Mobile optimization */
+  input, 
+  textarea, 
+  button, 
+  select, 
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 /* Hide scrollbar but allow scrolling */
@@ -101,5 +111,44 @@
   /* Add aspect ratio utility */
   .aspect-4\/3 {
     aspect-ratio: 4/3;
+  }
+
+  /* Mobile-friendly utilities */
+  .touch-action-none {
+    touch-action: none;
+  }
+  
+  /* Improved mobile tap targets */
+  .tap-highlight-none {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .min-tap-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Safe area insets */
+  .safe-area-inset-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Update layout for mobile devices */
+@layer components {
+  .mobile-container {
+    @apply px-4 w-full;
+  }
+  
+  .mobile-section {
+    @apply py-8 md:py-16;
+  }
+  
+  .mobile-card {
+    @apply rounded-lg shadow-sm hover:shadow-md transition-shadow;
   }
 }
