@@ -80,4 +80,9 @@
   .animate-delay-300 {
     animation-delay: 300ms;
   }
+
+  /* Button text contrast enhancement */
+  a, button {
+    @apply font-medium;
+  }
 }

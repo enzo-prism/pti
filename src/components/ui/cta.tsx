@@ -25,7 +25,7 @@ export function Cta({
 }: CtaProps) {
   let bgClass = "";
   let textClass = "";
-  let buttonVariant: "default" | "outline" = "default";
+  let buttonVariant: "default" | "outline" | "secondary" = "default";
   
   switch (background) {
     case "white":
@@ -41,12 +41,12 @@ export function Cta({
     case "primary":
       bgClass = "bg-primary";
       textClass = "text-white";
-      buttonVariant = "outline";
+      buttonVariant = "secondary";
       break;
     default:
       bgClass = "bg-primary";
       textClass = "text-white";
-      buttonVariant = "outline";
+      buttonVariant = "secondary";
   }
   
   return (
@@ -69,7 +69,7 @@ export function Cta({
           asChild 
           variant={buttonVariant} 
           size="lg" 
-          className={background === "primary" ? "border-white text-white hover:bg-white hover:text-primary" : ""}
+          className="font-medium"
         >
           <Link to={buttonUrl}>{buttonText}</Link>
         </Button>
