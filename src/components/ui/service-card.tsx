@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
+import { ReactNode, CSSProperties } from "react";
 
 interface ServiceCardProps {
   title: string;
@@ -10,6 +10,7 @@ interface ServiceCardProps {
   icon?: ReactNode;
   url: string;
   className?: string;
+  style?: CSSProperties;
 }
 
 export function ServiceCard({
@@ -18,6 +19,7 @@ export function ServiceCard({
   icon,
   url,
   className,
+  style,
 }: ServiceCardProps) {
   return (
     <Link
@@ -26,6 +28,7 @@ export function ServiceCard({
         "group bg-white p-6 sm:p-8 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col h-full animate-fade-in",
         className
       )}
+      style={style}
     >
       {icon && <div className="text-primary mb-4">{icon}</div>}
       <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
