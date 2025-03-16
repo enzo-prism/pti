@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Sample data - in a real app, this would come from an API or CMS
 const availablePractices = [
@@ -108,6 +109,7 @@ export function PracticeTransitions({
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredAvailable, setFilteredAvailable] = useState(availablePractices);
   const [filteredSold, setFilteredSold] = useState(soldPractices);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     // Filter practices based on search query
@@ -140,11 +142,11 @@ export function PracticeTransitions({
   const soldPracticesToShow = limit ? filteredSold.slice(0, limit) : filteredSold;
 
   return (
-    <Section background="light">
+    <Section background="light" className="px-2 sm:px-4">
       {showTitle && (
         <>
           <SectionTitle centered>Practice Transitions</SectionTitle>
-          <SectionSubtitle centered>
+          <SectionSubtitle centered className="px-2 sm:px-0">
             Explore our available practices and view our successful transitions
           </SectionSubtitle>
         </>
@@ -152,20 +154,20 @@ export function PracticeTransitions({
       
       <Tabs 
         defaultValue="available" 
-        className="mt-8"
+        className="mt-6 sm:mt-8"
         onValueChange={value => setActiveTab(value)}
       >
-        <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-4 sm:mb-6">
           <TabsList className="grid grid-cols-2 w-full max-w-md">
-            <TabsTrigger value="available">
+            <TabsTrigger value="available" className="px-2 sm:px-4 text-xs sm:text-sm">
               Available Practices
-              <Badge variant="outline" className="ml-2 bg-primary text-white">
+              <Badge variant="outline" className="ml-1 sm:ml-2 bg-primary text-white text-[10px] sm:text-xs">
                 {filteredAvailable.length}
               </Badge>
             </TabsTrigger>
-            <TabsTrigger value="sold">
+            <TabsTrigger value="sold" className="px-2 sm:px-4 text-xs sm:text-sm">
               Completed Transitions
-              <Badge variant="outline" className="ml-2 bg-gray-400 text-white">
+              <Badge variant="outline" className="ml-1 sm:ml-2 bg-gray-400 text-white text-[10px] sm:text-xs">
                 {filteredSold.length}
               </Badge>
             </TabsTrigger>
@@ -173,12 +175,12 @@ export function PracticeTransitions({
         </div>
         
         {showSearch && (
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-4 sm:mb-6 px-2 sm:px-0">
             <div className="relative w-full max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3 w-3 sm:h-4 sm:w-4 text-gray-400" />
               <Input
-                placeholder="Search by location or practice type..."
-                className="pl-10"
+                placeholder={isMobile ? "Search practices..." : "Search by location or practice type..."}
+                className="pl-8 sm:pl-10 py-1 sm:py-2 text-xs sm:text-sm"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -187,14 +189,14 @@ export function PracticeTransitions({
         )}
         
         {showFilters && (
-          <div className="flex flex-wrap justify-center gap-2 mb-6">
-            <Badge className="bg-white text-gray-600 border hover:bg-gray-100 cursor-pointer">
-              <MapPin className="mr-1 h-3 w-3" /> All Locations
+          <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-4 sm:mb-6 px-2 sm:px-0">
+            <Badge className="bg-white text-gray-600 border hover:bg-gray-100 cursor-pointer text-xs sm:text-sm py-1">
+              <MapPin className="mr-1 h-2.5 w-2.5 sm:h-3 sm:w-3" /> All Locations
             </Badge>
-            <Badge className="bg-white text-gray-600 border hover:bg-gray-100 cursor-pointer">
+            <Badge className="bg-white text-gray-600 border hover:bg-gray-100 cursor-pointer text-xs sm:text-sm py-1">
               Revenue: Any
             </Badge>
-            <Badge className="bg-white text-gray-600 border hover:bg-gray-100 cursor-pointer">
+            <Badge className="bg-white text-gray-600 border hover:bg-gray-100 cursor-pointer text-xs sm:text-sm py-1">
               Operatories: Any
             </Badge>
           </div>
@@ -202,7 +204,7 @@ export function PracticeTransitions({
         
         <TabsContent value="available">
           {filteredAvailable.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
               {availablePracticesToShow.map((practice) => (
                 <PracticeCard
                   key={practice.id}
@@ -221,15 +223,15 @@ export function PracticeTransitions({
               ))}
             </div>
           ) : (
-            <div className="text-center py-10">
-              <p className="text-gray-500">No practices found matching your search.</p>
+            <div className="text-center py-6 sm:py-10">
+              <p className="text-gray-500 text-sm sm:text-base">No practices found matching your search.</p>
             </div>
           )}
         </TabsContent>
         
         <TabsContent value="sold">
           {filteredSold.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
               {soldPracticesToShow.map((practice) => (
                 <PracticeCard
                   key={practice.id}
@@ -249,36 +251,36 @@ export function PracticeTransitions({
               ))}
             </div>
           ) : (
-            <div className="text-center py-10">
-              <p className="text-gray-500">No completed transitions found matching your search.</p>
+            <div className="text-center py-6 sm:py-10">
+              <p className="text-gray-500 text-sm sm:text-base">No completed transitions found matching your search.</p>
             </div>
           )}
         </TabsContent>
       </Tabs>
       
       {limit && (
-        <div className="mt-10 text-center">
-          <div className="inline-flex flex-col sm:flex-row gap-4 items-center justify-center">
-            <Button asChild>
+        <div className="mt-6 sm:mt-10 text-center px-2 sm:px-0">
+          <div className="inline-flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center">
+            <Button asChild size={isMobile ? "sm" : "default"} className="w-full sm:w-auto text-xs sm:text-sm">
               <Link to="/transitions" className="flex items-center">
                 View All {activeTab === "available" ? "Available Practices" : "Completed Transitions"}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4" />
               </Link>
             </Button>
             
             {activeTab === "available" && (
-              <Button asChild variant="outline">
+              <Button asChild variant="outline" size={isMobile ? "sm" : "default"} className="w-full sm:w-auto text-xs sm:text-sm">
                 <Link to="/contact" className="flex items-center">
-                  <Search className="mr-2 h-4 w-4" />
+                  <Search className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
                   Inquire About a Practice
                 </Link>
               </Button>
             )}
             
             {activeTab === "sold" && (
-              <Button asChild variant="outline">
+              <Button asChild variant="outline" size={isMobile ? "sm" : "default"} className="w-full sm:w-auto text-xs sm:text-sm">
                 <Link to="/contact" className="flex items-center">
-                  <Check className="mr-2 h-4 w-4" />
+                  <Check className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
                   Schedule Your Transition
                 </Link>
               </Button>
