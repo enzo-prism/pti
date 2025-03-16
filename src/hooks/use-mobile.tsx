@@ -4,9 +4,13 @@ import * as React from "react"
 const MOBILE_BREAKPOINT = 768
 
 export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
+  const [isMobile, setIsMobile] = React.useState(false)
+  const [isMounted, setIsMounted] = React.useState(false)
 
   React.useEffect(() => {
+    // Mark component as mounted
+    setIsMounted(true)
+    
     // Set the initial value
     setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
 
@@ -22,5 +26,7 @@ export function useIsMobile() {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  return !!isMobile
+  // Only return the true isMobile value when component is mounted
+  // This prevents hydration mismatch issues
+  return isMounted ? isMobile : false
 }

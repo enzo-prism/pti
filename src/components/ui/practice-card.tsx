@@ -54,22 +54,35 @@ export function PracticeCard({
   // Default image if none provided
   const defaultImage = "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
 
+  // Higher quality dental office images
+  const dentalImages = [
+    "https://images.unsplash.com/photo-1629909615184-74f495363b67?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1588776814546-daab30f310ce?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1606811856475-5e94ce3c99e8?w=800&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1606811856891-07eee7e3b8c6?w=800&auto=format&fit=crop&q=80",
+  ];
+
+  // Use provided image or fallback to a default one
+  const practiceImage = imageSrc || defaultImage;
+
   return (
     <Card 
       className={cn(
-        "overflow-hidden transition-all hover:shadow-md group h-full flex flex-col border-gray-200", 
+        "overflow-hidden transition-all hover:shadow-md group h-full flex flex-col border border-gray-200 rounded-xl", 
         className
       )}
     >
-      <div className="relative h-48 sm:h-56 overflow-hidden">
+      <div className="relative aspect-4/3 overflow-hidden">
         <img 
-          src={imageSrc || defaultImage} 
+          src={practiceImage} 
           alt={title} 
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
         <Badge 
           className={cn(
-            "absolute top-2 right-2 sm:top-3 sm:right-3 font-medium px-2 py-1 text-xs", 
+            "absolute top-3 right-3 font-medium px-3 py-1 text-xs rounded-full", 
             statusConfig[status].color
           )}
         >
@@ -77,38 +90,38 @@ export function PracticeCard({
         </Badge>
       </div>
 
-      <CardContent className="flex-grow p-3 sm:p-5">
-        <div className="mb-1 sm:mb-2 flex items-start justify-between">
-          <h3 className="text-base sm:text-lg font-semibold group-hover:text-primary transition-colors line-clamp-1">
+      <CardContent className="flex-grow p-4">
+        <div className="mb-2 flex items-start justify-between">
+          <h3 className="text-lg font-semibold group-hover:text-primary transition-colors line-clamp-1">
             {title}
           </h3>
           {date && <span className="text-xs bg-gray-100 px-2 py-1 rounded-full text-gray-600 font-medium ml-2 flex-shrink-0">{date}</span>}
         </div>
         
-        <div className="flex items-center text-gray-600 text-xs sm:text-sm mb-2 sm:mb-4">
-          <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mr-1 text-primary flex-shrink-0" />
+        <div className="flex items-center text-gray-600 text-sm mb-2">
+          <MapPin className="h-3.5 w-3.5 mr-1 text-primary flex-shrink-0" />
           <span className="truncate">{location}</span>
         </div>
         
-        <p className="text-gray-600 text-xs sm:text-sm line-clamp-2 sm:line-clamp-3 mb-2 sm:mb-4">
+        <p className="text-gray-600 text-sm line-clamp-2 mb-3">
           {description}
         </p>
 
         {metadata && metadata.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2 sm:mt-3">
+          <div className="flex flex-wrap gap-2 mt-2">
             {metadata.map((item, index) => {
               // Use appropriate icons based on label
               let icon = item.icon;
               if (!icon) {
                 if (item.label.toLowerCase().includes('revenue')) {
-                  icon = <DollarSign className="h-2.5 w-2.5 sm:h-3 sm:w-3" />;
+                  icon = <DollarSign className="h-3 w-3" />;
                 } else if (item.label.toLowerCase().includes('operatories')) {
-                  icon = <Grid className="h-2.5 w-2.5 sm:h-3 sm:w-3" />;
+                  icon = <Grid className="h-3 w-3" />;
                 }
               }
               
               return (
-                <div key={index} className="flex items-center text-xs bg-gray-100 rounded-full px-2 sm:px-3 py-1 sm:py-1.5">
+                <div key={index} className="flex items-center text-xs bg-gray-50 rounded-full px-2.5 py-1.5 border border-gray-100">
                   {icon && <span className="mr-1 text-primary">{icon}</span>}
                   <span className="font-medium mr-1">{item.label}:</span>
                   <span>{item.value}</span>
@@ -119,11 +132,11 @@ export function PracticeCard({
         )}
       </CardContent>
 
-      <CardFooter className="pt-0 pb-3 sm:pb-5 px-3 sm:px-5">
-        <Button asChild variant="outline" size={isMobile ? "sm" : "default"} className="w-full hover:bg-primary hover:text-white transition-colors border-primary text-primary text-xs sm:text-sm py-1.5 sm:py-2">
+      <CardFooter className="pt-0 pb-4 px-4">
+        <Button asChild variant="outline" size="sm" className="w-full hover:bg-primary hover:text-white transition-colors border-primary text-primary text-sm py-2 rounded-full">
           <Link to={url} className="w-full flex items-center justify-center">
             {status === "available" ? "Inquire Now" : "View Details"}
-            <ArrowRight className="ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+            <ArrowRight className="ml-2 h-3.5 w-3.5" />
           </Link>
         </Button>
       </CardFooter>

@@ -73,6 +73,9 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+			aspectRatio: {
+				'4/3': '4 / 3',
+			},
 			keyframes: {
 				'accordion-down': {
 					from: {

@@ -86,3 +86,20 @@
     @apply font-medium;
   }
 }
+
+/* Hide scrollbar but allow scrolling */
+@layer utilities {
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+  
+  /* Add aspect ratio utility */
+  .aspect-4\/3 {
+    aspect-ratio: 4/3;
+  }
+}
