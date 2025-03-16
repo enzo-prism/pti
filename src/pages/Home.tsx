@@ -209,8 +209,8 @@ const Home = () => {
           <div className="order-1 md:order-2 animate-fade-in animate-delay-100">
             <div className="rounded-lg overflow-hidden shadow-md">
               <img 
-                src="https://images.unsplash.com/photo-1591085686350-798c0f9faa7f?ixlib=rb-4.0.3" 
-                alt="Dental practice team" 
+                src="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png" 
+                alt="PTI team members with dental professionals" 
                 className="w-full h-auto object-cover"
               />
             </div>

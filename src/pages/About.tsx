@@ -11,19 +11,19 @@ const About = () => {
       name: "Dr. Michael Njo, DDS",
       role: "Co-founder & Lead Transition Consultant",
       bio: "Former clinician whose career pivot led him to become a renowned expert in dental practice transitions, known for hands-on guidance and extensive industry network.",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3"
+      image: "/lovable-uploads/6b7bd257-fc0e-455a-80bd-6111a02be241.png"
     },
     {
       name: "Fred Heppner",
       role: "Co-founder & Transition Specialist",
       bio: "Brings decades of experience as a broker and consultant; recognized for his ability to facilitate seamless, well-vetted matches between sellers and buyers.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3"
+      image: "/lovable-uploads/1a104794-17ea-4b67-b3f2-17a24be7dc49.png"
     },
     {
       name: "Liz Armato",
       role: "COO & Client Services Lead",
       bio: "Former executive at Pride Institute with over 20 years in dental operations, focused on streamlining client services and ensuring personalized guidance.",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3"
+      image: "/lovable-uploads/8af030a0-6d6f-46e6-960a-d2d64258b329.png"
     }
   ];
 
@@ -60,8 +60,8 @@ const About = () => {
           </div>
           <div className="animate-fade-in animate-delay-100">
             <img 
-              src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-4.0.3" 
-              alt="Founder speaking at dental conference" 
+              src="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png" 
+              alt="PTI team members with dental professionals" 
               className="rounded-lg shadow-md w-full"
             />
           </div>
@@ -158,11 +158,13 @@ const About = () => {
               className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <img 
-                src={member.image} 
-                alt={member.name} 
-                className="w-full h-48 object-cover"
-              />
+              <div className="h-64 overflow-hidden">
+                <img 
+                  src={member.image} 
+                  alt={member.name} 
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
                 <p className="text-primary font-medium mb-3">{member.role}</p>
