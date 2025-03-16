@@ -1,11 +1,10 @@
-
 import { Link } from "react-router-dom";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
 import { Button } from "@/components/ui/button";
 import { ServiceCard } from "@/components/ui/service-card";
 import { 
-  ArrowRight, ArrowUpRight, PresentationChart, 
+  ArrowRight, ArrowUpRight, Presentation, 
   Users, Handshake, FileText, DollarSign 
 } from "lucide-react";
 
@@ -20,7 +19,7 @@ const Transitions = () => {
     {
       title: "Assessment & Analysis",
       description: "We evaluate your practice, conduct necessary valuations, and analyze market conditions.",
-      icon: <PresentationChart className="h-6 w-6 text-white" />,
+      icon: <Presentation className="h-6 w-6 text-white" />,
     },
     {
       title: "Strategy Development",

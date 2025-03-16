@@ -1,8 +1,7 @@
-
 import { Link } from "react-router-dom";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
-import { Calculator, Scales, LineChart, CheckCircle, ArrowRight } from "lucide-react";
+import { Calculator, Scale, LineChart, CheckCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Value = () => {
@@ -74,7 +73,7 @@ const Value = () => {
           
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-100">
             <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
-              <Scales className="h-6 w-6 text-primary" />
+              <Scale className="h-6 w-6 text-primary" />
             </div>
             <h3 className="text-xl font-semibold mb-2">Market Comparison</h3>
             <p className="text-gray-600">
@@ -310,3 +309,4 @@ const Value = () => {
 };
 
 export default Value;
+
