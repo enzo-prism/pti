@@ -1,58 +1,35 @@
 
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
-import { Award, Heart, Target, CheckCircle } from "lucide-react";
+import { ArrowRight, Users, Award, Clock, CheckCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const About = () => {
   const teamMembers = [
     {
-      name: "Dr. Jennifer Miller",
+      name: "Dr. Sarah Williams",
       role: "Founder & CEO",
-      bio: "With over 20 years of experience in dental practice management and transitions, Dr. Miller founded PTI to help dental professionals navigate the complex process of practice transitions.",
-      imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3"
+      bio: "Former practice owner with over 25 years of clinical experience and a passion for helping dentists achieve successful transitions.",
+      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3"
     },
     {
-      name: "Mark Thompson",
-      role: "Director of Valuations",
-      bio: "A certified business valuator with expertise in dental practices, Mark has performed over 500 practice valuations nationwide and is recognized for his accurate and comprehensive approach.",
-      imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3"
+      name: "Michael Chen",
+      role: "Chief Financial Advisor",
+      bio: "Certified Valuation Analyst with expertise in dental practice economics and maximizing practice value.",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3"
     },
     {
-      name: "Dr. Robert Chen",
+      name: "Jennifer Lopez",
       role: "Transition Specialist",
-      bio: "As a former practice owner who successfully navigated multiple transitions, Dr. Chen brings real-world experience and practical insights to help clients achieve their transition goals.",
-      imageUrl: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3"
+      bio: "Experienced in structuring associateships and partnerships with a focus on creating equitable arrangements for all parties.",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3"
     },
     {
-      name: "Amanda Peterson",
+      name: "Robert Thompson",
       role: "Legal Counsel",
-      bio: "Specialized in healthcare law, Amanda ensures all PTI transitions are legally sound, protecting our clients through complex regulatory and contractual matters.",
-      imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3"
-    }
-  ];
-
-  const values = [
-    {
-      icon: <Heart className="h-6 w-6 text-primary" />,
-      title: "Integrity",
-      description: "We operate with complete transparency and honesty, always putting our clients' interests first."
-    },
-    {
-      icon: <Target className="h-6 w-6 text-primary" />,
-      title: "Excellence",
-      description: "We strive for the highest standards in everything we do, delivering exceptional results for our clients."
-    },
-    {
-      icon: <CheckCircle className="h-6 w-6 text-primary" />,
-      title: "Reliability",
-      description: "Our clients can count on us to deliver on our promises and be there every step of the way."
-    },
-    {
-      icon: <Award className="h-6 w-6 text-primary" />,
-      title: "Expertise",
-      description: "Our team brings specialized knowledge and experience to ensure optimal outcomes for every transition."
+      bio: "Healthcare attorney specializing in dental practice transitions, contracts, and regulatory compliance.",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3"
     }
   ];
 
@@ -62,10 +39,9 @@ const About = () => {
       <section className="pt-28 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-accent to-white">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">About Us</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">About Practice Transitions Institute</h1>
             <p className="text-xl text-gray-700 animate-fade-in animate-delay-100">
-              Practice Transitions Institute is dedicated to guiding dental professionals through
-              successful practice transitions, fostering legacies that last.
+              Dedicated to helping dental professionals navigate the complex journey of practice transitions
             </p>
           </div>
         </div>
@@ -75,151 +51,165 @@ const About = () => {
       <Section>
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Story</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Our Story
+            </h2>
             <p className="text-gray-600 mb-4">
-              Practice Transitions Institute was founded by Dr. Jennifer Miller in 2010 after experiencing firsthand the challenges 
-              of dental practice transitions. Having sold her own practice and helped colleagues through similar journeys, 
-              she recognized the need for specialized guidance in this complex process.
+              Practice Transitions Institute was founded in 2010 by Dr. Sarah Williams after experiencing firsthand the challenges of dental practice transitions. Having sold her own practice and helped colleagues through similar processes, she recognized the need for specialized guidance in this complex area.
             </p>
             <p className="text-gray-600 mb-4">
-              What began as a consultancy focused on valuation has evolved into a comprehensive transition service, 
-              helping hundreds of dental professionals across the United States buy, sell, and partner in practices.
+              What began as a small consulting practice has grown into a comprehensive transitions firm with a team of experts in finance, law, and practice management. Today, PTI has facilitated over 500 successful transitions across the United States.
             </p>
             <p className="text-gray-600">
-              Today, PTI brings together a team of experts in dental practice management, finance, and law to offer 
-              unparalleled support throughout every stage of the transition process.
+              Our mission remains constant: to provide expert, ethical guidance that helps dentists protect the value of their life's work while creating opportunities for the next generation of practitioners.
             </p>
           </div>
           <div className="animate-fade-in animate-delay-100">
-            <div className="rounded-lg overflow-hidden shadow-md">
-              <img 
-                src="https://images.unsplash.com/photo-1573164574572-cb89e39749b4?ixlib=rb-4.0.3" 
-                alt="Dental office" 
-                className="w-full h-auto object-cover"
-              />
-            </div>
+            <img 
+              src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-4.0.3" 
+              alt="Founder speaking at dental conference" 
+              className="rounded-lg shadow-md w-full"
+            />
           </div>
         </div>
       </Section>
 
-      {/* Mission & Values Section */}
+      {/* Our Values Section */}
       <Section background="light">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Mission & Values</h2>
-          <p className="text-gray-600 max-w-3xl mx-auto">
-            At Practice Transitions Institute, our mission is to empower dental professionals to 
-            achieve their practice transition goals through expert guidance, personalized solutions, 
-            and unwavering integrity.
-          </p>
+        <SectionTitle centered>Our Core Values</SectionTitle>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in">
+            <h3 className="text-xl font-semibold mb-3 text-primary">Integrity</h3>
+            <p className="text-gray-600">
+              We prioritize ethical practices and transparency in all our dealings, ensuring our clients always receive honest advice even when it's not what they might want to hear.
+            </p>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-100">
+            <h3 className="text-xl font-semibold mb-3 text-primary">Expertise</h3>
+            <p className="text-gray-600">
+              Our team maintains the highest level of knowledge in dental practice transitions through continuous education and staying current with industry trends.
+            </p>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-200">
+            <h3 className="text-xl font-semibold mb-3 text-primary">Client Focus</h3>
+            <p className="text-gray-600">
+              We tailor our approach to each client's unique circumstances and goals, recognizing that no two transitions are identical in their requirements.
+            </p>
+          </div>
         </div>
+      </Section>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {values.map((value, index) => (
-            <div 
-              key={index} 
-              className={`bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in`}
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                {value.icon}
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-              <p className="text-gray-600">{value.description}</p>
-            </div>
-          ))}
+      {/* Why Choose Us Section */}
+      <Section>
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="order-2 md:order-1 animate-fade-in">
+            <h2 className="text-3xl font-bold mb-6">Why Choose PTI</h2>
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <Award className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
+                <div>
+                  <h3 className="font-semibold text-lg">Specialized Experience</h3>
+                  <p className="text-gray-600">We focus exclusively on dental practice transitions, giving us unparalleled expertise in this specialized field.</p>
+                </div>
+              </li>
+              
+              <li className="flex items-start">
+                <Users className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
+                <div>
+                  <h3 className="font-semibold text-lg">Multidisciplinary Team</h3>
+                  <p className="text-gray-600">Our team includes experts in finance, valuation, law, and practice management, providing comprehensive guidance.</p>
+                </div>
+              </li>
+              
+              <li className="flex items-start">
+                <Clock className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
+                <div>
+                  <h3 className="font-semibold text-lg">Long-term Relationships</h3>
+                  <p className="text-gray-600">We build lasting relationships with our clients, guiding them through various transition phases throughout their careers.</p>
+                </div>
+              </li>
+              
+              <li className="flex items-start">
+                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
+                <div>
+                  <h3 className="font-semibold text-lg">Proven Track Record</h3>
+                  <p className="text-gray-600">Our success is measured by hundreds of satisfied clients who have achieved their transition goals.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div className="order-1 md:order-2 animate-fade-in animate-delay-100">
+            <img 
+              src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3" 
+              alt="Team in a strategy meeting" 
+              className="rounded-lg shadow-md w-full"
+            />
+          </div>
         </div>
       </Section>
 
       {/* Team Section */}
-      <Section>
-        <SectionTitle centered>Meet Our Team</SectionTitle>
+      <Section background="light">
+        <SectionTitle centered>Our Expert Team</SectionTitle>
         <SectionSubtitle centered>
-          Our experienced professionals are dedicated to guiding you through every step of the practice transition process
+          Meet the experienced professionals dedicated to your practice transition success
         </SectionSubtitle>
-
+        
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
           {teamMembers.map((member, index) => (
             <div 
               key={index} 
-              className={`animate-fade-in`}
+              className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100">
-                <img 
-                  src={member.imageUrl} 
-                  alt={member.name} 
-                  className="w-full h-64 object-cover object-center"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-                  <p className="text-primary font-medium mb-3">{member.role}</p>
-                  <p className="text-gray-600 text-sm">{member.bio}</p>
-                </div>
+              <img 
+                src={member.image} 
+                alt={member.name} 
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
+                <p className="text-primary font-medium mb-3">{member.role}</p>
+                <p className="text-gray-600 text-sm">{member.bio}</p>
               </div>
             </div>
           ))}
         </div>
       </Section>
 
-      {/* Accolades Section */}
-      <Section background="light">
-        <SectionTitle centered>Press & Accolades</SectionTitle>
-        <SectionSubtitle centered>
-          Recognized for excellence in dental practice transitions
-        </SectionSubtitle>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-8 items-center justify-center">
-          <div className="p-4 flex justify-center animate-fade-in">
-            <img 
-              src="https://via.placeholder.com/150x60?text=Dental+Journal" 
-              alt="Dental Journal" 
-              className="h-12 opacity-70 hover:opacity-100 transition-opacity"
-            />
+      {/* Stats Section */}
+      <Section>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div className="animate-fade-in">
+            <div className="text-4xl font-bold text-primary mb-2">500+</div>
+            <p className="text-gray-700">Successful Transitions</p>
           </div>
-          <div className="p-4 flex justify-center animate-fade-in animate-delay-100">
-            <img 
-              src="https://via.placeholder.com/150x60?text=Practice+Weekly" 
-              alt="Practice Weekly" 
-              className="h-12 opacity-70 hover:opacity-100 transition-opacity"
-            />
+          
+          <div className="animate-fade-in animate-delay-100">
+            <div className="text-4xl font-bold text-primary mb-2">15</div>
+            <p className="text-gray-700">Years of Experience</p>
           </div>
-          <div className="p-4 flex justify-center animate-fade-in animate-delay-200">
-            <img 
-              src="https://via.placeholder.com/150x60?text=Dental+Today" 
-              alt="Dental Today" 
-              className="h-12 opacity-70 hover:opacity-100 transition-opacity"
-            />
+          
+          <div className="animate-fade-in animate-delay-200">
+            <div className="text-4xl font-bold text-primary mb-2">42</div>
+            <p className="text-gray-700">States Served</p>
           </div>
-          <div className="p-4 flex justify-center animate-fade-in">
-            <img 
-              src="https://via.placeholder.com/150x60?text=Healthcare+Business" 
-              alt="Healthcare Business" 
-              className="h-12 opacity-70 hover:opacity-100 transition-opacity"
-            />
-          </div>
-          <div className="p-4 flex justify-center animate-fade-in animate-delay-100">
-            <img 
-              src="https://via.placeholder.com/150x60?text=Industry+Excellence" 
-              alt="Industry Excellence" 
-              className="h-12 opacity-70 hover:opacity-100 transition-opacity"
-            />
-          </div>
-          <div className="p-4 flex justify-center animate-fade-in animate-delay-200">
-            <img 
-              src="https://via.placeholder.com/150x60?text=Transition+Times" 
-              alt="Transition Times" 
-              className="h-12 opacity-70 hover:opacity-100 transition-opacity"
-            />
+          
+          <div className="animate-fade-in animate-delay-300">
+            <div className="text-4xl font-bold text-primary mb-2">98%</div>
+            <p className="text-gray-700">Client Satisfaction</p>
           </div>
         </div>
       </Section>
 
       {/* CTA Section */}
-      <Section className="mb-8">
+      <Section background="light" className="mb-8">
         <Cta 
-          title="Ready to Start Your Practice Transition Journey?"
-          description="Our experienced team is ready to help you navigate the process with confidence."
-          buttonText="Schedule a Consultation"
+          title="Ready to Start Your Transition Journey?"
+          description="Schedule a complimentary consultation with our expert team to explore your options."
+          buttonText="Book Your Consultation"
           buttonUrl="/contact"
         />
       </Section>

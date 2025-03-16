@@ -1,290 +1,306 @@
 
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
-import { Button } from "@/components/ui/button";
 import { Cta } from "@/components/ui/cta";
-import { Search, Filter, MapPin, DollarSign, Users, Building, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ServiceCard } from "@/components/ui/service-card";
+import { 
+  ArrowRight, ArrowUpRight, PresentationChart, 
+  Users, Handshake, FileText, DollarSign 
+} from "lucide-react";
 
 const Transitions = () => {
-  const [filter, setFilter] = useState("all");
-  
-  // Sample data for available and sold practices
-  const practices = [
+  // Timeline data
+  const timelineSteps = [
     {
-      id: 1,
-      status: "available",
-      title: "Modern General Practice in Downtown Area",
-      location: "San Francisco, CA",
-      price: "$950,000",
-      collection: "$1.2M",
-      operatories: 5,
-      sqft: "2,200",
-      yearEstablished: 2008,
-      imageUrl: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3"
+      title: "Initial Consultation",
+      description: "We discuss your goals, timeline, and specific needs to establish clear objectives.",
+      icon: <Users className="h-6 w-6 text-white" />,
     },
     {
-      id: 2,
-      status: "available",
-      title: "Well-Established Family Practice",
-      location: "Los Angeles, CA",
-      price: "$780,000",
-      collection: "$900K",
-      operatories: 4,
-      sqft: "1,800",
-      yearEstablished: 2003,
-      imageUrl: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?ixlib=rb-4.0.3"
+      title: "Assessment & Analysis",
+      description: "We evaluate your practice, conduct necessary valuations, and analyze market conditions.",
+      icon: <PresentationChart className="h-6 w-6 text-white" />,
     },
     {
-      id: 3,
-      status: "sold",
-      title: "High-End Cosmetic Dental Practice",
-      location: "Orange County, CA",
-      price: "$1.2M",
-      collection: "$1.5M",
-      operatories: 6,
-      sqft: "2,500",
-      yearEstablished: 2010,
-      imageUrl: "https://images.unsplash.com/photo-1588776814546-daab30f310ce?ixlib=rb-4.0.3"
+      title: "Strategy Development",
+      description: "We create a customized transition plan tailored to your specific situation and goals.",
+      icon: <FileText className="h-6 w-6 text-white" />,
     },
     {
-      id: 4,
-      status: "sold",
-      title: "Profitable Pediatric Dental Office",
-      location: "San Diego, CA",
-      price: "$825,000",
-      collection: "$950K",
-      operatories: 5,
-      sqft: "2,000",
-      yearEstablished: 2012,
-      imageUrl: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?ixlib=rb-4.0.3"
+      title: "Implementation",
+      description: "We execute the transition plan, managing negotiations, documentation, and coordination.",
+      icon: <Handshake className="h-6 w-6 text-white" />,
     },
     {
-      id: 5,
-      status: "available",
-      title: "Turnkey Orthodontic Practice",
-      location: "Sacramento, CA",
-      price: "$1.4M",
-      collection: "$1.8M",
-      operatories: 7,
-      sqft: "3,200",
-      yearEstablished: 2005,
-      imageUrl: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3"
-    },
-    {
-      id: 6,
-      status: "sold",
-      title: "Established General Practice with Real Estate",
-      location: "Santa Barbara, CA",
-      price: "$1.1M",
-      collection: "$1.3M",
-      operatories: 4,
-      sqft: "2,100",
-      yearEstablished: 2000,
-      imageUrl: "https://images.unsplash.com/photo-1629909615310-f29487b5a8b3?ixlib=rb-4.0.3"
+      title: "Completion & Follow-up",
+      description: "We finalize the transition and provide ongoing support to ensure long-term success.",
+      icon: <DollarSign className="h-6 w-6 text-white" />,
     }
   ];
-  
-  const filteredPractices = filter === "all" 
-    ? practices 
-    : practices.filter(practice => practice.status === filter);
-  
+
+  // Service cards
+  const transitionServices = [
+    {
+      title: "Ownership Transitions",
+      description: "Complete practice sales, associate buy-ins, and partnership formations with expert guidance.",
+      url: "/services/selling",
+    },
+    {
+      title: "Associateship Placement",
+      description: "Finding the right associate fit for your practice with potential for future ownership.",
+      url: "/services/associateships",
+    },
+    {
+      title: "Merger & Acquisition",
+      description: "Strategic practice mergers and acquisitions to maximize synergies and growth potential.",
+      url: "/services",
+    },
+    {
+      title: "DSO Transitions",
+      description: "Navigating the complex process of selling to or partnering with dental service organizations.",
+      url: "/services",
+    }
+  ];
+
   return (
     <>
       {/* Hero Section */}
       <section className="pt-28 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-accent to-white">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">Transitions in Action</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">Practice Transitions</h1>
             <p className="text-xl text-gray-700 animate-fade-in animate-delay-100">
-              Explore available practices and view our recently completed transitions
+              Expert guidance for every stage of your dental practice journey
             </p>
           </div>
         </div>
       </section>
 
-      {/* Search and Filter Section */}
+      {/* Overview Section */}
       <Section>
-        <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-          <div className="w-full md:w-auto mb-4 md:mb-0">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search by location, price, etc."
-                className="px-4 py-2 pl-10 border border-gray-300 rounded-md w-full md:w-80 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-              />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Seamless Dental Practice Transitions
+            </h2>
+            <p className="text-gray-600 mb-4">
+              Practice transitions represent significant milestones in your dental career, whether you're buying your first practice, bringing in an associate, forming a partnership, or planning your exit strategy.
+            </p>
+            <p className="text-gray-600 mb-6">
+              At Practice Transitions Institute, we understand the complexities involved and provide comprehensive guidance to ensure a smooth, successful transition that meets your personal and professional goals.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button asChild>
+                <Link to="/contact">Schedule a Consultation</Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link to="/services">Explore Our Services</Link>
+              </Button>
             </div>
           </div>
-          
-          <div className="flex items-center space-x-2">
-            <Filter className="text-gray-500 h-5 w-5 mr-1" />
-            <span className="text-gray-700 mr-2">Filter:</span>
-            <Button 
-              variant={filter === "all" ? "default" : "outline"} 
-              size="sm"
-              onClick={() => setFilter("all")}
-            >
-              All
-            </Button>
-            <Button 
-              variant={filter === "available" ? "default" : "outline"} 
-              size="sm"
-              onClick={() => setFilter("available")}
-            >
-              Available
-            </Button>
-            <Button 
-              variant={filter === "sold" ? "default" : "outline"} 
-              size="sm"
-              onClick={() => setFilter("sold")}
-            >
-              Sold
-            </Button>
+          <div className="animate-fade-in animate-delay-100">
+            <img 
+              src="https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-4.0.3" 
+              alt="Dental practice handshake" 
+              className="rounded-lg shadow-md w-full"
+            />
           </div>
         </div>
+      </Section>
 
-        {/* Practices Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPractices.map((practice) => (
+      {/* Transition Types Section */}
+      <Section background="light">
+        <SectionTitle centered>Our Transition Services</SectionTitle>
+        <SectionSubtitle centered>
+          Comprehensive solutions for every type of dental practice transition
+        </SectionSubtitle>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+          {transitionServices.map((service, index) => (
+            <ServiceCard
+              key={index}
+              title={service.title}
+              description={service.description}
+              url={service.url}
+              className="animate-fade-in"
+              style={{ animationDelay: `${index * 100}ms` }}
+            />
+          ))}
+        </div>
+      </Section>
+
+      {/* Transition Process Timeline */}
+      <Section>
+        <SectionTitle centered>Our Transition Process</SectionTitle>
+        <SectionSubtitle centered>
+          A structured approach to ensure successful transitions
+        </SectionSubtitle>
+        
+        <div className="mt-12 relative">
+          {/* Timeline line */}
+          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-accent"></div>
+          
+          {/* Timeline steps */}
+          {timelineSteps.map((step, index) => (
             <div 
-              key={practice.id} 
-              className="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow animate-fade-in"
+              key={index} 
+              className={`mb-12 md:mb-24 relative animate-fade-in ${
+                index % 2 === 0 ? 'md:text-right' : 'md:text-left'
+              }`}
+              style={{ animationDelay: `${index * 150}ms` }}
             >
-              <div className="relative">
-                <img 
-                  src={practice.imageUrl} 
-                  alt={practice.title} 
-                  className="w-full h-48 object-cover"
-                />
-                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-white text-sm font-medium ${
-                  practice.status === "available" ? "bg-green-500" : "bg-gray-500"
-                }`}>
-                  {practice.status === "available" ? "Available" : "Sold"}
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 leading-tight">{practice.title}</h3>
-                <div className="flex items-start mb-3">
-                  <MapPin className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-600">{practice.location}</span>
-                </div>
-                <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-4">
-                  <div className="flex items-center">
-                    <DollarSign className="h-4 w-4 text-gray-500 mr-2" />
-                    <span className="text-gray-700 text-sm">{practice.price}</span>
+              <div className="md:flex items-center">
+                {/* Content for left-aligned items */}
+                {index % 2 === 0 && (
+                  <div className="hidden md:block md:w-1/2 pr-8">
+                    <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                    <p className="text-gray-600">{step.description}</p>
                   </div>
-                  <div className="flex items-center">
-                    <Calendar className="h-4 w-4 text-gray-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Est. {practice.yearEstablished}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Users className="h-4 w-4 text-gray-500 mr-2" />
-                    <span className="text-gray-700 text-sm">{practice.operatories} Operatories</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Building className="h-4 w-4 text-gray-500 mr-2" />
-                    <span className="text-gray-700 text-sm">{practice.sqft} sq ft</span>
+                )}
+                
+                {/* Timeline node */}
+                <div className="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 flex justify-center mb-4 md:mb-0">
+                  <div className="bg-primary rounded-full w-12 h-12 flex items-center justify-center z-10">
+                    {step.icon}
                   </div>
                 </div>
-                <Button variant="outline" className="w-full">View Details</Button>
+                
+                {/* Content for mobile and right-aligned items */}
+                <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:hidden' : 'md:pl-8'}`}>
+                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                  <p className="text-gray-600">{step.description}</p>
+                </div>
               </div>
             </div>
           ))}
         </div>
-        
-        {filteredPractices.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-lg text-gray-600">No practices found matching your criteria.</p>
-          </div>
-        )}
       </Section>
 
-      {/* Success Stories Section */}
+      {/* Benefits Section */}
       <Section background="light">
-        <SectionTitle centered>Success Stories</SectionTitle>
-        <SectionSubtitle centered>
-          Real-world examples of our successful practice transitions
-        </SectionSubtitle>
-        
-        <div className="grid md:grid-cols-2 gap-8 mt-8">
-          <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 animate-fade-in">
-            <img 
-              src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3" 
-              alt="Success story - Dr. Johnson" 
-              className="w-full h-60 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2">Dr. Johnson to Dr. Martinez</h3>
-              <p className="text-gray-600 mb-4">
-                After 30 years of building a thriving practice, Dr. Johnson wanted to ensure his patients 
-                and staff would be in good hands. We helped him find the perfect buyer in Dr. Martinez, 
-                who shared his philosophy of care.
-              </p>
-              <div className="grid grid-cols-2 gap-4 text-sm mb-4">
-                <div>
-                  <p className="text-gray-500">Location</p>
-                  <p className="font-medium">Los Angeles, CA</p>
-                </div>
-                <div>
-                  <p className="text-gray-500">Transition Type</p>
-                  <p className="font-medium">Complete Sale</p>
-                </div>
-                <div>
-                  <p className="text-gray-500">Practice Type</p>
-                  <p className="font-medium">General Dentistry</p>
-                </div>
-                <div>
-                  <p className="text-gray-500">Completed</p>
-                  <p className="font-medium">October 2022</p>
-                </div>
+        <div className="grid md:grid-cols-2 gap-12">
+          <div className="animate-fade-in">
+            <h2 className="text-3xl font-bold mb-6">Why Choose Professional Guidance</h2>
+            <p className="text-gray-600 mb-6">
+              Practice transitions are among the most significant financial and career decisions dental professionals make. 
+              Professional guidance ensures you avoid common pitfalls while maximizing value and satisfaction.
+            </p>
+            
+            <div className="space-y-4">
+              <div className="p-4 bg-white rounded-lg shadow-sm">
+                <h3 className="font-semibold text-lg flex items-center">
+                  <ArrowRight className="h-5 w-5 text-primary mr-2" />
+                  Maximize Financial Outcomes
+                </h3>
+                <p className="text-gray-600 mt-1">
+                  Proper valuation and negotiation strategies ensure you receive fair market value for your practice.
+                </p>
               </div>
-              <Button variant="outline" className="w-full">Read Full Case Study</Button>
+              
+              <div className="p-4 bg-white rounded-lg shadow-sm">
+                <h3 className="font-semibold text-lg flex items-center">
+                  <ArrowRight className="h-5 w-5 text-primary mr-2" />
+                  Minimize Tax Implications
+                </h3>
+                <p className="text-gray-600 mt-1">
+                  Strategic transaction structuring can significantly reduce tax liability during transitions.
+                </p>
+              </div>
+              
+              <div className="p-4 bg-white rounded-lg shadow-sm">
+                <h3 className="font-semibold text-lg flex items-center">
+                  <ArrowRight className="h-5 w-5 text-primary mr-2" />
+                  Protect Legal Interests
+                </h3>
+                <p className="text-gray-600 mt-1">
+                  Comprehensive agreements and proper documentation safeguard your interests throughout the process.
+                </p>
+              </div>
+              
+              <div className="p-4 bg-white rounded-lg shadow-sm">
+                <h3 className="font-semibold text-lg flex items-center">
+                  <ArrowRight className="h-5 w-5 text-primary mr-2" />
+                  Ensure Practice Continuity
+                </h3>
+                <p className="text-gray-600 mt-1">
+                  Well-planned transitions maintain practice value, patient retention, and staff morale.
+                </p>
+              </div>
             </div>
           </div>
           
-          <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 animate-fade-in animate-delay-100">
-            <img 
-              src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3" 
-              alt="Success story - Dr. Wong" 
-              className="w-full h-60 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2">Dr. Wong & Dr. Patel Partnership</h3>
-              <p className="text-gray-600 mb-4">
-                Dr. Wong sought to reduce his hours while maintaining his practice legacy. 
-                We structured a gradual buy-in for Dr. Patel, creating a partnership that optimized 
-                tax benefits and ensured continuity of care.
-              </p>
-              <div className="grid grid-cols-2 gap-4 text-sm mb-4">
-                <div>
-                  <p className="text-gray-500">Location</p>
-                  <p className="font-medium">San Francisco, CA</p>
-                </div>
-                <div>
-                  <p className="text-gray-500">Transition Type</p>
-                  <p className="font-medium">Partnership</p>
-                </div>
-                <div>
-                  <p className="text-gray-500">Practice Type</p>
-                  <p className="font-medium">Oral Surgery</p>
-                </div>
-                <div>
-                  <p className="text-gray-500">Completed</p>
-                  <p className="font-medium">May 2023</p>
-                </div>
-              </div>
-              <Button variant="outline" className="w-full">Read Full Case Study</Button>
+          <div className="animate-fade-in animate-delay-100">
+            <h2 className="text-3xl font-bold mb-6">Our Unique Approach</h2>
+            <p className="text-gray-600 mb-6">
+              At Practice Transitions Institute, we take a holistic approach to practice transitions, 
+              addressing not just the financial and legal aspects, but also the personal and professional goals of all parties involved.
+            </p>
+            
+            <div className="aspect-video relative rounded-lg overflow-hidden shadow-md mb-6">
+              <img 
+                src="https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?ixlib=rb-4.0.3" 
+                alt="Team discussing transition strategy" 
+                className="w-full h-full object-cover"
+              />
             </div>
+            
+            <ul className="space-y-2">
+              <li className="flex items-center">
+                <ArrowUpRight className="h-5 w-5 text-primary mr-2" />
+                <span>Personalized transition strategies tailored to your unique situation</span>
+              </li>
+              <li className="flex items-center">
+                <ArrowUpRight className="h-5 w-5 text-primary mr-2" />
+                <span>Comprehensive team approach with experts in each aspect of transitions</span>
+              </li>
+              <li className="flex items-center">
+                <ArrowUpRight className="h-5 w-5 text-primary mr-2" />
+                <span>Clear, transparent communication throughout the entire process</span>
+              </li>
+              <li className="flex items-center">
+                <ArrowUpRight className="h-5 w-5 text-primary mr-2" />
+                <span>Focus on creating win-win outcomes for all parties involved</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </Section>
+
+      {/* Testimonial Section */}
+      <Section>
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="text-4xl text-primary font-serif mb-6">"</div>
+          <blockquote className="text-xl text-gray-700 italic mb-6">
+            Working with PTI for my practice transition was the best decision I made. Their expertise guided me through every step of the process, ensuring I received maximum value while finding the right buyer who would continue my legacy of patient care.
+          </blockquote>
+          <div className="flex items-center justify-center">
+            <img 
+              src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3" 
+              alt="Dr. Robert Anderson" 
+              className="w-16 h-16 rounded-full object-cover mr-4"
+            />
+            <div className="text-left">
+              <div className="font-semibold">Dr. Robert Anderson</div>
+              <div className="text-gray-600 text-sm">Sold practice after 32 years</div>
+            </div>
+          </div>
+          <div className="mt-8">
+            <Button asChild variant="outline">
+              <Link to="/testimonials" className="flex items-center">
+                Read more success stories <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </Section>
 
       {/* CTA Section */}
-      <Section className="mb-8">
+      <Section background="light" className="mb-8">
         <Cta 
-          title="Interested in Buying or Selling a Practice?"
-          description="Let our team help you navigate the transition process with confidence."
-          buttonText="Schedule a Consultation"
+          title="Ready to Plan Your Practice Transition?"
+          description="Schedule a confidential consultation with our team to discuss your transition goals and options."
+          buttonText="Book Your Consultation"
           buttonUrl="/contact"
         />
       </Section>
