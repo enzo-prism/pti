@@ -7,6 +7,12 @@ import { Button } from "./button";
 import { Link } from "react-router-dom";
 import { ArrowRight, MapPin } from "lucide-react";
 
+interface MetadataItem {
+  label: string;
+  value: string;
+  icon?: ReactNode;
+}
+
 interface PracticeCardProps {
   status: "available" | "sold";
   title: string;
@@ -16,6 +22,7 @@ interface PracticeCardProps {
   date?: string;
   url: string;
   className?: string;
+  metadata?: MetadataItem[];
 }
 
 export function PracticeCard({
@@ -27,6 +34,7 @@ export function PracticeCard({
   date,
   url,
   className,
+  metadata,
 }: PracticeCardProps) {
   // Status badge configuration
   const statusConfig: Record<string, { color: string; label: string }> = {
@@ -78,9 +86,21 @@ export function PracticeCard({
           <span>{location}</span>
         </div>
         
-        <p className="text-gray-600 text-sm line-clamp-3">
+        <p className="text-gray-600 text-sm line-clamp-3 mb-3">
           {description}
         </p>
+
+        {metadata && metadata.length > 0 && (
+          <div className="flex flex-wrap gap-2 mt-3">
+            {metadata.map((item, index) => (
+              <div key={index} className="flex items-center text-xs bg-gray-100 rounded-full px-3 py-1">
+                {item.icon && <span className="mr-1">{item.icon}</span>}
+                <span className="font-medium mr-1">{item.label}:</span>
+                <span>{item.value}</span>
+              </div>
+            ))}
+          </div>
+        )}
       </CardContent>
 
       <CardFooter className="pt-0 pb-5 px-5">

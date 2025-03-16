@@ -153,8 +153,8 @@ const Home = () => {
         </div>
       </Section>
 
-      {/* Practice Transitions Section - New! */}
-      <PracticeTransitions />
+      {/* Practice Transitions Section - Enhanced! */}
+      <PracticeTransitions limit={3} />
 
       {/* Testimonials Section */}
       <Section>
