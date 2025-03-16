@@ -34,7 +34,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main className={`flex-grow ${isMobile ? 'pt-14' : 'pt-16'}`}>
+      <main className={`flex-grow ${isMobile ? 'pt-14 pb-4' : 'pt-16 pb-8'}`}>
         {children}
       </main>
       <Footer />

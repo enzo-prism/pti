@@ -1,102 +1,104 @@
 
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const isMobile = useIsMobile();
   
   return (
-    <footer className="bg-gray-50 pt-16 pb-8 border-t">
-      <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+    <footer className="bg-gray-50 pt-12 pb-6 border-t">
+      <div className="container px-4 sm:px-6 mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           {/* Logo and About */}
           <div>
             <Link to="/" className="inline-block mb-4">
-              <span className="text-2xl font-heading font-bold text-gray-800">
+              <span className="text-xl font-heading font-bold text-gray-800">
                 PTI<span className="text-primary">.</span>
               </span>
             </Link>
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-600 text-sm mb-4 leading-relaxed">
               Practice Transitions Institute specializes in dental practice transitions,
               providing expert guidance for buying, selling, and valuing dental practices.
             </p>
             <div className="flex space-x-3">
               <a href="#" className="text-gray-500 hover:text-primary transition-colors" aria-label="Facebook">
-                <Facebook size={20} />
+                <Facebook size={18} />
               </a>
               <a href="#" className="text-gray-500 hover:text-primary transition-colors" aria-label="Twitter">
-                <Twitter size={20} />
+                <Twitter size={18} />
               </a>
               <a href="#" className="text-gray-500 hover:text-primary transition-colors" aria-label="LinkedIn">
-                <Linkedin size={20} />
+                <Linkedin size={18} />
               </a>
               <a href="#" className="text-gray-500 hover:text-primary transition-colors" aria-label="Instagram">
-                <Instagram size={20} />
+                <Instagram size={18} />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-gray-800">Quick Links</h4>
+            <h4 className="text-base font-semibold mb-3 text-gray-800">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/about" className="text-gray-600 hover:text-primary transition-colors">About Us</Link>
+                <Link to="/about" className="text-gray-600 text-sm hover:text-primary transition-colors">About Us</Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-600 hover:text-primary transition-colors">Services</Link>
+                <Link to="/services" className="text-gray-600 text-sm hover:text-primary transition-colors">Services</Link>
               </li>
               <li>
-                <Link to="/transitions" className="text-gray-600 hover:text-primary transition-colors">Transitions in Action</Link>
+                <Link to="/transitions" className="text-gray-600 text-sm hover:text-primary transition-colors">Transitions in Action</Link>
               </li>
               <li>
-                <Link to="/testimonials" className="text-gray-600 hover:text-primary transition-colors">Testimonials</Link>
+                <Link to="/testimonials" className="text-gray-600 text-sm hover:text-primary transition-colors">Testimonials</Link>
               </li>
               <li>
-                <Link to="/resources" className="text-gray-600 hover:text-primary transition-colors">Resources</Link>
+                <Link to="/resources" className="text-gray-600 text-sm hover:text-primary transition-colors">Resources</Link>
               </li>
               <li>
-                <Link to="/faq" className="text-gray-600 hover:text-primary transition-colors">FAQ</Link>
+                <Link to="/faq" className="text-gray-600 text-sm hover:text-primary transition-colors">FAQ</Link>
               </li>
             </ul>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-gray-800">Our Services</h4>
+            <h4 className="text-base font-semibold mb-3 text-gray-800">Our Services</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/services/value" className="text-gray-600 hover:text-primary transition-colors">Opinion of Value</Link>
+                <Link to="/services/value" className="text-gray-600 text-sm hover:text-primary transition-colors">Opinion of Value</Link>
               </li>
               <li>
-                <Link to="/services/selling" className="text-gray-600 hover:text-primary transition-colors">Selling a Practice</Link>
+                <Link to="/services/selling" className="text-gray-600 text-sm hover:text-primary transition-colors">Selling a Practice</Link>
               </li>
               <li>
-                <Link to="/services/associateships" className="text-gray-600 hover:text-primary transition-colors">Associateships/Buying In</Link>
+                <Link to="/services/associateships" className="text-gray-600 text-sm hover:text-primary transition-colors">Associateships/Buying In</Link>
               </li>
               <li>
-                <Link to="/services/partnerships" className="text-gray-600 hover:text-primary transition-colors">Partnerships</Link>
+                <Link to="/services/partnerships" className="text-gray-600 text-sm hover:text-primary transition-colors">Partnerships</Link>
               </li>
             </ul>
           </div>
 
           {/* Contact Information */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-gray-800">Contact Us</h4>
-            <ul className="space-y-3">
+            <h4 className="text-base font-semibold mb-3 text-gray-800">Contact Us</h4>
+            <ul className="space-y-2">
               <li className="flex items-start">
-                <Phone size={18} className="mr-3 text-primary mt-1 flex-shrink-0" />
-                <span className="text-gray-600">(555) 123-4567</span>
+                <Phone size={16} className="mr-2 text-primary mt-1 flex-shrink-0" />
+                <span className="text-gray-600 text-sm">(555) 123-4567</span>
               </li>
               <li className="flex items-start">
-                <Mail size={18} className="mr-3 text-primary mt-1 flex-shrink-0" />
-                <a href="mailto:info@practicetransitions.com" className="text-gray-600 hover:text-primary transition-colors">
+                <Mail size={16} className="mr-2 text-primary mt-1 flex-shrink-0" />
+                <a href="mailto:info@practicetransitions.com" className="text-gray-600 text-sm hover:text-primary transition-colors">
                   info@practicetransitions.com
                 </a>
               </li>
               <li className="flex items-start">
-                <MapPin size={18} className="mr-3 text-primary mt-1 flex-shrink-0" />
-                <span className="text-gray-600">
+                <MapPin size={16} className="mr-2 text-primary mt-1 flex-shrink-0" />
+                <span className="text-gray-600 text-sm">
                   Based in California, serving the United States
                 </span>
               </li>
@@ -105,15 +107,15 @@ const Footer = () => {
         </div>
 
         {/* Copyright and Bottom Links */}
-        <div className="pt-8 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm mb-4 sm:mb-0">
+        <div className="pt-6 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center">
+          <p className="text-gray-500 text-xs mb-4 sm:mb-0 text-center sm:text-left">
             &copy; {currentYear} Practice Transitions Institute. All rights reserved.
           </p>
-          <div className="flex space-x-6">
-            <Link to="/privacy-policy" className="text-gray-500 hover:text-primary text-sm transition-colors">
+          <div className="flex space-x-4">
+            <Link to="/privacy-policy" className="text-gray-500 hover:text-primary text-xs transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms-of-service" className="text-gray-500 hover:text-primary text-sm transition-colors">
+            <Link to="/terms-of-service" className="text-gray-500 hover:text-primary text-xs transition-colors">
               Terms of Service
             </Link>
           </div>

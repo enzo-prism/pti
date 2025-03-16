@@ -23,7 +23,7 @@ export function useIsMobile() {
       
       timeoutId = window.setTimeout(() => {
         setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-      }, 150)
+      }, 100) // Reduced from 150ms to 100ms for slightly faster response
     }
 
     // Add event listener
