@@ -51,21 +51,31 @@ export function PracticeCard({
     },
   };
 
-  // Default image if none provided
-  const defaultImage = "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
-
-  // Higher quality dental office images
+  // Better dental office images with more reliable hosting
   const dentalImages = [
-    "https://images.unsplash.com/photo-1629909615184-74f495363b67?w=800&auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1588776814546-daab30f310ce?w=800&auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1606811856475-5e94ce3c99e8?w=800&auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1606811856891-07eee7e3b8c6?w=800&auto=format&fit=crop&q=80",
+    "/lovable-uploads/26a68276-dfbb-4568-882b-c27909efff03.png", // Using the uploaded image
+    "https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=800",
+    "https://images.unsplash.com/photo-1588776814546-daab30f310ce?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=800",
+    "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=800",
+    "https://cdn.pixabay.com/photo/2021/11/14/15/09/dentist-6794032_1280.jpg",
+    "https://cdn.pixabay.com/photo/2017/07/23/10/44/dentist-2530990_1280.jpg",
+    "https://cdn.pixabay.com/photo/2016/11/23/14/57/dental-1853492_1280.jpg",
   ];
+  
+  // Generate a consistent image based on the title (same title always gets same image)
+  const getConsistentImage = (title: string): string => {
+    const titleSum = title.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
+    const index = titleSum % dentalImages.length;
+    return dentalImages[index];
+  };
 
-  // Use provided image or fallback to a default one
-  const practiceImage = imageSrc || defaultImage;
+  // Use provided image, or fallback to a consistent image based on title
+  const practiceImage = imageSrc || getConsistentImage(title);
+
+  // Implement error handling for images
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.src = dentalImages[0]; // Default to first image on error
+  };
 
   return (
     <Card 
@@ -79,6 +89,8 @@ export function PracticeCard({
           src={practiceImage} 
           alt={title} 
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          onError={handleImageError}
+          loading="lazy"
         />
         <Badge 
           className={cn(
