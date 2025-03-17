@@ -3,6 +3,7 @@ import { ReactNode, useEffect } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useScrollToTop } from "@/hooks/use-scroll-to-top";
 
 interface LayoutProps {
   children: ReactNode;
@@ -10,6 +11,9 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   const isMobile = useIsMobile();
+  
+  // Use the scroll to top hook
+  useScrollToTop();
   
   useEffect(() => {
     // Add viewport meta tag to ensure proper scaling for mobile
