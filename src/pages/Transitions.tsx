@@ -56,9 +56,6 @@ const Transitions = () => {
       );
     }
     
-    // Default image if none provided
-    const defaultImage = "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80";
-    
     return (
       <>
         <Section background="light" className="px-4">
@@ -81,10 +78,12 @@ const Transitions = () => {
             </div>
             
             <div className="rounded-lg overflow-hidden mb-4 shadow-md border border-gray-200">
-              <img 
-                src={practice.imageSrc || defaultImage} 
-                alt={practice.title} 
-                className="w-full h-auto object-cover aspect-video"
+              {/* Replace the image with a gradient div */}
+              <div 
+                className="w-full h-auto aspect-video"
+                style={{
+                  background: getTitleBasedGradient(practice.title)
+                }}
               />
             </div>
             
@@ -140,7 +139,6 @@ const Transitions = () => {
                   title={practice.title}
                   location={practice.location}
                   description={practice.description}
-                  imageSrc={practice.imageSrc}
                   date={practice.status === "sold" ? (practice as SoldPractice).date : undefined}
                   url={`/transitions/${practice.id}`}
                   metadata={[
@@ -236,5 +234,22 @@ const Transitions = () => {
     </>
   );
 };
+
+// Function to get a gradient based on the title
+function getTitleBasedGradient(title: string): string {
+  const gradientStyles = [
+    "linear-gradient(90deg, hsla(221, 45%, 73%, 1) 0%, hsla(220, 78%, 29%, 1) 100%)",
+    "linear-gradient(90deg, hsla(39, 100%, 77%, 1) 0%, hsla(22, 90%, 57%, 1) 100%)",
+    "linear-gradient(90deg, hsla(24, 100%, 83%, 1) 0%, hsla(341, 91%, 68%, 1) 100%)",
+    "linear-gradient(90deg, hsla(277, 75%, 84%, 1) 0%, hsla(297, 50%, 51%, 1) 100%)",
+    "linear-gradient(90deg, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%)",
+    "linear-gradient(90deg, hsla(59, 86%, 68%, 1) 0%, hsla(134, 36%, 53%, 1) 100%)",
+    "linear-gradient(to right, #ee9ca7, #ffdde1)"
+  ];
+  
+  const titleSum = title.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
+  const index = titleSum % gradientStyles.length;
+  return gradientStyles[index];
+}
 
 export default Transitions;
