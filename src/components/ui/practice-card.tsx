@@ -51,31 +51,26 @@ export function PracticeCard({
     },
   };
 
-  // Better dental office images with more reliable hosting
-  const dentalImages = [
-    "/lovable-uploads/26a68276-dfbb-4568-882b-c27909efff03.png", // Using the uploaded image
-    "https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1588776814546-daab30f310ce?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=800",
-    "https://cdn.pixabay.com/photo/2021/11/14/15/09/dentist-6794032_1280.jpg",
-    "https://cdn.pixabay.com/photo/2017/07/23/10/44/dentist-2530990_1280.jpg",
-    "https://cdn.pixabay.com/photo/2016/11/23/14/57/dental-1853492_1280.jpg",
+  // Modern abstract gradient backgrounds (CSS gradient backgrounds)
+  const gradientStyles = [
+    { background: "linear-gradient(90deg, hsla(221, 45%, 73%, 1) 0%, hsla(220, 78%, 29%, 1) 100%)" },
+    { background: "linear-gradient(90deg, hsla(39, 100%, 77%, 1) 0%, hsla(22, 90%, 57%, 1) 100%)" },
+    { background: "linear-gradient(90deg, hsla(24, 100%, 83%, 1) 0%, hsla(341, 91%, 68%, 1) 100%)" },
+    { background: "linear-gradient(90deg, hsla(277, 75%, 84%, 1) 0%, hsla(297, 50%, 51%, 1) 100%)" },
+    { background: "linear-gradient(90deg, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%)" },
+    { background: "linear-gradient(90deg, hsla(59, 86%, 68%, 1) 0%, hsla(134, 36%, 53%, 1) 100%)" },
+    { background: "linear-gradient(to right, #ee9ca7, #ffdde1)" },
   ];
   
-  // Generate a consistent image based on the title (same title always gets same image)
-  const getConsistentImage = (title: string): string => {
+  // Generate a consistent gradient based on the title (same title always gets same gradient)
+  const getConsistentGradient = (title: string): React.CSSProperties => {
     const titleSum = title.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
-    const index = titleSum % dentalImages.length;
-    return dentalImages[index];
+    const index = titleSum % gradientStyles.length;
+    return gradientStyles[index];
   };
 
-  // Use provided image, or fallback to a consistent image based on title
-  const practiceImage = imageSrc || getConsistentImage(title);
-
-  // Implement error handling for images
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = dentalImages[0]; // Default to first image on error
-  };
+  // Use provided image, or fallback to a consistent gradient based on title
+  const backgroundStyle = imageSrc ? {} : getConsistentGradient(title);
 
   return (
     <Card 
@@ -85,13 +80,19 @@ export function PracticeCard({
       )}
     >
       <div className="relative aspect-4/3 overflow-hidden">
-        <img 
-          src={practiceImage} 
-          alt={title} 
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          onError={handleImageError}
-          loading="lazy"
-        />
+        {imageSrc ? (
+          <img 
+            src={imageSrc} 
+            alt={title} 
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+          />
+        ) : (
+          <div 
+            className="w-full h-full transition-transform duration-300 group-hover:scale-105"
+            style={backgroundStyle}
+          />
+        )}
         <Badge 
           className={cn(
             "absolute top-3 right-3 font-medium px-3 py-1 text-xs rounded-full", 
