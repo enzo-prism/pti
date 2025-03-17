@@ -18,7 +18,6 @@ const availablePractices = [
     title: "Modern General Practice",
     location: "San Francisco, CA",
     description: "Well-established practice with 6 operatories, digital radiography, and a strong patient base. Perfect for a dentist looking to step into ownership with minimal changes needed.",
-    // No imageSrc to force gradient usage
     url: "/transitions/p1",
     revenue: "$1.2M+",
     operatories: 6
@@ -29,7 +28,6 @@ const availablePractices = [
     title: "Family Dental Practice",
     location: "Seattle, WA",
     description: "Thriving family practice with 30+ years of goodwill. 4 fully equipped operatories in a convenient location with ample parking. Owner willing to stay on for transition period.",
-    // No imageSrc to force gradient usage
     url: "/transitions/p2",
     revenue: "$950K+",
     operatories: 4
@@ -40,7 +38,6 @@ const availablePractices = [
     title: "Pediatric Specialty Practice",
     location: "Portland, OR",
     description: "Established pediatric practice in growing suburban area. State-of-the-art equipment and dedicated staff. Owner retiring after 25 years of service to the community.",
-    // No imageSrc to force gradient usage
     url: "/transitions/p3",
     revenue: "$1.5M+",
     operatories: 5
@@ -54,7 +51,6 @@ const soldPractices = [
     title: "Downtown Dental Group",
     location: "Los Angeles, CA",
     description: "Multi-doctor practice with 8 operatories successfully transitioned to new ownership. Full-price offer with favorable terms for both parties.",
-    // No imageSrc to force gradient usage
     date: "Sold Q1 2023",
     url: "/transitions/s1",
     revenue: "$2.1M",
@@ -66,7 +62,6 @@ const soldPractices = [
     title: "Beachside Dental",
     location: "San Diego, CA",
     description: "Profitable practice in prime location sold to associate after 5-year transition plan. Smooth handover with 98% patient retention.",
-    // No imageSrc to force gradient usage
     date: "Sold Q4 2022",
     url: "/transitions/s2",
     revenue: "$1.1M",
@@ -78,7 +73,6 @@ const soldPractices = [
     title: "Smiles Orthodontics",
     location: "Denver, CO",
     description: "Specialized orthodontic practice successfully merged with larger group. Owner achieved retirement goals while ensuring continuity of care.",
-    // No imageSrc to force gradient usage
     date: "Sold Q2 2022",
     url: "/transitions/s3",
     revenue: "$1.8M",
@@ -218,7 +212,6 @@ export function PracticeTransitions({
                   title={practice.title}
                   location={practice.location}
                   description={practice.description}
-                  imageSrc={practice.imageSrc}
                   url={practice.url}
                   className="animate-fade-in"
                   metadata={[
@@ -245,7 +238,6 @@ export function PracticeTransitions({
                   title={practice.title}
                   location={practice.location}
                   description={practice.description}
-                  imageSrc={practice.imageSrc}
                   date={practice.date}
                   url={practice.url}
                   className="animate-fade-in"
