@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { ArrowRight, Award, ChevronRight, FileCheck, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -62,6 +61,7 @@ const Home = () => {
         description="Expert guidance for dental practice transitions, helping you build and preserve your professional legacy."
         image="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png"
       />
+      
       {/* Hero Section - Mobile Optimized */}
       <section className="pt-20 pb-10 md:pt-32 md:pb-20 lg:pt-44 lg:pb-28 bg-gradient-to-br from-white to-accent relative overflow-hidden">
         <div className="container relative z-10 px-4 sm:px-6">
@@ -254,3 +254,4 @@ const Home = () => {
 };
 
 export default Home;
+

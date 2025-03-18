@@ -5,13 +5,14 @@ interface SEOProps {
   title: string;
   description: string;
   path?: string;
+  image?: string;
 }
 
-const SEO = ({ title, description, path = "" }: SEOProps) => {
+const SEO = ({ title, description, path = "", image }: SEOProps) => {
   const siteName = "Practice Transitions Institute";
   const fullTitle = `${title} | ${siteName}`;
   const url = `${window.location.origin}${path}`;
-  const ogImageUrl = "/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png";
+  const ogImageUrl = image || "/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png";
 
   return (
     <Helmet>
