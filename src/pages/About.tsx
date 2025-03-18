@@ -4,6 +4,7 @@ import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section"
 import { Cta } from "@/components/ui/cta";
 import { ArrowRight, Users, Award, Clock, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SEO from "@/components/layout/SEO";
 
 const About = () => {
   const teamMembers = [
@@ -15,7 +16,7 @@ const About = () => {
     },
     {
       name: "Fred Heppner",
-      role: "Co-founder & Transition Specialist",
+      role: "Lead Transition Consultant",
       bio: "Brings decades of experience as a broker and consultant; recognized for his ability to facilitate seamless, well-vetted matches between sellers and buyers.",
       image: "/lovable-uploads/1a104794-17ea-4b67-b3f2-17a24be7dc49.png"
     },
@@ -29,6 +30,10 @@ const About = () => {
 
   return (
     <>
+      <SEO 
+        title="About PTI"
+        description="Learn about our expert team at Practice Transitions Institute, dedicated to helping dental professionals with practice transitions."
+      />
       {/* Hero Section */}
       <section className="pt-28 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-accent to-white">
         <div className="container">
