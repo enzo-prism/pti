@@ -13,7 +13,6 @@ import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Services from "./pages/Services";
-import Transitions from "./pages/Transitions";
 import Layout from "./components/layout/Layout";
 
 // Services pages
@@ -38,8 +37,6 @@ const App = () => (
           <Route path="/services/selling" element={<Layout><Selling /></Layout>} />
           <Route path="/services/associateships" element={<Layout><Associateships /></Layout>} />
           <Route path="/services/partnerships" element={<Layout><Partnerships /></Layout>} />
-          <Route path="/transitions" element={<Layout><Transitions /></Layout>} />
-          <Route path="/transitions/:id" element={<Layout><Transitions /></Layout>} />
           <Route path="/faq" element={<Layout><Faq /></Layout>} />
           <Route path="/testimonials" element={<Layout><Testimonials /></Layout>} />
           <Route path="/events" element={<Layout><Events /></Layout>} />

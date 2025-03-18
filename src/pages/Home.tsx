@@ -7,8 +7,8 @@ import { ServiceCard } from "@/components/ui/service-card";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { Cta } from "@/components/ui/cta";
 import { useState, useEffect } from "react";
-import { PracticeTransitions } from "@/components/sections/PracticeTransitions";
 import { useIsMobile } from "@/hooks/use-mobile";
+import SEO from "@/components/layout/SEO";
 
 const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -57,6 +57,11 @@ const Home = () => {
   
   return (
     <>
+      <SEO
+        title="Dental Practice Transitions"
+        description="Expert guidance for dental practice transitions, helping you build and preserve your professional legacy."
+        image="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png"
+      />
       {/* Hero Section - Mobile Optimized */}
       <section className="pt-20 pb-10 md:pt-32 md:pb-20 lg:pt-44 lg:pb-28 bg-gradient-to-br from-white to-accent relative overflow-hidden">
         <div className="container relative z-10 px-4 sm:px-6">
@@ -155,9 +160,6 @@ const Home = () => {
           </Button>
         </div>
       </Section>
-
-      {/* Practice Transitions Section - Already Optimized */}
-      <PracticeTransitions limit={isMobile ? 2 : 3} />
 
       {/* Testimonials Section - Mobile Optimized */}
       <Section className="py-10 md:py-16">
