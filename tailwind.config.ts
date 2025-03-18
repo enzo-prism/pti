@@ -26,7 +26,7 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: '#5CC6D0',
+					DEFAULT: '#1E8C96', // Darker teal blue
 					foreground: '#FFFFFF'
 				},
 				secondary: {
@@ -42,7 +42,7 @@ export default {
 					foreground: 'hsl(var(--muted-foreground))'
 				},
 				accent: {
-					DEFAULT: '#EBF7F8',
+					DEFAULT: '#D6EEF0', // Slightly darker accent color
 					foreground: '#333333'
 				},
 				popover: {
