@@ -15,16 +15,16 @@ const About = () => {
       image: "/lovable-uploads/6b7bd257-fc0e-455a-80bd-6111a02be241.png"
     },
     {
-      name: "Fred Heppner",
-      role: "Transition Consultant",
-      bio: "Brings decades of experience as a broker and consultant; recognized for his ability to facilitate seamless, well-vetted matches between sellers and buyers.",
-      image: "/lovable-uploads/1a104794-17ea-4b67-b3f2-17a24be7dc49.png"
-    },
-    {
       name: "Liz Armato",
       role: "COO & Client Services Lead",
       bio: "Former executive at Pride Institute with over 20 years in dental operations, focused on streamlining client services and ensuring personalized guidance.",
       image: "/lovable-uploads/8af030a0-6d6f-46e6-960a-d2d64258b329.png"
+    },
+    {
+      name: "Fred Heppner",
+      role: "Transition Consultant",
+      bio: "Brings decades of experience as a broker and consultant; recognized for his ability to facilitate seamless, well-vetted matches between sellers and buyers.",
+      image: "/lovable-uploads/1a104794-17ea-4b67-b3f2-17a24be7dc49.png"
     }
   ];
 
