@@ -10,7 +10,7 @@ const About = () => {
   const teamMembers = [
     {
       name: "Dr. Michael Njo, DDS",
-      role: "Co-founder & Lead Transition Consultant",
+      role: "Founder & Lead Transition Consultant",
       bio: "Former clinician whose career pivot led him to become a renowned expert in dental practice transitions, known for hands-on guidance and extensive industry network.",
       image: "/lovable-uploads/6b7bd257-fc0e-455a-80bd-6111a02be241.png"
     },
