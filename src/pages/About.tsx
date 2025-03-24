@@ -16,7 +16,7 @@ const About = () => {
     },
     {
       name: "Fred Heppner",
-      role: "Lead Transition Consultant",
+      role: "Transition Consultant",
       bio: "Brings decades of experience as a broker and consultant; recognized for his ability to facilitate seamless, well-vetted matches between sellers and buyers.",
       image: "/lovable-uploads/1a104794-17ea-4b67-b3f2-17a24be7dc49.png"
     },
