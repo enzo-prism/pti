@@ -204,7 +204,7 @@ const Services = () => {
           </div>
           <div className="order-1 md:order-2 animate-fade-in animate-delay-100">
             <img 
-              src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3" 
+              src="https://www.huntersure.com/wp-content/uploads/2020/06/Consultants.jpg" 
               alt="Dental practice consultation" 
               className="rounded-lg shadow-md"
             />
