@@ -1,8 +1,7 @@
-
 import { Link } from "react-router-dom";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
-import { ArrowRight, Users, Award, Clock, CheckCircle } from "lucide-react";
+import { ArrowRight, Handshake, Award, HeartHandshake, UserCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEO from "@/components/layout/SEO";
 
@@ -34,7 +33,6 @@ const About = () => {
         title="About PTI"
         description="Learn about our expert team at Practice Transitions Institute, dedicated to helping dental professionals with practice transitions."
       />
-      {/* Hero Section */}
       <section className="pt-28 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-accent to-white">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
@@ -46,7 +44,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Our Story Section */}
       <Section>
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
@@ -73,7 +70,6 @@ const About = () => {
         </div>
       </Section>
 
-      {/* Our Values Section */}
       <Section background="light">
         <SectionTitle centered>Our Core Values</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
@@ -100,14 +96,13 @@ const About = () => {
         </div>
       </Section>
 
-      {/* Why Choose Us Section */}
       <Section>
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1 animate-fade-in">
             <h2 className="text-3xl font-bold mb-6">Why Choose PTI</h2>
             <ul className="space-y-4">
               <li className="flex items-start">
-                <Award className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
+                <Handshake className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h3 className="font-semibold text-lg">Relationship-Driven Consulting</h3>
                   <p className="text-gray-600">We focus on building trusted relationships, not just transactions, giving us unparalleled insight into your needs.</p>
@@ -115,7 +110,7 @@ const About = () => {
               </li>
               
               <li className="flex items-start">
-                <Users className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
+                <Award className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h3 className="font-semibold text-lg">Experienced Team</h3>
                   <p className="text-gray-600">Our team includes former practicing dentists and industry executives who understand the unique challenges you face.</p>
@@ -123,7 +118,7 @@ const About = () => {
               </li>
               
               <li className="flex items-start">
-                <Clock className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
+                <HeartHandshake className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h3 className="font-semibold text-lg">Personalized Guidance</h3>
                   <p className="text-gray-600">We provide hands-on support throughout your transition journey, with clear, responsive communication at every step.</p>
@@ -131,7 +126,7 @@ const About = () => {
               </li>
               
               <li className="flex items-start">
-                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
+                <UserCheck className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h3 className="font-semibold text-lg">Trusted Matchmaking</h3>
                   <p className="text-gray-600">We carefully screen and match buyers and sellers to ensure compatible values and practice philosophy.</p>
@@ -149,7 +144,6 @@ const About = () => {
         </div>
       </Section>
 
-      {/* Team Section */}
       <Section background="light">
         <SectionTitle centered>Our Expert Team</SectionTitle>
         <SectionSubtitle centered>
@@ -180,7 +174,6 @@ const About = () => {
         </div>
       </Section>
 
-      {/* Stats Section */}
       <Section>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="animate-fade-in">
@@ -205,7 +198,6 @@ const About = () => {
         </div>
       </Section>
 
-      {/* Client Experiences Section */}
       <Section background="light">
         <SectionTitle centered>Client Experiences</SectionTitle>
         <div className="grid md:grid-cols-2 gap-8 mt-8">
@@ -239,7 +231,6 @@ const About = () => {
         </div>
       </Section>
 
-      {/* CTA Section */}
       <Section background="light" className="mb-8">
         <Cta 
           title="Ready to Start Your Transition Journey?"
