@@ -173,7 +173,7 @@ const About = () => {
                 {member.videoUrl && (
                   <VideoDialog 
                     videoUrl={member.videoUrl}
-                    buttonText="Watch the Interview with Michael"
+                    buttonText="Watch the Interview with Dr. Njo"
                     buttonProps={{ className: "w-full" }}
                   />
                 )}
