@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
@@ -46,7 +45,7 @@ const Selling = () => {
           </div>
           <div className="animate-fade-in animate-delay-100">
             <img 
-              src="https://images.unsplash.com/photo-1573497701240-321006cdd0b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+              src="https://tab32.com/wp-content/uploads/2024/10/tab32-dental-practice-management-companies.jpeg" 
               alt="Dental office handover" 
               className="rounded-lg shadow-md w-full"
             />
