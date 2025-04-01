@@ -46,7 +46,7 @@ const Selling = () => {
           </div>
           <div className="animate-fade-in animate-delay-100">
             <img 
-              src="https://images.unsplash.com/photo-1573497701240-321006cdd0b0?ixlib=rb-4.0.3" 
+              src="https://images.unsplash.com/photo-1573497701240-321006cdd0b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
               alt="Dental office handover" 
               className="rounded-lg shadow-md w-full"
             />
@@ -145,7 +145,7 @@ const Selling = () => {
           </div>
           <div className="order-1 md:order-2 animate-fade-in animate-delay-100">
             <img 
-              src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3" 
+              src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
               alt="Successful dental practice handshake" 
               className="rounded-lg shadow-md w-full"
             />
