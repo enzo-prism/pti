@@ -93,8 +93,8 @@ const Services = () => {
           </div>
           <div className="animate-fade-in animate-delay-100">
             <img 
-              src="https://images.unsplash.com/photo-1607990283143-e81e7a2c9349?ixlib=rb-4.0.3" 
-              alt="Dental professionals in a meeting" 
+              src="https://www.theforage.com/blog/wp-content/uploads/2022/09/management-consultant.jpg" 
+              alt="Dental practice consultants in a meeting" 
               className="rounded-lg shadow-md"
             />
           </div>
