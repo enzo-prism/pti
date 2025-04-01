@@ -4,6 +4,7 @@ import { Cta } from "@/components/ui/cta";
 import { ArrowRight, Handshake, Award, HeartHandshake, UserCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEO from "@/components/layout/SEO";
+import { VideoDialog } from "@/components/ui/video-dialog";
 
 const About = () => {
   const teamMembers = [
@@ -11,7 +12,8 @@ const About = () => {
       name: "Dr. Michael Njo, DDS",
       role: "Founder & Lead Transition Consultant",
       bio: "Former clinician whose career pivot led him to become a renowned expert in dental practice transitions, known for hands-on guidance and extensive industry network.",
-      image: "/lovable-uploads/6b7bd257-fc0e-455a-80bd-6111a02be241.png"
+      image: "/lovable-uploads/6b7bd257-fc0e-455a-80bd-6111a02be241.png",
+      videoUrl: "https://youtu.be/Jes6h2F3yhc?si=sVQZKyw1uB5Fi5_F"
     },
     {
       name: "Liz Armato",
@@ -167,7 +169,14 @@ const About = () => {
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
                 <p className="text-primary font-medium mb-3">{member.role}</p>
-                <p className="text-gray-600 text-sm">{member.bio}</p>
+                <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
+                {member.videoUrl && (
+                  <VideoDialog 
+                    videoUrl={member.videoUrl}
+                    buttonText="Watch the Interview with Michael"
+                    buttonProps={{ className: "w-full" }}
+                  />
+                )}
               </div>
             </div>
           ))}
