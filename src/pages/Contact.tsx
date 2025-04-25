@@ -12,14 +12,11 @@ const Contact = () => {
     name: "",
     email: "",
     phone: "",
-    practiceType: "",
-    transitionType: "",
-    timeframe: "",
     message: "",
     receiveSMS: false
   });
   
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
@@ -41,9 +38,6 @@ const Contact = () => {
       name: "",
       email: "",
       phone: "",
-      practiceType: "",
-      transitionType: "",
-      timeframe: "",
       message: "",
       receiveSMS: false
     });
@@ -118,71 +112,6 @@ const Contact = () => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
                     required
                   />
-                </div>
-                
-                <div>
-                  <label htmlFor="practiceType" className="block text-sm font-medium text-gray-700 mb-1">
-                    Practice Type
-                  </label>
-                  <select
-                    id="practiceType"
-                    name="practiceType"
-                    value={formData.practiceType}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
-                  >
-                    <option value="">Select Practice Type</option>
-                    <option value="General Dentistry">General Dentistry</option>
-                    <option value="Orthodontics">Orthodontics</option>
-                    <option value="Periodontics">Periodontics</option>
-                    <option value="Endodontics">Endodontics</option>
-                    <option value="Oral Surgery">Oral Surgery</option>
-                    <option value="Pediatric Dentistry">Pediatric Dentistry</option>
-                    <option value="Prosthodontics">Prosthodontics</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-                
-                <div>
-                  <label htmlFor="transitionType" className="block text-sm font-medium text-gray-700 mb-1">
-                    Transition Type
-                  </label>
-                  <select
-                    id="transitionType"
-                    name="transitionType"
-                    value={formData.transitionType}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
-                  >
-                    <option value="">Select Transition Type</option>
-                    <option value="Selling a Practice">Selling a Practice</option>
-                    <option value="Buying a Practice">Buying a Practice</option>
-                    <option value="Practice Valuation">Practice Valuation</option>
-                    <option value="Partnership Formation">Partnership Formation</option>
-                    <option value="Associate to Owner">Associate to Owner</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-                
-                <div>
-                  <label htmlFor="timeframe" className="block text-sm font-medium text-gray-700 mb-1">
-                    Timeframe
-                  </label>
-                  <select
-                    id="timeframe"
-                    name="timeframe"
-                    value={formData.timeframe}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
-                  >
-                    <option value="">Select Timeframe</option>
-                    <option value="0-3 months">0-3 months</option>
-                    <option value="3-6 months">3-6 months</option>
-                    <option value="6-12 months">6-12 months</option>
-                    <option value="1-2 years">1-2 years</option>
-                    <option value="2+ years">2+ years</option>
-                    <option value="Just exploring options">Just exploring options</option>
-                  </select>
                 </div>
               </div>
               
