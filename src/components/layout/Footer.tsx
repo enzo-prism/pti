@@ -102,7 +102,8 @@ const Footer = () => {
               <li className="flex items-start">
                 <MapPin size={16} className="mr-2 text-primary mt-1 flex-shrink-0" />
                 <span className="text-gray-600 text-sm">
-                  Based in California, serving the United States
+                  3182 Campus Drive #274<br />
+                  San Mateo, CA 94403
                 </span>
               </li>
             </ul>
