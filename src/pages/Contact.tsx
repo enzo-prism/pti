@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import Layout from "@/components/layout/Layout";
@@ -178,7 +179,11 @@ const Contact = () => {
                 <MapPin className="w-5 h-5 text-primary mt-1 mr-4" />
                 <div>
                   <h3 className="font-medium">Location</h3>
-                  <p className="text-gray-600">Based in California, serving the United States</p>
+                  <p className="text-gray-600">
+                    Practice Transitions Institute<br />
+                    3182 Campus Drive #274<br />
+                    San Mateo, CA 94403
+                  </p>
                 </div>
               </div>
               
