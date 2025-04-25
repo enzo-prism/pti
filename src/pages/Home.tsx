@@ -1,9 +1,11 @@
+
 import { Link } from "react-router-dom";
 import { ArrowRight, Award, ChevronRight, FileCheck, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { ServiceCard } from "@/components/ui/service-card";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
+import { RecommendationCard } from "@/components/ui/recommendation-card";
 import { Cta } from "@/components/ui/cta";
 import { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
