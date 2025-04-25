@@ -4,7 +4,7 @@ import Layout from "@/components/layout/Layout";
 import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Switch } from "@/components/ui/switch";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -24,7 +24,7 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleCheckboxChange = (checked: boolean) => {
+  const handleSwitchChange = (checked: boolean) => {
     setFormData(prev => ({ ...prev, receiveSMS: checked }));
   };
   
@@ -202,16 +202,16 @@ const Contact = () => {
               </div>
               
               <div className="flex items-center space-x-2">
-                <Checkbox 
+                <Switch 
                   id="receiveSMS"
                   checked={formData.receiveSMS}
-                  onCheckedChange={handleCheckboxChange}
+                  onCheckedChange={handleSwitchChange}
                 />
                 <label
                   htmlFor="receiveSMS"
                   className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
-                  I agree to receive SMS messages from the PTI team
+                  I'm ok with receiving text messages from the PTI team
                 </label>
               </div>
               
