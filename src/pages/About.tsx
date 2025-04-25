@@ -11,10 +11,11 @@ const About = () => {
     {
       name: "Dr. Michael Njo, DDS",
       role: "Founder & Lead Transition Consultant",
-      bio: "Former clinician whose career pivot led him to become a renowned expert in dental practice transitions, known for hands-on guidance and extensive industry network. Author of the \"Dental Practice Transitions Handbook\", a comprehensive guide for healthcare professionals.",
+      bio: "Former clinician with over three decades of dental industry experience who became a renowned expert in dental practice transitions. Author of the \"Dental Practice Transitions Handbook\", the definitive guide for healthcare professionals navigating practice transitions. Dr. Njo brings extensive experience from his tenure at Pride Institute, and as founder of multiple successful consulting firms. His expertise is recognized through faculty positions at UOP School of Dentistry, UCSF, and numerous speaking engagements.",
       image: "/lovable-uploads/6b7bd257-fc0e-455a-80bd-6111a02be241.png",
       videoUrl: "https://youtu.be/Jes6h2F3yhc?si=sVQZKyw1uB5Fi5_F",
-      bookUrl: "https://www.amazon.com/Dental-Practice-Transitions-Handbook-Healthcare/dp/1627878718/ref=sr_1_2?dchild=1&keywords=Dental+Practice+Transitions+Handbook&qid=1632933680&s=books&sr=1-2"
+      bookUrl: "https://www.amazon.com/Dental-Practice-Transitions-Handbook-Healthcare/dp/1627878718/ref=sr_1_2?dchild=1&keywords=Dental+Practice+Transitions+Handbook&qid=1632933680&s=books&sr=1-2",
+      bookImage: "/lovable-uploads/61135e3f-f56e-4aff-949e-5eab772f5c5f.png"
     },
     {
       name: "Liz Armato",
@@ -179,12 +180,25 @@ const About = () => {
                       buttonProps={{ className: "w-full" }}
                     />
                   )}
-                  {member.bookUrl && (
-                    <Button asChild variant="outline" className="w-full">
-                      <a href={member.bookUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
-                        View Book on Amazon
-                      </a>
-                    </Button>
+                  {member.bookImage && (
+                    <div className="mb-4 border rounded-lg p-4">
+                      <div className="flex items-center gap-4">
+                        <img 
+                          src={member.bookImage} 
+                          alt="Dental Practice Transitions Handbook Cover" 
+                          className="w-24 h-auto"
+                        />
+                        <div>
+                          <h4 className="font-semibold mb-1">Dental Practice Transitions Handbook</h4>
+                          <p className="text-sm text-gray-600 mb-2">A comprehensive guide for healthcare professionals navigating practice transitions</p>
+                        </div>
+                      </div>
+                      <Button asChild variant="outline" className="w-full mt-3">
+                        <a href={member.bookUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                          View Book on Amazon
+                        </a>
+                      </Button>
+                    </div>
                   )}
                 </div>
               </div>
