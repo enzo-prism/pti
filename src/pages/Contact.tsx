@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import Layout from "@/components/layout/Layout";
@@ -199,8 +198,9 @@ const Contact = () => {
             <div className="mt-8 pt-6 border-t border-gray-200">
               <h3 className="font-medium mb-2">Response Time</h3>
               <p className="text-gray-600 mb-4">
-                We respond to all inquiries within 1 business day. Consultation requests are typically 
-                scheduled within 3-5 business days.
+                We respond to all inquiries within 24 hours or sooner. Your practice transition 
+                needs are important to us, and we're committed to providing prompt, 
+                professional assistance.
               </p>
             </div>
           </div>
