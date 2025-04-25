@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Calendar, Clock, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
@@ -182,9 +183,9 @@ const Events = () => {
                   </div>
                   
                   <Button asChild variant={event.isPast ? "outline" : "default"}>
-                    <a href={event.registrationLink}>
+                    <Link to="/contact">
                       {event.isPast ? "View Recording & Materials" : "Register Now"}
-                    </a>
+                    </Link>
                   </Button>
                 </div>
               </div>
