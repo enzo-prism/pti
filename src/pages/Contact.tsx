@@ -1,10 +1,10 @@
-
 import { useState } from "react";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -15,25 +15,28 @@ const Contact = () => {
     practiceType: "",
     transitionType: "",
     timeframe: "",
-    message: ""
+    message: "",
+    receiveSMS: false
   });
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
+
+  const handleCheckboxChange = (checked: boolean) => {
+    setFormData(prev => ({ ...prev, receiveSMS: checked }));
+  };
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
     
-    // Show success toast - in a real app, this would be after API call
     toast({
       title: "Consultation Request Received",
       description: "We'll contact you within 1 business day to schedule your consultation.",
     });
     
-    // Reset form
     setFormData({
       name: "",
       email: "",
@@ -41,7 +44,8 @@ const Contact = () => {
       practiceType: "",
       transitionType: "",
       timeframe: "",
-      message: ""
+      message: "",
+      receiveSMS: false
     });
   };
   
@@ -195,6 +199,20 @@ const Contact = () => {
                   placeholder="Please share any specific questions or details about your situation that would help us prepare for your consultation."
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
                 ></textarea>
+              </div>
+              
+              <div className="flex items-center space-x-2">
+                <Checkbox 
+                  id="receiveSMS"
+                  checked={formData.receiveSMS}
+                  onCheckedChange={handleCheckboxChange}
+                />
+                <label
+                  htmlFor="receiveSMS"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  I agree to receive SMS messages from the PTI team
+                </label>
               </div>
               
               <div>
