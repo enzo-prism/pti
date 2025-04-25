@@ -173,9 +173,9 @@ const Home = () => {
           <RecommendationCard 
             imageUrl="/lovable-uploads/bc1224da-33e9-40a0-9374-a7e8d19ffa12.png"
             name="Hy Smith, MBA"
-            title="Practice Management Consultant"
-            subtitle="Dental Practice Valuation Expert"
-            quote="Practice Transitions Institute provides the most professional and comprehensive transition services I've seen in the industry. Their approach to practice valuation and transition planning ensures that both buyers and sellers achieve optimal outcomes. I consistently recommend PTI to all dental professionals planning their next career move."
+            title="Director of Transitions, Pride Institute"
+            subtitle="Mentor, Colleague, and Friend"
+            quote="If you are looking for integrity, experience, and expertise, I know no other company better qualified to assist you in your dental practice transition than Practice Transitions Institute."
           />
         </div>
       </Section>
