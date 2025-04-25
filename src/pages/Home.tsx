@@ -82,7 +82,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1588776814546-daab30f310ce?ixlib=rb-4.0.3')] bg-no-repeat bg-cover opacity-5"></div>
+        <div className="absolute inset-0 bg-[url('/lovable-uploads/4721b228-712a-4fd3-aff8-dd60cd39ab0d.png')] bg-no-repeat bg-cover opacity-5"></div>
       </section>
 
       {/* Value Proposition - Mobile Optimized */}
@@ -254,4 +254,3 @@ const Home = () => {
 };
 
 export default Home;
-
