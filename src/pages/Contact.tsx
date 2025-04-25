@@ -5,9 +5,13 @@ import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Switch } from "@/components/ui/switch";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 const Contact = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const supabase = createClientComponentClient();
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,22 +29,46 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, receiveSMS: checked }));
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
     
-    toast({
-      title: "Consultation Request Received",
-      description: "We'll contact you within 1 business day to schedule your consultation.",
-    });
-    
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      message: "",
-      receiveSMS: false
-    });
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
+            receive_sms: formData.receiveSMS
+          }
+        ]);
+        
+      if (error) throw error;
+      
+      toast({
+        title: "Thank you for reaching out!",
+        description: "We'll respond to your inquiry within 24 hours or sooner.",
+      });
+      
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+        receiveSMS: false
+      });
+    } catch (error) {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
   return (
@@ -145,8 +173,8 @@ const Contact = () => {
               </div>
               
               <div>
-                <Button type="submit" className="w-full md:w-auto">
-                  Schedule Consultation
+                <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
+                  {isSubmitting ? "Submitting..." : "Schedule Consultation"}
                 </Button>
               </div>
             </form>
