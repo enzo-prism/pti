@@ -26,7 +26,7 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: '#1E8C96', // Darker teal blue
+					DEFAULT: '#06437A', // Updated primary blue
 					foreground: '#FFFFFF'
 				},
 				secondary: {
@@ -42,7 +42,7 @@ export default {
 					foreground: 'hsl(var(--muted-foreground))'
 				},
 				accent: {
-					DEFAULT: '#D6EEF0', // Slightly darker accent color
+					DEFAULT: '#D6EEF0', // Keep existing accent color
 					foreground: '#333333'
 				},
 				popover: {
@@ -124,3 +124,4 @@ export default {
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
