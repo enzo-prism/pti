@@ -1,6 +1,5 @@
-
 import { Link } from "react-router-dom";
-import { ArrowRight, Award, ChevronRight, FileCheck, Handshake } from "lucide-react";
+import { ArrowRight, Award, ChevronRight, FileCheck, Handshake, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { ServiceCard } from "@/components/ui/service-card";
@@ -160,6 +159,24 @@ const Home = () => {
               View all services <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
+        </div>
+      </Section>
+
+      {/* Expert Recommendation Section - Mobile Optimized */}
+      <Section background="light" className="py-10 md:py-16">
+        <SectionTitle centered className="text-2xl md:text-3xl mb-2">Expert Recommendation</SectionTitle>
+        <SectionSubtitle centered className="text-sm md:text-base mb-6 md:mb-8 px-4">
+          Trusted by industry leaders and dental practice management experts
+        </SectionSubtitle>
+        
+        <div className="max-w-4xl mx-auto animate-fade-in px-4 sm:px-6">
+          <RecommendationCard 
+            imageUrl="/lovable-uploads/bc1224da-33e9-40a0-9374-a7e8d19ffa12.png"
+            name="Hy Smith, MBA"
+            title="Practice Management Consultant"
+            subtitle="Dental Practice Valuation Expert"
+            quote="Practice Transitions Institute provides the most professional and comprehensive transition services I've seen in the industry. Their approach to practice valuation and transition planning ensures that both buyers and sellers achieve optimal outcomes. I consistently recommend PTI to all dental professionals planning their next career move."
+          />
         </div>
       </Section>
 
