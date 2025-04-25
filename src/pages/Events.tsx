@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Calendar, Clock, MapPin } from "lucide-react";
 import Layout from "@/components/layout/Layout";
@@ -25,71 +24,58 @@ const Events = () => {
   const events: Event[] = [
     {
       id: 1,
-      title: "Preparing Your Practice for Sale: Maximizing Value",
-      date: "June 15, 2024",
-      time: "1:00 PM - 3:00 PM PST",
+      title: "Ready to Retire or Buy a Practice?",
+      date: "January 15, 2025",
+      time: "2:00 PM PT / 5:00 PM ET",
       location: "Online Webinar",
-      description: "Learn key strategies to enhance your practice's value before selling. This webinar covers financial optimization, staff retention, facility updates, and more.",
+      description: "Join our complimentary webinar to learn essential strategies for practice transitions. Topics include negotiating win-win deals, reading the economic climate, drafting agreements, maximizing practice value, and minimizing taxes.",
       type: "webinar",
-      registrationLink: "#register",
+      registrationLink: "mailto:info@practicetransitionsinstitute.com",
       isPast: false
     },
     {
       id: 2,
-      title: "Associateship to Ownership: Creating a Successful Pathway",
-      date: "July 8, 2024",
-      time: "5:30 PM - 8:00 PM PST",
-      location: "Dental Society of San Francisco",
-      description: "This in-person workshop explores how to structure associate-to-owner transitions that benefit both parties. Perfect for practice owners planning succession or associates looking to buy in.",
-      type: "workshop",
-      registrationLink: "#register",
+      title: "Ready to Retire or Buy a Practice?",
+      date: "January 29, 2025",
+      time: "5:00 PM PT / 8:00 PM ET",
+      location: "Online Webinar",
+      description: "Join our complimentary webinar to learn essential strategies for practice transitions. Topics include negotiating win-win deals, reading the economic climate, drafting agreements, maximizing practice value, and minimizing taxes.",
+      type: "webinar",
+      registrationLink: "mailto:info@practicetransitionsinstitute.com",
       isPast: false
     },
     {
       id: 3,
-      title: "Understanding Practice Valuation Methodologies",
-      date: "August 22, 2024",
-      time: "12:00 PM - 1:30 PM PST",
-      location: "Online Webinar",
-      description: "Demystify how dental practices are valued in today's market. Learn about different valuation approaches and which factors most significantly impact your practice's worth.",
-      type: "webinar",
-      registrationLink: "#register",
+      title: "Mastering Your Dental Transition Into and Out of Practice",
+      date: "September 27, 2024",
+      time: "Full Day",
+      location: "Arizona Dental Association HQ, Phoenix, AZ",
+      description: "A comprehensive full-day seminar perfect for doctors pursuing a start-up or purchase, seeking partners/associates, planning ownership, or preparing to exit dentistry. $397 for first participant, $195 for each additional attendee.",
+      type: "seminar",
+      registrationLink: "tel:+18337841121",
       isPast: false
     },
     {
       id: 4,
-      title: "Dental Economics Conference: Transition Planning Panel",
-      date: "September 15-17, 2024",
-      time: "Panel: Sept 16, 2:00 PM",
-      location: "Marriott Marquis, San Diego",
-      description: "PTI's founder joins other industry experts to discuss the current landscape of dental practice transitions, featuring real-world case studies and market trends.",
-      type: "conference",
-      registrationLink: "#register",
-      isPast: false,
-      imageUrl: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3"
+      title: "Mastering Your Dental Transition Into and Out of Practice",
+      date: "March 28, 2025",
+      time: "Full Day",
+      location: "Crowne Plaza Costa Mesa, Orange County, CA",
+      description: "A comprehensive full-day seminar perfect for doctors pursuing a start-up or purchase, seeking partners/associates, planning ownership, or preparing to exit dentistry. $397 for first participant, $195 for each additional attendee.",
+      type: "seminar",
+      registrationLink: "tel:+18337841121",
+      isPast: false
     },
     {
       id: 5,
-      title: "Legal Considerations in Practice Transitions",
-      date: "March 10, 2024",
-      time: "1:00 PM - 2:30 PM PST",
-      location: "Online Webinar",
-      description: "A comprehensive overview of the legal aspects of buying or selling a dental practice, including contract review, lease considerations, and non-compete agreements.",
-      type: "webinar",
-      registrationLink: "#recording",
-      isPast: true
-    },
-    {
-      id: 6,
-      title: "Annual Dental Transition Summit",
-      date: "January 20-21, 2024",
-      time: "9:00 AM - 5:00 PM PST (both days)",
-      location: "Hyatt Regency, San Francisco",
-      description: "Our flagship annual event featuring keynote speakers, breakout sessions, and networking opportunities for dentists at all stages of their careers.",
-      type: "conference",
-      registrationLink: "#materials",
-      isPast: true,
-      imageUrl: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3"
+      title: "Mastering Your Dental Transition Into and Out of Practice",
+      date: "July 11, 2025",
+      time: "Full Day",
+      location: "UOP Arthur A. Dugoni School of Dentistry, San Francisco, CA",
+      description: "A comprehensive full-day seminar perfect for doctors pursuing a start-up or purchase, seeking partners/associates, planning ownership, or preparing to exit dentistry. $397 for first participant, $195 for each additional attendee.",
+      type: "seminar",
+      registrationLink: "tel:+18337841121",
+      isPast: false
     }
   ];
   
