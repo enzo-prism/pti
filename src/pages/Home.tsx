@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Award, ChevronRight, FileCheck, Handshake, MessageSquare } from "lucide-react";
+import { ArrowRight, Award, Book, BookOpen, BookText, ChevronRight, FileCheck, Handshake, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { ServiceCard } from "@/components/ui/service-card";
@@ -271,15 +271,15 @@ const Home = () => {
               </p>
               <ul className="space-y-3 mb-6">
                 <li className="flex items-start gap-3">
-                  <book className="w-5 h-5 text-primary mt-1" />
+                  <Book className="w-5 h-5 text-primary mt-1" />
                   <span className="text-gray-600">Navigate opportunities from associateship to ownership</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <book-open className="w-5 h-5 text-primary mt-1" />
+                  <BookOpen className="w-5 h-5 text-primary mt-1" />
                   <span className="text-gray-600">Avoid common transition mistakes</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <book-text className="w-5 h-5 text-primary mt-1" />
+                  <BookText className="w-5 h-5 text-primary mt-1" />
                   <span className="text-gray-600">Understand both seller and buyer perspectives</span>
                 </li>
               </ul>
