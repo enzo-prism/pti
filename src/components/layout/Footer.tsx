@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -14,9 +13,13 @@ const Footer = () => {
           {/* Logo and About */}
           <div>
             <Link to="/" className="inline-block mb-4">
-              <span className="text-xl font-heading font-bold text-gray-800">
-                PTI<span className="text-primary">.</span>
-              </span>
+              <div className="h-12 w-auto bg-white rounded-lg overflow-hidden">
+                <img 
+                  src="/lovable-uploads/18b2244b-dbb5-4dd6-a1ca-c6a28fed53c6.png"
+                  alt="PTI Logo"
+                  className="h-full w-auto object-contain"
+                />
+              </div>
             </Link>
             <p className="text-gray-600 text-sm mb-4 leading-relaxed">
               Practice Transitions Institute specializes in dental practice transitions,

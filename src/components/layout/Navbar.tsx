@@ -54,9 +54,13 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex items-center z-10" onClick={closeMenu}>
-          <span className="text-2xl font-heading font-bold text-gray-800">
-            PTI<span className="text-primary">.</span>
-          </span>
+          <div className="h-12 w-auto bg-white rounded-lg overflow-hidden">
+            <img 
+              src="/lovable-uploads/18b2244b-dbb5-4dd6-a1ca-c6a28fed53c6.png"
+              alt="PTI Logo"
+              className="h-full w-auto object-contain"
+            />
+          </div>
         </Link>
 
         {/* Mobile menu button */}
