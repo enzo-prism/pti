@@ -5,11 +5,14 @@ import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { createClient } from "@supabase/supabase-js";
 
-// Initialize the Supabase client
+// Get Supabase environment variables
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Create Supabase client only if URL and key are available
+const supabase = supabaseUrl && supabaseAnonKey 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null;
 
 export const ContactForm = () => {
   const { toast } = useToast();
@@ -35,6 +38,17 @@ export const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    
+    // Check if Supabase is configured
+    if (!supabase) {
+      toast({
+        title: "Configuration Error",
+        description: "Supabase is not properly configured. Please set the required environment variables.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
     
     try {
       const { error } = await supabase
@@ -72,6 +86,31 @@ export const ContactForm = () => {
     }
   };
 
+  // If Supabase is not configured, show an alternative form or message
+  if (!supabase) {
+    return (
+      <div className="lg:col-span-2">
+        <h2 className="text-2xl font-semibold mb-6">Request a Consultation</h2>
+        <div className="p-6 border border-red-300 bg-red-50 rounded-lg">
+          <p className="text-red-700 mb-4">
+            <strong>⚠️ Configuration Required:</strong> Please configure Supabase environment variables.
+          </p>
+          <p className="text-gray-700">
+            To enable the contact form, you need to set the following environment variables:
+          </p>
+          <ul className="list-disc ml-6 mt-2 mb-4 text-gray-700">
+            <li>VITE_SUPABASE_URL</li>
+            <li>VITE_SUPABASE_ANON_KEY</li>
+          </ul>
+          <p className="text-gray-700">
+            In the meantime, please reach out to us directly via email or phone.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Regular form when Supabase is configured
   return (
     <div className="lg:col-span-2">
       <h2 className="text-2xl font-semibold mb-6">Request a Consultation</h2>
