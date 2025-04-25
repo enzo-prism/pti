@@ -171,7 +171,7 @@ const Home = () => {
         
         <div className="max-w-4xl mx-auto animate-fade-in px-4 sm:px-6">
           <RecommendationCard 
-            imageUrl="/lovable-uploads/bc1224da-33e9-40a0-9374-a7e8d19ffa12.png"
+            imageUrl="/lovable-uploads/59c88b25-0874-4941-8f27-b6899527c637.png"
             name="Hy Smith, MBA"
             title="Director of Transitions, Pride Institute"
             subtitle="Mentor, Colleague, and Friend"
