@@ -258,6 +258,53 @@ const Home = () => {
         </div>
       </Section>
 
+      {/* Book Section - Mobile Optimized */}
+      <Section background="light" className="py-10 md:py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="order-2 md:order-1">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
+                The Definitive Guide to Dental Practice Transitions
+              </h2>
+              <p className="text-gray-600 mb-6">
+                Dr. Michael Njo shares decades of expertise in his comprehensive handbook, guiding dental professionals through every step of their practice transition journey.
+              </p>
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-start gap-3">
+                  <book className="w-5 h-5 text-primary mt-1" />
+                  <span className="text-gray-600">Navigate opportunities from associateship to ownership</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <book-open className="w-5 h-5 text-primary mt-1" />
+                  <span className="text-gray-600">Avoid common transition mistakes</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <book-text className="w-5 h-5 text-primary mt-1" />
+                  <span className="text-gray-600">Understand both seller and buyer perspectives</span>
+                </li>
+              </ul>
+              <Button asChild>
+                <a 
+                  href="https://www.amazon.com/Dental-Practice-Transitions-Handbook-Healthcare/dp/1627878718" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center"
+                >
+                  Get the Book on Amazon
+                </a>
+              </Button>
+            </div>
+            <div className="order-1 md:order-2 flex justify-center">
+              <img
+                src="/lovable-uploads/61135e3f-f56e-4aff-949e-5eab772f5c5f.png"
+                alt="Dental Practice Transitions Handbook Cover"
+                className="w-48 md:w-64 shadow-lg rounded"
+              />
+            </div>
+          </div>
+        </div>
+      </Section>
+
       {/* CTA Section - Mobile Optimized */}
       <Section className="py-10 md:py-16 mb-4 md:mb-8">
         <Cta 
