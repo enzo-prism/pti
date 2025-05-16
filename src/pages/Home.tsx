@@ -1,5 +1,6 @@
+
 import { Link } from "react-router-dom";
-import { ArrowRight, Award, Book, BookOpen, BookText, ChevronRight, FileCheck, Handshake, MessageSquare } from "lucide-react";
+import { ArrowRight, Award, Book, BookOpen, BookText, ChevronRight, FileCheck, Handshake, MessageSquare, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { ServiceCard } from "@/components/ui/service-card";
@@ -63,19 +64,22 @@ const Home = () => {
         image="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png"
       />
       
-      {/* Hero Section - Mobile Optimized */}
+      {/* Hero Section - Updated with new headline and subheadline */}
       <section className="pt-20 pb-10 md:pt-32 md:pb-20 lg:pt-44 lg:pb-28 bg-gradient-to-br from-white to-accent relative overflow-hidden">
         <div className="container relative z-10 px-4 sm:px-6">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 animate-fade-in">
-              Your Practice, <span className="text-primary">Your Legacy</span>
+              From Acquisition to <span className="text-primary">Legacy</span>
             </h1>
+            <p className="text-xl md:text-2xl font-semibold mb-3 md:mb-4 animate-fade-in">
+              We Help You Navigate Your Dental Practice Transition with Certainty
+            </p>
             <p className="text-lg md:text-xl text-gray-700 mb-6 md:mb-8 animate-fade-in animate-delay-100">
-              Expert guidance for dental practice transitions, helping you build and preserve your professional legacy.
+              We guide dentists through every stage of their practice transition, ensuring a smooth, profitable, and stress-free process.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 animate-fade-in animate-delay-200">
               <Button asChild size={isMobile ? "default" : "lg"} className="w-full sm:w-auto">
-                <Link to="/contact">Book a Consultation</Link>
+                <Link to="/contact">Start Your Transition</Link>
               </Button>
               <Button asChild variant="outline" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto mt-3 sm:mt-0">
                 <Link to="/services">Explore Services</Link>
@@ -86,7 +90,19 @@ const Home = () => {
         <div className="absolute inset-0 bg-[url('/lovable-uploads/4721b228-712a-4fd3-aff8-dd60cd39ab0d.png')] bg-no-repeat bg-cover opacity-20"></div>
       </section>
 
-      {/* Value Proposition - Mobile Optimized */}
+      {/* The Problem Section - New */}
+      <Section background="light" className="py-10 md:py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <SectionTitle centered className="text-2xl md:text-3xl mb-4">The Challenge of Practice Transitions</SectionTitle>
+          <div className="bg-white p-6 md:p-8 rounded-lg shadow-sm border border-gray-100">
+            <p className="text-lg text-center mb-0">
+              Selling or buying a practice can feel overwhelming. You're facing complex decisions with your life's work at stake. How do you ensure a smooth transition, get a fair value, and protect your legacy?
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* Value Proposition - Existing Section with slight modifications */}
       <Section background="white" className="py-10 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           <div className="text-center p-4 md:p-6 animate-fade-in bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
@@ -119,7 +135,83 @@ const Home = () => {
         </div>
       </Section>
 
-      {/* Services Section - Mobile Optimized */}
+      {/* The Guide Section - New */}
+      <Section background="light" className="py-10 md:py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Your Trusted Transition Partner</h2>
+              <p className="text-lg text-gray-700 mb-6">
+                Practice Transitions Institute (PTI) is your trusted partner. With decades of experience, we provide the expertise, personalized support, and proven strategies you need to achieve your goals.
+              </p>
+              <Button asChild>
+                <Link to="/about" className="flex items-center">
+                  Learn About Our Approach <ChevronRight className="ml-1 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+            <div className="rounded-lg overflow-hidden shadow-md">
+              <img 
+                src="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png" 
+                alt="PTI team members with dental professionals" 
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* The Plan Section - New */}
+      <Section background="white" className="py-10 md:py-16">
+        <div className="container mx-auto px-4">
+          <SectionTitle centered>Our Proven Process</SectionTitle>
+          <SectionSubtitle centered>Our proven process simplifies your transition</SectionSubtitle>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all">
+              <div className="flex items-center mb-4">
+                <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">1</div>
+                <h3 className="font-semibold text-lg">Personalized Discovery</h3>
+              </div>
+              <p className="text-gray-600">
+                A collaborative session to pinpoint your goals and challenges, creating a detailed plan aligned with your desired outcome.
+              </p>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all">
+              <div className="flex items-center mb-4">
+                <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">2</div>
+                <h3 className="font-semibold text-lg">Accurate Valuation</h3>
+              </div>
+              <p className="text-gray-600">
+                We provide a thorough assessment of your practice to determine its true market value.
+              </p>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all">
+              <div className="flex items-center mb-4">
+                <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">3</div>
+                <h3 className="font-semibold text-lg">Strategic Negotiation</h3>
+              </div>
+              <p className="text-gray-600">
+                We help you navigate complex negotiations to maximize your return and ensure favorable terms.
+              </p>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all">
+              <div className="flex items-center mb-4">
+                <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">4</div>
+                <h3 className="font-semibold text-lg">Seamless Closing</h3>
+              </div>
+              <p className="text-gray-600">
+                We manage the details to ensure a smooth and efficient transaction with ongoing support throughout the process.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Services Section - Existing */}
       <Section background="light" className="py-10 md:py-16">
         <SectionTitle centered className="text-2xl md:text-3xl mb-2">Our Services</SectionTitle>
         <SectionSubtitle centered className="text-sm md:text-base mb-6 md:mb-8 px-4">
@@ -162,7 +254,56 @@ const Home = () => {
         </div>
       </Section>
 
-      {/* Expert Recommendation Section - Mobile Optimized */}
+      {/* Stakes & Success Section - New */}
+      <Section background="white" className="py-10 md:py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-gray-50 p-6 md:p-8 rounded-lg border border-gray-100">
+              <h3 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">What's At Stake</h3>
+              <p className="text-gray-700 mb-6">
+                Don't risk your future. Without expert guidance, you could face financial losses, post-sale litigation, unnecessary stress, and a compromised legacy.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <MessageSquare className="w-5 h-5 text-red-500 mt-1" />
+                  <span className="text-gray-700">Financial losses from improper valuation</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <MessageSquare className="w-5 h-5 text-red-500 mt-1" />
+                  <span className="text-gray-700">Legal complications and disputes</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <MessageSquare className="w-5 h-5 text-red-500 mt-1" />
+                  <span className="text-gray-700">Damaged professional relationships</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="bg-primary bg-opacity-10 p-6 md:p-8 rounded-lg border border-primary border-opacity-20">
+              <h3 className="text-xl md:text-2xl font-bold mb-4 text-primary">The Success Story</h3>
+              <p className="text-gray-700 mb-6">
+                Imagine a smooth, successful transition, a secure financial future, and the peace of mind knowing your legacy is in good hands. With PTI, you can confidently move into your next chapter.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-primary mt-1" />
+                  <span className="text-gray-700">Maximized practice value</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-primary mt-1" />
+                  <span className="text-gray-700">Peace of mind throughout the process</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-primary mt-1" />
+                  <span className="text-gray-700">A secured professional legacy</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Expert Recommendation Section - Existing */}
       <Section background="light" className="py-10 md:py-16">
         <SectionTitle centered className="text-2xl md:text-3xl mb-2">Expert Recommendation</SectionTitle>
         <SectionSubtitle centered className="text-sm md:text-base mb-6 md:mb-8 px-4">
@@ -180,7 +321,7 @@ const Home = () => {
         </div>
       </Section>
 
-      {/* Testimonials Section - Mobile Optimized */}
+      {/* Testimonials Section - Existing */}
       <Section className="py-10 md:py-16">
         <SectionTitle centered className="text-2xl md:text-3xl mb-2">What Our Clients Say</SectionTitle>
         <SectionSubtitle centered className="text-sm md:text-base mb-6 md:mb-8 px-4">
@@ -227,7 +368,7 @@ const Home = () => {
         </div>
       </Section>
 
-      {/* About Us Section - Mobile Optimized */}
+      {/* About Us Section - Existing */}
       <Section background="light" className="py-10 md:py-16">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center px-4 sm:px-6">
           <div className="order-2 md:order-1 animate-fade-in">
@@ -258,7 +399,7 @@ const Home = () => {
         </div>
       </Section>
 
-      {/* Book Section - Mobile Optimized */}
+      {/* Book Section - Existing */}
       <Section background="light" className="py-10 md:py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -305,12 +446,12 @@ const Home = () => {
         </div>
       </Section>
 
-      {/* CTA Section - Mobile Optimized */}
+      {/* CTA Section - Updated with new call to action text */}
       <Section className="py-10 md:py-16 mb-4 md:mb-8">
         <Cta 
           title="Ready to Discuss Your Practice Transition?"
           description="Schedule a consultation with our team of experts to explore your options and create a personalized transition plan."
-          buttonText="Book Your Consultation"
+          buttonText="Start Your Complimentary Consultation"
           buttonUrl="/contact"
           className="px-4"
         />
