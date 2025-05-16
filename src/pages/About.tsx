@@ -17,7 +17,7 @@ const About = () => {
         "New: He now serves on the California Dental Association Leadership Council and sits on the Board of the Dugoni Alumni Association—helping shape the future of dental education and policy."
       ],
       hasNewInfo: true,
-      image: "/lovable-uploads/b1f60d1b-1ab4-4038-b99a-7c6d3da854a6.png",
+      image: "/lovable-uploads/d30c74a1-48bb-404e-9e9d-bc93119a695d.png",
       videoUrl: "https://youtu.be/Jes6h2F3yhc?si=sVQZKyw1uB5Fi5_F",
       bookUrl: "https://www.amazon.com/Dental-Practice-Transitions-Handbook-Healthcare/dp/1627878718/ref=sr_1_2?dchild=1&keywords=Dental+Practice+Transitions+Handbook&qid=1632933680&s=books&sr=1-2",
       bookImage: "/lovable-uploads/61135e3f-f56e-4aff-949e-5eab772f5c5f.png",
