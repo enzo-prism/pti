@@ -5,28 +5,35 @@ import { ArrowRight, Handshake, Award, HeartHandshake, UserCheck } from "lucide-
 import { Button } from "@/components/ui/button";
 import SEO from "@/components/layout/SEO";
 import { VideoDialog } from "@/components/ui/video-dialog";
+import { RecommendationCard } from "@/components/ui/recommendation-card";
 
 const About = () => {
   const teamMembers = [
     {
       name: "Dr. Michael Njo, DDS",
       role: "Founder & Lead Transition Consultant",
-      bio: "Former clinician with over three decades of dental industry experience who became a renowned expert in dental practice transitions. Author of the \"Dental Practice Transitions Handbook\", the definitive guide for healthcare professionals navigating practice transitions. Dr. Njo brings extensive experience from his tenure at Pride Institute, and as founder of multiple successful consulting firms. His expertise is recognized through faculty positions at UOP School of Dentistry, UCSF, and numerous speaking engagements.",
-      image: "/lovable-uploads/6b7bd257-fc0e-455a-80bd-6111a02be241.png",
+      bio: [
+        "With over 30 years in clinical dentistry, Dr. Njo is one of the profession's most trusted guides for practice transitions. He's the author of the Dental Practice Transitions Handbook, serves on faculty at both UOP and UCSF, and is a regular keynote speaker at industry events.",
+        "New: He now serves on the California Dental Association Leadership Council and sits on the Board of the Dugoni Alumni Association—helping shape the future of dental education and policy."
+      ],
+      hasNewInfo: true,
+      image: "/lovable-uploads/b1f60d1b-1ab4-4038-b99a-7c6d3da854a6.png",
       videoUrl: "https://youtu.be/Jes6h2F3yhc?si=sVQZKyw1uB5Fi5_F",
       bookUrl: "https://www.amazon.com/Dental-Practice-Transitions-Handbook-Healthcare/dp/1627878718/ref=sr_1_2?dchild=1&keywords=Dental+Practice+Transitions+Handbook&qid=1632933680&s=books&sr=1-2",
-      bookImage: "/lovable-uploads/61135e3f-f56e-4aff-949e-5eab772f5c5f.png"
+      bookImage: "/lovable-uploads/61135e3f-f56e-4aff-949e-5eab772f5c5f.png",
+      bookTitle: "Dental Practice Transitions Handbook",
+      bookDescription: "A comprehensive guide for healthcare professionals navigating practice transitions"
     },
     {
       name: "Liz Armato",
       role: "COO & Client Services Lead",
-      bio: "Former executive at Pride Institute with over 20 years in dental operations, focused on streamlining client services and ensuring personalized guidance.",
+      bio: ["Former executive at Pride Institute with over 20 years in dental operations, focused on streamlining client services and ensuring personalized guidance."],
       image: "/lovable-uploads/8af030a0-6d6f-46e6-960a-d2d64258b329.png"
     },
     {
       name: "Fred Heppner",
       role: "Transition Consultant",
-      bio: "Brings decades of experience as a broker and consultant; recognized for his ability to facilitate seamless, well-vetted matches between sellers and buyers.",
+      bio: ["Brings decades of experience as a broker and consultant; recognized for his ability to facilitate seamless, well-vetted matches between sellers and buyers."],
       image: "/lovable-uploads/1a104794-17ea-4b67-b3f2-17a24be7dc49.png"
     }
   ];
@@ -158,50 +165,21 @@ const About = () => {
           {teamMembers.map((member, index) => (
             <div 
               key={index} 
-              className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden animate-fade-in"
+              className="animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="h-64 overflow-hidden">
-                <img 
-                  src={member.image} 
-                  alt={member.name} 
-                  className="w-full h-full object-cover object-center"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-1">{member.name}</h3>
-                <p className="text-primary font-medium mb-3">{member.role}</p>
-                <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
-                <div className="space-y-3">
-                  {member.videoUrl && (
-                    <VideoDialog 
-                      videoUrl={member.videoUrl}
-                      buttonText="Watch the Interview"
-                      buttonProps={{ className: "w-full" }}
-                    />
-                  )}
-                  {member.bookImage && (
-                    <div className="mb-4 border rounded-lg p-4">
-                      <div className="flex items-center gap-4">
-                        <img 
-                          src={member.bookImage} 
-                          alt="Dental Practice Transitions Handbook Cover" 
-                          className="w-24 h-auto"
-                        />
-                        <div>
-                          <h4 className="font-semibold mb-1">Dental Practice Transitions Handbook</h4>
-                          <p className="text-sm text-gray-600 mb-2">A comprehensive guide for healthcare professionals navigating practice transitions</p>
-                        </div>
-                      </div>
-                      <Button asChild variant="outline" className="w-full mt-3">
-                        <a href={member.bookUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
-                          View Book on Amazon
-                        </a>
-                      </Button>
-                    </div>
-                  )}
-                </div>
-              </div>
+              <RecommendationCard
+                imageUrl={member.image}
+                name={member.name}
+                title={member.role}
+                bio={member.bio}
+                hasNewInfo={member.hasNewInfo}
+                videoUrl={member.videoUrl}
+                bookUrl={member.bookUrl}
+                bookImage={member.bookImage}
+                bookTitle={member.bookTitle}
+                bookDescription={member.bookDescription}
+              />
             </div>
           ))}
         </div>
