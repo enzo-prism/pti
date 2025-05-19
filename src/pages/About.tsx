@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
@@ -15,7 +14,7 @@ const About = () => {
       role: "Founder & Lead Transition Consultant",
       bio: [
         "With over 30 years in clinical dentistry, Dr. Njo is one of the profession's most trusted guides for practice transitions. He's the author of the Dental Practice Transitions Handbook, he has taught at both UOP and UCSF, and is a regular keynote speaker at industry events.",
-        "New: He is part of the Admission's team for UOP, is the advisor for the Dugoni Business Club and sits on the Board of Directors of the Dugoni Alumni Association. He now serves on the California Dental Association Leadership Council and is helping shape the future of dental education and policy."
+        "New: He is part of the Admission's team for UOP, is the advisor for the Dugoni Business Club and serves on the Board of Directors of the Dugoni Alumni Association. He now serves on the California Dental Association Leadership Council and is helping shape the future of dental education and policy."
       ],
       hasNewInfo: true,
       image: "/lovable-uploads/d30c74a1-48bb-404e-9e9d-bc93119a695d.png",
