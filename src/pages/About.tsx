@@ -11,7 +11,7 @@ import { RecommendationCard } from "@/components/ui/recommendation-card";
 const About = () => {
   const teamMembers = [
     {
-      name: "Dr. Michael Njo, DDS",
+      name: "Dr. Michael Njo",
       role: "Founder & Lead Transition Consultant",
       bio: [
         "With over 30 years in clinical dentistry, Dr. Njo is one of the profession's most trusted guides for practice transitions. He's the author of the Dental Practice Transitions Handbook, he has taught at both UOP and UCSF, and is a regular keynote speaker at industry events.",
