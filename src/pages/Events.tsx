@@ -15,6 +15,8 @@ interface Event {
   type: "webinar" | "seminar" | "workshop" | "conference";
   registrationLink: string;
   isPast: boolean;
+  earlyBirdDeadline?: string;
+  earlyBirdSavings?: string;
 }
 
 const Events = () => {
@@ -23,58 +25,27 @@ const Events = () => {
   const events: Event[] = [
     {
       id: 1,
-      title: "Ready to Retire or Buy a Practice?",
-      date: "January 15, 2025",
-      time: "2:00 PM PT / 5:00 PM ET",
-      location: "Online Webinar",
-      description: "Join our complimentary webinar to learn essential strategies for practice transitions. Topics include negotiating win-win deals, reading the economic climate, drafting agreements, maximizing practice value, and minimizing taxes.",
-      type: "webinar",
-      registrationLink: "mailto:info@practicetransitionsinstitute.com",
+      title: "Mastering Your Dental Transition Into and Out of Practice",
+      date: "March 28, 2025",
+      time: "Full Day",
+      location: "Crown Plaza, Costa Mesa CA",
+      description: "A comprehensive full-day seminar perfect for doctors pursuing a start-up or purchase, seeking partners/associates, planning ownership, or preparing to exit dentistry. Join us in Orange County for expert guidance on dental practice transitions.",
+      type: "seminar",
+      registrationLink: "tel:+18337841121",
       isPast: false
     },
     {
       id: 2,
-      title: "Ready to Retire or Buy a Practice?",
-      date: "January 29, 2025",
-      time: "5:00 PM PT / 8:00 PM ET",
-      location: "Online Webinar",
-      description: "Join our complimentary webinar to learn essential strategies for practice transitions. Topics include negotiating win-win deals, reading the economic climate, drafting agreements, maximizing practice value, and minimizing taxes.",
-      type: "webinar",
-      registrationLink: "mailto:info@practicetransitionsinstitute.com",
-      isPast: false
-    },
-    {
-      id: 3,
-      title: "Mastering Your Dental Transition Into and Out of Practice",
-      date: "September 27, 2024",
-      time: "Full Day",
-      location: "Arizona Dental Association HQ, Phoenix, AZ",
-      description: "A comprehensive full-day seminar perfect for doctors pursuing a start-up or purchase, seeking partners/associates, planning ownership, or preparing to exit dentistry. $397 for first participant, $195 for each additional attendee.",
-      type: "seminar",
-      registrationLink: "tel:+18337841121",
-      isPast: false
-    },
-    {
-      id: 4,
-      title: "Mastering Your Dental Transition Into and Out of Practice",
-      date: "March 28, 2025",
-      time: "Full Day",
-      location: "Crowne Plaza Costa Mesa, Orange County, CA",
-      description: "A comprehensive full-day seminar perfect for doctors pursuing a start-up or purchase, seeking partners/associates, planning ownership, or preparing to exit dentistry. $397 for first participant, $195 for each additional attendee.",
-      type: "seminar",
-      registrationLink: "tel:+18337841121",
-      isPast: false
-    },
-    {
-      id: 5,
       title: "Mastering Your Dental Transition Into and Out of Practice",
       date: "July 11, 2025",
       time: "Full Day",
-      location: "UOP Arthur A. Dugoni School of Dentistry, San Francisco, CA",
-      description: "A comprehensive full-day seminar perfect for doctors pursuing a start-up or purchase, seeking partners/associates, planning ownership, or preparing to exit dentistry. $397 for first participant, $195 for each additional attendee.",
+      location: "Arthur A. Dugoni School of Dentistry, U.O.P., San Francisco, CA",
+      description: "A comprehensive full-day seminar perfect for doctors pursuing a start-up or purchase, seeking partners/associates, planning ownership, or preparing to exit dentistry. Join us at the prestigious University of the Pacific dental school.",
       type: "seminar",
       registrationLink: "tel:+18337841121",
-      isPast: false
+      isPast: false,
+      earlyBirdDeadline: "June 11, 2025",
+      earlyBirdSavings: "$100"
     }
   ];
   
@@ -107,8 +78,7 @@ const Events = () => {
             Speaking Engagements & Events
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-blue-100 leading-relaxed max-w-4xl mx-auto px-4">
-            Join us for educational seminars, webinars, and workshops on 
-            dental practice transitions and management.
+            Join us for educational seminars on dental practice transitions and management.
           </p>
         </div>
       </Section>
@@ -163,6 +133,11 @@ const Events = () => {
                         Past Event
                       </span>
                     )}
+                    {event.earlyBirdDeadline && !event.isPast && (
+                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-700 border border-orange-200">
+                        Early Bird Available
+                      </span>
+                    )}
                   </div>
                   <h3 className="text-lg md:text-xl font-semibold text-gray-900 leading-tight">
                     {event.title}
@@ -185,6 +160,15 @@ const Events = () => {
                   <span className="line-clamp-2">{event.location}</span>
                 </div>
               </div>
+              
+              {/* Early Bird Notice */}
+              {event.earlyBirdDeadline && !event.isPast && (
+                <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 mb-4">
+                  <p className="text-orange-800 text-sm font-medium">
+                    🎯 Early Bird Special: Register by {event.earlyBirdDeadline} and save {event.earlyBirdSavings}!
+                  </p>
+                </div>
+              )}
               
               {/* Event Description */}
               <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
