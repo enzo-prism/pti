@@ -8,7 +8,7 @@ import { VideoDialog } from "@/components/ui/video-dialog";
 import { RecommendationCard } from "@/components/ui/recommendation-card";
 
 const About = () => {
-  const teamMembers = [
+  const leaders = [
     {
       name: "Dr. Michael Njo",
       role: "Founder & Lead Transition Consultant",
@@ -27,16 +27,17 @@ const About = () => {
     {
       name: "Liz Armato",
       role: "COO & Client Services Lead",
-      bio: ["Former executive at Pride Institute with over 20 years in dental operations, focused on streamlining client services and ensuring personalized guidance."],
+      bio: ["Former executive at Pride Institute with over 20 years in dental operations, focused on streamlining client services and ensuring personalized guidance throughout every transition."],
       image: "/lovable-uploads/8af030a0-6d6f-46e6-960a-d2d64258b329.png"
-    },
-    {
-      name: "Fred Heppner",
-      role: "Transition Consultant",
-      bio: ["Brings decades of experience as a broker and consultant; recognized for his ability to facilitate seamless, well-vetted matches between sellers and buyers."],
-      image: "/lovable-uploads/1a104794-17ea-4b67-b3f2-17a24be7dc49.png"
     }
   ];
+
+  const consultant = {
+    name: "Fred Heppner",
+    role: "Transition Consultant",
+    bio: ["Brings decades of experience as a broker and consultant; recognized for his ability to facilitate seamless, well-vetted matches between sellers and buyers."],
+    image: "/lovable-uploads/1a104794-17ea-4b67-b3f2-17a24be7dc49.png"
+  };
 
   return (
     <>
@@ -49,7 +50,7 @@ const About = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">About Practice Transitions Institute</h1>
             <p className="text-xl text-gray-700 animate-fade-in animate-delay-100">
-              Dedicated to helping dental professionals navigate practice transitions with care, integrity, and personalized guidance
+              Founded and led by experienced dental professionals dedicated to helping practitioners navigate practice transitions with care, integrity, and personalized guidance
             </p>
           </div>
         </div>
@@ -62,13 +63,13 @@ const About = () => {
               Our Story
             </h2>
             <p className="text-gray-600 mb-4">
-              Practice Transitions Institute was founded by experienced dental professionals after a tenure at Pride Institute. PTI was built to move beyond transactional brokers into trusted, relationship-driven consultants.
+              Practice Transitions Institute was founded by Dr. Michael Njo and experienced dental professionals after a successful tenure at Pride Institute. PTI was built to move beyond transactional brokers into trusted, relationship-driven consultants.
             </p>
             <p className="text-gray-600 mb-4">
-              Our mission is to help dentists transition their practices with care, integrity, and personalized guidance. We emphasize preserving the legacy of each practice while ensuring win-win outcomes for all parties involved.
+              Under Dr. Njo's leadership and Liz Armato's operational expertise, our mission is to help dentists transition their practices with care, integrity, and personalized guidance. We emphasize preserving the legacy of each practice while ensuring win-win outcomes for all parties involved.
             </p>
             <p className="text-gray-600">
-              What began as a vision to provide better service has grown into a comprehensive transitions firm with a team of experts dedicated to guiding dental professionals through major career milestones.
+              What began as Dr. Njo's vision to provide better service has grown into a comprehensive transitions firm with a dedicated team of experts guiding dental professionals through major career milestones.
             </p>
           </div>
           <div className="animate-fade-in animate-delay-100">
@@ -76,6 +77,48 @@ const About = () => {
               src="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png" 
               alt="PTI team members with dental professionals" 
               className="rounded-lg shadow-md w-full"
+            />
+          </div>
+        </div>
+      </Section>
+
+      <Section background="light">
+        <SectionTitle centered>Meet Our Leadership Team</SectionTitle>
+        <SectionSubtitle centered>
+          The experienced professionals who founded and lead Practice Transitions Institute
+        </SectionSubtitle>
+        
+        <div className="grid md:grid-cols-2 gap-12 mt-8 max-w-5xl mx-auto">
+          {leaders.map((leader, index) => (
+            <div 
+              key={index} 
+              className="animate-fade-in"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <RecommendationCard
+                imageUrl={leader.image}
+                name={leader.name}
+                title={leader.role}
+                bio={leader.bio}
+                hasNewInfo={leader.hasNewInfo}
+                videoUrl={leader.videoUrl}
+                bookUrl={leader.bookUrl}
+                bookImage={leader.bookImage}
+                bookTitle={leader.bookTitle}
+                bookDescription={leader.bookDescription}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-16 max-w-2xl mx-auto">
+          <h3 className="text-2xl font-bold text-center mb-8 text-gray-800">Our Team</h3>
+          <div className="animate-fade-in animate-delay-200">
+            <RecommendationCard
+              imageUrl={consultant.image}
+              name={consultant.name}
+              title={consultant.role}
+              bio={consultant.bio}
             />
           </div>
         </div>
@@ -115,16 +158,16 @@ const About = () => {
               <li className="flex items-start">
                 <Handshake className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
-                  <h3 className="font-semibold text-lg">Relationship-Driven Consulting</h3>
-                  <p className="text-gray-600">We focus on building trusted relationships, not just transactions, giving us unparalleled insight into your needs.</p>
+                  <h3 className="font-semibold text-lg">Founder-Led Excellence</h3>
+                  <p className="text-gray-600">Dr. Njo personally oversees every transition, bringing decades of expertise and his published insights to your journey.</p>
                 </div>
               </li>
               
               <li className="flex items-start">
                 <Award className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
-                  <h3 className="font-semibold text-lg">Experienced Team</h3>
-                  <p className="text-gray-600">Our team includes former practicing dentists and industry executives who understand the unique challenges you face.</p>
+                  <h3 className="font-semibold text-lg">Experienced Leadership</h3>
+                  <p className="text-gray-600">Our leadership team includes former practicing dentists and industry executives who understand the unique challenges you face.</p>
                 </div>
               </li>
               
@@ -132,7 +175,7 @@ const About = () => {
                 <HeartHandshake className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h3 className="font-semibold text-lg">Personalized Guidance</h3>
-                  <p className="text-gray-600">We provide hands-on support throughout your transition journey, with clear, responsive communication at every step.</p>
+                  <p className="text-gray-600">Liz Armato ensures hands-on support throughout your transition journey, with clear, responsive communication at every step.</p>
                 </div>
               </li>
               
@@ -152,36 +195,6 @@ const About = () => {
               className="rounded-lg shadow-md w-full"
             />
           </div>
-        </div>
-      </Section>
-
-      <Section background="light">
-        <SectionTitle centered>Our Expert Team</SectionTitle>
-        <SectionSubtitle centered>
-          Meet the experienced professionals dedicated to your practice transition success
-        </SectionSubtitle>
-        
-        <div className="grid md:grid-cols-3 gap-8 mt-8">
-          {teamMembers.map((member, index) => (
-            <div 
-              key={index} 
-              className="animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <RecommendationCard
-                imageUrl={member.image}
-                name={member.name}
-                title={member.role}
-                bio={member.bio}
-                hasNewInfo={member.hasNewInfo}
-                videoUrl={member.videoUrl}
-                bookUrl={member.bookUrl}
-                bookImage={member.bookImage}
-                bookTitle={member.bookTitle}
-                bookDescription={member.bookDescription}
-              />
-            </div>
-          ))}
         </div>
       </Section>
 
