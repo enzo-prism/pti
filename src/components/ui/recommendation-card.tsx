@@ -71,7 +71,7 @@ export function RecommendationCard({
           )}
           
           {videoUrl && (
-            <Button variant="outline" className="flex items-center gap-2 mb-4">
+            <Button variant="outline" className="flex items-center gap-2 mb-4 w-full sm:w-auto">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-play">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>
@@ -80,19 +80,21 @@ export function RecommendationCard({
           )}
           
           {bookImage && bookUrl && (
-            <div className="border border-gray-200 rounded-lg p-4 mt-5">
-              <div className="flex items-start gap-4">
-                <img 
-                  src={bookImage} 
-                  alt={bookTitle || "Book cover"} 
-                  className="w-24 h-auto object-cover"
-                />
-                <div>
-                  <h4 className="font-semibold text-lg mb-1">{bookTitle}</h4>
-                  <p className="text-sm text-gray-600 mb-2">{bookDescription}</p>
-                  <Button asChild variant="outline" className="w-full mt-2">
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 mt-6">
+              <div className="flex flex-col sm:flex-row items-start gap-4">
+                <div className="flex-shrink-0 mx-auto sm:mx-0">
+                  <img 
+                    src={bookImage} 
+                    alt={bookTitle || "Book cover"} 
+                    className="w-20 h-auto object-cover rounded shadow-sm"
+                  />
+                </div>
+                <div className="flex-1 text-center sm:text-left">
+                  <h4 className="font-semibold text-lg mb-2 text-gray-900">{bookTitle}</h4>
+                  <p className="text-sm text-gray-600 mb-4 leading-relaxed">{bookDescription}</p>
+                  <Button asChild variant="default" size="sm" className="w-full sm:w-auto">
                     <a href={bookUrl} target="_blank" rel="noopener noreferrer">
-                      View Book on Amazon
+                      View on Amazon
                     </a>
                   </Button>
                 </div>
