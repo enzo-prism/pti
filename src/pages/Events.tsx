@@ -101,27 +101,25 @@ const Events = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-primary to-primary/80 text-white pt-20 pb-12">
-        <div className="container px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl md:text-5xl font-bold mb-4">
-              Speaking Engagements & Events
-            </h1>
-            <p className="text-lg md:text-xl text-blue-100 leading-relaxed">
-              Join us for educational seminars, webinars, and workshops on 
-              dental practice transitions and management.
-            </p>
-          </div>
+      <Section background="primary" className="py-12 md:py-20 lg:py-24">
+        <div className="text-center text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
+            Speaking Engagements & Events
+          </h1>
+          <p className="text-lg sm:text-xl md:text-2xl text-blue-100 leading-relaxed max-w-4xl mx-auto px-4">
+            Join us for educational seminars, webinars, and workshops on 
+            dental practice transitions and management.
+          </p>
         </div>
-      </div>
+      </Section>
 
       {/* Events Section */}
-      <Section className="py-8 md:py-16">
+      <Section className="py-12 md:py-16 lg:py-20">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Upcoming Events</h2>
-            <p className="text-gray-600 mt-1">Don't miss our latest educational opportunities</p>
+            <SectionTitle>Upcoming Events</SectionTitle>
+            <SectionSubtitle>Don't miss our latest educational opportunities</SectionSubtitle>
           </div>
           {pastEvents.length > 0 && (
             <button
@@ -220,15 +218,13 @@ const Events = () => {
       </Section>
 
       {/* Private Events Section */}
-      <Section background="light" className="py-8 md:py-16">
+      <Section background="light" className="py-12 md:py-16 lg:py-20">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-              Host a Private Event
-            </h2>
-            <p className="text-gray-600 text-lg">
+            <SectionTitle>Host a Private Event</SectionTitle>
+            <SectionSubtitle>
               Looking for customized education for your dental society, study club, or office?
-            </p>
+            </SectionSubtitle>
           </div>
           
           <div className="bg-white rounded-xl p-6 md:p-8 shadow-sm border border-gray-200">
