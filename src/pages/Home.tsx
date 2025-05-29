@@ -18,21 +18,21 @@ const Home = () => {
       />
       
       {/* Hero Section */}
-      <section className="pt-16 pb-8 md:pt-32 md:pb-20 lg:pt-44 lg:pb-28 bg-gradient-to-br from-white to-accent relative overflow-hidden">
-        <div className="container relative z-10 px-4 sm:px-6">
+      <section className="pt-12 pb-8 md:pt-20 md:pb-16 lg:pt-32 lg:pb-24 bg-gradient-to-br from-white to-accent relative overflow-hidden">
+        <div className="container relative z-10 px-3 sm:px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-6 animate-fade-in leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 animate-fade-in leading-tight">
               From Acquisition to <span className="text-primary">Legacy</span>
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl font-semibold mb-4 md:mb-8 animate-fade-in animate-delay-100 px-2">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4 md:mb-6 animate-fade-in animate-delay-100 px-2">
               We Help You Navigate Your Dental Practice Transition with Certainty
             </p>
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 md:mb-10 animate-fade-in animate-delay-200 max-w-3xl mx-auto px-2 leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 mb-4 sm:mb-6 md:mb-8 animate-fade-in animate-delay-200 max-w-3xl mx-auto px-2 leading-relaxed">
               We guide dentists through every stage of their practice transition, ensuring a smooth, profitable, and stress-free process.
             </p>
-            <div className="animate-fade-in animate-delay-300 px-4">
-              <Button asChild size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-base sm:text-lg px-6 py-3 sm:px-8 sm:py-4">
-                <Link to="/contact">Start Your Transition with a Complimentary Consultation</Link>
+            <div className="animate-fade-in animate-delay-300 px-2">
+              <Button asChild size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4">
+                <Link to="/contact">Get Free Consultation</Link>
               </Button>
             </div>
           </div>
@@ -172,16 +172,16 @@ const Home = () => {
       </Section>
 
       {/* Final Call to Action */}
-      <Section background="primary" className="py-12 md:py-20">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-white">
+      <Section background="primary" className="py-8 sm:py-12 md:py-16 lg:py-20">
+        <div className="max-w-4xl mx-auto text-center px-3 sm:px-4">
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 sm:mb-4 md:mb-6 text-white">
             Ready to Start Your Transition?
           </h2>
-          <p className="text-lg sm:text-xl text-white opacity-90 mb-6 md:mb-8 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white opacity-90 mb-4 sm:mb-6 md:mb-8 leading-relaxed">
             Take the first step toward a successful practice transition with expert guidance you can trust.
           </p>
-          <Button asChild variant="secondary" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-base sm:text-lg px-6 py-3 sm:px-8 sm:py-4">
-            <Link to="/contact">Start Your Transition with a Complimentary Consultation</Link>
+          <Button asChild variant="secondary" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4">
+            <Link to="/contact">Get Free Consultation</Link>
           </Button>
         </div>
       </Section>
