@@ -2,235 +2,255 @@
 import { Link } from "react-router-dom";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
-import { Users, FileText, TrendingUp, CheckCircle, ArrowRight } from "lucide-react";
+import { Users, FileText, TrendingUp, CheckCircle, ArrowRight, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Associateships = () => {
+  const isMobile = useIsMobile();
+
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-28 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-accent to-white">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">Associateships & Buying In</h1>
-            <p className="text-xl text-gray-700 animate-fade-in animate-delay-100">
-              Creating structured pathways for associates to transition into practice ownership
+      <section className="pt-12 pb-8 md:pt-20 md:pb-16 lg:pt-32 lg:pb-24 bg-gradient-to-br from-white to-accent relative overflow-hidden">
+        <div className="container relative z-10 px-3 sm:px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 animate-fade-in leading-tight">
+              Associateships & Buying In
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4 md:mb-6 animate-fade-in animate-delay-100 px-2 text-primary">
+              Grow Your Practice, Secure Your Future: Expert Guidance on Associateships & Buy-Ins
+            </p>
+            <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4 sm:mb-6 md:mb-8 animate-fade-in animate-delay-200 max-w-3xl mx-auto px-2 leading-relaxed">
+              From initial needs assessment to the final buy-in, we provide comprehensive support to create mutually beneficial arrangements that pave the way for lasting success.
             </p>
           </div>
         </div>
       </section>
 
       {/* Overview Section */}
-      <Section>
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+      <Section className="py-8 sm:py-12 md:py-16">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 animate-fade-in">
               Your Path to Practice Ownership
             </h2>
-            <p className="text-gray-600 mb-4">
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-4 animate-fade-in animate-delay-100 px-3 leading-relaxed">
               Whether you're an associate dentist looking to buy into a practice or a practice owner wanting to bring on an associate with a path to ownership, our structured approach ensures a successful transition.
             </p>
-            <p className="text-gray-600 mb-6">
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-8 animate-fade-in animate-delay-200 px-3 leading-relaxed">
               We create clear, equitable arrangements that protect both parties and establish a foundation for long-term success.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-3">
+              <Button asChild size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-sm sm:text-base">
                 <Link to="/contact">Schedule a Consultation</Link>
               </Button>
-              <Button asChild variant="outline">
+              <Button asChild variant="outline" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-sm sm:text-base">
                 <Link to="/services">View All Services</Link>
               </Button>
             </div>
-          </div>
-          <div className="animate-fade-in animate-delay-100">
-            <img 
-              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3" 
-              alt="Dentists collaborating" 
-              className="rounded-lg shadow-md w-full"
-            />
           </div>
         </div>
       </Section>
 
       {/* Process Section */}
-      <Section background="light">
-        <SectionTitle centered>Our Associateship Process</SectionTitle>
-        <SectionSubtitle centered>
-          Creating structured buy-in opportunities with clear expectations
-        </SectionSubtitle>
+      <Section background="light" className="py-8 sm:py-12 md:py-16">
+        <div className="text-center mb-8 sm:mb-12">
+          <SectionTitle centered className="text-xl sm:text-2xl md:text-3xl mb-3 sm:mb-4">Our Associateship Process</SectionTitle>
+          <SectionSubtitle centered className="text-sm sm:text-base md:text-lg px-3">
+            Creating structured buy-in opportunities with clear expectations
+          </SectionSubtitle>
+        </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in">
-            <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
-              <FileText className="h-6 w-6 text-primary" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Needs Assessment</h3>
-            <p className="text-gray-600">
-              We evaluate the practice and the associate's goals to ensure alignment and compatibility.
-            </p>
-          </div>
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4 px-3">
+          <Card className="bg-white shadow-sm border border-gray-100 animate-fade-in">
+            <CardContent className="p-4 sm:p-6">
+              <div className="bg-accent rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-3 sm:mb-4">
+                <FileText className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+              </div>
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2">Needs Assessment</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                We evaluate the practice and the associate's goals to ensure alignment and compatibility.
+              </p>
+            </CardContent>
+          </Card>
           
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-100">
-            <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
-              <Users className="h-6 w-6 text-primary" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Structured Agreement</h3>
-            <p className="text-gray-600">
-              We develop clear terms for the associateship period, including responsibilities and compensation.
-            </p>
-          </div>
+          <Card className="bg-white shadow-sm border border-gray-100 animate-fade-in animate-delay-100">
+            <CardContent className="p-4 sm:p-6">
+              <div className="bg-accent rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-3 sm:mb-4">
+                <Users className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+              </div>
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2">Structured Agreement</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                We develop clear terms for the associateship period, including responsibilities and compensation.
+              </p>
+            </CardContent>
+          </Card>
           
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-200">
-            <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
-              <TrendingUp className="h-6 w-6 text-primary" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Buy-In Strategy</h3>
-            <p className="text-gray-600">
-              We create a clear path to ownership with defined timelines, valuation methods, and financing options.
-            </p>
-          </div>
+          <Card className="bg-white shadow-sm border border-gray-100 animate-fade-in animate-delay-200">
+            <CardContent className="p-4 sm:p-6">
+              <div className="bg-accent rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-3 sm:mb-4">
+                <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+              </div>
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2">Buy-In Strategy</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                We create a clear path to ownership with defined timelines, valuation methods, and financing options.
+              </p>
+            </CardContent>
+          </Card>
           
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-300">
-            <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
-              <CheckCircle className="h-6 w-6 text-primary" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Successful Transition</h3>
-            <p className="text-gray-600">
-              We guide the execution of the buy-in process, ensuring a smooth transition to co-ownership.
-            </p>
-          </div>
+          <Card className="bg-white shadow-sm border border-gray-100 animate-fade-in animate-delay-300">
+            <CardContent className="p-4 sm:p-6">
+              <div className="bg-accent rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-3 sm:mb-4">
+                <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+              </div>
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2">Successful Transition</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                We guide the execution of the buy-in process, ensuring a smooth transition to co-ownership.
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </Section>
 
       {/* Benefits Section */}
-      <Section>
-        <div className="grid md:grid-cols-2 gap-12">
+      <Section className="py-8 sm:py-12 md:py-16">
+        <div className="grid gap-8 sm:gap-12 lg:grid-cols-2 px-3">
           <div className="animate-fade-in">
-            <h3 className="text-2xl font-bold mb-6">For Associates</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 sm:mb-6 text-center lg:text-left">For Associates</h3>
+            <div className="space-y-4 sm:space-y-6">
+              <div className="flex items-start gap-3">
+                <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-semibold text-lg">Reduced Risk</h4>
-                  <p className="text-gray-600">Test compatibility with the practice before committing to ownership.</p>
+                  <h4 className="font-semibold text-sm sm:text-base md:text-lg mb-1">Reduced Risk</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Test compatibility with the practice before committing to ownership.</p>
                 </div>
-              </li>
+              </div>
               
-              <li className="flex items-start">
-                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
+              <div className="flex items-start gap-3">
+                <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-semibold text-lg">Clear Path to Ownership</h4>
-                  <p className="text-gray-600">Structured timeline and terms for transition from associate to co-owner.</p>
+                  <h4 className="font-semibold text-sm sm:text-base md:text-lg mb-1">Clear Path to Ownership</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Structured timeline and terms for transition from associate to co-owner.</p>
                 </div>
-              </li>
+              </div>
               
-              <li className="flex items-start">
-                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
+              <div className="flex items-start gap-3">
+                <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-semibold text-lg">Mentorship & Growth</h4>
-                  <p className="text-gray-600">Learn from established practitioners while building your clinical and business skills.</p>
+                  <h4 className="font-semibold text-sm sm:text-base md:text-lg mb-1">Mentorship & Growth</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Learn from established practitioners while building your clinical and business skills.</p>
                 </div>
-              </li>
+              </div>
               
-              <li className="flex items-start">
-                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
+              <div className="flex items-start gap-3">
+                <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-semibold text-lg">Established Patient Base</h4>
-                  <p className="text-gray-600">Join an existing practice with an established reputation and patient flow.</p>
+                  <h4 className="font-semibold text-sm sm:text-base md:text-lg mb-1">Established Patient Base</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Join an existing practice with an established reputation and patient flow.</p>
                 </div>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
           
           <div className="animate-fade-in animate-delay-100">
-            <h3 className="text-2xl font-bold mb-6">For Practice Owners</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 sm:mb-6 text-center lg:text-left">For Practice Owners</h3>
+            <div className="space-y-4 sm:space-y-6">
+              <div className="flex items-start gap-3">
+                <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-semibold text-lg">Succession Planning</h4>
-                  <p className="text-gray-600">Create a gradual transition plan that preserves your legacy and practice value.</p>
+                  <h4 className="font-semibold text-sm sm:text-base md:text-lg mb-1">Succession Planning</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Create a gradual transition plan that preserves your legacy and practice value.</p>
                 </div>
-              </li>
+              </div>
               
-              <li className="flex items-start">
-                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
+              <div className="flex items-start gap-3">
+                <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-semibold text-lg">Increased Practice Value</h4>
-                  <p className="text-gray-600">Adding an associate often increases production and overall practice valuation.</p>
+                  <h4 className="font-semibold text-sm sm:text-base md:text-lg mb-1">Increased Practice Value</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Adding an associate often increases production and overall practice valuation.</p>
                 </div>
-              </li>
+              </div>
               
-              <li className="flex items-start">
-                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
+              <div className="flex items-start gap-3">
+                <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-semibold text-lg">Work-Life Balance</h4>
-                  <p className="text-gray-600">Reduce your clinical hours while maintaining practice oversight and income.</p>
+                  <h4 className="font-semibold text-sm sm:text-base md:text-lg mb-1">Work-Life Balance</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Reduce your clinical hours while maintaining practice oversight and income.</p>
                 </div>
-              </li>
+              </div>
               
-              <li className="flex items-start">
-                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
+              <div className="flex items-start gap-3">
+                <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-semibold text-lg">Phased Retirement</h4>
-                  <p className="text-gray-600">Create a structured path to gradually reduce your involvement while ensuring practice continuity.</p>
+                  <h4 className="font-semibold text-sm sm:text-base md:text-lg mb-1">Phased Retirement</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Create a structured path to gradually reduce your involvement while ensuring practice continuity.</p>
                 </div>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         </div>
       </Section>
 
       {/* FAQ Section */}
-      <Section background="light">
-        <SectionTitle centered>Frequently Asked Questions</SectionTitle>
-        <div className="max-w-3xl mx-auto mt-8 space-y-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-xl font-semibold mb-2">How long should an associateship last before a buy-in?</h3>
-            <p className="text-gray-600">
-              Typically, 1-3 years is recommended to ensure compatibility and allow the associate to build relationships with patients. The exact timeline should be based on practice needs and the associate's readiness.
-            </p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-xl font-semibold mb-2">How is the buy-in price determined?</h3>
-            <p className="text-gray-600">
-              The buy-in price is typically based on a current practice valuation, often adjusted to account for the associate's contribution to practice growth. We establish the valuation methodology in advance so both parties have clear expectations.
-            </p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-xl font-semibold mb-2">What financing options are available for associates?</h3>
-            <p className="text-gray-600">
-              Associates can explore traditional bank loans, SBA loans, seller financing, or a combination of these. We help identify the most advantageous options based on the specific situation.
-            </p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-xl font-semibold mb-2">What happens if the associateship doesn't work out?</h3>
-            <p className="text-gray-600">
-              We recommend establishing clear termination provisions in the initial agreement, including notice periods and non-compete considerations. This protects both parties if the arrangement isn't a good fit.
-            </p>
-          </div>
+      <Section background="light" className="py-8 sm:py-12 md:py-16">
+        <div className="text-center mb-6 sm:mb-8">
+          <SectionTitle centered className="text-xl sm:text-2xl md:text-3xl">Frequently Asked Questions</SectionTitle>
         </div>
-        
-        <div className="text-center mt-8">
-          <Button asChild>
-            <Link to="/faq" className="flex items-center">
-              View all FAQs <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
+        <div className="max-w-3xl mx-auto px-3">
+          <Accordion type="single" collapsible className="space-y-4">
+            <AccordionItem value="item-1" className="bg-white rounded-lg shadow-sm border border-gray-100 px-4 sm:px-6">
+              <AccordionTrigger className="text-sm sm:text-base md:text-lg font-semibold text-left py-4 hover:no-underline">
+                How long should an associateship last before a buy-in?
+              </AccordionTrigger>
+              <AccordionContent className="text-xs sm:text-sm md:text-base text-gray-600 pb-4 leading-relaxed">
+                Typically, 1-3 years is recommended to ensure compatibility and allow the associate to build relationships with patients. The exact timeline should be based on practice needs and the associate's readiness.
+              </AccordionContent>
+            </AccordionItem>
+            
+            <AccordionItem value="item-2" className="bg-white rounded-lg shadow-sm border border-gray-100 px-4 sm:px-6">
+              <AccordionTrigger className="text-sm sm:text-base md:text-lg font-semibold text-left py-4 hover:no-underline">
+                How is the buy-in price determined?
+              </AccordionTrigger>
+              <AccordionContent className="text-xs sm:text-sm md:text-base text-gray-600 pb-4 leading-relaxed">
+                The buy-in price is typically based on a current practice valuation, often adjusted to account for the associate's contribution to practice growth. We establish the valuation methodology in advance so both parties have clear expectations.
+              </AccordionContent>
+            </AccordionItem>
+            
+            <AccordionItem value="item-3" className="bg-white rounded-lg shadow-sm border border-gray-100 px-4 sm:px-6">
+              <AccordionTrigger className="text-sm sm:text-base md:text-lg font-semibold text-left py-4 hover:no-underline">
+                What financing options are available for associates?
+              </AccordionTrigger>
+              <AccordionContent className="text-xs sm:text-sm md:text-base text-gray-600 pb-4 leading-relaxed">
+                Associates can explore traditional bank loans, SBA loans, seller financing, or a combination of these. We help identify the most advantageous options based on the specific situation.
+              </AccordionContent>
+            </AccordionItem>
+            
+            <AccordionItem value="item-4" className="bg-white rounded-lg shadow-sm border border-gray-100 px-4 sm:px-6">
+              <AccordionTrigger className="text-sm sm:text-base md:text-lg font-semibold text-left py-4 hover:no-underline">
+                What happens if the associateship doesn't work out?
+              </AccordionTrigger>
+              <AccordionContent className="text-xs sm:text-sm md:text-base text-gray-600 pb-4 leading-relaxed">
+                We recommend establishing clear termination provisions in the initial agreement, including notice periods and non-compete considerations. This protects both parties if the arrangement isn't a good fit.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </Section>
 
       {/* CTA Section */}
-      <Section className="mb-8">
-        <Cta 
-          title="Ready to Discuss Your Associateship or Buy-In?"
-          description="Schedule a consultation with our team to explore your options and create a customized plan."
-          buttonText="Book Your Consultation"
-          buttonUrl="/contact"
-        />
+      <Section className="py-8 sm:py-12 md:py-16">
+        <div className="px-3">
+          <Cta 
+            title="Ready to Discuss Your Associateship or Buy-In?"
+            description="Schedule a consultation with our team to explore your options and create a customized plan."
+            buttonText="Book Your Consultation"
+            buttonUrl="/contact"
+            className="rounded-lg"
+          />
+        </div>
       </Section>
     </>
   );
