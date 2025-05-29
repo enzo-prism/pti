@@ -18,20 +18,20 @@ const Home = () => {
       />
       
       {/* Hero Section */}
-      <section className="pt-20 pb-10 md:pt-32 md:pb-20 lg:pt-44 lg:pb-28 bg-gradient-to-br from-white to-accent relative overflow-hidden">
+      <section className="pt-16 pb-8 md:pt-32 md:pb-20 lg:pt-44 lg:pb-28 bg-gradient-to-br from-white to-accent relative overflow-hidden">
         <div className="container relative z-10 px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 animate-fade-in">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-6 animate-fade-in leading-tight">
               From Acquisition to <span className="text-primary">Legacy</span>
             </h1>
-            <p className="text-xl md:text-2xl font-semibold mb-6 md:mb-8 animate-fade-in animate-delay-100">
+            <p className="text-lg sm:text-xl md:text-2xl font-semibold mb-4 md:mb-8 animate-fade-in animate-delay-100 px-2">
               We Help You Navigate Your Dental Practice Transition with Certainty
             </p>
-            <p className="text-lg md:text-xl text-gray-700 mb-8 md:mb-10 animate-fade-in animate-delay-200 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 md:mb-10 animate-fade-in animate-delay-200 max-w-3xl mx-auto px-2 leading-relaxed">
               We guide dentists through every stage of their practice transition, ensuring a smooth, profitable, and stress-free process.
             </p>
-            <div className="animate-fade-in animate-delay-300">
-              <Button asChild size={isMobile ? "default" : "lg"} className="text-lg px-8 py-4">
+            <div className="animate-fade-in animate-delay-300 px-4">
+              <Button asChild size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-base sm:text-lg px-6 py-3 sm:px-8 sm:py-4">
                 <Link to="/contact">Start Your Transition with a Complimentary Consultation</Link>
               </Button>
             </div>
@@ -41,11 +41,11 @@ const Home = () => {
       </section>
 
       {/* The Problem Section */}
-      <Section background="light" className="py-16 md:py-20">
+      <Section background="light" className="py-12 md:py-20">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
-          <SectionTitle className="text-2xl md:text-3xl lg:text-4xl mb-6">The Challenge You're Facing</SectionTitle>
-          <div className="bg-white p-8 md:p-12 rounded-xl shadow-sm border border-gray-100">
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+          <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">The Challenge You're Facing</SectionTitle>
+          <div className="bg-white p-6 sm:p-8 md:p-12 rounded-xl shadow-sm border border-gray-100">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
               Selling or buying a practice can feel overwhelming. You're facing complex decisions with your life's work at stake. How do you ensure a smooth transition, get a fair value, and protect your legacy?
             </p>
           </div>
@@ -53,21 +53,21 @@ const Home = () => {
       </Section>
 
       {/* The Guide Section */}
-      <Section background="white" className="py-16 md:py-20">
+      <Section background="white" className="py-12 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div>
-              <SectionTitle className="text-2xl md:text-3xl lg:text-4xl mb-6">Your Trusted Partner</SectionTitle>
-              <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
+            <div className="order-2 md:order-1">
+              <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">Your Trusted Partner</SectionTitle>
+              <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-6 md:mb-8">
                 Practice Transitions Institute (PTI) is your trusted partner. With decades of experience, we provide the expertise, personalized support, and proven strategies you need to achieve your goals.
               </p>
-              <Button asChild variant="outline" size="lg">
-                <Link to="/about" className="flex items-center">
-                  Learn About Our Expertise <ArrowRight className="ml-2 h-5 w-5" />
+              <Button asChild variant="outline" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto">
+                <Link to="/about" className="flex items-center justify-center">
+                  Learn About Our Expertise <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Link>
               </Button>
             </div>
-            <div className="rounded-xl overflow-hidden shadow-lg">
+            <div className="rounded-xl overflow-hidden shadow-lg order-1 md:order-2">
               <img 
                 src="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png" 
                 alt="PTI team members with dental professionals" 
@@ -79,62 +79,62 @@ const Home = () => {
       </Section>
 
       {/* The Plan Section */}
-      <Section background="light" className="py-16 md:py-20">
+      <Section background="light" className="py-12 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <SectionTitle className="text-2xl md:text-3xl lg:text-4xl mb-4">Our Proven Process</SectionTitle>
-            <SectionSubtitle className="text-lg md:text-xl">
+          <div className="max-w-4xl mx-auto text-center mb-8 md:mb-12">
+            <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-3 md:mb-4">Our Proven Process</SectionTitle>
+            <SectionSubtitle className="text-base sm:text-lg md:text-xl">
               Our proven process simplifies your transition
             </SectionSubtitle>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
-              <div className="flex items-center mb-6">
-                <div className="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 text-lg font-bold">1</div>
-                <h3 className="font-semibold text-lg md:text-xl">Personalized Discovery and Planning</h3>
+          <div className="grid gap-6 md:gap-8 max-w-6xl mx-auto">
+            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
+              <div className="flex items-start mb-4 md:mb-6">
+                <div className="bg-primary text-white rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center mr-3 sm:mr-4 text-sm sm:text-lg font-bold flex-shrink-0 mt-1">1</div>
+                <h3 className="font-semibold text-base sm:text-lg md:text-xl">Personalized Discovery and Planning</h3>
               </div>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed ml-11 sm:ml-14">
                 The first step is a collaborative session to pinpoint your goals and challenges. We then create a detailed plan, ensuring every step is aligned with your desired outcome.
               </p>
             </div>
             
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
-              <div className="flex items-center mb-6">
-                <div className="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 text-lg font-bold">2</div>
-                <h3 className="font-semibold text-lg md:text-xl">Accurate Valuation</h3>
+            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
+              <div className="flex items-start mb-4 md:mb-6">
+                <div className="bg-primary text-white rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center mr-3 sm:mr-4 text-sm sm:text-lg font-bold flex-shrink-0 mt-1">2</div>
+                <h3 className="font-semibold text-base sm:text-lg md:text-xl">Accurate Valuation</h3>
               </div>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed ml-11 sm:ml-14">
                 We provide a thorough assessment of your practice to determine its true market value.
               </p>
             </div>
             
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
-              <div className="flex items-center mb-6">
-                <div className="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 text-lg font-bold">3</div>
-                <h3 className="font-semibold text-lg md:text-xl">Strategic Negotiation</h3>
+            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
+              <div className="flex items-start mb-4 md:mb-6">
+                <div className="bg-primary text-white rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center mr-3 sm:mr-4 text-sm sm:text-lg font-bold flex-shrink-0 mt-1">3</div>
+                <h3 className="font-semibold text-base sm:text-lg md:text-xl">Strategic Negotiation</h3>
               </div>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed ml-11 sm:ml-14">
                 We help you navigate complex negotiations to maximize your return.
               </p>
             </div>
             
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
-              <div className="flex items-center mb-6">
-                <div className="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 text-lg font-bold">4</div>
-                <h3 className="font-semibold text-lg md:text-xl">Seamless Closing</h3>
+            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
+              <div className="flex items-start mb-4 md:mb-6">
+                <div className="bg-primary text-white rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center mr-3 sm:mr-4 text-sm sm:text-lg font-bold flex-shrink-0 mt-1">4</div>
+                <h3 className="font-semibold text-base sm:text-lg md:text-xl">Seamless Closing</h3>
               </div>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed ml-11 sm:ml-14">
                 We manage the details to ensure a smooth and efficient transaction.
               </p>
             </div>
             
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all md:col-span-2 lg:col-span-1">
-              <div className="flex items-center mb-6">
-                <div className="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 text-lg font-bold">5</div>
-                <h3 className="font-semibold text-lg md:text-xl">Ongoing Support</h3>
+            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
+              <div className="flex items-start mb-4 md:mb-6">
+                <div className="bg-primary text-white rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center mr-3 sm:mr-4 text-sm sm:text-lg font-bold flex-shrink-0 mt-1">5</div>
+                <h3 className="font-semibold text-base sm:text-lg md:text-xl">Ongoing Support</h3>
               </div>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed ml-11 sm:ml-14">
                 We provide continuous guidance and support throughout the entire process.
               </p>
             </div>
@@ -143,27 +143,27 @@ const Home = () => {
       </Section>
 
       {/* Stakes & Success Section */}
-      <Section background="white" className="py-16 md:py-20">
+      <Section background="white" className="py-12 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="grid gap-8 md:gap-12 max-w-6xl mx-auto">
             {/* The Stakes (Avoid Failure) */}
-            <div className="bg-red-50 border border-red-100 p-8 md:p-10 rounded-xl">
-              <div className="flex items-center mb-6">
-                <AlertTriangle className="w-8 h-8 text-red-600 mr-3" />
-                <h3 className="text-xl md:text-2xl font-bold text-red-800">The Risk of Going Alone</h3>
+            <div className="bg-red-50 border border-red-100 p-6 sm:p-8 md:p-10 rounded-xl">
+              <div className="flex items-start mb-4 md:mb-6">
+                <AlertTriangle className="w-6 h-6 sm:w-8 sm:h-8 text-red-600 mr-3 flex-shrink-0 mt-1" />
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-red-800">The Risk of Going Alone</h3>
               </div>
-              <p className="text-red-700 text-lg leading-relaxed">
+              <p className="text-red-700 text-base sm:text-lg leading-relaxed">
                 Don't risk your future. Without expert guidance, you could face financial losses, post-sale litigation, unnecessary stress, and a compromised legacy.
               </p>
             </div>
             
             {/* The Success */}
-            <div className="bg-green-50 border border-green-100 p-8 md:p-10 rounded-xl">
-              <div className="flex items-center mb-6">
-                <CheckCircle className="w-8 h-8 text-green-600 mr-3" />
-                <h3 className="text-xl md:text-2xl font-bold text-green-800">Your Success Story</h3>
+            <div className="bg-green-50 border border-green-100 p-6 sm:p-8 md:p-10 rounded-xl">
+              <div className="flex items-start mb-4 md:mb-6">
+                <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-green-600 mr-3 flex-shrink-0 mt-1" />
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-green-800">Your Success Story</h3>
               </div>
-              <p className="text-green-700 text-lg leading-relaxed">
+              <p className="text-green-700 text-base sm:text-lg leading-relaxed">
                 Imagine a smooth, successful transition, a secure financial future, and the peace of mind knowing your legacy is in good hands. With PTI, you can confidently move into your next chapter.
               </p>
             </div>
@@ -172,15 +172,15 @@ const Home = () => {
       </Section>
 
       {/* Final Call to Action */}
-      <Section background="primary" className="py-16 md:py-20">
+      <Section background="primary" className="py-12 md:py-20">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-white">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-white">
             Ready to Start Your Transition?
           </h2>
-          <p className="text-xl text-white opacity-90 mb-8 leading-relaxed">
+          <p className="text-lg sm:text-xl text-white opacity-90 mb-6 md:mb-8 leading-relaxed">
             Take the first step toward a successful practice transition with expert guidance you can trust.
           </p>
-          <Button asChild variant="secondary" size="lg" className="text-lg px-8 py-4">
+          <Button asChild variant="secondary" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-base sm:text-lg px-6 py-3 sm:px-8 sm:py-4">
             <Link to="/contact">Start Your Transition with a Complimentary Consultation</Link>
           </Button>
         </div>
