@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
@@ -45,54 +46,65 @@ const About = () => {
         title="About PTI"
         description="Learn about our expert team at Practice Transitions Institute, dedicated to helping dental professionals with practice transitions."
       />
-      <section className="pt-28 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-accent to-white">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">About Practice Transitions Institute</h1>
-            <p className="text-xl text-gray-700 animate-fade-in animate-delay-100">
+      
+      {/* Hero Section - Mobile Optimized */}
+      <section className="pt-20 pb-12 md:pt-32 md:pb-24 bg-gradient-to-b from-accent to-white px-4">
+        <div className="container max-w-4xl mx-auto">
+          <div className="text-center">
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 animate-fade-in leading-tight">
+              About Practice Transitions Institute
+            </h1>
+            <p className="text-lg md:text-xl text-gray-700 animate-fade-in animate-delay-100 leading-relaxed">
               Founded and led by experienced dental professionals dedicated to helping practitioners navigate practice transitions with care, integrity, and personalized guidance
             </p>
           </div>
         </div>
       </section>
 
-      <Section>
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+      {/* Our Story Section - Mobile Optimized */}
+      <Section className="py-8 md:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="animate-fade-in order-2 lg:order-1">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 text-center lg:text-left">
               Our Story
             </h2>
-            <p className="text-gray-600 mb-4">
-              Practice Transitions Institute was founded by Dr. Michael Njo and experienced dental professionals after a successful tenure at Pride Institute. PTI was built to move beyond transactional brokers into trusted, relationship-driven consultants.
-            </p>
-            <p className="text-gray-600 mb-4">
-              Under Dr. Njo's leadership and Liz Armato's operational expertise, our mission is to help dentists transition their practices with care, integrity, and personalized guidance. We emphasize preserving the legacy of each practice while ensuring win-win outcomes for all parties involved.
-            </p>
-            <p className="text-gray-600">
-              What began as Dr. Njo's vision to provide better service has grown into a comprehensive transitions firm with a dedicated team of experts guiding dental professionals through major career milestones.
-            </p>
+            <div className="space-y-4 text-sm md:text-base">
+              <p className="text-gray-600 leading-relaxed">
+                Practice Transitions Institute was founded by Dr. Michael Njo and experienced dental professionals after a successful tenure at Pride Institute. PTI was built to move beyond transactional brokers into trusted, relationship-driven consultants.
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                Under Dr. Njo's leadership and Liz Armato's operational expertise, our mission is to help dentists transition their practices with care, integrity, and personalized guidance. We emphasize preserving the legacy of each practice while ensuring win-win outcomes for all parties involved.
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                What began as Dr. Njo's vision to provide better service has grown into a comprehensive transitions firm with a dedicated team of experts guiding dental professionals through major career milestones.
+              </p>
+            </div>
           </div>
-          <div className="animate-fade-in animate-delay-100">
+          <div className="animate-fade-in animate-delay-100 order-1 lg:order-2">
             <img 
               src="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png" 
               alt="PTI team members with dental professionals" 
-              className="rounded-lg shadow-md w-full"
+              className="rounded-xl shadow-lg w-full max-w-md mx-auto lg:max-w-full"
             />
           </div>
         </div>
       </Section>
 
-      <Section background="light">
-        <SectionTitle centered>Meet Our Leadership Team</SectionTitle>
-        <SectionSubtitle centered>
-          The experienced professionals who founded and lead Practice Transitions Institute
-        </SectionSubtitle>
+      {/* Leadership Team Section - Mobile Optimized */}
+      <Section background="light" className="py-8 md:py-16">
+        <div className="text-center mb-8">
+          <SectionTitle className="text-2xl md:text-4xl mb-3 md:mb-6">Meet Our Leadership Team</SectionTitle>
+          <SectionSubtitle className="text-base md:text-lg px-4">
+            The experienced professionals who founded and lead Practice Transitions Institute
+          </SectionSubtitle>
+        </div>
         
-        <div className="grid md:grid-cols-2 gap-12 mt-8 max-w-5xl mx-auto">
+        {/* Leadership Cards - Stacked on Mobile */}
+        <div className="space-y-6 md:space-y-8 max-w-4xl mx-auto">
           {leaders.map((leader, index) => (
             <div 
               key={index} 
-              className="animate-fade-in"
+              className="animate-fade-in bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <RecommendationCard
@@ -111,9 +123,10 @@ const About = () => {
           ))}
         </div>
 
-        <div className="mt-16 max-w-2xl mx-auto">
-          <h3 className="text-2xl font-bold text-center mb-8 text-gray-800">Our Team</h3>
-          <div className="animate-fade-in animate-delay-200">
+        {/* Team Member - Reduced Emphasis */}
+        <div className="mt-12 md:mt-16 max-w-2xl mx-auto">
+          <h3 className="text-xl md:text-2xl font-semibold text-center mb-6 text-gray-700">Supporting Team</h3>
+          <div className="animate-fade-in animate-delay-200 bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden opacity-90">
             <RecommendationCard
               imageUrl={consultant.image}
               name={consultant.name}
@@ -124,144 +137,152 @@ const About = () => {
         </div>
       </Section>
 
-      <Section background="light">
-        <SectionTitle centered>Our Core Values</SectionTitle>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in">
-            <h3 className="text-xl font-semibold mb-3 text-primary">Integrity</h3>
-            <p className="text-gray-600">
-              We prioritize ethical practices and transparency in all our dealings, ensuring our clients always receive honest advice even when it's not what they might want to hear.
-            </p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-100">
-            <h3 className="text-xl font-semibold mb-3 text-primary">Expertise</h3>
-            <p className="text-gray-600">
-              Our team maintains the highest level of knowledge in dental practice transitions through continuous education and staying current with industry trends.
-            </p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-200">
-            <h3 className="text-xl font-semibold mb-3 text-primary">Client Focus</h3>
-            <p className="text-gray-600">
-              We tailor our approach to each client's unique circumstances and goals, recognizing that no two transitions are identical in their requirements.
-            </p>
-          </div>
+      {/* Core Values Section - Mobile Grid */}
+      <Section className="py-8 md:py-16">
+        <SectionTitle centered className="text-2xl md:text-4xl mb-6 md:mb-8">Our Core Values</SectionTitle>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+          {[
+            {
+              title: "Integrity",
+              description: "We prioritize ethical practices and transparency in all our dealings, ensuring our clients always receive honest advice even when it's not what they might want to hear."
+            },
+            {
+              title: "Expertise", 
+              description: "Our team maintains the highest level of knowledge in dental practice transitions through continuous education and staying current with industry trends."
+            },
+            {
+              title: "Client Focus",
+              description: "We tailor our approach to each client's unique circumstances and goals, recognizing that no two transitions are identical in their requirements."
+            }
+          ].map((value, index) => (
+            <div 
+              key={value.title}
+              className="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100 animate-fade-in hover:shadow-md transition-shadow"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <h3 className="text-lg md:text-xl font-semibold mb-3 text-primary">{value.title}</h3>
+              <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                {value.description}
+              </p>
+            </div>
+          ))}
         </div>
       </Section>
 
-      <Section>
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="order-2 md:order-1 animate-fade-in">
-            <h2 className="text-3xl font-bold mb-6">Why Choose PTI</h2>
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <Handshake className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-lg">Founder-Led Excellence</h3>
-                  <p className="text-gray-600">Dr. Njo personally oversees every transition, bringing decades of expertise and his published insights to your journey.</p>
+      {/* Why Choose PTI Section - Mobile Optimized */}
+      <Section background="light" className="py-8 md:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="order-2 lg:order-1 animate-fade-in">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center lg:text-left">Why Choose PTI</h2>
+            <div className="space-y-4 md:space-y-6">
+              {[
+                {
+                  icon: Handshake,
+                  title: "Founder-Led Excellence",
+                  description: "Dr. Njo personally oversees every transition, bringing decades of expertise and his published insights to your journey."
+                },
+                {
+                  icon: Award,
+                  title: "Experienced Leadership", 
+                  description: "Our leadership team includes former practicing dentists and industry executives who understand the unique challenges you face."
+                },
+                {
+                  icon: HeartHandshake,
+                  title: "Personalized Guidance",
+                  description: "Liz Armato ensures hands-on support throughout your transition journey, with clear, responsive communication at every step."
+                },
+                {
+                  icon: UserCheck,
+                  title: "Trusted Matchmaking",
+                  description: "We carefully screen and match buyers and sellers to ensure compatible values and practice philosophy."
+                }
+              ].map((item, index) => (
+                <div key={item.title} className="flex items-start space-x-3 md:space-x-4">
+                  <item.icon className="h-5 w-5 md:h-6 md:w-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-base md:text-lg mb-1">{item.title}</h3>
+                    <p className="text-gray-600 text-sm md:text-base leading-relaxed">{item.description}</p>
+                  </div>
                 </div>
-              </li>
-              
-              <li className="flex items-start">
-                <Award className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-lg">Experienced Leadership</h3>
-                  <p className="text-gray-600">Our leadership team includes former practicing dentists and industry executives who understand the unique challenges you face.</p>
-                </div>
-              </li>
-              
-              <li className="flex items-start">
-                <HeartHandshake className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-lg">Personalized Guidance</h3>
-                  <p className="text-gray-600">Liz Armato ensures hands-on support throughout your transition journey, with clear, responsive communication at every step.</p>
-                </div>
-              </li>
-              
-              <li className="flex items-start">
-                <UserCheck className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-lg">Trusted Matchmaking</h3>
-                  <p className="text-gray-600">We carefully screen and match buyers and sellers to ensure compatible values and practice philosophy.</p>
-                </div>
-              </li>
-            </ul>
+              ))}
+            </div>
           </div>
-          <div className="order-1 md:order-2 animate-fade-in animate-delay-100">
+          <div className="order-1 lg:order-2 animate-fade-in animate-delay-100">
             <img 
               src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3" 
               alt="Team in a strategy meeting" 
-              className="rounded-lg shadow-md w-full"
+              className="rounded-xl shadow-lg w-full max-w-md mx-auto lg:max-w-full"
             />
           </div>
         </div>
       </Section>
 
-      <Section>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div className="animate-fade-in">
-            <div className="text-4xl font-bold text-primary mb-2">500+</div>
-            <p className="text-gray-700">Successful Transitions</p>
-          </div>
-          
-          <div className="animate-fade-in animate-delay-100">
-            <div className="text-4xl font-bold text-primary mb-2">15</div>
-            <p className="text-gray-700">Years of Experience</p>
-          </div>
-          
-          <div className="animate-fade-in animate-delay-200">
-            <div className="text-4xl font-bold text-primary mb-2">42</div>
-            <p className="text-gray-700">States Served</p>
-          </div>
-          
-          <div className="animate-fade-in animate-delay-300">
-            <div className="text-4xl font-bold text-primary mb-2">98%</div>
-            <p className="text-gray-700">Client Satisfaction</p>
-          </div>
+      {/* Stats Section - Mobile Grid */}
+      <Section className="py-8 md:py-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
+          {[
+            { number: "500+", label: "Successful Transitions" },
+            { number: "15", label: "Years of Experience" },
+            { number: "42", label: "States Served" },
+            { number: "98%", label: "Client Satisfaction" }
+          ].map((stat, index) => (
+            <div 
+              key={stat.label}
+              className="animate-fade-in p-4 rounded-lg"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className="text-2xl md:text-4xl font-bold text-primary mb-2">{stat.number}</div>
+              <p className="text-gray-700 text-xs md:text-base font-medium">{stat.label}</p>
+            </div>
+          ))}
         </div>
       </Section>
 
-      <Section background="light">
-        <SectionTitle centered>Client Experiences</SectionTitle>
-        <div className="grid md:grid-cols-2 gap-8 mt-8">
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in">
-            <h3 className="text-xl font-semibold mb-3 text-primary">Seamless Process</h3>
-            <p className="text-gray-600">
-              Clients consistently praise PTI for making a stressful process smooth and efficient, citing responsive, hands-on support from our team throughout their transition journey.
-            </p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-100">
-            <h3 className="text-xl font-semibold mb-3 text-primary">Trusted Matchmaking</h3>
-            <p className="text-gray-600">
-              Dentists value our careful screening and personalized approach, which ensures only qualified and well-matched buyers are presented, preserving the legacy of their practice.
-            </p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-200">
-            <h3 className="text-xl font-semibold mb-3 text-primary">Educational Value</h3>
-            <p className="text-gray-600">
-              Our seminars and workshops provide practical, actionable guidance, earning high marks from participants who frequently become long-term clients after attending.
-            </p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-300">
-            <h3 className="text-xl font-semibold mb-3 text-primary">Outcome Satisfaction</h3>
-            <p className="text-gray-600">
-              Numerous testimonials reflect deep gratitude for our role in securing favorable deals and enhancing the quality of life for dentists facing major career transitions.
-            </p>
-          </div>
+      {/* Client Experiences Section - Mobile Cards */}
+      <Section background="light" className="py-8 md:py-16">
+        <SectionTitle centered className="text-2xl md:text-4xl mb-6 md:mb-8">Client Experiences</SectionTitle>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+          {[
+            {
+              title: "Seamless Process",
+              description: "Clients consistently praise PTI for making a stressful process smooth and efficient, citing responsive, hands-on support from our team throughout their transition journey."
+            },
+            {
+              title: "Trusted Matchmaking",
+              description: "Dentists value our careful screening and personalized approach, which ensures only qualified and well-matched buyers are presented, preserving the legacy of their practice."
+            },
+            {
+              title: "Educational Value",
+              description: "Our seminars and workshops provide practical, actionable guidance, earning high marks from participants who frequently become long-term clients after attending."
+            },
+            {
+              title: "Outcome Satisfaction",
+              description: "Numerous testimonials reflect deep gratitude for our role in securing favorable deals and enhancing the quality of life for dentists facing major career transitions."
+            }
+          ].map((experience, index) => (
+            <div 
+              key={experience.title}
+              className="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100 animate-fade-in hover:shadow-md transition-shadow"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <h3 className="text-lg md:text-xl font-semibold mb-3 text-primary">{experience.title}</h3>
+              <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                {experience.description}
+              </p>
+            </div>
+          ))}
         </div>
       </Section>
 
-      <Section background="light" className="mb-8">
+      {/* CTA Section - Mobile Optimized */}
+      <Section background="light" className="py-6 md:py-8">
         <Cta 
           title="Ready to Start Your Transition Journey?"
           description="Schedule a complimentary consultation with our expert team to explore your options."
           buttonText="Book Your Consultation"
           buttonUrl="/contact"
           background="primary"
+          className="mx-4 md:mx-0"
         />
       </Section>
     </>
