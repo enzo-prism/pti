@@ -10,7 +10,6 @@ import NotFound from "./pages/NotFound";
 import Faq from "./pages/Faq";
 import Testimonials from "./pages/Testimonials";
 import Events from "./pages/Events";
-import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -42,7 +41,6 @@ const App = () => (
             <Route path="/faq" element={<Layout><Faq /></Layout>} />
             <Route path="/testimonials" element={<Layout><Testimonials /></Layout>} />
             <Route path="/events" element={<Layout><Events /></Layout>} />
-            <Route path="/resources" element={<Layout><Resources /></Layout>} />
             <Route path="/contact" element={<Contact />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<Layout><NotFound /></Layout>} />
