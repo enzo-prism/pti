@@ -2,19 +2,21 @@
 import { Link } from "react-router-dom";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
-import { Handshake, FileText, Scale, CheckCircle, ArrowRight } from "lucide-react";
+import { Handshake, FileText, Scale, CheckCircle, Users, Target, TrendingUp, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Partnerships = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-28 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-accent to-white">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">Dental Practice Partnerships</h1>
-            <p className="text-xl text-gray-700 animate-fade-in animate-delay-100">
-              Creating equitable partnership arrangements that benefit all parties involved
+      <section className="pt-20 pb-12 md:pt-28 md:pb-16 bg-gradient-to-b from-accent to-white">
+        <div className="container px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 animate-fade-in leading-tight">
+              Multiply Your Success: Creating Thriving Dental Practice Partnerships
+            </h1>
+            <p className="text-lg md:text-xl text-gray-700 mb-8 animate-fade-in animate-delay-100 leading-relaxed">
+              Our expert guidance ensures the creation of equitable agreements built for long-term stability and mutual prosperity.
             </p>
           </div>
         </div>
@@ -27,17 +29,17 @@ const Partnerships = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Building Successful Dental Partnerships
             </h2>
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-600 mb-4 leading-relaxed">
               A well-structured partnership can multiply the success of a dental practice while providing both personal and professional benefits to all partners involved.
             </p>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6 leading-relaxed">
               At Practice Transitions Institute, we specialize in creating partnership arrangements that are balanced, equitable, and designed for long-term success.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild>
+              <Button asChild size="lg">
                 <Link to="/contact">Schedule a Consultation</Link>
               </Button>
-              <Button asChild variant="outline">
+              <Button asChild variant="outline" size="lg">
                 <Link to="/services">View All Services</Link>
               </Button>
             </div>
@@ -45,7 +47,7 @@ const Partnerships = () => {
           <div className="animate-fade-in animate-delay-100">
             <img 
               src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3" 
-              alt="Dental partners shaking hands" 
+              alt="Dental partners collaborating" 
               className="rounded-lg shadow-md w-full"
             />
           </div>
@@ -64,8 +66,8 @@ const Partnerships = () => {
             <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
               <FileText className="h-6 w-6 text-primary" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">Initial Assessment</h3>
-            <p className="text-gray-600">
+            <h3 className="text-xl font-semibold mb-3">Initial Assessment</h3>
+            <p className="text-gray-600 leading-relaxed">
               We evaluate practice metrics, partner dynamics, and shared goals to ensure partnership viability.
             </p>
           </div>
@@ -74,8 +76,8 @@ const Partnerships = () => {
             <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
               <Scale className="h-6 w-6 text-primary" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">Valuation & Structure</h3>
-            <p className="text-gray-600">
+            <h3 className="text-xl font-semibold mb-3">Valuation & Structure</h3>
+            <p className="text-gray-600 leading-relaxed">
               We determine fair market value and design an equitable ownership structure that works for all parties.
             </p>
           </div>
@@ -84,8 +86,8 @@ const Partnerships = () => {
             <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
               <Handshake className="h-6 w-6 text-primary" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">Legal Framework</h3>
-            <p className="text-gray-600">
+            <h3 className="text-xl font-semibold mb-3">Legal Framework</h3>
+            <p className="text-gray-600 leading-relaxed">
               We develop comprehensive partnership agreements that address governance, profit sharing, and exit strategies.
             </p>
           </div>
@@ -94,8 +96,8 @@ const Partnerships = () => {
             <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
               <CheckCircle className="h-6 w-6 text-primary" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">Implementation</h3>
-            <p className="text-gray-600">
+            <h3 className="text-xl font-semibold mb-3">Implementation</h3>
+            <p className="text-gray-600 leading-relaxed">
               We guide the execution and integration of the partnership to ensure a smooth transition and ongoing success.
             </p>
           </div>
@@ -105,7 +107,7 @@ const Partnerships = () => {
       {/* Benefits Section */}
       <Section>
         <SectionTitle centered>Partnership Benefits</SectionTitle>
-        <div className="grid md:grid-cols-2 gap-12 mt-8">
+        <div className="grid md:grid-cols-2 gap-8 mt-8">
           <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100 animate-fade-in">
             <h3 className="text-2xl font-bold mb-6 text-center">Financial Benefits</h3>
             <ul className="space-y-4">
@@ -113,7 +115,7 @@ const Partnerships = () => {
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h4 className="font-semibold text-lg">Shared Overhead Costs</h4>
-                  <p className="text-gray-600">Reduce individual burden by sharing facility, equipment, and administrative costs.</p>
+                  <p className="text-gray-600 leading-relaxed">Reduce individual burden by sharing facility, equipment, and administrative costs.</p>
                 </div>
               </li>
               
@@ -121,7 +123,7 @@ const Partnerships = () => {
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h4 className="font-semibold text-lg">Increased Production Capacity</h4>
-                  <p className="text-gray-600">Multiple practitioners can maximize facility utilization and revenue potential.</p>
+                  <p className="text-gray-600 leading-relaxed">Multiple practitioners can maximize facility utilization and revenue potential.</p>
                 </div>
               </li>
               
@@ -129,7 +131,7 @@ const Partnerships = () => {
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h4 className="font-semibold text-lg">Economies of Scale</h4>
-                  <p className="text-gray-600">Greater purchasing power and efficiency in operations and marketing.</p>
+                  <p className="text-gray-600 leading-relaxed">Greater purchasing power and efficiency in operations and marketing.</p>
                 </div>
               </li>
               
@@ -137,7 +139,7 @@ const Partnerships = () => {
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h4 className="font-semibold text-lg">Risk Distribution</h4>
-                  <p className="text-gray-600">Shared financial responsibility during economic fluctuations or practice challenges.</p>
+                  <p className="text-gray-600 leading-relaxed">Shared financial responsibility during economic fluctuations or practice challenges.</p>
                 </div>
               </li>
             </ul>
@@ -150,7 +152,7 @@ const Partnerships = () => {
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h4 className="font-semibold text-lg">Better Work-Life Balance</h4>
-                  <p className="text-gray-600">Shared clinical responsibilities and coverage allow for more personal time.</p>
+                  <p className="text-gray-600 leading-relaxed">Shared clinical responsibilities and coverage allow for more personal time.</p>
                 </div>
               </li>
               
@@ -158,7 +160,7 @@ const Partnerships = () => {
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h4 className="font-semibold text-lg">Complementary Skill Sets</h4>
-                  <p className="text-gray-600">Partners can specialize in different clinical areas or aspects of business management.</p>
+                  <p className="text-gray-600 leading-relaxed">Partners can specialize in different clinical areas or aspects of business management.</p>
                 </div>
               </li>
               
@@ -166,7 +168,7 @@ const Partnerships = () => {
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h4 className="font-semibold text-lg">Professional Support</h4>
-                  <p className="text-gray-600">Built-in mentorship, collaboration, and shared clinical decision-making.</p>
+                  <p className="text-gray-600 leading-relaxed">Built-in mentorship, collaboration, and shared clinical decision-making.</p>
                 </div>
               </li>
               
@@ -174,7 +176,7 @@ const Partnerships = () => {
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h4 className="font-semibold text-lg">Succession Planning</h4>
-                  <p className="text-gray-600">Creates a natural pathway for gradual retirement and practice continuity.</p>
+                  <p className="text-gray-600 leading-relaxed">Creates a natural pathway for gradual retirement and practice continuity.</p>
                 </div>
               </li>
             </ul>
@@ -185,32 +187,73 @@ const Partnerships = () => {
       {/* Key Considerations Section */}
       <Section background="light">
         <SectionTitle centered>Key Partnership Considerations</SectionTitle>
-        <div className="max-w-3xl mx-auto mt-8 space-y-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-xl font-semibold mb-2">Governance Structure</h3>
-            <p className="text-gray-600">
+        <div className="max-w-4xl mx-auto mt-8 space-y-6">
+          <div className="bg-white p-6 rounded-lg shadow-sm animate-fade-in">
+            <h3 className="text-xl font-semibold mb-3">Governance Structure</h3>
+            <p className="text-gray-600 leading-relaxed">
               How will decisions be made? Equal voting rights or weighted based on ownership percentage? Consider decision-making processes for daily operations versus major changes.
             </p>
           </div>
           
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-xl font-semibold mb-2">Compensation Framework</h3>
-            <p className="text-gray-600">
+          <div className="bg-white p-6 rounded-lg shadow-sm animate-fade-in animate-delay-100">
+            <h3 className="text-xl font-semibold mb-3">Compensation Framework</h3>
+            <p className="text-gray-600 leading-relaxed">
               Will profits be distributed based on ownership percentage, production, or a hybrid model? Consider how to handle differing production levels, time commitments, and specialties.
             </p>
           </div>
           
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-xl font-semibold mb-2">Buy-Sell Provisions</h3>
-            <p className="text-gray-600">
+          <div className="bg-white p-6 rounded-lg shadow-sm animate-fade-in animate-delay-200">
+            <h3 className="text-xl font-semibold mb-3">Buy-Sell Provisions</h3>
+            <p className="text-gray-600 leading-relaxed">
               What happens if a partner wants to exit, becomes disabled, or passes away? Clear provisions for these scenarios protect all partners and ensure practice continuity.
             </p>
           </div>
           
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-xl font-semibold mb-2">Future Growth Strategies</h3>
-            <p className="text-gray-600">
+          <div className="bg-white p-6 rounded-lg shadow-sm animate-fade-in animate-delay-300">
+            <h3 className="text-xl font-semibold mb-3">Future Growth Strategies</h3>
+            <p className="text-gray-600 leading-relaxed">
               How will the partnership approach expansion, additional locations, or bringing in new partners? Aligning on growth vision early helps prevent conflicts later.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* FAQ Section */}
+      <Section>
+        <SectionTitle centered>FAQ's</SectionTitle>
+        <div className="max-w-4xl mx-auto mt-8 space-y-6">
+          <div className="bg-gray-50 p-6 rounded-lg animate-fade-in">
+            <h3 className="text-lg font-semibold mb-2">What are the key elements of a successful dental partnership agreement?</h3>
+            <p className="text-gray-600 leading-relaxed">
+              A strong agreement clearly outlines ownership percentages, responsibilities, decision-making processes (governance), compensation models, buy-sell provisions, and dispute resolution mechanisms.
+            </p>
+          </div>
+          
+          <div className="bg-gray-50 p-6 rounded-lg animate-fade-in animate-delay-100">
+            <h3 className="text-lg font-semibold mb-2">What are common pitfalls to avoid when forming a dental partnership?</h3>
+            <p className="text-gray-600 leading-relaxed">
+              Lack of clear communication, unequal workload or compensation without a fair system, poorly defined decision-making processes, and inadequate buy-sell agreements are common issues.
+            </p>
+          </div>
+          
+          <div className="bg-gray-50 p-6 rounded-lg animate-fade-in animate-delay-200">
+            <h3 className="text-lg font-semibold mb-2">How do partners handle disagreements or disputes in a dental practice?</h3>
+            <p className="text-gray-600 leading-relaxed">
+              The partnership agreement should outline a process for dispute resolution, which may include mediation or arbitration. Open and honest communication is crucial.
+            </p>
+          </div>
+          
+          <div className="bg-gray-50 p-6 rounded-lg animate-fade-in animate-delay-300">
+            <h3 className="text-lg font-semibold mb-2">What are the tax implications of forming a dental partnership?</h3>
+            <p className="text-gray-600 leading-relaxed">
+              Partnerships typically file informational tax returns, and profits and losses are passed through to the individual partners. It's essential to consult with a tax advisor specializing in dental practices.
+            </p>
+          </div>
+          
+          <div className="bg-gray-50 p-6 rounded-lg animate-fade-in animate-delay-400">
+            <h3 className="text-lg font-semibold mb-2">How does a partnership impact practice valuation for future sale or transition?</h3>
+            <p className="text-gray-600 leading-relaxed">
+              A well-functioning partnership can increase the overall value of the practice. However, the partnership agreement should also address how a future sale or transition of the partnership itself would be handled.
             </p>
           </div>
         </div>
