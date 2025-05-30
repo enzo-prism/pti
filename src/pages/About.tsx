@@ -29,7 +29,7 @@ const About = () => {
       name: "Liz Armato",
       role: "COO & Client Services Lead",
       bio: ["Former executive at Pride Institute with over 20 years in dental operations, focused on streamlining client services and ensuring personalized guidance throughout every transition."],
-      image: "/lovable-uploads/8af030a0-6d6f-46e6-960a-d2d64258b329.png"
+      image: "/lovable-uploads/3f9aad4c-9a99-4c2e-8cc6-1666dffe409e.png"
     }
   ];
 
