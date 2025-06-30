@@ -46,6 +46,17 @@ const Events = () => {
       isPast: false,
       earlyBirdDeadline: "June 11, 2025",
       earlyBirdSavings: "$100"
+    },
+    {
+      id: 3,
+      title: "2025 & Beyond – Essential Financial & Practice-Transition Insights for Dentists",
+      date: "August 27, 2025",
+      time: "5:30 PM PT • 8:30 PM ET",
+      location: "Online (live)",
+      description: "A complimentary live Q&A where Practice Transitions Institute & CBG Financial Planning answer your biggest questions on buying, valuing, and growing a practice—plus key 2026 tax-code changes. Reserve your spot today!",
+      type: "webinar",
+      registrationLink: "/contact",
+      isPast: false
     }
   ];
   
