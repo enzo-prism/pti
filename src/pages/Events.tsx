@@ -141,7 +141,7 @@ const Events = () => {
             >
               {/* Overlay for webinar card to ensure text readability */}
               {event.type === "webinar" && (
-                <div className="absolute inset-0 bg-white/85 rounded-xl"></div>
+                <div className="absolute inset-0 bg-white/95 rounded-xl"></div>
               )}
               
               {/* Content wrapper with relative positioning */}
