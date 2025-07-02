@@ -64,22 +64,22 @@ const Events = () => {
       isPast: false,
       speakers: [
         {
-          name: "Speaker 1",
+          name: "Michael Njo, DDS",
           title: "Practice Transitions Institute",
           imageUrl: "/lovable-uploads/d92bc79f-d5d8-4c1b-8811-a19a34323b6c.png"
         },
         {
-          name: "Speaker 2", 
-          title: "CBG Financial Planning",
+          name: "Fred Heppner, MBA", 
+          title: "Practice Transitions Institute",
           imageUrl: "/lovable-uploads/1459af84-7263-44ea-a84f-a7a720c53a30.png"
         },
         {
-          name: "Speaker 3",
+          name: "Liz Armato, COO Host",
           title: "Practice Transitions Institute", 
           imageUrl: "/lovable-uploads/9fd5b3cf-0cf7-4c17-a26b-f67397aea7dc.png"
         },
         {
-          name: "Speaker 4",
+          name: "Dan Garwood, AAMS, MBA",
           title: "CBG Financial Planning",
           imageUrl: "/lovable-uploads/933236f7-462f-428c-954f-1f4d6a8ab234.png"
         }
