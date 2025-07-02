@@ -17,6 +17,11 @@ interface Event {
   isPast: boolean;
   earlyBirdDeadline?: string;
   earlyBirdSavings?: string;
+  speakers?: Array<{
+    name: string;
+    title: string;
+    imageUrl: string;
+  }>;
 }
 
 const Events = () => {
@@ -56,7 +61,29 @@ const Events = () => {
       description: "A complimentary live Q&A where Practice Transitions Institute & CBG Financial Planning answer your biggest questions on buying, valuing, and growing a practice—plus key 2026 tax-code changes. Reserve your spot today!",
       type: "webinar",
       registrationLink: "/contact",
-      isPast: false
+      isPast: false,
+      speakers: [
+        {
+          name: "Speaker 1",
+          title: "Practice Transitions Institute",
+          imageUrl: "/lovable-uploads/d92bc79f-d5d8-4c1b-8811-a19a34323b6c.png"
+        },
+        {
+          name: "Speaker 2", 
+          title: "CBG Financial Planning",
+          imageUrl: "/lovable-uploads/1459af84-7263-44ea-a84f-a7a720c53a30.png"
+        },
+        {
+          name: "Speaker 3",
+          title: "Practice Transitions Institute", 
+          imageUrl: "/lovable-uploads/9fd5b3cf-0cf7-4c17-a26b-f67397aea7dc.png"
+        },
+        {
+          name: "Speaker 4",
+          title: "CBG Financial Planning",
+          imageUrl: "/lovable-uploads/933236f7-462f-428c-954f-1f4d6a8ab234.png"
+        }
+      ]
     }
   ];
   
@@ -199,6 +226,31 @@ const Events = () => {
                 <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
                   {event.description}
                 </p>
+                
+                {/* Speakers Section for Webinars */}
+                {event.type === "webinar" && event.speakers && event.speakers.length > 0 && (
+                  <div className="mb-6">
+                    <h4 className="text-sm font-semibold text-gray-900 mb-3">Featured Speakers</h4>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                      {event.speakers.map((speaker, index) => (
+                        <div key={index} className="flex flex-col items-center text-center group">
+                          <div className="relative mb-2">
+                            <img
+                              src={speaker.imageUrl}
+                              alt={speaker.name}
+                              className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-white shadow-md group-hover:scale-105 transition-transform duration-200"
+                            />
+                            <div className="absolute inset-0 rounded-full bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                          </div>
+                          <div className="px-1">
+                            <p className="text-xs font-medium text-gray-900 leading-tight mb-1">{speaker.name}</p>
+                            <p className="text-xs text-gray-600 leading-tight">{speaker.title}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 
                 {/* Action Button */}
                 <div className="flex flex-col sm:flex-row gap-3">
