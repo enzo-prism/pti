@@ -130,69 +130,84 @@ const Events = () => {
           {filteredEvents.map((event) => (
             <div 
               key={event.id}
-              className="bg-white border border-gray-200 rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow"
+              className={`bg-white border border-gray-200 rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden ${
+                event.type === "webinar" ? "bg-cover bg-center" : ""
+              }`}
+              style={event.type === "webinar" ? {
+                backgroundImage: `url(/lovable-uploads/387f8cf6-b01b-4a65-873f-7abdbafa078f.png)`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              } : {}}
             >
-              {/* Event Header */}
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
-                <div className="flex-1">
-                  <div className="flex items-start gap-3 mb-2">
-                    <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium border ${getEventTypeColor(event.type)}`}>
-                      {event.type}
-                    </span>
-                    {event.isPast && (
-                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600 border border-gray-200">
-                        Past Event
-                      </span>
-                    )}
-                    {event.earlyBirdDeadline && !event.isPast && (
-                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-700 border border-orange-200">
-                        Early Bird Available
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="text-lg md:text-xl font-semibold text-gray-900 leading-tight">
-                    {event.title}
-                  </h3>
-                </div>
-              </div>
-              
-              {/* Event Details */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
-                <div className="flex items-center text-gray-600 text-sm">
-                  <Calendar size={16} className="mr-2 text-primary flex-shrink-0" />
-                  <span>{event.date}</span>
-                </div>
-                <div className="flex items-center text-gray-600 text-sm">
-                  <Clock size={16} className="mr-2 text-primary flex-shrink-0" />
-                  <span>{event.time}</span>
-                </div>
-                <div className="flex items-center text-gray-600 text-sm">
-                  <MapPin size={16} className="mr-2 text-primary flex-shrink-0" />
-                  <span className="line-clamp-2">{event.location}</span>
-                </div>
-              </div>
-              
-              {/* Early Bird Notice */}
-              {event.earlyBirdDeadline && !event.isPast && (
-                <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 mb-4">
-                  <p className="text-orange-800 text-sm font-medium">
-                    🎯 Early Bird Special: Register by {event.earlyBirdDeadline} and save {event.earlyBirdSavings}!
-                  </p>
-                </div>
+              {/* Overlay for webinar card to ensure text readability */}
+              {event.type === "webinar" && (
+                <div className="absolute inset-0 bg-white/85 rounded-xl"></div>
               )}
               
-              {/* Event Description */}
-              <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
-                {event.description}
-              </p>
-              
-              {/* Action Button */}
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button asChild className="w-full sm:w-auto" variant={event.isPast ? "outline" : "default"}>
-                  <Link to="/contact">
-                    {event.isPast ? "View Materials" : "Register Now"}
-                  </Link>
-                </Button>
+              {/* Content wrapper with relative positioning */}
+              <div className="relative z-10">
+                {/* Event Header */}
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
+                  <div className="flex-1">
+                    <div className="flex items-start gap-3 mb-2">
+                      <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium border ${getEventTypeColor(event.type)}`}>
+                        {event.type}
+                      </span>
+                      {event.isPast && (
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600 border border-gray-200">
+                          Past Event
+                        </span>
+                      )}
+                      {event.earlyBirdDeadline && !event.isPast && (
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-700 border border-orange-200">
+                          Early Bird Available
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-900 leading-tight">
+                      {event.title}
+                    </h3>
+                  </div>
+                </div>
+                
+                {/* Event Details */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                  <div className="flex items-center text-gray-600 text-sm">
+                    <Calendar size={16} className="mr-2 text-primary flex-shrink-0" />
+                    <span>{event.date}</span>
+                  </div>
+                  <div className="flex items-center text-gray-600 text-sm">
+                    <Clock size={16} className="mr-2 text-primary flex-shrink-0" />
+                    <span>{event.time}</span>
+                  </div>
+                  <div className="flex items-center text-gray-600 text-sm">
+                    <MapPin size={16} className="mr-2 text-primary flex-shrink-0" />
+                    <span className="line-clamp-2">{event.location}</span>
+                  </div>
+                </div>
+                
+                {/* Early Bird Notice */}
+                {event.earlyBirdDeadline && !event.isPast && (
+                  <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 mb-4">
+                    <p className="text-orange-800 text-sm font-medium">
+                      🎯 Early Bird Special: Register by {event.earlyBirdDeadline} and save {event.earlyBirdSavings}!
+                    </p>
+                  </div>
+                )}
+                
+                {/* Event Description */}
+                <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                  {event.description}
+                </p>
+                
+                {/* Action Button */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button asChild className="w-full sm:w-auto" variant={event.isPast ? "outline" : "default"}>
+                    <Link to="/contact">
+                      {event.isPast ? "View Materials" : "Register Now"}
+                    </Link>
+                  </Button>
+                </div>
               </div>
             </div>
           ))}
