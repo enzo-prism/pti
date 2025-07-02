@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Calendar, Clock, MapPin, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -65,22 +66,22 @@ const Events = () => {
         {
           name: "Michael Njo, DDS",
           title: "Practice Transitions Institute",
-          imageUrl: "/lovable-uploads/2abe4abe-f5e3-42fb-81da-aba0ecad4edb.png"
+          imageUrl: "/lovable-uploads/fccc20e2-c4f3-4b29-8473-f24585fbc306.png"
         },
         {
           name: "Fred Heppner, MBA", 
           title: "Practice Transitions Institute",
-          imageUrl: "/lovable-uploads/221b47eb-42ef-4e5a-b834-3c6b82cafa64.png"
+          imageUrl: "/lovable-uploads/43207060-d4da-4c88-8fc2-21d04a4fd4a8.png"
         },
         {
           name: "Liz Armato, COO Host",
           title: "Practice Transitions Institute", 
-          imageUrl: "/lovable-uploads/003914a8-e86a-4d38-9f29-15539ac6ce98.png"
+          imageUrl: "/lovable-uploads/dfcf139a-4116-4e53-ac55-479fd8d2bbb8.png"
         },
         {
           name: "Dan Garwood, AAMS, MBA",
           title: "CBG Financial Planning",
-          imageUrl: "/lovable-uploads/4febf84a-cf18-4369-9cae-12a88e5f79f1.png"
+          imageUrl: "/lovable-uploads/e6f00790-1898-4889-ae43-440ddf2a39ea.png"
         }
       ]
     }
