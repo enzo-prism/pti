@@ -66,22 +66,22 @@ const Events = () => {
         {
           name: "Michael Njo, DDS",
           title: "Practice Transitions Institute",
-          imageUrl: "/lovable-uploads/d92bc79f-d5d8-4c1b-8811-a19a34323b6c.png"
+          imageUrl: "/lovable-uploads/163ac0f9-a1a5-46b2-96f6-a9e94748b34e.png"
         },
         {
           name: "Fred Heppner, MBA", 
           title: "Practice Transitions Institute",
-          imageUrl: "/lovable-uploads/1459af84-7263-44ea-a84f-a7a720c53a30.png"
+          imageUrl: "/lovable-uploads/d6c536c6-97cf-4a9b-af5e-da69d410f3c3.png"
         },
         {
           name: "Liz Armato, COO Host",
           title: "Practice Transitions Institute", 
-          imageUrl: "/lovable-uploads/9fd5b3cf-0cf7-4c17-a26b-f67397aea7dc.png"
+          imageUrl: "/lovable-uploads/7379ace8-f22a-48e3-a9cc-aa39e0195c60.png"
         },
         {
           name: "Dan Garwood, AAMS, MBA",
           title: "CBG Financial Planning",
-          imageUrl: "/lovable-uploads/933236f7-462f-428c-954f-1f4d6a8ab234.png"
+          imageUrl: "/lovable-uploads/1f1d882e-7f51-4980-8066-14465c41d21f.png"
         }
       ]
     }
