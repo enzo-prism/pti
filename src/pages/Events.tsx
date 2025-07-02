@@ -1,9 +1,9 @@
-
 import { useState } from "react";
 import { Calendar, Clock, MapPin, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface Event {
   id: number;
@@ -234,13 +234,15 @@ const Events = () => {
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                       {event.speakers.map((speaker, index) => (
                         <div key={index} className="flex flex-col items-center text-center group">
-                          <div className="relative mb-2">
-                            <img
-                              src={speaker.imageUrl}
-                              alt={speaker.name}
-                              className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-white shadow-md group-hover:scale-105 transition-transform duration-200"
-                            />
-                            <div className="absolute inset-0 rounded-full bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                          <div className="relative mb-2 w-12 sm:w-16">
+                            <AspectRatio ratio={4/5}>
+                              <img
+                                src={speaker.imageUrl}
+                                alt={speaker.name}
+                                className="w-full h-full object-cover rounded-lg border-2 border-white shadow-md group-hover:scale-105 transition-transform duration-200"
+                              />
+                            </AspectRatio>
+                            <div className="absolute inset-0 rounded-lg bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                           </div>
                           <div className="px-1">
                             <p className="text-xs font-medium text-gray-900 leading-tight mb-1">{speaker.name}</p>
