@@ -1,5 +1,6 @@
+
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const Footer = () => {
@@ -25,20 +26,6 @@ const Footer = () => {
               Practice Transitions Institute specializes in dental practice transitions,
               providing expert guidance for buying, selling, and valuing dental practices.
             </p>
-            <div className="flex space-x-3">
-              <a href="#" className="text-gray-500 hover:text-primary transition-colors" aria-label="Facebook">
-                <Facebook size={18} />
-              </a>
-              <a href="#" className="text-gray-500 hover:text-primary transition-colors" aria-label="Twitter">
-                <Twitter size={18} />
-              </a>
-              <a href="#" className="text-gray-500 hover:text-primary transition-colors" aria-label="LinkedIn">
-                <Linkedin size={18} />
-              </a>
-              <a href="#" className="text-gray-500 hover:text-primary transition-colors" aria-label="Instagram">
-                <Instagram size={18} />
-              </a>
-            </div>
           </div>
 
           {/* Quick Links */}
