@@ -494,6 +494,177 @@
       filter: blur(1px) brightness(1.1);
     }
   }
+
+  /* Advanced Scroll Reveal Animations - GPU Accelerated */
+  
+  /* Elegant Slide Animations */
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 40px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes slide-up-subtle {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 15px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes slide-up-strong {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 60px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translate3d(0, -40px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes slide-left {
+    from {
+      opacity: 0;
+      transform: translate3d(-40px, 0, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes slide-right {
+    from {
+      opacity: 0;
+      transform: translate3d(40px, 0, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  /* Elegant Scale Animation */
+  @keyframes scale-elegant {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 20px, 0) scale3d(0.9, 0.9, 1);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    }
+  }
+
+  /* Blur Reveal Animation */
+  @keyframes blur-reveal {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 30px, 0) scale3d(0.95, 0.95, 1);
+      filter: blur(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+      filter: blur(0px);
+    }
+  }
+
+  /* Elastic Bounce Animation */
+  @keyframes elastic-bounce {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 50px, 0) scale3d(0.8, 0.8, 1);
+    }
+    60% {
+      opacity: 1;
+      transform: translate3d(0, -8px, 0) scale3d(1.05, 1.05, 1);
+    }
+    80% {
+      transform: translate3d(0, 2px, 0) scale3d(0.98, 0.98, 1);
+    }
+    100% {
+      transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    }
+  }
+
+  /* Soft Bounce Animation */
+  @keyframes soft-bounce {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 40px, 0) scale3d(0.85, 0.85, 1);
+    }
+    70% {
+      opacity: 1;
+      transform: translate3d(0, -5px, 0) scale3d(1.02, 1.02, 1);
+    }
+    100% {
+      transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    }
+  }
+
+  /* Parallax Float Animation */
+  @keyframes parallax-float {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 30px, 0) scale3d(0.92, 0.92, 1) rotateX(10deg);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0deg);
+    }
+  }
+
+  /* Magnetic Rise Animation */
+  @keyframes magnetic-rise {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 60px, 0) scale3d(0.88, 0.88, 1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: translate3d(0, -10px, 0) scale3d(1.03, 1.03, 1);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    }
+  }
+
+  /* Morphing Reveal Animation */
+  @keyframes morphing-reveal {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 25px, 0) scale3d(0.9, 0.9, 1) skewY(3deg);
+    }
+    70% {
+      opacity: 1;
+      transform: translate3d(0, -2px, 0) scale3d(1.01, 1.01, 1) skewY(-1deg);
+    }
+    100% {
+      transform: translate3d(0, 0, 0) scale3d(1, 1, 1) skewY(0deg);
+    }
+  }
   
 
   

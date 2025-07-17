@@ -27,7 +27,7 @@ const Home = () => {
         
         {/* Hero Content */}
         <div className="relative z-10 w-full">
-          <ScrollReveal>
+          <ScrollReveal direction="morphing" delay={200} intensity="strong">
             <HeroContent className="text-white" />
           </ScrollReveal>
         </div>
@@ -36,10 +36,10 @@ const Home = () => {
       {/* The Problem Section */}
       <Section background="light" className="py-12 md:py-20 contain-layout">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
-          <ScrollReveal direction="up" delay={100}>
+          <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
             <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">The Challenge You're Facing</SectionTitle>
           </ScrollReveal>
-          <ScrollReveal direction="up" delay={200}>
+          <ScrollReveal direction="elastic" delay={200}>
             <div className="bg-white p-6 sm:p-8 md:p-12 rounded-xl shadow-sm border border-gray-100 hover-lift gpu-accelerated">
               <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
                 Selling or buying a practice can feel overwhelming. You're facing complex decisions with your life's work at stake. How do you ensure a smooth transition, get a fair value, and protect your legacy?
@@ -53,24 +53,28 @@ const Home = () => {
       <Section background="white" className="py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
-            <div className="order-2 md:order-1">
-              <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">Your Trusted Partner</SectionTitle>
-              <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-6 md:mb-8">
-                Practice Transitions Institute (PTI) is your trusted partner. With decades of experience, we provide the expertise, personalized support, and proven strategies you need to achieve your goals.
-              </p>
-              <Button asChild variant="outline" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto">
-                <Link to="/about" className="flex items-center justify-center">
-                  Learn About Our Expertise <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-                </Link>
-              </Button>
-            </div>
-            <div className="rounded-xl overflow-hidden shadow-lg order-1 md:order-2">
-              <img 
-                src="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png" 
-                alt="PTI team members with dental professionals" 
-                className="w-full h-auto object-cover"
-              />
-            </div>
+            <ScrollReveal direction="parallax" delay={100} intensity="normal">
+              <div className="order-2 md:order-1">
+                <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">Your Trusted Partner</SectionTitle>
+                <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-6 md:mb-8">
+                  Practice Transitions Institute (PTI) is your trusted partner. With decades of experience, we provide the expertise, personalized support, and proven strategies you need to achieve your goals.
+                </p>
+                <Button asChild variant="outline" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto">
+                  <Link to="/about" className="flex items-center justify-center">
+                    Learn About Our Expertise <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  </Link>
+                </Button>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal direction="magnetic" delay={200} intensity="subtle">
+              <div className="rounded-xl overflow-hidden shadow-lg order-1 md:order-2">
+                <img 
+                  src="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png" 
+                  alt="PTI team members with dental professionals" 
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </Section>
@@ -79,10 +83,14 @@ const Home = () => {
       <Section background="light" className="py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-8 md:mb-12">
-            <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-3 md:mb-4">Our Proven Process</SectionTitle>
-            <SectionSubtitle className="text-base sm:text-lg md:text-xl">
-              Our proven process simplifies your transition
-            </SectionSubtitle>
+            <ScrollReveal direction="bounce" delay={100} intensity="normal">
+              <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-3 md:mb-4">Our Proven Process</SectionTitle>
+            </ScrollReveal>
+            <ScrollReveal direction="blur-in" delay={200} intensity="subtle">
+              <SectionSubtitle className="text-base sm:text-lg md:text-xl">
+                Our proven process simplifies your transition
+              </SectionSubtitle>
+            </ScrollReveal>
           </div>
           
           <StaggeredGrid className="grid gap-6 md:gap-8 max-w-6xl mx-auto" staggerDelay={150}>
@@ -175,17 +183,17 @@ const Home = () => {
       <Section background="primary" className="py-8 sm:py-12 md:py-16 lg:py-20 relative overflow-hidden contain-layout">
         <div className="absolute inset-0 gradient-mesh opacity-20 gpu-accelerated"></div>
         <div className="max-w-4xl mx-auto text-center px-3 sm:px-4 relative">
-          <ScrollReveal direction="up" delay={100}>
+          <ScrollReveal direction="scale" delay={100} intensity="subtle">
             <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 sm:mb-4 md:mb-6 text-white">
               Ready to Start Your Transition?
             </h2>
           </ScrollReveal>
-          <ScrollReveal direction="up" delay={200}>
+          <ScrollReveal direction="blur-in" delay={200} intensity="normal">
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white opacity-90 mb-4 sm:mb-6 md:mb-8 leading-relaxed">
               Take the first step toward a successful practice transition with expert guidance you can trust.
             </p>
           </ScrollReveal>
-          <ScrollReveal direction="up" delay={300}>
+          <ScrollReveal direction="magnetic" delay={300} intensity="strong">
             <Button asChild variant="secondary" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 hover-lift glassmorphism">
               <Link to="/contact">Get Free Consultation</Link>
             </Button>

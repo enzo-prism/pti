@@ -262,10 +262,28 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
+				
+				// Enhanced scroll reveal animations
 				'fade-in': 'fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
 				'slide-in': 'slide-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-				'slide-up': 'slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+				'slide-up': 'slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+				'slide-up-subtle': 'slide-up-subtle 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+				'slide-up-strong': 'slide-up-strong 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+				'slide-down': 'slide-down 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+				'slide-left': 'slide-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+				'slide-right': 'slide-right 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
 				'scale-in': 'scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+				
+				// New elegant animations
+				'scale-elegant': 'scale-elegant 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+				'blur-reveal': 'blur-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+				'elastic-bounce': 'elastic-bounce 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'soft-bounce': 'soft-bounce 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'parallax-float': 'parallax-float 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+				'magnetic-rise': 'magnetic-rise 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'morphing-reveal': 'morphing-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+				
+				// Background and interactive animations  
 				'float': 'float 3s ease-in-out infinite',
 				'gradient-shift': 'gradient-shift 8s ease-in-out infinite'
 			}
