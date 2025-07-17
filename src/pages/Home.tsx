@@ -21,20 +21,14 @@ const Home = () => {
       />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-background/95">
-        {/* Background Image */}
-        <div className="absolute inset-0 opacity-10">
-          <img 
-            src="/lovable-uploads/e6f00790-1898-4889-ae43-440ddf2a39ea.png" 
-            alt="Dental practice background" 
-            className="w-full h-full object-cover"
-          />
-        </div>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
+        {/* Gradient overlay for better text contrast */}
+        <div className="absolute inset-0 hero-gradient-overlay" />
         
         {/* Hero Content */}
         <div className="relative z-10 w-full">
           <ScrollReveal>
-            <HeroContent />
+            <HeroContent className="text-white" />
           </ScrollReveal>
         </div>
       </section>

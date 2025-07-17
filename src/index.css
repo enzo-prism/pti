@@ -26,6 +26,13 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 209 90% 25%; /* Updated to match primary color */
     --radius: 0.5rem;
+    
+    /* Hero gradient colors */
+    --hero-gradient-1: 209 90% 25%;  /* Primary blue */
+    --hero-gradient-2: 200 85% 35%;  /* Lighter blue */
+    --hero-gradient-3: 187 70% 45%;  /* Teal blue */
+    --hero-gradient-4: 180 60% 55%;  /* Light teal */
+    --hero-gradient-5: 210 40% 98%;  /* Almost white */
   }
 
   * {
@@ -184,6 +191,30 @@
       hsl(var(--primary)) 100%);
     background-size: 400% 400%;
     animation: gradient-shift 8s ease-in-out infinite, mesh-morph 12s ease-in-out infinite;
+  }
+
+  /* Hero gradient background */
+  .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--hero-gradient-1)) 0%,
+      hsl(var(--hero-gradient-2)) 25%,
+      hsl(var(--hero-gradient-3)) 50%,
+      hsl(var(--hero-gradient-4)) 75%,
+      hsl(var(--hero-gradient-5)) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease-in-out infinite;
+  }
+
+  /* Gradient overlay for better text contrast */
+  .hero-gradient-overlay {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--hero-gradient-1) / 0.8) 0%,
+      hsl(var(--hero-gradient-2) / 0.6) 50%,
+      hsl(var(--hero-gradient-3) / 0.4) 100%
+    );
   }
   
 
