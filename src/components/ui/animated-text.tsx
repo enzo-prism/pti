@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { cn } from '@/lib/utils';
 
 interface AnimatedTextProps {
@@ -6,7 +6,6 @@ interface AnimatedTextProps {
   className?: string;
   animationType?: 'char-reveal' | 'typewriter' | 'word-slide';
   delay?: number;
-  children?: React.ReactNode;
 }
 
 export const AnimatedText: React.FC<AnimatedTextProps> = ({
@@ -14,17 +13,42 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
   className,
   animationType = 'char-reveal',
   delay = 0,
-  children
 }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [animationStarted, setAnimationStarted] = useState(false);
+  const typewriterRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
+      setAnimationStarted(true);
     }, delay);
 
     return () => clearTimeout(timer);
   }, [delay]);
+
+  useEffect(() => {
+    if (animationType === 'typewriter' && typewriterRef.current && animationStarted) {
+      const element = typewriterRef.current;
+      const textLength = text.length;
+      const duration = Math.max(textLength * 0.05, 1); // Dynamic duration based on text length
+      
+      element.style.setProperty('--duration', `${duration}s`);
+      element.style.setProperty('--steps', textLength.toString());
+      element.classList.add('active');
+    }
+  }, [animationType, text, animationStarted]);
+
+  // Support for reduced motion
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  if (prefersReducedMotion) {
+    return (
+      <div className={cn('opacity-100', className)}>
+        {text}
+      </div>
+    );
+  }
 
   if (animationType === 'char-reveal') {
     return (
@@ -34,16 +58,17 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
             {char === ' ' ? '\u00A0' : char}
           </span>
         ))}
-        {children}
       </div>
     );
   }
 
   if (animationType === 'typewriter') {
     return (
-      <div className={cn('typewriter-text', className, { 'animation-play-state: running': isVisible })}>
+      <div 
+        ref={typewriterRef}
+        className={cn('typewriter-text', className)}
+      >
         {text}
-        {children}
       </div>
     );
   }
@@ -60,7 +85,6 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
             {word}
           </span>
         ))}
-        {children}
       </div>
     );
   }
@@ -68,7 +92,6 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
   return (
     <div className={cn('hero-text-reveal', className)}>
       {text}
-      {children}
     </div>
   );
 };

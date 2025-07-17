@@ -37,15 +37,14 @@ const Home = () => {
                 text="From Acquisition to "
                 animationType="char-reveal"
                 delay={100}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight"
-              >
-                <AnimatedText
-                  text="Legacy"
-                  animationType="char-reveal"
-                  delay={800}
-                  className="text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent"
-                />
-              </AnimatedText>
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight inline"
+              />
+              <AnimatedText
+                text="Legacy"
+                animationType="typewriter"
+                delay={2000}
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent inline"
+              />
             </div>
 
             {/* Typewriter Subtitle */}

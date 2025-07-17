@@ -273,7 +273,7 @@ export default {
 				// Hero Text Animations
 				'text-reveal': 'text-reveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
 				'char-reveal': 'char-reveal 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-				'typewriter': 'typewriter 2s steps(40) forwards',
+				'typewriter': 'typewriter var(--duration, 2s) steps(var(--steps, 40)) forwards',
 				'cursor-blink': 'cursor-blink 1s infinite',
 				'word-slide': 'word-slide 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards',
 				// Interactive Effects
