@@ -217,6 +217,55 @@
       hero-wave 28s cubic-bezier(0.4, 0.0, 0.2, 1) infinite,
       hero-orbital 35s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite,
       hero-shimmer 15s linear infinite;
+    position: relative;
+    will-change: background-position;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* White Streaks Layer */
+  .hero-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      /* Elegant white streaks - diagonal sweeping */
+      linear-gradient(45deg, transparent 0%, transparent 30%, rgba(255, 255, 255, 0.08) 45%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.08) 55%, transparent 70%, transparent 100%),
+      linear-gradient(-45deg, transparent 0%, transparent 20%, rgba(255, 255, 255, 0.06) 35%, rgba(255, 255, 255, 0.12) 40%, rgba(255, 255, 255, 0.06) 45%, transparent 60%, transparent 100%),
+      linear-gradient(135deg, transparent 0%, transparent 25%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0.1) 45%, rgba(255, 255, 255, 0.05) 50%, transparent 65%, transparent 100%);
+    background-size: 300% 300%, 400% 400%, 350% 350%;
+    animation: hero-streaks-1 16s linear infinite, hero-streaks-2 20s linear infinite reverse, hero-streaks-3 24s linear infinite;
+    will-change: background-position;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* Glowing Effects Layer */
+  .hero-gradient::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      /* Soft glowing orbs that drift */
+      radial-gradient(ellipse 200px 100px at 20% 20%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 30%, transparent 70%),
+      radial-gradient(ellipse 150px 80px at 80% 80%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.04) 40%, transparent 70%),
+      radial-gradient(ellipse 120px 60px at 50% 50%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 50%, transparent 80%),
+      /* Additional subtle streak */
+      linear-gradient(75deg, transparent 0%, transparent 35%, rgba(255, 255, 255, 0.04) 48%, rgba(255, 255, 255, 0.08) 52%, rgba(255, 255, 255, 0.04) 56%, transparent 70%, transparent 100%);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 250% 250%;
+    animation: hero-glow-drift 18s ease-in-out infinite, hero-glow-orbit 22s linear infinite, hero-glow-pulse 14s ease-in-out infinite, hero-streaks-slow 28s linear infinite;
+    will-change: background-position, filter;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    filter: blur(0.5px);
+    pointer-events: none;
   }
 
   /* Beautiful multi-layer overlay */
@@ -354,6 +403,95 @@
     }
     50% {
       opacity: 0.85;
+    }
+  }
+
+  /* White Streaks Animations - GPU Accelerated */
+  @keyframes hero-streaks-1 {
+    0% {
+      background-position: -100% -100%, -150% -150%, -120% -120%;
+    }
+    50% {
+      background-position: 50% 50%, 25% 25%, 75% 75%;
+    }
+    100% {
+      background-position: 200% 200%, 250% 250%, 220% 220%;
+    }
+  }
+
+  @keyframes hero-streaks-2 {
+    0% {
+      background-position: 200% -100%, 250% -150%, 220% -120%;
+    }
+    50% {
+      background-position: 50% 50%, 25% 25%, 75% 75%;
+    }
+    100% {
+      background-position: -100% 200%, -150% 250%, -120% 220%;
+    }
+  }
+
+  @keyframes hero-streaks-3 {
+    0% {
+      background-position: -150% 200%, -200% 150%, -175% 175%;
+    }
+    50% {
+      background-position: 25% 25%, 75% 75%, 50% 50%;
+    }
+    100% {
+      background-position: 250% -150%, 200% -200%, 225% -175%;
+    }
+  }
+
+  @keyframes hero-streaks-slow {
+    0% {
+      background-position: -200% -200%;
+    }
+    100% {
+      background-position: 300% 300%;
+    }
+  }
+
+  /* Glowing Effects Animations */
+  @keyframes hero-glow-drift {
+    0%, 100% {
+      background-position: 20% 20%, 80% 80%, 50% 50%, 0% 0%;
+    }
+    25% {
+      background-position: 80% 30%, 20% 70%, 70% 30%, 25% 25%;
+    }
+    50% {
+      background-position: 70% 80%, 30% 20%, 20% 70%, 50% 50%;
+    }
+    75% {
+      background-position: 30% 70%, 70% 30%, 80% 50%, 75% 75%;
+    }
+  }
+
+  @keyframes hero-glow-orbit {
+    0% {
+      background-position: 50% 50%, 50% 50%, 50% 50%, 0% 0%;
+    }
+    25% {
+      background-position: 75% 25%, 25% 75%, 60% 40%, 25% 25%;
+    }
+    50% {
+      background-position: 50% 50%, 50% 50%, 40% 60%, 50% 50%;
+    }
+    75% {
+      background-position: 25% 75%, 75% 25%, 60% 40%, 75% 75%;
+    }
+    100% {
+      background-position: 50% 50%, 50% 50%, 50% 50%, 100% 100%;
+    }
+  }
+
+  @keyframes hero-glow-pulse {
+    0%, 100% {
+      filter: blur(0.5px) brightness(1);
+    }
+    50% {
+      filter: blur(1px) brightness(1.1);
     }
   }
   
