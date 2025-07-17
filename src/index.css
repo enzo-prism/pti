@@ -183,7 +183,135 @@
       hsl(var(--accent)) 50%, 
       hsl(var(--primary)) 100%);
     background-size: 400% 400%;
-    animation: gradient-shift 8s ease-in-out infinite;
+    animation: gradient-shift 8s ease-in-out infinite, mesh-morph 12s ease-in-out infinite;
+  }
+  
+  /* Hero Section Animations */
+  .hero-text-reveal {
+    opacity: 0;
+    animation: text-reveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .hero-text-reveal.char-by-char span {
+    display: inline-block;
+    opacity: 0;
+    animation: char-reveal 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .hero-text-reveal.char-by-char span:nth-child(1) { animation-delay: 0.1s; }
+  .hero-text-reveal.char-by-char span:nth-child(2) { animation-delay: 0.15s; }
+  .hero-text-reveal.char-by-char span:nth-child(3) { animation-delay: 0.2s; }
+  .hero-text-reveal.char-by-char span:nth-child(4) { animation-delay: 0.25s; }
+  .hero-text-reveal.char-by-char span:nth-child(5) { animation-delay: 0.3s; }
+  .hero-text-reveal.char-by-char span:nth-child(6) { animation-delay: 0.35s; }
+  .hero-text-reveal.char-by-char span:nth-child(7) { animation-delay: 0.4s; }
+  .hero-text-reveal.char-by-char span:nth-child(8) { animation-delay: 0.45s; }
+  .hero-text-reveal.char-by-char span:nth-child(9) { animation-delay: 0.5s; }
+  .hero-text-reveal.char-by-char span:nth-child(10) { animation-delay: 0.55s; }
+  .hero-text-reveal.char-by-char span:nth-child(11) { animation-delay: 0.6s; }
+  .hero-text-reveal.char-by-char span:nth-child(12) { animation-delay: 0.65s; }
+  .hero-text-reveal.char-by-char span:nth-child(13) { animation-delay: 0.7s; }
+  .hero-text-reveal.char-by-char span:nth-child(14) { animation-delay: 0.75s; }
+  .hero-text-reveal.char-by-char span:nth-child(15) { animation-delay: 0.8s; }
+  .hero-text-reveal.char-by-char span:nth-child(16) { animation-delay: 0.85s; }
+  .hero-text-reveal.char-by-char span:nth-child(17) { animation-delay: 0.9s; }
+  .hero-text-reveal.char-by-char span:nth-child(18) { animation-delay: 0.95s; }
+  .hero-text-reveal.char-by-char span:nth-child(19) { animation-delay: 1.0s; }
+  .hero-text-reveal.char-by-char span:nth-child(20) { animation-delay: 1.05s; }
+
+  .typewriter-text {
+    overflow: hidden;
+    border-right: 2px solid hsl(var(--primary));
+    white-space: nowrap;
+    animation: typewriter 2s steps(40) forwards, cursor-blink 1s infinite;
+  }
+
+  .floating-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: hsl(var(--primary) / 0.6);
+    border-radius: 50%;
+    animation: particle-drift 20s linear infinite, float 6s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .floating-particle:nth-child(1) { 
+    top: 20%; 
+    animation-delay: 0s, 0s; 
+    animation-duration: 25s, 7s;
+  }
+  .floating-particle:nth-child(2) { 
+    top: 40%; 
+    animation-delay: 5s, 1s; 
+    animation-duration: 30s, 8s;
+  }
+  .floating-particle:nth-child(3) { 
+    top: 60%; 
+    animation-delay: 10s, 2s; 
+    animation-duration: 20s, 6s;
+  }
+
+  .magnetic-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .magnetic-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, hsl(var(--primary) / 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    pointer-events: none;
+  }
+
+  .magnetic-button:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .magnetic-button:hover {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .geometric-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(45deg, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.1));
+    animation: shape-rotate 15s linear infinite, float 8s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .geometric-shape:nth-child(1) {
+    width: 100px;
+    height: 100px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s, 0s;
+  }
+
+  .geometric-shape:nth-child(2) {
+    width: 60px;
+    height: 60px;
+    top: 70%;
+    right: 20%;
+    animation-delay: 5s, 2s;
+  }
+
+  .geometric-shape:nth-child(3) {
+    width: 80px;
+    height: 80px;
+    top: 40%;
+    right: 10%;
+    animation-delay: 10s, 4s;
   }
   
   /* Safe area insets */

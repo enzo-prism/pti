@@ -7,6 +7,9 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import SEO from "@/components/layout/SEO";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { StaggeredGrid } from "@/components/ui/staggered-grid";
+import { AnimatedText } from "@/components/ui/animated-text";
+import { MagneticButton } from "@/components/ui/magnetic-button";
+import { FloatingParticles, GeometricShapes } from "@/components/ui/floating-elements";
 
 const Home = () => {
   const isMobile = useIsMobile();
@@ -21,34 +24,68 @@ const Home = () => {
       
       {/* Hero Section */}
       <section className="pt-12 pb-8 md:pt-20 md:pb-16 lg:pt-32 lg:pb-24 bg-gradient-to-br from-white to-accent relative overflow-hidden contain-layout">
+        {/* Animated Background Elements */}
         <div className="absolute inset-0 gradient-mesh opacity-30 gpu-accelerated"></div>
+        <FloatingParticles />
+        <GeometricShapes />
+        
         <div className="container relative z-10 px-3 sm:px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <ScrollReveal direction="up" delay={100}>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight">
-                From Acquisition to <span className="text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text">Legacy</span>
-              </h1>
-            </ScrollReveal>
-            <ScrollReveal direction="up" delay={200}>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4 md:mb-6 px-2">
-                We Help You Navigate Your Dental Practice Transition with Certainty
-              </p>
-            </ScrollReveal>
-            <ScrollReveal direction="up" delay={300}>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto px-2 leading-relaxed">
-                We guide dentists through every stage of their practice transition, ensuring a smooth, profitable, and stress-free process.
-              </p>
-            </ScrollReveal>
-            <ScrollReveal direction="up" delay={400}>
+            {/* Enhanced Main Headline */}
+            <div className="mb-3 sm:mb-4 md:mb-6">
+              <AnimatedText
+                text="From Acquisition to "
+                animationType="char-reveal"
+                delay={100}
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight"
+              >
+                <AnimatedText
+                  text="Legacy"
+                  animationType="char-reveal"
+                  delay={800}
+                  className="text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent"
+                />
+              </AnimatedText>
+            </div>
+
+            {/* Typewriter Subtitle */}
+            <div className="mb-3 sm:mb-4 md:mb-6 px-2">
+              <AnimatedText
+                text="We Help You Navigate Your Dental Practice Transition with Certainty"
+                animationType="typewriter"
+                delay={1500}
+                className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold"
+              />
+            </div>
+
+            {/* Word-by-word Description */}
+            <div className="mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto px-2">
+              <AnimatedText
+                text="We guide dentists through every stage of their practice transition, ensuring a smooth, profitable, and stress-free process."
+                animationType="word-slide"
+                delay={3000}
+                className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed"
+              />
+            </div>
+
+            {/* Enhanced CTA Button */}
+            <ScrollReveal direction="up" delay={4000}>
               <div className="px-2">
-                <Button asChild size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 hover-lift">
+                <MagneticButton 
+                  asChild 
+                  size={isMobile ? "default" : "lg"} 
+                  className="w-full sm:w-auto text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 hover-lift"
+                  magneticStrength={0.4}
+                >
                   <Link to="/contact">Get Free Consultation</Link>
-                </Button>
+                </MagneticButton>
               </div>
             </ScrollReveal>
           </div>
         </div>
-        <div className="absolute inset-0 bg-[url('/lovable-uploads/4721b228-712a-4fd3-aff8-dd60cd39ab0d.png')] bg-no-repeat bg-cover opacity-20 gpu-accelerated"></div>
+        
+        {/* Parallax Background Image */}
+        <div className="absolute inset-0 bg-[url('/lovable-uploads/4721b228-712a-4fd3-aff8-dd60cd39ab0d.png')] bg-no-repeat bg-cover opacity-20 gpu-accelerated" style={{ transform: 'translateZ(0)' }}></div>
       </section>
 
       {/* The Problem Section */}
