@@ -186,16 +186,72 @@
     animation: gradient-shift 8s ease-in-out infinite, mesh-morph 12s ease-in-out infinite;
   }
   
-  /* Hero Section Animations */
-  .hero-text-reveal {
+  /* Simplified Hero animations */
+  .hero-headline {
     opacity: 0;
-    animation: text-reveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: hero-fade-up 0.8s ease-out 0.2s forwards;
   }
 
-  .hero-text-reveal.char-by-char span {
+  .hero-subtitle {
+    opacity: 0;
+    animation: hero-fade-up 0.8s ease-out 0.6s forwards;
+  }
+
+  .hero-description {
+    opacity: 0;
+    animation: hero-fade-up 0.8s ease-out 1s forwards;
+  }
+
+  .hero-cta {
+    opacity: 0;
+    animation: hero-fade-up 0.8s ease-out 1.4s forwards;
+  }
+
+  .hero-text-line {
     display: inline-block;
     opacity: 0;
-    animation: char-reveal 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: hero-text-reveal 0.6s ease-out 0.4s forwards;
+  }
+
+  .hero-text-accent {
+    display: inline-block;
+    opacity: 0;
+    animation: hero-accent-reveal 0.8s ease-out 0.8s forwards;
+  }
+
+  @keyframes hero-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-text-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes hero-accent-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+      filter: blur(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
   }
 
   .typewriter-text {
@@ -235,34 +291,19 @@
     animation-duration: 20s, 6s;
   }
 
-  .magnetic-button {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
+  .hero-button {
     position: relative;
-    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
   }
 
-  .magnetic-button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: radial-gradient(circle, hsl(var(--primary) / 0.3) 0%, transparent 70%);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.6s ease, height 0.6s ease;
-    pointer-events: none;
+  .hero-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px hsl(var(--primary) / 0.3);
   }
 
-  .magnetic-button:hover::before {
-    width: 300px;
-    height: 300px;
-  }
-
-  .magnetic-button:hover {
-    animation: pulse-glow 2s ease-in-out infinite;
+  .hero-button:active {
+    transform: translateY(0);
   }
 
   .geometric-shape {

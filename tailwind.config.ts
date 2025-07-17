@@ -283,7 +283,11 @@ export default {
 				'ripple': 'ripple 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
 				// Background Animations
 				'mesh-morph': 'mesh-morph 12s ease-in-out infinite',
-				'shape-rotate': 'shape-rotate 15s linear infinite'
+				'shape-rotate': 'shape-rotate 15s linear infinite',
+				// Hero Animations
+				'hero-fade-up': 'hero-fade-up 0.8s ease-out forwards',
+				'hero-text-reveal': 'hero-text-reveal 0.6s ease-out forwards',
+				'hero-accent-reveal': 'hero-accent-reveal 0.8s ease-out forwards'
 			}
 		}
 	},

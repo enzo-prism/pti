@@ -7,8 +7,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import SEO from "@/components/layout/SEO";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { StaggeredGrid } from "@/components/ui/staggered-grid";
-import { AnimatedText } from "@/components/ui/animated-text";
-import { MagneticButton } from "@/components/ui/magnetic-button";
+import { HeroContent } from "@/components/ui/hero-content";
 import { FloatingParticles, GeometricShapes } from "@/components/ui/floating-elements";
 
 const Home = () => {
@@ -30,57 +29,7 @@ const Home = () => {
         <GeometricShapes />
         
         <div className="container relative z-10 px-3 sm:px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Enhanced Main Headline */}
-            <div className="mb-3 sm:mb-4 md:mb-6">
-              <AnimatedText
-                text="From Acquisition to "
-                animationType="char-reveal"
-                delay={100}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight inline"
-              />
-              <AnimatedText
-                text="Legacy"
-                animationType="typewriter"
-                delay={2000}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent inline"
-              />
-            </div>
-
-            {/* Typewriter Subtitle */}
-            <div className="mb-3 sm:mb-4 md:mb-6 px-2">
-              <AnimatedText
-                text="We Help You Navigate Your Dental Practice Transition with Certainty"
-                animationType="typewriter"
-                delay={1500}
-                className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold"
-              />
-            </div>
-
-            {/* Word-by-word Description */}
-            <div className="mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto px-2">
-              <AnimatedText
-                text="We guide dentists through every stage of their practice transition, ensuring a smooth, profitable, and stress-free process."
-                animationType="word-slide"
-                delay={3000}
-                className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed"
-              />
-            </div>
-
-            {/* Enhanced CTA Button */}
-            <ScrollReveal direction="up" delay={4000}>
-              <div className="px-2">
-                <MagneticButton 
-                  asChild 
-                  size={isMobile ? "default" : "lg"} 
-                  className="w-full sm:w-auto text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 hover-lift"
-                  magneticStrength={0.4}
-                >
-                  <Link to="/contact">Get Free Consultation</Link>
-                </MagneticButton>
-              </div>
-            </ScrollReveal>
-          </div>
+          <HeroContent />
         </div>
         
         {/* Parallax Background Image */}
