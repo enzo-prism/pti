@@ -8,7 +8,6 @@ import SEO from "@/components/layout/SEO";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { StaggeredGrid } from "@/components/ui/staggered-grid";
 import { HeroContent } from "@/components/ui/hero-content";
-import { FloatingParticles, GeometricShapes } from "@/components/ui/floating-elements";
 
 const Home = () => {
   const isMobile = useIsMobile();
@@ -22,18 +21,22 @@ const Home = () => {
       />
       
       {/* Hero Section */}
-      <section className="pt-12 pb-8 md:pt-20 md:pb-16 lg:pt-32 lg:pb-24 bg-gradient-to-br from-white to-accent relative overflow-hidden contain-layout">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 gradient-mesh opacity-30 gpu-accelerated"></div>
-        <FloatingParticles />
-        <GeometricShapes />
-        
-        <div className="container relative z-10 px-3 sm:px-4">
-          <HeroContent />
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-background/95">
+        {/* Background Image */}
+        <div className="absolute inset-0 opacity-10">
+          <img 
+            src="/lovable-uploads/e6f00790-1898-4889-ae43-440ddf2a39ea.png" 
+            alt="Dental practice background" 
+            className="w-full h-full object-cover"
+          />
         </div>
         
-        {/* Parallax Background Image */}
-        <div className="absolute inset-0 bg-[url('/lovable-uploads/4721b228-712a-4fd3-aff8-dd60cd39ab0d.png')] bg-no-repeat bg-cover opacity-20 gpu-accelerated" style={{ transform: 'translateZ(0)' }}></div>
+        {/* Hero Content */}
+        <div className="relative z-10 w-full">
+          <ScrollReveal>
+            <HeroContent />
+          </ScrollReveal>
+        </div>
       </section>
 
       {/* The Problem Section */}

@@ -267,27 +267,7 @@ export default {
 				'slide-up': 'slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
 				'scale-in': 'scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
 				'float': 'float 3s ease-in-out infinite',
-				'parallax-slow': 'parallax-slow linear',
-				'gradient-shift': 'gradient-shift 8s ease-in-out infinite',
-				'reveal-text': 'reveal-text 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-				// Hero Text Animations
-				'text-reveal': 'text-reveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-				'char-reveal': 'char-reveal 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-				'typewriter': 'typewriter var(--duration, 2s) steps(var(--steps, 40)) forwards',
-				'cursor-blink': 'cursor-blink 1s infinite',
-				'word-slide': 'word-slide 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-				// Interactive Effects
-				'particle-drift': 'particle-drift 20s linear infinite',
-				'magnetic-hover': 'magnetic-hover 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
-				'ripple': 'ripple 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-				// Background Animations
-				'mesh-morph': 'mesh-morph 12s ease-in-out infinite',
-				'shape-rotate': 'shape-rotate 15s linear infinite',
-				// Hero Animations
-				'hero-fade-up': 'hero-fade-up 0.8s ease-out forwards',
-				'hero-text-reveal': 'hero-text-reveal 0.6s ease-out forwards',
-				'hero-accent-reveal': 'hero-accent-reveal 0.8s ease-out forwards'
+				'gradient-shift': 'gradient-shift 8s ease-in-out infinite'
 			}
 		}
 	},
