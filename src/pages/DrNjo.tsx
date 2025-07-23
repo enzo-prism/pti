@@ -14,67 +14,108 @@ const DrNjo = () => {
         path="/drnjo"
       />
       
-      {/* Hero Section */}
-      <div className="min-h-screen flex items-center bg-gradient-to-br from-background via-accent/5 to-primary/5">
-        <Section className="py-8 md:py-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center min-h-[calc(100vh-4rem)] md:min-h-[80vh]">
+      {/* Hero Section - Mobile First Design */}
+      <div className="min-h-[100dvh] bg-gradient-to-br from-background via-accent/5 to-primary/5">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+          <div className="min-h-[100dvh] grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 2xl:gap-20 items-center py-8 lg:py-0">
             
-            {/* Content */}
+            {/* Content - Mobile First */}
             <ScrollReveal direction="blur-in" delay={0}>
-              <div className="space-y-6 md:space-y-8 order-2 md:order-1 max-w-2xl mx-auto md:mx-0">
-                <div className="space-y-3 md:space-y-4">
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] text-center md:text-left">
+              <div className="lg:col-span-7 xl:col-span-6 2xl:col-span-6 order-2 lg:order-1 text-center lg:text-left space-y-6 md:space-y-8 lg:space-y-10">
+                
+                {/* Title Section */}
+                <div className="space-y-4 lg:space-y-6">
+                  <h1 className="font-bold leading-[1.1] text-foreground" style={{
+                    fontSize: 'clamp(2.25rem, 8vw, 4.5rem)'
+                  }}>
                     Dr. Michael Njo
                   </h1>
-                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light text-center md:text-left">
+                  <p className="font-light text-muted-foreground" style={{
+                    fontSize: 'clamp(1.125rem, 3vw, 2rem)'
+                  }}>
                     Dental Practice Transition Expert
                   </p>
                 </div>
                 
-                <div className="h-px bg-gradient-to-r from-primary/20 via-primary to-primary/20 max-w-md mx-auto md:mx-0"></div>
+                {/* Decorative Line */}
+                <div className="h-px bg-gradient-to-r from-transparent via-primary to-transparent lg:from-primary/20 lg:via-primary lg:to-primary/20 max-w-md mx-auto lg:mx-0"></div>
                 
-                <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed text-center md:text-left max-w-xl mx-auto md:mx-0">
+                {/* Description */}
+                <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0" style={{
+                  fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+                  lineHeight: 'clamp(1.5, 1.6, 1.75)'
+                }}>
                   With over 30 years in clinical dentistry, Dr. Njo personally guides every practice transition with the expertise of a practicing dentist and the insights of a published author.
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 justify-center md:justify-start">
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
                   <Button 
                     size="lg" 
-                    className="font-medium min-h-[48px] text-base w-full sm:w-auto"
+                    className="font-medium min-h-[52px] px-8 text-base sm:text-lg flex-1 sm:flex-initial"
                     onClick={() => window.location.href = 'tel:+1-555-0123'}
                   >
-                    <Phone className="w-4 h-4 mr-2" />
+                    <Phone className="w-5 h-5 mr-3" />
                     Call Now
                   </Button>
                   <Button 
                     variant="outline" 
                     size="lg"
-                    className="min-h-[48px] text-base w-full sm:w-auto"
+                    className="min-h-[52px] px-8 text-base sm:text-lg flex-1 sm:flex-initial"
                     onClick={() => window.location.href = 'mailto:dr.njo@practicetransitions.com'}
                   >
-                    <Mail className="w-4 h-4 mr-2" />
+                    <Mail className="w-5 h-5 mr-3" />
                     Send Email
                   </Button>
                 </div>
               </div>
             </ScrollReveal>
             
-            {/* Photo */}
+            {/* Photo Container - Mobile First */}
             <ScrollReveal direction="parallax" delay={200}>
-              <div className="flex justify-center order-1 md:order-2">
-                <div className="relative w-64 sm:w-72 md:w-80 lg:w-96 xl:w-[400px]">
-                  <div className="absolute -inset-3 md:-inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-2xl"></div>
+              <div className="lg:col-span-5 xl:col-span-6 2xl:col-span-6 order-1 lg:order-2 flex justify-center lg:justify-end xl:justify-center 2xl:justify-end">
+                <div className="relative" style={{
+                  width: 'clamp(16rem, 35vw, 28rem)',
+                  maxWidth: '28rem'
+                }}>
+                  {/* Glow Effect */}
+                  <div className="absolute -inset-4 lg:-inset-6 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-2xl opacity-75"></div>
+                  
+                  {/* Photo Container */}
                   <div 
-                    className="relative bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl overflow-hidden shadow-2xl"
-                    style={{ aspectRatio: '4/5' }}
+                    className="relative bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl backdrop-blur-sm"
+                    style={{ 
+                      aspectRatio: '4/5',
+                      border: '1px solid rgba(255, 255, 255, 0.1)'
+                    }}
                   >
-                    {/* Placeholder for Dr. Njo's photo */}
+                    {/* Placeholder Content */}
                     <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                      <div className="text-center space-y-2">
-                        <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto bg-primary/20 rounded-full flex items-center justify-center">
-                          <span className="text-xl sm:text-2xl font-bold text-primary">MN</span>
+                      <div className="text-center space-y-3">
+                        <div 
+                          className="mx-auto bg-primary/20 rounded-full flex items-center justify-center backdrop-blur-sm"
+                          style={{
+                            width: 'clamp(4rem, 8vw, 6rem)',
+                            height: 'clamp(4rem, 8vw, 6rem)'
+                          }}
+                        >
+                          <span 
+                            className="font-bold text-primary"
+                            style={{
+                              fontSize: 'clamp(1.25rem, 3vw, 2rem)'
+                            }}
+                          >
+                            MN
+                          </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-muted-foreground">Professional Photo</p>
+                        <p 
+                          className="text-muted-foreground"
+                          style={{
+                            fontSize: 'clamp(0.75rem, 1.5vw, 1rem)'
+                          }}
+                        >
+                          Professional Photo
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -82,7 +123,7 @@ const DrNjo = () => {
               </div>
             </ScrollReveal>
           </div>
-        </Section>
+        </div>
       </div>
 
       {/* Contact Information */}
