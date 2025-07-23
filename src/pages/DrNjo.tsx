@@ -69,15 +69,15 @@ const DrNjo = () => {
                 
                 {/* Photo Container */}
                 <div className="relative aspect-[4/5] bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-sm border border-white/10">
-                  {/* Placeholder Content */}
-                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                    <div className="text-center space-y-3">
-                      <div className="w-16 h-16 mx-auto bg-primary/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                        <span className="text-2xl font-bold text-primary">MN</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground">Professional Photo</p>
-                    </div>
-                  </div>
+                  {/* Professional Headshot */}
+                  <img 
+                    src="/lovable-uploads/3ef41cb7-e811-47ef-9f1b-72a6175f3131.png"
+                    alt="Dr. Michael Njo - Dental Practice Transition Expert"
+                    className="w-full h-full object-cover object-center"
+                    loading="lazy"
+                    width="400"
+                    height="500"
+                  />
                 </div>
               </div>
             </div>
