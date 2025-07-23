@@ -71,7 +71,7 @@ const DrNjo = () => {
                 <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
                   {/* Professional Headshot */}
                   <img 
-                    src="/lovable-uploads/61135e3f-f56e-4aff-949e-5eab772f5c5f.png"
+                    src="/lovable-uploads/7f7f714e-f3e5-4943-a190-b0a9ed982709.png"
                     alt="Dr. Michael Njo - Dental Practice Transition Expert"
                     className="w-full h-full object-cover object-top"
                     loading="lazy"
