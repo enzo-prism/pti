@@ -15,40 +15,32 @@ const DrNjo = () => {
       />
       
       {/* Hero Section */}
-      <div className="min-h-[100dvh] flex items-center bg-gradient-to-br from-background via-accent/5 to-primary/5">
-        <Section className="py-0">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 lg:gap-20 xl:gap-24 items-center min-h-[80dvh]">
+      <div className="min-h-screen flex items-center bg-gradient-to-br from-background via-accent/5 to-primary/5">
+        <Section className="py-8 md:py-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center min-h-[calc(100vh-4rem)] md:min-h-[80vh]">
             
             {/* Content */}
             <ScrollReveal direction="blur-in" delay={0}>
-              <div className="space-y-6 sm:space-y-8 order-2 lg:order-1">
-                <div className="space-y-3 sm:space-y-4">
-                  <h1 className="font-bold leading-tight" style={{
-                    fontSize: 'clamp(2rem, 5vw, 4rem)',
-                    lineHeight: 'clamp(1.1, 1.2, 1.3)'
-                  }}>
+              <div className="space-y-6 md:space-y-8 order-2 md:order-1 max-w-2xl mx-auto md:mx-0">
+                <div className="space-y-3 md:space-y-4">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] text-center md:text-left">
                     Dr. Michael Njo
                   </h1>
-                  <p className="text-muted-foreground font-light" style={{
-                    fontSize: 'clamp(1.125rem, 2.5vw, 1.5rem)'
-                  }}>
+                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light text-center md:text-left">
                     Dental Practice Transition Expert
                   </p>
                 </div>
                 
-                <div className="h-px bg-gradient-to-r from-primary/20 via-primary to-primary/20"></div>
+                <div className="h-px bg-gradient-to-r from-primary/20 via-primary to-primary/20 max-w-md mx-auto md:mx-0"></div>
                 
-                <p className="text-muted-foreground leading-relaxed max-w-xl" style={{
-                  fontSize: 'clamp(1rem, 1.5vw, 1.125rem)',
-                  lineHeight: 'clamp(1.5, 1.6, 1.7)'
-                }}>
+                <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed text-center md:text-left max-w-xl mx-auto md:mx-0">
                   With over 30 years in clinical dentistry, Dr. Njo personally guides every practice transition with the expertise of a practicing dentist and the insights of a published author.
                 </p>
                 
-                <div className="flex flex-col xs:flex-row gap-3 sm:gap-4 pt-2">
+                <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 justify-center md:justify-start">
                   <Button 
                     size="lg" 
-                    className="font-medium min-h-[48px] text-base"
+                    className="font-medium min-h-[48px] text-base w-full sm:w-auto"
                     onClick={() => window.location.href = 'tel:+1-555-0123'}
                   >
                     <Phone className="w-4 h-4 mr-2" />
@@ -57,7 +49,7 @@ const DrNjo = () => {
                   <Button 
                     variant="outline" 
                     size="lg"
-                    className="min-h-[48px] text-base"
+                    className="min-h-[48px] text-base w-full sm:w-auto"
                     onClick={() => window.location.href = 'mailto:dr.njo@practicetransitions.com'}
                   >
                     <Mail className="w-4 h-4 mr-2" />
@@ -69,14 +61,13 @@ const DrNjo = () => {
             
             {/* Photo */}
             <ScrollReveal direction="parallax" delay={200}>
-              <div className="flex justify-center lg:justify-end order-1 lg:order-2">
-                <div className="relative">
-                  <div className="absolute -inset-3 sm:-inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-2xl"></div>
-                  <div className="relative bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl overflow-hidden shadow-2xl" style={{
-                    width: 'clamp(280px, 70vw, 400px)',
-                    height: 'clamp(350px, 85vw, 500px)',
-                    aspectRatio: '4/5'
-                  }}>
+              <div className="flex justify-center order-1 md:order-2">
+                <div className="relative w-64 sm:w-72 md:w-80 lg:w-96 xl:w-[400px]">
+                  <div className="absolute -inset-3 md:-inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-2xl"></div>
+                  <div 
+                    className="relative bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl overflow-hidden shadow-2xl"
+                    style={{ aspectRatio: '4/5' }}
+                  >
                     {/* Placeholder for Dr. Njo's photo */}
                     <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
                       <div className="text-center space-y-2">
