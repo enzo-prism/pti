@@ -68,16 +68,18 @@ const DrNjo = () => {
                 <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-2xl opacity-75"></div>
                 
                 {/* Photo Container */}
-                <div className="relative aspect-[4/5] bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-sm border border-white/10">
+                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
                   {/* Professional Headshot */}
                   <img 
-                    src="/lovable-uploads/3ef41cb7-e811-47ef-9f1b-72a6175f3131.png"
+                    src="/lovable-uploads/61135e3f-f56e-4aff-949e-5eab772f5c5f.png"
                     alt="Dr. Michael Njo - Dental Practice Transition Expert"
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-cover object-top"
                     loading="lazy"
                     width="400"
                     height="500"
                   />
+                  {/* Subtle overlay for better text contrast */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
                 </div>
               </div>
             </div>
