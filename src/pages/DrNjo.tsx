@@ -1,20 +1,13 @@
-import SEO from "@/components/layout/SEO";
 import { Section } from "@/components/ui/section";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Phone, Mail, Calendar, MapPin } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 
 const DrNjo = () => {
   return (
     <>
-      <SEO 
-        title="Dr. Michael Njo - Personal Consultation"
-        description="Schedule a personal consultation with Dr. Michael Njo, leading dental practice transition expert with 30+ years of experience. Author, speaker, and trusted advisor."
-        path="/drnjo"
-      />
-      
-      {/* Hero Section - Simplified Mobile First */}
+      {/* Hero Section - Full Screen */}
       <div className="min-h-screen bg-gradient-to-br from-background via-accent/5 to-primary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center py-12 md:py-16">

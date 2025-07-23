@@ -15,6 +15,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import DrNjo from "./pages/DrNjo";
 import Layout from "./components/layout/Layout";
+import MinimalLayout from "./components/layout/MinimalLayout";
 
 // Services pages
 import Value from "./pages/services/Value";
@@ -43,7 +44,7 @@ const App = () => (
             <Route path="/testimonials" element={<Layout><Testimonials /></Layout>} />
             <Route path="/events" element={<Layout><Events /></Layout>} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/drnjo" element={<Layout><DrNjo /></Layout>} />
+            <Route path="/drnjo" element={<MinimalLayout><DrNjo /></MinimalLayout>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<Layout><NotFound /></Layout>} />
           </Routes>
