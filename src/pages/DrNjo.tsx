@@ -44,7 +44,7 @@ const DrNjo = () => {
                 <Button 
                   size="lg" 
                   className="font-medium px-8 text-base"
-                  onClick={() => window.location.href = 'tel:+1-555-0123'}
+                  onClick={() => window.location.href = 'tel:+16504362939'}
                 >
                   <Phone className="w-5 h-5 mr-3" />
                   Call Now
@@ -53,7 +53,7 @@ const DrNjo = () => {
                   variant="outline" 
                   size="lg"
                   className="px-8 text-base"
-                  onClick={() => window.location.href = 'mailto:dr.njo@practicetransitions.com'}
+                  onClick={() => window.location.href = 'mailto:dentalstrategies@gmail.com'}
                 >
                   <Mail className="w-5 h-5 mr-3" />
                   Send Email
@@ -114,9 +114,9 @@ const DrNjo = () => {
                     <Button 
                       variant="outline" 
                       className="w-full min-h-[44px] text-sm sm:text-base"
-                      onClick={() => window.location.href = 'tel:+1-555-0123'}
+                      onClick={() => window.location.href = 'tel:+16504362939'}
                     >
-                      (555) 012-3456
+                      (650) 436-2939
                     </Button>
                   </div>
                 </CardContent>
@@ -137,7 +137,7 @@ const DrNjo = () => {
                     <Button 
                       variant="outline" 
                       className="w-full min-h-[44px] text-sm sm:text-base"
-                      onClick={() => window.location.href = 'mailto:dr.njo@practicetransitions.com'}
+                      onClick={() => window.location.href = 'mailto:dentalstrategies@gmail.com'}
                     >
                       Send Email
                     </Button>
