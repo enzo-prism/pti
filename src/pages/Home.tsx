@@ -97,32 +97,37 @@ const Home = () => {
             {[
               {
                 number: 1,
-                title: "Personalized Discovery and Planning",
-                description: "The first step is a collaborative session to pinpoint your goals and challenges. We then create a detailed plan, ensuring every step is aligned with your desired outcome."
+                title: "Discovery and Plan",
+                description: "We align your goals with a clear, customized roadmap"
               },
               {
                 number: 2,
-                title: "Accurate Valuation", 
-                description: "We provide a thorough assessment of your practice to determine its true market value."
+                title: "Know Your Value", 
+                description: "Get a clear, data-backed valuation you can trust."
               },
               {
                 number: 3,
-                title: "Strategic Negotiation",
-                description: "We help you navigate complex negotiations to maximize your return."
+                title: "Navigate the Deal",
+                description: "We handle complex negotiations to maximize your return."
               },
               {
                 number: 4,
-                title: "Seamless Closing",
-                description: "We manage the details to ensure a smooth and efficient transaction."
+                title: "Transition Support",
+                description: "We ensure a smooth hand-off for your team and patients."
               },
               {
                 number: 5,
-                title: "Ongoing Support",
-                description: "We provide continuous guidance and support throughout the entire process."
+                title: "Map Your Next Move",
+                description: "We help you plan confidently for life after the sale."
+              },
+              {
+                number: 6,
+                title: "Protect What Matters",
+                description: "Safeguard your reputation, relationships, for peace of mind."
               }
             ].map((step, index) => (
               <ScrollReveal key={step.number} direction="scale" delay={index * 100} intensity="subtle">
-                <div className={`bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-all hover-scale duration-300 ${step.number === 5 ? 'md:col-span-3 md:max-w-md md:mx-auto' : ''}`}>
+                <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-all hover-scale duration-300">
                   <div className="flex items-start mb-4 md:mb-6">
                     <div className="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center mr-4 text-lg font-bold flex-shrink-0 shadow-lg">
                       {step.number}
