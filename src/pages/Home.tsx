@@ -37,7 +37,7 @@ const Home = () => {
       <Section background="light" className="py-12 md:py-20 contain-layout">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
           <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
-            <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">The Challenge You're Facing</SectionTitle>
+            <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">You've built something great, now what?</SectionTitle>
           </ScrollReveal>
           <ScrollReveal direction="elastic" delay={200}>
             <div className="bg-white p-6 sm:p-8 md:p-12 rounded-xl shadow-sm border border-gray-100 hover-lift gpu-accelerated">
