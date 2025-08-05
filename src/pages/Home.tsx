@@ -93,7 +93,7 @@ const Home = () => {
             </ScrollReveal>
           </div>
           
-          <StaggeredGrid className="grid gap-6 md:gap-8 max-w-6xl mx-auto" staggerDelay={150}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
             {[
               {
                 number: 1,
@@ -120,20 +120,22 @@ const Home = () => {
                 title: "Ongoing Support",
                 description: "We provide continuous guidance and support throughout the entire process."
               }
-            ].map((step) => (
-              <div key={step.number} className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all hover-lift gpu-accelerated">
-                <div className="flex items-start mb-4 md:mb-6">
-                  <div className="bg-primary text-white rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center mr-3 sm:mr-4 text-sm sm:text-lg font-bold flex-shrink-0 mt-1 hover:scale-110 transition-transform duration-300">
-                    {step.number}
+            ].map((step, index) => (
+              <ScrollReveal key={step.number} direction="scale" delay={index * 100} intensity="subtle">
+                <div className={`bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-all hover-scale duration-300 ${step.number === 5 ? 'md:col-span-3 md:max-w-md md:mx-auto' : ''}`}>
+                  <div className="flex items-start mb-4 md:mb-6">
+                    <div className="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center mr-4 text-lg font-bold flex-shrink-0 shadow-lg">
+                      {step.number}
+                    </div>
+                    <h3 className="font-bold text-lg md:text-xl text-gray-900">{step.title}</h3>
                   </div>
-                  <h3 className="font-semibold text-base sm:text-lg md:text-xl">{step.title}</h3>
+                  <p className="text-base text-gray-600 leading-relaxed ml-16">
+                    {step.description}
+                  </p>
                 </div>
-                <p className="text-sm sm:text-base text-gray-600 leading-relaxed ml-11 sm:ml-14">
-                  {step.description}
-                </p>
-              </div>
+              </ScrollReveal>
             ))}
-          </StaggeredGrid>
+          </div>
         </div>
       </Section>
 
