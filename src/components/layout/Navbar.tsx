@@ -52,8 +52,8 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex items-center z-10" onClick={closeMenu}>
-          <span className="text-lg font-bold text-primary">
-            Serving the United States
+          <span className="text-lg font-medium text-gray-600">
+            Serving The United States
           </span>
         </Link>
 
