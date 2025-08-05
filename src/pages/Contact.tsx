@@ -11,7 +11,7 @@ const Contact = () => {
         <div className="container">
           <div className="max-w-3xl mx-auto text-center pb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">
-              Contact Us
+              Let's Talk About Your Next Chapter
             </h1>
             <p className="text-lg text-gray-600 animate-fade-in animate-delay-100">
               Schedule a complimentary consultation or reach out with any questions
