@@ -11,11 +11,13 @@ export const HeroContent: React.FC<HeroContentProps> = ({ className }) => {
     <div className={`max-w-4xl mx-auto text-center px-4 ${className || ''}`}>
       {/* Logo */}
       <div className="mb-8">
-        <img 
-          src="/lovable-uploads/18b2244b-dbb5-4dd6-a1ca-c6a28fed53c6.png" 
-          alt="PTI Logo" 
-          className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 mx-auto object-contain drop-shadow-lg"
-        />
+        <div className="bg-white rounded-xl p-6 mx-auto inline-block shadow-lg drop-shadow-lg">
+          <img 
+            src="/lovable-uploads/18b2244b-dbb5-4dd6-a1ca-c6a28fed53c6.png" 
+            alt="PTI Logo" 
+            className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 object-contain"
+          />
+        </div>
       </div>
       
       {/* Main Headline */}
