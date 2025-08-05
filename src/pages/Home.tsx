@@ -88,7 +88,7 @@ const Home = () => {
             </ScrollReveal>
             <ScrollReveal direction="blur-in" delay={200} intensity="subtle">
               <SectionSubtitle className="text-base sm:text-lg md:text-xl">
-                Our proven process simplifies your transition
+                We simplify your transition
               </SectionSubtitle>
             </ScrollReveal>
           </div>
