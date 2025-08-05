@@ -9,6 +9,15 @@ interface HeroContentProps {
 export const HeroContent: React.FC<HeroContentProps> = ({ className }) => {
   return (
     <div className={`max-w-4xl mx-auto text-center px-4 ${className || ''}`}>
+      {/* Logo */}
+      <div className="mb-8">
+        <img 
+          src="https://images.unsplash.com/photo-1581090464777-f3220bbe1e8b?w=120&h=120&fit=crop&crop=center" 
+          alt="Dental Transitions Logo" 
+          className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto rounded-full shadow-lg drop-shadow-lg"
+        />
+      </div>
+      
       {/* Main Headline */}
       <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white drop-shadow-lg">
         From Acquisition to{' '}
