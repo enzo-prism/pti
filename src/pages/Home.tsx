@@ -197,7 +197,7 @@ const Home = () => {
           </ScrollReveal>
           <ScrollReveal direction="blur-in" delay={200} intensity="normal">
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white opacity-90 mb-4 sm:mb-6 md:mb-8 leading-relaxed">
-              Take the first step toward a successful practice transition with expert guidance you can trust.
+              Take the first step toward a successful transition with expert guidance you can trust.
             </p>
           </ScrollReveal>
           <ScrollReveal direction="magnetic" delay={300} intensity="strong">
