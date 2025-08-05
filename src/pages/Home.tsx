@@ -202,7 +202,7 @@ const Home = () => {
           </ScrollReveal>
           <ScrollReveal direction="magnetic" delay={300} intensity="strong">
             <Button asChild variant="secondary" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 hover-lift glassmorphism">
-              <Link to="/contact">Get Free Consultation</Link>
+              <Link to="/contact">Let's Talk</Link>
             </Button>
           </ScrollReveal>
         </div>
