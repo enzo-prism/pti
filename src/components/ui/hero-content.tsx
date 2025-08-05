@@ -14,7 +14,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({ className }) => {
         <img 
           src="/lovable-uploads/18b2244b-dbb5-4dd6-a1ca-c6a28fed53c6.png" 
           alt="PTI Logo" 
-          className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto object-contain drop-shadow-lg"
+          className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 mx-auto object-contain drop-shadow-lg"
         />
       </div>
       
