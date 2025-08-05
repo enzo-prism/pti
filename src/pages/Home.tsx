@@ -87,7 +87,7 @@ const Home = () => {
               <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-3 md:mb-4">Our Proven Process</SectionTitle>
             </ScrollReveal>
             <ScrollReveal direction="blur-in" delay={200} intensity="subtle">
-              <SectionSubtitle className="text-base sm:text-lg md:text-xl">
+              <SectionSubtitle className="text-base sm:text-lg md:text-xl" centered={true}>
                 We simplify your transition
               </SectionSubtitle>
             </ScrollReveal>
