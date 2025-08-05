@@ -164,7 +164,7 @@ const Home = () => {
                 type: "success",
                 icon: CheckCircle,
                 title: "Your Success Story",
-                description: "Imagine a smooth, successful transition, a secure financial future, and the peace of mind knowing your legacy is in good hands. With PTI, you can confidently move into your next chapter.",
+                description: "With PTI, you can confidently move into your next chapter. Imagine a smooth, successful transition, a secure financial future, and the peace of mind knowing your legacy is in good hands.",
                 bgColor: "bg-green-50",
                 borderColor: "border-green-100", 
                 iconColor: "text-green-600",
