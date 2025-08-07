@@ -312,29 +312,20 @@ const Testimonials = () => {
           <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100 mb-8 animate-fade-in">
             <h3 className="text-2xl font-semibold mb-4">Seamless Transition After 30 Years of Practice</h3>
             
-            <div className="flex flex-col md:flex-row gap-8 mb-6">
-              <div className="md:w-1/3">
-                <img 
-                  src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3" 
-                  alt="Dr. Williams in his dental office" 
-                  className="rounded-lg w-full h-auto"
-                />
-              </div>
-              <div className="md:w-2/3">
-                <p className="text-gray-600 mb-4">
-                  After 32 years building a thriving dental practice in Seattle, Dr. Williams was ready to retire 
-                  but concerned about finding the right successor who would care for his loyal patients 
-                  and dedicated staff.
-                </p>
-                <p className="text-gray-600 mb-4">
-                  Working with PTI, Dr. Williams received a comprehensive practice valuation and was matched 
-                  with a young dentist whose clinical philosophy and patient care approach aligned perfectly with his own.
-                </p>
-                <p className="text-gray-600">
-                  The transition included a 6-month mentorship period where Dr. Williams gradually introduced 
-                  the new dentist to patients, ensuring continuity of care and a smooth handoff of relationships.
-                </p>
-              </div>
+            <div className="mb-6">
+              <p className="text-gray-600 mb-4">
+                After 32 years building a thriving dental practice in Seattle, Dr. Williams was ready to retire 
+                but concerned about finding the right successor who would care for his loyal patients 
+                and dedicated staff.
+              </p>
+              <p className="text-gray-600 mb-4">
+                Working with PTI, Dr. Williams received a comprehensive practice valuation and was matched 
+                with a young dentist whose clinical philosophy and patient care approach aligned perfectly with his own.
+              </p>
+              <p className="text-gray-600">
+                The transition included a 6-month mentorship period where Dr. Williams gradually introduced 
+                the new dentist to patients, ensuring continuity of care and a smooth handoff of relationships.
+              </p>
             </div>
             
             <div className="bg-accent p-6 rounded-lg">
