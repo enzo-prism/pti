@@ -55,7 +55,7 @@ const About = () => {
               About Practice Transitions Institute
             </h1>
             <p className="text-lg md:text-xl text-gray-700 animate-fade-in animate-delay-100 leading-relaxed">
-              Founded and led by experienced dental professionals dedicated to helping practitioners navigate practice transitions with care, integrity, and personalized guidance
+              At Practice Transitions Institute, we take pride in our collective wealth of experience, ensuring a deep understanding of the dynamics involved in dental transitions. With a commitment to personalized solutions, we look forward to collaborating with you on a journey to a seamlessly successful transition.
             </p>
           </div>
         </div>
