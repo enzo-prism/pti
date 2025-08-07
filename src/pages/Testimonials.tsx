@@ -186,9 +186,9 @@ const Testimonials = () => {
       <div className="pt-28 bg-gradient-to-b from-accent to-white relative overflow-hidden">
         {/* Speech bubbles background */}
         <div 
-          className="absolute inset-0 opacity-5 bg-center bg-no-repeat bg-contain"
+          className="absolute inset-0 opacity-10 bg-center bg-no-repeat bg-contain"
           style={{
-            backgroundImage: `url('/lovable-uploads/dfcf139a-4116-4e53-ac55-479fd8d2bbb8.png')`,
+            backgroundImage: `url('/lovable-uploads/76513465-2197-4c41-9fdb-637b791c3368.png')`,
             backgroundPosition: 'center 20%'
           }}
         />
