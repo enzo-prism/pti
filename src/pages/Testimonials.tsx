@@ -183,8 +183,16 @@ const Testimonials = () => {
 
   return (
     <>
-      <div className="pt-28 bg-gradient-to-b from-accent to-white">
-        <div className="container">
+      <div className="pt-28 bg-gradient-to-b from-accent to-white relative overflow-hidden">
+        {/* Speech bubbles background */}
+        <div 
+          className="absolute inset-0 opacity-5 bg-center bg-no-repeat bg-contain"
+          style={{
+            backgroundImage: `url('/lovable-uploads/dfcf139a-4116-4e53-ac55-479fd8d2bbb8.png')`,
+            backgroundPosition: 'center 20%'
+          }}
+        />
+        <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center pb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">
               Client Testimonials & Success Stories
