@@ -59,7 +59,7 @@ export const ContactForm = () => {
     <div className="lg:col-span-2">
       <h2 className="text-2xl font-semibold mb-6">Request a Consultation</h2>
       {isLoading && (
-        <div className="min-h-[500px] flex items-center justify-center">
+        <div className="py-12 flex items-center justify-center">
           <div className="text-muted-foreground">Loading form...</div>
         </div>
       )}
@@ -68,7 +68,8 @@ export const ContactForm = () => {
         data-tf-opacity="100"
         data-tf-hide-headers
         data-tf-hide-footer
-        className="min-h-[500px]"
+        data-tf-auto-resize="true"
+        className="w-full"
         style={{ opacity: isLoading ? 0 : 1 }}
       />
     </div>
