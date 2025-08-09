@@ -30,15 +30,14 @@ const About = () => {
       role: "COO",
       bio: ["With over 25 years in the dental industry, I've had the privilege of working in client service, engagement, marketing, and strategic partnerships — including many impactful years at Pride Institute, one of the most respected dental consulting firms in the U.S.", "While at Pride, I had the pleasure of working alongside Michael and Fred as part of the transitions team — and I'm thrilled to be reunited with them now at PTI, where we bring that same collaborative spirit to every client we serve.", "My passion lies in making sure dentists feel informed, supported, and confident through every step of their transition. Helping guide that journey is what I love most."],
       image: "/lovable-uploads/3f9aad4c-9a99-4c2e-8cc6-1666dffe409e.png"
+    },
+    {
+      name: "Fred Heppner",
+      role: "",
+      bio: ["I'm honored to be a seasoned transition expert with a successful track record guiding hundreds of dental practices through seamless transitions. Representing dentists in selling, purchasing, or securing partnerships, I ensure goals are met with precision and success.", "Sharing my expertise nationally, I lecture for organizations like PTI, ADA, Yankee Dental, and ACP. Previously, as the transitions specialist at Pride Institute, I honed my skills for navigating the unique challenges of practice transitions.", "Passionate about facilitating successful transitions, I bring a wealth of knowledge and insight gained from years of practical experience. It's a privilege to contribute to the long-term legacy of practices, and I look forward to leveraging my expertise to support you in achieving your transition goals."],
+      image: "/lovable-uploads/1a104794-17ea-4b67-b3f2-17a24be7dc49.png"
     }
   ];
-
-  const consultant = {
-    name: "Fred Heppner",
-    role: "",
-    bio: ["I'm honored to be a seasoned transition expert with a successful track record guiding hundreds of dental practices through seamless transitions. Representing dentists in selling, purchasing, or securing partnerships, I ensure goals are met with precision and success.", "Sharing my expertise nationally, I lecture for organizations like PTI, ADA, Yankee Dental, and ACP. Previously, as the transitions specialist at Pride Institute, I honed my skills for navigating the unique challenges of practice transitions.", "Passionate about facilitating successful transitions, I bring a wealth of knowledge and insight gained from years of practical experience. It's a privilege to contribute to the long-term legacy of practices, and I look forward to leveraging my expertise to support you in achieving your transition goals."],
-    image: "/lovable-uploads/1a104794-17ea-4b67-b3f2-17a24be7dc49.png"
-  };
 
   return (
     <>
@@ -123,18 +122,6 @@ const About = () => {
           ))}
         </div>
 
-        {/* Team Member - Reduced Emphasis */}
-        <div className="mt-12 md:mt-16 max-w-2xl mx-auto">
-          <h3 className="text-xl md:text-2xl font-semibold text-center mb-6 text-gray-700">Supporting Team</h3>
-          <div className="animate-fade-in animate-delay-200 bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden opacity-90">
-            <RecommendationCard
-              imageUrl={consultant.image}
-              name={consultant.name}
-              title={consultant.role}
-              bio={consultant.bio}
-            />
-          </div>
-        </div>
       </Section>
 
       {/* Why Choose PTI Section - Mobile Optimized */}
