@@ -40,7 +40,10 @@ export const ContactForm = () => {
     return (
       <div className="lg:col-span-2">
         <h2 className="text-2xl font-semibold mb-6">Request a Consultation</h2>
-        <div className={`min-h-[${TYPEFORM_INITIAL_HEIGHT}px] flex items-center justify-center border rounded-lg bg-muted`}>
+        <div 
+          className="flex items-center justify-center border rounded-lg bg-muted"
+          style={{ minHeight: `${TYPEFORM_INITIAL_HEIGHT}px` }}
+        >
           <div className="text-center">
             <p className="text-muted-foreground mb-4">Unable to load the form. Please try again or contact us directly.</p>
             <a 
@@ -61,7 +64,10 @@ export const ContactForm = () => {
     <div className="lg:col-span-2">
       <h2 className="text-2xl font-semibold mb-6">Request a Consultation</h2>
       {isLoading && (
-        <div className={`min-h-[${TYPEFORM_INITIAL_HEIGHT}px] flex items-center justify-center`}>
+        <div 
+          className="flex items-center justify-center"
+          style={{ minHeight: `${TYPEFORM_INITIAL_HEIGHT}px` }}
+        >
           <div className="text-muted-foreground">Loading form...</div>
         </div>
       )}
@@ -72,8 +78,8 @@ export const ContactForm = () => {
         data-tf-hide-footer
         data-tf-auto-resize="true"
         data-tf-height={TYPEFORM_INITIAL_HEIGHT}
-        className={`w-full min-h-[${TYPEFORM_INITIAL_HEIGHT}px]`}
-        style={{ opacity: isLoading ? 0 : 1 }}
+        className="w-full"
+        style={{ opacity: isLoading ? 0 : 1, minHeight: `${TYPEFORM_INITIAL_HEIGHT}px` }}
       />
     </div>
   );
