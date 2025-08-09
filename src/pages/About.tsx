@@ -35,7 +35,7 @@ const About = () => {
 
   const consultant = {
     name: "Fred Heppner",
-    role: "Transitions Consultant",
+    role: "",
     bio: ["I'm honored to be a seasoned transition expert with a successful track record guiding hundreds of dental practices through seamless transitions. Representing dentists in selling, purchasing, or securing partnerships, I ensure goals are met with precision and success.", "Sharing my expertise nationally, I lecture for organizations like PTI, ADA, Yankee Dental, and ACP. Previously, as the transitions specialist at Pride Institute, I honed my skills for navigating the unique challenges of practice transitions.", "Passionate about facilitating successful transitions, I bring a wealth of knowledge and insight gained from years of practical experience. It's a privilege to contribute to the long-term legacy of practices, and I look forward to leveraging my expertise to support you in achieving your transition goals."],
     image: "/lovable-uploads/1a104794-17ea-4b67-b3f2-17a24be7dc49.png"
   };
