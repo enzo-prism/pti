@@ -1,6 +1,8 @@
 
 import { useEffect, useState } from "react";
 
+const TYPEFORM_INITIAL_HEIGHT = 1000;
+
 export const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -38,7 +40,7 @@ export const ContactForm = () => {
     return (
       <div className="lg:col-span-2">
         <h2 className="text-2xl font-semibold mb-6">Request a Consultation</h2>
-        <div className="min-h-[500px] flex items-center justify-center border rounded-lg bg-muted">
+        <div className={`min-h-[${TYPEFORM_INITIAL_HEIGHT}px] flex items-center justify-center border rounded-lg bg-muted`}>
           <div className="text-center">
             <p className="text-muted-foreground mb-4">Unable to load the form. Please try again or contact us directly.</p>
             <a 
@@ -59,7 +61,7 @@ export const ContactForm = () => {
     <div className="lg:col-span-2">
       <h2 className="text-2xl font-semibold mb-6">Request a Consultation</h2>
       {isLoading && (
-        <div className="min-h-[600px] flex items-center justify-center">
+        <div className={`min-h-[${TYPEFORM_INITIAL_HEIGHT}px] flex items-center justify-center`}>
           <div className="text-muted-foreground">Loading form...</div>
         </div>
       )}
@@ -69,8 +71,8 @@ export const ContactForm = () => {
         data-tf-hide-headers
         data-tf-hide-footer
         data-tf-auto-resize="true"
-        data-tf-height="600"
-        className="w-full min-h-[600px]"
+        data-tf-height={TYPEFORM_INITIAL_HEIGHT}
+        className={`w-full min-h-[${TYPEFORM_INITIAL_HEIGHT}px]`}
         style={{ opacity: isLoading ? 0 : 1 }}
       />
     </div>
