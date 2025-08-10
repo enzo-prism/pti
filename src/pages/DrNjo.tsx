@@ -3,6 +3,7 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Phone, Mail } from "lucide-react";
+import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
 
 const DrNjo = () => {
   return (
@@ -37,7 +38,7 @@ const DrNjo = () => {
                 <Button 
                   size="lg" 
                   className="font-medium px-8 text-base"
-                  onClick={() => window.location.href = 'tel:+16504362939'}
+                  onClick={() => window.location.href = `tel:${PHONE_NUMBER_TEL}`}
                 >
                   <Phone className="w-5 h-5 mr-3" />
                   Call Now
@@ -109,9 +110,9 @@ const DrNjo = () => {
                     <Button 
                       variant="outline" 
                       className="w-full min-h-[44px] text-sm sm:text-base"
-                      onClick={() => window.location.href = 'tel:+16504362939'}
+                      onClick={() => window.location.href = `tel:${PHONE_NUMBER_TEL}`}
                     >
-                      (650) 436-2939
+                      {PHONE_NUMBER}
                     </Button>
                   </div>
                 </CardContent>

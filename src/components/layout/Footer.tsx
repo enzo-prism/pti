@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { PHONE_NUMBER } from "@/lib/constants";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -75,7 +76,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-start">
                 <Phone size={16} className="mr-2 text-primary mt-1 flex-shrink-0" />
-                <span className="text-gray-600 text-sm">(555) 123-4567</span>
+                <span className="text-gray-600 text-sm">{PHONE_NUMBER}</span>
               </li>
               <li className="flex items-start">
                 <Mail size={16} className="mr-2 text-primary mt-1 flex-shrink-0" />

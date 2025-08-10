@@ -1,5 +1,6 @@
 
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { PHONE_NUMBER } from "@/lib/constants";
 
 export const ContactInfo = () => {
   return (
@@ -11,7 +12,7 @@ export const ContactInfo = () => {
           <Phone className="w-5 h-5 text-primary mt-1 mr-4" />
           <div>
             <h3 className="font-medium">Phone</h3>
-            <p className="text-gray-600">(555) 123-4567</p>
+            <p className="text-gray-600">{PHONE_NUMBER}</p>
           </div>
         </div>
         
