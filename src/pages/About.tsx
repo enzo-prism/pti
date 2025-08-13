@@ -14,7 +14,7 @@ const About = () => {
       name: "Dr. Michael Njo",
       role: "Founder & Transition Consultant",
       bio: [
-        "With over 30 years in clinical dentistry, I've had the honor of guiding countless dentists through one of the most important decisions of their careers — transitioning their practice. I wrote the Dental Practice Transitions Handbook to help demystify the process, and I've taught at both UCSF and the University of the Pacific, where I continue to support future dentists as part of the admissions team and as an advisor to the Dugoni Business Club.",
+        "With over 30 years in dentistry, I've had the honor of guiding countless dentists through one of the most important decisions of their careers — transitioning their practice. I wrote the Dental Practice Transitions Handbook to help demystify the process, and I've taught at both UCSF and the University of the Pacific, where I continue to support future dentists as part of the admissions team and as an advisor to the Dugoni Business Club.",
         "I also serve on the Board of Directors for the Dugoni Alumni Association and the California Dental Association Leadership Council, where I'm proud to contribute to the future of dental education and policy. My work today is rooted in the same values that guided my clinical career: integrity, clarity, and doing what's best for both doctors and patients."
       ],
       hasNewInfo: true,
