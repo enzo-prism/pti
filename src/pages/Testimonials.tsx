@@ -339,22 +339,6 @@ const Testimonials = () => {
           </button>
          </div>
          
-         {/* Featured Testimonial Image */}
-         <div className="mb-16">
-           <div className="max-w-4xl mx-auto">
-             <h3 className="text-2xl font-bold text-center mb-8">Featured Client Testimonial</h3>
-             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-               <img 
-                 src="/lovable-uploads/08796351-701e-4b45-8f63-3a9a223a09ce.png" 
-                 alt="Handwritten testimonial from Matt Asaro, DDS, Asaro Dental Aesthetics, praising PTI and Dr. Michael Njo for their exceptional support in practice transitions"
-                 className="w-full h-auto"
-               />
-             </div>
-             <p className="text-center text-gray-600 mt-4 text-sm">
-               A heartfelt note from Dr. Matt Asaro expressing gratitude for PTI's guidance and support
-             </p>
-           </div>
-         </div>
          
          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredTestimonials.map((testimonial, index) => (
@@ -442,6 +426,23 @@ const Testimonials = () => {
           buttonText="Start Your Journey Today"
           buttonUrl="/contact"
         />
+        
+        {/* Featured Testimonial Image */}
+        <div className="mt-16">
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold text-center mb-8">Featured Client Testimonial</h3>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <img 
+                src="/lovable-uploads/08796351-701e-4b45-8f63-3a9a223a09ce.png" 
+                alt="Handwritten testimonial from Matt Asaro, DDS, Asaro Dental Aesthetics, praising PTI and Dr. Michael Njo for their exceptional support in practice transitions"
+                className="w-full h-auto"
+              />
+            </div>
+            <p className="text-center text-gray-600 mt-4 text-sm">
+              A heartfelt note from Dr. Matt Asaro expressing gratitude for PTI's guidance and support
+            </p>
+          </div>
+        </div>
       </Section>
     </>
   );
