@@ -99,7 +99,7 @@ const Faq = () => {
 
       <Section background="light" className="mb-8">
         <Cta
-          title="Ready to Discuss Your Practice Transition?"
+          title="Still have questions?"
           description="Schedule a complimentary consultation with our team of experts to explore your options and create a personalized transition plan."
           buttonText="Contact Us Today"
           buttonUrl="/contact"
