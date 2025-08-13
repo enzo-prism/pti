@@ -98,12 +98,7 @@ const Faq = () => {
       </Section>
 
       <Section background="light" className="mb-8">
-        <SectionTitle centered>Still Have Questions?</SectionTitle>
-        <SectionSubtitle centered>
-          Our team is ready to provide personalized answers to your specific situation
-        </SectionSubtitle>
-        
-        <Cta 
+        <Cta
           title="Ready to Discuss Your Practice Transition?"
           description="Schedule a complimentary consultation with our team of experts to explore your options and create a personalized transition plan."
           buttonText="Contact Us Today"
