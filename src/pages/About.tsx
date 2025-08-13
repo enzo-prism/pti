@@ -124,8 +124,40 @@ const About = () => {
 
       </Section>
 
-      {/* Why Choose PTI Section - Mobile Optimized */}
+      {/* Core Values Section - Mobile Grid */}
       <Section className="py-8 md:py-16">
+        <SectionTitle centered className="text-2xl md:text-4xl mb-6 md:mb-8">Our Core Values</SectionTitle>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+          {[
+            {
+              title: "Integrity",
+              description: "We prioritize ethical practices and transparency in all our dealings, ensuring our clients always receive honest advice even when it's not what they might want to hear."
+            },
+            {
+              title: "Expertise", 
+              description: "Our team maintains the highest level of knowledge in dental practice transitions through continuous education and staying current with industry trends."
+            },
+            {
+              title: "Client Focus",
+              description: "We tailor our approach to each client's unique circumstances and goals, recognizing that no two transitions are identical in their requirements."
+            }
+          ].map((value, index) => (
+            <div 
+              key={value.title}
+              className="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100 animate-fade-in hover:shadow-md transition-shadow"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <h3 className="text-lg md:text-xl font-semibold mb-3 text-primary">{value.title}</h3>
+              <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                {value.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Why Choose PTI Section - Mobile Optimized */}
+      <Section background="light" className="py-8 md:py-16">
         <div className="text-center mb-8">
           <SectionTitle className="text-2xl md:text-4xl mb-3 md:mb-6">Why Dentists Choose PTI</SectionTitle>
           <SectionSubtitle className="text-base md:text-lg px-4">
@@ -169,38 +201,6 @@ const About = () => {
               <h3 className="text-lg md:text-xl font-semibold mb-3 text-primary">{item.title}</h3>
               <p className="text-gray-600 text-sm md:text-base leading-relaxed">
                 {item.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Core Values Section - Mobile Grid */}
-      <Section background="light" className="py-8 md:py-16">
-        <SectionTitle centered className="text-2xl md:text-4xl mb-6 md:mb-8">Our Core Values</SectionTitle>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-          {[
-            {
-              title: "Integrity",
-              description: "We prioritize ethical practices and transparency in all our dealings, ensuring our clients always receive honest advice even when it's not what they might want to hear."
-            },
-            {
-              title: "Expertise", 
-              description: "Our team maintains the highest level of knowledge in dental practice transitions through continuous education and staying current with industry trends."
-            },
-            {
-              title: "Client Focus",
-              description: "We tailor our approach to each client's unique circumstances and goals, recognizing that no two transitions are identical in their requirements."
-            }
-          ].map((value, index) => (
-            <div 
-              key={value.title}
-              className="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100 animate-fade-in hover:shadow-md transition-shadow"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <h3 className="text-lg md:text-xl font-semibold mb-3 text-primary">{value.title}</h3>
-              <p className="text-gray-600 text-sm md:text-base leading-relaxed">
-                {value.description}
               </p>
             </div>
           ))}
