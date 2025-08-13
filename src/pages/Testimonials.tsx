@@ -169,6 +169,86 @@ const Testimonials = () => {
       company: "",
       rating: 5.0,
       category: "seller"
+    },
+    {
+      quote: "Hi Dr. Njo, I'm reaching out to you because of all of the dental field professionals I know, I think you are the most qualified to answer my question(s). My overarching question relates to the advice that I've heard several professionals offer about practice acquisition, which is to 'buy the biggest practice you can handle.' I have been actively informing myself on details of practice acquisition and management over the last few months. I have been listening to the Shared Practices podcast (so far I've listened to over 30 hours of practice acquisition specific information), I read your Dental Practice Transitions Handbook, I read The Million Dollar Dentist, I've read various resources from Breakaway Practices, Next Level Practices, and The Lifestyle Practice. Most of my learning helps me know what I don't know and what professionals I will need to help me in every step of my future.",
+      author: "T.W.",
+      role: "Practice Buyer",
+      company: "",
+      rating: 5.0,
+      category: "buyer"
+    },
+    {
+      quote: "I was into year 4 of trying to sell my practice. I had been with 3 well known brokers without success. A trusted colleague knew my situation, knew I was ready to close the doors and implored me to call Michael. He said: 'Michael helped me resolve a difficult situation, he's different, he's special, and he will help you. You can trust him!' From day one the experience with Michael was different. He stated he was a transition specialist, different than a traditional broker and his approach was based on relationships he had formed. His goal was to create a win win situation matching a seller to the right buyer. Michael gave me hope, asked for my trust, and within 2 months introduced me to a terrific person, fine dentist, and a great match for my practice. Within 2 more months a favorable deal was on the table and soon thereafter the deal was closed and the funds were in my bank. Michael served me well, he was consistent, organized, found me a good match and got the job done! Thank you Michael well done Sir, as I am forever grateful!",
+      author: "Keith Boxerman, D.D.S.",
+      role: "Practice Seller",
+      company: "",
+      rating: 5.0,
+      category: "seller"
+    },
+    {
+      quote: "Dear Michael, I just want to express my gratitude to you for the amazing meeting. So much positive information and graceful solutions, I really appreciate it. Thank you!",
+      author: "Val",
+      role: "Dentist",
+      company: "",
+      rating: 5.0,
+      category: "buyer"
+    },
+    {
+      quote: "Fred was wonderful to work with. I was buying my partner out and he was instrumental in being a non biased 3rd party to facilitate the sale and make sure each party understood the other side and each piece of the sale. He really took his time in speaking to us together and individually and was able to communicate all questions and concerns seamlessly. He also made himself available just about whenever necessary day or night. I would absolutely work with Fred again on future transactions given my great experience. He truly cared about both parties involved, not just a commission.",
+      author: "Jeff G., D.D.S.",
+      role: "Practice Owner",
+      company: "",
+      rating: 5.0,
+      category: "seller"
+    },
+    {
+      quote: "Thank you Michael for everything you did for me but even more my family. My dad is in a much better place, the local dental society is pretty shook up because some think he was still working so there are a lot of scared dentists. But you and I know my dad checked every box for preexisting conditions but if his death encourages people to wear masks that is helpful.",
+      author: "Lee",
+      role: "Family Member",
+      company: "",
+      rating: 5.0,
+      category: "seller"
+    },
+    {
+      quote: "I have dealt with brokers of all sorts in my life. Many were little more than listers, relying on others to do the 'heavy' work of actually making a sale happen. I wanted an individual who was not just a lister. I received that with Fred. His prospectus of my practice was bank ready. I followed his recommendations for my discussions with a buyer. Though not an accountant, his review of my recent tax returns showed an accounting error that provided me a large refund after submitting an amended return. Also not an attorney, he explained points in the contract that I should consider. He communicated well with the buyer and the lender right up until funds were wired to me from the lender. He was WELL worth his fee and I'm most happy I had his help working through what can be a very difficult process with unexpected roadblocks. THANK YOU FRED!!",
+      author: "R. Branstrator, D.D.S.",
+      role: "Practice Seller",
+      company: "",
+      rating: 5.0,
+      category: "seller"
+    },
+    {
+      quote: "Thank you for guiding me through my moment yesterday morning. As Raymund said, you truly are my dental angel. I think the realization of what just happened will sink in sometime next year! You have helped me realize my dreams come true and so much more. I appreciate all the time, patience and care that you have given during this entire process. I appreciate your guidance as a mentor and especially as a friend. You have a very special talent, gift, and integrity of character. I sincerely thank you for being you.",
+      author: "Michelle",
+      role: "Practice Buyer",
+      company: "",
+      rating: 5.0,
+      category: "buyer"
+    },
+    {
+      quote: "Michael, I truly do appreciate all that you have done in the office. Last year at this same time my staff was unhappy, rude to one another and I was extremely unhappy with them. There were days that I wanted to clean house and start with a new staff. I love practicing dentistry but dislike the pettiness and how truly mean women can be to one another. I am seeing an improvement and the mood in the office is improving and I know that this is the direct result of your participation in the practice. You have done a great job. Wishing you a wonderful New Year.",
+      author: "Lois",
+      role: "Practice Owner",
+      company: "",
+      rating: 5.0,
+      category: "seller"
+    },
+    {
+      quote: "Michael, I just want to say THANK YOU for being so instrumental in the purchase of my practice. I have been so fortunate of meeting you and working with you for the past (almost) two years. I still can't believe that we did it! Now, it is going to take lots of work to get to where I want to be, but purchasing the practice (this practice) is a great beginning and I owe you soo much. Please let me know when you are around this area to take you to a good lunch or dinner, which is the least I can do to show you my appreciation.",
+      author: "Eugenio",
+      role: "Practice Buyer",
+      company: "",
+      rating: 5.0,
+      category: "buyer"
+    },
+    {
+      quote: "Fred Heppner was a true asset in the sale of my practice. In a short time, Fred gleaned huge amounts of information from my office computer and put together a reader-friendly prospectus. At that point, the sale of the practice was put online in a discreet listing. Fred kept me informed and updated throughout as to any bites. I really appreciated his prompt email responses to my questions and depended a lot on his knowledge of management as well as tax information. His business and computer skills and his outreach to the state dental association made my transition perfect. I was completely satisfied with the negotiations and closure of my practice sale. He has splendid contacts with banks, attorneys, and management companies in the Southwest region. I can confidently recommend Fred Heppner for his accessibility and expertise in the business of dental transitions. He has a pleasant demeanor and is very approachable.",
+      author: "B. Holbrook, DMD",
+      role: "Practice Seller",
+      company: "",
+      rating: 5.0,
+      category: "seller"
     }
   ];
   
