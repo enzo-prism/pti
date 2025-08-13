@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Calendar, Clock, MapPin, ChevronRight, Phone, Mail } from "lucide-react";
+import { parseISO, parse, isAfter, startOfDay } from "date-fns";
 import { Link } from "react-router-dom";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
@@ -26,8 +27,26 @@ interface Event {
 const Events = () => {
   const [showPastEvents, setShowPastEvents] = useState(false);
   
-  // Sort events: upcoming first (by date), then past events
-  const events: Event[] = [
+  // Helper function to parse event dates and determine if they're past
+  const parseEventDate = (dateString: string): Date => {
+    try {
+      // Parse dates like "March 28, 2025" or "August 27, 2025"
+      return parse(dateString, "MMMM d, yyyy", new Date());
+    } catch (error) {
+      console.warn(`Failed to parse date: ${dateString}`, error);
+      return new Date(); // fallback to current date
+    }
+  };
+
+  const isEventPast = (dateString: string): boolean => {
+    const eventDate = parseEventDate(dateString);
+    const today = startOfDay(new Date());
+    const eventDay = startOfDay(eventDate);
+    return !isAfter(eventDay, today) && eventDay.getTime() !== today.getTime();
+  };
+  
+  // Raw event data without isPast flags
+  const rawEvents = [
     {
       id: 3,
       title: "2025 & Beyond – Essential Financial & Practice-Transition Insights for Dentists",
@@ -35,9 +54,8 @@ const Events = () => {
       time: "5:30 PM PT • 8:30 PM ET",
       location: "Online (live)",
       description: "A complimentary live Q&A where Practice Transitions Institute & CBG Financial Planning answer your biggest questions on buying, valuing, and growing a practice—plus key 2026 tax-code changes. Reserve your spot today!",
-      type: "webinar",
+      type: "webinar" as const,
       registrationLink: "/contact",
-      isPast: false,
       speakers: [
         {
           name: "Michael Njo, DDS",
@@ -68,9 +86,8 @@ const Events = () => {
       time: "Full Day",
       location: "Crown Plaza, Costa Mesa CA",
       description: "A comprehensive full-day seminar perfect for doctors pursuing a start-up or purchase, seeking partners/associates, planning ownership, or preparing to exit dentistry. Join us in Orange County for expert guidance on dental practice transitions.",
-      type: "seminar",
-      registrationLink: "tel:+18337841121",
-      isPast: false
+      type: "seminar" as const,
+      registrationLink: "tel:+18337841121"
     },
     {
       id: 2,
@@ -79,11 +96,29 @@ const Events = () => {
       time: "Full Day",
       location: "Arthur A. Dugoni School of Dentistry, U.O.P., San Francisco, CA",
       description: "A comprehensive full-day seminar perfect for doctors pursuing a start-up or purchase, seeking partners/associates, planning ownership, or preparing to exit dentistry. Join us at the prestigious University of the Pacific dental school.",
-      type: "seminar",
-      registrationLink: "tel:+18337841121",
-      isPast: false
+      type: "seminar" as const,
+      registrationLink: "tel:+18337841121"
     }
   ];
+
+  // Process events with calculated isPast status and sort them
+  const events: Event[] = useMemo(() => {
+    return rawEvents
+      .map(event => ({
+        ...event,
+        isPast: isEventPast(event.date)
+      }))
+      .sort((a, b) => {
+        // Sort by status first (upcoming events first), then by date
+        if (a.isPast !== b.isPast) {
+          return a.isPast ? 1 : -1;
+        }
+        // Within same status, sort by date
+        const dateA = parseEventDate(a.date);
+        const dateB = parseEventDate(b.date);
+        return dateA.getTime() - dateB.getTime();
+      });
+  }, []);
   
   const filteredEvents = showPastEvents 
     ? events 
