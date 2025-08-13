@@ -40,12 +40,9 @@ const Associateships = () => {
             <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-8 animate-fade-in animate-delay-200 px-3 leading-relaxed">
               We create clear, equitable arrangements that protect both parties and establish a foundation for long-term success.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-3">
+            <div className="flex justify-center px-3">
               <Button asChild size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-sm sm:text-base">
                 <Link to="/contact">Schedule a Consultation</Link>
-              </Button>
-              <Button asChild variant="outline" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-sm sm:text-base">
-                <Link to="/services">View All Services</Link>
               </Button>
             </div>
           </div>
@@ -188,6 +185,15 @@ const Associateships = () => {
               </div>
             </div>
           </div>
+        </div>
+      </Section>
+
+      {/* View All Services Button */}
+      <Section className="py-4 sm:py-6">
+        <div className="text-center px-3">
+          <Button asChild variant="outline" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-sm sm:text-base">
+            <Link to="/services">View All Services</Link>
+          </Button>
         </div>
       </Section>
 
