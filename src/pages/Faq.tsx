@@ -1,7 +1,6 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import Layout from "@/components/layout/Layout";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
 
@@ -49,7 +48,7 @@ const Faq = () => {
   ];
 
   return (
-    <Layout>
+    <>
       <div className="pt-28 bg-gradient-to-b from-accent to-white">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center pb-12">
@@ -105,7 +104,7 @@ const Faq = () => {
           buttonUrl="/contact"
         />
       </Section>
-    </Layout>
+    </>
   );
 };
 
