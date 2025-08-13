@@ -171,36 +171,49 @@ const Events = () => {
           {filteredEvents.map((event) => (
             <div 
               key={event.id}
-              className={`bg-white border border-gray-200 rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden ${
-                event.type === "webinar" ? "bg-cover bg-center" : ""
-              } ${event.isPast ? "opacity-60 grayscale" : ""}`}
-              style={event.type === "webinar" ? {
+              className={`relative rounded-xl overflow-hidden transition-all duration-300 group ${
+                event.isPast 
+                  ? "bg-gray-50 border-2 border-dashed border-gray-300 shadow-none hover:shadow-sm" 
+                  : "bg-white border-2 border-gray-200 shadow-sm hover:shadow-lg hover:border-primary/30"
+              } ${event.type === "webinar" && !event.isPast ? "bg-cover bg-center" : ""}`}
+              style={event.type === "webinar" && !event.isPast ? {
                 backgroundImage: `url(/lovable-uploads/387f8cf6-b01b-4a65-873f-7abdbafa078f.png)`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
               } : {}}
             >
+              {/* Status Banner */}
+              <div className={`absolute top-0 left-0 right-0 h-1 ${
+                event.isPast ? "bg-gray-400" : "bg-gradient-to-r from-primary to-primary/70"
+              }`}></div>
+              
               {/* Overlay for webinar card to ensure text readability */}
-              {event.type === "webinar" && (
+              {event.type === "webinar" && !event.isPast && (
                 <div className="absolute inset-0 bg-white/95 rounded-xl"></div>
               )}
               
               {/* Content wrapper with relative positioning */}
-              <div className="relative z-10">
+              <div className="relative z-10 p-4 md:p-6">
                 {/* Event Header */}
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
                   <div className="flex-1">
                     <div className="flex items-start gap-3 mb-2">
-                      <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium border ${getEventTypeColor(event.type)}`}>
+                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${getEventTypeColor(event.type)}`}>
                         {event.type}
                       </span>
-                      {event.isPast && (
-                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600 border border-gray-200">
-                          Past Event
+                      {event.isPast ? (
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gray-200 text-gray-700 border border-gray-300">
+                          Event Completed
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700 border border-green-200 animate-pulse">
+                          Registration Open
                         </span>
                       )}
                     </div>
-                    <h3 className="text-lg md:text-xl font-semibold text-gray-900 leading-tight">
+                    <h3 className={`text-lg md:text-xl font-semibold leading-tight ${
+                      event.isPast ? "text-gray-600" : "text-gray-900"
+                    }`}>
                       {event.title}
                     </h3>
                   </div>
@@ -208,30 +221,45 @@ const Events = () => {
                 
                 {/* Event Details */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
-                  <div className="flex items-center text-gray-600 text-sm">
-                    <Calendar size={16} className="mr-2 text-primary flex-shrink-0" />
-                    <span>{event.date}</span>
+                  <div className={`flex items-center text-sm ${
+                    event.isPast ? "text-gray-500" : "text-gray-600"
+                  }`}>
+                    <Calendar size={16} className={`mr-2 flex-shrink-0 ${
+                      event.isPast ? "text-gray-400" : "text-primary"
+                    }`} />
+                    <span className={event.isPast ? "" : "font-medium"}>{event.date}</span>
                   </div>
-                  <div className="flex items-center text-gray-600 text-sm">
-                    <Clock size={16} className="mr-2 text-primary flex-shrink-0" />
+                  <div className={`flex items-center text-sm ${
+                    event.isPast ? "text-gray-500" : "text-gray-600"
+                  }`}>
+                    <Clock size={16} className={`mr-2 flex-shrink-0 ${
+                      event.isPast ? "text-gray-400" : "text-primary"
+                    }`} />
                     <span>{event.time}</span>
                   </div>
-                  <div className="flex items-center text-gray-600 text-sm">
-                    <MapPin size={16} className="mr-2 text-primary flex-shrink-0" />
+                  <div className={`flex items-center text-sm ${
+                    event.isPast ? "text-gray-500" : "text-gray-600"
+                  }`}>
+                    <MapPin size={16} className={`mr-2 flex-shrink-0 ${
+                      event.isPast ? "text-gray-400" : "text-primary"
+                    }`} />
                     <span className="line-clamp-2">{event.location}</span>
                   </div>
                 </div>
                 
-                
                 {/* Event Description */}
-                <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                <p className={`text-sm leading-relaxed mb-4 line-clamp-3 ${
+                  event.isPast ? "text-gray-500" : "text-gray-600"
+                }`}>
                   {event.description}
                 </p>
                 
                 {/* Speakers Section for Webinars */}
                 {event.type === "webinar" && event.speakers && event.speakers.length > 0 && (
                   <div className="mb-6">
-                    <h4 className="text-sm font-semibold text-gray-900 mb-3">Featured Speakers</h4>
+                    <h4 className={`text-sm font-semibold mb-3 ${
+                      event.isPast ? "text-gray-600" : "text-gray-900"
+                    }`}>Featured Speakers</h4>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                       {event.speakers.map((speaker, index) => (
                         <div key={index} className="flex flex-col items-center text-center group">
@@ -240,17 +268,27 @@ const Events = () => {
                               <img
                                 src={speaker.imageUrl}
                                 alt={speaker.name}
-                                className="w-full h-full object-cover rounded-lg border-2 border-white shadow-md group-hover:scale-105 transition-transform duration-200"
+                                className={`w-full h-full object-cover rounded-lg border-2 border-white shadow-md transition-all duration-200 ${
+                                  event.isPast 
+                                    ? "grayscale opacity-70" 
+                                    : "group-hover:scale-105"
+                                }`}
                                 onError={(e) => {
                                   e.currentTarget.src = '/placeholder.svg';
                                 }}
                               />
                             </AspectRatio>
-                            <div className="absolute inset-0 rounded-lg bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                            {!event.isPast && (
+                              <div className="absolute inset-0 rounded-lg bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                            )}
                           </div>
                           <div className="px-1">
-                            <p className="text-xs font-medium text-gray-900 leading-tight mb-1">{speaker.name}</p>
-                            <p className="text-xs text-gray-600 leading-tight">{speaker.title}</p>
+                            <p className={`text-xs font-medium leading-tight mb-1 ${
+                              event.isPast ? "text-gray-500" : "text-gray-900"
+                            }`}>{speaker.name}</p>
+                            <p className={`text-xs leading-tight ${
+                              event.isPast ? "text-gray-400" : "text-gray-600"
+                            }`}>{speaker.title}</p>
                           </div>
                         </div>
                       ))}
@@ -276,10 +314,10 @@ const Events = () => {
                       </Button>
                     </div>
                   ) : (
-                    <Button asChild className="w-full sm:w-auto" variant="outline">
-                      <Link to="/contact">
-                        View Materials
-                      </Link>
+                    <Button asChild className="w-full sm:w-auto" variant="outline" disabled>
+                      <span className="text-gray-500 cursor-not-allowed">
+                        Event Completed
+                      </span>
                     </Button>
                   )}
                 </div>
