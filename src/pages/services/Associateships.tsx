@@ -252,7 +252,6 @@ const Associateships = () => {
         <div className="px-3">
           <Cta 
             title="Ready to Discuss Your Associateship or Buy-In?"
-            description="Schedule a consultation with our team to explore your options and create a customized plan."
             buttonText="Book Your Consultation"
             buttonUrl="/contact"
             className="rounded-lg"
