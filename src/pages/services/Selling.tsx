@@ -18,12 +18,9 @@ const Selling = () => {
             <p className="text-lg md:text-xl text-gray-700 mb-8 animate-fade-in animate-delay-100 leading-relaxed">
               Ready to move forward with confidence? Our structured approach is built to deliver optimal results with the least amount of disruption to you.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button asChild size="lg">
                 <Link to="/contact">Schedule a Consultation</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link to="/services">View All Services</Link>
               </Button>
             </div>
           </div>
