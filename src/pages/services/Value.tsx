@@ -149,22 +149,40 @@ const Value = () => {
         </div>
       </Section>
 
-      {/* CTA Section After What to Expect */}
+      {/* Enhanced CTA Section After What to Expect */}
       <Section background="primary">
-        <Cta 
-          title="Start Your Valuation Today"
-          description="Get the expert insights you need to make informed transition decisions."
-          buttonText="Schedule a Consultation"
-          buttonUrl="/contact"
-          background="primary"
-          className="text-center"
-        >
-          <div className="mt-4">
-            <Link to="/services" className="text-white/80 hover:text-white underline">
-              View Other Services
-            </Link>
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/20 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 animate-fade-in animate-delay-100">
+              Start Your Valuation Today
+            </h2>
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in animate-delay-200">
+              Get the expert insights you need to make informed transition decisions.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in animate-delay-300">
+              <Button 
+                asChild 
+                size="lg" 
+                variant="secondary"
+                className="font-semibold px-8 py-3 hover-scale"
+              >
+                <Link to="/contact">Schedule a Consultation</Link>
+              </Button>
+              
+              <div className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
+                <span className="text-sm">or</span>
+                <Link 
+                  to="/services" 
+                  className="story-link text-white font-medium flex items-center gap-1 hover-scale"
+                >
+                  View Other Services
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
           </div>
-        </Cta>
+        </div>
       </Section>
 
       {/* FAQ Section */}
