@@ -84,14 +84,14 @@ const Navbar = () => {
                 onMouseEnter={() => setIsServicesOpen(true)}
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
-                <button 
+                <Link
+                  to={item.path}
                   className={`px-3 py-2 rounded-md text-sm font-medium flex items-center hover:text-primary transition-colors ${
-                    location.pathname.startsWith(item.path) ? "text-primary" : "text-gray-700"
+                    location.pathname === item.path || location.pathname.startsWith(item.path) ? "text-primary" : "text-gray-700"
                   }`}
-                  onClick={() => setIsServicesOpen(!isServicesOpen)}
                 >
                   {item.name} <ChevronDown size={16} className="ml-1" />
-                </button>
+                </Link>
                 {isServicesOpen && (
                   <div className="absolute left-0 mt-0 w-56 bg-white shadow-lg rounded-md overflow-hidden transform opacity-100 scale-100 transition-all origin-top-left z-50">
                     {item.dropdown.map((subItem) => (
@@ -133,18 +133,27 @@ const Navbar = () => {
             {navItems.map((item) => (
               item.dropdown ? (
                 <div key={item.name} className="py-2">
-                  <button 
-                    className={`w-full text-left py-2 text-lg font-medium flex items-center justify-between ${
-                      location.pathname.startsWith(item.path) ? "text-primary" : "text-gray-700"
-                    }`}
-                    onClick={() => setIsServicesOpen(!isServicesOpen)}
-                  >
-                    {item.name} 
-                    <ChevronDown 
-                      size={20} 
-                      className={`transition-transform ${isServicesOpen ? "rotate-180" : ""}`} 
-                    />
-                  </button>
+                  <div className="flex items-center">
+                    <Link
+                      to={item.path}
+                      className={`flex-1 py-2 text-lg font-medium ${
+                        location.pathname === item.path || location.pathname.startsWith(item.path) ? "text-primary" : "text-gray-700"
+                      }`}
+                      onClick={closeMenu}
+                    >
+                      {item.name}
+                    </Link>
+                    <button 
+                      className="p-2 text-gray-600 hover:text-primary"
+                      onClick={() => setIsServicesOpen(!isServicesOpen)}
+                      aria-label="Toggle services menu"
+                    >
+                      <ChevronDown 
+                        size={20} 
+                        className={`transition-transform ${isServicesOpen ? "rotate-180" : ""}`} 
+                      />
+                    </button>
+                  </div>
                   {isServicesOpen && (
                     <div className="ml-4 mt-2 space-y-1 border-l-2 border-gray-200 pl-4">
                       {item.dropdown.map((subItem) => (
