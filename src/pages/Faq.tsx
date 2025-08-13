@@ -27,8 +27,8 @@ const Faq = () => {
       answer: "The timeline for a practice transition varies depending on several factors, including the complexity of the practice, the type of transition, and the readiness of both parties. Typically, the process can take anywhere from 3-12 months from initial consultation to completed transition. At PTI, we work diligently to make the process as efficient as possible while ensuring all legal, financial, and practical considerations are thoroughly addressed."
     },
     {
-      question: "What's the difference between an appraisal and an Opinion of Value?",
-      answer: "An appraisal is typically a formal, comprehensive document prepared by a certified appraiser that may be used for legal proceedings, financing, or other official purposes. An Opinion of Value, which PTI provides, is a professional assessment of a practice's worth based on industry standards and market knowledge. Our Opinion of Value service is specifically tailored to dental practices and provides actionable insights for transition planning without the additional cost and time associated with formal appraisals."
+      question: "What's the difference between an appraisal and an opinion of value?",
+      answer: "An appraisal is typically a formal, comprehensive document prepared by a certified appraiser that may be used for legal proceedings, financing, or other official purposes. An opinion of value, which PTI provides, is a professional assessment of a practice's worth based on industry standards and market knowledge. Our opinion of value service is specifically tailored to dental practices and provides actionable insights for transition planning without the additional cost and time associated with formal appraisals."
     },
     {
       question: "Should I tell my staff that I'm planning to sell my practice?",
