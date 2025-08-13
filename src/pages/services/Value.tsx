@@ -19,17 +19,14 @@ const Value = () => {
         <div className="container px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 animate-fade-in leading-tight">
-              Don't Leave Your Legacy to Chance. Know Your Practice's Real Value.
+              Don't Leave Your Legacy to Chance.<br />Know Your Practice's Real Value.
             </h1>
             <p className="text-lg md:text-xl text-gray-700 mb-8 animate-fade-in animate-delay-100 leading-relaxed">
               Our comprehensive and expert valuation provides the clarity you need, before making any transition decisions.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button asChild size="lg">
                 <Link to="/contact">Schedule a Consultation</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link to="/services">View All Services</Link>
               </Button>
             </div>
           </div>
@@ -152,6 +149,24 @@ const Value = () => {
         </div>
       </Section>
 
+      {/* CTA Section After What to Expect */}
+      <Section background="primary">
+        <Cta 
+          title="Start Your Valuation Today"
+          description="Get the expert insights you need to make informed transition decisions."
+          buttonText="Schedule a Consultation"
+          buttonUrl="/contact"
+          background="primary"
+          className="text-center"
+        >
+          <div className="mt-4">
+            <Link to="/services" className="text-white/80 hover:text-white underline">
+              View Other Services
+            </Link>
+          </div>
+        </Cta>
+      </Section>
+
       {/* FAQ Section */}
       <Section background="light">
         <SectionTitle centered>Frequently Asked Questions</SectionTitle>
@@ -159,10 +174,10 @@ const Value = () => {
         <div className="max-w-4xl mx-auto mt-8">
           <Accordion type="single" collapsible className="space-y-4">
             <AccordionItem value="item-1" className="bg-white rounded-lg border border-gray-200">
-              <AccordionTrigger className="px-6 py-4 text-left font-semibold">
+              <AccordionTrigger className="px-4 sm:px-6 py-4 text-sm sm:text-base md:text-lg font-semibold">
                 Why do I need a professional dental practice valuation?
               </AccordionTrigger>
-              <AccordionContent className="px-6 pb-4 text-gray-600 leading-relaxed">
+              <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
                 A professional valuation provides an unbiased and accurate assessment of your practice's market value, 
                 crucial for fair negotiations whether you're buying or selling. It also helps with financial planning 
                 and understanding your most significant asset.
@@ -170,113 +185,69 @@ const Value = () => {
             </AccordionItem>
 
             <AccordionItem value="item-2" className="bg-white rounded-lg border border-gray-200">
-              <AccordionTrigger className="px-6 py-4 text-left font-semibold">
+              <AccordionTrigger className="px-4 sm:px-6 py-4 text-sm sm:text-base md:text-lg font-semibold">
                 What factors significantly impact my dental practice's value?
               </AccordionTrigger>
-              <AccordionContent className="px-6 pb-4 text-gray-600 leading-relaxed">
+              <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
                 Key factors include your financial performance (revenue, profitability), patient demographics and retention, 
-                the condition and age of your equipment, your location, and the expertise of your team.
+                your location, and the expertise of your team.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-3" className="bg-white rounded-lg border border-gray-200">
-              <AccordionTrigger className="px-6 py-4 text-left font-semibold">
+              <AccordionTrigger className="px-4 sm:px-6 py-4 text-sm sm:text-base md:text-lg font-semibold">
                 How is a dental practice valuation different from valuing a general business?
               </AccordionTrigger>
-              <AccordionContent className="px-6 pb-4 text-gray-600 leading-relaxed">
+              <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
                 Dental practices have unique elements like patient goodwill, the importance of the doctor-patient relationship, 
                 insurance complexities, and specialized equipment, which require specific expertise to assess accurately.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-4" className="bg-white rounded-lg border border-gray-200">
-              <AccordionTrigger className="px-6 py-4 text-left font-semibold">
+              <AccordionTrigger className="px-4 sm:px-6 py-4 text-sm sm:text-base md:text-lg font-semibold">
                 What are the different types of valuations, and which one is right for me?
               </AccordionTrigger>
-              <AccordionContent className="px-6 pb-4 text-gray-600 leading-relaxed">
+              <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
                 We offer various levels of valuation, from an initial Opinion of Value for preliminary planning to a 
                 comprehensive Standard Valuation for most transactions and a Certified Valuation for complex situations 
                 or legal purposes. We can help you determine the best fit for your needs.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-5" className="bg-white rounded-lg border border-gray-200">
-              <AccordionTrigger className="px-6 py-4 text-left font-semibold">
-                How long does it typically take to sell a dental practice?
-              </AccordionTrigger>
-              <AccordionContent className="px-6 pb-4 text-gray-600 leading-relaxed">
-                The timeline can vary depending on market conditions, the specifics of your practice, and how well-prepared 
-                you are. On average, it can take anywhere from 6 to 18 months. Our proactive approach aims to streamline this process.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-6" className="bg-white rounded-lg border border-gray-200">
-              <AccordionTrigger className="px-6 py-4 text-left font-semibold">
-                What are my options besides a direct sale?
-              </AccordionTrigger>
-              <AccordionContent className="px-6 pb-4 text-gray-600 leading-relaxed">
-                Depending on your goals and timeline, other options include bringing on an associate with a potential buy-in, 
-                forming a partnership, or even a staged retirement with an eventual sale. We can explore these alternatives with you.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-7" className="bg-white rounded-lg border border-gray-200">
-              <AccordionTrigger className="px-6 py-4 text-left font-semibold">
-                How can I ensure a smooth transition for my patients and staff?
-              </AccordionTrigger>
-              <AccordionContent className="px-6 pb-4 text-gray-600 leading-relaxed">
-                Communication and careful planning are key. We advise on strategies to introduce the new owner or partner 
-                effectively and support your staff through the change to minimize disruption and maintain patient trust.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-8" className="bg-white rounded-lg border border-gray-200">
-              <AccordionTrigger className="px-6 py-4 text-left font-semibold">
-                What role does a transition consultant play in the process?
-              </AccordionTrigger>
-              <AccordionContent className="px-6 pb-4 text-gray-600 leading-relaxed">
-                A transition consultant acts as your expert guide and advocate. We handle the complexities of valuation, 
-                marketing, negotiations, and legal considerations, allowing you to focus on your practice and your future. 
-                We ensure you achieve your personal and professional goals and walk you through each step.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-9" className="bg-white rounded-lg border border-gray-200">
-              <AccordionTrigger className="px-6 py-4 text-left font-semibold">
-                When is the right time to start thinking about selling my dental practice?
-              </AccordionTrigger>
-              <AccordionContent className="px-6 pb-4 text-gray-600 leading-relaxed">
-                Ideally, you should begin planning at least 1-5 years before you intend to transition. This allows ample 
-                time for preparation, valuation, and finding the right buyer or opportunity.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-10" className="bg-white rounded-lg border border-gray-200">
-              <AccordionTrigger className="px-6 py-4 text-left font-semibold">
-                What should I look for in a potential buyer or partner?
-              </AccordionTrigger>
-              <AccordionContent className="px-6 pb-4 text-gray-600 leading-relaxed">
-                Beyond the financial aspects, it's crucial to find someone whose philosophy, patient care standards, 
-                and personality align with yours to ensure a successful long-term fit for your patients and staff. 
-                We have access to a broad range of potential buyers to introduce the perfect match.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-11" className="bg-white rounded-lg border border-gray-200">
-              <AccordionTrigger className="px-6 py-4 text-left font-semibold">
-                How can I maximize the value of my dental practice before selling?
-              </AccordionTrigger>
-              <AccordionContent className="px-6 pb-4 text-gray-600 leading-relaxed">
-                Strategies include optimizing your financial performance, ensuring your records are well-organized, 
-                maintaining a strong patient base, and potentially updating equipment or your facility. We can provide 
-                specific recommendations based on your practice.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
         </div>
       </Section>
 
-      {/* CTA Section */}
+      {/* Second CTA Section After FAQ */}
+      <Section>
+        <Cta 
+          title="Get Expert Guidance on Your Practice Valuation"
+          description="Let our specialists help you understand your practice's true market value."
+          buttonText="Get Started Today"
+          buttonUrl="/contact"
+          background="light"
+        />
+      </Section>
+
+      {/* Valuation Testimonial Section */}
+      <Section background="white">
+        <div className="max-w-4xl mx-auto">
+          <SectionTitle centered>What Our Clients Say</SectionTitle>
+          <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100">
+            <div className="text-center">
+              <blockquote className="text-lg md:text-xl text-gray-700 italic mb-6">
+                "I had the pleasure of meeting Fred & Liz. Fred's insight is a goldmine for anyone looking to purchase or sell a dental practice. Fred's expertise in valuations and legalities is impressive. The resources provided seem comprehensive and well-crafted, a testament to their experience. If you're a dentist considering a practice transaction, I recommend tapping into their knowledge and experience."
+              </blockquote>
+              <div className="flex flex-col items-center">
+                <p className="font-semibold text-gray-900 text-lg">Alexander Zaykov</p>
+                <p className="text-gray-600">Dentist</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Final CTA Section */}
       <Section className="mb-8">
         <Cta 
           title="Ready to Discover Your Practice's True Value?"
