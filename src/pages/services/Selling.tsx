@@ -80,7 +80,7 @@ const Selling = () => {
             <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
               <Users className="h-6 w-6 text-primary" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Dedicated Transition Support</h3>
+            <h3 className="text-xl font-semibold mb-3">Dedicated Support</h3>
             <p className="text-gray-600 leading-relaxed">
               We manage the details of the handover, ensuring a seamless experience for all involved.
             </p>
