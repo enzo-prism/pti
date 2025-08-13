@@ -22,8 +22,8 @@ const Services = () => {
       url: "/services/selling"
     },
     {
-      title: "Associateships/Buying In",
-      description: "Structured pathways for associates to transition into ownership roles.",
+      title: "Associateships/Buy In",
+      description: "Structured pathways for associates to buy in and transition into ownership roles.",
       icon: <Users className="h-8 w-8" />,
       url: "/services/associateships"
     },
@@ -64,9 +64,9 @@ const Services = () => {
       <section className="pt-28 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-accent to-white">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">Our Services</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">Services at a Glance</h1>
             <p className="text-xl text-gray-700 animate-fade-in animate-delay-100">
-              Comprehensive solutions for dental practice transitions at every stage of your career
+              Dental Transition Services That Put You First
             </p>
           </div>
         </div>
@@ -77,18 +77,21 @@ const Services = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Dental Practice Transition Specialists
+              Your goals. Your practice. Our Expertise.
             </h2>
             <p className="text-gray-600 mb-4">
-              At Practice Transitions Institute, we understand that your dental practice represents 
-              years of dedication and is likely one of your most valuable assets. Our specialized 
-              team is dedicated to ensuring your transition process is smooth, profitable, and aligned 
-              with your personal and professional goals.
+              Your practice is more than a business — it's the result of years of dedication and 
+              care. At Practice Transitions Institute, we help you protect that legacy, unlock value, 
+              and make confident decisions at every career stage.
+            </p>
+            <p className="text-gray-600 mb-4">
+              Whether you're preparing to sell, bring on a partner, buy into a practice, or simply want 
+              to understand your practice's worth, our expert team provides step-by-step support 
+              tailored to your goals.
             </p>
             <p className="text-gray-600">
-              Whether you're looking to sell your practice, buy into a partnership, establish 
-              an associateship, or simply understand your practice's value, our comprehensive 
-              services are tailored to meet your specific needs with expertise and integrity.
+              We specialize exclusively in dental transitions, and we bring 
+              unmatched expertise, integrity, and strategy to every client relationship.
             </p>
           </div>
           <div className="animate-fade-in animate-delay-100">
