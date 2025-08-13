@@ -65,7 +65,7 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="animate-fade-in order-2 lg:order-1">
             <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 text-center lg:text-left">
-              Our Story
+              Our Story: A Partnership Rooted in Your Success
             </h2>
             <div className="space-y-4 text-sm md:text-base">
               <p className="text-gray-600 leading-relaxed">
