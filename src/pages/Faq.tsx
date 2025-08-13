@@ -19,10 +19,6 @@ const Faq = () => {
 
   const faqItems: FaqItem[] = [
     {
-      question: "What is a practice transition?",
-      answer: "A practice transition refers to the process of transferring ownership of a dental practice from one dentist to another. This can take various forms including a complete sale, partnership formation, associate buy-in, or other ownership arrangements. Practice Transitions Institute specializes in guiding dental professionals through this complex process to ensure optimal outcomes for all parties involved."
-    },
-    {
       question: "How much is my dental practice worth?",
       answer: "The value of a dental practice depends on numerous factors including revenue history, profitability, patient base, location, equipment, lease terms, and market conditions. At PTI, we provide a comprehensive Opinion of Value service that analyzes these factors using industry-standard methodologies to determine a fair market value for your practice. This valuation is essential whether you're planning to sell, seeking a partner, or simply want to understand your practice's current worth."
     },
