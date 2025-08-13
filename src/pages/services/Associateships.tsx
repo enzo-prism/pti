@@ -111,6 +111,7 @@ const Associateships = () => {
 
       {/* Benefits Section */}
       <Section className="py-8 sm:py-12 md:py-16">
+        <SectionTitle centered>Associateship Benefits</SectionTitle>
         <div className="grid gap-8 sm:gap-12 lg:grid-cols-2 px-3">
           <div className="animate-fade-in">
             <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 sm:mb-6 text-center lg:text-left">For Associates</h3>
