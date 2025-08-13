@@ -118,7 +118,7 @@ const Selling = () => {
             <div>
               <h3 className="text-xl font-semibold mb-2">Optimized Financial Results</h3>
               <p className="text-gray-600 leading-relaxed">
-                We work to structure the sale in a way that benefits you most financially.
+                We work to structure the sale in a way that benefits both parties.
               </p>
             </div>
           </div>
