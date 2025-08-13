@@ -21,7 +21,7 @@ const Associateships = () => {
               Grow Your Practice, Secure Your Future: Expert Guidance on Associateships & Buy-Ins
             </h1>
             <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4 sm:mb-6 md:mb-8 animate-fade-in animate-delay-200 max-w-3xl mx-auto px-2 leading-relaxed">
-              From initial needs assessment to the final buy-in, we provide comprehensive support to create mutually beneficial arrangements that pave the way for lasting success.
+              From early planning to the final buy-in, we provide comprehensive support to create mutually beneficial arrangements that pave the way for lasting success.
             </p>
           </div>
         </div>
