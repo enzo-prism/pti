@@ -23,9 +23,9 @@ const Footer = () => {
                 />
               </div>
             </Link>
+            <h3 className="text-lg font-semibold mb-2 text-gray-800">Your Trusted Partner</h3>
             <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-              Practice Transitions Institute specializes in dental practice transitions,
-              providing expert guidance for buying, selling, and valuing dental practices.
+              With decades of experience, PTI offers expert guidance, personalized support, and proven strategies to help you achieve your transition goals.
             </p>
           </div>
 
