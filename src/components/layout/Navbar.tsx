@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -50,10 +51,18 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link to="/" className="flex items-center z-10" onClick={closeMenu}>
-          <span className="text-lg font-medium text-gray-600">
+        <Link to="/" className="flex flex-col z-10" onClick={closeMenu}>
+          <span className="text-sm md:text-base font-medium text-gray-600">
             Serving The United States
           </span>
+          <a 
+            href={`tel:${PHONE_NUMBER_TEL}`}
+            className="flex items-center text-sm md:text-base font-semibold text-gray-800 hover:text-primary transition-colors mt-1"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Phone className="w-3 h-3 md:w-4 md:h-4 mr-1" />
+            {PHONE_NUMBER}
+          </a>
         </Link>
 
         {/* Mobile menu button */}
