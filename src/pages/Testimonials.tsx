@@ -278,8 +278,9 @@ const Testimonials = () => {
               Client Testimonials & Success Stories
             </h1>
             <p className="text-lg text-gray-600 animate-fade-in animate-delay-100">
-              Hear directly from dental professionals who have successfully 
-              navigated practice transitions with our guidance.
+              Helping dentists through one of the most important transitions of their career is an honor.
+              We're proud to share the kind words from clients who've trusted us to guide them — and we're
+              deeply thankful for the opportunity to be part of their journey.
             </p>
           </div>
         </div>
