@@ -147,42 +147,29 @@ const Home = () => {
       {/* Stakes & Success Section */}
       <Section background="white" className="py-12 md:py-20 contain-layout">
         <div className="container mx-auto px-4">
-          <StaggeredGrid className="grid gap-8 md:gap-12 max-w-6xl mx-auto" staggerDelay={200}>
-            {[
-              {
-                type: "risk",
-                icon: AlertTriangle,
-                title: "The Risk of Going Alone",
-                description: "Don't risk your future. Without expert guidance, you could face financial losses, post-sale litigation, unnecessary stress, and a compromised legacy.",
-                bgColor: "bg-red-50",
-                borderColor: "border-red-100",
-                iconColor: "text-red-600",
-                titleColor: "text-red-800",
-                textColor: "text-red-700"
-              },
-              {
-                type: "success",
-                icon: CheckCircle,
-                title: "Your Success Story",
-                description: "With PTI, you can confidently move into your next chapter. Imagine a smooth, successful transition, a secure financial future, and the peace of mind knowing your legacy is in good hands.",
-                bgColor: "bg-green-50",
-                borderColor: "border-green-100", 
-                iconColor: "text-green-600",
-                titleColor: "text-green-800",
-                textColor: "text-green-700"
-              }
-            ].map((item) => (
-              <div key={item.type} className={`${item.bgColor} border ${item.borderColor} p-6 sm:p-8 md:p-10 rounded-xl hover-lift gpu-accelerated`}>
-                <div className="flex items-start mb-4 md:mb-6">
-                  <item.icon className={`w-6 h-6 sm:w-8 sm:h-8 ${item.iconColor} mr-3 flex-shrink-0 mt-1 hover:scale-110 transition-transform duration-300`} />
-                  <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${item.titleColor}`}>{item.title}</h3>
+          <div className="max-w-4xl mx-auto">
+            <ScrollReveal direction="scale" delay={100} intensity="subtle">
+              <div className="bg-gray-50 border border-gray-100 p-8 sm:p-10 md:p-12 rounded-xl text-center hover-lift gpu-accelerated">
+                <div className="mb-8">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                    The Risk of Going Alone
+                  </h3>
+                  <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                    Don't risk your future. Without expert guidance, you could face financial losses, post-sale litigation, unnecessary stress, and a compromised legacy.
+                  </p>
                 </div>
-                <p className={`${item.textColor} text-base sm:text-lg leading-relaxed`}>
-                  {item.description}
-                </p>
+                
+                <div className="border-t border-gray-200 pt-8">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                    Your Success Story
+                  </h3>
+                  <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                    With PTI, you can confidently move into your next chapter. Imagine a smooth, successful transition, a secure financial future, and the peace of mind knowing your legacy is in good hands.
+                  </p>
+                </div>
               </div>
-            ))}
-          </StaggeredGrid>
+            </ScrollReveal>
+          </div>
         </div>
       </Section>
 
