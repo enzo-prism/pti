@@ -33,11 +33,12 @@ const Navbar = () => {
       name: "Services", 
       path: "/services",
       dropdown: [
+        { name: "Services at a Glance", path: "/services" },
         { name: "Opinion of Value", path: "/services/value" },
         { name: "Selling a Practice", path: "/services/selling" },
         { name: "Associateships/Buying In", path: "/services/associateships" },
         { name: "Partnerships", path: "/services/partnerships" },
-      ] 
+      ]
     },
     { name: "Testimonials", path: "/testimonials" },
     { name: "Events", path: "/events" },
