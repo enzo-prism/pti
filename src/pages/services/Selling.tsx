@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
+import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { DollarSign, FileText, TrendingUp, CheckCircle, Shield, Users, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -199,6 +200,82 @@ const Selling = () => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+        </div>
+      </Section>
+
+      {/* Seller Testimonials Section */}
+      <Section>
+        <SectionTitle centered>What Our Sellers Say</SectionTitle>
+        <SectionSubtitle centered>
+          Hear from dentists who have successfully sold their practices with our guidance
+        </SectionSubtitle>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          <TestimonialCard
+            quote="I recently sold my dental practice after 41 years. I was primarily concerned to find a dentist who matched my treatment planning philosophy and to take good care of my wonderful patients and staff. In the current environment of corporate dentistry, I knew that it would not be an easy task. Fortunately, a colleague gave me the name of Michael Njo and Dental Strategies. Because Michael is a dentist with general practice experience, he has a great understanding of the important aspects for a transfer of a practice, not only for the seller but also for the buyer. I am quite happy that I had Dr Njo to help me navigate my sale! He was very easy to work with. I am glad to report that together we found a great match for my staff and patients."
+            author="Gregory Baird"
+            role="Practice Seller"
+            company="3 months ago"
+          />
+          
+          <TestimonialCard
+            quote="I attended Mike's practice transition seminar and read his book. He was a very knowledgeable and seasoned expert in this area. I decided to use his consultation service to handle my practice sale. He was able to match a buyer within 2 weeks and completed the transaction within 45 days. He was so amazingly efficient throughout the transition process. I highly recommend him to any dentist interested in selling or buying a dental practice. Thanks again, Mike, you are my Superman."
+            author="Tony Choi"
+            role="Practice Seller"
+            company="4 months ago"
+          />
+          
+          <TestimonialCard
+            quote="As we were in the midst of a complex process to sell our dental practice, we encountered challenges in securing an offer that reflected the true value of our well-established family practice. Despite garnering interest from several dentists, it proved to be a daunting task. Additionally, my need for orthopedic surgery necessitated the hiring of a dentist to fill in for a six-month period during my recovery. It was during this time that we were introduced to Dental Strategies by one of the bankers assisting us. Michael promptly met with us and initiated the process. Within just two months, we were introduced to a prospective buyer. Working with someone like Michael, who is not only a former dentist but also possesses expertise that surpasses that of a traditional real estate broker, proved to be advantageous for us. His knowledge in the field allowed us to navigate through the complexities of selling our dental practice with confidence. The assistance provided by attorney Mike Treppa, and Dental Strategies played a crucial role in successfully selling our dental practice. Their expertise and guidance not only facilitated the process but also ensured that we received an offer that truly reflected the value of our well-established family practice."
+            author="Richard & Kimberly Crum"
+            role="Practice Sellers"
+            company="7 months ago"
+          />
+          
+          <TestimonialCard
+            quote="Michael was great. I had his support 100% during the whole process. I recommend his services to anybody who has decided to sell or buy a practice. Honest, friendly and reliable. I couldn't have done this without your help. Thank you Michael!"
+            author="Maricela Murillo"
+            role="Practice Owner"
+            company="1 year ago"
+          />
+          
+          <TestimonialCard
+            quote={`"Be careful what you ask for, because I will get it for you". That is what Michael from Dental Strategies said to me at our first face-to-face meeting. That was March 2023. We were referred to Michael after our practice was on the market for a year with few inquiries. We closed July 31, 2023 with full cash offer to a wonderful couple. That is testimony, thank you Michael.`}
+            author="Keith Long"
+            role="Practice Seller"
+            company="1 year ago"
+          />
+          
+          <TestimonialCard
+            quote="As I approach the end of my pediatric dental career, I want to transition into the next phase of life well. That means being financially prepared in advance, and to leave a great practice to the next person. I'm so glad I have partnered with PTI to make this happen."
+            author="Rick Nichols"
+            role="Pediatric Dentist"
+            company="2 years ago"
+          />
+          
+          <TestimonialCard
+            quote="Going through selling your practice is similar to getting ready to treat a complex dental patient. You need to gather the pre-diagnostic history and information, conduct a thorough exam, and plan a treatment path that is in line with the patient's needs. Working with a professional like Michael, who has developed a well thought out linear path when it comes to selling dental practices, ensured that I was set up with the right candidate and the sale process was executed flawlessly. I am very happy with how things turned out."
+            author="Dr. Reza"
+            role="Practice Seller"
+          />
+          
+          <TestimonialCard
+            quote="I feel extremely fortunate to have found and chosen Fred Heppner to help me through the process of selling my practice. I enjoyed Fred's straightforward demeanor, and his ability to simplify for me what would have been an overly complex endeavor. The sale happened very quickly and efficiently, and I couldn't be more pleased with the outcome!"
+            author="Jeff Lewis, DDS, FACP"
+            role="Orthodontist"
+          />
+          
+          <TestimonialCard
+            quote="As a dental practice owner for 20 years, there comes a time when you transition from active ownership. In the fall of 2016, I made the decision to sell my successful dental practice and transition to managing as a clinical director and lead dentist. I contacted Fred for a practice appraisal and engaged his services for the sale. In March 2017, we closed the sale and I successfully transitioned. Fred was an ethical and responsive broker who found the perfect match, allowing my remaining career years to be some of the most fulfilling. I highly recommend Fred if you're considering selling or buying a practice."
+            author="Paul, D.M.D."
+            role="Dentist"
+          />
+        </div>
+        
+        <div className="text-center mt-8">
+          <Button asChild variant="outline" size="lg">
+            <Link to="/testimonials">View All Testimonials</Link>
+          </Button>
         </div>
       </Section>
     </>
