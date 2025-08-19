@@ -431,7 +431,7 @@ const Events = () => {
             
             <div className="text-center">
               <Button asChild size="lg" className="w-full sm:w-auto">
-                <Link to="/contact">Inquire About Private Events</Link>
+                <a href="mailto:events@pti.com?subject=Speaking%20Request">Request Speaking Engagement</a>
               </Button>
             </div>
           </div>
