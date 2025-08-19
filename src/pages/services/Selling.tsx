@@ -278,6 +278,16 @@ const Selling = () => {
           </Button>
         </div>
       </Section>
+
+      {/* Final CTA Section */}
+      <Section className="mb-8">
+        <Cta 
+          title="Ready to Explore Selling Your Practice?"
+          description="Schedule a confidential consultation with our team of dental transition experts."
+          buttonText="Book Your Free Consultation"
+          buttonUrl="/contact"
+        />
+      </Section>
     </>
   );
 };
