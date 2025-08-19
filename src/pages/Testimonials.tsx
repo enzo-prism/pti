@@ -421,6 +421,59 @@ const Testimonials = () => {
           </div>
         </div>
         
+        {/* Second Featured Success Story */}
+        <div className="max-w-4xl mx-auto mt-16">
+          <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100 animate-fade-in">
+            <h3 className="text-2xl font-semibold mb-4">Transforming Lives Through Cosmetic Dentistry</h3>
+            
+            <div className="mb-6">
+              <p className="text-gray-600 mb-4">
+                At Asaro Dental Aesthetics, we are dedicated to more than just enhancing smiles; we transform lives. 
+                Cosmetic dentistry is no longer just about changing how you look—it's about embracing transformation 
+                and self-care as a lifestyle. The emotional impact of this work brings tears and speechlessness, 
+                making this work a deeply fulfilling experience.
+              </p>
+              <p className="text-gray-600 mb-4">
+                I cannot share these cases without recognizing those who helped make them possible. First, my team 
+                at Asaro Dental Aesthetics. They are truly the best in Los Angeles and none of this happens without them. 
+                Putting these cases together also takes a team of great mentors, labs, and specialists. I cannot express 
+                enough thanks and appreciation for their support, particularly:
+              </p>
+              <div className="grid md:grid-cols-2 gap-4 mb-6">
+                <div>
+                  <p className="text-gray-600 text-sm">• Jennifer, Azita, Dr. Serhi Vyzu</p>
+                  <p className="text-gray-600 text-sm">• V Smile Ceramists</p>
+                  <p className="text-gray-600 text-sm">• Dr. Ahmed Mataria (Implants)</p>
+                  <p className="text-gray-600 text-sm">• Dr. Shahriah Agahi (Periodontist)</p>
+                  <p className="text-gray-600 text-sm">• Dr. Michael Njo (Coach/Consultant)</p>
+                  <p className="text-gray-600 text-sm">• Dr. John Kois (Kois Center)</p>
+                  <p className="text-gray-600 text-sm">• Dr. Amir Rad (Anesthesia)</p>
+                </div>
+                <div>
+                  <p className="text-gray-600 text-sm">• Brentwood Endo (Dr. Robby Rezai)</p>
+                  <p className="text-gray-600 text-sm">• Dr. Luke Shapiro (Ortho Mentor)</p>
+                  <p className="text-gray-600 text-sm">• Invisalign (Aligned Technology)</p>
+                  <p className="text-gray-600 text-sm">• Zero Bone Loss Lab (Perla & Jessica)</p>
+                  <p className="text-gray-600 text-sm">• Evelyn Quintana (Wife, Support System)</p>
+                </div>
+              </div>
+              <p className="text-gray-600">
+                We look forward to continuing our mission of creating smiles that radiate confidence and happiness. 
+                Thank you for reading and we hope you enjoy!
+              </p>
+            </div>
+            
+            <div className="bg-accent p-6 rounded-lg">
+              <p className="italic text-gray-700 mb-2">
+                "Cosmetic dentistry is no longer just about changing how you look—it's about embracing transformation 
+                and self-care as a lifestyle. The emotional impact of this work brings tears and speechlessness, 
+                making this work a deeply fulfilling experience."
+              </p>
+              <p className="font-medium">— Matt Asaro, DDS, Asaro Dental Aesthetics</p>
+            </div>
+          </div>
+        </div>
+        
         <Cta 
           title="Ready to Write Your Own Success Story?"
           description="Join the hundreds of dental professionals who have successfully transitioned their practices with PTI's expert guidance."
