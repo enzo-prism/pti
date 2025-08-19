@@ -94,7 +94,7 @@ const Selling = () => {
         
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 mt-8 max-w-5xl mx-auto">
           <div className="flex items-start space-x-4 animate-fade-in">
-            <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+            <CheckCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
             <div>
               <h3 className="text-xl font-semibold mb-2">Expert Guidance, Maximum Value</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -104,7 +104,7 @@ const Selling = () => {
           </div>
           
           <div className="flex items-start space-x-4 animate-fade-in animate-delay-100">
-            <Shield className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+            <Shield className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-1" />
             <div>
               <h3 className="text-xl font-semibold mb-2">Confidentiality You Can Trust</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -114,7 +114,7 @@ const Selling = () => {
           </div>
           
           <div className="flex items-start space-x-4 animate-fade-in animate-delay-200">
-            <TrendingUp className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+            <TrendingUp className="h-6 w-6 text-orange-600 flex-shrink-0 mt-1" />
             <div>
               <h3 className="text-xl font-semibold mb-2">Optimized Financial Results</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -124,7 +124,7 @@ const Selling = () => {
           </div>
           
           <div className="flex items-start space-x-4 animate-fade-in animate-delay-300">
-            <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+            <CheckCircle className="h-6 w-6 text-purple-600 flex-shrink-0 mt-1" />
             <div>
               <h3 className="text-xl font-semibold mb-2">A Smooth and Worry-Free Experience</h3>
               <p className="text-gray-600 leading-relaxed">
