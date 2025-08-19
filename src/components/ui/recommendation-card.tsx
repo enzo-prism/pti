@@ -41,7 +41,7 @@ export function RecommendationCard({
         <img
           src={imageUrl}
           alt={name}
-          className="w-40 h-40 object-cover rounded-lg shadow-md mx-auto"
+          className="w-40 h-48 object-cover object-top rounded-lg shadow-md mx-auto"
         />
         <div className="flex-1">
           <h3 className="text-2xl md:text-3xl font-semibold mb-1">{name}</h3>
