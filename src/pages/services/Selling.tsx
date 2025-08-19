@@ -58,7 +58,7 @@ const Selling = () => {
           
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-100">
             <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
-              <Target className="h-6 w-6 text-emerald-600" />
+              <Target className="h-6 w-6 text-orange-600" />
             </div>
             <h3 className="text-xl font-semibold mb-3">Targeted Marketing</h3>
             <p className="text-gray-600 leading-relaxed">
@@ -68,7 +68,7 @@ const Selling = () => {
           
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-200">
             <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
-              <DollarSign className="h-6 w-6 text-orange-600" />
+              <DollarSign className="h-6 w-6 text-green-600" />
             </div>
             <h3 className="text-xl font-semibold mb-3">Strategic Negotiation</h3>
             <p className="text-gray-600 leading-relaxed">
