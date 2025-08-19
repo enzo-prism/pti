@@ -192,12 +192,15 @@ const Associateships = () => {
         </div>
       </Section>
 
-      {/* View All Services Button */}
-      <Section className="py-4 sm:py-6">
-        <div className="text-center px-3">
-          <Button asChild variant="outline" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-sm sm:text-base">
-            <Link to="/services">View All Services</Link>
-          </Button>
+      {/* CTA Section - Moved Up */}
+      <Section className="py-8 sm:py-12 md:py-16">
+        <div className="px-3">
+          <Cta 
+            title="Ready to Discuss Your Associateship or Buy-In?"
+            buttonText="Book Your Consultation"
+            buttonUrl="/contact"
+            className="rounded-lg"
+          />
         </div>
       </Section>
 
@@ -247,17 +250,6 @@ const Associateships = () => {
         </div>
       </Section>
 
-      {/* CTA Section */}
-      <Section className="py-8 sm:py-12 md:py-16">
-        <div className="px-3">
-          <Cta 
-            title="Ready to Discuss Your Associateship or Buy-In?"
-            buttonText="Book Your Consultation"
-            buttonUrl="/contact"
-            className="rounded-lg"
-          />
-        </div>
-      </Section>
     </>
   );
 };
