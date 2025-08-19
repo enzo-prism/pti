@@ -243,7 +243,7 @@ const About = () => {
               description: "Clients consistently praise PTI for making a stressful process smooth and efficient, citing responsive, hands-on support from our team throughout their transition journey."
             },
             {
-              title: "Trusted Matchmaking",
+              title: "Trusted match making",
               description: "Dentists value our careful screening and personalized approach, which ensures only qualified and well-matched buyers are presented, preserving the legacy of their practice."
             },
             {
