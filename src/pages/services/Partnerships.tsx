@@ -4,6 +4,12 @@ import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section"
 import { Cta } from "@/components/ui/cta";
 import { Handshake, FileText, Scale, CheckCircle, Users, Target, TrendingUp, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Partnerships = () => {
   return (
@@ -182,43 +188,56 @@ const Partnerships = () => {
       </Section>
 
       {/* FAQ Section */}
-      <Section>
-        <SectionTitle centered>FAQ's</SectionTitle>
-        <div className="max-w-4xl mx-auto mt-8 space-y-6">
-          <div className="bg-gray-50 p-6 rounded-lg animate-fade-in">
-            <h3 className="text-lg font-semibold mb-2">What are the key elements of a successful dental partnership agreement?</h3>
-            <p className="text-gray-600 leading-relaxed">
-              A strong agreement clearly outlines ownership percentages, responsibilities, decision-making processes (governance), compensation models, buy-sell provisions, and dispute resolution mechanisms.
-            </p>
-          </div>
-          
-          <div className="bg-gray-50 p-6 rounded-lg animate-fade-in animate-delay-100">
-            <h3 className="text-lg font-semibold mb-2">What are common pitfalls to avoid when forming a dental partnership?</h3>
-            <p className="text-gray-600 leading-relaxed">
-              Lack of clear communication, unequal workload or compensation without a fair system, poorly defined decision-making processes, and inadequate buy-sell agreements are common issues.
-            </p>
-          </div>
-          
-          <div className="bg-gray-50 p-6 rounded-lg animate-fade-in animate-delay-200">
-            <h3 className="text-lg font-semibold mb-2">How do partners handle disagreements or disputes in a dental practice?</h3>
-            <p className="text-gray-600 leading-relaxed">
-              The partnership agreement should outline a process for dispute resolution, which may include mediation or arbitration. Open and honest communication is crucial.
-            </p>
-          </div>
-          
-          <div className="bg-gray-50 p-6 rounded-lg animate-fade-in animate-delay-300">
-            <h3 className="text-lg font-semibold mb-2">What are the tax implications of forming a dental partnership?</h3>
-            <p className="text-gray-600 leading-relaxed">
-              Partnerships typically file informational tax returns, and profits and losses are passed through to the individual partners. It's essential to consult with a tax advisor specializing in dental practices.
-            </p>
-          </div>
-          
-          <div className="bg-gray-50 p-6 rounded-lg animate-fade-in animate-delay-400">
-            <h3 className="text-lg font-semibold mb-2">How does a partnership impact practice valuation for future sale or transition?</h3>
-            <p className="text-gray-600 leading-relaxed">
-              A well-functioning partnership can increase the overall value of the practice. However, the partnership agreement should also address how a future sale or transition of the partnership itself would be handled.
-            </p>
-          </div>
+      <Section background="light">
+        <SectionTitle centered>Frequently Asked Questions</SectionTitle>
+        
+        <div className="max-w-4xl mx-auto mt-8">
+          <Accordion type="single" collapsible className="space-y-4">
+            <AccordionItem value="item-1" className="bg-white rounded-lg border border-gray-200">
+              <AccordionTrigger className="px-4 sm:px-6 py-4 text-sm sm:text-base md:text-lg font-semibold">
+                What are the key elements of a successful dental partnership agreement?
+              </AccordionTrigger>
+              <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                A strong agreement clearly outlines ownership percentages, responsibilities, decision-making processes (governance), compensation models, buy-sell provisions, and dispute resolution mechanisms.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-2" className="bg-white rounded-lg border border-gray-200">
+              <AccordionTrigger className="px-4 sm:px-6 py-4 text-sm sm:text-base md:text-lg font-semibold">
+                What are common pitfalls to avoid when forming a dental partnership?
+              </AccordionTrigger>
+              <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                Lack of clear communication, unequal workload or compensation without a fair system, poorly defined decision-making processes, and inadequate buy-sell agreements are common issues.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-3" className="bg-white rounded-lg border border-gray-200">
+              <AccordionTrigger className="px-4 sm:px-6 py-4 text-sm sm:text-base md:text-lg font-semibold">
+                How do partners handle disagreements or disputes in a dental practice?
+              </AccordionTrigger>
+              <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                The partnership agreement should outline a process for dispute resolution, which may include mediation or arbitration. Open and honest communication is crucial.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-4" className="bg-white rounded-lg border border-gray-200">
+              <AccordionTrigger className="px-4 sm:px-6 py-4 text-sm sm:text-base md:text-lg font-semibold">
+                What are the tax implications of forming a dental partnership?
+              </AccordionTrigger>
+              <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                Partnerships typically file informational tax returns, and profits and losses are passed through to the individual partners. It's essential to consult with a tax advisor specializing in dental practices.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-5" className="bg-white rounded-lg border border-gray-200">
+              <AccordionTrigger className="px-4 sm:px-6 py-4 text-sm sm:text-base md:text-lg font-semibold">
+                How does a partnership impact practice valuation for future sale or transition?
+              </AccordionTrigger>
+              <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                A well-functioning partnership can increase the overall value of the practice. However, the partnership agreement should also address how a future sale or transition of the partnership itself would be handled.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </Section>
 
