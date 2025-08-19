@@ -474,7 +474,7 @@ const Testimonials = () => {
                     <p className="text-gray-600">• V Smile Ceramists</p>
                     <p className="text-gray-600">• Dr. Ahmed Mataria (Implants)</p>
                     <p className="text-gray-600">• Dr. Shahriah Agahi (Periodontist)</p>
-                    <p className="text-gray-600">• Dr. Michael Njo (Coach/Consultant)</p>
+                    <p className="text-gray-600">• <span className="font-bold text-primary">Dr. Michael Njo (Coach/Consultant)</span></p>
                     <p className="text-gray-600">• Dr. John Kois (Kois Center)</p>
                     <p className="text-gray-600">• Dr. Amir Rad (Anesthesia)</p>
                     <p className="text-gray-600">• Brentwood Endo (Dr. Robby Rezai)</p>
