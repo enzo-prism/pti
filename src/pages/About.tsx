@@ -69,10 +69,10 @@ const About = () => {
             </h2>
             <div className="space-y-4 text-sm md:text-base">
               <p className="text-gray-600 leading-relaxed">
-                Practice Transitions Institute (PTI) was founded on a simple, yet profound principle: to transform the dental practice transition experience. Dr. Michael Njo envisioned a new standard—one that moved beyond mere transactions to forge trusted, relationship-driven partnerships.
+                Practice Transitions Institute (PTI) was founded on a simple, yet profound principle: to transform the dental practice transition experience. <strong>Dr. Michael Njo</strong> envisioned a new standard—one that moved beyond mere transactions to forge <strong>trusted, relationship-driven partnerships</strong>.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                Today, that vision thrives. Under Dr. Njo's leadership, the strategic insights of Fred Heppner in transitions and practice management, and Liz Armato's operational expertise, PTI offers truly personalized guidance. Our mission is clear: to help dentists navigate significant career milestones with unwavering care and integrity, ensuring the legacy of each practice is preserved, and every outcome is a win-win.
+                Today, that vision thrives. Under <strong>Dr. Njo's leadership</strong>, the strategic insights of <strong>Fred Heppner in transitions and practice management</strong>, and <strong>Liz Armato's operational expertise</strong>, PTI offers truly personalized guidance. Our mission is clear: to help dentists navigate significant career milestones with <strong>unwavering care and integrity</strong>, ensuring the legacy of each practice is preserved, and every outcome is a win-win.
               </p>
               <p className="text-gray-600 leading-relaxed">
                 What began as Dr. Njo's vision to provide better service has grown into a comprehensive transitions firm with a dedicated team of experts guiding dental professionals through major career milestones.
