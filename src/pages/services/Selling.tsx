@@ -48,7 +48,7 @@ const Selling = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in">
             <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
-              <FileText className="h-6 w-6 text-primary" />
+              <FileText className="h-6 w-6 text-blue-600" />
             </div>
             <h3 className="text-xl font-semibold mb-3">In-Depth Valuation</h3>
             <p className="text-gray-600 leading-relaxed">
@@ -58,7 +58,7 @@ const Selling = () => {
           
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-100">
             <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
-              <Target className="h-6 w-6 text-primary" />
+              <Target className="h-6 w-6 text-emerald-600" />
             </div>
             <h3 className="text-xl font-semibold mb-3">Targeted Marketing</h3>
             <p className="text-gray-600 leading-relaxed">
@@ -68,7 +68,7 @@ const Selling = () => {
           
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-200">
             <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
-              <DollarSign className="h-6 w-6 text-primary" />
+              <DollarSign className="h-6 w-6 text-orange-600" />
             </div>
             <h3 className="text-xl font-semibold mb-3">Strategic Negotiation</h3>
             <p className="text-gray-600 leading-relaxed">
@@ -78,7 +78,7 @@ const Selling = () => {
           
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in animate-delay-300">
             <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
-              <Users className="h-6 w-6 text-primary" />
+              <Users className="h-6 w-6 text-purple-600" />
             </div>
             <h3 className="text-xl font-semibold mb-3">Dedicated Support</h3>
             <p className="text-gray-600 leading-relaxed">
