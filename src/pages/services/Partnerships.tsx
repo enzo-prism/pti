@@ -181,40 +181,6 @@ const Partnerships = () => {
         </div>
       </Section>
 
-      {/* Key Considerations Section */}
-      <Section background="light">
-        <SectionTitle centered>Key Partnership Considerations</SectionTitle>
-        <div className="max-w-4xl mx-auto mt-8 space-y-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm animate-fade-in">
-            <h3 className="text-xl font-semibold mb-3">Governance Structure</h3>
-            <p className="text-gray-600 leading-relaxed">
-              How will decisions be made? Equal voting rights or weighted based on ownership percentage? Consider decision-making processes for daily operations versus major changes.
-            </p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm animate-fade-in animate-delay-100">
-            <h3 className="text-xl font-semibold mb-3">Compensation Framework</h3>
-            <p className="text-gray-600 leading-relaxed">
-              Will profits be distributed based on ownership percentage, production, or a hybrid model? Consider how to handle differing production levels, time commitments, and specialties.
-            </p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm animate-fade-in animate-delay-200">
-            <h3 className="text-xl font-semibold mb-3">Buy-Sell Provisions</h3>
-            <p className="text-gray-600 leading-relaxed">
-              What happens if a partner wants to exit, becomes disabled, or passes away? Clear provisions for these scenarios protect all partners and ensure practice continuity.
-            </p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm animate-fade-in animate-delay-300">
-            <h3 className="text-xl font-semibold mb-3">Future Growth Strategies</h3>
-            <p className="text-gray-600 leading-relaxed">
-              How will the partnership approach expansion, additional locations, or bringing in new partners? Aligning on growth vision early helps prevent conflicts later.
-            </p>
-          </div>
-        </div>
-      </Section>
-
       {/* FAQ Section */}
       <Section>
         <SectionTitle centered>FAQ's</SectionTitle>
