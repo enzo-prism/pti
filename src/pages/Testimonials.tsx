@@ -275,7 +275,7 @@ const Testimonials = () => {
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center pb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">
-              Client Testimonials & Success Stories
+              What our Clients are Saying
             </h1>
             <p className="text-lg text-gray-600 animate-fade-in animate-delay-100">
               Helping dentists through one of the most important transitions of their career is an honor.
