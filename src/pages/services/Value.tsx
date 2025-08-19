@@ -18,7 +18,7 @@ const Value = () => {
       <section className="pt-20 pb-12 md:pt-28 md:pb-16 bg-gradient-to-b from-accent to-white">
         <div className="container px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 animate-fade-in leading-tight">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 animate-fade-in leading-tight">
               Don't Leave Your Legacy to Chance.<br />Know Your Practice's Value.
             </h1>
             <p className="text-lg md:text-xl text-gray-700 mb-8 animate-fade-in animate-delay-100 leading-relaxed">
