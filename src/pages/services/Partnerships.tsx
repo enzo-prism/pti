@@ -187,6 +187,16 @@ const Partnerships = () => {
         </div>
       </Section>
 
+      {/* CTA Section */}
+      <Section className="py-8 md:py-12">
+        <Cta 
+          title="Ready to Explore Partnership Options?"
+          description="Schedule a consultation with our team to discuss how a partnership structure could benefit your practice."
+          buttonText="Book Your Consultation"
+          buttonUrl="/contact"
+        />
+      </Section>
+
       {/* FAQ Section */}
       <Section background="light">
         <SectionTitle centered>Frequently Asked Questions</SectionTitle>
