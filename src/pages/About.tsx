@@ -169,27 +169,32 @@ const About = () => {
             {
               icon: Users,
               title: "We've Been in Your Shoes",
-              description: "We've walked the path — from clinical care to leadership to transitions. We understand what's at stake."
+              description: "We've walked the path — from clinical care to leadership to transitions. We understand what's at stake.",
+              iconColor: "text-blue-600"
             },
             {
               icon: Shield,
               title: "More Than a Broker",
-              description: "We guide, educate, and advocate — not just sell. You get a trusted advisor, not just a dealmaker."
+              description: "We guide, educate, and advocate — not just sell. You get a trusted advisor, not just a dealmaker.",
+              iconColor: "text-emerald-600"
             },
             {
               icon: Target,
               title: "Custom-Fit Strategy",
-              description: "No cookie-cutter plans here. We tailor every step to your practice, your timeline, and your vision."
+              description: "No cookie-cutter plans here. We tailor every step to your practice, your timeline, and your vision.",
+              iconColor: "text-orange-600"
             },
             {
               icon: Star,
               title: "Trusted Leadership",
-              description: "Our expertise and values shape everything we do — from policy to personal care."
+              description: "Our expertise and values shape everything we do — from policy to personal care.",
+              iconColor: "text-purple-600"
             },
             {
               icon: Heart,
               title: "Real Support, Real People",
-              description: "We listen. We care. We support you through the personal, emotional, and financial aspects of your transition."
+              description: "We listen. We care. We support you through the personal, emotional, and financial aspects of your transition.",
+              iconColor: "text-rose-600"
             }
           ].map((item, index) => (
             <div 
@@ -197,7 +202,7 @@ const About = () => {
               className="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100 animate-fade-in hover:shadow-md transition-shadow text-center"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <item.icon className="h-8 w-8 md:h-10 md:w-10 text-primary mx-auto mb-4" />
+              <item.icon className={`h-8 w-8 md:h-10 md:w-10 ${item.iconColor} mx-auto mb-4`} />
               <h3 className="text-lg md:text-xl font-semibold mb-3 text-primary">{item.title}</h3>
               <p className="text-gray-600 text-sm md:text-base leading-relaxed">
                 {item.description}
