@@ -252,7 +252,7 @@ const About = () => {
             },
             {
               title: "Outcome Satisfaction",
-              description: "Numerous testimonials reflect deep gratitude for our role in securing favorable deals and enhancing the quality of life for dentists facing major career transitions."
+              description: "Numerous testimonials reflect deep gratitude for our role in securing favorable transitions and enhancing the quality of life for dentists facing major career changes."
             }
           ].map((experience, index) => (
             <div 
