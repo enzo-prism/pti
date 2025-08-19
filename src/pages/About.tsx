@@ -216,17 +216,17 @@ const About = () => {
       <Section background="light" className="py-8 md:py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
           {[
-            { number: "500+", label: "Successful Transitions" },
-            { number: "15", label: "Years of Experience" },
-            { number: "42", label: "States Served" },
-            { number: "98%", label: "Client Satisfaction" }
+            { number: "500+", label: "Successful Transitions", numberColor: "text-blue-600" },
+            { number: "15", label: "Years of Experience", numberColor: "text-emerald-600" },
+            { number: "42", label: "States Served", numberColor: "text-orange-600" },
+            { number: "98%", label: "Client Satisfaction", numberColor: "text-purple-600" }
           ].map((stat, index) => (
             <div 
               key={stat.label}
               className="animate-fade-in p-4 rounded-lg"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="text-2xl md:text-4xl font-bold text-primary mb-2">{stat.number}</div>
+              <div className={`text-2xl md:text-4xl font-bold ${stat.numberColor} mb-2`}>{stat.number}</div>
               <p className="text-gray-700 text-xs md:text-base font-medium">{stat.label}</p>
             </div>
           ))}
