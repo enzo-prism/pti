@@ -35,9 +35,8 @@ const Contact = () => {
       </div>
 
       <Section className="mb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="max-w-4xl mx-auto">
           <ContactForm />
-          <ContactInfo />
         </div>
       </Section>
     </Layout>

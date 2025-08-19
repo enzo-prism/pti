@@ -38,7 +38,7 @@ export const ContactForm = () => {
 
   if (hasError) {
     return (
-      <div className="lg:col-span-2">
+      <div>
         <h2 className="text-2xl font-semibold mb-2">Reach Out to Start the Conversation</h2>
         <div className="mb-6 text-gray-600">
           <p className="mb-2">Call us: (833) 784 – 1121</p>
@@ -65,7 +65,7 @@ export const ContactForm = () => {
   }
 
   return (
-    <div className="lg:col-span-2">
+    <div>
       <h2 className="text-2xl font-semibold mb-2">Reach Out to Start the Conversation</h2>
       <div className="mb-6 text-gray-600">
         <p className="mb-2">Call us: (833) 784 – 1121</p>
