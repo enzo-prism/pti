@@ -246,8 +246,7 @@ const Value = () => {
                 "I had the pleasure of meeting Fred & Liz. Fred's insight is a goldmine for anyone looking to purchase or sell a dental practice. Fred's expertise in valuations and legalities is impressive. The resources provided seem comprehensive and well-crafted, a testament to their experience. If you're a dentist considering a practice transaction, I recommend tapping into their knowledge and experience."
               </blockquote>
               <div className="flex flex-col items-center">
-                <p className="font-semibold text-gray-900 text-lg">Alexander Zaykov</p>
-                <p className="text-gray-600">Dentist</p>
+                <p className="font-semibold text-gray-900 text-lg">Dr. Alexander Zaykov</p>
               </div>
             </div>
           </div>
