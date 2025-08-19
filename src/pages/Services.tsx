@@ -12,25 +12,25 @@ const Services = () => {
     {
       title: "Opinion of Value",
       description: "Comprehensive valuation services to determine the true market value of your dental practice.",
-      icon: <FileText className="h-8 w-8" />,
+      icon: <FileText className="h-8 w-8 text-blue-600" />,
       url: "/services/value"
     },
     {
       title: "Selling a Practice",
       description: "Strategic guidance and support for selling your practice to achieve maximum value.",
-      icon: <DollarSign className="h-8 w-8" />,
+      icon: <DollarSign className="h-8 w-8 text-emerald-600" />,
       url: "/services/selling"
     },
     {
       title: "Associateships/Buy In",
       description: "Structured pathways for associates to buy in and transition into ownership roles.",
-      icon: <Users className="h-8 w-8" />,
+      icon: <Users className="h-8 w-8 text-orange-600" />,
       url: "/services/associateships"
     },
     {
       title: "Partnerships",
       description: "Creating equitable partnership arrangements that benefit all parties involved.",
-      icon: <Handshake className="h-8 w-8" />,
+      icon: <Handshake className="h-8 w-8 text-purple-600" />,
       url: "/services/partnerships"
     }
   ];
