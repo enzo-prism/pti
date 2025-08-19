@@ -4,6 +4,12 @@ import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section"
 import { Cta } from "@/components/ui/cta";
 import { DollarSign, FileText, TrendingUp, CheckCircle, Shield, Users, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Selling = () => {
   return (
@@ -143,6 +149,57 @@ const Selling = () => {
           buttonText="Book Your Free Consultation"
           buttonUrl="/contact"
         />
+      </Section>
+
+      {/* FAQ Section */}
+      <Section background="light">
+        <SectionTitle centered>Frequently Asked Questions</SectionTitle>
+        
+        <div className="max-w-4xl mx-auto mt-8">
+          <Accordion type="single" collapsible className="space-y-4">
+            <AccordionItem value="item-1" className="bg-white rounded-lg border border-gray-200">
+              <AccordionTrigger className="px-4 sm:px-6 py-4 text-sm sm:text-base md:text-lg font-semibold">
+                Why do I need a professional dental practice valuation?
+              </AccordionTrigger>
+              <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                A professional valuation provides an unbiased and accurate assessment of your practice's market value, 
+                crucial for fair negotiations whether you're buying or selling. It also helps with financial planning 
+                and understanding your most significant asset.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-2" className="bg-white rounded-lg border border-gray-200">
+              <AccordionTrigger className="px-4 sm:px-6 py-4 text-sm sm:text-base md:text-lg font-semibold">
+                What factors significantly impact my dental practice's value?
+              </AccordionTrigger>
+              <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                Key factors include your financial performance (revenue, profitability), patient demographics and retention, 
+                your location, and the expertise of your team.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-3" className="bg-white rounded-lg border border-gray-200">
+              <AccordionTrigger className="px-4 sm:px-6 py-4 text-sm sm:text-base md:text-lg font-semibold">
+                How is a dental practice valuation different from valuing a general business?
+              </AccordionTrigger>
+              <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                Dental practices have unique elements like patient goodwill, the importance of the doctor-patient relationship, 
+                insurance complexities, and specialized equipment, which require specific expertise to assess accurately.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-4" className="bg-white rounded-lg border border-gray-200">
+              <AccordionTrigger className="px-4 sm:px-6 py-4 text-sm sm:text-base md:text-lg font-semibold">
+                What are the different types of valuations, and which one is right for me?
+              </AccordionTrigger>
+              <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                We offer various levels of valuation, from an initial Opinion of Value for preliminary planning to a 
+                comprehensive Standard Valuation for most transactions and a Certified Valuation for complex situations 
+                or legal purposes. We can help you determine the best fit for your needs.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
       </Section>
     </>
   );
