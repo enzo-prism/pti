@@ -35,12 +35,9 @@ const Partnerships = () => {
             <p className="text-gray-600 mb-6 leading-relaxed">
               At Practice Transitions Institute, we specialize in creating partnership arrangements that are balanced, equitable, and designed for long-term success.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex justify-center sm:justify-start">
               <Button asChild size="lg">
                 <Link to="/contact">Schedule a Consultation</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link to="/services">View All Services</Link>
               </Button>
             </div>
           </div>
