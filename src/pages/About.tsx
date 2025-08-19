@@ -217,7 +217,7 @@ const About = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
           {[
             { number: "500+", label: "Successful Transitions", numberColor: "text-blue-600" },
-            { number: "15", label: "Years of Experience", numberColor: "text-emerald-600" },
+            { number: "92", label: "Years of Experience", numberColor: "text-emerald-600" },
             { number: "42", label: "States Served", numberColor: "text-orange-600" },
             { number: "98%", label: "Client Satisfaction", numberColor: "text-purple-600" }
           ].map((stat, index) => (
