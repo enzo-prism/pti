@@ -93,7 +93,7 @@ const About = () => {
       <Section background="light" className="py-8 md:py-16">
         <div className="text-center mb-8">
           <SectionTitle className="text-2xl md:text-4xl mb-3 md:mb-6">Meet Our Leadership Team</SectionTitle>
-          <SectionSubtitle className="text-base md:text-lg px-4">
+          <SectionSubtitle centered className="text-base md:text-lg px-4">
             The experienced professionals who founded and lead Practice Transitions Institute
           </SectionSubtitle>
         </div>
