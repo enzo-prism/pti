@@ -169,17 +169,6 @@ const Value = () => {
               >
                 <Link to="/contact">Schedule a Consultation</Link>
               </Button>
-              
-              <div className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
-                <span className="text-sm">or</span>
-                <Link 
-                  to="/services" 
-                  className="story-link text-white font-medium flex items-center gap-1 hover-scale"
-                >
-                  View Other Services
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
             </div>
           </div>
         </div>
