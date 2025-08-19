@@ -39,7 +39,11 @@ export const ContactForm = () => {
   if (hasError) {
     return (
       <div className="lg:col-span-2">
-        <h2 className="text-2xl font-semibold mb-6">Request a Consultation</h2>
+        <h2 className="text-2xl font-semibold mb-2">Reach Out to Start the Conversation</h2>
+        <div className="mb-6 text-gray-600">
+          <p className="mb-2">Call us: (833) 784 – 1121</p>
+          <p>Email us: Complete the form below</p>
+        </div>
         <div 
           className="flex items-center justify-center border rounded-lg bg-muted"
           style={{ minHeight: `${TYPEFORM_INITIAL_HEIGHT}px` }}
@@ -62,7 +66,11 @@ export const ContactForm = () => {
 
   return (
     <div className="lg:col-span-2">
-      <h2 className="text-2xl font-semibold mb-6">Request a Consultation</h2>
+      <h2 className="text-2xl font-semibold mb-2">Reach Out to Start the Conversation</h2>
+      <div className="mb-6 text-gray-600">
+        <p className="mb-2">Call us: (833) 784 – 1121</p>
+        <p>Email us: Complete the form below</p>
+      </div>
       {isLoading && (
         <div 
           className="flex items-center justify-center"
