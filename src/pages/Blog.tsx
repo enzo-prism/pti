@@ -74,6 +74,15 @@ const categories = ["All", "Personal Reflections", "Practice Management"];
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [expandedPosts, setExpandedPosts] = useState<number[]>([]);
+
+  const togglePostExpansion = (postId: number) => {
+    setExpandedPosts(prev => 
+      prev.includes(postId) 
+        ? prev.filter(id => id !== postId)
+        : [...prev, postId]
+    );
+  };
 
   return (
     <>
@@ -144,10 +153,24 @@ const Blog = () => {
                   <div className="text-sm text-gray-600 mb-6">
                     By {blogPosts[0].author}
                   </div>
-                  <Button className="w-fit group">
-                    Read Full Article 
+                  <Button 
+                    className="w-fit group"
+                    onClick={() => togglePostExpansion(blogPosts[0].id)}
+                  >
+                    {expandedPosts.includes(blogPosts[0].id) ? 'Show Less' : 'Read Full Article'}
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
+                  {expandedPosts.includes(blogPosts[0].id) && (
+                    <div className="mt-6 pt-6 border-t border-gray-200">
+                      <div className="prose prose-gray max-w-none">
+                        {blogPosts[0].content.split('\n\n').map((paragraph, index) => (
+                          <p key={index} className="mb-4 text-gray-700 leading-relaxed">
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -184,13 +207,35 @@ const Blog = () => {
                   <p className="text-gray-600 text-sm mb-4 leading-relaxed">
                     {post.excerpt}
                   </p>
+                  {expandedPosts.includes(post.id) && (
+                    <div className="mb-4 pt-4 border-t border-gray-100">
+                      <div className="prose prose-sm max-w-none">
+                        {post.content.split('\n\n').slice(0, 3).map((paragraph, index) => (
+                          <p key={index} className="mb-3 text-gray-700 text-sm leading-relaxed">
+                            {paragraph}
+                          </p>
+                        ))}
+                        {post.content.split('\n\n').length > 3 && (
+                          <p className="text-gray-500 text-xs italic">
+                            ...continue reading in full article view
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center text-xs text-gray-500">
                       <Calendar className="h-3 w-3 mr-1" />
                       {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                     </div>
-                    <Button variant="ghost" size="sm" className="p-0 h-auto text-primary hover:text-primary-dark">
-                      Read More <ArrowRight className="ml-1 h-3 w-3" />
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="p-0 h-auto text-primary hover:text-primary-dark"
+                      onClick={() => togglePostExpansion(post.id)}
+                    >
+                      {expandedPosts.includes(post.id) ? 'Show Less' : 'Read More'} 
+                      <ArrowRight className="ml-1 h-3 w-3" />
                     </Button>
                   </div>
                 </CardContent>
