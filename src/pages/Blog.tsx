@@ -10,67 +10,29 @@ import SEO from "@/components/layout/SEO";
 const blogPosts = [
   {
     id: 1,
-    title: "5 Key Factors That Determine Your Dental Practice Value",
-    excerpt: "Understanding what drives practice valuations can help you make informed decisions about your practice's future. Learn about the critical factors that impact your practice worth.",
-    category: "Practice Valuation",
-    date: "2024-01-15",
-    readTime: "5 min read",
-    gradient: "bg-gradient-to-br from-blue-400 via-purple-500 to-pink-400",
-    slug: "key-factors-dental-practice-value"
-  },
-  {
-    id: 2,
-    title: "Navigating Practice Transitions: A Complete Guide for Dentists",
-    excerpt: "Whether you're buying, selling, or planning succession, successful practice transitions require careful planning and expert guidance. Here's everything you need to know.",
-    category: "Practice Transitions",
-    date: "2024-01-08",
+    title: "So Much to be Thankful For",
+    excerpt: "As we enter the holiday season, I love this time of year because it always gives me an opportunity to pause and reflect. It provides me an opportunity to be thankful for all the blessings I have. A heartfelt reflection on gratitude, loss, fear, and giving back to our profession.",
+    category: "Personal Reflections",
+    date: "2024-12-26",
     readTime: "8 min read",
-    gradient: "bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-400",
-    slug: "navigating-practice-transitions-guide"
-  },
-  {
-    id: 3,
-    title: "Associate to Owner: Building Your Path to Practice Ownership",
-    excerpt: "Transitioning from associate to practice owner is a significant milestone. Learn how to structure successful associateship agreements and buy-in opportunities.",
-    category: "Associateships",
-    date: "2024-01-01",
-    readTime: "6 min read",
     gradient: "bg-gradient-to-br from-amber-400 via-orange-500 to-red-400",
-    slug: "associate-to-owner-path"
-  },
-  {
-    id: 4,
-    title: "Tax Strategies for Dental Practice Sales: Maximizing Your Returns",
-    excerpt: "Smart tax planning can significantly impact your practice sale proceeds. Discover strategies to minimize tax liability and maximize your financial gains.",
-    category: "Financial Planning",
-    date: "2023-12-25",
-    readTime: "7 min read",
-    gradient: "bg-gradient-to-br from-violet-400 via-indigo-500 to-blue-500",
-    slug: "tax-strategies-practice-sales"
-  },
-  {
-    id: 5,
-    title: "Partnership Agreements: Essential Elements for Successful Dental Partnerships",
-    excerpt: "Creating successful dental partnerships requires clear agreements and aligned expectations. Learn the key components of effective partnership structures.",
-    category: "Partnerships",
-    date: "2023-12-18",
-    readTime: "6 min read",
-    gradient: "bg-gradient-to-br from-pink-400 via-rose-500 to-orange-400",
-    slug: "partnership-agreements-essential-elements"
-  },
-  {
-    id: 6,
-    title: "Market Trends: What's Driving Dental Practice Values in 2024",
-    excerpt: "Stay informed about current market conditions affecting dental practice valuations and transactions. Industry insights for buyers and sellers.",
-    category: "Market Insights",
-    date: "2023-12-11",
-    readTime: "5 min read",
-    gradient: "bg-gradient-to-br from-green-400 via-emerald-500 to-teal-500",
-    slug: "market-trends-practice-values-2024"
+    slug: "so-much-to-be-thankful-for",
+    author: "Michael Njo, DDS",
+    content: `As we enter the holiday season, did I just say that? Where did this year go? I love this time of year, although I do miss the summer months. The reason I love this time of year is it always gives me an opportunity to pause and reflect. It provides me an opportunity to be thankful for all the blessings I have. I wanted to share that I lost a dear friend this year at the young age of 51 who battled cancer for several years, leaving a wonderful wife and two loving children, a freshman and junior in college. Unfortunately, my story is not too uncommon. If you speak to enough people, one would come across a similarly tragic story, and some have come close to losing a loved one. In reflecting on this year, I came across this inscription, that I sent a book to him - "The Boy, the mole, the fox and the horse"
+
+Dear Kevin, You have had a long-fought journey, and this journey is continuing, because your life will continue. I thought this book would be helpful with this journey. My niece gave this book to me, she knows that I enjoy things that make me view life in different ways and make me think. I hope this book provides inspiration and strength as you soldier on. But does this journey need to be a fight, do you need to be a soldier? One of our greatest freedoms is how we react to things - it is our choice. Sometimes just getting up and carrying on is magnificent. When the big things feel out of control...focus on what you love right under your nose, your amazing family and your friends who love you!!! Life is all about mindset. As you read through this book, hopefully these thoughts will be uplifting. The ending of the book shares that this book is about friendship and indeed Renee and our family will always be by your and your family's side. It is an honor to call you, my friend!
+
+Our family will be forever thankful he was a part of our lives.
+
+Recently I had the opportunity to be one of the speakers in an Annual Leadership Retreat held in Deer Valley, Utah. It was an amazing group. The attendees were all Pride Institute Alumnus practicing and retired. What a beautiful place! It was a perfect setting for the featured speaker, Kristen Ulmer, who is the author of the "Art of Fear" and was the number one Big Mountain Skier for 12 years. She addressed fear and how different people manage it. She shared the exercises of really understanding people and how we can all interact better with our patients, team, friends and family. Kristen shares with the group that treatment for anxiety disorders is more resistance. These are not mental health issues, she expresses. Furthermore, these anxiety disorders can manifest itself into physical ailments. We should not try to suppress or bury fear. If you are in flow with your fear than you can be in flow with yourself. The awful feeling we associate with fear is not fear it is the feeling of the resistance. Our society loves to fear shame. We need to embrace fear and work with it. How does fear factor in your personal life, with your patients and with your team? It is too large of a concept to address in this article, but it should give you pause and a time of self-reflection. It was an amazing talk. If you are interested in attending the next one, please reach out to me.
+
+I also had the honor to speak to the dental students at the Dugoni School of Dentistry at the start of the school year. The topic was advice on navigating dental school and career paths after dental school. I truly enjoy interacting and presenting to these groups. It was wonderful to see the number of Freshman students, as well as each class being well represented. The group was engaging, asked very thoughtful questions and their curiosity and zest for knowledge was off the charts. They have their whole career ahead of them. Their energy, excitement, and fear of what their future holds was palpable. I highlighted my former Dean, Dr. Art Dugoni's, message of be involved, be a leader, and give back to our profession. As organized dentistry is facing a variety of challenges it is now more important than ever to be part of a movement to be involved. As we reflect on our own blessings in life, we can show our gratitude now by paying forward. There are so many opportunities to be involved. Many hands make light work! I know the individuals reading this article echo my sentiment and charge. It is us that need to get the word out! I am thankful to my profession, to the San Mateo County Dental Society and its awesome team and constituents, and to all who have touched my life! Wishing you all a very joyous holiday season!
+
+Please email me at dentalstrategies@gmail.com for any questions or suggestions for future article topics.`
   }
 ];
 
-const categories = ["All", "Practice Valuation", "Practice Transitions", "Associateships", "Financial Planning", "Partnerships", "Market Insights"];
+const categories = ["All", "Personal Reflections"];
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -141,6 +103,9 @@ const Blog = () => {
                     <Clock className="h-4 w-4 mr-2" />
                     <span>{blogPosts[0].readTime}</span>
                   </div>
+                  <div className="text-sm text-gray-600 mb-6">
+                    By {blogPosts[0].author}
+                  </div>
                   <Button className="w-fit group">
                     Read Full Article 
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -152,48 +117,50 @@ const Blog = () => {
         </Section>
       )}
 
-      {/* Blog Posts Grid */}
-      <Section>
-        <SectionTitle centered>Latest Articles</SectionTitle>
-        <SectionSubtitle centered>
-          Expert insights and practical guidance for dental practice owners
-        </SectionSubtitle>
+      {/* Blog Posts Grid - Only show if there are additional posts beyond the featured one */}
+      {blogPosts.slice(1).filter(post => selectedCategory === "All" || post.category === selectedCategory).length > 0 && (
+        <Section>
+          <SectionTitle centered>Latest Articles</SectionTitle>
+          <SectionSubtitle centered>
+            Expert insights and practical guidance for dental practice owners
+          </SectionSubtitle>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-          {blogPosts.slice(1).filter(post => selectedCategory === "All" || post.category === selectedCategory).map((post) => (
-            <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
-              <div className={`aspect-video overflow-hidden ${post.gradient}`}>
-              </div>
-              <CardHeader className="pb-3">
-                <div className="flex items-center justify-between mb-2">
-                  <Badge variant="outline">{post.category}</Badge>
-                  <div className="flex items-center text-xs text-gray-500">
-                    <Clock className="h-3 w-3 mr-1" />
-                    {post.readTime}
-                  </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+            {blogPosts.slice(1).filter(post => selectedCategory === "All" || post.category === selectedCategory).map((post) => (
+              <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
+                <div className={`aspect-video overflow-hidden ${post.gradient}`}>
                 </div>
-                <CardTitle className="text-lg leading-tight group-hover:text-primary transition-colors">
-                  {post.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                  {post.excerpt}
-                </p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center text-xs text-gray-500">
-                    <Calendar className="h-3 w-3 mr-1" />
-                    {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <Badge variant="outline">{post.category}</Badge>
+                    <div className="flex items-center text-xs text-gray-500">
+                      <Clock className="h-3 w-3 mr-1" />
+                      {post.readTime}
+                    </div>
                   </div>
-                  <Button variant="ghost" size="sm" className="p-0 h-auto text-primary hover:text-primary-dark">
-                    Read More <ArrowRight className="ml-1 h-3 w-3" />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </Section>
+                  <CardTitle className="text-lg leading-tight group-hover:text-primary transition-colors">
+                    {post.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center text-xs text-gray-500">
+                      <Calendar className="h-3 w-3 mr-1" />
+                      {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                    </div>
+                    <Button variant="ghost" size="sm" className="p-0 h-auto text-primary hover:text-primary-dark">
+                      Read More <ArrowRight className="ml-1 h-3 w-3" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </Section>
+      )}
 
       {/* Newsletter Signup */}
       <Section background="light">
