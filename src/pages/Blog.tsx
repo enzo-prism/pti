@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import SEO from "@/components/layout/SEO";
 
 const blogPosts = [
@@ -72,6 +73,8 @@ const blogPosts = [
 const categories = ["All", "Practice Valuation", "Practice Transitions", "Associateships", "Financial Planning", "Partnerships", "Market Insights"];
 
 const Blog = () => {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
   return (
     <>
       <SEO 
@@ -95,49 +98,59 @@ const Blog = () => {
 
       {/* Categories Filter */}
       <Section className="py-8">
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
+        <div className="flex flex-wrap justify-center gap-3 mb-8 px-4">
           {categories.map((category) => (
-            <Badge 
-              key={category} 
-              variant={category === "All" ? "default" : "outline"}
-              className="cursor-pointer hover:bg-primary hover:text-white transition-colors"
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`
+                px-4 py-2.5 md:px-6 md:py-3 rounded-full text-sm md:text-base font-medium 
+                transition-all duration-200 min-h-[44px] min-w-[60px]
+                border-2 hover:scale-105 active:scale-95
+                ${selectedCategory === category 
+                  ? 'bg-primary text-white border-primary shadow-lg' 
+                  : 'bg-white text-gray-700 border-gray-200 hover:border-primary hover:text-primary hover:shadow-md'
+                }
+              `}
             >
               {category}
-            </Badge>
+            </button>
           ))}
         </div>
       </Section>
 
       {/* Featured Post */}
-      <Section className="py-0">
-        <div className="max-w-6xl mx-auto">
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-            <div className="grid md:grid-cols-2 gap-0">
-              <div className={`aspect-video md:aspect-square ${blogPosts[0].gradient}`}>
-              </div>
-              <div className="p-8 flex flex-col justify-center">
-                <Badge className="mb-4 w-fit">{blogPosts[0].category}</Badge>
-                <h2 className="text-2xl md:text-3xl font-bold mb-4 leading-tight">
-                  {blogPosts[0].title}
-                </h2>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  {blogPosts[0].excerpt}
-                </p>
-                <div className="flex items-center text-sm text-gray-500 mb-6">
-                  <Calendar className="h-4 w-4 mr-2" />
-                  <span className="mr-4">{new Date(blogPosts[0].date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                  <Clock className="h-4 w-4 mr-2" />
-                  <span>{blogPosts[0].readTime}</span>
+      {(selectedCategory === "All" || blogPosts[0].category === selectedCategory) && (
+        <Section className="py-0">
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
+              <div className="grid md:grid-cols-2 gap-0">
+                <div className={`aspect-video md:aspect-square ${blogPosts[0].gradient}`}>
                 </div>
-                <Button className="w-fit group">
-                  Read Full Article 
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                <div className="p-8 flex flex-col justify-center">
+                  <Badge className="mb-4 w-fit">{blogPosts[0].category}</Badge>
+                  <h2 className="text-2xl md:text-3xl font-bold mb-4 leading-tight">
+                    {blogPosts[0].title}
+                  </h2>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    {blogPosts[0].excerpt}
+                  </p>
+                  <div className="flex items-center text-sm text-gray-500 mb-6">
+                    <Calendar className="h-4 w-4 mr-2" />
+                    <span className="mr-4">{new Date(blogPosts[0].date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                    <Clock className="h-4 w-4 mr-2" />
+                    <span>{blogPosts[0].readTime}</span>
+                  </div>
+                  <Button className="w-fit group">
+                    Read Full Article 
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </Section>
+        </Section>
+      )}
 
       {/* Blog Posts Grid */}
       <Section>
@@ -147,7 +160,7 @@ const Blog = () => {
         </SectionSubtitle>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-          {blogPosts.slice(1).map((post) => (
+          {blogPosts.slice(1).filter(post => selectedCategory === "All" || post.category === selectedCategory).map((post) => (
             <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
               <div className={`aspect-video overflow-hidden ${post.gradient}`}>
               </div>
