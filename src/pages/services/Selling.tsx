@@ -212,10 +212,16 @@ const Selling = () => {
         
         <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
           <TestimonialCard
-            quote="I recently sold my dental practice after 41 years. I was primarily concerned to find a dentist who matched my treatment planning philosophy and to take good care of my wonderful patients and staff. In the current environment of corporate dentistry, I knew that it would not be an easy task. Fortunately, a colleague gave me the name of Michael Njo and Dental Strategies. Because Michael is a dentist with general practice experience, he has a great understanding of the important aspects for a transfer of a practice, not only for the seller but also for the buyer. I am quite happy that I had Dr Njo to help me navigate my sale! He was very easy to work with. I am glad to report that together we found a great match for my staff and patients."
-            author="Gregory Baird"
+            quote="I feel extremely fortunate to have found and chosen Fred Heppner to help me through the process of selling my practice. I enjoyed Fred's straightforward demeanor, and his ability to simplify for me what would have been an overly complex endeavor. The sale happened very quickly and efficiently, and I couldn't be more pleased with the outcome!"
+            author="Jeff Lewis, DDS, FACP"
+            role="Orthodontist"
+          />
+          
+          <TestimonialCard
+            quote="Be careful what you ask for, because I will get it for you. That is what Michael from Dental Strategies said to me at our first face-to-face meeting. That was March 2023. We were referred to Michael after our practice was on the market for a year with few inquiries. We closed July 31, 2023 with full cash offer to a wonderful couple. That is testimony, thank you Michael."
+            author="Keith Long"
             role="Practice Seller"
-            company="3 months ago"
+            company="1 year ago"
           />
           
           <TestimonialCard
@@ -223,13 +229,6 @@ const Selling = () => {
             author="Tony Choi"
             role="Practice Seller"
             company="4 months ago"
-          />
-          
-          <TestimonialCard
-            quote="As we were in the midst of a complex process to sell our dental practice, we encountered challenges in securing an offer that reflected the true value of our well-established family practice. Despite garnering interest from several dentists, it proved to be a daunting task. Additionally, my need for orthopedic surgery necessitated the hiring of a dentist to fill in for a six-month period during my recovery. It was during this time that we were introduced to Dental Strategies by one of the bankers assisting us. Michael promptly met with us and initiated the process. Within just two months, we were introduced to a prospective buyer. Working with someone like Michael, who is not only a former dentist but also possesses expertise that surpasses that of a traditional real estate broker, proved to be advantageous for us. His knowledge in the field allowed us to navigate through the complexities of selling our dental practice with confidence. The assistance provided by attorney Mike Treppa, and Dental Strategies played a crucial role in successfully selling our dental practice. Their expertise and guidance not only facilitated the process but also ensured that we received an offer that truly reflected the value of our well-established family practice."
-            author="Richard & Kimberly Crum"
-            role="Practice Sellers"
-            company="7 months ago"
           />
         </div>
         
