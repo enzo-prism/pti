@@ -350,28 +350,35 @@ const Events = () => {
                 <div className={`mb-4 ${
                   event.isPast ? "text-gray-500" : "text-gray-600"
                 }`}>
-                  {typeof event.description === 'string' ? (
-                    <p className="text-sm leading-relaxed line-clamp-3">
-                      {event.description}
-                    </p>
-                  ) : (
-                    <div className="space-y-3">
-                      <p className="text-sm leading-relaxed">
-                        {event.description.intro}
-                      </p>
-                      <div>
-                        <p className="text-sm font-semibold mb-2">At this seminar, you'll discover how to:</p>
-                        <ul className="text-sm space-y-1">
-                          {event.description.learningPoints.map((point, index) => (
-                            <li key={index} className="flex items-start">
-                              <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                              {point}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  )}
+                  {(() => {
+                    console.log('Event description:', event.description, 'Type:', typeof event.description);
+                    if (typeof event.description === 'string') {
+                      return (
+                        <p className="text-sm leading-relaxed line-clamp-3">
+                          {event.description}
+                        </p>
+                      );
+                    } else {
+                      return (
+                        <div className="space-y-3">
+                          <p className="text-sm leading-relaxed">
+                            {event.description.intro}
+                          </p>
+                          <div>
+                            <p className="text-sm font-semibold mb-2">At this seminar, you'll discover how to:</p>
+                            <ul className="text-sm space-y-1">
+                              {event.description.learningPoints.map((point, index) => (
+                                <li key={index} className="flex items-start">
+                                  <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                                  {point}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      );
+                    }
+                  })()}
                 </div>
                 
                 {/* Speakers Section for Webinars */}
