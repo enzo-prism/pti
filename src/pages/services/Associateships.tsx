@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
+import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { Users, FileText, TrendingUp, CheckCircle, ArrowRight, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -189,6 +190,22 @@ const Associateships = () => {
               </div>
             </div>
           </div>
+        </div>
+      </Section>
+
+      {/* Testimonial Section */}
+      <Section background="light" className="py-8 sm:py-12 md:py-16">
+        <SectionTitle centered>What Our Clients Say</SectionTitle>
+        <SectionSubtitle centered>
+          Hear from dentists who have successfully navigated practice transitions with our guidance
+        </SectionSubtitle>
+        
+        <div className="max-w-2xl mx-auto mt-8 px-3">
+          <TestimonialCard
+            quote="Michael, I just want to say THANK YOU for being so instrumental in the purchase of my practice. I have been so fortunate of meeting you and working with you for the past (almost) two years. I still can't believe that we did it! Now, it is going to take lots of work to get to where I want to be, but purchasing the practice (this practice) is a great beginning and I owe you soo much. Please let me know when you are around this area to take you to a good lunch or dinner, which is the least I can do to show you my appreciation."
+            author="Eugenio"
+            role="Practice Buyer"
+          />
         </div>
       </Section>
 
