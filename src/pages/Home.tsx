@@ -117,13 +117,13 @@ const Home = () => {
               },
               {
                 number: 5,
-                title: "Map Your Next Move",
-                description: "We help you plan confidently for life after the sale."
+                title: "Protect What Matters",
+                description: "Safeguard your reputation, relationships, for peace of mind."
               },
               {
                 number: 6,
-                title: "Protect What Matters",
-                description: "Safeguard your reputation, relationships, for peace of mind."
+                title: "Map Your Next Move",
+                description: "We help you plan confidently for life after the sale."
               }
             ].map((step, index) => (
               <ScrollReveal key={step.number} direction="scale" delay={index * 100} intensity="subtle">
