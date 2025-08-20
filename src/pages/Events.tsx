@@ -13,7 +13,10 @@ interface Event {
   date: string;
   time: string;
   location: string;
-  description: string;
+  description: string | {
+    intro: string;
+    learningPoints: string[];
+  };
   type: "webinar" | "seminar" | "workshop" | "conference";
   registrationLink: string;
   isPast: boolean;
@@ -106,7 +109,17 @@ const Events = () => {
       date: "March 27, 2026",
       time: "Full Day",
       location: "Orange County, CA",
-      description: "Whether entering, expanding, or exiting your career, meticulous planning is essential. Practice Transitions Institute's experts guide you through each stage, helping you avoid costly missteps and ensuring a seamless and prosperous transition. At this seminar, you'll discover how to: • Negotiate a win-win practice transition • Understand the economic climate and its effect on practice value and ownership • Develop clear associate/partnership agreements safeguarding your interests and fostering collaboration • Determine the value of a practice • Maximize your practice value for a lucrative transition • Avoid tax pitfalls by structuring the sale to minimize tax liability and maximize financial gains",
+      description: {
+        intro: "Whether entering, expanding, or exiting your career, meticulous planning is essential. Practice Transitions Institute's experts guide you through each stage, helping you avoid costly missteps and ensuring a seamless and prosperous transition.",
+        learningPoints: [
+          "Negotiate a win-win practice transition",
+          "Understand the economic climate and its effect on practice value and ownership",
+          "Develop clear associate/partnership agreements safeguarding your interests and fostering collaboration",
+          "Determine the value of a practice",
+          "Maximize your practice value for a lucrative transition",
+          "Avoid tax pitfalls by structuring the sale to minimize tax liability and maximize financial gains"
+        ]
+      },
       type: "seminar" as const,
       registrationLink: "tel:+18337841121"
     },
@@ -116,7 +129,17 @@ const Events = () => {
       date: "July 17, 2026",
       time: "Full Day",
       location: "San Francisco, CA",
-      description: "Whether entering, expanding, or exiting your career, meticulous planning is essential. Practice Transitions Institute's experts guide you through each stage, helping you avoid costly missteps and ensuring a seamless and prosperous transition. At this seminar, you'll discover how to: • Negotiate a win-win practice transition • Understand the economic climate and its effect on practice value and ownership • Develop clear associate/partnership agreements safeguarding your interests and fostering collaboration • Determine the value of a practice • Maximize your practice value for a lucrative transition • Avoid tax pitfalls by structuring the sale to minimize tax liability and maximize financial gains",
+      description: {
+        intro: "Whether entering, expanding, or exiting your career, meticulous planning is essential. Practice Transitions Institute's experts guide you through each stage, helping you avoid costly missteps and ensuring a seamless and prosperous transition.",
+        learningPoints: [
+          "Negotiate a win-win practice transition",
+          "Understand the economic climate and its effect on practice value and ownership",
+          "Develop clear associate/partnership agreements safeguarding your interests and fostering collaboration",
+          "Determine the value of a practice",
+          "Maximize your practice value for a lucrative transition",
+          "Avoid tax pitfalls by structuring the sale to minimize tax liability and maximize financial gains"
+        ]
+      },
       type: "seminar" as const,
       registrationLink: "tel:+18337841121"
     },
@@ -126,7 +149,17 @@ const Events = () => {
       date: "October 16, 2026",
       time: "Full Day",
       location: "Sacramento, CA",
-      description: "Whether entering, expanding, or exiting your career, meticulous planning is essential. Practice Transitions Institute's experts guide you through each stage, helping you avoid costly missteps and ensuring a seamless and prosperous transition. At this seminar, you'll discover how to: • Negotiate a win-win practice transition • Understand the economic climate and its effect on practice value and ownership • Develop clear associate/partnership agreements safeguarding your interests and fostering collaboration • Determine the value of a practice • Maximize your practice value for a lucrative transition • Avoid tax pitfalls by structuring the sale to minimize tax liability and maximize financial gains",
+      description: {
+        intro: "Whether entering, expanding, or exiting your career, meticulous planning is essential. Practice Transitions Institute's experts guide you through each stage, helping you avoid costly missteps and ensuring a seamless and prosperous transition.",
+        learningPoints: [
+          "Negotiate a win-win practice transition",
+          "Understand the economic climate and its effect on practice value and ownership",
+          "Develop clear associate/partnership agreements safeguarding your interests and fostering collaboration",
+          "Determine the value of a practice",
+          "Maximize your practice value for a lucrative transition",
+          "Avoid tax pitfalls by structuring the sale to minimize tax liability and maximize financial gains"
+        ]
+      },
       type: "seminar" as const,
       registrationLink: "tel:+18337841121"
     }
@@ -314,11 +347,32 @@ const Events = () => {
                 </div>
                 
                 {/* Event Description */}
-                <p className={`text-sm leading-relaxed mb-4 line-clamp-3 ${
+                <div className={`mb-4 ${
                   event.isPast ? "text-gray-500" : "text-gray-600"
                 }`}>
-                  {event.description}
-                </p>
+                  {typeof event.description === 'string' ? (
+                    <p className="text-sm leading-relaxed line-clamp-3">
+                      {event.description}
+                    </p>
+                  ) : (
+                    <div className="space-y-3">
+                      <p className="text-sm leading-relaxed">
+                        {event.description.intro}
+                      </p>
+                      <div>
+                        <p className="text-sm font-semibold mb-2">At this seminar, you'll discover how to:</p>
+                        <ul className="text-sm space-y-1">
+                          {event.description.learningPoints.map((point, index) => (
+                            <li key={index} className="flex items-start">
+                              <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                              {point}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+                </div>
                 
                 {/* Speakers Section for Webinars */}
                 {event.type === "webinar" && event.speakers && event.speakers.length > 0 && (
