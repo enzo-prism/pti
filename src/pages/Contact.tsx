@@ -34,7 +34,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <Section className="mb-8">
+      <Section className="mb-2">
         <div className="max-w-4xl mx-auto">
           <ContactForm />
         </div>
