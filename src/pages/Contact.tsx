@@ -34,8 +34,8 @@ const Contact = () => {
         </div>
       </div>
 
-      <Section className="mb-0 pb-0">
-        <div className="max-w-4xl mx-auto mb-[10px]">
+      <Section className="mb-0 pb-0 -mb-16 md:-mb-20">
+        <div className="max-w-4xl mx-auto">
           <ContactForm />
         </div>
       </Section>
