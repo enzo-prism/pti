@@ -14,7 +14,7 @@ const blogPosts = [
     category: "Practice Valuation",
     date: "2024-01-15",
     readTime: "5 min read",
-    image: "/lovable-uploads/933236f7-462f-428c-954f-1f4d6a8ab234.png",
+    gradient: "bg-gradient-to-br from-blue-400 via-purple-500 to-pink-400",
     slug: "key-factors-dental-practice-value"
   },
   {
@@ -24,7 +24,7 @@ const blogPosts = [
     category: "Practice Transitions",
     date: "2024-01-08",
     readTime: "8 min read",
-    image: "/lovable-uploads/bccc97e0-b404-49e4-bd5d-ae51c3f45346.png",
+    gradient: "bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-400",
     slug: "navigating-practice-transitions-guide"
   },
   {
@@ -34,7 +34,7 @@ const blogPosts = [
     category: "Associateships",
     date: "2024-01-01",
     readTime: "6 min read",
-    image: "/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png",
+    gradient: "bg-gradient-to-br from-amber-400 via-orange-500 to-red-400",
     slug: "associate-to-owner-path"
   },
   {
@@ -44,7 +44,7 @@ const blogPosts = [
     category: "Financial Planning",
     date: "2023-12-25",
     readTime: "7 min read",
-    image: "/lovable-uploads/1a104794-17ea-4b67-b3f2-17a24be7dc49.png",
+    gradient: "bg-gradient-to-br from-violet-400 via-indigo-500 to-blue-500",
     slug: "tax-strategies-practice-sales"
   },
   {
@@ -54,7 +54,7 @@ const blogPosts = [
     category: "Partnerships",
     date: "2023-12-18",
     readTime: "6 min read",
-    image: "/lovable-uploads/387f8cf6-b01b-4a65-873f-7abdbafa078f.png",
+    gradient: "bg-gradient-to-br from-pink-400 via-rose-500 to-orange-400",
     slug: "partnership-agreements-essential-elements"
   },
   {
@@ -64,7 +64,7 @@ const blogPosts = [
     category: "Market Insights",
     date: "2023-12-11",
     readTime: "5 min read",
-    image: "/lovable-uploads/76513465-2197-4c41-9fdb-637b791c3368.png",
+    gradient: "bg-gradient-to-br from-green-400 via-emerald-500 to-teal-500",
     slug: "market-trends-practice-values-2024"
   }
 ];
@@ -113,12 +113,7 @@ const Blog = () => {
         <div className="max-w-6xl mx-auto">
           <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
             <div className="grid md:grid-cols-2 gap-0">
-              <div className="aspect-video md:aspect-square">
-                <img 
-                  src={blogPosts[0].image} 
-                  alt={blogPosts[0].title}
-                  className="w-full h-full object-cover"
-                />
+              <div className={`aspect-video md:aspect-square ${blogPosts[0].gradient}`}>
               </div>
               <div className="p-8 flex flex-col justify-center">
                 <Badge className="mb-4 w-fit">{blogPosts[0].category}</Badge>
@@ -154,12 +149,7 @@ const Blog = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {blogPosts.slice(1).map((post) => (
             <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
-              <div className="aspect-video overflow-hidden">
-                <img 
-                  src={post.image} 
-                  alt={post.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+              <div className={`aspect-video overflow-hidden ${post.gradient}`}>
               </div>
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between mb-2">
