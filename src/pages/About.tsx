@@ -244,7 +244,7 @@ const About = () => {
             },
             {
               title: "Trusted match making",
-              description: "Dentists value our careful screening and personalized approach, which ensures only qualified and well-matched buyers are presented, preserving the legacy of their practice."
+              description: "Dentists value our careful screening and personalized approach, which ensures only qualified and well-matched buyers are presented, preserving the practice's legacy."
             },
             {
               title: "Educational Value",
