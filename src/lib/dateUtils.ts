@@ -1,0 +1,23 @@
+/**
+ * Parse a date string as a local date to avoid timezone issues
+ * @param dateString - Date string in YYYY-MM-DD format
+ * @returns Date object in local timezone
+ */
+export const parseLocalDate = (dateString: string): Date => {
+  const [year, month, day] = dateString.split('-').map(Number);
+  return new Date(year, month - 1, day); // month is 0-indexed
+};
+
+/**
+ * Format a date string for display, treating it as a local date
+ * @param dateString - Date string in YYYY-MM-DD format
+ * @param options - Intl.DateTimeFormat options
+ * @returns Formatted date string
+ */
+export const formatLocalDate = (
+  dateString: string, 
+  options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' }
+): string => {
+  const date = parseLocalDate(dateString);
+  return date.toLocaleDateString('en-US', options);
+};

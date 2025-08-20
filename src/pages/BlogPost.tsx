@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Section, SectionTitle } from "@/components/ui/section";
 import { getBlogPostBySlug, getRelatedPosts } from "@/data/blogPosts";
 import SEO from "@/components/layout/SEO";
+import { formatLocalDate } from "@/lib/dateUtils";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -87,11 +88,7 @@ const BlogPost = () => {
                 </div>
                 <div className="flex items-center">
                   <Calendar className="h-4 w-4 mr-2" />
-                  {new Date(post.date).toLocaleDateString('en-US', { 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
-                  })}
+                  {formatLocalDate(post.date)}
                 </div>
                 <div className="flex items-center">
                   <Clock className="h-4 w-4 mr-2" />
@@ -169,7 +166,7 @@ const BlogPost = () => {
                       </p>
                       <div className="flex items-center text-xs text-gray-500 mt-4">
                         <Calendar className="h-3 w-3 mr-1" />
-                        {new Date(relatedPost.date).toLocaleDateString('en-US', { 
+                        {formatLocalDate(relatedPost.date, { 
                           month: 'short', 
                           day: 'numeric', 
                           year: 'numeric' 

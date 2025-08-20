@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import SEO from "@/components/layout/SEO";
 import { blogPosts, categories } from "@/data/blogPosts";
+import { formatLocalDate } from "@/lib/dateUtils";
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -73,7 +74,7 @@ const Blog = () => {
                   </p>
                   <div className="flex items-center text-sm text-gray-500 mb-6">
                     <Calendar className="h-4 w-4 mr-2" />
-                    <span className="mr-4">{new Date(blogPosts[0].date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                    <span className="mr-4">{formatLocalDate(blogPosts[0].date)}</span>
                     <Clock className="h-4 w-4 mr-2" />
                     <span>{blogPosts[0].readTime}</span>
                   </div>
@@ -126,7 +127,7 @@ const Blog = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center text-xs text-gray-500">
                         <Calendar className="h-3 w-3 mr-1" />
-                        {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                        {formatLocalDate(post.date, { month: 'short', day: 'numeric', year: 'numeric' })}
                       </div>
                       <Button 
                         variant="ghost" 
