@@ -98,6 +98,37 @@ const Events = () => {
       description: "A comprehensive full-day seminar perfect for doctors pursuing a start-up or purchase, seeking partners/associates, planning ownership, or preparing to exit dentistry. Join us at the prestigious University of the Pacific dental school.",
       type: "seminar" as const,
       registrationLink: "tel:+18337841121"
+    },
+    // 2026 Events
+    {
+      id: 4,
+      title: "Mastering Your Dental Transition Into and Out of Practice",
+      date: "March 27, 2026",
+      time: "Full Day",
+      location: "Orange County, CA",
+      description: "Whether entering, expanding, or exiting your career, meticulous planning is essential. Practice Transitions Institute's experts guide you through each stage, helping you avoid costly missteps and ensuring a seamless and prosperous transition. At this seminar, you'll discover how to: • Negotiate a win-win practice transition • Understand the economic climate and its effect on practice value and ownership • Develop clear associate/partnership agreements safeguarding your interests and fostering collaboration • Determine the value of a practice • Maximize your practice value for a lucrative transition • Avoid tax pitfalls by structuring the sale to minimize tax liability and maximize financial gains",
+      type: "seminar" as const,
+      registrationLink: "tel:+18337841121"
+    },
+    {
+      id: 5,
+      title: "Mastering Your Dental Transition Into and Out of Practice",
+      date: "July 17, 2026",
+      time: "Full Day",
+      location: "San Francisco, CA",
+      description: "Whether entering, expanding, or exiting your career, meticulous planning is essential. Practice Transitions Institute's experts guide you through each stage, helping you avoid costly missteps and ensuring a seamless and prosperous transition. At this seminar, you'll discover how to: • Negotiate a win-win practice transition • Understand the economic climate and its effect on practice value and ownership • Develop clear associate/partnership agreements safeguarding your interests and fostering collaboration • Determine the value of a practice • Maximize your practice value for a lucrative transition • Avoid tax pitfalls by structuring the sale to minimize tax liability and maximize financial gains",
+      type: "seminar" as const,
+      registrationLink: "tel:+18337841121"
+    },
+    {
+      id: 6,
+      title: "Mastering Your Dental Transition Into and Out of Practice",
+      date: "October 16, 2026",
+      time: "Full Day",
+      location: "Sacramento, CA",
+      description: "Whether entering, expanding, or exiting your career, meticulous planning is essential. Practice Transitions Institute's experts guide you through each stage, helping you avoid costly missteps and ensuring a seamless and prosperous transition. At this seminar, you'll discover how to: • Negotiate a win-win practice transition • Understand the economic climate and its effect on practice value and ownership • Develop clear associate/partnership agreements safeguarding your interests and fostering collaboration • Determine the value of a practice • Maximize your practice value for a lucrative transition • Avoid tax pitfalls by structuring the sale to minimize tax liability and maximize financial gains",
+      type: "seminar" as const,
+      registrationLink: "tel:+18337841121"
     }
   ];
 
