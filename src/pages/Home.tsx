@@ -127,14 +127,14 @@ const Home = () => {
               }
             ].map((step, index) => (
               <ScrollReveal key={step.number} direction="scale" delay={index * 100} intensity="subtle">
-                <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-all hover-scale duration-300">
+                <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-all hover-scale duration-300 h-full flex flex-col">
                   <div className="flex items-start mb-4 md:mb-6">
                     <div className="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center mr-4 text-lg font-bold flex-shrink-0 shadow-lg">
                       {step.number}
                     </div>
                     <h3 className="font-bold text-lg md:text-xl text-gray-900">{step.title}</h3>
                   </div>
-                  <p className="text-base text-gray-600 leading-relaxed ml-16">
+                  <p className="text-base text-gray-600 leading-relaxed ml-16 flex-grow">
                     {step.description}
                   </p>
                 </div>
