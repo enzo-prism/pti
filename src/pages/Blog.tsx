@@ -29,10 +29,48 @@ Recently I had the opportunity to be one of the speakers in an Annual Leadership
 I also had the honor to speak to the dental students at the Dugoni School of Dentistry at the start of the school year. The topic was advice on navigating dental school and career paths after dental school. I truly enjoy interacting and presenting to these groups. It was wonderful to see the number of Freshman students, as well as each class being well represented. The group was engaging, asked very thoughtful questions and their curiosity and zest for knowledge was off the charts. They have their whole career ahead of them. Their energy, excitement, and fear of what their future holds was palpable. I highlighted my former Dean, Dr. Art Dugoni's, message of be involved, be a leader, and give back to our profession. As organized dentistry is facing a variety of challenges it is now more important than ever to be part of a movement to be involved. As we reflect on our own blessings in life, we can show our gratitude now by paying forward. There are so many opportunities to be involved. Many hands make light work! I know the individuals reading this article echo my sentiment and charge. It is us that need to get the word out! I am thankful to my profession, to the San Mateo County Dental Society and its awesome team and constituents, and to all who have touched my life! Wishing you all a very joyous holiday season!
 
 Please email me at dentalstrategies@gmail.com for any questions or suggestions for future article topics.`
+  },
+  {
+    id: 2,
+    title: "Work Staff Shortages in Dentistry... What can we do?",
+    excerpt: "I get calls, texts, and questions almost every day complaining, asking questions and conveying concerns about work staff shortages in the dental profession. The dental assisting workforce has been shattered by the pandemic, and the situation isn't going to get better anytime soon.",
+    category: "Practice Management",
+    date: "2024-09-09",
+    readTime: "6 min read",
+    gradient: "bg-gradient-to-br from-blue-400 via-purple-500 to-indigo-500",
+    slug: "work-staff-shortages-dentistry",
+    author: "Michael Njo, DDS",
+    content: `I get calls, texts, and questions almost every day complaining, asking questions and conveying concerns about work staff shortages in the dental profession. Questions such as "Do you know any dental assistants looking for work?" "It is so hard to get great candidates for our position" "Where are all the quality team members?"
+
+The answer is, I don't know anyone, and this is the state of the profession. They simply aren't out there as much, so you can stop expecting a quick fix. Specifically, the dental assisting workforce has been shattered by the pandemic, and the situation isn't going to get better anytime soon. It will be years before dental practices recuperate and can find dental team members to round out their teams.
+
+Many older professionals decided during the pandemic to retire and/or cut back on their workload. I spoke to a dentist recently wanting to sell his practice. In getting to know his practice, I asked him to share with me information about his team. His response was I work alone. I queried him further to clarify his response and he said, "I have no employees". What!??? The same goes for many other dental professionals-sales forces, college and trade school instructors, office managers, and hygienists. We experienced a mass exodus, much of it to retirement. Those who stayed moved to the next level to fill vacancies and parted ways with some offices to advance their careers in another office. That left many practices short on people, with no way to find experienced individuals because they're few and far between, and good employers are doing what they can to hang onto their good ones. In the midst of it all, many dental assisting schools closed, which helped lead to one of the biggest shortages of oral healthcare workers in a very long time.
+
+What can you do about this situation?
+
+We are a resilient profession! You start from scratch. For instance, visit a local restaurant and find the waiter or waitress who hustles, and hire them. Visit your bank and find an employee who smiles and goes above and beyond to help you and hire them. Take a look at your patient base, find the patient everyone loves to see, and hire them. You need to look for good people and then train them! The days of interviewing, then having a second interview, then having a working interview are over. If you are lucky enough that a candidate shows up, they present well, they are trainable/coachable, are well spoken, and appear to have a "reasonable" work ethic. Hire them on the spot!!!
+
+Is all of this a big pain?
+
+Yes, but it's what we need to do to keep moving forward. Training from scratch is not ideal because I know everyone in the office is busy, but what else can we do? The inconvenience pays off in the long run.
+
+When you bring in someone, don't overload them. Set them up for success. Be patient! If they're an assistant, start them with small tasks in sterilization and have them shadow. You will have to lengthen your appointments to assure a positive working environment. This will allow you to explain the procedure and debrief the new team member about the appointment and about what is about to happen. The post appointment is needed to review and reflect on what went well and what to improve upon. If it's a new front desk person, find something they can accomplish quickly so they feel productive, then you can add more tasks as people grow confident. Don't overwhelm and overload anyone with information too quickly.
+
+Have constant "growth meetings" and check-ins. These interactions are designed to be purposeful, empowering and educational. This will provide opportunities to assure a successful assimilation to your practice and procedures.
+
+I often hear from team members who say they are worked so hard and get few to no breaks and no lunch. Understandable, because generally these individuals are thrown in to an existing tough situation, most often alone with no other team or dentist support. Basically, a sink or swim mentality. They generally sink, at no fault of their own. Don't put your team through this because everyone needs a break, everybody needs support, everybody needs the feeling of success and accomplishment. We all need a few minutes each day to breathe and compose ourselves. We all need clear guidelines and clear expectations to be successful.
+
+Have written protocols/SOPs (standard operating protocols) that team members can refer to so they don't feel lost and worried about asking too many questions. If instructions are written out, the team can refer to this often and work independently. Written protocols are the best way to keep your team on task. Team members need to know what to do and when to do it. Written protocols are the best way to convey how you want your business run.
+
+Your protocols should be clear and concise, not too fancy or full of garbage, just easy to read. They're a huge boost for the newbies as well as for the veterans who may think they know what you want. Protocols keep team members on the same page at all times. Have your team cross trained, many hands make light work!
+
+Finally, value your team! If they're good, hang on to them. Show appreciation, and by all means, be kind. Sounds simple, unfortunately it is not common. Team members want to work where they're valued and respected. Show your team and coworkers how much you appreciate them, and they will stay! By following these suggestions, hopefully the dental staffing shortage will not have a huge impact on you.
+
+Remember, knowledge is power. Please email me at dentalstrategies@gmail.com for any questions. I would be happy to schedule a call.`
   }
 ];
 
-const categories = ["All", "Personal Reflections"];
+const categories = ["All", "Personal Reflections", "Practice Management"];
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
