@@ -55,7 +55,7 @@ const Home = () => {
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
             <ScrollReveal direction="parallax" delay={100} intensity="normal">
               <div className="order-2 md:order-1">
-                <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">The right partner makes all the difference</SectionTitle>
+                <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">The right partner makes all the difference.</SectionTitle>
                 <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-6 md:mb-8">
                   With decades of dental and consulting experience, we go beyond brokerage to guide you with expertise, strategy and care – so you can move forward with confidence.
                 </p>
