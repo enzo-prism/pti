@@ -13,6 +13,7 @@ import Events from "./pages/Events";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import Blog from "./pages/Blog";
 import DrNjo from "./pages/DrNjo";
 import Layout from "./components/layout/Layout";
 import MinimalLayout from "./components/layout/MinimalLayout";
@@ -40,6 +41,7 @@ const App = () => (
             <Route path="/services/selling" element={<Layout><Selling /></Layout>} />
             <Route path="/services/associateships" element={<Layout><Associateships /></Layout>} />
             <Route path="/services/partnerships" element={<Layout><Partnerships /></Layout>} />
+            <Route path="/blog" element={<Layout><Blog /></Layout>} />
             <Route path="/faq" element={<Layout><Faq /></Layout>} />
             <Route path="/testimonials" element={<Layout><Testimonials /></Layout>} />
             <Route path="/events" element={<Layout><Events /></Layout>} />
