@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Calendar, Clock, MapPin, ChevronDown, ChevronUp, Phone, Mail } from "lucide-react";
+import { Calendar, Clock, MapPin, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface EventDate {
@@ -37,12 +36,8 @@ export const MultiDateEventCard = ({
   speakers,
   getEventTypeColor
 }: MultiDateEventCardProps) => {
-  const [showAllDates, setShowAllDates] = useState(false);
-  
   const upcomingDates = eventDates.filter(date => !date.isPast);
   const pastDates = eventDates.filter(date => date.isPast);
-  const displayDates = showAllDates ? eventDates : eventDates.slice(0, 2);
-  const hasMoreDates = eventDates.length > 2;
   
   const uniqueLocations = [...new Set(eventDates.map(date => date.location))];
   const locationText = uniqueLocations.length === 1 
@@ -56,7 +51,6 @@ export const MultiDateEventCard = ({
           ? "bg-gray-50 border-2 border-dashed border-gray-300 shadow-none hover:shadow-sm" 
           : "bg-white border-2 border-gray-200 shadow-sm hover:shadow-lg hover:border-primary/30"
       }`}
-      style={{ zIndex: showAllDates ? 20 : 10 }}
     >
       {/* Status Banner */}
       <div className={`absolute top-0 left-0 right-0 h-1 ${
@@ -152,30 +146,17 @@ export const MultiDateEventCard = ({
         </div>
 
         {/* Individual Event Dates */}
-        <div className="mb-4 relative z-20">
-          <div className="flex items-center justify-between mb-3">
+        <div className="mb-4">
+          <div className="mb-3">
             <h4 className={`text-sm font-semibold ${
               isPast ? "text-gray-600" : "text-gray-900"
             }`}>
               Available Dates & Locations
             </h4>
-            {hasMoreDates && (
-              <button
-                onClick={() => setShowAllDates(!showAllDates)}
-                className="text-primary font-medium text-sm flex items-center hover:text-primary/80 transition-colors relative z-30"
-              >
-                {showAllDates ? "Show Less" : `Show All ${eventDates.length}`}
-                {showAllDates ? (
-                  <ChevronUp size={16} className="ml-1" />
-                ) : (
-                  <ChevronDown size={16} className="ml-1" />
-                )}
-              </button>
-            )}
           </div>
           
-          <div className={`space-y-2 relative z-20 ${showAllDates ? 'bg-white border border-gray-200 rounded-lg p-2 shadow-lg' : ''}`}>
-            {displayDates.map((eventDate, index) => (
+          <div className="space-y-2">
+            {eventDates.map((eventDate, index) => (
               <div
                 key={index}
                 className={`flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-lg border ${
