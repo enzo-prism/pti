@@ -232,31 +232,64 @@ export const MultiDateEventCard = ({
           {!isPast && (
             <>
               {registrationLink.startsWith('tel:') ? (
-                <Button 
-                  size="sm" 
-                  className="flex-1 sm:flex-none"
-                  onClick={() => window.open(registrationLink, '_self')}
-                >
-                  <Phone size={16} className="mr-2" />
-                  Call to Register
-                </Button>
+                <>
+                  <Button 
+                    size="sm" 
+                    className="flex-1 sm:flex-none"
+                    onClick={() => window.open(registrationLink, '_self')}
+                  >
+                    <Phone size={16} className="mr-2" />
+                    Call to Register
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    variant="outline"
+                    className="flex-1 sm:flex-none"
+                    onClick={() => window.open('mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry', '_self')}
+                  >
+                    <Mail size={16} className="mr-2" />
+                    Email to Register
+                  </Button>
+                </>
               ) : registrationLink.startsWith('mailto:') ? (
-                <Button 
-                  size="sm" 
-                  className="flex-1 sm:flex-none"
-                  onClick={() => window.open(registrationLink, '_self')}
-                >
-                  <Mail size={16} className="mr-2" />
-                  Email to Register
-                </Button>
+                <>
+                  <Button 
+                    size="sm" 
+                    className="flex-1 sm:flex-none"
+                    onClick={() => window.open(registrationLink, '_self')}
+                  >
+                    <Mail size={16} className="mr-2" />
+                    Email to Register
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    variant="outline"
+                    className="flex-1 sm:flex-none"
+                    onClick={() => window.open('mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry', '_self')}
+                  >
+                    <Mail size={16} className="mr-2" />
+                    Alternative Email
+                  </Button>
+                </>
               ) : (
-                <Button 
-                  size="sm" 
-                  className="flex-1 sm:flex-none"
-                  onClick={() => window.open(registrationLink, '_blank')}
-                >
-                  Register Now
-                </Button>
+                <>
+                  <Button 
+                    size="sm" 
+                    className="flex-1 sm:flex-none"
+                    onClick={() => window.open(registrationLink, '_blank')}
+                  >
+                    Register Now
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    variant="outline"
+                    className="flex-1 sm:flex-none"
+                    onClick={() => window.open('mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry', '_self')}
+                  >
+                    <Mail size={16} className="mr-2" />
+                    Email to Register
+                  </Button>
+                </>
               )}
             </>
           )}
