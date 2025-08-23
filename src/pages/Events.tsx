@@ -340,7 +340,7 @@ const Events = () => {
         )}
         
         {/* Events List */}
-        <div className="space-y-4">
+        <div className="space-y-4 relative">
           {filteredEvents.map((event) => {
             // Render multi-date event card for grouped events
             if (event.isEventGroup && event.eventDates) {
@@ -363,7 +363,7 @@ const Events = () => {
             return (
             <div 
               key={event.id}
-              className={`relative rounded-xl overflow-hidden transition-all duration-300 group ${
+              className={`relative rounded-xl transition-all duration-300 group z-10 ${
                 event.isPast 
                   ? "bg-gray-50 border-2 border-dashed border-gray-300 shadow-none hover:shadow-sm" 
                   : "bg-white border-2 border-gray-200 shadow-sm hover:shadow-lg hover:border-primary/30"

@@ -51,11 +51,12 @@ export const MultiDateEventCard = ({
 
   return (
     <div 
-      className={`relative rounded-xl overflow-hidden transition-all duration-300 group ${
+      className={`relative rounded-xl transition-all duration-300 group z-10 ${
         isPast 
           ? "bg-gray-50 border-2 border-dashed border-gray-300 shadow-none hover:shadow-sm" 
           : "bg-white border-2 border-gray-200 shadow-sm hover:shadow-lg hover:border-primary/30"
       }`}
+      style={{ zIndex: showAllDates ? 20 : 10 }}
     >
       {/* Status Banner */}
       <div className={`absolute top-0 left-0 right-0 h-1 ${
@@ -151,7 +152,7 @@ export const MultiDateEventCard = ({
         </div>
 
         {/* Individual Event Dates */}
-        <div className="mb-4">
+        <div className="mb-4 relative z-20">
           <div className="flex items-center justify-between mb-3">
             <h4 className={`text-sm font-semibold ${
               isPast ? "text-gray-600" : "text-gray-900"
@@ -161,7 +162,7 @@ export const MultiDateEventCard = ({
             {hasMoreDates && (
               <button
                 onClick={() => setShowAllDates(!showAllDates)}
-                className="text-primary font-medium text-sm flex items-center hover:text-primary/80 transition-colors"
+                className="text-primary font-medium text-sm flex items-center hover:text-primary/80 transition-colors relative z-30"
               >
                 {showAllDates ? "Show Less" : `Show All ${eventDates.length}`}
                 {showAllDates ? (
@@ -173,7 +174,7 @@ export const MultiDateEventCard = ({
             )}
           </div>
           
-          <div className="space-y-2">
+          <div className={`space-y-2 relative z-20 ${showAllDates ? 'bg-white border border-gray-200 rounded-lg p-2 shadow-lg' : ''}`}>
             {displayDates.map((eventDate, index) => (
               <div
                 key={index}
