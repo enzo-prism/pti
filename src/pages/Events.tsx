@@ -526,7 +526,7 @@ const Events = () => {
                         onClick={() => window.open('tel:+18337841121', '_self')}
                       >
                         <Phone size={16} className="mr-2" />
-                        Call or text to register
+                        Call to Register
                       </Button>
                       <Button 
                         size="sm" 
@@ -535,7 +535,7 @@ const Events = () => {
                         onClick={() => window.open('mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry', '_self')}
                       >
                         <Mail size={16} className="mr-2" />
-                        Email us to register
+                        Email Us to Register
                       </Button>
                     </>
                   ) : (
