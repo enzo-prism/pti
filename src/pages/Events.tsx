@@ -622,7 +622,7 @@ const Events = () => {
             
             <div className="text-center">
               <Button asChild size="lg" className="w-full sm:w-auto">
-                <a href="mailto:events@pti.com?subject=Speaking%20Request">Request a Speaking Engagement</a>
+                <a href="mailto:dentalstrategies@gmail.com,elizabetharmato@gmail.com?subject=Speaking%20Engagement%20Request">Request a Speaking Engagement</a>
               </Button>
             </div>
           </div>
