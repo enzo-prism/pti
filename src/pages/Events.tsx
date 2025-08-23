@@ -1,11 +1,19 @@
 import { useState, useMemo } from "react";
-import { Calendar, Clock, MapPin, ChevronRight, Phone, Mail } from "lucide-react";
+import { Calendar, Clock, MapPin, ChevronRight, ChevronDown, Phone, Mail } from "lucide-react";
 import { parseISO, parse, isAfter, startOfDay } from "date-fns";
 import { Link } from "react-router-dom";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
+import { MultiDateEventCard } from "@/components/ui/multi-date-event-card";
+
+interface EventDate {
+  date: string;
+  time: string;
+  location: string;
+  isPast: boolean;
+}
 
 interface Event {
   id: number;
@@ -25,6 +33,8 @@ interface Event {
     title: string;
     imageUrl: string;
   }>;
+  isEventGroup?: boolean;
+  eventDates?: EventDate[];
 }
 
 const Events = () => {
@@ -165,23 +175,87 @@ const Events = () => {
     }
   ];
 
-  // Process events with calculated isPast status and sort them
+  // Group events by title and process with calculated isPast status
   const events: Event[] = useMemo(() => {
-    return rawEvents
-      .map(event => ({
-        ...event,
-        isPast: isEventPast(event.date)
-      }))
-      .sort((a, b) => {
-        // Sort by status first (upcoming events first), then by date
-        if (a.isPast !== b.isPast) {
-          return a.isPast ? 1 : -1;
+    // First, process all events with isPast status
+    const processedEvents = rawEvents.map(event => ({
+      ...event,
+      isPast: isEventPast(event.date)
+    }));
+
+    // Group events by title
+    const eventGroups = new Map<string, typeof processedEvents>();
+    const singleEvents: typeof processedEvents = [];
+
+    processedEvents.forEach(event => {
+      const existing = eventGroups.get(event.title);
+      if (existing) {
+        existing.push(event);
+      } else {
+        const similar = processedEvents.filter(e => e.title === event.title);
+        if (similar.length > 1) {
+          eventGroups.set(event.title, similar);
+        } else {
+          singleEvents.push(event);
         }
-        // Within same status, sort by date
+      }
+    });
+
+    // Create grouped events
+    const groupedEvents: Event[] = [];
+    
+    eventGroups.forEach((events, title) => {
+      // Sort events within group by date
+      events.sort((a, b) => {
         const dateA = parseEventDate(a.date);
         const dateB = parseEventDate(b.date);
         return dateA.getTime() - dateB.getTime();
       });
+
+      // Use the most detailed description (usually from 2026 events)
+      const detailedEvent = events.find(e => typeof e.description === 'object') || events[0];
+      
+      // Create event dates array
+      const eventDates: EventDate[] = events.map(event => ({
+        date: event.date,
+        time: event.time,
+        location: event.location,
+        isPast: event.isPast
+      }));
+
+      // Determine if the entire group is past (all dates are past)
+      const isGroupPast = eventDates.every(date => date.isPast);
+      
+      // Use the earliest upcoming date, or the latest past date if all are past
+      const upcomingDates = eventDates.filter(date => !date.isPast);
+      const representativeDate = upcomingDates.length > 0 ? upcomingDates[0] : eventDates[eventDates.length - 1];
+
+      groupedEvents.push({
+        ...detailedEvent,
+        id: events[0].id, // Use the first ID as the group ID
+        date: representativeDate.date,
+        time: representativeDate.time,
+        location: representativeDate.location,
+        isPast: isGroupPast,
+        isEventGroup: true,
+        eventDates
+      });
+    });
+
+    // Combine single events and grouped events
+    const allEvents = [...singleEvents, ...groupedEvents];
+
+    // Sort all events
+    return allEvents.sort((a, b) => {
+      // Sort by status first (upcoming events first), then by date
+      if (a.isPast !== b.isPast) {
+        return a.isPast ? 1 : -1;
+      }
+      // Within same status, sort by date
+      const dateA = parseEventDate(a.date);
+      const dateB = parseEventDate(b.date);
+      return dateA.getTime() - dateB.getTime();
+    });
   }, []);
   
   const filteredEvents = showPastEvents 
@@ -267,7 +341,26 @@ const Events = () => {
         
         {/* Events List */}
         <div className="space-y-4">
-          {filteredEvents.map((event) => (
+          {filteredEvents.map((event) => {
+            // Render multi-date event card for grouped events
+            if (event.isEventGroup && event.eventDates) {
+              return (
+                <MultiDateEventCard
+                  key={event.id}
+                  title={event.title}
+                  description={event.description}
+                  type={event.type}
+                  registrationLink={event.registrationLink}
+                  eventDates={event.eventDates}
+                  isPast={event.isPast}
+                  speakers={event.speakers}
+                  getEventTypeColor={getEventTypeColor}
+                />
+              );
+            }
+            
+            // Render single event card for individual events
+            return (
             <div 
               key={event.id}
               className={`relative rounded-xl overflow-hidden transition-all duration-300 group ${
@@ -450,7 +543,8 @@ const Events = () => {
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
         
         {/* Show Past Events Button */}
