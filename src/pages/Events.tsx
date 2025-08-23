@@ -516,25 +516,30 @@ const Events = () => {
                   </div>
                 )}
                 
-                {/* Action Button */}
+                {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3">
                   {!event.isPast ? (
-                    <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                      <Button asChild className="flex-1 sm:flex-none">
-                        <a href="tel:+18337841121" className="flex items-center justify-center">
-                          <Phone size={16} className="mr-2" />
-                          Call/Text (833) 784-1121
-                        </a>
+                    <>
+                      <Button 
+                        size="sm" 
+                        className="flex-1 sm:flex-none"
+                        onClick={() => window.open('tel:+18337841121', '_self')}
+                      >
+                        <Phone size={16} className="mr-2" />
+                        Call to Register
                       </Button>
-                      <Button asChild variant="outline" className="flex-1 sm:flex-none">
-                        <Link to="/contact" className="flex items-center justify-center">
-                          <Mail size={16} className="mr-2" />
-                          Email Us
-                        </Link>
+                      <Button 
+                        size="sm" 
+                        variant="outline"
+                        className="flex-1 sm:flex-none"
+                        onClick={() => window.open('mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry', '_self')}
+                      >
+                        <Mail size={16} className="mr-2" />
+                        Email to Register
                       </Button>
-                    </div>
+                    </>
                   ) : (
-                    <Button asChild className="w-full sm:w-auto" variant="outline" disabled>
+                    <Button className="w-full sm:w-auto" variant="outline" disabled>
                       <span className="text-gray-500 cursor-not-allowed">
                         Event Completed
                       </span>
