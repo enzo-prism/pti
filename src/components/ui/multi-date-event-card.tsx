@@ -239,7 +239,7 @@ export const MultiDateEventCard = ({
                     onClick={() => window.open(registrationLink, '_self')}
                   >
                     <Phone size={16} className="mr-2" />
-                    Call to Register
+                    Call or text to register
                   </Button>
                   <Button 
                     size="sm" 
@@ -248,7 +248,7 @@ export const MultiDateEventCard = ({
                     onClick={() => window.open('mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry', '_self')}
                   >
                     <Mail size={16} className="mr-2" />
-                    Email to Register
+                    Email us to register
                   </Button>
                 </>
               ) : registrationLink.startsWith('mailto:') ? (
@@ -259,7 +259,7 @@ export const MultiDateEventCard = ({
                     onClick={() => window.open(registrationLink, '_self')}
                   >
                     <Mail size={16} className="mr-2" />
-                    Email to Register
+                    Email us to register
                   </Button>
                   <Button 
                     size="sm" 
@@ -287,7 +287,7 @@ export const MultiDateEventCard = ({
                     onClick={() => window.open('mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry', '_self')}
                   >
                     <Mail size={16} className="mr-2" />
-                    Email to Register
+                    Email us to register
                   </Button>
                 </>
               )}
