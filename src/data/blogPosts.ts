@@ -89,7 +89,7 @@ Remember, knowledge is power. Please email me at dentalstrategies@gmail.com for 
     title: "Debugging the Myths of Practice Transitions/Selling Your Practice",
     excerpt: "Part 2: Navigating Dental Transitions: The Importance of Advisors to ensure a Seamless Process. Transitioning a dental practice can be a complex and daunting process. It is one of the most significant career moves a dentist will make.",
     category: "Practice Transitions",
-    date: "2023-11-15",
+    date: "2023-11-14",
     readTime: "12 min read",
     gradient: "bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-500",
     slug: "debugging-myths-practice-transitions",
