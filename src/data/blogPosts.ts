@@ -349,7 +349,7 @@ Michael Njo of the Practice Transition Institute will also be presenting a semin
     readTime: "10 min read",
     gradient: "bg-gradient-to-br from-blue-400 via-teal-500 to-green-600",
     slug: "navigating-dental-transitions",
-    author: "Practice Transitions Institute",
+    author: "Michael Njo, DDS",
     content: `Navigating Dental Transitions:
 The Importance of Advisors to Ensure a Seamless Process
 Written by Practice Transitions Institute
