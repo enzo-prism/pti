@@ -547,7 +547,7 @@ We are available to answer your questions. Please feel free to reach out to us!`
     title: "Debugging the Myths of Practice Transitions/Selling Your Practice - Part 3: Valuation Myth",
     excerpt: "Uncover the truth about dental practice valuations - from understanding the difference between asking price, offering price, and appraised value, to learning the two universally accepted valuation methods that ensure your practice transition is based on facts, not feelings.",
     category: "Practice Transitions",
-    date: "2023-11-14",
+    date: "2023-11-15",
     readTime: "12 min read",
     gradient: "bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-600",
     slug: "debugging-myths-practice-transitions-part-3-valuation",
