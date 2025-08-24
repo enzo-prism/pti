@@ -715,6 +715,11 @@ We are available to answer your questions. Please feel free to reach out to us!`
     title: "Debugging The Myths of Practice Transitions/Selling Your Practice Part 4 - Transition Planning Requirements",
     slug: "debugging-myths-practice-transitions-part-4-requirements",
     excerpt: "A comprehensive guide to the complete process of buying or selling a dental practice - from timeline expectations and documentation requirements to advisor selection and dissolution provisions. Everything you need to know for a successful transition.",
+    category: "Practice Transitions",
+    date: "2024-03-04",
+    readTime: "15 min read",
+    gradient: "bg-gradient-to-br from-green-500 via-teal-600 to-blue-600",
+    author: "Michael Njo, DDS",
     content: `
       <div style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 24px; border-radius: 12px; border-left: 4px solid #3b82f6; margin: 24px 0;">
         <h3 style="color: #1e40af; margin: 0 0 12px 0; font-size: 18px; font-weight: 600;">📋 Series Navigation: Debugging the Myths of Practice Transitions</h3>
@@ -900,11 +905,6 @@ We are available to answer your questions. Please feel free to reach out to us!`
 
       <p><em>The above outlines are general broad strokes from beginning to end and are not designed as a complete blueprint on how to transact a transition. This is one of the biggest events in your life and can have severe consequences if not done well.</em></p>
     `,
-    author: "Michael Njo, DDS",
-    category: "Practice Transitions",
-    date: "2024-03-04",
-    readTime: "15 min read",
-    gradient: "bg-gradient-to-br from-green-500 via-teal-600 to-blue-600",
     series: {
       id: "debugging-myths-transitions",
       title: "Debugging the Myths of Practice Transitions",
