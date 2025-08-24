@@ -49,7 +49,7 @@ const Faq = () => {
 
   return (
     <>
-      <div className="pt-28 bg-gradient-to-b from-accent to-white">
+      <div className="pt-24 md:pt-32 bg-gradient-to-b from-accent to-white">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center pb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">

@@ -49,7 +49,7 @@ const Navbar = () => {
   return (
     <header 
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-md py-2" : "bg-white/95 py-4"
+        isScrolled ? "bg-white shadow-md py-2" : "bg-white shadow-sm py-4"
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">

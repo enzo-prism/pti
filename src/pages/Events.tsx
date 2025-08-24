@@ -281,7 +281,7 @@ const Events = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <Section background="primary" className="py-12 md:py-20 lg:py-24 relative overflow-hidden">
+      <Section background="primary" className="pt-24 md:pt-32 pb-12 md:pb-20 relative overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/90"></div>
         <div 

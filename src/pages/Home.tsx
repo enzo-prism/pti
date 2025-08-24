@@ -21,7 +21,7 @@ const Home = () => {
       />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
+      <section className="relative min-h-screen overflow-hidden hero-gradient pt-24 md:pt-32 flex items-center justify-center" style={{ minHeight: 'calc(100vh - 6rem)' }}>
         {/* Gradient overlay for better text contrast */}
         <div className="absolute inset-0 hero-gradient-overlay" />
         
