@@ -47,27 +47,27 @@ const Blog = () => {
         <div className="hero-gradient-overlay absolute inset-0"></div>
         <div className="container relative z-10">
           <div className="max-w-5xl mx-auto">
-            {/* Logo and Title */}
-            <div className="flex items-center justify-center mb-12">
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 mr-6">
+            {/* Logo and Title - Mobile Optimized */}
+            <div className="flex flex-col md:flex-row items-center justify-center mb-8 md:mb-12 text-center md:text-left">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 mb-4 md:mb-0 md:mr-6">
                 <img 
                   src="/lovable-uploads/18b2244b-dbb5-4dd6-a1ca-c6a28fed53c6.png" 
                   alt="PTI Logo" 
-                  className="w-16 h-16 object-contain"
+                  className="w-12 h-12 md:w-16 md:h-16 object-contain"
                 />
               </div>
               <div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 animate-fade-in">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-2 animate-fade-in leading-tight">
                   Expert Insights
                 </h1>
-                <p className="text-xl md:text-2xl text-blue-100 animate-fade-in animate-delay-100">
+                <p className="text-lg md:text-xl lg:text-2xl text-blue-100 animate-fade-in animate-delay-100">
                   For Dental Practice Success
                 </p>
               </div>
             </div>
 
-            {/* Search Bar */}
-            <div className="max-w-2xl mx-auto">
+            {/* Search Bar - Mobile Optimized */}
+            <div className="max-w-2xl mx-auto px-4 md:px-0">
               <div className="relative">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <input 
@@ -75,12 +75,12 @@ const Blog = () => {
                   placeholder="Search articles, topics, or categories..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-12 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent"
+                  className="w-full pl-12 pr-12 py-3 md:py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent text-base md:text-lg"
                 />
                 {searchQuery && (
                   <button
                     onClick={handleClearSearch}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors p-1"
                   >
                     <X className="h-5 w-5" />
                   </button>
@@ -129,8 +129,8 @@ const Blog = () => {
           
           <Card className="overflow-hidden hover-lift group">
             <Link to={`/blog/${featuredPost.slug}`}>
-              <div className="lg:flex">
-                <div className={`lg:w-2/5 aspect-video lg:aspect-auto ${featuredPost.gradient} relative`}>
+              <div className="md:flex lg:flex">
+                <div className={`md:w-2/5 lg:w-2/5 aspect-video md:aspect-auto ${featuredPost.gradient} relative`}>
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
                   <div className="absolute bottom-4 left-4">
                     <Badge className="bg-white/90 text-primary hover:bg-white">
@@ -138,40 +138,40 @@ const Blog = () => {
                     </Badge>
                   </div>
                 </div>
-                <div className="lg:w-3/5 p-8">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="flex items-center text-sm text-gray-500">
+                <div className="md:w-3/5 lg:w-3/5 p-4 md:p-6 lg:p-8">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-4 text-sm text-gray-500">
+                    <div className="flex items-center">
                       <Calendar className="h-4 w-4 mr-2" />
                       {formatLocalDate(featuredPost.date, { month: 'long', day: 'numeric', year: 'numeric' })}
                     </div>
-                    <div className="flex items-center text-sm text-gray-500">
+                    <div className="flex items-center">
                       <Clock className="h-4 w-4 mr-2" />
                       {featuredPost.readTime}
                     </div>
                   </div>
                   
-                  <CardTitle className="text-2xl lg:text-3xl mb-4 group-hover:text-primary transition-colors leading-tight">
+                  <CardTitle className="text-xl md:text-2xl lg:text-3xl mb-3 md:mb-4 group-hover:text-primary transition-colors leading-tight">
                     {featuredPost.title}
                   </CardTitle>
                   
-                  <p className="text-gray-600 mb-6 leading-relaxed text-lg">
+                  <p className="text-gray-600 mb-4 md:mb-6 leading-relaxed text-base md:text-lg">
                     {featuredPost.excerpt}
                   </p>
                   
-                  <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <img 
-                      src="/lovable-uploads/0fbfd01f-6249-49ce-baea-1b42e6bd44f4.png" 
-                      alt="Michael Njo, DDS" 
-                      className="w-10 h-10 rounded-full object-cover mr-3"
-                    />
-                    <div>
-                      <p className="font-medium text-gray-900">{featuredPost.author}</p>
-                      <p className="text-sm text-gray-500">Practice Transitions Expert</p>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div className="flex items-center">
+                      <img 
+                        src="/lovable-uploads/0fbfd01f-6249-49ce-baea-1b42e6bd44f4.png" 
+                        alt="Michael Njo, DDS" 
+                        className="w-10 h-10 rounded-full object-cover mr-3"
+                      />
+                      <div>
+                        <p className="font-medium text-gray-900">{featuredPost.author}</p>
+                        <p className="text-sm text-gray-500">Practice Transitions Expert</p>
+                      </div>
                     </div>
-                  </div>
                     
-                    <Button className="group-hover:translate-x-1 transition-transform">
+                    <Button className="group-hover:translate-x-1 transition-transform w-full sm:w-auto">
                       Read Article
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -192,7 +192,7 @@ const Blog = () => {
                   </SectionSubtitle>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                   {regularPosts.map((post, index) => (
             <Card key={post.id} className="overflow-hidden hover-lift group" style={{ animationDelay: `${index * 100}ms` }}>
               <Link to={`/blog/${post.slug}`}>
@@ -211,16 +211,16 @@ const Blog = () => {
                   </div>
                 </div>
                 
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-lg leading-tight group-hover:text-primary transition-colors line-clamp-2">
+                <CardHeader className="p-4 md:p-6 pb-3">
+                  <CardTitle className="text-base md:text-lg leading-tight group-hover:text-primary transition-colors line-clamp-2">
                     {post.title}
                   </CardTitle>
-                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mt-2">
+                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-2 md:line-clamp-3 mt-2">
                     {post.excerpt}
                   </p>
                 </CardHeader>
                 
-                <CardContent className="pt-0">
+                <CardContent className="p-4 md:p-6 pt-0">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center text-xs text-gray-500">
                       <Calendar className="h-3 w-3 mr-1" />
@@ -260,14 +260,14 @@ const Blog = () => {
             </p>
           </div>
           
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-8">
-            <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 mb-8">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 max-w-lg mx-auto">
               <input 
                 type="email" 
                 placeholder="Enter your email address"
-                className="flex-1 px-6 py-4 bg-white rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 text-lg"
+                className="flex-1 px-4 md:px-6 py-3 md:py-4 bg-white rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 text-base md:text-lg"
               />
-              <Button size="lg" variant="secondary" className="whitespace-nowrap px-8">
+              <Button size="lg" variant="secondary" className="whitespace-nowrap px-6 md:px-8 py-3 md:py-4">
                 Subscribe Now
               </Button>
             </div>
