@@ -75,20 +75,24 @@ Remember, knowledge is power. Please email me at dentalstrategies@gmail.com for 
   {
     id: 3,
     title: "Debugging the Myths of Practice Transitions/Selling Your Practice",
-    excerpt: "Transitioning a dental practice can be a complex and daunting process. It is one of the most significant career moves a dentist will make. However, with the right advisors/team and a well-structured plan, a smooth transition can be achieved.",
+    excerpt: "Part 2: Navigating Dental Transitions: The Importance of Advisors to ensure a Seamless Process. Transitioning a dental practice can be a complex and daunting process. It is one of the most significant career moves a dentist will make.",
     category: "Practice Transitions",
     date: "2023-11-15",
-    readTime: "10 min read",
+    readTime: "12 min read",
     gradient: "bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-500",
     slug: "debugging-myths-practice-transitions",
     author: "Michael Njo, DDS",
-    content: `Transitioning a dental practice can be a complex and daunting process. It is one of the most significant career moves a dentist will make. However, with the right advisors/team and a well-structured plan, a smooth transition can be achieved. This article will outline the key advisors needed for a dental transition, potential pitfalls to be aware of, and the method employed by the Dental Strategies team, which focuses on a thorough assessment, a customized roadmap, and ongoing guidance to ensure a seamless transition. The goal is to provide a personalized process for the dentist, their patients, dental team, and family.
+    content: `Debugging the Myths of Practice Transitions/Selling Your Practice
+Part 2: Navigating Dental Transitions: The Importance of Advisors to ensure a Seamless Process
+by Michael Njo, DDS
+
+Transitioning a dental practice can be a complex and daunting process. It is one of the most significant career moves a dentist will make. However, with the right advisors/team and a well-structured plan, a smooth transition can be achieved. This article will outline the key advisors needed for a dental transition, potential pitfalls to be aware of, and the method employed by the Dental Strategies team, which focuses on a thorough assessment, a customized roadmap, and ongoing guidance to ensure a seamless transition. The goal is to provide a personalized process for the dentist, their patients, dental team, and family.
 
 I. The Advisors Needed for Your Dental Transition
 
 A. Dental Practice Transitions Consultant. A dental practice transitions consultant plays a crucial role in facilitating the transition process. With their expertise and experience, they evaluate the practice's value, effectively market it, and connect dentists with potential buyers or sellers. Their extensive knowledge of the dental industry and their network of contacts make them invaluable in finding the right match for the practice. They serve as the quarterback of the transition team.
 
-B. Accountant and Financial Advisor. Engaging the services of a qualified accountant and financial advisor is essential during a dental transition. They assess the practice's financial aspects, analyze tax implications, evaluate profitability, and provide guidance on structuring the deal to maximize financial goals. They also assist in determining the appropriate handling of practice proceeds, ensuring compliance with tax regulations, and minimizing potential tax implications.
+B. Accountant and Financial Advisor. Engaging the services of a qualified accountant and financial advisor is essential during a dental transition. They assess the practice's financial aspects, analyze tax implications, evaluate profitability, and provide guidance on structuring the deal to maximize financial goals. They also assist in tdeermining the appropriate handling of practice proceeds, ensuring compliance with tax regulations, and minimizing potential tax implications.
 
 C. Legal Counsel. A Dental transition involves intricate legal procedures, contracts, and negotiations. Hiring a dental-specific attorney can protect the dentist's interests, ensure compliance with regulatory requirements, and provide guidance on legal matters throughout the transition process. It is vital to follow the guidelines set forth by the state dental board to maintain professional and legal compliance during the transition.
 
