@@ -4,13 +4,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import SEO from "@/components/layout/SEO";
-import { blogPosts, categories } from "@/data/blogPosts";
+import { blogPosts } from "@/data/blogPosts";
 import { formatLocalDate } from "@/lib/dateUtils";
 
 const Blog = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  // Sort posts by date (most recent first)
+  const sortedPosts = [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
     <>
@@ -33,121 +33,61 @@ const Blog = () => {
         </div>
       </section>
 
-      {/* Categories Filter */}
-      <Section className="py-8">
-        <div className="flex flex-wrap justify-center gap-3 mb-8 px-4">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`
-                px-4 py-2.5 md:px-6 md:py-3 rounded-full text-sm md:text-base font-medium 
-                transition-all duration-200 min-h-[44px] min-w-[60px]
-                border-2 hover:scale-105 active:scale-95
-                ${selectedCategory === category 
-                  ? 'bg-primary text-white border-primary shadow-lg' 
-                  : 'bg-white text-gray-700 border-gray-200 hover:border-primary hover:text-primary hover:shadow-md'
-                }
-              `}
-            >
-              {category}
-            </button>
+      {/* Blog Posts Grid */}
+      <Section>
+        <SectionTitle centered>Latest Articles</SectionTitle>
+        <SectionSubtitle centered>
+          Expert insights and practical guidance for dental practice owners
+        </SectionSubtitle>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          {sortedPosts.map((post) => (
+            <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
+              <Link to={`/blog/${post.slug}`}>
+                <div className={`aspect-video overflow-hidden ${post.gradient}`}>
+                </div>
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <Badge variant="outline">{post.category}</Badge>
+                    <div className="flex items-center text-xs text-gray-500">
+                      <Clock className="h-3 w-3 mr-1" />
+                      {post.readTime}
+                    </div>
+                  </div>
+                  <CardTitle className="text-lg leading-tight group-hover:text-primary transition-colors">
+                    {post.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center text-xs text-gray-500">
+                      <Calendar className="h-3 w-3 mr-1" />
+                      {formatLocalDate(post.date, { month: 'short', day: 'numeric', year: 'numeric' })}
+                    </div>
+                    <div className="text-xs text-gray-600">
+                      By {post.author}
+                    </div>
+                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="mt-3 p-0 h-auto text-primary hover:text-primary-dark"
+                    asChild
+                  >
+                    <span>
+                      Read More 
+                      <ArrowRight className="ml-1 h-3 w-3" />
+                    </span>
+                  </Button>
+                </CardContent>
+              </Link>
+            </Card>
           ))}
         </div>
       </Section>
-
-      {/* Featured Post */}
-      {(selectedCategory === "All" || blogPosts[0].category === selectedCategory) && (
-        <Section className="py-0">
-          <div className="max-w-6xl mx-auto">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-              <div className="grid md:grid-cols-2 gap-0">
-                <div className={`aspect-video md:aspect-square ${blogPosts[0].gradient}`}>
-                </div>
-                <div className="p-8 flex flex-col justify-center">
-                  <Badge className="mb-4 w-fit">{blogPosts[0].category}</Badge>
-                  <h2 className="text-2xl md:text-3xl font-bold mb-4 leading-tight">
-                    {blogPosts[0].title}
-                  </h2>
-                  <p className="text-gray-600 mb-6 leading-relaxed">
-                    {blogPosts[0].excerpt}
-                  </p>
-                  <div className="flex items-center text-sm text-gray-500 mb-6">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    <span className="mr-4">{formatLocalDate(blogPosts[0].date)}</span>
-                    <Clock className="h-4 w-4 mr-2" />
-                    <span>{blogPosts[0].readTime}</span>
-                  </div>
-                  <div className="text-sm text-gray-600 mb-6">
-                    By {blogPosts[0].author}
-                  </div>
-                  <Button asChild className="w-fit group">
-                    <Link to={`/blog/${blogPosts[0].slug}`}>
-                      Read Full Article
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Section>
-      )}
-
-      {/* Blog Posts Grid - Only show if there are additional posts beyond the featured one */}
-      {blogPosts.slice(1).filter(post => selectedCategory === "All" || post.category === selectedCategory).length > 0 && (
-        <Section>
-          <SectionTitle centered>Latest Articles</SectionTitle>
-          <SectionSubtitle centered>
-            Expert insights and practical guidance for dental practice owners
-          </SectionSubtitle>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-            {blogPosts.slice(1).filter(post => selectedCategory === "All" || post.category === selectedCategory).map((post) => (
-              <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
-                <Link to={`/blog/${post.slug}`}>
-                  <div className={`aspect-video overflow-hidden ${post.gradient}`}>
-                  </div>
-                  <CardHeader className="pb-3">
-                    <div className="flex items-center justify-between mb-2">
-                      <Badge variant="outline">{post.category}</Badge>
-                      <div className="flex items-center text-xs text-gray-500">
-                        <Clock className="h-3 w-3 mr-1" />
-                        {post.readTime}
-                      </div>
-                    </div>
-                    <CardTitle className="text-lg leading-tight group-hover:text-primary transition-colors">
-                      {post.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                      {post.excerpt}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center text-xs text-gray-500">
-                        <Calendar className="h-3 w-3 mr-1" />
-                        {formatLocalDate(post.date, { month: 'short', day: 'numeric', year: 'numeric' })}
-                      </div>
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
-                        className="p-0 h-auto text-primary hover:text-primary-dark"
-                        asChild
-                      >
-                        <span>
-                          Read More 
-                          <ArrowRight className="ml-1 h-3 w-3" />
-                        </span>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Link>
-              </Card>
-            ))}
-          </div>
-        </Section>
-      )}
 
       {/* Newsletter Signup */}
       <Section background="light">
