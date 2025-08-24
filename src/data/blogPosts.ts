@@ -460,7 +460,7 @@ Michael Njo of the Practice Transition Institute will also be presenting a semin
     date: "2023-11-14",
     readTime: "10 min read",
     gradient: "bg-gradient-to-br from-blue-400 via-teal-500 to-green-600",
-    slug: "navigating-dental-transitions",
+    slug: "debugging-myths-practice-transitions-part-2-advisory-team",
     author: "Michael Njo, DDS",
     series: {
       id: "debugging-myths",
@@ -599,7 +599,7 @@ We are available to answer your questions. Please feel free to reach out to us!`
         <p style="margin: 0 0 16px 0; color: #64748b; font-size: 14px;">Part 3 of 4: Valuation Myths - Understanding the Science Behind Practice Worth</p>
         <div style="display: flex; gap: 12px; flex-wrap: wrap;">
           <a href="/blog/debugging-myths-practice-transitions-part-1-timeline" style="background: #dbeafe; color: #1d4ed8; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">← Part 1: Timeline Myths</a>
-          <a href="/blog/debugging-myths-practice-transitions" style="background: #dbeafe; color: #1d4ed8; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">← Part 2: Advisory Team</a>
+          <a href="/blog/debugging-myths-practice-transitions-part-2-advisory-team" style="background: #dbeafe; color: #1d4ed8; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">← Part 2: Advisory Team</a>
           <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Part 3: Valuation Myths</span>
           <span style="background: #f1f5f9; color: #64748b; padding: 8px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Part 4: DSO Myths (Coming Soon)</span>
         </div>
@@ -761,13 +761,19 @@ We are available to answer your questions. Please feel free to reach out to us!`
     readTime: "15 min read",
     gradient: "bg-gradient-to-br from-green-500 via-teal-600 to-blue-600",
     author: "Michael Njo, DDS",
+    series: {
+      id: "debugging-myths",
+      title: "Debugging the Myths of Practice Transitions",
+      part: 4,
+      total: 4
+    },
     content: `
       <div style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 24px; border-radius: 12px; border-left: 4px solid #3b82f6; margin: 24px 0;">
         <h3 style="color: #1e40af; margin: 0 0 12px 0; font-size: 18px; font-weight: 600;">📋 Series Navigation: Debugging the Myths of Practice Transitions</h3>
         <p style="margin: 0 0 16px 0; color: #64748b; font-size: 14px;">Part 4 of 4: Transition Planning Requirements - The Complete Process Blueprint</p>
         <div style="display: flex; gap: 12px; flex-wrap: wrap;">
           <a href="/blog/debugging-myths-practice-transitions-part-1-timeline" style="background: #dbeafe; color: #1d4ed8; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">Part 1: Timeline Myths</a>
-          <a href="/blog/debugging-myths-practice-transitions" style="background: #dbeafe; color: #1d4ed8; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">Part 2: Advisory Team</a>
+          <a href="/blog/debugging-myths-practice-transitions-part-2-advisory-team" style="background: #dbeafe; color: #1d4ed8; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">Part 2: Advisory Team</a>
           <a href="/blog/debugging-myths-practice-transitions-part-3-valuation" style="background: #dbeafe; color: #1d4ed8; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">Part 3: Valuation Myths</a>
           <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Part 4: Planning Requirements</span>
         </div>
@@ -946,12 +952,6 @@ We are available to answer your questions. Please feel free to reach out to us!`
 
       <p><em>The above outlines are general broad strokes from beginning to end and are not designed as a complete blueprint on how to transact a transition. This is one of the biggest events in your life and can have severe consequences if not done well.</em></p>
     `,
-    series: {
-      id: "debugging-myths",
-      title: "Debugging the Myths of Practice Transitions",
-      part: 4,
-      total: 4
-    }
   }
 ];
 
