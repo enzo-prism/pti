@@ -244,6 +244,55 @@ By now we should have established these definitions, in Part 2. You should have 
 Here are some sayings and mantras that can build a better team culture. Three words to live by: we before me. When we live them, our patients get the treatment and experience they deserve. When we live them, you and the practice owner develop a culture that all great team members want. When you feel overwhelmed and need help, ask. When you're feeling good and a fellow teammate is overwhelmed, offer to help. When we consistently seek opportunities to make moments just a little better for each other, we grow in gratitude together. When you wake up, ask yourself how can I make each of my team member's life a bit easier today. Break the dichotomy of isolation of the front office, the back office, the RDH - it is our office together! When celebrating a case, celebrate together, all of you. Always check in with each other, try the mirror test. The mirror test is an honest self-reflection of how and what you are doing. This is where a clear definition of culture is important to be able to evaluate yourself for areas to celebrate and areas to improve. My advice is to follow advice that allows you to look at yourself in the mirror and feel proud of the reflection you see. When you can, you're on track. When you can't, forgive yourself and make a change. These are only words unless put into action!!! 
 
 If you would like to discuss this topic or any related topics. I would be happy to schedule a call. Please email me at dentalstrategies@gmail.com`
+  },
+  {
+    id: 8,
+    title: "Creating Culture In Today's Dental Offices Part IV",
+    excerpt: "Happy New Year! In the past 3 articles we covered Leadership, Gratitude, and Team. In today's article we will cover Attitude and Mindset. When I think of attitude and mindset, I reflect on my time serving on the Board of Bellarmine College Prep.",
+    category: "Practice Management",
+    date: "2023-04-05",
+    readTime: "8 min read",
+    gradient: "bg-gradient-to-br from-amber-400 via-yellow-500 to-orange-600",
+    slug: "creating-culture-dental-offices-part-iv",
+    author: "Michael Njo, DDS",
+    content: `Creating Culture In Today's Dental Offices Part IV
+
+Happy New Year! Thank you for the privilege to contribute to our newsletter. In the past 3 articles we covered the following topics:
+
+Part 1 - Leadership
+Part 2 - Gratitude
+Part 3 - Team
+
+In today's article we will cover Attitude and Mindset. When I think of attitude and mindset, I reflect on the my time serving on the Board of Bellarmine College Prep where both of my sons attended. It was there I learned more about the Jesuits. I particularly appreciated the manner in which Jesuits prayed:
+
+Gratitude: Recall anything from the day for which you are especially grateful and give thanks.
+Review: Recall the events of the day, from start to finish, noticing where you felt God's presence, and where you accepted or turned away from any invitations to grow in love.
+Sorrow: Recall any actions for which you are sorry.
+Forgiveness: Ask for God's forgiveness. Decide whether you want to reconcile with anyone you have hurt.
+Grace: Ask God for the grace you need for the next day and an ability to see God's presence more clearly.
+
+No matter what your faith is, the above are wonderful steps to follow on a daily basis. These action items will allow one to really appreciate what is truly important. Most practitioners will spend over three decades of their life devoted to the practice of dentistry.
+
+What do you want to be remembered for as a practitioner, leader, employer?
+Sometimes in our busy and chaotic lives we often forget to smell the roses. Are you taking time to smell the roses? If you are, good for you!
+
+How are you dealing with the latest challenges?
+How are you handling your workforce/team, how are you handling/controlling your overhead, and how are you handling the insurance climate?
+
+These are just a few initiatives I am working with my clients on. However, coaching attitude and mindsets is difficult. You need a person that has a positive attitude, in it to win it attitude, and a spirit of perseverance. It is oftentimes tough to maintain that attitude. What helps are the team, coaches, family, and people around you. In other words: your culture, your environment. It is not if something will happen to affect you and your business, it is when.
+
+Have you conditioned yourself to handle and navigate when these challenges/opportunities present themselves?
+With every crisis comes opportunities. Do you believe that?
+
+What do you do to nourish and maintain your attitude and mindsets. When you are at your worst that is when you will be judged. Have you noticed how you are when your whole schedule falls apart compared to the day when you have had an extremely productive day. Your behavior and attitude should be no different. Therefore, there is something to give thanks for even if you are in dire straits, even if your schedule falls apart. Look for the opportunities.
+
+As an industry we have been on a roller coaster since 2020 and we should all be thankful for organized dentistry as we band together to address our next challenges. So these 4 parts: Leadership, Gratitude, Team, and Mindset/Attitude can make up an amazing culture in your dental office for your patients, your team, and yourself. However, this must be a daily purpose and commitment.
+
+I wish you all a wonderful 2023. Be safe, well, and happy.
+
+Thanks to those of you who asked questions, Thanks for those of you who enjoyed the article.
+
+As always, for those of you who would like to discuss this topic or any related topics, I would he happy to schedule a call: Email me at dentalstrategies@gmail.com`
   }
 ];
 
