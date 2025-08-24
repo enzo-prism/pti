@@ -293,6 +293,46 @@ I wish you all a wonderful 2023. Be safe, well, and happy.
 Thanks to those of you who asked questions, Thanks for those of you who enjoyed the article.
 
 As always, for those of you who would like to discuss this topic or any related topics, I would he happy to schedule a call: Email me at dentalstrategies@gmail.com`
+  },
+  {
+    id: 9,
+    title: "Debugging the Myths of Practice Transitions/Selling Your Practice Part I",
+    excerpt: "The internet is a wonderful thing. However, everyone should not believe everything on the internet. Practice sales, just like patient care is very personal and should be treated with a customized approach.",
+    category: "Practice Transitions",
+    date: "2023-04-25",
+    readTime: "9 min read",
+    gradient: "bg-gradient-to-br from-red-400 via-pink-500 to-purple-600",
+    slug: "debugging-myths-practice-transitions-part-i",
+    author: "Michael Njo, DDS",
+    content: `Debugging the Myths of Practice Transitions/Selling Your Practice Part I
+
+The internet is a wonderful thing. However, everyone should not believe everything on the internet. Nor should you apply everything you read regarding dental practice sales or practice transitions. Practice sales, just like patient care is very personal and should be treated with a customized approach. As with most things, a thoughtful, discerning look at proceeding with something for the first time, something as important as selling/transitioning out of practice should be well thought out, well planned, and well executed!
+
+After my injury, I had the honor to work for the Pride Institute in their transition's department led by Hy Smith, MBA. Hy is an icon at the Pride Institute as well as an expert in transitions. Hy is my mentor and my friend. Hy can be attributed to many various methods of transitions over his 40-year tenure. The days of only being able to do the straight sale: Thursday you sold the practice, Monday the new dentist starts, were over. Sometimes this can result in the dental team feeling shocked and hurt, patients surprised, and a possible exodus of patients. Hy's methodologies, of the "solo group practice", "buy in-buy out", "percentage staggered sale", etc. really allowed our legacies to continue intact and his strategies protected the proceeds of the sale from excessive taxation.
+
+Just like with most things in life, you have several options. Generally, practice transitions are no different. Let's start off by defining what a practice transition is. A practice transition is a process in which you will exit from the practice, which sounds basic enough. However, the complexity of the process is where the art form is in an amazing transition. Many start out with the purchase price. How does one formulate the purchase price? Let's back up a bit. Let's start out with what do you want, how do you want to exit? Ideally you should start thinking about it the minute you purchased a practice or even before.
+
+Myth - I can't think about that, it is so far away.
+Myth - I have so much debt I need to pay off first. I also want to buy a home. Most dentists think about this when they want to sell, unfortunately in most instances, they also have been wanting to sell for years but never committed to the process and they have now come to a point that it is now more of an urgency. They are conflicted at the proposition of selling. Why, this is such a big part of one's life, sometimes your identity. The conflict of the joy of caring for patients and wanting to cut back, makes us pause and kick the can down the road.
+Myth - You can't cut back; your practice will suffer.
+Myth - Hiring an associate to then buy is a disaster.
+Myth - By bringing on an associate, your team will then know you are thinking of retiring and leave.
+
+Believe it or not, you can have your cake and eat it too! The cover of the CDA journal about a decade ago reported that at age 65 only 4% of dentists were able to retire in a financially desirable way. Why is that? We are an industry of one of the highest wage earners.
+
+In this year's articles I will focus on Debugging the Myths of Practice Transitions. We will step by step identify and debug the following myths: Retire timeline myth, Valuation myth, and DSO myth.
+
+So, let's start with when you want to exit dentistry, and how? One of the first questions is are you financially prepared to retire. Please consult a financially advisor to help you obtain that answer. Then from there we develop your timeline. I like to position my clients to be financially prepared to retire much earlier than they would like to stop practicing dentistry, ideally 10 years before.
+
+Retirement timeline -
+Myth - 65 years old
+Myth - Until I cannot practice anymore.
+
+Most of us truly enjoy dentistry and our patients. There are avenues you can still practice as long as you wish, enjoy your patients, impart your knowledge to the next generation, continue your legacy and be financially rewarded. Create a timeline that works for you, then dovetail those desires with your successor. When the next article is published the goal would be for you to have your timeline created so now you can begin the process of treatment planning your transition.
+
+Please let me know if you need assistance with the above exercise. I would also be happy to schedule a call.
+
+Michael Njo of the Practice Transition Institute will also be presenting a seminar at UOP on July 21st, 2023 - "Treatment Plan for Your Transition Into and Out of Practice". Please email me at dentalstrategies@gmail.com`
   }
 ];
 
