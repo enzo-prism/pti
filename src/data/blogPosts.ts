@@ -155,6 +155,49 @@ Do they know the standards that their performance is measured against?
 Do they know how their contributions contribute to the journey?
 
 Let us first start there. Take some time, anything worth its salt takes time, to answer these questions. Be thoughtful, keep editing it until the next article. You deserve this and so does your team, and your patients.`
+  },
+  {
+    id: 5,
+    title: "With Every Crisis Comes Opportunities!",
+    excerpt: "Seize your Opportunity, even when you're Transitioning your Practice. After speaking with so many dentists over the last few weeks, I've heard several different attitudes and opinions. The majority of input I have received has been concern, fear, and some negativity.",
+    category: "Practice Transitions",
+    date: "2022-12-26",
+    readTime: "8 min read",
+    gradient: "bg-gradient-to-br from-rose-400 via-pink-500 to-fuchsia-600",
+    slug: "with-every-crisis-comes-opportunities",
+    author: "Michael Njo, DDS",
+    content: `With Every Crisis Comes Opportunities!
+Seize your Opportunity, even when you're Transitioning your Practice
+
+After speaking with so many dentists over the last few weeks, I've heard several different attitudes and opinions. The majority of input I have received has been concern, fear, and some negativity.
+
+I want to report that dental transitions, in my opinion, are better than ever. Most strong practices had better profit in 2020 than in the previous year of 2019. Most strong practices are receiving more new patients. The interest in dental care is on the rise. Is/was your practice a strong practice? Let us define in today's marketplace a strong practice.
+
+One of the indicators of a strong practice is a strong recovery. A strong recovery may consist of the following: a solid returning patient base, a robust hygiene program that has hygiene days equal to what they were in 2019, and a fiscal proforma that matches your 2019 revenue.
+
+According to the most recent data, practices are open and experiencing business as usual. Does this sound like your practice? If it doesn't, do not fret. Like in all difficult times, there are general remedies to solve this issue. So, your practice hasn't yet recovered fully? OK, no problem. There could be many reasons why your practice numbers may still be down.
+
+Many doctors used COVID as an opportunity to practice lean and mean, slow down, and never really revamped as the economy reopened. That's ok, but it will have an impact on the value of your practice. Most potential buyers will see that and may be fearful of that potential impact. I work with many lenders; these lenders will review a seller's practice during their underwriting process in many different ways.
+
+During their due diligence, they will check off many boxes. The most popular box was the Delta premier influence on a practice. Now it is the COVID-19 practice recovery box. If this COVID-19 recovery box is not checked off, then the optics for a buyer and lender may be "if the doctor that's been working in this practice for years couldn't rebound, how would I/buyer be able to after the sale?" It's a question that can scare many buyers off and make your practice look less desirable. This, too, can be mitigated.
+
+If you're willing to put in a little more time to get the maximum value for your practice, consider working with a practice management consultant. They will ensure that you're able to get your production and patient base back to pre-pandemic numbers. They can help you fix problem areas and get your practice primed for a comeback.
+
+Whether your practice is booming or at the other end of the spectrum, you must first assess your situation, cultivate your goals, and develop a strategy to transition out of your practice. Dentists are trained diagnosticians. They are skilled at evaluating a situation, gathering the appropriate data, engaging in a thorough dialogue regarding goals, analyze the etiology of problems and situations and then provide a customized treatment plan.
+
+A skilled transition specialist will do exactly just that- treatment plan your transition! During these times, mindset, attitude, and pure grit allow us to navigate these challenges of life. This is especially true when considering or going through the transition of the sale of a practice. Covid-19 had a chilling effect on all practices. During this era, the terms PPP, PPE, etc., are common acronyms, and wearing masks for everyone was customary.
+
+With any crisis, there are great opportunities. Many believe that selling/buying a practice during these times and post these times void the chance for a successful transition of a practice. This is absolutely false.
+
+It is during these times that it is more important than ever to plan for your transition correctly. What does correctly mean? A successful purchase of a practice has many elements. In my opinion, the essential element is the transference of goodwill to replicate and then enhance the business. Goodwill is an intangible asset valued according to the advantage or reputation a business has acquired (over and above its tangible assets). Since COVID, the seller's opportunity is to share their story of how their practice has risen to meet this virus head-on and how their practice sets them apart from others.
+
+This is a classic example of Goodwill. The buyer must be able to successfully parlay this and continue to sustain this environment and culture of the practice. The good news for the buyer is just like in the 1980s, protocols, and supplies are already in place for the buyer to assimilate. Every transition will have its unique makeup and set of circumstances. There are a lot of moving parts. That is why having a great advisory team to join you on this journey is essential.
+
+BIO:
+
+Fred Heppner, CEO of Arizona Transitions and partner in Practice Transitions Institute, is a transition and practice management expert who has successfully transitioned hundreds of dental practices, representing dentists who want to sell, purchase, or secure a partnership.
+
+Dr. Michael Njo, from Practice Transitions Institute, has decades of experience in dental transitions, from associateship to partnership to acquisition. He is also a practice management expert. Formerly, Transition specialist with the Pride Institute. He is a lecturer, Author, and the recipient of the Distinguished Service award from his dental society.`
   }
 ];
 
