@@ -28,9 +28,16 @@ export function SeriesNavigation({ currentPost, seriesPosts }: SeriesNavigationP
       }
     } else if (seriesId === "debugging-myths-transitions") {
       switch (part) {
-        case 1: return "Timeline & Planning Myths";
-        case 2: return "Advisory Team & Process";
-        default: return "";
+        case 1:
+          return "Timeline & Planning Myths";
+        case 2:
+          return "Advisory Team & Process";
+        case 3:
+          return "Valuation Myths";
+        case 4:
+          return "DSO Myths";
+        default:
+          return "";
       }
     }
     return "";
