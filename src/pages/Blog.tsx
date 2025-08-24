@@ -2,7 +2,7 @@ import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, ArrowRight, Search, BookOpen, Users, TrendingUp } from "lucide-react";
+import { Calendar, Clock, ArrowRight, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "@/components/layout/SEO";
 import { blogPosts } from "@/data/blogPosts";
@@ -26,49 +26,22 @@ const Blog = () => {
         <div className="hero-gradient-overlay absolute inset-0"></div>
         <div className="container relative z-10">
           <div className="max-w-5xl mx-auto">
-            {/* Logo and Stats Row */}
-            <div className="flex flex-col lg:flex-row items-center justify-between mb-12">
-              <div className="flex items-center mb-8 lg:mb-0">
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 mr-6">
-                  <img 
-                    src="/lovable-uploads/18b2244b-dbb5-4dd6-a1ca-c6a28fed53c6.png" 
-                    alt="PTI Logo" 
-                    className="w-16 h-16 object-contain"
-                  />
-                </div>
-                <div>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 animate-fade-in">
-                    Expert Insights
-                  </h1>
-                  <p className="text-xl md:text-2xl text-blue-100 animate-fade-in animate-delay-100">
-                    For Dental Practice Success
-                  </p>
-                </div>
+            {/* Logo and Title */}
+            <div className="flex items-center justify-center mb-12">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 mr-6">
+                <img 
+                  src="/lovable-uploads/18b2244b-dbb5-4dd6-a1ca-c6a28fed53c6.png" 
+                  alt="PTI Logo" 
+                  className="w-16 h-16 object-contain"
+                />
               </div>
-
-              {/* Blog Stats */}
-              <div className="flex gap-6 md:gap-8">
-                <div className="text-center">
-                  <div className="flex items-center justify-center mb-2">
-                    <BookOpen className="h-6 w-6 text-blue-200 mr-2" />
-                    <span className="text-3xl font-bold text-white">{blogPosts.length}</span>
-                  </div>
-                  <p className="text-sm text-blue-200">Articles</p>
-                </div>
-                <div className="text-center">
-                  <div className="flex items-center justify-center mb-2">
-                    <Users className="h-6 w-6 text-blue-200 mr-2" />
-                    <span className="text-3xl font-bold text-white">500+</span>
-                  </div>
-                  <p className="text-sm text-blue-200">Readers</p>
-                </div>
-                <div className="text-center">
-                  <div className="flex items-center justify-center mb-2">
-                    <TrendingUp className="h-6 w-6 text-blue-200 mr-2" />
-                    <span className="text-3xl font-bold text-white">95%</span>
-                  </div>
-                  <p className="text-sm text-blue-200">Success Rate</p>
-                </div>
+              <div>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 animate-fade-in">
+                  Expert Insights
+                </h1>
+                <p className="text-xl md:text-2xl text-blue-100 animate-fade-in animate-delay-100">
+                  For Dental Practice Success
+                </p>
               </div>
             </div>
 
