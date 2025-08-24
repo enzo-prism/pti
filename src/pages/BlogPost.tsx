@@ -112,11 +112,27 @@ const BlogPost = () => {
       <Section>
         <div className="max-w-4xl mx-auto">
           <article className="prose prose-lg max-w-none">
-            {post.content.split('\n\n').map((paragraph, index) => (
-              <p key={index} className="mb-6 text-gray-700 leading-relaxed text-lg">
-                {paragraph}
-              </p>
-            ))}
+            {post.content.split('\n\n').map((segment, index) => {
+              // Check if the segment contains HTML tags
+              const hasHtmlTags = /<[^>]+>/.test(segment);
+              
+              if (hasHtmlTags) {
+                // Render HTML content directly
+                return (
+                  <div 
+                    key={index} 
+                    dangerouslySetInnerHTML={{ __html: segment }}
+                  />
+                );
+              } else {
+                // Render plain text in paragraph tags
+                return (
+                  <p key={index} className="mb-6 text-gray-700 leading-relaxed text-lg">
+                    {segment}
+                  </p>
+                );
+              }
+            })}
           </article>
 
           {/* Author Contact */}
