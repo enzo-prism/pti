@@ -281,6 +281,8 @@ Grace: Ask God for the grace you need for the next day and an ability to see God
 
 No matter what your faith is, the above are wonderful steps to follow on a daily basis. These action items will allow one to really appreciate what is truly important. Most practitioners will spend over three decades of their life devoted to the practice of dentistry.
 
+<img src="/lovable-uploads/ed89ce68-dc38-4260-ac9f-e5519305a693.png" alt="Growth Mindset vs Fixed Mindset comparison showing brain illustrations with key characteristics and attitudes" style="width: 100%; max-width: 600px; height: auto; margin: 2rem auto; display: block; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" />
+
 What do you want to be remembered for as a practitioner, leader, employer?
 Sometimes in our busy and chaotic lives we often forget to smell the roses. Are you taking time to smell the roses? If you are, good for you!
 
