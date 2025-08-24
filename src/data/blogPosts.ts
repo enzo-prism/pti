@@ -92,6 +92,8 @@ Remember, knowledge is power. Please email me at dentalstrategies@gmail.com for 
 Part 2: Navigating Dental Transitions: The Importance of Advisors to ensure a Seamless Process
 by Michael Njo, DDS
 
+<img src="/lovable-uploads/0edba2ee-704d-49c7-91e5-4a96b5f7a5b0.png" alt="Confident female dentist in white coat standing in modern dental office with professional dental equipment" style="width: 100%; max-width: 600px; height: auto; margin: 2rem auto; display: block; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" />
+
 Transitioning a dental practice can be a complex and daunting process. It is one of the most significant career moves a dentist will make. However, with the right advisors/team and a well-structured plan, a smooth transition can be achieved. This article will outline the key advisors needed for a dental transition, potential pitfalls to be aware of, and the method employed by the Dental Strategies team, which focuses on a thorough assessment, a customized roadmap, and ongoing guidance to ensure a seamless transition. The goal is to provide a personalized process for the dentist, their patients, dental team, and family.
 
 I. The Advisors Needed for Your Dental Transition
