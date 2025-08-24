@@ -403,7 +403,22 @@ I hope this series has been thoughtful and thought-provoking. When you are thoug
     gradient: "bg-gradient-to-br from-red-400 via-pink-500 to-purple-600",
     slug: "debugging-myths-practice-transitions-part-i",
     author: "Michael Njo, DDS",
+    series: {
+      id: "debugging-myths-transitions",
+      title: "Debugging the Myths of Practice Transitions",
+      part: 1,
+      total: 2
+    },
     content: `Debugging the Myths of Practice Transitions/Selling Your Practice Part I
+
+<div style="background: linear-gradient(135deg, #fef3f2 0%, #fee2e2 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ef4444; margin: 2rem 0;">
+<h4 style="color: #0f172a; margin: 0 0 0.5rem 0; font-weight: 600;">🔍 Complete Series Overview</h4>
+<p style="color: #475569; margin: 0 0 1rem 0; font-size: 0.875rem;">This is <strong>Part 1</strong> of our 2-part series on Debugging Practice Transition Myths:</p>
+<ul style="color: #475569; margin: 0; padding-left: 1.25rem; font-size: 0.875rem;">
+<li><strong>Part 1: Timeline & Planning Myths</strong> (Current) - Common misconceptions about timing</li>
+<li><a href="/blog/navigating-dental-transitions" style="color: #ef4444; text-decoration: none;">Part 2: Advisory Team & Process</a> - Building the right team</li>
+</ul>
+</div>
 
 <img src="/lovable-uploads/a5b1b69b-d299-42f1-a481-ba0da951bfa1.png" alt="Professional male dentist in white coat with striped tie smiling in modern dental office" style="width: 100%; max-width: 600px; height: auto; margin: 2rem auto; display: block; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" />
 
@@ -431,13 +446,19 @@ Myth - Until I cannot practice anymore.
 
 Most of us truly enjoy dentistry and our patients. There are avenues you can still practice as long as you wish, enjoy your patients, impart your knowledge to the next generation, continue your legacy and be financially rewarded. Create a timeline that works for you, then dovetail those desires with your successor. When the next article is published the goal would be for you to have your timeline created so now you can begin the process of treatment planning your transition.
 
+<div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #0ea5e9; margin: 2rem 0;">
+<h4 style="color: #0f172a; margin: 0 0 0.5rem 0; font-weight: 600;">🎯 Next Steps</h4>
+<p style="color: #475569; margin: 0 0 1rem 0; font-size: 0.875rem;">Ready to continue your journey? In <a href="/blog/navigating-dental-transitions" style="color: #0ea5e9; text-decoration: none; font-weight: 600;">Part 2: Advisory Team & Process</a>, we'll explore the critical importance of building the right advisory team and understanding the process for a successful transition.</p>
+<p style="color: #475569; margin: 0; font-size: 0.875rem;">Don't navigate this alone - learn about the key advisors you need and potential pitfalls to avoid.</p>
+</div>
+
 Please let me know if you need assistance with the above exercise. I would also be happy to schedule a call.
 
 Michael Njo of the Practice Transition Institute will also be presenting a seminar at UOP on July 21st, 2023 - "Treatment Plan for Your Transition Into and Out of Practice". Please email me at dentalstrategies@gmail.com`
   },
   {
     id: 10,
-    title: "Navigating Dental Transitions:",
+    title: "Debugging the Myths of Practice Transitions/Selling Your Practice Part II",
     excerpt: "Transitioning a dental practice can be a complex and daunting process. It is one of the most significant career moves a dentist will make. However, with the right advisors/team and a well structured plan, a smooth transition can be achieved.",
     category: "Practice Transitions",
     date: "2023-07-26",
@@ -445,9 +466,25 @@ Michael Njo of the Practice Transition Institute will also be presenting a semin
     gradient: "bg-gradient-to-br from-blue-400 via-teal-500 to-green-600",
     slug: "navigating-dental-transitions",
     author: "Michael Njo, DDS",
-    content: `Navigating Dental Transitions:
+    series: {
+      id: "debugging-myths-transitions",
+      title: "Debugging the Myths of Practice Transitions",
+      part: 2,
+      total: 2
+    },
+    content: `Debugging the Myths of Practice Transitions/Selling Your Practice Part II
 The Importance of Advisors to Ensure a Seamless Process
-Written by Practice Transitions Institute
+
+<div style="background: linear-gradient(135deg, #fef3f2 0%, #fee2e2 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ef4444; margin: 2rem 0;">
+<h4 style="color: #0f172a; margin: 0 0 0.5rem 0; font-weight: 600;">🔍 Complete Series Overview</h4>
+<p style="color: #475569; margin: 0 0 1rem 0; font-size: 0.875rem;">This is <strong>Part 2</strong> of our 2-part series on Debugging Practice Transition Myths:</p>
+<ul style="color: #475569; margin: 0; padding-left: 1.25rem; font-size: 0.875rem;">
+<li><a href="/blog/debugging-myths-practice-transitions-part-i" style="color: #ef4444; text-decoration: none;">Part 1: Timeline & Planning Myths</a> - Common misconceptions about timing</li>
+<li><strong>Part 2: Advisory Team & Process</strong> (Current) - Building the right team</li>
+</ul>
+</div>
+
+In <a href="/blog/debugging-myths-practice-transitions-part-i" style="color: #ef4444; text-decoration: none; font-weight: 600;">Part 1</a>, we explored common myths about practice transition timelines and planning. Now, let's focus on one of the most critical aspects of a successful transition: building the right advisory team.
 
 Transitioning a dental practice can be a complex and daunting process. It is one of the most significant career moves a dentist will make. However, with the right advisors/team and a well structured plan, a smooth transition can be achieved. This article will outline the key advisors needed for a dental transition, potential pitfalls to be aware of, and the method employed by the Practice Transitions Institute team, which focuses on a thorough assessment, a customized roadmap, and ongoing guidance to ensure a seamless transition. The goal is to provide a personalized process for the dentist, their patients, dental team, and family.
 
@@ -496,6 +533,12 @@ E. Holding Your Hand Throughout.
 PTI understands the emotional and demanding nature of the transition process. Their dedicated team is committed to supporting dentists, providing reassurance, answering questions, and facilitating a seamless transition that prioritizes patient satisfaction, team satisfaction, personal satisfaction, and peace of mind. Recognizing that knowledge gaps can exist, they aim to educate and guide dentists through the entire process.
 
 Please note that the above overview provides only a glimpse into the benefits of having an organized team and plan. For further insights and information, dentists are invited to join PTI at their transition seminar, Treatment Plan for Your Transition Into and Out of Practice, scheduled for July 21st in San Francisco, at UOP, Dugoni School of Dentistry, and August 18th at the Marriott Phoenix Airport.
+
+<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #22c55e; margin: 2rem 0;">
+<h4 style="color: #0f172a; margin: 0 0 0.5rem 0; font-weight: 600;">🎯 Series Complete!</h4>
+<p style="color: #475569; margin: 0 0 1rem 0; font-size: 0.875rem;">You've completed our comprehensive guide to debugging practice transition myths. By understanding the <strong>Timeline & Planning realities</strong> and the importance of building the right <strong>Advisory Team</strong>, you're better equipped to navigate your practice transition successfully.</p>
+<p style="color: #475569; margin: 0; font-size: 0.875rem">If you missed it, start with <a href="/blog/debugging-myths-practice-transitions-part-i" style="color: #22c55e; text-decoration: none; font-weight: 600;">Part 1</a> to get the complete picture, or share this series with colleagues who are considering their own transitions.</p>
+</div>
 
 We are available to answer your questions. Please feel free to reach out to us!`
   }

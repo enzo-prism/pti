@@ -17,14 +17,23 @@ export function SeriesNavigation({ currentPost, seriesPosts }: SeriesNavigationP
   const previousPost = currentIndex > 0 ? seriesPosts[currentIndex - 1] : null;
   const nextPost = currentIndex < seriesPosts.length - 1 ? seriesPosts[currentIndex + 1] : null;
 
-  const getPartFocus = (part: number): string => {
-    switch (part) {
-      case 1: return "Leadership";
-      case 2: return "Gratitude";
-      case 3: return "Team";
-      case 4: return "Attitude & Mindset";
-      default: return "";
+  const getPartFocus = (part: number, seriesId?: string): string => {
+    if (seriesId === "creating-culture-series") {
+      switch (part) {
+        case 1: return "Leadership";
+        case 2: return "Gratitude";
+        case 3: return "Team";
+        case 4: return "Attitude & Mindset";
+        default: return "";
+      }
+    } else if (seriesId === "debugging-myths-transitions") {
+      switch (part) {
+        case 1: return "Timeline & Planning Myths";
+        case 2: return "Advisory Team & Process";
+        default: return "";
+      }
     }
+    return "";
   };
 
   return (
@@ -40,7 +49,7 @@ export function SeriesNavigation({ currentPost, seriesPosts }: SeriesNavigationP
               {currentPost.series.title}
             </h3>
             <p className="text-sm text-muted-foreground mt-1">
-              Focus: {getPartFocus(currentPost.series.part)}
+              Focus: {getPartFocus(currentPost.series.part, currentPost.series.id)}
             </p>
           </div>
         </div>
@@ -70,7 +79,7 @@ export function SeriesNavigation({ currentPost, seriesPosts }: SeriesNavigationP
                   <p className={`text-sm font-medium ${
                     post.id === currentPost.id ? "text-primary" : "text-foreground"
                   }`}>
-                    {getPartFocus(post.series?.part || 0)}
+                    {getPartFocus(post.series?.part || 0, post.series?.id)}
                   </p>
                   <p className="text-xs text-muted-foreground">
                     {post.readTime}
@@ -98,7 +107,7 @@ export function SeriesNavigation({ currentPost, seriesPosts }: SeriesNavigationP
                 <ChevronLeft className="h-4 w-4" />
                 <div className="text-left">
                   <p className="text-xs text-muted-foreground">Previous</p>
-                  <p className="text-sm font-medium">Part {previousPost.series?.part}: {getPartFocus(previousPost.series?.part || 0)}</p>
+                  <p className="text-sm font-medium">Part {previousPost.series?.part}: {getPartFocus(previousPost.series?.part || 0, previousPost.series?.id)}</p>
                 </div>
               </Link>
             </Button>
@@ -111,7 +120,7 @@ export function SeriesNavigation({ currentPost, seriesPosts }: SeriesNavigationP
               <Link to={`/blog/${nextPost.slug}`} className="flex items-center gap-2 justify-end">
                 <div className="text-right">
                   <p className="text-xs text-muted-foreground">Next</p>
-                  <p className="text-sm font-medium">Part {nextPost.series?.part}: {getPartFocus(nextPost.series?.part || 0)}</p>
+                  <p className="text-sm font-medium">Part {nextPost.series?.part}: {getPartFocus(nextPost.series?.part || 0, nextPost.series?.id)}</p>
                 </div>
                 <ChevronRight className="h-4 w-4" />
               </Link>
