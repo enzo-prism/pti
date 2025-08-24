@@ -457,7 +457,7 @@ Michael Njo of the Practice Transition Institute will also be presenting a semin
     title: "Debugging the Myths of Practice Transitions/Selling Your Practice",
     excerpt: "Part 2: Navigating Dental Transitions: The Importance of Advisors to ensure a Seamless Process. Transitioning a dental practice can be a complex and daunting process. It is one of the most significant career moves a dentist will make.",
     category: "Practice Transitions",
-    date: "2023-11-15",
+    date: "2023-11-14",
     readTime: "10 min read",
     gradient: "bg-gradient-to-br from-blue-400 via-teal-500 to-green-600",
     slug: "navigating-dental-transitions",
