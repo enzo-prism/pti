@@ -198,6 +198,32 @@ BIO:
 Fred Heppner, CEO of Arizona Transitions and partner in Practice Transitions Institute, is a transition and practice management expert who has successfully transitioned hundreds of dental practices, representing dentists who want to sell, purchase, or secure a partnership.
 
 Dr. Michael Njo, from Practice Transitions Institute, has decades of experience in dental transitions, from associateship to partnership to acquisition. He is also a practice management expert. Formerly, Transition specialist with the Pride Institute. He is a lecturer, Author, and the recipient of the Distinguished Service award from his dental society.`
+  },
+  {
+    id: 6,
+    title: "Creating Culture In Today's Dental Offices Part II",
+    excerpt: "Did you survive January? How about last quarter? Statistics have shown that our work force took a substantial amount of time off in the month of January. This is where your leadership and positive mindset are essential.",
+    category: "Practice Management",
+    date: "2022-12-29",
+    readTime: "6 min read",
+    gradient: "bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600",
+    slug: "creating-culture-dental-offices-part-ii",
+    author: "Michael Njo, DDS",
+    content: `Creating Culture In Today's Dental Offices Part II
+
+Did you survive January? How about last quarter? Statistics have shown that our work force took a substantial amount of time off in the month of January. Practices across the country were also suffering from patient cancellations. Having staffing issues and a dental chair that is not occupied can be frustrating, but this is where your leadership and positive mindset are essential.
+
+Per our last article, you were tasked to answer the following questions: Where do you want to take your practice? Does everyone around you know? Are you consistent with your team? Do they know the standards that their performance is measured against? Do they know how their contributions contribute to the journey? It is vital for you and your dental team to be on the same page. Just as essential and important is to have a clear mission and purpose. Most of you should have implemented action items to work towards your goals. Please have regularly scheduled meetings to monitor and measure your progress and take the opportunity to celebrate your achievements.
+
+Now let us continue creating the platform for the culture you want. Let's discuss another attribute of a leader - Gratitude. Gratitude is defined as a spontaneous feeling, but research demonstrates its value as a practice. Studies show that people can deliberately cultivate gratitude and there are important social and personal benefits in doing so. This emotion generates a climate of positivity that both reaches inward and extends outward. Are you leading by example? I love the saying; you are a product of your environment. What environment are you creating as a leader? What is something you did today that went above and beyond expectations? Do you treat each team member as if they are the most important person? Did you notice I used the phrase team member and not staff member or employee?
+
+Changing behaviors starts with you! What skills sets are needed? Just as in patient care, listening skills are essential with your team. This skill allows relationships to flourish. The following are some key leadership takeaways: Allow yourself room for grace as you are in a challenging profession. Be gracious and say "thank you" to your team, patients, and colleagues. Many times we think about these words, but we don't say them. Practice saying them often because there is always something to be grateful for. Find appreciation, especially during the most difficult days.
+
+You are judged by how you conduct yourself in times of strife. Unfortunately, our profession has experienced a lot of strife. So where can I get this information? What tools can I get to help me? Reading self-improvement books on topics such as listening skills or active listening are a great resource. Hiring coaches/consultants and studying successful people you admire will provide more insight as well. It would be an interesting exercise if you could watch a video of yourself on a typical day in your practice. What would you see? Would you like what you saw? 
+
+Speaking of grateful, do you know staff appreciation day was March 4th? How did you celebrate this day? Ideally shouldn't we celebrate this every day? Another great resource that I enjoy is the Forbes CXO. This is a great newsletter. Here is an excerpt of an article I enjoyed titled - Employee Appreciation Day: "Imagine if retaining top talent was as easy as saying thank you. It is no silver bullet, but it can easily help. According to a survey of 2000 workers in North America, Ireland, and the UK by a HR tech firm Work human, employees who have been thanked by their managers in the past months are three times as likely to see a future in the company whereas if the employee who are not praised are two times as likely to be seeking employment elsewhere" Startling, isn't it? If you are curious on reading more about positive thinking look up the author Stephen Covey. He is one of my favorites and I enjoy how he puts life in a certain perspective.
+
+Part III of this series will be focusing on teams. We will also have a wonderful opportunity to celebrate your team during our September 15th General Membership meeting. So please save that date and bring your team! We have a lot to celebrate!!! The positive working environment you as a leader create will give your dental team a great place to work as well as a place for your patients to receive the excellent care you and your team provide. If you would like to discuss this topic or any related topics, I would be happy to schedule a call with you. Please email me at dentalstrategies@gmail.com`
   }
 ];
 
