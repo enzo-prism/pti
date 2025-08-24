@@ -47,7 +47,7 @@ const About = () => {
       />
       
       {/* Hero Section - Mobile Optimized */}
-      <section className="pt-20 pb-12 md:pt-32 md:pb-24 bg-gradient-to-b from-accent to-white px-4">
+      <section className="pt-24 pb-12 md:pt-32 md:pb-24 bg-gradient-to-b from-accent to-white px-4">
         <div className="container max-w-4xl mx-auto">
           <div className="text-center">
             <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 animate-fade-in leading-tight">
