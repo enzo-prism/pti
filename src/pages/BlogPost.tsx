@@ -4,9 +4,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Section, SectionTitle } from "@/components/ui/section";
-import { getBlogPostBySlug, getRelatedPosts } from "@/data/blogPosts";
+import { getBlogPostBySlug, getRelatedPosts, getSeriesPosts } from "@/data/blogPosts";
 import SEO from "@/components/layout/SEO";
 import { formatLocalDate } from "@/lib/dateUtils";
+import { SeriesNavigation } from "@/components/ui/series-navigation";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -30,6 +31,7 @@ const BlogPost = () => {
   }
 
   const relatedPosts = getRelatedPosts(post.id, post.category, 2);
+  const seriesPosts = post.series ? getSeriesPosts(post.series.id) : [];
 
   return (
     <>
@@ -134,6 +136,13 @@ const BlogPost = () => {
               }
             })}
           </article>
+
+          {/* Series Navigation */}
+          {post.series && seriesPosts.length > 1 && (
+            <div className="mt-12">
+              <SeriesNavigation currentPost={post} seriesPosts={seriesPosts} />
+            </div>
+          )}
 
           {/* Author Contact */}
           <div className="mt-12 p-6 bg-gray-50 rounded-lg">

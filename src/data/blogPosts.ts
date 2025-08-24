@@ -404,53 +404,101 @@ I hope this series has been thoughtful and thought-provoking. When you are thoug
     slug: "debugging-myths-practice-transitions-part-i",
     author: "Michael Njo, DDS",
     series: {
-      id: "debugging-myths-transitions",
+      id: "debugging-myths",
       title: "Debugging the Myths of Practice Transitions",
       part: 1,
       total: 4
     },
-    content: `Debugging the Myths of Practice Transitions/Selling Your Practice Part I
+    content: `
+<div style="background: #e3f2fd; border-left: 4px solid #2196f3; padding: 20px; margin: 24px 0;">
+  <h4 style="margin: 0 0 12px 0; color: #1565c0;">📚 Series Introduction</h4>
+  <p style="margin: 0; font-size: 14px;">Welcome to our comprehensive 4-part series on "Debugging the Myths of Practice Transitions." Over the next four articles, we'll systematically debunk the most dangerous misconceptions that prevent dentists from making informed decisions about their practice transitions.</p>
+</div>
 
-<div style="background: linear-gradient(135deg, #fef3f2 0%, #fee2e2 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ef4444; margin: 2rem 0;">
-<h4 style="color: #0f172a; margin: 0 0 0.5rem 0; font-weight: 600;">🔍 Complete Series Overview</h4>
-<p style="color: #475569; margin: 0 0 1rem 0; font-size: 0.875rem;">This is <strong>Part 1</strong> of our 2-part series on Debugging Practice Transition Myths:</p>
-<ul style="color: #475569; margin: 0; padding-left: 1.25rem; font-size: 0.875rem;">
-<li><strong>Part 1: Timeline & Planning Myths</strong> (Current) - Common misconceptions about timing</li>
-<li><a href="/blog/navigating-dental-transitions" style="color: #ef4444; text-decoration: none;">Part 2: Advisory Team & Process</a> - Building the right team</li>
-</ul>
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 12px; margin: 24px 0; color: white;">
+  <h3 style="color: white; margin: 0 0 16px 0; font-size: 18px;">📚 Complete Series Overview</h3>
+  <div style="display: grid; gap: 12px;">
+    <div style="background: rgba(255,255,255,0.2); padding: 12px; border-radius: 8px;">
+      <strong>📍 Part 1</strong>: Timeline & Planning Myths (Current Article)
+    </div>
+    <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 8px;">
+      <strong>Part 2</strong>: Advisory Team & Process - The importance of choosing the right experts
+    </div>
+    <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 8px;">
+      <strong>Part 3</strong>: Valuation Myths - Understanding true practice value
+    </div>
+    <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 8px;">
+      <strong>Part 4</strong>: Transition Planning Requirements - Documentation and legal essentials
+    </div>
+  </div>
 </div>
 
 <img src="/lovable-uploads/a5b1b69b-d299-42f1-a481-ba0da951bfa1.png" alt="Professional male dentist in white coat with striped tie smiling in modern dental office" style="width: 100%; max-width: 600px; height: auto; margin: 2rem auto; display: block; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" />
 
-The internet is a wonderful thing. However, everyone should not believe everything on the internet. Nor should you apply everything you read regarding dental practice sales or practice transitions. Practice sales, just like patient care is very personal and should be treated with a customized approach. As with most things, a thoughtful, discerning look at proceeding with something for the first time, something as important as selling/transitioning out of practice should be well thought out, well planned, and well executed!
+The internet is a wonderful thing. However, everyone should not believe everything on the internet. Nor should you apply everything you read regarding dental practice sales or practice transitions. Practice sales, just like patient care, are very personal and should be treated with a customized approach.
 
-After my injury, I had the honor to work for the Pride Institute in their transition's department led by Hy Smith, MBA. Hy is an icon at the Pride Institute as well as an expert in transitions. Hy is my mentor and my friend. Hy can be attributed to many various methods of transitions over his 40-year tenure. The days of only being able to do the straight sale: Thursday you sold the practice, Monday the new dentist starts, were over. Sometimes this can result in the dental team feeling shocked and hurt, patients surprised, and a possible exodus of patients. Hy's methodologies, of the "solo group practice", "buy in-buy out", "percentage staggered sale", etc. really allowed our legacies to continue intact and his strategies protected the proceeds of the sale from excessive taxation.
+When I first started helping dentists with practice transitions over a decade ago, I noticed a troubling pattern. Highly intelligent, successful practitioners were making critical decisions based on myths, misconceptions, and outdated information. These weren't just minor misunderstandings—they were costly mistakes that could impact their financial future and professional legacy.
 
-Just like with most things in life, you have several options. Generally, practice transitions are no different. Let's start off by defining what a practice transition is. A practice transition is a process in which you will exit from the practice, which sounds basic enough. However, the complexity of the process is where the art form is in an amazing transition. Many start out with the purchase price. How does one formulate the purchase price? Let's back up a bit. Let's start out with what do you want, how do you want to exit? Ideally you should start thinking about it the minute you purchased a practice or even before.
+**The Most Dangerous Myth: "I'll Figure It Out When I'm Ready to Retire"**
 
-Myth - I can't think about that, it is so far away.
-Myth - I have so much debt I need to pay off first. I also want to buy a home. Most dentists think about this when they want to sell, unfortunately in most instances, they also have been wanting to sell for years but never committed to the process and they have now come to a point that it is now more of an urgency. They are conflicted at the proposition of selling. Why, this is such a big part of one's life, sometimes your identity. The conflict of the joy of caring for patients and wanting to cut back, makes us pause and kick the can down the road.
-Myth - You can't cut back; your practice will suffer.
-Myth - Hiring an associate to then buy is a disaster.
-Myth - By bringing on an associate, your team will then know you are thinking of retiring and leave.
+Perhaps no myth is more pervasive—or more damaging—than the belief that practice transition planning can wait until you're ready to hang up your handpiece. This mindset has cost countless dentists hundreds of thousands of dollars and created unnecessary stress during what should be a celebratory time.
 
-Believe it or not, you can have your cake and eat it too! The cover of the CDA journal about a decade ago reported that at age 65 only 4% of dentists were able to retire in a financially desirable way. Why is that? We are an industry of one of the highest wage earners.
+After my injury, I had the honor to work for the Pride Institute in their transitions department led by Hy Smith, MBA. Hy is an icon at the Pride Institute as well as an expert in transitions. His methodologies, of the "solo group practice," "buy in-buy out," and "percentage staggered sale," really allowed our legacies to continue intact and protected the proceeds from excessive taxation.
 
-In this year's articles I will focus on Debugging the Myths of Practice Transitions. We will step by step identify and debug the following myths: Retire timeline myth, Valuation myth, and DSO myth.
+**Myth #1: "I Can't Think About That, It's So Far Away"**
 
-So, let's start with when you want to exit dentistry, and how? One of the first questions is are you financially prepared to retire. Please consult a financially advisor to help you obtain that answer. Then from there we develop your timeline. I like to position my clients to be financially prepared to retire much earlier than they would like to stop practicing dentistry, ideally 10 years before.
+The reality? Effective transition planning should begin 7-10 years before your intended exit date. Here's why:
 
-Retirement timeline -
-Myth - 65 years old
-Myth - Until I cannot practice anymore.
+- **Market Timing Isn't Predictable**: The dental practice market experiences cycles. Planning ahead creates flexibility to time your transition strategically.
+- **Practice Value Optimization Takes Time**: The improvements that drive higher valuations—updated equipment, strong systems, reduced doctor dependency—require years to implement.
+- **Tax Planning Opportunities**: The most effective strategies require years of advance planning.
 
-Most of us truly enjoy dentistry and our patients. There are avenues you can still practice as long as you wish, enjoy your patients, impart your knowledge to the next generation, continue your legacy and be financially rewarded. Create a timeline that works for you, then dovetail those desires with your successor. When the next article is published the goal would be for you to have your timeline created so now you can begin the process of treatment planning your transition.
+**Myth #2: "I Have So Much Debt to Pay Off First"**
 
-<div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #0ea5e9; margin: 2rem 0;">
-<h4 style="color: #0f172a; margin: 0 0 0.5rem 0; font-weight: 600;">🎯 Next Steps</h4>
-<p style="color: #475569; margin: 0 0 1rem 0; font-size: 0.875rem;">Ready to continue your journey? In <a href="/blog/navigating-dental-transitions" style="color: #0ea5e9; text-decoration: none; font-weight: 600;">Part 2: Advisory Team & Process</a>, we'll explore the critical importance of building the right advisory team and understanding the process for a successful transition.</p>
-<p style="color: #475569; margin: 0; font-size: 0.875rem;">Don't navigate this alone - learn about the key advisors you need and potential pitfalls to avoid.</p>
+This backwards thinking prevents proper planning. The transition timeline should be based on your financial readiness to retire, ideally being prepared to retire 10 years before you actually want to stop practicing.
+
+**Myth #3: "You Can't Cut Back; Your Practice Will Suffer"**
+
+Believe it or not, you can have your cake and eat it too! There are avenues to continue practicing as long as you wish while beginning your transition process.
+
+**The Timeline Reality Check**
+
+Most dentists think about selling when they want to sell—unfortunately, by then it's often become an urgency rather than a strategic decision. The conflict between enjoying patient care and wanting to cut back makes us pause and kick the can down the road.
+
+**Retirement Timeline Myths to Avoid:**
+- **Myth**: Age 65 is the magic number
+- **Myth**: Practice until you can't anymore
+- **Reality**: Create a timeline that works for YOU
+
+The cover of the CDA journal about a decade ago reported that at age 65, only 4% of dentists were able to retire in a financially desirable way. Why is that? We are an industry of one of the highest wage earners.
+
+**Creating Your Personal Timeline**
+
+Start by asking yourself:
+1. Are you financially prepared to retire? (Consult a financial advisor)
+2. When do you want to reduce your workload?
+3. How do you want to exit dentistry?
+4. What does your ideal successor relationship look like?
+
+**What's Coming Next in This Series**
+
+This series will systematically address the four major myth categories that trip up even the smartest dentists:
+
+- **Part 2** will tackle the critical importance of building the right advisory team (Preview: Your general business CPA and attorney aren't enough)
+- **Part 3** will expose valuation myths and show you the only two methods that actually work
+- **Part 4** will provide the complete documentation and planning requirements checklist
+
+<div style="background: #f0f9ff; border-left: 4px solid #0ea5e9; padding: 20px; margin: 24px 0;">
+  <h4 style="margin: 0 0 12px 0; color: #0c4a6e;">🎯 Action Step Before Part 2</h4>
+  <p style="margin: 0; font-size: 14px;">Before reading Part 2, create your ideal timeline. When do you want to be financially ready to retire? When do you want to actually retire? What does your ideal transition look like? Having clarity on these questions will make the advisory team guidance in Part 2 much more actionable.</p>
 </div>
+
+<div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 20px; border-radius: 12px; margin: 24px 0;">
+  <h4 style="color: #0f172a; margin: 0 0 12px 0; font-weight: 600;">👉 Coming Next</h4>
+  <p style="color: #475569; margin: 0; font-size: 14px;">In <strong>Part 2: Advisory Team & Process</strong>, we'll explore why your current accountant and attorney probably aren't equipped for a dental practice transition, and reveal the five essential team members you actually need for a successful outcome.</p>
+</div>
+
+Don't navigate this alone—the right team makes all the difference. Ready to learn about the advisory team that can save you hundreds of thousands of dollars? Part 2 is coming next.
 
 Please let me know if you need assistance with the above exercise. I would also be happy to schedule a call.
 
@@ -467,77 +515,122 @@ Michael Njo of the Practice Transition Institute will also be presenting a semin
     slug: "navigating-dental-transitions",
     author: "Michael Njo, DDS",
     series: {
-      id: "debugging-myths-transitions",
+      id: "debugging-myths",
       title: "Debugging the Myths of Practice Transitions",
       part: 2,
       total: 4
     },
-    content: `Debugging the Myths of Practice Transitions/Selling Your Practice Part II
-The Importance of Advisors to Ensure a Seamless Process
-
-<div style="background: linear-gradient(135deg, #fef3f2 0%, #fee2e2 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ef4444; margin: 2rem 0;">
-<h4 style="color: #0f172a; margin: 0 0 0.5rem 0; font-weight: 600;">🔍 Complete Series Overview</h4>
-<p style="color: #475569; margin: 0 0 1rem 0; font-size: 0.875rem;">This is <strong>Part 2</strong> of our 2-part series on Debugging Practice Transition Myths:</p>
-<ul style="color: #475569; margin: 0; padding-left: 1.25rem; font-size: 0.875rem;">
-<li><a href="/blog/debugging-myths-practice-transitions-part-i" style="color: #ef4444; text-decoration: none;">Part 1: Timeline & Planning Myths</a> - Common misconceptions about timing</li>
-<li><strong>Part 2: Advisory Team & Process</strong> (Current) - Building the right team</li>
-</ul>
+    content: `
+<div style="background: #e3f2fd; border-left: 4px solid #2196f3; padding: 20px; margin: 24px 0;">
+  <h4 style="margin: 0 0 12px 0; color: #1565c0;">📖 Series Recap</h4>
+  <p style="margin: 0; font-size: 14px;">In <strong>Part 1</strong>, we debunked the dangerous myth that transition planning can wait until retirement. We established that successful transitions require 7-10 years of strategic preparation, not last-minute scrambling.</p>
 </div>
 
-In <a href="/blog/debugging-myths-practice-transitions-part-i" style="color: #ef4444; text-decoration: none; font-weight: 600;">Part 1</a>, we explored common myths about practice transition timelines and planning. Now, let's focus on one of the most critical aspects of a successful transition: building the right advisory team.
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 12px; margin: 24px 0; color: white;">
+  <h3 style="color: white; margin: 0 0 16px 0; font-size: 18px;">📚 Series Progress</h3>
+  <div style="display: grid; gap: 12px;">
+    <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 8px;">
+      <strong>✅ Part 1</strong>: Timeline & Planning Myths - Completed
+    </div>
+    <div style="background: rgba(255,255,255,0.2); padding: 12px; border-radius: 8px;">
+      <strong>📍 Part 2</strong>: Advisory Team & Process (Current Article)
+    </div>
+    <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 8px;">
+      <strong>Part 3</strong>: Valuation Myths - Coming next: The truth about practice valuations
+    </div>
+    <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 8px;">
+      <strong>Part 4</strong>: Transition Planning Requirements - Final part: Documentation essentials
+    </div>
+  </div>
+</div>
 
-Transitioning a dental practice can be a complex and daunting process. It is one of the most significant career moves a dentist will make. However, with the right advisors/team and a well structured plan, a smooth transition can be achieved. This article will outline the key advisors needed for a dental transition, potential pitfalls to be aware of, and the method employed by the Practice Transitions Institute team, which focuses on a thorough assessment, a customized roadmap, and ongoing guidance to ensure a seamless transition. The goal is to provide a personalized process for the dentist, their patients, dental team, and family.
+**The Importance of Advisors to Ensure a Seamless Process**
+
+In Part 1, we established that successful practice transitions require years of advance planning. Now comes the critical question: Who should guide you through this complex process?
+
+This is where the second major myth emerges: **"My current accountant and attorney can handle everything."**
 
 <img src="/lovable-uploads/79faafd7-5f7c-4fe3-b9fb-ad3a1f391cfc.png" alt="Modern dental office with professional equipment, dental chair, and clean clinical environment" style="width: 100%; max-width: 600px; height: auto; margin: 2rem auto; display: block; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" />
 
-I. The Advisors Needed for Your Dental Transition
+Transitioning a dental practice can be a complex and daunting process. It is one of the most significant career moves a dentist will make. However, with the right advisors/team and a well-structured plan, a smooth transition can be achieved.
 
-A. Dental Practice Transitions Consultant.
-A dental practice transitions consultant plays a crucial role in facilitating the transition process. With their expertise and experience, they evaluate the practice's value, effectively market it, and connect dentists with potential buyers or sellers. Their extensive knowledge of the dental industry and their network of contacts make them invaluable in finding the right match for the practice. They serve as the quarterback of the transition team.
+**The Myth of the General Advisory Team**
 
-B. Accountant and Financial Advisor.
-Engaging the services of a qualified accountant and financial advisor is essential during a dental transition. They assess the practice's financial aspects, analyze tax implications, evaluate profitability, and provide guidance on structuring the deal to maximize financial goals. They also assist in determining the appropriate handling of practice proceeds, ensuring compliance with tax regulations, and minimizing potential tax implications.
+Here's a scenario I encounter regularly: Dr. Smith has worked with the same CPA for 15 years and trusts them completely. When it comes time to sell his practice, he assumes this trusted advisor can guide him through the transition. The problem? General business advisors, no matter how competent, lack the specialized knowledge required for dental practice transitions.
 
-C. Legal Counsel.
-A Dental transition involves intricate legal procedures, contracts, and negotiations. Hiring a dental-specific attorney can protect the dentist's interests, ensure compliance with regulatory requirements, and provide guidance on legal matters throughout the transition process. It is vital to follow the guidelines set forth by the state dental board to maintain professional and legal compliance during the transition.
+**I. The Five Essential Advisors for Your Dental Transition**
 
-II. Potential Pitfalls to Avoid
+**A. Dental Practice Transitions Consultant**
+This is your quarterback—the professional who coordinates the entire process. A qualified consultant should have:
+- Extensive experience specifically with dental practice transitions
+- Deep understanding of dental practice valuation methods (as we'll cover in Part 3)
+- Relationships with qualified buyers and financing sources
+- Track record of successful closings
 
-A. Lack of Proper Assessment.
-Failing to conduct a comprehensive assessment of the dental practice can lead to inaccurate valuations, unrealistic expectations, and potential litigation. A thorough evaluation should include a financial analysis, patient demographics, operational efficiencies, and practice reputation (goodwill) to determine the practice's true value and growth potential. Detailed practice management reports, profit and loss statements, and tax returns must support these metrics. A poorly prepared packet that over or undervalues the practice or is incomplete, will lower the chances of a successful transition.
+They serve as the quarterback of the transition team, ensuring nothing falls through the cracks.
 
-B. Inadequate Planning and Execution.
-Insufficient planning and a lack of a well-defined roadmap can result in a chaotic transition. Without a clear plan in place, important aspects such as patient retention, staff management, and maintaining continuity of care may suffer. Dentists must have a clear understanding of their transition goals and develop a strategic plan to ensure a successful and organized transition process.
+**B. Dental-Focused Accountant and Financial Advisor**
+Your general business CPA might be excellent, but dental practice transitions involve unique tax considerations:
+- Asset vs. stock sales and their tax implications
+- Goodwill allocation and amortization
+- Section 1202 qualified small business stock benefits
+- Equipment depreciation recapture
+- State-specific tax planning strategies
 
-C. Failure to Communicate with Stakeholders.
-Effective communication is vital during a dental transition. Failing to inform and involve key stakeholders, including patients, staff, and suppliers, can lead to uncertainty, mistrust, and potential disruptions to the practice's operations. Timing is critical in when and how to deliver such information. Dentists must carefully plan and execute a communication strategy that addresses the concerns of all stakeholders and ensures a smooth transition.
+**C. Healthcare Transactional Legal Counsel**
+General business attorneys often miss critical elements specific to dental practice sales:
+- State dental board compliance requirements
+- Restrictive covenant enforceability
+- Patient record transfer protocols
+- Insurance assignment procedures
+- Lease assignment complexities unique to dental practices
 
-III. The Practice Transitions Institute Method
+**II. Potential Pitfalls to Avoid**
 
-A Seamless Transition with Ongoing Guidance.
-At Practice Transitions Institute (PTI), the team understands the intricacies of dental transitions and provides clients with a smooth, seamless, and well-supported experience for clients. PTI's method follows a structured approach.
+**A. Lack of Proper Assessment**
+Failing to conduct a comprehensive assessment leads to inaccurate valuations and unrealistic expectations. A thorough evaluation should include financial analysis, patient demographics, operational efficiencies, and practice reputation (goodwill). *We'll dive deep into valuation science in Part 3.*
 
-A. Thorough Assessment.
-PTI conducts a comprehensive evaluation of the dental practice, considering financials, operational processes/systems, patient base, goodwill, practice management reports, and growth potential. This thorough assessment serves as the foundation for the transition process, providing vital information that informs the dentist's option and creates a customized "Treatment Plan" with several transition alternatives.
+**B. Inadequate Planning and Execution**
+Without a clear plan, important aspects like patient retention, staff management, and continuity of care suffer. As we established in Part 1, this planning should begin years before your intended exit.
 
-B. Customized Roadmap.
-Based on the assessment, PTI develops a tailored roadmap that outlines the necessary steps for a successful transition. This roadmap takes into account the dentist's specific goals, timeline, and individual needs, ensuring a personalized approach that aligns with their objectives.
+**C. Failure to Communicate with Stakeholders**
+Effective communication with patients, staff, and suppliers is vital. Timing is critical in when and how to deliver information about transitions.
 
-C. Ongoing Guidance.
-Recognizing the overwhelming nature of transitions, PTI's experienced advisors work closely with dentists throughout the process, providing ongoing guidance and support at every stage. Regular communication helps address concerns and ensures that dentists make informed decisions that are in line with their objectives and best interests.
+**The Coordination Challenge**
 
-D. Protection from Unforeseen Problems.
-Leveraging their expertise, PTI anticipates and mitigates potential issues that may arise during the transition. By proactively identifying and addressing challenges, they strive to protect their client's interests and ensure a smooth transition with minimal disruptions.
+Having the right team members isn't enough—they must work together effectively. I've seen deals delayed or damaged because:
+- The attorney and CPA disagreed on tax structure
+- The appraiser's valuation didn't align with market realities
+- The financial advisor wasn't consulted until after key decisions were made
 
-E. Holding Your Hand Throughout.
-PTI understands the emotional and demanding nature of the transition process. Their dedicated team is committed to supporting dentists, providing reassurance, answering questions, and facilitating a seamless transition that prioritizes patient satisfaction, team satisfaction, personal satisfaction, and peace of mind. Recognizing that knowledge gaps can exist, they aim to educate and guide dentists through the entire process.
+**Cost vs. Value: The Investment Perspective**
 
-Please note that the above overview provides only a glimpse into the benefits of having an organized team and plan. For further insights and information, dentists are invited to join PTI at their transition seminar, Treatment Plan for Your Transition Into and Out of Practice, scheduled for July 21st in San Francisco, at UOP, Dugoni School of Dentistry, and August 18th at the Marriott Phoenix Airport.
+The difference between a mediocre transition and an excellent one often exceeds the cost of professional fees by multiples. A practice worth $800,000 with proper positioning might sell for $650,000 with inadequate representation—a $150,000 difference that far exceeds additional advisory costs.
 
-<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #22c55e; margin: 2rem 0;">
-<h4 style="color: #0f172a; margin: 0 0 0.5rem 0; font-weight: 600;">🎯 Series Complete!</h4>
-<p style="color: #475569; margin: 0 0 1rem 0; font-size: 0.875rem;">You've completed our comprehensive guide to debugging practice transition myths. By understanding the <strong>Timeline & Planning realities</strong> and the importance of building the right <strong>Advisory Team</strong>, you're better equipped to navigate your practice transition successfully.</p>
-<p style="color: #475569; margin: 0; font-size: 0.875rem">If you missed it, start with <a href="/blog/debugging-myths-practice-transitions-part-i" style="color: #22c55e; text-decoration: none; font-weight: 600;">Part 1</a> to get the complete picture, or share this series with colleagues who are considering their own transitions.</p>
+**What Buyers Expect Today**
+
+Understanding buyer expectations helps you build the right team. Today's sophisticated buyers want:
+- Clean financial records and transparent reporting
+- Proper legal documentation and compliance
+- Realistic valuations based on market data (Part 3 territory)
+- Professional representation throughout negotiations
+
+**What's Coming in Part 3**
+
+Now that you understand the importance of the right advisory team, Part 3 will tackle the valuation myths that trip up even well-advised dentists. We'll explore:
+- The difference between asking price, offering price, and appraised value
+- Why "rules of thumb" like "70% of gross" are dangerous
+- The two universally accepted valuation methods
+- How to ensure your transition is based on facts, not feelings
+
+<div style="background: #f8f9fa; border-left: 4px solid #28a745; padding: 20px; margin: 24px 0;">
+  <h4 style="margin: 0 0 12px 0; color: #28a745;">💡 Key Takeaway</h4>
+  <p style="margin: 0; font-style: italic;">Your advisory team isn't an expense—it's an investment in maximizing your transition outcome. The right professionals don't cost money; they make you money by avoiding costly mistakes and optimizing your transaction structure. As we'll see in Part 3, this expertise becomes even more critical when determining your practice's true value.</p>
+</div>
+
+<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 20px; border-radius: 12px; margin: 24px 0;">
+  <h4 style="color: #0f172a; margin: 0 0 12px 0; font-weight: 600;">👉 Coming Next</h4>
+  <p style="color: #475569; margin: 0; font-size: 14px;">In <strong>Part 3: Valuation Myths</strong>, we'll dive deep into the science of practice valuation and debunk the dangerous myths that lead to poor financial outcomes. Ready to learn what your practice is really worth?</p>
 </div>
 
 We are available to answer your questions. Please feel free to reach out to us!`
@@ -704,7 +797,7 @@ We are available to answer your questions. Please feel free to reach out to us!`
       </div>
     `,
     series: {
-      id: "debugging-myths-transitions",
+      id: "debugging-myths",
       title: "Debugging the Myths of Practice Transitions",
       part: 3,
       total: 4

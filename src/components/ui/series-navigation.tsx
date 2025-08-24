@@ -26,7 +26,7 @@ export function SeriesNavigation({ currentPost, seriesPosts }: SeriesNavigationP
         case 4: return "Attitude & Mindset";
         default: return "";
       }
-    } else if (seriesId === "debugging-myths-transitions") {
+    } else if (seriesId === "debugging-myths") {
       switch (part) {
         case 1:
           return "Timeline & Planning Myths";
@@ -35,7 +35,7 @@ export function SeriesNavigation({ currentPost, seriesPosts }: SeriesNavigationP
         case 3:
           return "Valuation Myths";
         case 4:
-          return "DSO Myths";
+          return "Transition Planning Requirements";
         default:
           return "";
       }
