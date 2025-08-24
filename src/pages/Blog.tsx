@@ -227,7 +227,7 @@ const Blog = () => {
                       {formatLocalDate(post.date, { month: 'short', day: 'numeric', year: 'numeric' })}
                     </div>
                     <div className="text-xs text-gray-600">
-                      By {post.author.split(' ')[0]}
+                      By {post.author}
                     </div>
                   </div>
                   
