@@ -121,6 +121,40 @@ E. Holding Your Hand Throughout. Dental Strategies understands the emotional and
 Please note that the above overview provides only a glimpse into the benefits of having an organized team and plan.
 
 To request additional information, email dentalstrategies@gmail.com`
+  },
+  {
+    id: 4,
+    title: "Creating Culture In Today's Dental Offices",
+    excerpt: "We as an industry have had a very tumultuous ride. The practices that weathered and thrived through the storm had a particular practice culture. This article will be the 1st in a 4-part series addressing culture.",
+    category: "Practice Management",
+    date: "2022-12-23",
+    readTime: "7 min read",
+    gradient: "bg-gradient-to-br from-violet-400 via-purple-500 to-indigo-600",
+    slug: "creating-culture-todays-dental-offices",
+    author: "Michael Njo, DDS",
+    content: `Creating Culture In Today's Dental Offices
+
+Hello, my name is Michael Njo and I have been a proud member of the SMCDS since 1989. When asked to write for the Mouthpiece, it brought back many memories from the days when I was editor of the Mouthpiece.
+
+When I was injured, I created a consulting company – Dental Strategies which focuses on transitions, management, and legal guidance. It is truly a privilege to write for you this year sharing my experiences.
+
+We as an industry have had a very tumultuous ride. In my care for many practices across the country what I have witnessed is the practices (GP, Endo, Perio, OS, Pedo, and Prosth) that weathered and thrived through the storm had a particular practice culture. I thought it would be appropriate to highlight this practice management touch point - culture. This article will be the 1st in a 4-part series addressing culture.
+
+In all businesses there is a culture. In all societies there is a culture. Culture can be defined as an umbrella term which encompasses the social behavior and norms found in human societies, as well as the knowledge, beliefs, arts, laws, customs, capabilities, and habits of the individuals in these groups. Humans acquire culture through the learning processes of enculturation and socialization, which is shown by the diversity of cultures across societies. Your practice has created a culture whether purposefully or by evolution. Nonetheless, you have a practice culture. So, what is your practice culture? Can your patients describe it? Can you describe it? Can your team describe it? If not, that is a problem. If you can do all four descriptions, do you all (team) agree with the same description? Do you like the description? If not, that is an even bigger problem.
+
+For decades some dental practices have cared and focused on creating such a culture. Remember the exercises to create mission statements, vision statements, benefit statements, value statements, etc. We took these ideas and techniques from the fortune 100 and 500 companies. However, it was not too long ago that some were criticized for viewing dental practices as a business.
+
+It was ridiculous to try to use best practices from large successful companies. However, the trends have been changing and dental office owners are realizing that they must run their practice not only focusing on the quality of the care, but also utilizing the fundamental mechanics of operating a business. A general dental office overhead in the 1960's was about 35%. A well-run practice overhead is almost double that today. What is your overhead? One of the fundamental aspects of any organization's success is their culture. Early I described the Wikipedia's definition of culture. Let us break it down for your practice. If you are still reading and interested in this article you are way ahead of your peers. Why? You care!!!
+
+So let us gather the ingredients to create a culture that you, your team, and your patient's desire. Those ingredients are in part - Leadership, Values, Principals, Character, Integrity, Team, Mindset, Communication, and Attitude. Like with everything in business, it all starts with Leadership. Leadership can look so many ways. To be a great leader, you just need a few things: a vision of where you want to go, consistency in working towards getting there, and an invitation for others to take that journey with you.
+
+Where do you want to take your practice?
+Does everyone around you know?
+Are you consistent with your team?
+Do they know the standards that their performance is measured against?
+Do they know how their contributions contribute to the journey?
+
+Let us first start there. Take some time, anything worth its salt takes time, to answer these questions. Be thoughtful, keep editing it until the next article. You deserve this and so does your team, and your patients.`
   }
 ];
 
