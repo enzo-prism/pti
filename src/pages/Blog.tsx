@@ -1,18 +1,39 @@
+import { useState } from "react";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, ArrowRight, Search } from "lucide-react";
+import { Calendar, Clock, ArrowRight, Search, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "@/components/layout/SEO";
 import { blogPosts } from "@/data/blogPosts";
 import { formatLocalDate } from "@/lib/dateUtils";
 
 const Blog = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+
   // Sort posts by date (most recent first)
   const sortedPosts = [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  const featuredPost = sortedPosts[0]; // Most recent post as featured
-  const regularPosts = sortedPosts.slice(1); // Rest of the posts
+  
+  // Filter posts based on search query
+  const filteredPosts = sortedPosts.filter(post => {
+    if (!searchQuery.trim()) return true;
+    
+    const query = searchQuery.toLowerCase();
+    return (
+      post.title.toLowerCase().includes(query) ||
+      post.excerpt.toLowerCase().includes(query) ||
+      post.category.toLowerCase().includes(query) ||
+      post.author.toLowerCase().includes(query)
+    );
+  });
+  
+  const featuredPost = filteredPosts[0]; // First filtered post as featured
+  const regularPosts = filteredPosts.slice(1); // Rest of the filtered posts
+  
+  const handleClearSearch = () => {
+    setSearchQuery('');
+  };
 
   return (
     <>
@@ -48,13 +69,28 @@ const Blog = () => {
             {/* Search Bar */}
             <div className="max-w-2xl mx-auto">
               <div className="relative">
-                <Search className="absolute left-4 top-1/2  transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <input 
                   type="text" 
                   placeholder="Search articles, topics, or categories..."
-                  className="w-full pl-12 pr-4 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-12 pr-12 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent"
                 />
+                {searchQuery && (
+                  <button
+                    onClick={handleClearSearch}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                )}
               </div>
+              {searchQuery && (
+                <p className="text-center text-blue-200 mt-4">
+                  {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'} found
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -62,19 +98,34 @@ const Blog = () => {
 
       {/* Featured Article */}
       <Section>
-        <div className="mb-16">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <SectionTitle>Featured Article</SectionTitle>
-              <SectionSubtitle className="mb-0">
-                Our latest insights on dental practice transitions
-              </SectionSubtitle>
-            </div>
-            <Badge variant="outline" className="hidden md:flex items-center gap-2">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-              Latest
-            </Badge>
+        {filteredPosts.length === 0 ? (
+          <div className="text-center py-16">
+            <Search className="h-16 w-16 text-gray-300 mx-auto mb-6" />
+            <h3 className="text-2xl font-semibold text-gray-900 mb-2">No articles found</h3>
+            <p className="text-gray-600 mb-6">
+              Try adjusting your search terms or browse all articles below.
+            </p>
+            <Button onClick={handleClearSearch} variant="outline">
+              Clear Search
+            </Button>
           </div>
+        ) : (
+          <>
+            <div className="mb-16">
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <SectionTitle>{searchQuery ? 'Top Result' : 'Featured Article'}</SectionTitle>
+                  <SectionSubtitle className="mb-0">
+                    {searchQuery ? 'Most relevant article for your search' : 'Our latest insights on dental practice transitions'}
+                  </SectionSubtitle>
+                </div>
+                {!searchQuery && (
+                  <Badge variant="outline" className="hidden md:flex items-center gap-2">
+                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    Latest
+                  </Badge>
+                )}
+              </div>
           
           <Card className="overflow-hidden hover-lift group">
             <Link to={`/blog/${featuredPost.slug}`}>
@@ -129,18 +180,20 @@ const Blog = () => {
               </div>
             </Link>
           </Card>
-        </div>
+            </div>
 
-        {/* Latest Articles Grid */}
-        <div className="mb-12">
-          <SectionTitle>Latest Articles</SectionTitle>
-          <SectionSubtitle>
-            Expert insights and practical guidance for dental practice owners
-          </SectionSubtitle>
-        </div>
+            {/* Additional Articles Grid */}
+            {regularPosts.length > 0 && (
+              <>
+                <div className="mb-12">
+                  <SectionTitle>{searchQuery ? 'More Results' : 'Latest Articles'}</SectionTitle>
+                  <SectionSubtitle>
+                    {searchQuery ? 'Additional articles matching your search' : 'Expert insights and practical guidance for dental practice owners'}
+                  </SectionSubtitle>
+                </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {regularPosts.map((post, index) => (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {regularPosts.map((post, index) => (
             <Card key={post.id} className="overflow-hidden hover-lift group" style={{ animationDelay: `${index * 100}ms` }}>
               <Link to={`/blog/${post.slug}`}>
                 <div className={`aspect-video relative ${post.gradient}`}>
@@ -189,8 +242,12 @@ const Blog = () => {
                 </CardContent>
               </Link>
             </Card>
-          ))}
-        </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </>
+        )}
       </Section>
 
       {/* Newsletter Signup */}
