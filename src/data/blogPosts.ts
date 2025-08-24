@@ -349,7 +349,7 @@ I hope this series has been thoughtful and thought-provoking. When you are thoug
     date: "2023-04-25",
     readTime: "9 min read",
     gradient: "bg-gradient-to-br from-red-400 via-pink-500 to-purple-600",
-    slug: "debugging-myths-practice-transitions-part-i",
+    slug: "debugging-myths-practice-transitions-part-1-timeline",
     author: "Michael Njo, DDS",
     series: {
       id: "debugging-myths",
@@ -601,7 +601,7 @@ We are available to answer your questions. Please feel free to reach out to us!`
           <a href="/blog/debugging-myths-practice-transitions-part-1-timeline" style="background: #dbeafe; color: #1d4ed8; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">← Part 1: Timeline Myths</a>
           <a href="/blog/debugging-myths-practice-transitions-part-2-advisory-team" style="background: #dbeafe; color: #1d4ed8; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">← Part 2: Advisory Team</a>
           <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Part 3: Valuation Myths</span>
-          <span style="background: #f1f5f9; color: #64748b; padding: 8px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Part 4: DSO Myths (Coming Soon)</span>
+          <a href="/blog/debugging-myths-practice-transitions-part-4-requirements" style="background: #dbeafe; color: #1d4ed8; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">→ Part 4: Planning Requirements</a>
         </div>
       </div>
 
@@ -972,3 +972,10 @@ export const getSeriesPosts = (seriesId: string): BlogPost[] => {
     .filter(post => post.series?.id === seriesId)
     .sort((a, b) => (a.series?.part || 0) - (b.series?.part || 0));
 };
+
+// Run link validation in development
+if (typeof window !== 'undefined' && import.meta.env.DEV) {
+  import('../lib/linkValidation').then(({ validateInternalBlogLinks }) => {
+    validateInternalBlogLinks();
+  });
+}
