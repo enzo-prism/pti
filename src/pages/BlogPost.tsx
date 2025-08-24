@@ -8,6 +8,7 @@ import { getBlogPostBySlug, getRelatedPosts, getSeriesPosts } from "@/data/blogP
 import SEO from "@/components/layout/SEO";
 import { formatLocalDate } from "@/lib/dateUtils";
 import { SeriesNavigation } from "@/components/ui/series-navigation";
+import { marked } from "marked";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -113,8 +114,11 @@ const BlogPost = () => {
       {/* Article Content */}
       <Section>
         <div className="max-w-4xl mx-auto">
-          <article className="prose prose-lg max-w-none">
+          <article className="prose prose-lg prose-slate max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground prose-a:text-primary hover:prose-a:text-primary/80">
             {post.content.split('\n\n').map((segment, index) => {
+              // Skip empty segments
+              if (!segment.trim()) return null;
+              
               // Check if the segment contains HTML tags
               const hasHtmlTags = /<[^>]+>/.test(segment);
               
@@ -127,11 +131,13 @@ const BlogPost = () => {
                   />
                 );
               } else {
-                // Render plain text in paragraph tags
+                // Parse markdown and render as HTML
+                const htmlContent = marked(segment.trim());
                 return (
-                  <p key={index} className="mb-6 text-gray-700 leading-relaxed text-lg">
-                    {segment}
-                  </p>
+                  <div 
+                    key={index} 
+                    dangerouslySetInnerHTML={{ __html: htmlContent }}
+                  />
                 );
               }
             })}
