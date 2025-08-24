@@ -108,15 +108,17 @@ const Blog = () => {
                   </p>
                   
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <div className="w-10 h-10 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center text-white font-semibold mr-3">
-                        {featuredPost.author.split(' ').map(n => n[0]).join('')}
-                      </div>
-                      <div>
-                        <p className="font-medium text-gray-900">{featuredPost.author}</p>
-                        <p className="text-sm text-gray-500">Practice Transitions Expert</p>
-                      </div>
+                  <div className="flex items-center">
+                    <img 
+                      src="/lovable-uploads/0fbfd01f-6249-49ce-baea-1b42e6bd44f4.png" 
+                      alt="Michael Njo, DDS" 
+                      className="w-10 h-10 rounded-full object-cover mr-3"
+                    />
+                    <div>
+                      <p className="font-medium text-gray-900">{featuredPost.author}</p>
+                      <p className="text-sm text-gray-500">Practice Transitions Expert</p>
                     </div>
+                  </div>
                     
                     <Button className="group-hover:translate-x-1 transition-transform">
                       Read Article
