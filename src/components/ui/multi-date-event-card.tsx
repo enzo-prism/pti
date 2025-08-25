@@ -1,5 +1,6 @@
 import { Calendar, Clock, MapPin, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { trackCTAClick } from "@/lib/analytics";
 
 interface EventDate {
   date: string;
@@ -236,7 +237,10 @@ export const MultiDateEventCard = ({
                   <Button 
                     size="sm" 
                     className="flex-1 sm:flex-none"
-                    onClick={() => window.open(registrationLink, '_self')}
+                    onClick={() => {
+                      window.open(registrationLink, '_self');
+                      trackCTAClick('event_phone_registration', `event_${title.replace(/\s+/g, '_').toLowerCase()}`);
+                    }}
                   >
                     <Phone size={16} className="mr-2" />
                     Call or text to register
@@ -245,7 +249,10 @@ export const MultiDateEventCard = ({
                     size="sm" 
                     variant="outline"
                     className="flex-1 sm:flex-none"
-                    onClick={() => window.open('mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry', '_self')}
+                    onClick={() => {
+                      window.open('mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry', '_self');
+                      trackCTAClick('event_email_registration', `event_${title.replace(/\s+/g, '_').toLowerCase()}`);
+                    }}
                   >
                     <Mail size={16} className="mr-2" />
                     Email us to register
@@ -276,7 +283,10 @@ export const MultiDateEventCard = ({
                   <Button 
                     size="sm" 
                     className="flex-1 sm:flex-none"
-                    onClick={() => window.open(registrationLink, '_blank')}
+                    onClick={() => {
+                      window.open(registrationLink, '_blank');
+                      trackCTAClick('event_external_registration', `event_${title.replace(/\s+/g, '_').toLowerCase()}`);
+                    }}
                   >
                     Register Now
                   </Button>

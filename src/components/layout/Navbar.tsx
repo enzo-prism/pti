@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
+import { trackCTAClick } from "@/lib/analytics";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,11 +58,14 @@ const Navbar = () => {
           <span className="text-sm md:text-base font-medium text-gray-600">
             Serving The United States
           </span>
-          <a 
-            href={`tel:${PHONE_NUMBER_TEL}`}
-            className="flex items-center text-sm md:text-base font-semibold text-gray-800 hover:text-primary transition-colors mt-1"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <a 
+          href={`tel:${PHONE_NUMBER_TEL}`}
+          className="flex items-center text-sm md:text-base font-semibold text-gray-800 hover:text-primary transition-colors mt-1"
+          onClick={(e) => {
+            e.stopPropagation();
+            trackCTAClick('phone_call', 'navbar');
+          }}
+        >
             <Phone className="w-3 h-3 md:w-4 md:h-4 mr-1" />
             {PHONE_NUMBER}
           </a>
@@ -121,7 +125,12 @@ const Navbar = () => {
             )
           ))}
           <Button asChild className="ml-2" size="sm">
-            <Link to="/contact">Book Consultation</Link>
+            <Link 
+              to="/contact" 
+              onClick={() => trackCTAClick('book_consultation', 'navbar_desktop')}
+            >
+              Book Consultation
+            </Link>
           </Button>
         </nav>
 
@@ -185,7 +194,15 @@ const Navbar = () => {
               )
             ))}
             <Button className="mt-4 w-full" asChild>
-              <Link to="/contact" onClick={closeMenu}>Book Consultation</Link>
+              <Link 
+                to="/contact" 
+                onClick={(e) => {
+                  closeMenu();
+                  trackCTAClick('book_consultation', 'navbar_mobile');
+                }}
+              >
+                Book Consultation
+              </Link>
             </Button>
           </div>
         </div>

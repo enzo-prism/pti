@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { trackContactFormSubmit, trackCTAClick } from "@/lib/analytics";
 
 const TYPEFORM_INITIAL_HEIGHT = 1000;
 
@@ -16,6 +17,9 @@ export const ContactForm = () => {
     script.onload = () => {
       console.log('Typeform script loaded successfully');
       setIsLoading(false);
+      
+      // Track that contact form was displayed
+      trackCTAClick('contact_form_displayed', 'contact_page');
     };
     
     script.onerror = () => {
@@ -55,6 +59,7 @@ export const ContactForm = () => {
               target="_blank" 
               rel="noopener noreferrer"
               className="text-primary hover:underline"
+              onClick={() => trackCTAClick('external_form_link', 'contact_page_error_fallback')}
             >
               Open form in new window
             </a>

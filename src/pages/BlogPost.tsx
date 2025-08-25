@@ -1,4 +1,5 @@
 import { useParams, Link, Navigate } from "react-router-dom";
+import { useEffect } from "react";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,7 @@ import SEO from "@/components/layout/SEO";
 import { formatLocalDate } from "@/lib/dateUtils";
 import { SeriesNavigation } from "@/components/ui/series-navigation";
 import { marked } from "marked";
+import { trackBlogPostView, trackSeriesNavigation } from "@/lib/analytics";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -30,6 +32,13 @@ const BlogPost = () => {
   if (!post) {
     return <Navigate to="/blog" replace />;
   }
+  
+  // Track blog post view
+  useEffect(() => {
+    if (post) {
+      trackBlogPostView(post.title, post.category);
+    }
+  }, [post]);
 
   const relatedPosts = getRelatedPosts(post.id, post.category, 2);
   const seriesPosts = post.series ? getSeriesPosts(post.series.id) : [];
