@@ -1,7 +1,8 @@
 import { useState, useMemo } from "react";
 import { Calendar, Clock, MapPin, ChevronRight, ChevronDown, Phone, Mail } from "lucide-react";
-import { parseISO, parse, isAfter, startOfDay } from "date-fns";
 import { Link } from "react-router-dom";
+import { parseEventDate, isEventPast, createEventDateKey } from "@/lib/dateUtils";
+import { rawEvents, type RawEvent } from "@/data/events";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -15,238 +16,93 @@ interface EventDate {
   isPast: boolean;
 }
 
-interface Event {
-  id: number;
-  title: string;
-  date: string;
-  time: string;
-  location: string;
-  description: string | {
-    intro: string;
-    learningPoints: string[];
-  };
-  type: "webinar" | "seminar" | "workshop" | "conference";
-  registrationLink: string;
+interface Event extends RawEvent {
   isPast: boolean;
-  speakers?: Array<{
-    name: string;
-    title: string;
-    imageUrl: string;
-  }>;
   isEventGroup?: boolean;
   eventDates?: EventDate[];
 }
 
 const Events = () => {
   const [showPastEvents, setShowPastEvents] = useState(false);
-  
-  // Helper function to parse event dates and determine if they're past
-  const parseEventDate = (dateString: string): Date => {
-    try {
-      // Parse dates like "March 28, 2025" or "August 27, 2025"
-      return parse(dateString, "MMMM d, yyyy", new Date());
-    } catch (error) {
-      console.warn(`Failed to parse date: ${dateString}`, error);
-      return new Date(); // fallback to current date
-    }
-  };
 
-  const isEventPast = (dateString: string): boolean => {
-    const eventDate = parseEventDate(dateString);
-    const today = startOfDay(new Date());
-    const eventDay = startOfDay(eventDate);
-    return !isAfter(eventDay, today) && eventDay.getTime() !== today.getTime();
-  };
-  
-  // Raw event data without isPast flags
-  const rawEvents = [
-    {
-      id: 3,
-      title: "2025 & Beyond – Essential Financial & Practice-Transition Insights for Dentists",
-      date: "August 27, 2025",
-      time: "5:30 PM PT • 8:30 PM ET",
-      location: "Online (live)",
-      description: "A complimentary live Q&A where Practice Transitions Institute & CBG Financial Planning answer your biggest questions on buying, valuing, and growing a practice—plus key 2026 tax-code changes. Reserve your spot today!",
-      type: "webinar" as const,
-      registrationLink: "/contact",
-      speakers: [
-        {
-          name: "Michael Njo, DDS",
-          title: "Practice Transitions Institute",
-          imageUrl: "/lovable-uploads/fccc20e2-c4f3-4b29-8473-f24585fbc306.png"
-        },
-        {
-          name: "Fred Heppner, MBA", 
-          title: "Practice Transitions Institute",
-          imageUrl: "/lovable-uploads/43207060-d4da-4c88-8fc2-21d04a4fd4a8.png"
-        },
-        {
-          name: "Liz Armato, COO Host",
-          title: "Practice Transitions Institute", 
-          imageUrl: "/lovable-uploads/dfcf139a-4116-4e53-ac55-479fd8d2bbb8.png"
-        },
-        {
-          name: "Dan Garwood, AAMS, MBA",
-          title: "CBG Financial Planning",
-          imageUrl: "/lovable-uploads/e6f00790-1898-4889-ae43-440ddf2a39ea.png"
-        }
-      ]
-    },
-    {
-      id: 1,
-      title: "Mastering Your Dental Transition Into and Out of Practice",
-      date: "March 28, 2025",
-      time: "Full Day",
-      location: "Crown Plaza, Costa Mesa CA",
-      description: "A comprehensive full-day seminar perfect for doctors pursuing a start-up or purchase, seeking partners/associates, planning ownership, or preparing to exit dentistry. Join us in Orange County for expert guidance on dental practice transitions.",
-      type: "seminar" as const,
-      registrationLink: "tel:+18337841121"
-    },
-    {
-      id: 2,
-      title: "Mastering Your Dental Transition Into and Out of Practice",
-      date: "July 11, 2025",
-      time: "Full Day",
-      location: "Arthur A. Dugoni School of Dentistry, U.O.P., San Francisco, CA",
-      description: "A comprehensive full-day seminar perfect for doctors pursuing a start-up or purchase, seeking partners/associates, planning ownership, or preparing to exit dentistry. Join us at the prestigious University of the Pacific dental school.",
-      type: "seminar" as const,
-      registrationLink: "tel:+18337841121"
-    },
-    // 2026 Events
-    {
-      id: 4,
-      title: "Mastering Your Dental Transition Into and Out of Practice",
-      date: "March 27, 2026",
-      time: "Full Day",
-      location: "Orange County, CA",
-      description: {
-        intro: "Whether entering, expanding, or exiting your career, meticulous planning is essential. Practice Transitions Institute's experts guide you through each stage, helping you avoid costly missteps and ensuring a seamless and prosperous transition.",
-        learningPoints: [
-          "Negotiate a win-win practice transition",
-          "Understand the economic climate and its effect on practice value and ownership",
-          "Develop clear associate/partnership agreements safeguarding your interests and fostering collaboration",
-          "Determine the value of a practice",
-          "Maximize your practice value for a lucrative transition",
-          "Avoid tax pitfalls by structuring the sale to minimize tax liability and maximize financial gains"
-        ]
-      },
-      type: "seminar" as const,
-      registrationLink: "tel:+18337841121"
-    },
-    {
-      id: 5,
-      title: "Mastering Your Dental Transition Into and Out of Practice",
-      date: "July 17, 2026",
-      time: "Full Day",
-      location: "San Francisco, CA",
-      description: {
-        intro: "Whether entering, expanding, or exiting your career, meticulous planning is essential. Practice Transitions Institute's experts guide you through each stage, helping you avoid costly missteps and ensuring a seamless and prosperous transition.",
-        learningPoints: [
-          "Negotiate a win-win practice transition",
-          "Understand the economic climate and its effect on practice value and ownership",
-          "Develop clear associate/partnership agreements safeguarding your interests and fostering collaboration",
-          "Determine the value of a practice",
-          "Maximize your practice value for a lucrative transition",
-          "Avoid tax pitfalls by structuring the sale to minimize tax liability and maximize financial gains"
-        ]
-      },
-      type: "seminar" as const,
-      registrationLink: "tel:+18337841121"
-    },
-    {
-      id: 6,
-      title: "Mastering Your Dental Transition Into and Out of Practice",
-      date: "October 16, 2026",
-      time: "Full Day",
-      location: "Sacramento, CA",
-      description: {
-        intro: "Whether entering, expanding, or exiting your career, meticulous planning is essential. Practice Transitions Institute's experts guide you through each stage, helping you avoid costly missteps and ensuring a seamless and prosperous transition.",
-        learningPoints: [
-          "Negotiate a win-win practice transition",
-          "Understand the economic climate and its effect on practice value and ownership",
-          "Develop clear associate/partnership agreements safeguarding your interests and fostering collaboration",
-          "Determine the value of a practice",
-          "Maximize your practice value for a lucrative transition",
-          "Avoid tax pitfalls by structuring the sale to minimize tax liability and maximize financial gains"
-        ]
-      },
-      type: "seminar" as const,
-      registrationLink: "tel:+18337841121"
-    }
-  ];
-
-  // Group events by title and process with calculated isPast status
+  // Optimized event grouping with proper deduplication
   const events: Event[] = useMemo(() => {
-    // First, process all events with isPast status
-    const processedEvents = rawEvents.map(event => ({
+    // Step 1: Process all events with isPast status
+    const processedEvents: Event[] = rawEvents.map(event => ({
       ...event,
       isPast: isEventPast(event.date)
     }));
 
-    // Group events by title
-    const eventGroups = new Map<string, typeof processedEvents>();
-    const singleEvents: typeof processedEvents = [];
-
+    // Step 2: Group events by title using Map for efficient lookup
+    const titleGroups = new Map<string, Event[]>();
+    
+    // Single pass through events to build groups
     processedEvents.forEach(event => {
-      const existing = eventGroups.get(event.title);
-      if (existing) {
-        existing.push(event);
+      const group = titleGroups.get(event.title);
+      if (group) {
+        group.push(event);
       } else {
-        const similar = processedEvents.filter(e => e.title === event.title);
-        if (similar.length > 1) {
-          eventGroups.set(event.title, similar);
-        } else {
-          singleEvents.push(event);
-        }
+        titleGroups.set(event.title, [event]);
       }
     });
 
-    // Create grouped events
-    const groupedEvents: Event[] = [];
+    // Step 3: Process groups and create final events array
+    const finalEvents: Event[] = [];
     
-    eventGroups.forEach((events, title) => {
-      // Sort events within group by date
-      events.sort((a, b) => {
-        const dateA = parseEventDate(a.date);
-        const dateB = parseEventDate(b.date);
-        return dateA.getTime() - dateB.getTime();
-      });
+    titleGroups.forEach((groupEvents, title) => {
+      if (groupEvents.length === 1) {
+        // Single event - add as-is
+        finalEvents.push(groupEvents[0]);
+      } else {
+        // Multiple events with same title - create grouped event
+        // Sort events within group by date
+        groupEvents.sort((a, b) => {
+          const dateA = parseEventDate(a.date);
+          const dateB = parseEventDate(b.date);
+          return dateA.getTime() - dateB.getTime();
+        });
 
-      // Use the most detailed description (usually from 2026 events)
-      const detailedEvent = events.find(e => typeof e.description === 'object') || events[0];
-      
-      // Create event dates array
-      const eventDates: EventDate[] = events.map(event => ({
-        date: event.date,
-        time: event.time,
-        location: event.location,
-        isPast: event.isPast
-      }));
+        // Use the most detailed description (usually from 2026 events)
+        const detailedEvent = groupEvents.find(e => typeof e.description === 'object') || groupEvents[0];
+        
+        // Create unique event dates array with deduplication
+        const eventDateMap = new Map<string, EventDate>();
+        groupEvents.forEach(event => {
+          const key = createEventDateKey(event.date, event.time, event.location);
+          if (!eventDateMap.has(key)) {
+            eventDateMap.set(key, {
+              date: event.date,
+              time: event.time,
+              location: event.location,
+              isPast: event.isPast
+            });
+          }
+        });
+        
+        const eventDates = Array.from(eventDateMap.values());
 
-      // Determine if the entire group is past (all dates are past)
-      const isGroupPast = eventDates.every(date => date.isPast);
-      
-      // Use the earliest upcoming date, or the latest past date if all are past
-      const upcomingDates = eventDates.filter(date => !date.isPast);
-      const representativeDate = upcomingDates.length > 0 ? upcomingDates[0] : eventDates[eventDates.length - 1];
+        // Determine if the entire group is past (all dates are past)
+        const isGroupPast = eventDates.every(date => date.isPast);
+        
+        // Use the earliest upcoming date, or the latest past date if all are past
+        const upcomingDates = eventDates.filter(date => !date.isPast);
+        const representativeDate = upcomingDates.length > 0 ? upcomingDates[0] : eventDates[eventDates.length - 1];
 
-      groupedEvents.push({
-        ...detailedEvent,
-        id: events[0].id, // Use the first ID as the group ID
-        date: representativeDate.date,
-        time: representativeDate.time,
-        location: representativeDate.location,
-        isPast: isGroupPast,
-        isEventGroup: true,
-        eventDates
-      });
+        finalEvents.push({
+          ...detailedEvent,
+          id: groupEvents[0].id, // Use the first ID as the group ID
+          date: representativeDate.date,
+          time: representativeDate.time,
+          location: representativeDate.location,
+          isPast: isGroupPast,
+          isEventGroup: true,
+          eventDates
+        });
+      }
     });
 
-    // Combine single events and grouped events
-    const allEvents = [...singleEvents, ...groupedEvents];
-
-    // Sort all events
-    return allEvents.sort((a, b) => {
+    // Step 4: Sort all events by status and date
+    return finalEvents.sort((a, b) => {
       // Sort by status first (upcoming events first), then by date
       if (a.isPast !== b.isPast) {
         return a.isPast ? 1 : -1;

@@ -159,7 +159,7 @@ export const MultiDateEventCard = ({
           <div className="space-y-2">
             {eventDates.map((eventDate, index) => (
               <div
-                key={index}
+                key={`${eventDate.date}-${eventDate.time}-${eventDate.location}-${index}`}
                 className={`flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-lg border ${
                   eventDate.isPast 
                     ? "bg-gray-50 border-gray-200" 
