@@ -1,6 +1,8 @@
-import { Calendar, Clock, MapPin, Phone, Mail } from "lucide-react";
+import { Calendar, Clock, MapPin, Phone, Mail, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { trackCTAClick } from "@/lib/analytics";
+import { useState } from "react";
 
 interface EventDate {
   date: string;
@@ -37,8 +39,16 @@ export const MultiDateEventCard = ({
   speakers,
   getEventTypeColor
 }: MultiDateEventCardProps) => {
-  const upcomingDates = eventDates.filter(date => !date.isPast);
-  const pastDates = eventDates.filter(date => date.isPast);
+  const [showPastEvents, setShowPastEvents] = useState(false);
+  
+  // Sort dates properly - upcoming first (chronologically), then past (reverse chronological)
+  const upcomingDates = eventDates
+    .filter(date => !date.isPast)
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  
+  const pastDates = eventDates
+    .filter(date => date.isPast)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   
   const uniqueLocations = [...new Set(eventDates.map(date => date.location))];
   const locationText = uniqueLocations.length === 1 
@@ -156,43 +166,83 @@ export const MultiDateEventCard = ({
             </h4>
           </div>
           
-          <div className="space-y-2">
-            {eventDates.map((eventDate, index) => (
-              <div
-                key={`${eventDate.date}-${eventDate.time}-${eventDate.location}-${index}`}
-                className={`flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-lg border ${
-                  eventDate.isPast 
-                    ? "bg-gray-50 border-gray-200" 
-                    : "bg-primary/5 border-primary/20"
-                }`}
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 flex-1">
-                  <div className={`flex items-center text-sm ${
-                    eventDate.isPast ? "text-gray-500" : "text-gray-700"
-                  }`}>
-                    <Calendar size={14} className="mr-2 flex-shrink-0" />
-                    <span className={!eventDate.isPast ? "font-medium" : ""}>{eventDate.date}</span>
+          <div className="space-y-3">
+            {/* Upcoming Events */}
+            {upcomingDates.length > 0 && (
+              <div className="space-y-2">
+                {upcomingDates.map((eventDate, index) => (
+                  <div
+                    key={`upcoming-${eventDate.date}-${eventDate.time}-${eventDate.location}-${index}`}
+                    className="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-lg border bg-primary/5 border-primary/20"
+                  >
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 flex-1">
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Calendar size={14} className="mr-2 flex-shrink-0" />
+                        <span className="font-medium">{eventDate.date}</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-700">
+                        <Clock size={14} className="mr-2 flex-shrink-0" />
+                        <span>{eventDate.time}</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-700">
+                        <MapPin size={14} className="mr-2 flex-shrink-0" />
+                        <span>{eventDate.location}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className={`flex items-center text-sm ${
-                    eventDate.isPast ? "text-gray-500" : "text-gray-700"
-                  }`}>
-                    <Clock size={14} className="mr-2 flex-shrink-0" />
-                    <span>{eventDate.time}</span>
-                  </div>
-                  <div className={`flex items-center text-sm ${
-                    eventDate.isPast ? "text-gray-500" : "text-gray-700"
-                  }`}>
-                    <MapPin size={14} className="mr-2 flex-shrink-0" />
-                    <span>{eventDate.location}</span>
-                  </div>
-                </div>
-                {eventDate.isPast && (
-                  <span className="text-xs text-gray-500 mt-2 sm:mt-0 sm:ml-3">
-                    Completed
-                  </span>
-                )}
+                ))}
               </div>
-            ))}
+            )}
+            
+            {/* Past Events - Collapsible */}
+            {pastDates.length > 0 && (
+              <Collapsible open={showPastEvents} onOpenChange={setShowPastEvents}>
+                <CollapsibleTrigger asChild>
+                  <button className={`flex items-center justify-between w-full p-3 rounded-lg border text-left transition-colors ${
+                    isPast 
+                      ? "bg-gray-50 border-gray-200 hover:bg-gray-100" 
+                      : "bg-gray-50 border-gray-200 hover:bg-gray-100"
+                  }`}>
+                    <span className={`text-sm font-medium ${
+                      isPast ? "text-gray-600" : "text-gray-700"
+                    }`}>
+                      View {pastDates.length} completed event{pastDates.length > 1 ? 's' : ''}
+                    </span>
+                    {showPastEvents ? (
+                      <ChevronUp size={16} className={isPast ? "text-gray-400" : "text-gray-500"} />
+                    ) : (
+                      <ChevronDown size={16} className={isPast ? "text-gray-400" : "text-gray-500"} />
+                    )}
+                  </button>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="space-y-2 mt-2">
+                  {pastDates.map((eventDate, index) => (
+                    <div
+                      key={`past-${eventDate.date}-${eventDate.time}-${eventDate.location}-${index}`}
+                      className="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-lg border bg-gray-50 border-gray-200"
+                    >
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 flex-1">
+                        <div className="flex items-center text-sm text-gray-500">
+                          <Calendar size={14} className="mr-2 flex-shrink-0" />
+                          <span>{eventDate.date}</span>
+                        </div>
+                        <div className="flex items-center text-sm text-gray-500">
+                          <Clock size={14} className="mr-2 flex-shrink-0" />
+                          <span>{eventDate.time}</span>
+                        </div>
+                        <div className="flex items-center text-sm text-gray-500">
+                          <MapPin size={14} className="mr-2 flex-shrink-0" />
+                          <span>{eventDate.location}</span>
+                        </div>
+                      </div>
+                      <span className="text-xs text-gray-500 mt-2 sm:mt-0 sm:ml-3">
+                        Completed
+                      </span>
+                    </div>
+                  ))}
+                </CollapsibleContent>
+              </Collapsible>
+            )}
           </div>
         </div>
 
