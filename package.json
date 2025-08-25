@@ -85,10 +85,13 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"
-  }
+  },
+  {
   "scripts": {
     "prebuild": "tsx scripts/generate-sitemap.ts",
     "postbuild": "node scripts/verify-sitemap.mjs", 
     "sitemap": "tsx scripts/generate-sitemap.ts"
   }
+}
+
 }
