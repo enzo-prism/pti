@@ -2,85 +2,79 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://practicetransitionsinstitute.com/</loc>
-    <lastmod>2025-01-26</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://practicetransitionsinstitute.com/services</loc>
-    <lastmod>2025-01-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://practicetransitionsinstitute.com/services/selling</loc>
-    <lastmod>2025-01-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://practicetransitionsinstitute.com/services/partnerships</loc>
-    <lastmod>2025-01-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://practicetransitionsinstitute.com/services/associateships</loc>
-    <lastmod>2025-01-26</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://practicetransitionsinstitute.com/services/value</loc>
-    <lastmod>2025-01-26</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://practicetransitionsinstitute.com/transitions</loc>
-    <lastmod>2025-01-26</lastmod>
+    <loc>https://practicetransitionsinstitute.com/services/selling</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://practicetransitionsinstitute.com/services/associateships</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://practicetransitionsinstitute.com/services/partnerships</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://practicetransitionsinstitute.com/blog</loc>
-    <lastmod>2025-01-26</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://practicetransitionsinstitute.com/about</loc>
-    <lastmod>2025-01-26</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://practicetransitionsinstitute.com/dr-njo</loc>
-    <lastmod>2025-01-26</lastmod>
+    <loc>https://practicetransitionsinstitute.com/drnjo</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://practicetransitionsinstitute.com/events</loc>
-    <lastmod>2025-01-26</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://practicetransitionsinstitute.com/testimonials</loc>
-    <lastmod>2025-01-26</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://practicetransitionsinstitute.com/faq</loc>
-    <lastmod>2025-01-26</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://practicetransitionsinstitute.com/contact</loc>
-    <lastmod>2025-01-26</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

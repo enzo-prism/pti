@@ -1,0 +1,11 @@
+# Netlify redirects for Practice Transitions Institute
+
+# Static files bypass (serve directly, don't route through SPA)
+/sitemap.xml  /sitemap.xml  200
+/robots.txt   /robots.txt   200
+
+# Route corrections
+/dr-njo  /drnjo  301
+
+# SPA fallback (must be last)
+/*  /index.html  200
