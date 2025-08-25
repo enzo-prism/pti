@@ -28,36 +28,42 @@ async function generateSitemap() {
     
     // Static routes
     const staticRoutes = [
-      { loc: `${BASE_URL}/`, priority: 1.0, changefreq: 'weekly' },
-      { loc: `${BASE_URL}/services`, priority: 0.9, changefreq: 'weekly' },
-      { loc: `${BASE_URL}/services/selling`, priority: 0.9, changefreq: 'weekly' },
-      { loc: `${BASE_URL}/services/partnerships`, priority: 0.9, changefreq: 'weekly' },
-      { loc: `${BASE_URL}/services/associateships`, priority: 0.9, changefreq: 'weekly' },
-      { loc: `${BASE_URL}/services/value`, priority: 0.9, changefreq: 'weekly' },
-      { loc: `${BASE_URL}/transitions`, priority: 0.9, changefreq: 'weekly' },
-      { loc: `${BASE_URL}/blog`, priority: 0.8, changefreq: 'daily' },
-      { loc: `${BASE_URL}/about`, priority: 0.7, changefreq: 'monthly' },
-      { loc: `${BASE_URL}/dr-njo`, priority: 0.7, changefreq: 'monthly' },
-      { loc: `${BASE_URL}/events`, priority: 0.7, changefreq: 'weekly' },
-      { loc: `${BASE_URL}/testimonials`, priority: 0.7, changefreq: 'monthly' },
-      { loc: `${BASE_URL}/faq`, priority: 0.7, changefreq: 'monthly' },
-      { loc: `${BASE_URL}/contact`, priority: 0.7, changefreq: 'monthly' }
+      { loc: `${BASE_URL}/`, priority: 1.0, changefreq: 'weekly', lastmod: currentDate },
+      { loc: `${BASE_URL}/services`, priority: 0.9, changefreq: 'weekly', lastmod: currentDate },
+      { loc: `${BASE_URL}/services/selling`, priority: 0.9, changefreq: 'weekly', lastmod: currentDate },
+      { loc: `${BASE_URL}/services/partnerships`, priority: 0.9, changefreq: 'weekly', lastmod: currentDate },
+      { loc: `${BASE_URL}/services/associateships`, priority: 0.9, changefreq: 'weekly', lastmod: currentDate },
+      { loc: `${BASE_URL}/services/value`, priority: 0.9, changefreq: 'weekly', lastmod: currentDate },
+      { loc: `${BASE_URL}/transitions`, priority: 0.9, changefreq: 'weekly', lastmod: currentDate },
+      { loc: `${BASE_URL}/blog`, priority: 0.8, changefreq: 'daily', lastmod: currentDate },
+      { loc: `${BASE_URL}/about`, priority: 0.7, changefreq: 'monthly', lastmod: currentDate },
+      { loc: `${BASE_URL}/dr-njo`, priority: 0.7, changefreq: 'monthly', lastmod: currentDate },
+      { loc: `${BASE_URL}/events`, priority: 0.7, changefreq: 'weekly', lastmod: currentDate },
+      { loc: `${BASE_URL}/testimonials`, priority: 0.7, changefreq: 'monthly', lastmod: currentDate },
+      { loc: `${BASE_URL}/faq`, priority: 0.7, changefreq: 'monthly', lastmod: currentDate },
+      { loc: `${BASE_URL}/contact`, priority: 0.7, changefreq: 'monthly', lastmod: currentDate }
     ];
 
-    // Blog post slugs (hardcoded for now - in production this would read from the data file)
-    const blogSlugs = [
-      'so-much-to-be-thankful-for',
-      'staying-connected-in-your-business',
-      'understanding-the-true-value-of-your-practice',
-      'the-transition-timeline-series-part-1',
-      'the-transition-timeline-series-part-2',
-      'the-transition-timeline-series-part-3',
-      'the-transition-timeline-series-part-4',
-      'the-transition-timeline-series-part-5'
+    // Import blog posts data directly (since we can't easily import TS at build time)
+    const blogPosts = [
+      { slug: 'so-much-to-be-thankful-for', date: '2024-11-28' },
+      { slug: 'staying-connected-in-your-business', date: '2024-11-25' },
+      { slug: 'understanding-the-true-value-of-your-practice', date: '2024-11-22' },
+      { slug: 'the-transition-timeline-series-part-1', date: '2024-11-19' },
+      { slug: 'the-transition-timeline-series-part-2', date: '2024-11-16' },
+      { slug: 'the-transition-timeline-series-part-3', date: '2024-11-13' },
+      { slug: 'the-transition-timeline-series-part-4', date: '2024-11-10' },
+      { slug: 'the-transition-timeline-series-part-5', date: '2024-11-07' },
+      { slug: 'transitioning-into-practice-ownership-challenges-and-rewards', date: '2024-11-04' },
+      { slug: 'maximizing-practice-value-before-selling', date: '2024-11-01' },
+      { slug: 'finding-the-right-associate-key-qualities-to-look-for', date: '2024-10-29' },
+      { slug: 'partnership-vs-associateship-which-path-is-right-for-you', date: '2024-10-26' },
+      { slug: 'preparing-for-retirement-a-comprehensive-guide-for-dentists', date: '2024-10-23' }
     ];
 
-    const blogRoutes = blogSlugs.map(slug => ({
-      loc: `${BASE_URL}/blog/${slug}`,
+    const blogRoutes = blogPosts.map(post => ({
+      loc: `${BASE_URL}/blog/${post.slug}`,
+      lastmod: post.date,
       priority: 0.6,
       changefreq: 'monthly'
     }));
@@ -67,7 +73,7 @@ async function generateSitemap() {
     // Generate XML
     const urlsXml = allRoutes.map(route => {
       let urlXml = `  <url>\n    <loc>${route.loc}</loc>`;
-      urlXml += `\n    <lastmod>${currentDate}</lastmod>`;
+      urlXml += `\n    <lastmod>${route.lastmod || currentDate}</lastmod>`;
       urlXml += `\n    <changefreq>${route.changefreq}</changefreq>`;
       urlXml += `\n    <priority>${route.priority}</priority>`;
       urlXml += '\n  </url>';
