@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { useGoogleAnalytics } from "@/hooks/use-google-analytics";
 import Index from "./pages/Home"; // Changed from Index to Home
@@ -38,6 +38,7 @@ const AppWithAnalytics = () => {
       <Routes>
         <Route path="/" element={<Layout><Index /></Layout>} />
         <Route path="/about" element={<Layout><About /></Layout>} />
+        <Route path="/meet-our-team/" element={<Navigate to="/about" replace />} />
         <Route path="/services" element={<Layout><Services /></Layout>} />
         <Route path="/services/value" element={<Layout><Value /></Layout>} />
         <Route path="/services/selling" element={<Layout><Selling /></Layout>} />
@@ -48,6 +49,7 @@ const AppWithAnalytics = () => {
         <Route path="/faq" element={<Layout><Faq /></Layout>} />
         <Route path="/testimonials" element={<Layout><Testimonials /></Layout>} />
         <Route path="/events" element={<Layout><Events /></Layout>} />
+        <Route path="/speaking-engagements/" element={<Navigate to="/events" replace />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/drnjo" element={<MinimalLayout><DrNjo /></MinimalLayout>} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -10,6 +10,16 @@
       "status": 301
     },
     {
+      "src": "/meet-our-team/",
+      "dest": "/about",
+      "status": 301
+    },
+    {
+      "src": "/speaking-engagements/",
+      "dest": "/events", 
+      "status": 301
+    },
+    {
       "src": "/.*",
       "dest": "/index.html"
     }

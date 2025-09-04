@@ -6,6 +6,8 @@
 
 # Route corrections
 /dr-njo  /drnjo  301
+/meet-our-team/  /about  301
+/speaking-engagements/  /events  301
 
 # SPA fallback (must be last)
 /*  /index.html  200
