@@ -11,6 +11,30 @@ const Testimonials = () => {
   
   const testimonials = [
     {
+      quote: "Michael worked with me on a practice acquisition and I couldn't be more pleased. The help and advice given during the process made me feel secure in the purchase and decisions along the way of my practice. Someone as experienced as Michael in your corner is essential to navigating through the process. He's my coach, confidante, and provides honest, unfiltered advice.",
+      author: "Erica Haskett",
+      role: "Practice Buyer",
+      company: "4 weeks ago",
+      rating: 5.0,
+      category: "buyer"
+    },
+    {
+      quote: "Despite taking numerous courses on buying a dental practice, I still felt overwhelmed and unsure of where to begin. Working with Michael Njo and attending one of his seminars was a turning point. I gained valuable insights that I hadn't encountered elsewhere. Michael is not only incredibly knowledgeable but also genuinely cares about the success of those he works with. I also purchased his book, Dental Practice Transitions Handbook, which provided clear, practical guidance and further deepened my understanding of the transition process. Michael and his team at Dental Transitions bring both expertise and integrity to the table, and working with them has been a truly positive experience. I'm confident in the path ahead and look forward to continuing to work with Dental Transitions as I move into the next stage of my professional journey.",
+      author: "J. Anny Yoo",
+      role: "Seminar Attendee",
+      company: "3 weeks ago",
+      rating: 5.0,
+      category: "workshop"
+    },
+    {
+      quote: "Mike and the other advisors made the webinar both insightful and practical. Great real-world strategies that gave me more clarity and confidence in planning my next steps.",
+      author: "Jai Cho",
+      role: "Webinar Attendee",
+      company: "3 weeks ago",
+      rating: 5.0,
+      category: "workshop"
+    },
+    {
       quote: "I recently sold my dental practice after 41 years. I was primarily concerned to find a dentist who matched my treatment planning philosophy and to take good care of my wonderful patients and staff. In the current environment of corporate dentistry, I knew that it would not be an easy task. Fortunately, a colleague gave me the name of Michael Njo and Dental Strategies. Because Michael is a dentist with general practice experience, he has a great understanding of the important aspects for a transfer of a practice, not only for the seller but also for the buyer. I am quite happy that I had Dr Njo to help me navigate my sale! He was very easy to work with. I am glad to report that together we found a great match for my staff and patients.",
       author: "Gregory Baird",
       role: "Practice Seller",
