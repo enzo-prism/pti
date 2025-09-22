@@ -16,7 +16,7 @@ export const updates: Update[] = [
     title: "Dugoni Business Club Donates $1,000 to Support Students in Need",
     date: "September 3, 2025",
     excerpt: "The Dugoni Business Club (DBC) proudly donated $1,000 to the Arthur A. Dugoni Annual Fund, supporting students facing financial need.",
-    featuredImage: "/lovable-uploads/18b2244b-dbb5-4dd6-a1ca-c6a28fed53c6.png",
+    featuredImage: "/lovable-uploads/dugoni-business-club-donation-ceremony.jpg",
     author: "PTI News Team",
     content: `
 **September 3, 2025 — San Francisco, CA**
