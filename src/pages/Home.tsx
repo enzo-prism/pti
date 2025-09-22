@@ -35,16 +35,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Latest Update Section */}
-      <Section background="white" className="py-12 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
-              <LatestUpdateCard update={getLatestUpdate()!} />
-            </ScrollReveal>
-          </div>
-        </div>
-      </Section>
 
       {/* The Problem Section */}
       <Section background="light" className="py-12 md:py-20 contain-layout">
@@ -181,6 +171,17 @@ const Home = () => {
                   </p>
                 </div>
               </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </Section>
+
+      {/* Latest Update Section */}
+      <Section background="white" className="py-12 md:py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
+              <LatestUpdateCard update={getLatestUpdate()!} />
             </ScrollReveal>
           </div>
         </div>
