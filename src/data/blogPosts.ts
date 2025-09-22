@@ -9,6 +9,7 @@ export interface BlogPost {
   slug: string;
   author: string;
   content: string;
+  featuredImage?: string;
   series?: {
     id: string;
     title: string;
@@ -28,6 +29,7 @@ export const blogPosts: BlogPost[] = [
     gradient: "bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600",
     slug: "dugoni-business-club-donation",
     author: "Michael Njo, DDS",
+    featuredImage: "/lovable-uploads/dugoni-business-club-donation-ceremony.jpg",
     content: `**September 3, 2025 — San Francisco, CA**
 
 <img src="/lovable-uploads/dugoni-business-club-donation-ceremony.jpg" alt="Dugoni Business Club donation ceremony with Dean Chavez and DBC members" style="width: 100%; max-width: 600px; height: auto; margin: 2rem auto; display: block; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" />

@@ -130,7 +130,16 @@ const Blog = () => {
           <Card className="overflow-hidden hover-lift group">
             <Link to={`/blog/${featuredPost.slug}`}>
               <div className="md:flex lg:flex">
-                <div className={`md:w-2/5 lg:w-2/5 aspect-video md:aspect-auto ${featuredPost.gradient} relative`}>
+                <div className="md:w-2/5 lg:w-2/5 aspect-video md:aspect-auto relative">
+                  {featuredPost.featuredImage ? (
+                    <img 
+                      src={featuredPost.featuredImage} 
+                      alt={featuredPost.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className={featuredPost.gradient}></div>
+                  )}
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
                   <div className="absolute bottom-4 left-4">
                     <Badge className="bg-white/90 text-primary hover:bg-white">
