@@ -118,7 +118,16 @@ const BlogPost = () => {
       {/* Hero Image */}
       <Section className="py-0">
         <div className="max-w-4xl mx-auto">
-          <div className={`aspect-video rounded-lg mb-8 ${post.gradient}`}>
+          <div className="aspect-video rounded-lg mb-8 overflow-hidden">
+            {post.featuredImage ? (
+              <img 
+                src={post.featuredImage} 
+                alt={post.title}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className={post.gradient}></div>
+            )}
           </div>
         </div>
       </Section>
