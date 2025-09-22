@@ -19,6 +19,50 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 0,
+    title: "Dugoni Business Club Donates $1,000 to Support Students in Need",
+    excerpt: "The Dugoni Business Club (DBC) proudly donated $1,000 to the Arthur A. Dugoni Annual Fund, supporting students facing financial need. Discover how business-minded dental students are giving back to their community.",
+    category: "Community Impact",
+    date: "2025-09-22",
+    readTime: "4 min read",
+    gradient: "bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600",
+    slug: "dugoni-business-club-donation",
+    author: "Michael Njo, DDS",
+    content: `**September 3, 2025 — San Francisco, CA**
+
+<img src="/lovable-uploads/dugoni-business-club-donation-ceremony.jpg" alt="Dugoni Business Club donation ceremony with Dean Chavez and DBC members" style="width: 100%; max-width: 600px; height: auto; margin: 2rem auto; display: block; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" />
+
+The Dugoni Business Club (DBC) proudly donated $1,000 to the Arthur A. Dugoni Annual Fund, a fund that supports students at the Dugoni School of Dentistry — particularly those facing financial need. This generous contribution reflects the club's commitment to both business excellence and community support.
+
+## What is the Dugoni Business Club?
+
+The Dugoni Business Club is dedicated to empowering business-minded dental students by equipping them with the skills, knowledge, and mindset necessary for success beyond the clinical setting. The club's mission is to elevate the dental school experience by fostering leadership, innovation, and business acumen.
+
+While the Dugoni School is known for producing outstanding clinicians, DBC aims to add another layer of excellence — preparing students to become exceptional business owners and practice leaders. Through activities such as individualized future planning, real-world case studies, and hands-on business training, DBC members gain a competitive edge as future entrepreneurs in dentistry.
+
+DBC members are open-minded, driven, and enthusiastic students — many of whom aspire to be among the next generation of "Dental 500" elite practice owners.
+
+## Why did DBC choose to give?
+
+As faculty advisor to the DBC, I shared with the group:
+
+*"In our mission to cultivate leadership and values, it's important to give — through time, talent, and treasure, as Dean Nadershahi often reminded us. Our students have already given their time and talents, and now, we're proud to contribute financially as well. This gift reflects our commitment to giving back and our desire to support fellow students. We hope to make this an annual tradition."*
+
+Delara Fotovatja, President of the DBC, added:
+
+*"Serving as President of the DBC has challenged me to think strategically about how the club can best support students in navigating both the clinical and business sides of dentistry. I'm proud that we're not only helping educate future leaders but also finding ways to give back to our dental school community. It's truly an honor to represent the DBC."*
+
+## A Moment of Gratitude
+
+Dean Chavez personally received the donation from the club and shared a heartfelt memory with the members:
+
+*"When I was a dental student, I was once called into the Financial Aid Office and unexpectedly awarded $1,000. I know first-hand how much the support that you are providing will mean to someone. My sincere thanks to each of you and DBC for looking out for your colleagues in this way."*
+
+This generous donation demonstrates the values that we instill in our students — the importance of giving back to their community and supporting future generations of dental professionals. It's inspiring to see these future leaders already making a meaningful impact while still in school.
+
+**Learn more about the Dugoni Business Club and how we're preparing the next generation of dental entrepreneurs by [contacting us today](/contact).**`
+  },
+  {
     id: 1,
     title: "So Much to be Thankful For",
     excerpt: "As we enter the holiday season, I love this time of year because it always gives me an opportunity to pause and reflect. It provides me an opportunity to be thankful for all the blessings I have. A heartfelt reflection on gratitude, loss, fear, and giving back to our profession.",
