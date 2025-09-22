@@ -17,6 +17,7 @@ import Services from "./pages/Services";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import DrNjo from "./pages/DrNjo";
+import UpdateDetail from "./pages/UpdateDetail";
 import Layout from "./components/layout/Layout";
 import MinimalLayout from "./components/layout/MinimalLayout";
 
@@ -51,6 +52,7 @@ const AppWithAnalytics = () => {
         <Route path="/events" element={<Layout><Events /></Layout>} />
         <Route path="/speaking-engagements/" element={<Navigate to="/events" replace />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/updates/:slug" element={<Layout><UpdateDetail /></Layout>} />
         <Route path="/drnjo" element={<MinimalLayout><DrNjo /></MinimalLayout>} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<Layout><NotFound /></Layout>} />

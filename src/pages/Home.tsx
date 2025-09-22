@@ -8,6 +8,8 @@ import SEO from "@/components/layout/SEO";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { StaggeredGrid } from "@/components/ui/staggered-grid";
 import { HeroContent } from "@/components/ui/hero-content";
+import { LatestUpdateCard } from "@/components/ui/latest-update-card";
+import { getLatestUpdate } from "@/data/updates";
 
 const Home = () => {
   const isMobile = useIsMobile();
@@ -32,6 +34,17 @@ const Home = () => {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* Latest Update Section */}
+      <Section background="white" className="py-12 md:py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
+              <LatestUpdateCard update={getLatestUpdate()!} />
+            </ScrollReveal>
+          </div>
+        </div>
+      </Section>
 
       {/* The Problem Section */}
       <Section background="light" className="py-12 md:py-20 contain-layout">
