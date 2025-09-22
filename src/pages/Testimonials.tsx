@@ -27,6 +27,14 @@ const Testimonials = () => {
       category: "seller"
     },
     {
+      quote: "Favorite part about DBC is learning from Dr. Njo and working with the rest of the executive board",
+      author: "Armaan Grewal",
+      role: "Dugoni Business Club Member",
+      company: "9/15/2025",
+      rating: 5.0,
+      category: "workshop"
+    },
+    {
       quote: "As we were in the midst of a complex process to sell our dental practice, we encountered challenges in securing an offer that reflected the true value of our well-established family practice. Despite garnering interest from several dentists, it proved to be a daunting task. Additionally, my need for orthopedic surgery necessitated the hiring of a dentist to fill in for a six-month period during my recovery. It was during this time that we were introduced to Dental Strategies by one of the bankers assisting us. Michael promptly met with us and initiated the process. Within just two months, we were introduced to a prospective buyer. Working with someone like Michael, who is not only a former dentist but also possesses expertise that surpasses that of a traditional real estate broker, proved to be advantageous for us. His knowledge in the field allowed us to navigate through the complexities of selling our dental practice with confidence. The assistance provided by attorney Mike Treppa, and Dental Strategies played a crucial role in successfully selling our dental practice. Their expertise and guidance not only facilitated the process but also ensured that we received an offer that truly reflected the value of our well-established family practice.",
       author: "Richard & Kimberly Crum",
       role: "Practice Sellers",
