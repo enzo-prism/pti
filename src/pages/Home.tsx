@@ -23,7 +23,10 @@ const Home = () => {
       />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen overflow-hidden hero-gradient pt-24 md:pt-32 flex items-center justify-center" style={{ minHeight: 'calc(100vh - 6rem)' }}>
+      <section className={`relative min-h-screen overflow-hidden hero-gradient pt-24 md:pt-32 flex items-center justify-center ${isMobile ? 'pb-20 md:pb-8' : 'pb-8'}`} style={{ 
+        minHeight: isMobile ? 'calc(100vh - 4rem)' : 'calc(100vh - 6rem)',
+        paddingBottom: isMobile ? 'max(5rem, env(safe-area-inset-bottom, 1.25rem))' : undefined
+      }}>
         {/* Gradient overlay for better text contrast */}
         <div className="absolute inset-0 hero-gradient-overlay" />
         

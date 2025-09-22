@@ -39,9 +39,11 @@ export const HeroContent: React.FC<HeroContentProps> = ({ className }) => {
       </p>
 
       {/* CTA Button */}
-      <Button asChild variant="secondary" size="lg" className="text-base px-8 py-4 bg-white hover:bg-white">
-        <Link to="/contact">Let's Talk</Link>
-      </Button>
+      <div className="mb-8 sm:mb-4">
+        <Button asChild variant="secondary" size="lg" className="text-base px-8 py-4 bg-white hover:bg-white">
+          <Link to="/contact">Let's Talk</Link>
+        </Button>
+      </div>
     </div>
   );
 };
