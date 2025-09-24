@@ -3,6 +3,8 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 import { Link } from "react-router-dom";
+import { BookReviewCard } from "./book-review-card";
+import { amazonBookReviews } from "@/data/amazonReviews";
 
 interface RecommendationCardProps {
   className?: string;
@@ -18,6 +20,7 @@ interface RecommendationCardProps {
   bookImage?: string;
   bookTitle?: string;
   bookDescription?: string;
+  showAmazonReviews?: boolean;
 }
 
 export function RecommendationCard({
@@ -34,6 +37,7 @@ export function RecommendationCard({
   bookImage,
   bookTitle,
   bookDescription,
+  showAmazonReviews = false,
 }: RecommendationCardProps) {
   return (
     <div className={cn("bg-white rounded-lg shadow-sm p-6 md:p-8", className)}>
@@ -99,6 +103,34 @@ export function RecommendationCard({
                   </Button>
                 </div>
               </div>
+
+              {/* Amazon Reviews Section */}
+              {showAmazonReviews && amazonBookReviews.length > 0 && (
+                <div className="mt-6 pt-6 border-t border-gray-200">
+                  <h5 className="text-md font-semibold text-gray-900 mb-4">
+                    What Amazon Readers Say
+                  </h5>
+                  <div className="grid gap-4">
+                    {amazonBookReviews.slice(0, 2).map((review) => (
+                      <BookReviewCard 
+                        key={review.id} 
+                        review={review}
+                        className="bg-white"
+                      />
+                    ))}
+                  </div>
+                  <div className="mt-4 text-center">
+                    <a
+                      href={bookUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-primary hover:text-primary/80 font-medium"
+                    >
+                      Read all reviews on Amazon →
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

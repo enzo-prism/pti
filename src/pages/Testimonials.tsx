@@ -4,9 +4,12 @@ import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { Cta } from "@/components/ui/cta";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
+import SEO from "@/components/layout/SEO";
+import { BookReviewCard } from "@/components/ui/book-review-card";
+import { amazonBookReviews } from "@/data/amazonReviews";
 
 const Testimonials = () => {
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [activeFilter, setActiveFilter] = useState<'all' | 'seller' | 'buyer' | 'workshop' | 'valuation' | 'book'>('all');
   const [expandedTestimonial, setExpandedTestimonial] = useState<number | null>(null);
   
   const testimonials = [
@@ -283,9 +286,24 @@ const Testimonials = () => {
       category: "seller"
     }
   ];
+
+  // Combine regular testimonials with Amazon book reviews
+  const allTestimonials = [
+    ...testimonials,
+    ...amazonBookReviews.map(review => ({
+      quote: review.reviewText,
+      author: review.reviewerName,
+      role: "Amazon Reviewer",
+      company: `Reviewed ${review.reviewDate}`,
+      rating: review.rating,
+      category: 'book' as const
+    }))
+  ];
   
   const filteredTestimonials = activeFilter === "all" 
     ? testimonials 
+    : activeFilter === "book"
+    ? allTestimonials.filter(t => t.category === "book")
     : testimonials.filter(t => t.category === activeFilter);
   
   const truncateQuote = (quote, length = 200) => {
@@ -370,53 +388,75 @@ const Testimonials = () => {
           >
             Valuations
           </button>
-         </div>
-         
-         
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredTestimonials.map((testimonial, index) => (
-            <Card key={index} className="animate-fade-in border border-gray-100 shadow-sm overflow-hidden" style={{ animationDelay: `${index * 100}ms` }}>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-1 mb-1 text-amber-500">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-current" />
-                  ))}
-                  <span className="text-sm ml-1 font-medium text-gray-600">
-                    {testimonial.rating.toFixed(1)}
-                  </span>
-                </div>
-                
-                <div className="mb-4">
-                  <p className="text-gray-700 italic">
-                    {expandedTestimonial === index 
-                      ? testimonial.quote 
-                      : truncateQuote(testimonial.quote)}
-                  </p>
-                  {testimonial.quote.length > 200 && (
-                    <button 
-                      onClick={() => setExpandedTestimonial(expandedTestimonial === index ? null : index)}
-                      className="text-primary font-medium text-sm mt-2 hover:underline focus:outline-none"
-                    >
-                      {expandedTestimonial === index ? "Show less" : "Read more"}
-                    </button>
-                  )}
-                </div>
-                
-                <div className="mt-4 pt-4 border-t border-gray-100">
-                  <p className="font-medium text-gray-900">{testimonial.author}</p>
-                  <div className="text-sm text-gray-500">
-                    <span>{testimonial.role}</span>
-                    {testimonial.company && (
-                      <span className="ml-1">
-                        • {testimonial.company}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+          <button
+            onClick={() => setActiveFilter("book")}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              activeFilter === "book" 
+                ? "bg-primary text-white" 
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+            }`}
+          >
+            Book Reviews (4)
+          </button>
         </div>
+          
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {activeFilter === 'book' ? (
+              // Special rendering for Amazon book reviews
+              amazonBookReviews.map((review, index) => (
+                <BookReviewCard 
+                  key={review.id} 
+                  review={review}
+                  className="animate-fade-in"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                />
+              ))
+            ) : (
+              // Regular testimonials
+              filteredTestimonials.map((testimonial, index) => (
+                <Card key={index} className="animate-fade-in border border-gray-100 shadow-sm overflow-hidden" style={{ animationDelay: `${index * 100}ms` }}>
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-1 text-amber-500">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-current" />
+                      ))}
+                      <span className="text-sm ml-1 font-medium text-gray-600">
+                        {testimonial.rating.toFixed(1)}
+                      </span>
+                    </div>
+                    
+                    <div className="mb-4">
+                      <p className="text-gray-700 italic">
+                        {expandedTestimonial === index 
+                          ? testimonial.quote 
+                          : truncateQuote(testimonial.quote)}
+                      </p>
+                      {testimonial.quote.length > 200 && (
+                        <button 
+                          onClick={() => setExpandedTestimonial(expandedTestimonial === index ? null : index)}
+                          className="text-primary font-medium text-sm mt-2 hover:underline focus:outline-none"
+                        >
+                          {expandedTestimonial === index ? "Show less" : "Read more"}
+                        </button>
+                      )}
+                    </div>
+                    
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      <p className="font-medium text-gray-900">{testimonial.author}</p>
+                      <div className="text-sm text-gray-500">
+                        <span>{testimonial.role}</span>
+                        {testimonial.company && (
+                          <span className="ml-1">
+                            • {testimonial.company}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))
+            )}
+          </div>
       </Section>
 
       <Section background="light" className="mb-8">

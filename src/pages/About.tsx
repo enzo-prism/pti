@@ -117,6 +117,7 @@ const About = () => {
                 bookImage={leader.bookImage}
                 bookTitle={leader.bookTitle}
                 bookDescription={leader.bookDescription}
+                showAmazonReviews={leader.name === "Dr. Michael Njo"}
               />
             </div>
           ))}
