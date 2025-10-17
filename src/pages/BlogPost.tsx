@@ -116,7 +116,7 @@ const BlogPost = () => {
       </section>
 
       {/* Hero Image */}
-      <Section className="py-0">
+      <Section padding="none">
         <div className="max-w-4xl mx-auto">
           <div className="aspect-video rounded-lg mb-8 overflow-hidden">
             {post.featuredImage ? (
@@ -133,7 +133,7 @@ const BlogPost = () => {
       </Section>
 
       {/* Article Content */}
-      <Section>
+      <Section padding="none" className="pb-12 md:pb-16 lg:pb-20">
         <div className="max-w-4xl mx-auto">
           <article className="prose prose-sm sm:prose-base lg:prose-lg prose-slate max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground prose-a:text-primary hover:prose-a:text-primary/80 prose-headings:leading-tight prose-p:leading-relaxed">
             {post.content.split('\n\n').map((segment, index) => {

@@ -7,15 +7,18 @@ interface SectionProps {
   className?: string;
   id?: string;
   background?: "white" | "light" | "primary";
+  padding?: "default" | "compact" | "none";
 }
 
 export function Section({ 
   children, 
   className, 
   id, 
-  background = "white" 
+  background = "white",
+  padding = "default"
 }: SectionProps) {
   let bgClass = "";
+  let spacingClass = "";
   
   switch (background) {
     case "light":
@@ -27,11 +30,22 @@ export function Section({
     default:
       bgClass = "bg-white";
   }
+
+  switch (padding) {
+    case "compact":
+      spacingClass = "py-8 md:py-12 lg:py-16";
+      break;
+    case "none":
+      spacingClass = "py-0";
+      break;
+    default:
+      spacingClass = "py-12 md:py-16 lg:py-20";
+  }
   
   return (
     <section 
       id={id} 
-      className={cn("py-12 md:py-16 lg:py-20", bgClass, className)}
+      className={cn(spacingClass, bgClass, className)}
     >
       <div className="container">
         {children}
