@@ -97,15 +97,15 @@ const BlogPost = () => {
               
               {/* Meta Information */}
               <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-3 sm:gap-6 text-xs sm:text-sm text-gray-600 pt-3 sm:pt-4 border-t border-gray-200">
-                <div className="flex items-center min-h-[44px] sm:min-h-0">
+                <div className="flex items-center">
                   <User className="h-4 w-4 mr-2 shrink-0" />
                   <span className="truncate">{post.author}</span>
                 </div>
-                <div className="flex items-center min-h-[44px] sm:min-h-0">
+                <div className="flex items-center">
                   <Calendar className="h-4 w-4 mr-2 shrink-0" />
                   <span className="truncate">{formatLocalDate(post.date)}</span>
                 </div>
-                <div className="flex items-center min-h-[44px] sm:min-h-0">
+                <div className="flex items-center">
                   <Clock className="h-4 w-4 mr-2 shrink-0" />
                   <span className="truncate">{post.readTime}</span>
                 </div>
@@ -116,21 +116,23 @@ const BlogPost = () => {
       </section>
 
       {/* Hero Image */}
-      <Section padding="none">
-        <div className="max-w-4xl mx-auto">
-          <div className="aspect-video rounded-lg mb-8 overflow-hidden">
-            {post.featuredImage ? (
-              <img 
-                src={post.featuredImage} 
-                alt={post.title}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div className={post.gradient}></div>
-            )}
+      {(post.featuredImage || post.gradient) && (
+        <Section padding="none">
+          <div className="max-w-4xl mx-auto">
+            <div className="aspect-video rounded-lg mb-8 overflow-hidden">
+              {post.featuredImage ? (
+                <img 
+                  src={post.featuredImage} 
+                  alt={post.featuredImageAlt ?? post.title}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className={`w-full h-full ${post.gradient}`} />
+              )}
+            </div>
           </div>
-        </div>
-      </Section>
+        </Section>
+      )}
 
       {/* Article Content */}
       <Section padding="none" className="pb-12 md:pb-16 lg:pb-20">

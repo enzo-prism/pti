@@ -134,11 +134,11 @@ const Blog = () => {
                   {featuredPost.featuredImage ? (
                     <img 
                       src={featuredPost.featuredImage} 
-                      alt={featuredPost.title}
+                      alt={featuredPost.featuredImageAlt ?? featuredPost.title}
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <div className={featuredPost.gradient}></div>
+                    <div className={`w-full h-full ${featuredPost.gradient}`} />
                   )}
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
                   <div className="absolute bottom-4 left-4">
@@ -205,7 +205,16 @@ const Blog = () => {
                   {regularPosts.map((post, index) => (
             <Card key={post.id} className="overflow-hidden hover-lift group" style={{ animationDelay: `${index * 100}ms` }}>
               <Link to={`/blog/${post.slug}`}>
-                <div className={`aspect-video relative ${post.gradient}`}>
+                <div className="aspect-video relative overflow-hidden">
+                  {post.featuredImage ? (
+                    <img 
+                      src={post.featuredImage} 
+                      alt={post.featuredImageAlt ?? post.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className={`w-full h-full ${post.gradient}`} />
+                  )}
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors duration-300"></div>
                   <div className="absolute top-4 left-4">
                     <Badge variant="secondary" className="bg-white/90 text-primary">

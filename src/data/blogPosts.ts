@@ -10,6 +10,7 @@ export interface BlogPost {
   author: string;
   content: string;
   featuredImage?: string;
+  featuredImageAlt?: string;
   series?: {
     id: string;
     title: string;
@@ -30,6 +31,7 @@ export const blogPosts: BlogPost[] = [
     slug: "dugoni-business-club-donation",
     author: "Michael Njo, DDS",
     featuredImage: "/lovable-uploads/dugoni-business-club-donation-ceremony.jpg",
+    featuredImageAlt: "Dugoni Business Club members presenting a donation check to the Arthur A. Dugoni School of Dentistry",
     content: `**September 3, 2025 — San Francisco, CA**
 
 The Dugoni Business Club (DBC) proudly donated $1,000 to the Arthur A. Dugoni Annual Fund, a fund that supports students at the Dugoni School of Dentistry — particularly those facing financial need. This generous contribution reflects the club's commitment to both business excellence and community support.
@@ -72,9 +74,9 @@ This generous donation demonstrates the values that we instill in our students �
     gradient: "bg-gradient-to-br from-amber-400 via-orange-500 to-red-400",
     slug: "so-much-to-be-thankful-for",
     author: "Michael Njo, DDS",
+    featuredImage: "/lovable-uploads/f8f5c36c-facc-42dd-86bb-3bb4ca79dc26.png",
+    featuredImageAlt: "Festive dentist wearing a Santa hat smiling beside holiday dental tools",
     content: `As we enter the holiday season, did I just say that? Where did this year go? I love this time of year, although I do miss the summer months. The reason I love this time of year is it always gives me an opportunity to pause and reflect. It provides me an opportunity to be thankful for all the blessings I have.
-
-<img src="/lovable-uploads/f8f5c36c-facc-42dd-86bb-3bb4ca79dc26.png" alt="Dentist in holiday spirit with Santa hat and dental tools beside a Christmas tree" style="width: 100%; max-width: 600px; height: auto; margin: 2rem auto; display: block; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" />
 
 I wanted to share that I lost a dear friend this year at the young age of 51 who battled cancer for several years, leaving a wonderful wife and two loving children, a freshman and junior in college. Unfortunately, my story is not too uncommon. If you speak to enough people, one would come across a similarly tragic story, and some have come close to losing a loved one. In reflecting on this year, I came across this inscription, that I sent a book to him - "The Boy, the mole, the fox and the horse"
 
@@ -98,9 +100,9 @@ Please email me at dentalstrategies@gmail.com for any questions or suggestions f
     gradient: "bg-gradient-to-br from-blue-400 via-purple-500 to-indigo-500",
     slug: "work-staff-shortages-dentistry",
     author: "Michael Njo, DDS",
+    featuredImage: "/lovable-uploads/cd55db20-adc0-4a27-a6e9-2ca8635b58d1.png",
+    featuredImageAlt: "Professional dental team of three healthcare workers in scrubs standing together in a modern dental office",
     content: `I get calls, texts, and questions almost every day complaining, asking questions and conveying concerns about work staff shortages in the dental profession. Questions such as "Do you know any dental assistants looking for work?" "It is so hard to get great candidates for our position" "Where are all the quality team members?"
-
-<img src="/lovable-uploads/cd55db20-adc0-4a27-a6e9-2ca8635b58d1.png" alt="Professional dental team of three healthcare workers in scrubs standing together in a modern dental office" style="width: 100%; max-width: 600px; height: auto; margin: 2rem auto; display: block; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" />
 
 The answer is, I don't know anyone, and this is the state of the profession. They simply aren't out there as much, so you can stop expecting a quick fix. Specifically, the dental assisting workforce has been shattered by the pandemic, and the situation isn't going to get better anytime soon. It will be years before dental practices recuperate and can find dental team members to round out their teams.
 
@@ -333,6 +335,8 @@ If you would like to discuss this topic or any related topics. I would be happy 
       part: 4,
       total: 4
     },
+    featuredImage: "/lovable-uploads/ed89ce68-dc38-4260-ac9f-e5519305a693.png",
+    featuredImageAlt: "Chart comparing growth mindset and fixed mindset in a dental practice context",
     content: `Creating Culture In Today's Dental Offices Part IV
 
 <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #0ea5e9; margin: 0 0 2rem 0;">
@@ -361,8 +365,6 @@ Forgiveness: Ask for God's forgiveness. Decide whether you want to reconcile wit
 Grace: Ask God for the grace you need for the next day and an ability to see God's presence more clearly.
 
 No matter what your faith is, the above are wonderful steps to follow on a daily basis. These action items will allow one to really appreciate what is truly important. Most practitioners will spend over three decades of their life devoted to the practice of dentistry.
-
-<img src="/lovable-uploads/ed89ce68-dc38-4260-ac9f-e5519305a693.png" alt="Growth Mindset vs Fixed Mindset comparison showing brain illustrations with key characteristics and attitudes" style="width: 100%; max-width: 600px; height: auto; margin: 2rem auto; display: block; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" />
 
 What do you want to be remembered for as a practitioner, leader, employer?
 Sometimes in our busy and chaotic lives we often forget to smell the roses. Are you taking time to smell the roses? If you are, good for you!
@@ -401,6 +403,8 @@ I hope this series has been thoughtful and thought-provoking. When you are thoug
       part: 1,
       total: 4
     },
+    featuredImage: "/lovable-uploads/a5b1b69b-d299-42f1-a481-ba0da951bfa1.png",
+    featuredImageAlt: "Experienced dentist smiling confidently in a modern dental office",
     content: `
 <div style="background: #e3f2fd; border-left: 4px solid #2196f3; padding: 20px; margin: 24px 0;">
   <h4 style="margin: 0 0 12px 0; color: #1565c0;">📚 Series Introduction</h4>
@@ -424,8 +428,6 @@ I hope this series has been thoughtful and thought-provoking. When you are thoug
     </div>
   </div>
 </div>
-
-<img src="/lovable-uploads/a5b1b69b-d299-42f1-a481-ba0da951bfa1.png" alt="Professional male dentist in white coat with striped tie smiling in modern dental office" style="width: 100%; max-width: 600px; height: auto; margin: 2rem auto; display: block; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" />
 
 The internet is a wonderful thing. However, everyone should not believe everything on the internet. Nor should you apply everything you read regarding dental practice sales or practice transitions. Practice sales, just like patient care, are very personal and should be treated with a customized approach.
 
@@ -512,6 +514,8 @@ Michael Njo of the Practice Transition Institute will also be presenting a semin
       part: 2,
       total: 4
     },
+    featuredImage: "/lovable-uploads/79faafd7-5f7c-4fe3-b9fb-ad3a1f391cfc.png",
+    featuredImageAlt: "Modern dental operatory with contemporary equipment and chair",
     content: `
 <div style="background: #e3f2fd; border-left: 4px solid #2196f3; padding: 20px; margin: 24px 0;">
   <h4 style="margin: 0 0 12px 0; color: #1565c0;">📖 Series Recap</h4>
@@ -541,8 +545,6 @@ Michael Njo of the Practice Transition Institute will also be presenting a semin
 In Part 1, we established that successful practice transitions require years of advance planning. Now comes the critical question: Who should guide you through this complex process?
 
 This is where the second major myth emerges: **"My current accountant and attorney can handle everything."**
-
-<img src="/lovable-uploads/79faafd7-5f7c-4fe3-b9fb-ad3a1f391cfc.png" alt="Modern dental office with professional equipment, dental chair, and clean clinical environment" style="width: 100%; max-width: 600px; height: auto; margin: 2rem auto; display: block; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" />
 
 Transitioning a dental practice can be a complex and daunting process. It is one of the most significant career moves a dentist will make. However, with the right advisors/team and a well-structured plan, a smooth transition can be achieved.
 
