@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import type { CSSProperties } from 'react';
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 import { cn } from '@/lib/utils';
 
@@ -16,7 +17,7 @@ export const ScrollReveal = ({
   className,
   delay = 0,
   direction = 'up',
-  duration = 600,
+  duration,
   intensity = 'normal'
 }: ScrollRevealProps) => {
   const { elementRef, isIntersecting } = useIntersectionObserver({
@@ -25,34 +26,41 @@ export const ScrollReveal = ({
   });
 
   const getAnimationClass = () => {
-    const intensityClass = intensity === 'subtle' ? '-subtle' : intensity === 'strong' ? '-strong' : '';
-    
-    switch (direction) {
-      case 'up':
-        return `animate-slide-up${intensityClass}`;
-      case 'down':
-        return `animate-slide-down${intensityClass}`;
-      case 'left':
-        return `animate-slide-left${intensityClass}`;
-      case 'right':
-        return `animate-slide-right${intensityClass}`;
-      case 'scale':
-        return `animate-scale-elegant${intensityClass}`;
-      case 'blur-in':
-        return `animate-blur-reveal${intensityClass}`;
-      case 'elastic':
-        return `animate-elastic-bounce${intensityClass}`;
-      case 'bounce':
-        return `animate-soft-bounce${intensityClass}`;
-      case 'parallax':
-        return `animate-parallax-float${intensityClass}`;
-      case 'magnetic':
-        return `animate-magnetic-rise${intensityClass}`;
-      case 'morphing':
-        return `animate-morphing-reveal${intensityClass}`;
-      default:
-        return `animate-slide-up${intensityClass}`;
+    const baseClass = (() => {
+      switch (direction) {
+        case 'up':
+          return 'animate-slide-up';
+        case 'down':
+          return 'animate-slide-down';
+        case 'left':
+          return 'animate-slide-left';
+        case 'right':
+          return 'animate-slide-right';
+        case 'scale':
+          return 'animate-scale-elegant';
+        case 'blur-in':
+          return 'animate-blur-reveal';
+        case 'elastic':
+          return 'animate-elastic-bounce';
+        case 'bounce':
+          return 'animate-soft-bounce';
+        case 'parallax':
+          return 'animate-parallax-float';
+        case 'magnetic':
+          return 'animate-magnetic-rise';
+        case 'morphing':
+          return 'animate-morphing-reveal';
+        default:
+          return 'animate-slide-up';
+      }
+    })();
+
+    if (direction === 'up') {
+      if (intensity === 'subtle') return `${baseClass}-subtle`;
+      if (intensity === 'strong') return `${baseClass}-strong`;
     }
+
+    return baseClass;
   };
 
   const initialTransform = () => {
@@ -86,6 +94,14 @@ export const ScrollReveal = ({
     }
   };
 
+  const style: CSSProperties = {
+    opacity: isIntersecting ? undefined : 0,
+    transform: isIntersecting ? undefined : initialTransform(),
+    animationDelay: `${delay}ms`,
+    animationFillMode: 'both',
+    ...(typeof duration === 'number' ? { animationDuration: `${duration}ms` } : {})
+  };
+
   return (
     <div
       ref={elementRef as any}
@@ -94,12 +110,7 @@ export const ScrollReveal = ({
         isIntersecting ? getAnimationClass() : '',
         className
       )}
-      style={{
-        opacity: isIntersecting ? 1 : 0,
-        transform: isIntersecting ? 'translate3d(0, 0, 0) scale3d(1, 1, 1)' : initialTransform(),
-        transition: `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1), transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1)`,
-        transitionDelay: `${delay}ms`
-      }}
+      style={style}
     >
       {children}
     </div>
