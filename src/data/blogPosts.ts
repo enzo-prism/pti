@@ -11,6 +11,7 @@ export interface BlogPost {
   content: string;
   featuredImage?: string;
   featuredImageAlt?: string;
+  featuredImageFit?: "cover" | "contain";
   series?: {
     id: string;
     title: string;
@@ -20,6 +21,37 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: 13,
+    title: "Empowering the Next Generation: Dr. Michael Njo Speaks at Dugoni School's \"Lunch & Learn\"",
+    excerpt: "Dr. Michael Njo returned to the Dugoni School of Dentistry to guide students through the business of dentistry—from contracts and career paths to confident practice ownership.",
+    category: "Community Impact",
+    date: "2025-10-17",
+    readTime: "5 min read",
+    gradient: "bg-gradient-to-br from-emerald-400 via-teal-500 to-blue-600",
+    slug: "empowering-next-generation-dugoni-lunch-learn",
+    author: "Practice Transitions Institute",
+    featuredImage: "/lovable-uploads/flyer-photo.png",
+    featuredImageAlt: "Lunch & Learn flyer for Dr. Michael Njo's presentation at the Dugoni School of Dentistry",
+    featuredImageFit: "contain",
+    content: `On October 8th, Dr. Michael Njo, founder of the Practice Transitions Institute (PTI) and proud alumnus of the University of the Pacific, Arthur A. Dugoni School of Dentistry, returned to his alma mater to speak at a Lunch & Learn hosted by the Dugoni Business Club. The event, titled "During and Beyond Dental School," brought together a packed room of dental students eager to learn about life after graduation—covering everything from navigating contracts and exploring career options to building a solid foundation for long-term success.
+
+## A Conversation on Career Pathways and Practice Ownership
+
+During his talk, Dr. Njo shared personal experiences and practical advice from his decades-long career in dentistry. He emphasized the importance of understanding the business side of dentistry early on—knowledge that often separates successful practitioners from those who feel unprepared for ownership or associate agreements. Students had the opportunity to hear firsthand about how small, informed decisions—like reading a contract carefully or knowing the right questions to ask—can dramatically impact their professional trajectory.
+
+![Dr. Michael Njo presenting to Dugoni students during the Lunch & Learn session](/lovable-uploads/presentation-photo.png)
+
+## Connecting Education to PTI's Mission
+
+Dr. Njo's presentation perfectly reflected PTI's mission: to equip dentists with the tools, knowledge, and confidence to make informed decisions about practice ownership, growth, and transition. At Practice Transitions Institute, we believe education is the foundation of a successful career in dentistry. By engaging with students early--before they enter the professional world--Dr. Njo hopes to demystify the process of buying, selling, or joining a dental practice and empower future dentists to approach their careers with both clinical excellence and business acumen.
+
+## Continuing the Conversation
+
+As the session concluded, students stayed behind to ask thoughtful questions about practice transitions, associate opportunities, and ownership readiness—evidence of the growing interest in understanding the why behind their professional decisions. Through events like this, PTI continues its mission to bridge the gap between clinical training and real-world practice success, helping dentists navigate the business side of their careers with confidence and clarity.
+
+**Interested in learning more?** Explore resources, workshops, and upcoming events at [PracticeTransitionsInstitute.com](https://practicetransitionsinstitute.com).`
+  },
   {
     id: 0,
     title: "Dugoni Business Club Donates $1,000 to Support Students in Need",
@@ -1021,7 +1053,11 @@ export const getSeriesPosts = (seriesId: string): BlogPost[] => {
 
 // Run link validation in development
 if (typeof window !== 'undefined' && import.meta.env.DEV) {
-  import('../lib/linkValidation').then(({ validateInternalBlogLinks }) => {
-    validateInternalBlogLinks();
-  });
+  import('../lib/linkValidation')
+    .then(({ validateInternalBlogLinks }) => {
+      validateInternalBlogLinks();
+    })
+    .catch((error) => {
+      console.warn('[blogPosts] Failed to run link validation:', error);
+    });
 }

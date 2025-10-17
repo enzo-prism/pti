@@ -19,7 +19,7 @@ export const getAllBlogSlugs = (): string[] => {
  * Logs warnings for any broken internal links
  */
 export const validateInternalBlogLinks = (): void => {
-  if (process.env.NODE_ENV !== 'development') return;
+  if (!import.meta.env.DEV) return;
 
   const internalLinks: string[] = [];
   

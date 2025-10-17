@@ -66,7 +66,7 @@ export const rawEvents: RawEvent[] = [
     title: "Mastering Your Dental Transition Into and Out of Practice",
     date: "July 11, 2025",
     time: "8am - 3pm",
-    location: "Arthur A. Dugoni School of Dentistry, U.O.P., San Francisco, CA",
+    location: "Arthur A. Dugoni School of Dentistry (UOP Dental School), San Francisco, CA",
     description: "A comprehensive full-day seminar perfect for doctors pursuing a start-up or purchase, seeking partners/associates, planning ownership, or preparing to exit dentistry. Join us at the prestigious University of the Pacific dental school.",
     type: "seminar",
     registrationLink: "tel:+18337841121"
@@ -97,7 +97,7 @@ export const rawEvents: RawEvent[] = [
     title: "Mastering Your Dental Transition Into and Out of Practice",
     date: "July 17, 2026",
     time: "8am - 3pm",
-    location: "San Francisco, CA",
+    location: "University of the Pacific (UOP) Arthur A. Dugoni School of Dentistry, San Francisco, CA",
     description: {
       intro: "Whether entering, expanding, or exiting your career, meticulous planning is essential. Practice Transitions Institute's experts guide you through each stage, helping you avoid costly missteps and ensuring a seamless and prosperous transition.",
       learningPoints: [
