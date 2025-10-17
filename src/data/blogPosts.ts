@@ -34,7 +34,7 @@ export const blogPosts: BlogPost[] = [
     featuredImage: "/lovable-uploads/flyer-photo.png",
     featuredImageAlt: "Lunch & Learn flyer for Dr. Michael Njo's presentation at the Dugoni School of Dentistry",
     featuredImageFit: "contain",
-    content: `On October 8th, Dr. Michael Njo, founder of the Practice Transitions Institute (PTI) and proud alumnus of the University of the Pacific, Arthur A. Dugoni School of Dentistry, returned to his alma mater to speak at a Lunch & Learn hosted by the Dugoni Business Club. The event, titled "During and Beyond Dental School," brought together a packed room of dental students eager to learn about life after graduation—covering everything from navigating contracts and exploring career options to building a solid foundation for long-term success.
+    content: `On October 8th, Dr. Michael Njo, founder of the Practice Transitions Institute (PTI), spoke at a Lunch & Learn hosted by the Dugoni Business Club. The event, titled "During and Beyond Dental School," brought together a packed room of dental students eager to learn about life after graduation—covering everything from navigating contracts and exploring career options to building a solid foundation for long-term success.
 
 ## A Conversation on Career Pathways and Practice Ownership
 
@@ -50,7 +50,7 @@ Dr. Njo's presentation perfectly reflected PTI's mission: to equip dentists with
 
 As the session concluded, students stayed behind to ask thoughtful questions about practice transitions, associate opportunities, and ownership readiness—evidence of the growing interest in understanding the why behind their professional decisions. Through events like this, PTI continues its mission to bridge the gap between clinical training and real-world practice success, helping dentists navigate the business side of their careers with confidence and clarity.
 
-**Interested in learning more?** Explore resources, workshops, and upcoming events at [PracticeTransitionsInstitute.com](https://practicetransitionsinstitute.com).`
+**Interested in learning more?** Explore upcoming workshops and events on our [Events page](/events).`
   },
   {
     id: 0,
