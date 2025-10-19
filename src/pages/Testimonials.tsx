@@ -12,8 +12,18 @@ const Testimonials = () => {
   const [activeFilter, setActiveFilter] = useState<'all' | 'seller' | 'buyer' | 'workshop' | 'valuation' | 'book'>('all');
   const [expandedTestimonial, setExpandedTestimonial] = useState<number | null>(null);
   
-  const testimonials = [
+  const testimonialsData = [
     {
+      order: 1,
+      quote: "PURPOSE..... Michael, your purpose in making Queensboro Oral Surgery an amazing and truly functioning workplace is definitely working. There have been many positive changes since you have arrived and as for me it has helped me immensely. After your first visit I was hesitant in believing that change can occur here but it has. So a huge thank you to you!!!",
+      author: "Team Member",
+      role: "Team Member",
+      company: "Queensboro Oral Surgery",
+      rating: 5.0,
+      category: "seller"
+    },
+    {
+      order: 2,
       quote: "Michael - many thanks for your magnanimous gifts of Pride Cabernet Sauvignon and your book on Dental Practice Transitions. I sincerely appreciate the passion, wisdom, and experience you offer our students as well as our personal friendship. Best of season's greetings to you and your family.",
       author: "Craig S. Yarborough, DDS, MBA",
       role: "Associate Dean, International Advancement",
@@ -357,6 +367,13 @@ const Testimonials = () => {
       category: "seller"
     }
   ];
+
+  const testimonials = testimonialsData
+    .map((testimonial, index) => ({
+      ...testimonial,
+      order: testimonial.order ?? index + 1,
+    }))
+    .sort((a, b) => a.order - b.order);
 
   // Combine regular testimonials with Amazon book reviews
   const allTestimonials = [
