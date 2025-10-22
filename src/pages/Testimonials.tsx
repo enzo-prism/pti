@@ -14,6 +14,13 @@ const Testimonials = () => {
   
   const testimonialsData = [
     {
+      quote: "I started with Michael in 2018 and have had an outstanding experience! He brings a wealth of knowledge and a truly professional, friendly approach to my dental practice. His advice is not only practical but also easy to implement, and I've seen improvements in patient satisfaction and office efficiency.\n\nMost recently, Michael and his team helped facilitate a chart sale that was fair to both seller and buyer (myself). He expertly guided us through the process and continues to monitor our progress, ensuring a smooth and successful transfer of patients. I highly recommend Michael to any dental team looking to level up their game!\n\nG. Allen Herrera, DDS",
+      author: "G. Allen Herrera, DDS",
+      role: "Practice Buyer",
+      rating: 5.0,
+      category: "buyer"
+    },
+    {
       order: 1,
       quote: "PURPOSE..... Michael, your purpose in making Queensboro Oral Surgery an amazing and truly functioning workplace is definitely working. There have been many positive changes since you have arrived and as for me it has helped me immensely. After your first visit I was hesitant in believing that change can occur here but it has. So a huge thank you to you!!!",
       author: "Team Member",
@@ -48,13 +55,6 @@ const Testimonials = () => {
     {
       quote: "Michael worked with me on a practice acquisition and I couldn't be more pleased. The help and advice given during the process made me feel secure in the purchase and decisions along the way of my practice. Someone as experienced as Michael in your corner is essential to navigating through the process. He's my coach, confidante, and provides honest, unfiltered advice.",
       author: "Erica Haskett",
-      role: "Practice Buyer",
-      rating: 5.0,
-      category: "buyer"
-    },
-    {
-      quote: "I started with Michael in 2018 and have had an outstanding experience! He brings a wealth of knowledge and a truly professional, friendly approach to my dental practice. His advice is not only practical but also easy to implement, and I've seen improvements in patient satisfaction and office efficiency.\n\nMost recently, Michael and his team helped facilitate a chart sale that was fair to both seller and buyer (myself). He expertly guided us through the process and continues to monitor our progress, ensuring a smooth and successful transfer of patients. I highly recommend Michael to any dental team looking to level up their game!\n\nG. Allen Herrera, DDS",
-      author: "G. Allen Herrera, DDS",
       role: "Practice Buyer",
       rating: 5.0,
       category: "buyer"
