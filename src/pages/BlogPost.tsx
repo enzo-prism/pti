@@ -145,25 +145,29 @@ const BlogPost = () => {
       {/* Header Section */}
       <section className="bg-white pt-24 pb-8 md:pt-28 md:pb-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Breadcrumb className="mb-4 sm:mb-6">
-            <BreadcrumbList className="text-sm text-muted-foreground">
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild className="min-h-[44px] flex items-center">
-                  <Link to="/">Home</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild className="min-h-[44px] flex items-center">
-                  <Link to="/blog">Blog</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbPage className="max-w-[240px] sm:max-w-none truncate text-foreground">
-                {post.title}
-              </BreadcrumbPage>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <div className="mb-4 sm:mb-6">
+            <Breadcrumb className="w-full">
+              <BreadcrumbList className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground sm:text-sm">
+                <BreadcrumbItem className="flex-shrink-0">
+                  <BreadcrumbLink asChild className="min-h-[32px] sm:min-h-[44px] flex items-center">
+                    <Link to="/">Home</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator className="flex-shrink-0" />
+                <BreadcrumbItem className="flex-shrink-0">
+                  <BreadcrumbLink asChild className="min-h-[32px] sm:min-h-[44px] flex items-center">
+                    <Link to="/blog">Blog</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator className="flex-shrink-0" />
+                <BreadcrumbPage className="min-w-0 flex-1">
+                  <span className="inline-flex max-w-full items-center rounded-full bg-slate-100/80 px-3 py-1.5 text-xs font-medium text-slate-600 shadow-inner sm:text-sm">
+                    <span className="truncate">{post.title}</span>
+                  </span>
+                </BreadcrumbPage>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
 
           <div className="flex items-center justify-between flex-wrap gap-3">
             <Button variant="ghost" asChild className="inline-flex min-h-[44px] items-center gap-2 px-0 text-sm text-muted-foreground hover:text-primary">
@@ -192,7 +196,7 @@ const BlogPost = () => {
             <p className="text-base sm:text-lg text-muted-foreground max-w-3xl">
               {post.excerpt}
             </p>
-            <div className="sm:hidden flex items-center gap-4 text-sm text-muted-foreground">
+            <div className="sm:hidden mt-5 grid gap-3 text-sm text-muted-foreground">
               {metaItems.map((item) => (
                 <div key={`mobile-${item.helper}`} className="flex items-center gap-2">
                   <item.icon className="h-4 w-4 text-primary" />
