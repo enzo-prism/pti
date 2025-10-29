@@ -796,7 +796,10 @@
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     scroll-snap-type: x proximity;
-    --notes-column-width: 12rem;
+    --col1-width: 7.5rem;
+    --col2-width: 14rem;
+    --col3-width: 13rem;
+    --col4-width: 15rem;
   }
 
   .blog-prose .table-wrapper table {
@@ -856,9 +859,9 @@
     }
 
     .blog-prose .table-wrapper table {
-      table-layout: auto;
-      width: calc(100% + var(--notes-column-width));
-      min-width: calc(100% + var(--notes-column-width));
+      table-layout: fixed;
+      width: calc(var(--col1-width) + var(--col2-width) + var(--col3-width) + var(--col4-width));
+      min-width: calc(var(--col1-width) + var(--col2-width) + var(--col3-width) + var(--col4-width));
     }
 
     .blog-prose .table-wrapper th,
@@ -868,25 +871,33 @@
 
     .blog-prose .table-wrapper th:nth-child(1),
     .blog-prose .table-wrapper td:nth-child(1) {
-      min-width: 4.75rem;
+      width: var(--col1-width);
+      min-width: var(--col1-width);
+      max-width: var(--col1-width);
       white-space: nowrap;
     }
 
     .blog-prose .table-wrapper th:nth-child(2),
     .blog-prose .table-wrapper td:nth-child(2) {
-      min-width: 6.25rem;
+      width: var(--col2-width);
+      min-width: var(--col2-width);
+      max-width: var(--col2-width);
       white-space: nowrap;
     }
 
     .blog-prose .table-wrapper th:nth-child(3),
     .blog-prose .table-wrapper td:nth-child(3) {
-      min-width: 10.5rem;
+      width: var(--col3-width);
+      min-width: var(--col3-width);
+      max-width: var(--col3-width);
       white-space: normal;
     }
 
     .blog-prose .table-wrapper th:nth-child(4),
     .blog-prose .table-wrapper td:nth-child(4) {
-      min-width: var(--notes-column-width);
+      width: var(--col4-width);
+      min-width: var(--col4-width);
+      max-width: var(--col4-width);
       white-space: normal;
     }
 
