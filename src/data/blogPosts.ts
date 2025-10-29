@@ -22,6 +22,95 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 14,
+    title: "Attitude: The Hidden Key to Shaping Dentistry's Future",
+    excerpt: "A resilient mindset helps dentists rewrite the insurance narrative, educate patients, and reclaim advocacy for oral health.",
+    category: "Practice Management",
+    date: "2025-10-29",
+    readTime: "8 min read",
+    gradient: "bg-gradient-to-br from-sky-500 via-indigo-500 to-purple-600",
+    slug: "attitude-hidden-key-shaping-dentistry-future",
+    author: "Michael Njo, DDS",
+    featuredImage: "https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761757553/Frame_1_psbk9m.png",
+    featuredImageAlt: "Dentist reviewing insurance documents alongside uplifting messaging",
+    featuredImageFit: "contain",
+    content: `Over the past several months, I have noticed that attitude has become a recurring topic in books, articles, and professional conversations. In my last newsletter, I recommended reading *As a Man Thinketh* by James Allen—and the feedback from many of you was overwhelmingly positive.
+
+For those who have not yet read it, *As a Man Thinketh* (first published in 1903) is a short but profound classic on self-improvement and philosophy. Allen's central idea is simple but powerful: your thoughts shape your character, and your character shapes your destiny. He compares the mind to a garden—if you cultivate positive, purposeful thoughts, you will grow success and fulfillment. If you allow negativity or complacency, you will reap confusion and frustration.
+
+## Core Themes from *As a Man Thinketh*
+
+1. **You are what you think.** Your outer world reflects your inner world. Thoughts create character, and character determines results.
+2. **Cause and effect in thought.** Just as plants grow from seeds, actions and outcomes grow from thoughts.
+3. **Thought and character.** Noble thoughts produce noble character; impure or selfish thoughts lead to struggle and limitation.
+4. **Effect of thought on circumstances.** We often blame luck or fate, but our mental habits attract the circumstances we experience.
+5. **Serenity and mastery.** A calm, disciplined mind leads to peace, wisdom, and strength.
+
+> "As a man thinketh in his heart, so is he." — Proverbs 23:7
+
+This timeless truth challenges us to examine our inner world—and that includes how we, as dental professionals, think about our work and our industry.
+
+## Our Mindset in Modern Dentistry
+
+Given the rising costs of practicing dentistry and the increasingly complex relationships we have with insurance companies, it is understandable that many dentists feel frustrated or even disillusioned. Patients, too, are feeling the pressure, and they often direct their frustration toward dentists, believing that our fees are too high.
+
+This perception is dangerous and inaccurate. It is vital that we, as a profession, control the narrative. The pendulum has swung from patients viewing dentists as advocates to feeling aligned with insurance again. We need to reclaim that trust by cultivating the garden of our patients' minds and hearts.
+
+Perception is reality—so we must actively shape that perception. Insurance companies are experts at controlling the narrative; if we do not step forward to define the truth, it will be defined for us.
+
+## The Misnomer of "Dental Insurance"
+
+Let us be honest—what we call "dental insurance" is more accurately an annual allowance. And what about PPOs—Preferred Provider Organizations? What exactly is "preferred" about them when reimbursements trail the cost of care? If these plans truly benefited patients, why has the annual maximum gone unchanged for more than 70 years?
+
+<div class="table-wrapper" role="group" aria-labelledby="dental-insurance-table">
+<table class="comparison-table" aria-describedby="dental-insurance-table">
+<caption id="dental-insurance-table" class="sr-only">Comparison of dental insurance annual maximums across eras</caption>
+<thead>
+<tr>
+<th scope="col">Era</th>
+<th scope="col">Typical Annual Maximum</th>
+<th scope="col">Inflation-Adjusted Equivalent (2025 USD)</th>
+<th scope="col">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Era">1950s</td>
+<td data-label="Typical Annual Maximum">$1,000</td>
+<td data-label="Inflation-Adjusted Equivalent (2025 USD)">≈ $11,000</td>
+<td data-label="Notes">Foundational plans (ILWU–PMA)</td>
+</tr>
+<tr>
+<td data-label="Era">1970s</td>
+<td data-label="Typical Annual Maximum">$1,000</td>
+<td data-label="Inflation-Adjusted Equivalent (2025 USD)">≈ $8,000</td>
+<td data-label="Notes">Became industry standard</td>
+</tr>
+<tr>
+<td data-label="Era">2020s</td>
+<td data-label="Typical Annual Maximum">$1,000–$2,000</td>
+<td data-label="Inflation-Adjusted Equivalent (2025 USD)">≈ $1,000–$2,000</td>
+<td data-label="Notes">Nearly unchanged nominally</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+This comparison is eye-opening. While the cost of running a dental practice—staff wages, supplies, lab fees, technology—has soared, the "benefits" have remained frozen in time. Have our patients ever truly been educated about this reality?
+
+## Time for a Paradigm Shift
+
+We are overdue for an attitude adjustment—both individually and collectively. If every day in dentistry feels like *Groundhog Day*, it is time to ask:
+
+- How can we break the pattern?
+- How can we shift our mindset?
+- How can our teams reframe frustration into purpose?
+
+The change begins with thought. As James Allen wrote, our outer world reflects our inner world. If we choose to think differently—about our worth, our message, and our role as patient advocates—we can transform not only our profession's narrative but also our daily experience of practicing dentistry.
+
+Please email me at dentalstrategies@gmail.com for any questions or suggestions for future article topics.`,
+  },
+  {
     id: 13,
     title: "Empowering the Next Generation: Dr. Michael Njo Speaks at Dugoni School's \"Lunch & Learn\"",
     excerpt: "Dr. Michael Njo returned to the Dugoni School of Dentistry to guide students through the business of dentistry—from contracts and career paths to confident practice ownership.",

@@ -783,4 +783,131 @@
     @apply text-muted-foreground;
     margin-top: 0.35rem;
   }
+
+  .blog-prose .table-wrapper {
+    @apply overflow-x-auto border border-slate-200;
+    border-radius: 1rem;
+    box-shadow: 0 22px 45px rgba(15, 23, 42, 0.08);
+    background: linear-gradient(120deg, rgba(6, 67, 122, 0.08), rgba(102, 126, 234, 0.05));
+    margin: 2.5rem 0;
+  }
+
+  .blog-prose .table-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgb(255, 255, 255);
+    font-feature-settings: "tnum";
+  }
+
+  .blog-prose .table-wrapper th,
+  .blog-prose .table-wrapper td {
+    @apply text-left;
+    padding: 0.85rem 1.15rem;
+    border-bottom: 1px solid rgb(226, 232, 240);
+    white-space: normal;
+  }
+
+  .blog-prose .table-wrapper thead th {
+    @apply font-semibold tracking-wide uppercase text-[0.65rem] md:text-xs text-primary;
+    background: linear-gradient(135deg, rgba(6, 67, 122, 0.12), rgba(11, 87, 162, 0.08));
+    letter-spacing: 0.08em;
+  }
+
+  .blog-prose .table-wrapper tbody td {
+    @apply text-sm md:text-base text-slate-600;
+  }
+
+  .blog-prose .table-wrapper tbody tr:nth-child(even) td {
+    background: rgba(241, 245, 249, 0.65);
+  }
+
+  .blog-prose .table-wrapper tbody tr:hover td {
+    background: rgba(6, 67, 122, 0.08);
+    transition: background 0.2s ease-in-out;
+  }
+
+  .blog-prose .table-wrapper tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .blog-prose .table-wrapper caption {
+    @apply sr-only;
+  }
+
+  @media (min-width: 768px) {
+    .blog-prose .table-wrapper table {
+      min-width: 560px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .blog-prose .table-wrapper {
+      border-radius: 0.85rem;
+      padding: 0.75rem 0;
+    }
+
+    .blog-prose .table-wrapper table,
+    .blog-prose .table-wrapper thead,
+    .blog-prose .table-wrapper tbody,
+    .blog-prose .table-wrapper tr,
+    .blog-prose .table-wrapper th,
+    .blog-prose .table-wrapper td {
+      display: block;
+      width: 100%;
+    }
+
+    .blog-prose .table-wrapper thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      border: 0;
+    }
+
+    .blog-prose .table-wrapper tbody {
+      display: grid;
+      gap: 1rem;
+      padding: 0 0.75rem;
+    }
+
+    .blog-prose .table-wrapper tbody tr {
+      @apply border border-slate-200;
+      border-radius: 0.9rem;
+      background: #fff;
+      padding: 0.35rem 0;
+      box-shadow: 0 16px 38px rgba(15, 23, 42, 0.12);
+    }
+
+    .blog-prose .table-wrapper tbody tr:nth-child(even) td,
+    .blog-prose .table-wrapper tbody tr:hover td {
+      background: transparent;
+      transition: none;
+    }
+
+    .blog-prose .table-wrapper tbody td {
+      @apply text-sm;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+      padding: 0.75rem 1.15rem 0.75rem 5.25rem;
+      position: relative;
+    }
+
+    .blog-prose .table-wrapper tbody td:last-child {
+      border-bottom: none;
+    }
+
+    .blog-prose .table-wrapper tbody td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 1.15rem;
+      top: 0.75rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: rgb(30, 64, 175);
+    }
+  }
 }

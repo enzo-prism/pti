@@ -52,7 +52,7 @@ const BlogPost = () => {
     ? window.location.href
     : `https://practicetransitionsinstitute.com/blog/${post.slug}`;
   const emailShareHref = `mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(
-    `I thought you'd enjoy this PTI article: ${currentUrl}`
+      `I thought you'd enjoy this PTI article: ${currentUrl}`
   )}`;
   const articleSections = post.content
     .split('\n\n')
@@ -77,6 +77,62 @@ const BlogPost = () => {
       );
     })
     .filter(Boolean) as JSX.Element[];
+
+  const QuickFactsCard = ({ className = "" }: { className?: string }) => (
+    <div
+      className={cn(
+        "rounded-3xl border border-slate-200 bg-white px-5 py-6 shadow-sm sm:px-6 sm:py-7 md:px-7 md:py-8",
+        className
+      )}
+    >
+      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-slate-500 sm:text-xs">At-a-glance</p>
+      <ul className="mt-5 space-y-4 md:mt-6 md:space-y-5">
+        {metaItems.map((item) => (
+          <li key={`aside-${item.helper}`} className="flex items-start gap-3 md:gap-4">
+            <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-primary/10 text-primary sm:h-10 sm:w-10">
+              <item.icon className="h-4 w-4 sm:h-5 sm:w-5" />
+            </span>
+            <div className="space-y-1">
+              <p className="text-sm font-semibold leading-tight text-slate-900 md:text-base">{item.label}</p>
+              <p className="text-[0.65rem] uppercase tracking-[0.3em] text-slate-500 sm:text-xs">{item.helper}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+
+  const ContinueLearningCard = ({ className = "" }: { className?: string }) => (
+    <div
+      className={cn(
+        "rounded-3xl border border-primary/15 bg-gradient-to-br from-primary to-primary/90 px-5 py-6 text-white shadow-md sm:px-6 sm:py-7 md:px-7 md:py-8",
+        className
+      )}
+    >
+      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-white/70 sm:text-xs">Continue learning</p>
+      <h3 className="mt-3 text-lg font-semibold leading-tight text-white sm:text-xl">Bring PTI to your journey</h3>
+      <p className="mt-2 text-sm leading-relaxed text-white/85 md:text-base">
+        Join our upcoming workshops or share this article with a colleague who is planning their next transition.
+      </p>
+      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between md:flex-col md:items-stretch">
+        <Button
+          asChild
+          variant="secondary"
+          className="w-full justify-center rounded-full bg-white text-primary hover:bg-slate-100 sm:flex-1"
+        >
+          <Link to="/events" className="flex items-center justify-center gap-2 text-sm font-semibold md:text-base">
+            Browse PTI Events <ArrowRight className="h-4 w-4" />
+          </Link>
+        </Button>
+        <a
+          href={emailShareHref}
+          className="flex items-center justify-center gap-2 rounded-full border border-white/40 px-4 py-2.5 text-sm font-medium text-white/90 transition hover:bg-white/10 sm:flex-1"
+        >
+          <Share2 className="h-4 w-4" /> Share via Email
+        </a>
+      </div>
+    </div>
+  );
 
   return (
     <>
@@ -154,10 +210,10 @@ const BlogPost = () => {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div
               className={cn(
-                "w-full overflow-hidden rounded-3xl shadow-2xl ring-1 ring-black/5",
+                "w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-black/5 sm:rounded-[2.25rem] md:rounded-[2.75rem]",
                 post.featuredImage
                   ? "bg-white flex items-center justify-center"
-                  : "aspect-[16/9]"
+                  : "aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]"
               )}
             >
               {post.featuredImage ? (
@@ -173,6 +229,9 @@ const BlogPost = () => {
                 <div className={`h-full w-full ${post.gradient}`} />
               )}
             </div>
+            <p className="mt-6 text-center text-sm italic text-slate-600 sm:text-base">
+              "As a man thinketh in his heart, so is he." — Proverbs 23:7
+            </p>
           </div>
         </Section>
       )}
@@ -180,7 +239,7 @@ const BlogPost = () => {
       {/* Article Content */}
       <Section padding="none" className="bg-slate-50/80 py-14 md:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_280px]">
+          <div className="grid gap-10 md:gap-12 lg:grid-cols-[minmax(0,1fr)_300px] xl:grid-cols-[minmax(0,1fr)_340px]">
             <article className="blog-prose rounded-3xl border border-white/80 bg-white px-5 py-8 shadow-sm sm:px-8 sm:py-10 md:px-12 md:py-12">
               <div className="space-y-8">
                 {articleSections}
@@ -191,6 +250,11 @@ const BlogPost = () => {
                   <SeriesNavigation currentPost={post} seriesPosts={seriesPosts} />
                 </div>
               )}
+
+              <div className="mt-12 grid gap-6 lg:hidden">
+                <QuickFactsCard />
+                <ContinueLearningCard />
+              </div>
 
               <div className="mt-14 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
                 <h3 className="text-lg font-semibold text-slate-900">About the Author</h3>
@@ -210,44 +274,9 @@ const BlogPost = () => {
             </article>
 
             <aside className="hidden lg:block">
-              <div className="sticky top-28 flex flex-col gap-6">
-                <div className="rounded-3xl border border-slate-200 bg-white px-6 py-6 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">At-a-glance</p>
-                  <ul className="mt-5 space-y-4">
-                    {metaItems.map((item) => (
-                      <li key={`aside-${item.helper}`} className="flex items-start gap-3">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                          <item.icon className="h-5 w-5" />
-                        </span>
-                        <div>
-                          <p className="text-sm font-semibold text-slate-900 leading-tight">{item.label}</p>
-                          <p className="text-xs uppercase tracking-wide text-slate-500">{item.helper}</p>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="rounded-3xl border border-primary/15 bg-gradient-to-br from-primary to-primary/90 px-6 py-7 text-white shadow-md">
-                  <p className="text-sm uppercase tracking-[0.32em] text-white/70">Continue learning</p>
-                  <h3 className="mt-3 text-lg font-semibold leading-tight text-white">Bring PTI to your journey</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/85">
-                    Join our upcoming workshops or share this article with a colleague who is planning their next transition.
-                  </p>
-                  <div className="mt-5 space-y-3">
-                    <Button asChild variant="secondary" className="w-full justify-center rounded-full bg-white text-primary hover:bg-slate-100">
-                      <Link to="/events" className="flex items-center justify-center gap-2">
-                        Browse PTI Events <ArrowRight className="h-4 w-4" />
-                      </Link>
-                    </Button>
-                    <a
-                      href={emailShareHref}
-                      className="flex items-center justify-center gap-2 rounded-full border border-white/40 px-4 py-2.5 text-sm font-medium text-white/90 transition hover:bg-white/10"
-                    >
-                      <Share2 className="h-4 w-4" /> Share via Email
-                    </a>
-                  </div>
-                </div>
+              <div className="sticky top-28 flex flex-col gap-6 xl:top-32 xl:gap-7">
+                <QuickFactsCard />
+                <ContinueLearningCard />
               </div>
             </aside>
           </div>
@@ -262,7 +291,7 @@ const BlogPost = () => {
             <SectionSubtitle centered className="text-base text-muted-foreground mb-8">
               Explore more stories guiding dentists through career-defining transitions.
             </SectionSubtitle>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
               {relatedPosts.map((relatedPost) => (
                 <Card
                   key={relatedPost.id}
