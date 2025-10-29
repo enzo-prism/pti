@@ -796,6 +796,7 @@
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     scroll-snap-type: x proximity;
+    --notes-column-width: 12rem;
   }
 
   .blog-prose .table-wrapper table {
@@ -841,13 +842,8 @@
   }
 
   @media (max-width: 900px) {
-    .blog-prose .table-wrapper table {
-      width: 100%;
-      min-width: 0;
-    }
-
-    .blog-prose .table-wrapper th,
-    .blog-prose .table-wrapper td {
+    .blog-prose .table-wrapper th:nth-child(4),
+    .blog-prose .table-wrapper td:nth-child(4) {
       white-space: normal;
     }
   }
@@ -858,14 +854,28 @@
     }
 
     .blog-prose .table-wrapper table {
-      width: 100%;
-      min-width: 0;
+      table-layout: fixed;
+      width: calc(100% + var(--notes-column-width));
+      min-width: calc(100% + var(--notes-column-width));
     }
 
     .blog-prose .table-wrapper th,
     .blog-prose .table-wrapper td {
-      white-space: normal;
       padding: 0.65rem 0.85rem;
+    }
+
+    .blog-prose .table-wrapper th:nth-child(-n + 3),
+    .blog-prose .table-wrapper td:nth-child(-n + 3) {
+      width: calc((100% - var(--notes-column-width)) / 3);
+      min-width: calc((100% - var(--notes-column-width)) / 3);
+      white-space: nowrap;
+    }
+
+    .blog-prose .table-wrapper th:nth-child(4),
+    .blog-prose .table-wrapper td:nth-child(4) {
+      width: var(--notes-column-width);
+      min-width: var(--notes-column-width);
+      white-space: normal;
     }
 
     .blog-prose .table-wrapper::-webkit-scrollbar {
