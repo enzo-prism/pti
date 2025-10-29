@@ -53,35 +53,51 @@ const Navbar = () => {
         isScrolled ? "bg-white shadow-md py-2" : "bg-white shadow-sm py-4"
       }`}
     >
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link to="/" className="flex flex-col z-10" onClick={closeMenu}>
-          <span className="text-sm md:text-base font-medium text-gray-600">
-            Serving The United States
-          </span>
-        <a 
-          href={`tel:${PHONE_NUMBER_TEL}`}
-          className="flex items-center text-sm md:text-base font-semibold text-gray-800 hover:text-primary transition-colors mt-1"
-          onClick={(e) => {
-            e.stopPropagation();
-            trackCTAClick('phone_call', 'navbar');
-          }}
-        >
-            <Phone className="w-3 h-3 md:w-4 md:h-4 mr-1" />
-            {PHONE_NUMBER}
-          </a>
-        </Link>
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex w-full flex-wrap items-center justify-between gap-x-4 gap-y-3 md:gap-y-4 lg:flex-nowrap">
+          <div className="order-1 flex w-full items-center justify-between md:w-auto md:gap-4">
+            <Link to="/" className="flex max-w-full flex-col text-left" onClick={closeMenu}>
+              <span className="text-sm md:text-base font-medium text-gray-600">
+                Serving The United States
+              </span>
+              <a 
+                href={`tel:${PHONE_NUMBER_TEL}`}
+                className="mt-1 flex items-center text-sm md:text-base font-semibold text-gray-800 transition-colors hover:text-primary whitespace-nowrap"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  trackCTAClick('phone_call', 'navbar');
+                }}
+              >
+                <Phone className="mr-1 h-3 w-3 md:h-4 md:w-4" />
+                {PHONE_NUMBER}
+              </a>
+            </Link>
 
-        {/* Mobile menu button */}
-        <button 
-          className="md:hidden z-10 text-gray-700"
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+            {/* Mobile menu button */}
+            <button 
+              className="md:hidden text-gray-700 z-10"
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
+          <Button
+            asChild
+            size="sm"
+            className="order-2 hidden shrink-0 md:inline-flex md:ml-auto lg:order-3 lg:ml-4"
+          >
+            <Link 
+              to="/contact"
+              onClick={() => trackCTAClick('book_consultation', 'navbar_desktop')}
+            >
+              Book Consultation
+            </Link>
+          </Button>
+
+          {/* Desktop Navigation */}
+          <nav className="order-3 hidden w-full items-center justify-center gap-2 md:flex md:flex-wrap lg:order-2 lg:w-auto lg:flex-1 lg:flex-nowrap lg:justify-center xl:justify-end">
           {navItems.map((item) => (
             item.dropdown ? (
               <div 
@@ -92,7 +108,7 @@ const Navbar = () => {
               >
                 <Link
                   to={item.path}
-                  className={`px-3 py-2 rounded-md text-sm font-medium flex items-center hover:text-primary transition-colors ${
+                  className={`flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
                     location.pathname === item.path || location.pathname.startsWith(item.path) ? "text-primary" : "text-gray-700"
                   }`}
                 >
@@ -116,7 +132,7 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-primary transition-colors ${
+                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
                   location.pathname === item.path ? "text-primary" : "text-gray-700"
                 }`}
               >
@@ -124,15 +140,8 @@ const Navbar = () => {
               </Link>
             )
           ))}
-          <Button asChild className="ml-2" size="sm">
-            <Link 
-              to="/contact" 
-              onClick={() => trackCTAClick('book_consultation', 'navbar_desktop')}
-            >
-              Book Consultation
-            </Link>
-          </Button>
         </nav>
+        </div>
 
         {/* Mobile Navigation */}
         <div 
