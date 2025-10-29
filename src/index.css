@@ -786,43 +786,44 @@
 
   .blog-prose .table-wrapper {
     @apply overflow-x-auto border border-slate-200;
-    border-radius: 1rem;
-    box-shadow: 0 22px 45px rgba(15, 23, 42, 0.08);
-    background: linear-gradient(120deg, rgba(6, 67, 122, 0.08), rgba(102, 126, 234, 0.05));
+    border-radius: 0.85rem;
+    background: #fff;
     margin: 2.5rem 0;
+    -webkit-overflow-scrolling: touch;
   }
 
   .blog-prose .table-wrapper table {
     width: 100%;
+    min-width: 520px;
     border-collapse: collapse;
-    background: rgb(255, 255, 255);
+    background: #fff;
     font-feature-settings: "tnum";
   }
 
   .blog-prose .table-wrapper th,
   .blog-prose .table-wrapper td {
     @apply text-left;
-    padding: 0.85rem 1.15rem;
+    padding: 0.75rem 1rem;
     border-bottom: 1px solid rgb(226, 232, 240);
-    white-space: normal;
+    white-space: nowrap;
   }
 
   .blog-prose .table-wrapper thead th {
-    @apply font-semibold tracking-wide uppercase text-[0.65rem] md:text-xs text-primary;
-    background: linear-gradient(135deg, rgba(6, 67, 122, 0.12), rgba(11, 87, 162, 0.08));
+    @apply font-semibold uppercase text-xs text-slate-600;
+    background: #f8fafc;
     letter-spacing: 0.08em;
   }
 
   .blog-prose .table-wrapper tbody td {
-    @apply text-sm md:text-base text-slate-600;
+    @apply text-sm text-slate-700;
   }
 
   .blog-prose .table-wrapper tbody tr:nth-child(even) td {
-    background: rgba(241, 245, 249, 0.65);
+    background: rgba(248, 250, 252, 0.8);
   }
 
   .blog-prose .table-wrapper tbody tr:hover td {
-    background: rgba(6, 67, 122, 0.08);
+    background: rgba(241, 245, 249, 0.9);
     transition: background 0.2s ease-in-out;
   }
 
@@ -834,91 +835,13 @@
     @apply sr-only;
   }
 
-  @media (min-width: 768px) {
-    .blog-prose .table-wrapper table {
-      min-width: 560px;
-    }
-  }
-
   @media (max-width: 640px) {
     .blog-prose .table-wrapper {
-      border-radius: 0.85rem;
-      padding: 0.75rem 0;
+      border-radius: 0.75rem;
     }
 
-    .blog-prose .table-wrapper table,
-    .blog-prose .table-wrapper thead,
-    .blog-prose .table-wrapper tbody,
-    .blog-prose .table-wrapper tr,
-    .blog-prose .table-wrapper th,
-    .blog-prose .table-wrapper td {
-      display: block;
-      width: 100%;
-    }
-
-    .blog-prose .table-wrapper thead {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0 0 0 0);
-      border: 0;
-    }
-
-    .blog-prose .table-wrapper tbody {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      padding: 0 0.85rem;
-    }
-
-    .blog-prose .table-wrapper tbody tr {
-      @apply border border-slate-200;
-      border-radius: 1rem;
-      background: linear-gradient(160deg, rgba(255, 255, 255, 0.98), rgba(241, 245, 249, 0.85));
-      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
-      padding: 1.25rem 1.4rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.15rem;
-    }
-
-    .blog-prose .table-wrapper tbody td {
-      @apply text-sm text-slate-700;
-      border: none;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
-
-    .blog-prose .table-wrapper tbody td + td {
-      border-top: 1px solid rgba(226, 232, 240, 0.9);
-      padding-top: 1.05rem;
-      margin-top: 0.1rem;
-    }
-
-    .blog-prose .table-wrapper tbody td::before {
-      content: attr(data-label);
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: rgba(30, 64, 175, 0.8);
-    }
-
-    .blog-prose .table-wrapper tbody td:first-child {
-      gap: 0.25rem;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: rgb(15, 23, 42);
-    }
-
-    .blog-prose .table-wrapper tbody td:first-child::before {
-      font-size: 0.7rem;
-      letter-spacing: 0.14em;
+    .blog-prose .table-wrapper table {
+      min-width: 480px;
     }
   }
 }
