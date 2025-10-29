@@ -800,7 +800,6 @@
 
   .blog-prose .table-wrapper table {
     width: 100%;
-    min-width: 520px;
     border-collapse: collapse;
     background: #fff;
     font-feature-settings: "tnum";
@@ -841,14 +840,32 @@
     @apply sr-only;
   }
 
+  @media (max-width: 900px) {
+    .blog-prose .table-wrapper table {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .blog-prose .table-wrapper th,
+    .blog-prose .table-wrapper td {
+      white-space: normal;
+    }
+  }
+
   @media (max-width: 640px) {
     .blog-prose .table-wrapper {
       border-radius: 0.75rem;
     }
 
     .blog-prose .table-wrapper table {
-      width: max-content;
-      min-width: 480px;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .blog-prose .table-wrapper th,
+    .blog-prose .table-wrapper td {
+      white-space: normal;
+      padding: 0.65rem 0.85rem;
     }
 
     .blog-prose .table-wrapper::-webkit-scrollbar {
