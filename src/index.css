@@ -790,10 +790,12 @@
     background: #fff;
     margin: 2.5rem 0;
     overflow-x: auto;
-    max-width: 100%;
+    overflow-y: hidden;
     width: 100%;
+    max-width: 100%;
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior-inline: contain;
+    overscroll-behavior: contain;
+    scroll-snap-type: x proximity;
   }
 
   .blog-prose .table-wrapper table {
@@ -842,32 +844,20 @@
   @media (max-width: 640px) {
     .blog-prose .table-wrapper {
       border-radius: 0.75rem;
-      padding-bottom: 0.25rem;
     }
 
     .blog-prose .table-wrapper table {
       width: max-content;
-      min-width: 0;
+      min-width: 480px;
     }
 
     .blog-prose .table-wrapper::-webkit-scrollbar {
-      height: 6px;
+      height: 5px;
     }
 
     .blog-prose .table-wrapper::-webkit-scrollbar-thumb {
       background: rgba(100, 116, 139, 0.35);
       border-radius: 9999px;
-    }
-
-    .blog-prose .table-wrapper::after {
-      content: "";
-      position: sticky;
-      right: 0;
-      bottom: 0;
-      height: 100%;
-      width: 18px;
-      pointer-events: none;
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(248, 250, 252, 0.75));
     }
   }
 }
