@@ -244,7 +244,7 @@ const BlogPost = () => {
       <Section padding="none" className="bg-slate-50/80 py-14 md:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 md:gap-12 lg:grid-cols-[minmax(0,1fr)_300px] xl:grid-cols-[minmax(0,1fr)_340px]">
-            <article className="blog-prose px-1 py-0 sm:rounded-3xl sm:border sm:border-white/80 sm:bg-white sm:px-8 sm:py-10 sm:shadow-sm md:px-12 md:py-12">
+            <article className="blog-prose min-w-0 px-1 py-0 sm:rounded-3xl sm:border sm:border-white/80 sm:bg-white sm:px-8 sm:py-10 sm:shadow-sm md:px-12 md:py-12">
               <div className="space-y-8">
                 {articleSections}
               </div>

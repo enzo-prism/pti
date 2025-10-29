@@ -45,6 +45,7 @@
   body {
     @apply bg-background text-foreground font-sans;
     -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
   }
 
   .logo-container {
@@ -856,6 +857,10 @@
   @media (max-width: 640px) {
     .blog-prose .table-wrapper {
       border-radius: 0.75rem;
+      --col1-width: clamp(6rem, 32vw, 7rem);
+      --col2-width: clamp(9.5rem, 68vw, 12.5rem);
+      --col3-width: clamp(10.5rem, 72vw, 15rem);
+      --col4-width: clamp(11rem, 74vw, 15.5rem);
     }
 
     .blog-prose .table-wrapper table {
