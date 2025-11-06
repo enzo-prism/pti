@@ -126,7 +126,7 @@ const Testimonials = () => {
       quote: "Practice sales are emotional and trying and yet also exciting. I was glad I had PRACTICE TRANSITION INSTITUTE and Michael Njo in my corner. Thank you Michael.",
       author: "Scott Smith",
       role: "Practice Seller",
-      rating: 5.0,
+      rating: 4.0,
       category: "seller"
     },
     {
