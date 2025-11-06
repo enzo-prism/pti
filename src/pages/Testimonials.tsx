@@ -123,6 +123,13 @@ const Testimonials = () => {
       category: "seller"
     },
     {
+      quote: "Practice sales are emotional and trying and yet also exciting. I was glad I had PRACTICE TRANSITION INSTITUTE and Michael Njo in my corner. Thank you Michael.",
+      author: "Scott Smith",
+      role: "Practice Seller",
+      rating: 5.0,
+      category: "seller"
+    },
+    {
       quote: "I have worked with Michael on several deals now, and I can honestly say there aren't many people capable of doing what Michael does. I have even sent many dentist friends his way and they all say the same thing. He is efficient, incredibly responsive, very thoughtful about crafting win-win deals for both the buyer and seller. I honestly would never consider working with anyone else. I give him my highest recommendation possible!",
       author: "Jack Ohanesian",
       role: "Dental Entrepreneur",
