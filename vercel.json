@@ -20,6 +20,21 @@
       "status": 301
     },
     {
+      "src": "/podcasts/",
+      "dest": "/blog",
+      "status": 301
+    },
+    {
+      "src": "/client-testimonials/",
+      "dest": "/testimonials",
+      "status": 301
+    },
+    {
+      "src": "/contact-us/",
+      "dest": "/contact",
+      "status": 301
+    },
+    {
       "src": "/.*",
       "dest": "/index.html"
     }

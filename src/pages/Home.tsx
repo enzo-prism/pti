@@ -10,16 +10,31 @@ import { StaggeredGrid } from "@/components/ui/staggered-grid";
 import { HeroContent } from "@/components/ui/hero-content";
 import { LatestUpdateCard } from "@/components/ui/latest-update-card";
 import { getLatestUpdate } from "@/data/updates";
+import {
+  buildOrganizationSchema,
+  buildProfessionalServiceSchema,
+  buildWebSiteSchema,
+  buildServiceOfferingsSchema,
+} from "@/lib/structuredData";
+import { serviceOfferings } from "@/data/services";
 
 const Home = () => {
   const isMobile = useIsMobile();
   
+  const structuredData = [
+    buildOrganizationSchema(),
+    buildProfessionalServiceSchema(),
+    buildWebSiteSchema({ enableSearch: true }),
+    ...buildServiceOfferingsSchema(serviceOfferings),
+  ];
+
   return (
     <>
       <SEO
         title="From Acquisition to Legacy - Dental Practice Transitions"
         description="We guide dentists through every stage of their practice transition, ensuring a smooth, profitable, and stress-free process."
         image="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png"
+        structuredData={structuredData}
       />
       
       {/* Hero Section */}

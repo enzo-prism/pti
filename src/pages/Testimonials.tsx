@@ -7,6 +7,13 @@ import { Star } from "lucide-react";
 import SEO from "@/components/layout/SEO";
 import { BookReviewCard } from "@/components/ui/book-review-card";
 import { amazonBookReviews } from "@/data/amazonReviews";
+import {
+  buildAggregateRatingSchema,
+  buildReviewSchemas,
+  type ReviewInput,
+  type JsonLdShape,
+} from "@/lib/structuredData";
+import { buildAbsoluteUrl } from "@/lib/siteMetadata";
 
 const Testimonials = () => {
   const [activeFilter, setActiveFilter] = useState<'all' | 'seller' | 'buyer' | 'workshop' | 'valuation' | 'book'>('all');
@@ -413,8 +420,56 @@ const Testimonials = () => {
     return quote.substring(0, length) + "...";
   };
 
+  const serviceReviewInputs: ReviewInput[] = testimonialsData
+    .filter((testimonial) => typeof testimonial.rating === "number")
+    .map((testimonial) => ({
+      author: testimonial.author,
+      reviewBody: testimonial.quote,
+      rating: testimonial.rating ?? 5,
+      reviewTitle: testimonial.role,
+      itemReviewed: {
+        "@type": "ProfessionalService",
+        name: "Practice Transitions Institute Services",
+        url: buildAbsoluteUrl("/services"),
+      },
+    }));
+
+  const bookReviewInputs: ReviewInput[] = amazonBookReviews.map((review) => ({
+    author: review.reviewerName,
+    reviewBody: review.reviewText,
+    rating: review.rating,
+    reviewTitle: review.reviewTitle,
+    datePublished: review.reviewDate,
+    itemReviewed: {
+      "@type": "Book",
+      name: "Dental Practice Transitions Handbook",
+      url: "https://www.amazon.com/Dental-Practice-Transitions-Handbook-Healthcare/dp/1627878718/",
+    },
+    isVerified: review.isVerifiedPurchase,
+  }));
+
+  const serviceAggregate = buildAggregateRatingSchema(serviceReviewInputs, {
+    "@type": "ProfessionalService",
+    name: "Practice Transitions Institute Services",
+    url: buildAbsoluteUrl("/services"),
+  });
+
+  const structuredData = (
+    [
+      serviceAggregate,
+      ...buildReviewSchemas(serviceReviewInputs),
+      ...buildReviewSchemas(bookReviewInputs),
+    ].filter(Boolean) as JsonLdShape[]
+  );
+
   return (
     <>
+      <SEO 
+        title="Testimonials from Dental Professionals & Partners"
+        description="Discover how Practice Transitions Institute helps dentists across the country with valuations, practice sales, and transitions."
+        path="/testimonials"
+        structuredData={structuredData}
+      />
       <div className="pt-28 bg-gradient-to-b from-accent to-white relative overflow-hidden">
         {/* Speech bubbles background */}
         <div 

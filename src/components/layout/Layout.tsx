@@ -6,14 +6,17 @@ import Footer from "./Footer";
 import SEO from "./SEO";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useScrollToTop } from "@/hooks/use-scroll-to-top";
+import type { BreadcrumbNode } from "@/lib/breadcrumbs";
+import { getBreadcrumbsForPath } from "@/lib/routeBreadcrumbs";
 
 interface LayoutProps {
   children: ReactNode;
   title?: string;
   description?: string;
+  breadcrumbs?: BreadcrumbNode[];
 }
 
-const Layout = ({ children, title, description }: LayoutProps) => {
+const Layout = ({ children, title, description, breadcrumbs }: LayoutProps) => {
   const isMobile = useIsMobile();
   const location = useLocation();
   
@@ -90,6 +93,8 @@ const Layout = ({ children, title, description }: LayoutProps) => {
   };
   
   const metadata = getMetadata();
+  const defaultBreadcrumbs = getBreadcrumbsForPath(location.pathname);
+  const breadcrumbData = breadcrumbs ?? defaultBreadcrumbs ?? undefined;
   
   useEffect(() => {
     // Add viewport meta tag to ensure proper scaling for mobile
@@ -117,6 +122,7 @@ const Layout = ({ children, title, description }: LayoutProps) => {
         title={metadata.title} 
         description={metadata.description} 
         path={location.pathname}
+        breadcrumbs={breadcrumbData}
       />
       <Navbar />
       <main className={`flex-grow ${isMobile ? 'pt-14 pb-4' : 'pt-16 pb-8'}`}>

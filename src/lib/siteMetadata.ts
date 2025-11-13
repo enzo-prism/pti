@@ -1,0 +1,62 @@
+import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
+
+export const SITE_NAME = "Practice Transitions Institute";
+export const FALLBACK_SITE_URL = "https://practicetransitionsinstitute.com";
+
+export const DEFAULT_OG_IMAGE =
+  "/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png";
+
+export const BUSINESS_DESCRIPTION =
+  "Practice Transitions Institute guides dentists through valuations, sales, partnerships, and associateships with personalized, end-to-end transition support.";
+
+export const SITE_CONTACT_EMAIL = "info@practicetransitions.com";
+export const BUSINESS_ADDRESS = {
+  streetAddress: "3182 Campus Drive #274",
+  addressLocality: "San Mateo",
+  addressRegion: "CA",
+  postalCode: "94403",
+  addressCountry: "US",
+};
+
+export const BUSINESS_HOURS = [
+  "Mo-Fr 09:00-17:00",
+  "Sa 09:00-12:00",
+];
+
+export const SERVICE_AREAS = ["United States"];
+export const AVAILABLE_LANGUAGES = ["English"];
+export const SOCIAL_PROFILES: string[] = [];
+export const SITE_SEARCH_PATH = "/blog";
+
+export const getSiteUrl = (): string => {
+  if (typeof window !== "undefined" && window.location.origin) {
+    return window.location.origin;
+  }
+
+  return FALLBACK_SITE_URL;
+};
+
+export const buildAbsoluteUrl = (path = "/"): string => {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return `${getSiteUrl()}${normalizedPath}`;
+};
+
+export const buildContactPoint = () => ({
+  "@type": "ContactPoint",
+  telephone: PHONE_NUMBER_TEL,
+  contactType: "customer support",
+  email: SITE_CONTACT_EMAIL,
+  areaServed: SERVICE_AREAS,
+  availableLanguage: AVAILABLE_LANGUAGES,
+});
+
+export const buildPostalAddress = () => ({
+  "@type": "PostalAddress",
+  streetAddress: BUSINESS_ADDRESS.streetAddress,
+  addressLocality: BUSINESS_ADDRESS.addressLocality,
+  addressRegion: BUSINESS_ADDRESS.addressRegion,
+  postalCode: BUSINESS_ADDRESS.postalCode,
+  addressCountry: BUSINESS_ADDRESS.addressCountry,
+});
+
+export const getPhoneNumber = () => PHONE_NUMBER;

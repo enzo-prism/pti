@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import SEO from "@/components/layout/SEO";
 import { VideoDialog } from "@/components/ui/video-dialog";
 import { RecommendationCard } from "@/components/ui/recommendation-card";
+import { buildAbsoluteUrl, SITE_NAME } from "@/lib/siteMetadata";
 
 const About = () => {
   const leaders = [
@@ -39,11 +40,33 @@ const About = () => {
     }
   ];
 
+  const personSchemas = leaders.map((leader) => ({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: leader.name,
+    jobTitle: leader.role,
+    affiliation: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: buildAbsoluteUrl(),
+    },
+    ...(leader.image
+      ? {
+          image: leader.image.startsWith("http")
+            ? leader.image
+            : buildAbsoluteUrl(leader.image),
+        }
+      : {}),
+    description: leader.bio?.[0],
+  }));
+
   return (
     <>
       <SEO 
         title="About PTI"
         description="Learn about our expert team at Practice Transitions Institute, dedicated to helping dental professionals with practice transitions."
+        path="/about"
+        structuredData={personSchemas}
       />
       
       {/* Hero Section - Mobile Optimized */}

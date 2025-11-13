@@ -8,6 +8,9 @@
 /dr-njo  /drnjo  301
 /meet-our-team/  /about  301
 /speaking-engagements/  /events  301
+/podcasts/  /blog  301
+/client-testimonials/  /testimonials  301
+/contact-us/  /contact  301
 
 # SPA fallback (must be last)
 /*  /index.html  200

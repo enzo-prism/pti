@@ -1,13 +1,31 @@
 import { useState, useMemo } from "react";
-import { Calendar, Clock, MapPin, ChevronRight, ChevronDown, Phone, Mail } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  ChevronRight,
+  ChevronDown,
+  Phone,
+  Mail,
+} from "lucide-react";
 import { Link } from "react-router-dom";
-import { parseEventDate, isEventPast, createEventDateKey } from "@/lib/dateUtils";
+import {
+  parseEventDate,
+  isEventPast,
+  createEventDateKey,
+} from "@/lib/dateUtils";
 import { rawEvents, type RawEvent } from "@/data/events";
-import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
+import {
+  Section,
+  SectionTitle,
+  SectionSubtitle,
+} from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { MultiDateEventCard } from "@/components/ui/multi-date-event-card";
+import SEO from "@/components/layout/SEO";
+import { buildEventSchema } from "@/lib/structuredData";
 
 interface EventDate {
   date: string;
@@ -21,6 +39,15 @@ interface Event extends RawEvent {
   isEventGroup?: boolean;
   eventDates?: EventDate[];
 }
+
+const getEventDescription = (event: RawEvent | Event): string => {
+  if (typeof event.description === "string") {
+    return event.description;
+  }
+
+  const details = event.description;
+  return [details.intro, ...(details.learningPoints ?? [])].join(" ");
+};
 
 const Events = () => {
   const [showPastEvents, setShowPastEvents] = useState(false);
@@ -134,8 +161,31 @@ const Events = () => {
     }
   };
   
+  const upcomingEventSchemas = events
+    .filter((event) => !event.isPast)
+    .map((event) =>
+      buildEventSchema({
+        id: event.id,
+        title: event.title,
+        date: event.date,
+        time: event.time,
+        location: event.location,
+        description: getEventDescription(event),
+        registrationLink: event.registrationLink,
+        type: event.type,
+        isVirtual: event.type === "webinar",
+      })
+    );
+
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <SEO
+        title="Dental Transition Workshops & Events"
+        description="Join Practice Transitions Institute for live workshops, webinars, and seminars covering valuations, buying and selling, and transition strategy."
+        path="/events"
+        structuredData={upcomingEventSchemas}
+      />
+      <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <Section background="primary" className="pt-24 md:pt-32 pb-12 md:pb-20 relative overflow-hidden">
         {/* Background Image with Overlay */}
@@ -484,7 +534,8 @@ const Events = () => {
           </div>
         </div>
       </Section>
-    </div>
+      </div>
+    </>
   );
 };
 

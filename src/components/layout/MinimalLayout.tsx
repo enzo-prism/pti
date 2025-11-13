@@ -3,14 +3,22 @@ import { useLocation } from "react-router-dom";
 import SEO from "./SEO";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useScrollToTop } from "@/hooks/use-scroll-to-top";
+import type { BreadcrumbNode } from "@/lib/breadcrumbs";
+import { getBreadcrumbsForPath } from "@/lib/routeBreadcrumbs";
 
 interface MinimalLayoutProps {
   children: ReactNode;
   title?: string;
   description?: string;
+  breadcrumbs?: BreadcrumbNode[];
 }
 
-const MinimalLayout = ({ children, title, description }: MinimalLayoutProps) => {
+const MinimalLayout = ({
+  children,
+  title,
+  description,
+  breadcrumbs,
+}: MinimalLayoutProps) => {
   const isMobile = useIsMobile();
   const location = useLocation();
   
@@ -31,6 +39,8 @@ const MinimalLayout = ({ children, title, description }: MinimalLayoutProps) => 
   };
   
   const metadata = getMetadata();
+  const defaultBreadcrumbs = getBreadcrumbsForPath(location.pathname);
+  const breadcrumbData = breadcrumbs ?? defaultBreadcrumbs ?? undefined;
   
   useEffect(() => {
     // Add viewport meta tag to ensure proper scaling for mobile
@@ -58,6 +68,7 @@ const MinimalLayout = ({ children, title, description }: MinimalLayoutProps) => 
         title={metadata.title} 
         description={metadata.description} 
         path={location.pathname}
+        breadcrumbs={breadcrumbData}
       />
       <main className="min-h-screen">
         {children}

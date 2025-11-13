@@ -3,37 +3,35 @@ import { Link } from "react-router-dom";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
 import { ServiceCard } from "@/components/ui/service-card";
-import { 
-  FileText, DollarSign, Users, Handshake, Award, Clock, Smile, ArrowUpRight 
+import {
+  FileText,
+  DollarSign,
+  Users,
+  Handshake,
+  Award,
+  Clock,
+  Smile,
+  ArrowUpRight,
 } from "lucide-react";
+import SEO from "@/components/layout/SEO";
+import { serviceOfferings } from "@/data/services";
+import { buildServiceOfferingsSchema } from "@/lib/structuredData";
+
+const serviceIconMap: Record<string, JSX.Element> = {
+  "Opinion of Value": <FileText className="h-8 w-8 text-blue-600" />,
+  "Selling a Practice": <DollarSign className="h-8 w-8 text-emerald-600" />,
+  "Associateships/Buy In": <Users className="h-8 w-8 text-orange-600" />,
+  Partnerships: <Handshake className="h-8 w-8 text-purple-600" />,
+};
 
 const Services = () => {
-  const services = [
-    {
-      title: "Opinion of Value",
-      description: "Comprehensive valuation services to determine the true market value of your dental practice.",
-      icon: <FileText className="h-8 w-8 text-blue-600" />,
-      url: "/services/value"
-    },
-    {
-      title: "Selling a Practice",
-      description: "Strategic guidance and support for selling your practice to achieve maximum value.",
-      icon: <DollarSign className="h-8 w-8 text-emerald-600" />,
-      url: "/services/selling"
-    },
-    {
-      title: "Associateships/Buy In",
-      description: "Structured pathways for associates to buy in and transition into ownership roles.",
-      icon: <Users className="h-8 w-8 text-orange-600" />,
-      url: "/services/associateships"
-    },
-    {
-      title: "Partnerships",
-      description: "Creating equitable partnership arrangements that benefit all parties involved.",
-      icon: <Handshake className="h-8 w-8 text-purple-600" />,
-      url: "/services/partnerships"
-    }
-  ];
+  const services = serviceOfferings.map((offering) => ({
+    ...offering,
+    icon: serviceIconMap[offering.title] ?? (
+      <ArrowUpRight className="h-8 w-8 text-primary" />
+    ),
+  }));
+  const structuredData = buildServiceOfferingsSchema(serviceOfferings);
 
   const benefits = [
     {
@@ -60,6 +58,12 @@ const Services = () => {
 
   return (
     <>
+      <SEO
+        title="Dental Transition Services"
+        description="Comprehensive dental practice transition services including valuations, sales support, partnership planning, and associate buy-ins."
+        path="/services"
+        structuredData={structuredData}
+      />
       {/* Hero Section */}
       <section className="pt-28 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-accent to-white">
         <div className="container">

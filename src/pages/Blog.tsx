@@ -1,16 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight, Search, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import SEO from "@/components/layout/SEO";
 import { blogPosts } from "@/data/blogPosts";
 import { formatLocalDate } from "@/lib/dateUtils";
+import { buildBlogItemListSchema } from "@/lib/structuredData";
 
 const Blog = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialQuery = searchParams.get("search") ?? "";
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
+
+  useEffect(() => {
+    setSearchQuery(initialQuery);
+  }, [initialQuery]);
+
+  const updateSearchQuery = (value: string) => {
+    setSearchQuery(value);
+    if (value) {
+      setSearchParams({ search: value });
+    } else {
+      setSearchParams({});
+    }
+  };
 
   // Sort posts by date (most recent first)
   const sortedPosts = [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -32,14 +48,18 @@ const Blog = () => {
   const regularPosts = filteredPosts.slice(1); // Rest of the filtered posts
   
   const handleClearSearch = () => {
-    setSearchQuery('');
+    updateSearchQuery('');
   };
+
+  const structuredData = [buildBlogItemListSchema(sortedPosts)];
 
   return (
     <>
       <SEO 
         title="Blog - Practice Transitions Institute | Dental Practice Insights & Expert Guidance"
         description="Stay informed with expert insights on dental practice transitions, valuations, and business strategies. Get the latest tips and trends from industry professionals."
+        path="/blog"
+        structuredData={structuredData}
       />
 
       {/* Enhanced Hero Section */}
@@ -74,7 +94,7 @@ const Blog = () => {
                   type="text" 
                   placeholder="Search articles, topics, or categories..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => updateSearchQuery(e.target.value)}
                   className="w-full pl-12 pr-12 py-3 md:py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent text-base md:text-lg"
                 />
                 {searchQuery && (

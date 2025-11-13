@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { getUpdateBySlug } from "@/data/updates";
 import NotFound from "./NotFound";
 import SEO from "@/components/layout/SEO";
+import { HOME_CRUMB } from "@/lib/breadcrumbs";
 
 export default function UpdateDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -42,7 +43,7 @@ export default function UpdateDetail() {
           return (
             <blockquote key={index} className="border-l-4 border-primary pl-6 py-4 my-6 bg-gray-50 rounded-r-lg">
               <p className="text-gray-700 italic text-lg leading-relaxed">
-                {paragraph.replace(/^\*"|\"\*$/g, '')}
+                {paragraph.replace(/(^\*")|("\*$)/g, '')}
               </p>
             </blockquote>
           );
@@ -65,6 +66,11 @@ export default function UpdateDetail() {
         title={`${update.title} - PTI Updates`}
         description={update.excerpt}
         image={update.featuredImage}
+        path={`/updates/${update.slug}`}
+        breadcrumbs={[
+          HOME_CRUMB,
+          { name: update.title, path: `/updates/${update.slug}` },
+        ]}
       />
       
       <div className="min-h-screen bg-gray-50 py-12">

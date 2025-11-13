@@ -3,6 +3,8 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
+import SEO from "@/components/layout/SEO";
+import { buildFAQSchema } from "@/lib/structuredData";
 
 interface FaqItem {
   question: string;
@@ -47,8 +49,16 @@ const Faq = () => {
     }
   ];
 
+  const faqSchema = buildFAQSchema(faqItems);
+
   return (
     <>
+      <SEO
+        title="Dental Practice Transition FAQ"
+        description="Answers to common dental practice transition questions covering valuations, sale timelines, associateships, taxes, and preparation tips."
+        path="/faq"
+        structuredData={faqSchema}
+      />
       <div className="pt-24 md:pt-32 bg-gradient-to-b from-accent to-white">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center pb-12">

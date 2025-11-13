@@ -20,19 +20,12 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { HOME_CRUMB } from "@/lib/breadcrumbs";
+import { buildBlogPostingSchema } from "@/lib/structuredData";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
-  
-  if (!slug) {
-    return <Navigate to="/blog" replace />;
-  }
-
-  const post = getBlogPostBySlug(slug);
-  
-  if (!post) {
-    return <Navigate to="/blog" replace />;
-  }
+  const post = slug ? getBlogPostBySlug(slug) : null;
   
   // Track blog post view
   useEffect(() => {
@@ -40,6 +33,11 @@ const BlogPost = () => {
       trackBlogPostView(post.title, post.category);
     }
   }, [post]);
+  
+  if (!slug || !post) {
+    return <Navigate to="/blog" replace />;
+  }
+  const structuredData = buildBlogPostingSchema(post);
 
   const relatedPosts = getRelatedPosts(post.id, post.category, 2);
   const seriesPosts = post.series ? getSeriesPosts(post.series.id) : [];
@@ -140,6 +138,12 @@ const BlogPost = () => {
         title={post.title}
         description={post.excerpt}
         path={`/blog/${post.slug}`}
+        breadcrumbs={[
+          HOME_CRUMB,
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ]}
+        structuredData={structuredData}
       />
 
       {/* Header Section */}
