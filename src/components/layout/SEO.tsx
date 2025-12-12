@@ -25,6 +25,30 @@ const isAbsoluteUrl = (value: string) => /^https?:\/\//i.test(value);
 const TITLE_MAX_LENGTH = 60;
 const SHORT_SITE_NAME = "PTI";
 
+const normalizePathname = (value: string): string => {
+  const trimmed = value.trim();
+  if (!trimmed) return "/";
+
+  const withLeadingSlash = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
+  const withoutQueryOrHash = withLeadingSlash.split(/[?#]/, 1)[0];
+  const withoutIndexHtml = withoutQueryOrHash.replace(/\/index\.html$/i, "/");
+  if (withoutIndexHtml === "/") return "/";
+  return withoutIndexHtml.replace(/\/+$/, "");
+};
+
+const normalizeCanonicalHref = (value: string): string => {
+  if (!isAbsoluteUrl(value)) return normalizePathname(value);
+
+  try {
+    const url = new URL(value);
+    url.pathname = normalizePathname(url.pathname);
+    url.hash = "";
+    return url.toString();
+  } catch {
+    return value;
+  }
+};
+
 const truncateAtWord = (value: string, maxLength: number): string => {
   if (value.length <= maxLength) return value;
   const truncated = value.slice(0, maxLength - 1);
@@ -73,11 +97,10 @@ const SEO = ({
   canonicalUrl,
 }: SEOProps) => {
   const fullTitle = buildTitleTag(title);
-  const canonicalHref = canonicalUrl
-    ? isAbsoluteUrl(canonicalUrl)
-      ? canonicalUrl
-      : buildAbsoluteUrl(canonicalUrl)
-    : buildAbsoluteUrl(canonicalPath ?? path);
+  const canonicalSource = canonicalUrl ?? canonicalPath ?? path;
+  const canonicalHref = isAbsoluteUrl(canonicalSource)
+    ? normalizeCanonicalHref(canonicalSource)
+    : buildAbsoluteUrl(normalizeCanonicalHref(canonicalSource));
   const url = canonicalHref;
   const imageSource = image || DEFAULT_OG_IMAGE;
   const ogImageUrl = isAbsoluteUrl(imageSource)
