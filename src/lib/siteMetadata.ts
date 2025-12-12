@@ -26,6 +26,27 @@ export const BUSINESS_HOURS = [
   "Sa 09:00-12:00",
 ];
 
+export const BUSINESS_OPENING_HOURS_SPECIFICATION = [
+  {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      "https://schema.org/Monday",
+      "https://schema.org/Tuesday",
+      "https://schema.org/Wednesday",
+      "https://schema.org/Thursday",
+      "https://schema.org/Friday",
+    ],
+    opens: "09:00",
+    closes: "17:00",
+  },
+  {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: "https://schema.org/Saturday",
+    opens: "09:00",
+    closes: "12:00",
+  },
+] as const;
+
 export const SERVICE_AREAS = ["United States"];
 export const AVAILABLE_LANGUAGES = ["English"];
 export const SOCIAL_PROFILES: string[] = [];
@@ -50,8 +71,8 @@ export const buildContactPoint = () => ({
   telephone: PHONE_NUMBER_TEL,
   contactType: "customer support",
   email: SITE_CONTACT_EMAIL,
-  areaServed: SERVICE_AREAS,
-  availableLanguage: AVAILABLE_LANGUAGES,
+  areaServed: SERVICE_AREAS[0] ?? "United States",
+  availableLanguage: AVAILABLE_LANGUAGES[0] ?? "English",
 });
 
 export const buildPostalAddress = () => ({

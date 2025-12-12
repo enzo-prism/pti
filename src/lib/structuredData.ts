@@ -2,7 +2,7 @@ import type { ServiceOffering } from "@/data/services";
 import type { BlogPost } from "@/data/blogPosts";
 import {
   BUSINESS_DESCRIPTION,
-  BUSINESS_HOURS,
+  BUSINESS_OPENING_HOURS_SPECIFICATION,
   SERVICE_AREAS,
   SITE_NAME,
   DEFAULT_OG_IMAGE,
@@ -17,17 +17,23 @@ import { parseEventDate } from "@/lib/dateUtils";
 
 export type JsonLdShape = Record<string, unknown>;
 
+const buildImageObject = (url: string): JsonLdShape => ({
+  "@type": "ImageObject",
+  url,
+});
+
 export const buildOrganizationSchema = (): JsonLdShape => {
+  const logoUrl = buildAbsoluteUrl(DEFAULT_OG_IMAGE);
   const base: JsonLdShape = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: SITE_NAME,
     description: BUSINESS_DESCRIPTION,
     url: buildAbsoluteUrl(),
-    logo: buildAbsoluteUrl(DEFAULT_OG_IMAGE),
+    logo: buildImageObject(logoUrl),
     address: buildPostalAddress(),
     contactPoint: [buildContactPoint()],
-    areaServed: SERVICE_AREAS,
+    areaServed: SERVICE_AREAS.length === 1 ? SERVICE_AREAS[0] : SERVICE_AREAS,
   };
 
   if (SOCIAL_PROFILES.length) {
@@ -37,21 +43,25 @@ export const buildOrganizationSchema = (): JsonLdShape => {
   return base;
 };
 
-export const buildProfessionalServiceSchema = (): JsonLdShape => ({
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "@id": `${buildAbsoluteUrl()}#professional-service`,
-  name: SITE_NAME,
-  description: BUSINESS_DESCRIPTION,
-  url: buildAbsoluteUrl(),
-  logo: buildAbsoluteUrl(DEFAULT_OG_IMAGE),
-  image: buildAbsoluteUrl(DEFAULT_OG_IMAGE),
-  contactPoint: [buildContactPoint()],
-  areaServed: SERVICE_AREAS,
-  telephone: PHONE_NUMBER_TEL,
-  address: buildPostalAddress(),
-  openingHours: BUSINESS_HOURS,
-});
+export const buildProfessionalServiceSchema = (): JsonLdShape => {
+  const imageUrl = buildAbsoluteUrl(DEFAULT_OG_IMAGE);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": `${buildAbsoluteUrl()}#professional-service`,
+    name: SITE_NAME,
+    description: BUSINESS_DESCRIPTION,
+    url: buildAbsoluteUrl(),
+    logo: buildImageObject(imageUrl),
+    image: imageUrl,
+    contactPoint: buildContactPoint(),
+    areaServed: SERVICE_AREAS.length === 1 ? SERVICE_AREAS[0] : SERVICE_AREAS,
+    telephone: PHONE_NUMBER_TEL,
+    address: buildPostalAddress(),
+    openingHoursSpecification: BUSINESS_OPENING_HOURS_SPECIFICATION,
+  };
+};
 
 export const buildWebSiteSchema = (options?: {
   enableSearch?: boolean;
