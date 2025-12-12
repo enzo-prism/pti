@@ -7,11 +7,11 @@
 ## Site
 Name: Practice Transitions Institute (PTI)
 URL: https://practicetransitionsinstitute.com
-Description: PTI guides dentists through valuations, sales, partnerships, and associateships with personalized, end‑to‑end transition support.
+Description: PTI guides dentists through valuations, sales, partnerships, and associateships with personalized, end-to-end transition support.
 
 Contact:
 - Email: info@practicetransitions.com
-- Phone: +1‑833‑784‑1121
+- Phone: +1-833-784-1121
 - Address: 3182 Campus Drive #274, San Mateo, CA 94403, USA
 
 ## What this site offers
@@ -19,7 +19,7 @@ Contact:
 - Core services:
   - Opinion of Value (practice valuation)
   - Selling a Practice
-  - Associateships / Buy‑In planning
+  - Associateships / Buy-In planning
   - Partnership structuring
 - Educational content: blog articles, updates, FAQs, workshops/events.
 - Social proof: testimonials and reviews from clients and partners.
@@ -36,7 +36,7 @@ Contact:
 - Services overview: https://practicetransitionsinstitute.com/services
   - Opinion of Value: https://practicetransitionsinstitute.com/services/value
   - Selling a Practice: https://practicetransitionsinstitute.com/services/selling
-  - Associateships / Buy‑In: https://practicetransitionsinstitute.com/services/associateships
+  - Associateships / Buy-In: https://practicetransitionsinstitute.com/services/associateships
   - Partnerships: https://practicetransitionsinstitute.com/services/partnerships
 - Blog: https://practicetransitionsinstitute.com/blog
 - Events: https://practicetransitionsinstitute.com/events
@@ -53,4 +53,3 @@ Contact:
 
 ## Licensing / attribution
 © 2025 Practice Transitions Institute. All rights reserved. Please attribute PTI when referencing content.
-
