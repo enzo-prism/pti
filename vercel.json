@@ -1,42 +1,90 @@
 {
-  "routes": [
+  "redirects": [
     {
-      "src": "/(sitemap\\.xml|robots\\.txt)$",
-      "dest": "/$1"
+      "source": "/:path*",
+      "has": [
+        { "type": "host", "value": "www.practicetransitionsinstitute.com" }
+      ],
+      "destination": "https://practicetransitionsinstitute.com/:path*",
+      "permanent": true
     },
     {
-      "src": "/dr-njo",
-      "dest": "/drnjo",
-      "status": 301
+      "source": "/dr-njo",
+      "destination": "/drnjo",
+      "permanent": true
     },
     {
-      "src": "/meet-our-team/",
-      "dest": "/about",
-      "status": 301
+      "source": "/meet-our-team",
+      "destination": "/about",
+      "permanent": true
     },
     {
-      "src": "/speaking-engagements/",
-      "dest": "/events", 
-      "status": 301
+      "source": "/meet-our-team/",
+      "destination": "/about",
+      "permanent": true
     },
     {
-      "src": "/podcasts/",
-      "dest": "/blog",
-      "status": 301
+      "source": "/speaking-engagements",
+      "destination": "/events",
+      "permanent": true
     },
     {
-      "src": "/client-testimonials/",
-      "dest": "/testimonials",
-      "status": 301
+      "source": "/speaking-engagements/",
+      "destination": "/events",
+      "permanent": true
     },
     {
-      "src": "/contact-us/",
-      "dest": "/contact",
-      "status": 301
+      "source": "/podcasts",
+      "destination": "/blog",
+      "permanent": true
     },
     {
-      "src": "/.*",
-      "dest": "/index.html"
+      "source": "/podcasts/",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/client-testimonials",
+      "destination": "/testimonials",
+      "permanent": true
+    },
+    {
+      "source": "/client-testimonials/",
+      "destination": "/testimonials",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us/",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/llms.txt",
+      "destination": "/llms.txt"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
     }
   ],
   "headers": [
@@ -55,6 +103,19 @@
     },
     {
       "source": "/robots.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/llms.txt",
       "headers": [
         {
           "key": "Content-Type",

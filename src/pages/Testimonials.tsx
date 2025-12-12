@@ -9,11 +9,12 @@ import { BookReviewCard } from "@/components/ui/book-review-card";
 import { amazonBookReviews } from "@/data/amazonReviews";
 import {
   buildAggregateRatingSchema,
+  buildProfessionalServiceSchema,
   buildReviewSchemas,
   type ReviewInput,
   type JsonLdShape,
 } from "@/lib/structuredData";
-import { buildAbsoluteUrl } from "@/lib/siteMetadata";
+import { buildAbsoluteUrl, SITE_NAME } from "@/lib/siteMetadata";
 
 const Testimonials = () => {
   const [activeFilter, setActiveFilter] = useState<'all' | 'seller' | 'buyer' | 'workshop' | 'valuation' | 'book'>('all');
@@ -428,9 +429,7 @@ const Testimonials = () => {
       rating: testimonial.rating ?? 5,
       reviewTitle: testimonial.role,
       itemReviewed: {
-        "@type": "ProfessionalService",
-        name: "Practice Transitions Institute Services",
-        url: buildAbsoluteUrl("/services"),
+        "@id": `${buildAbsoluteUrl()}#professional-service`,
       },
     }));
 
@@ -450,13 +449,21 @@ const Testimonials = () => {
 
   const serviceAggregate = buildAggregateRatingSchema(serviceReviewInputs, {
     "@type": "ProfessionalService",
-    name: "Practice Transitions Institute Services",
-    url: buildAbsoluteUrl("/services"),
+    "@id": `${buildAbsoluteUrl()}#professional-service`,
+    name: SITE_NAME,
+    url: buildAbsoluteUrl(),
   });
+
+  const professionalServiceSchema: JsonLdShape = {
+    ...buildProfessionalServiceSchema(),
+    ...(serviceAggregate && "aggregateRating" in serviceAggregate
+      ? { aggregateRating: serviceAggregate.aggregateRating }
+      : {}),
+  };
 
   const structuredData = (
     [
-      serviceAggregate,
+      professionalServiceSchema,
       ...buildReviewSchemas(serviceReviewInputs),
       ...buildReviewSchemas(bookReviewInputs),
     ].filter(Boolean) as JsonLdShape[]

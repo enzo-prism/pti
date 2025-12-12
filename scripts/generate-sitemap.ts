@@ -41,7 +41,9 @@ const staticRoutes = [
   { url: '/events', changefreq: 'weekly', priority: 0.7 },
   { url: '/testimonials', changefreq: 'monthly', priority: 0.7 },
   { url: '/faq', changefreq: 'monthly', priority: 0.7 },
-  { url: '/contact', changefreq: 'monthly', priority: 0.7 }
+  { url: '/contact', changefreq: 'monthly', priority: 0.7 },
+  { url: '/privacy-policy', changefreq: 'yearly', priority: 0.3 },
+  { url: '/terms-of-service', changefreq: 'yearly', priority: 0.3 }
 ] as const;
 
 // Blog post routes

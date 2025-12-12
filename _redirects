@@ -1,8 +1,13 @@
 # Netlify redirects for Practice Transitions Institute
 
+# Canonical host + trailing slash normalization
+https://www.practicetransitionsinstitute.com/* https://practicetransitionsinstitute.com/:splat 301!
+/:splat/  /:splat  301!
+
 # Static files bypass (serve directly, don't route through SPA)
 /sitemap.xml  /sitemap.xml  200
 /robots.txt   /robots.txt   200
+/llms.txt     /llms.txt     200
 
 # Route corrections
 /dr-njo  /drnjo  301

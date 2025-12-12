@@ -2,6 +2,9 @@ import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
 
 export const SITE_NAME = "Practice Transitions Institute";
 export const FALLBACK_SITE_URL = "https://practicetransitionsinstitute.com";
+export const CANONICAL_SITE_URL =
+  (import.meta.env.VITE_CANONICAL_SITE_URL as string | undefined) ||
+  FALLBACK_SITE_URL;
 
 export const DEFAULT_OG_IMAGE =
   "/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png";
@@ -29,11 +32,12 @@ export const SOCIAL_PROFILES: string[] = [];
 export const SITE_SEARCH_PATH = "/blog";
 
 export const getSiteUrl = (): string => {
+  if (import.meta.env.PROD) return CANONICAL_SITE_URL;
   if (typeof window !== "undefined" && window.location.origin) {
     return window.location.origin;
   }
 
-  return FALLBACK_SITE_URL;
+  return CANONICAL_SITE_URL;
 };
 
 export const buildAbsoluteUrl = (path = "/"): string => {

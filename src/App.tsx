@@ -18,6 +18,8 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import DrNjo from "./pages/DrNjo";
 import UpdateDetail from "./pages/UpdateDetail";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 import Layout from "./components/layout/Layout";
 import MinimalLayout from "./components/layout/MinimalLayout";
 
@@ -52,6 +54,8 @@ const AppWithAnalytics = () => {
         <Route path="/events" element={<Layout><Events /></Layout>} />
         <Route path="/speaking-engagements/" element={<Navigate to="/events" replace />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy-policy" element={<Layout><PrivacyPolicy /></Layout>} />
+        <Route path="/terms-of-service" element={<Layout><TermsOfService /></Layout>} />
         <Route path="/updates/:slug" element={<Layout><UpdateDetail /></Layout>} />
         <Route path="/drnjo" element={<MinimalLayout><DrNjo /></MinimalLayout>} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

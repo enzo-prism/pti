@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, Calendar, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getUpdateBySlug } from "@/data/updates";
+import { getBlogPostBySlug } from "@/data/blogPosts";
 import NotFound from "./NotFound";
 import SEO from "@/components/layout/SEO";
 import { HOME_CRUMB } from "@/lib/breadcrumbs";
@@ -18,6 +19,11 @@ export default function UpdateDetail() {
   if (!update) {
     return <NotFound />;
   }
+
+  const matchingBlogPost = getBlogPostBySlug(update.slug);
+  const canonicalPath = matchingBlogPost
+    ? `/blog/${matchingBlogPost.slug}`
+    : `/updates/${update.slug}`;
 
   // Convert markdown-style content to JSX
   const formatContent = (content: string) => {
@@ -67,6 +73,7 @@ export default function UpdateDetail() {
         description={update.excerpt}
         image={update.featuredImage}
         path={`/updates/${update.slug}`}
+        canonicalPath={canonicalPath}
         breadcrumbs={[
           HOME_CRUMB,
           { name: update.title, path: `/updates/${update.slug}` },

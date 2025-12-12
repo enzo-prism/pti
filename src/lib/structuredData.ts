@@ -1,7 +1,6 @@
 import type { ServiceOffering } from "@/data/services";
 import type { BlogPost } from "@/data/blogPosts";
 import {
-  AVAILABLE_LANGUAGES,
   BUSINESS_DESCRIPTION,
   BUSINESS_HOURS,
   SERVICE_AREAS,
@@ -41,17 +40,14 @@ export const buildOrganizationSchema = (): JsonLdShape => {
 export const buildProfessionalServiceSchema = (): JsonLdShape => ({
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: `${SITE_NAME} Dental Practice Transitions`,
+  "@id": `${buildAbsoluteUrl()}#professional-service`,
+  name: SITE_NAME,
   description: BUSINESS_DESCRIPTION,
-  provider: {
-    "@type": "Organization",
-    name: SITE_NAME,
-    url: buildAbsoluteUrl(),
-    logo: buildAbsoluteUrl(DEFAULT_OG_IMAGE),
-  },
-  serviceType: "Dental practice transitions",
+  url: buildAbsoluteUrl(),
+  logo: buildAbsoluteUrl(DEFAULT_OG_IMAGE),
+  image: buildAbsoluteUrl(DEFAULT_OG_IMAGE),
+  contactPoint: [buildContactPoint()],
   areaServed: SERVICE_AREAS,
-  availableLanguage: AVAILABLE_LANGUAGES,
   telephone: PHONE_NUMBER_TEL,
   address: buildPostalAddress(),
   openingHours: BUSINESS_HOURS,
@@ -248,11 +244,7 @@ export interface ReviewInput {
   reviewBody: string;
   rating: number;
   datePublished?: string;
-  itemReviewed?: {
-    "@type": string;
-    name: string;
-    url?: string;
-  };
+  itemReviewed?: JsonLdShape;
   reviewTitle?: string;
   isVerified?: boolean;
 }
@@ -289,6 +281,7 @@ export const buildAggregateRatingSchema = (
     "@type": string;
     name: string;
     url?: string;
+    "@id"?: string;
   }
 ): JsonLdShape | null => {
   if (!reviews.length) return null;
@@ -298,6 +291,7 @@ export const buildAggregateRatingSchema = (
   return {
     "@context": "https://schema.org",
     "@type": itemReviewed["@type"],
+    ...(itemReviewed["@id"] ? { "@id": itemReviewed["@id"] } : {}),
     name: itemReviewed.name,
     ...(itemReviewed.url ? { url: itemReviewed.url } : {}),
     aggregateRating: {

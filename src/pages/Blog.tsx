@@ -56,7 +56,7 @@ const Blog = () => {
   return (
     <>
       <SEO 
-        title="Blog - Practice Transitions Institute | Dental Practice Insights & Expert Guidance"
+        title="Dental Practice Transitions Blog"
         description="Stay informed with expert insights on dental practice transitions, valuations, and business strategies. Get the latest tips and trends from industry professionals."
         path="/blog"
         structuredData={structuredData}
