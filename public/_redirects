@@ -1,4 +1,4 @@
-# Netlify redirects for Practice Transitions Institute
+# Netlify/Cloudflare Pages redirects for Practice Transitions Institute
 
 # Canonical host + trailing slash normalization
 https://www.practicetransitionsinstitute.com/* https://practicetransitionsinstitute.com/:splat 301!
