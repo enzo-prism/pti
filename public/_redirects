@@ -1,30 +1,27 @@
 # Netlify/Cloudflare Pages redirects for Practice Transitions Institute
 
-# Canonical host (www -> apex)
-https://www.practicetransitionsinstitute.com/* https://practicetransitionsinstitute.com/:splat 301!
-
 # Canonical path normalization
-/index.html  /  301!
-/*/index.html  /:splat  301!
+/index.html  /  301
+/*/index.html  /:splat  301
 
 # Legacy route aliases (both slash and no-slash)
-/dr-njo  /drnjo  301!
-/dr-njo/  /drnjo  301!
-/meet-our-team  /about  301!
-/meet-our-team/  /about  301!
-/speaking-engagements  /events  301!
-/speaking-engagements/  /events  301!
-/podcasts  /blog  301!
-/podcasts/  /blog  301!
-/client-testimonials  /testimonials  301!
-/client-testimonials/  /testimonials  301!
-/contact-us  /contact  301!
-/contact-us/  /contact  301!
-/updates/dugoni-business-club-donation  /blog/dugoni-business-club-donation  301!
-/updates/dugoni-business-club-donation/  /blog/dugoni-business-club-donation  301!
+/dr-njo  /drnjo  301
+/dr-njo/  /drnjo  301
+/meet-our-team  /about  301
+/meet-our-team/  /about  301
+/speaking-engagements  /events  301
+/speaking-engagements/  /events  301
+/podcasts  /blog  301
+/podcasts/  /blog  301
+/client-testimonials  /testimonials  301
+/client-testimonials/  /testimonials  301
+/contact-us  /contact  301
+/contact-us/  /contact  301
+/updates/dugoni-business-club-donation  /blog/dugoni-business-club-donation  301
+/updates/dugoni-business-club-donation/  /blog/dugoni-business-club-donation  301
 
 # Trailing slash normalization (keep "/" intact)
-/*/  /:splat  301!
+/*/  /:splat  301
 
 # Static files bypass (serve directly, don't route through SPA)
 /sitemap.xml  /sitemap.xml  200
