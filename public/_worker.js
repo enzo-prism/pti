@@ -57,14 +57,22 @@ export default {
     }
 
     const spaUrl = new URL(request.url);
+    spaUrl.pathname = "/404.html";
+    const notFoundResponse = await env.ASSETS.fetch(new Request(spaUrl.toString(), request));
+    if (notFoundResponse.status !== 404) {
+      return new Response(notFoundResponse.body, {
+        status: 404,
+        headers: notFoundResponse.headers,
+      });
+    }
+
     spaUrl.pathname = "/index.html";
     const spaResponse = await env.ASSETS.fetch(new Request(spaUrl.toString(), request));
     if (spaResponse.status === 404) return response;
 
     return new Response(spaResponse.body, {
-      status: 200,
+      status: 404,
       headers: spaResponse.headers,
     });
   },
 };
-
