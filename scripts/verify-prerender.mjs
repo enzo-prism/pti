@@ -39,6 +39,17 @@ const extractTitle = (html) => {
   return match?.[1]?.trim() ?? "";
 };
 
+const extractMetaDescription = (html) => {
+  const match =
+    html.match(
+      /<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["'][^>]*>/i
+    ) ??
+    html.match(
+      /<meta[^>]*content=["']([^"']*)["'][^>]*name=["']description["'][^>]*>/i
+    );
+  return match?.[1]?.trim() ?? "";
+};
+
 if (!fs.existsSync(DIST_DIR)) {
   console.error(`❌ dist/ not found: ${DIST_DIR}`);
   process.exit(1);
@@ -87,9 +98,14 @@ for (const loc of locs) {
   const html = fs.readFileSync(expectedFile, "utf8");
   const canonical = extractCanonical(html);
   const title = extractTitle(html);
+  const description = extractMetaDescription(html);
 
   if (!title) {
     failures.push({ loc, reason: `Missing <title> in ${expectedFile}` });
+  }
+
+  if (!description) {
+    failures.push({ loc, reason: `Missing meta description in ${expectedFile}` });
   }
 
   if (!canonical) {
@@ -114,4 +130,3 @@ if (failures.length) {
 }
 
 console.log(`✅ Prerender verified (${locs.length} URLs from sitemap.xml)`);
-

@@ -3,6 +3,7 @@
 /**
  * Verify basic SEO invariants in dist/ output:
  * - No duplicate <title> tags across HTML files (common truncation regression)
+ * - No duplicate meta descriptions across indexable HTML files
  * - 404 page includes a 404 title and is noindex
  */
 
@@ -25,6 +26,17 @@ const walk = (dir) => {
 
 const extractTitle = (html) => {
   const match = html.match(/<title>([^<]*)<\/title>/i);
+  return match?.[1]?.trim() ?? "";
+};
+
+const extractMetaDescription = (html) => {
+  const match =
+    html.match(
+      /<meta[^>]*name=[\"']description[\"'][^>]*content=[\"']([^\"']*)[\"'][^>]*>/i
+    ) ??
+    html.match(
+      /<meta[^>]*content=[\"']([^\"']*)[\"'][^>]*name=[\"']description[\"'][^>]*>/i
+    );
   return match?.[1]?.trim() ?? "";
 };
 
@@ -61,6 +73,34 @@ if (duplicateTitles.length) {
   console.error(`❌ Duplicate <title> values detected (${duplicateTitles.length})`);
   for (const [title, files] of duplicateTitles) {
     console.error(`\nTITLE (${files.length}): ${title}`);
+    for (const filePath of files) console.error(` - ${filePath}`);
+  }
+  process.exit(1);
+}
+
+const descriptionsByValue = new Map();
+for (const filePath of htmlFiles) {
+  if (filePath.endsWith(`${path.sep}200.html`)) continue;
+  const html = fs.readFileSync(filePath, "utf8");
+  const robots = extractRobots(html).toLowerCase();
+  if (robots.includes("noindex")) continue;
+
+  const description = extractMetaDescription(html);
+  if (!description) {
+    console.error(`❌ Missing meta description in ${filePath}`);
+    process.exit(1);
+  }
+
+  const list = descriptionsByValue.get(description) ?? [];
+  list.push(filePath);
+  descriptionsByValue.set(description, list);
+}
+
+const duplicateDescriptions = [...descriptionsByValue.entries()].filter(([, files]) => files.length > 1);
+if (duplicateDescriptions.length) {
+  console.error(`❌ Duplicate meta descriptions detected (${duplicateDescriptions.length})`);
+  for (const [description, files] of duplicateDescriptions) {
+    console.error(`\nDESCRIPTION (${files.length}): ${description}`);
     for (const filePath of files) console.error(` - ${filePath}`);
   }
   process.exit(1);
