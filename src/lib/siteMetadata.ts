@@ -12,6 +12,11 @@ export const DEFAULT_OG_IMAGE =
 export const BUSINESS_DESCRIPTION =
   "Practice Transitions Institute guides dentists through valuations, sales, partnerships, and associateships with personalized, end-to-end transition support.";
 
+export const BUSINESS_AGGREGATE_RATING = {
+  ratingValue: 4.98,
+  reviewCount: 49,
+} as const;
+
 export const SITE_CONTACT_EMAIL = "info@practicetransitions.com";
 export const BUSINESS_ADDRESS = {
   streetAddress: "3182 Campus Drive #274",

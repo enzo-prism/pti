@@ -9,21 +9,74 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { StaggeredGrid } from "@/components/ui/staggered-grid";
 import { HeroContent } from "@/components/ui/hero-content";
 import { LatestUpdateCard } from "@/components/ui/latest-update-card";
+import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { getLatestUpdate } from "@/data/updates";
 import {
   buildOrganizationSchema,
   buildProfessionalServiceSchema,
   buildWebSiteSchema,
   buildServiceOfferingsSchema,
+  type JsonLdShape,
 } from "@/lib/structuredData";
 import { serviceOfferings } from "@/data/services";
+import { BUSINESS_AGGREGATE_RATING } from "@/lib/siteMetadata";
 
 const Home = () => {
   const isMobile = useIsMobile();
+
+  const featuredTestimonials = [
+    {
+      quote:
+        "I started with Michael in 2018 and have had an outstanding experience! He brings a wealth of knowledge and a truly professional, friendly approach to my dental practice. His advice is not only practical but also easy to implement, and I've seen improvements in patient satisfaction and office efficiency.",
+      author: "G. Allen Herrera, DDS",
+      role: "Practice Buyer",
+      rating: 5,
+    },
+    {
+      quote:
+        "Dr. Michael has become not only a colleague, but a trusted friend who has helped navigate the challenging landscape of a multi state, multi-practice operation. His availability is his best ability.",
+      author: "Blaine Leeds",
+      role: "Multi-Practice Owner",
+      rating: 5,
+    },
+    {
+      quote:
+        "I attended Mike's practice transition seminar and read his book. He was very knowledgeable and a seasoned expert in this area. I decided to use his consultation service to handle my practice sale. He was able to match a buyer within 2 weeks and completed the transaction within 45 days.",
+      author: "Tony Choi",
+      role: "Practice Seller",
+      rating: 5,
+    },
+  ] as const;
+
+  const professionalServiceSchema: JsonLdShape = {
+    ...buildProfessionalServiceSchema(),
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: BUSINESS_AGGREGATE_RATING.ratingValue,
+      reviewCount: BUSINESS_AGGREGATE_RATING.reviewCount,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    review: featuredTestimonials.map((testimonial) => ({
+      "@type": "Review",
+      author: {
+        "@type": "Person",
+        name: testimonial.author,
+      },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: testimonial.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      name: testimonial.role,
+      reviewBody: testimonial.quote,
+    })),
+  };
   
   const structuredData = [
     buildOrganizationSchema(),
-    buildProfessionalServiceSchema(),
+    professionalServiceSchema,
     buildWebSiteSchema({ enableSearch: true }),
     ...buildServiceOfferingsSchema(serviceOfferings),
   ];
@@ -201,6 +254,49 @@ const Home = () => {
             <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
               <LatestUpdateCard update={getLatestUpdate()!} />
             </ScrollReveal>
+          </div>
+        </div>
+      </Section>
+
+      {/* Social Proof */}
+      <Section background="light" className="py-12 md:py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-10">
+              <ScrollReveal direction="up" delay={100} intensity="subtle">
+                <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4">
+                  Trusted by Dental Professionals
+                </SectionTitle>
+              </ScrollReveal>
+              <ScrollReveal direction="blur-in" delay={200} intensity="subtle">
+                <SectionSubtitle centered={true}>
+                  Rated {BUSINESS_AGGREGATE_RATING.ratingValue}/5 from{" "}
+                  {BUSINESS_AGGREGATE_RATING.reviewCount} reviews
+                </SectionSubtitle>
+              </ScrollReveal>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {featuredTestimonials.map((testimonial, index) => (
+                <ScrollReveal
+                  key={testimonial.author}
+                  direction="up"
+                  delay={100 + index * 100}
+                  intensity="subtle"
+                >
+                  <TestimonialCard
+                    quote={testimonial.quote}
+                    author={testimonial.author}
+                    role={testimonial.role}
+                    className="h-full"
+                  />
+                </ScrollReveal>
+              ))}
+            </div>
+            <div className="mt-10 text-center">
+              <Button asChild variant="outline" size={isMobile ? "default" : "lg"}>
+                <Link to="/testimonials">Read More Stories</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </Section>

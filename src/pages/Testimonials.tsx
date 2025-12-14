@@ -428,9 +428,6 @@ const Testimonials = () => {
       reviewBody: testimonial.quote,
       rating: testimonial.rating ?? 5,
       reviewTitle: testimonial.role,
-      itemReviewed: {
-        "@id": `${buildAbsoluteUrl()}#professional-service`,
-      },
     }));
 
   const bookReviewInputs: ReviewInput[] = amazonBookReviews.map((review) => ({
@@ -459,12 +456,30 @@ const Testimonials = () => {
     ...(serviceAggregate && "aggregateRating" in serviceAggregate
       ? { aggregateRating: serviceAggregate.aggregateRating }
       : {}),
+    ...(serviceReviewInputs.length
+      ? {
+          review: serviceReviewInputs.map((review) => ({
+            "@type": "Review",
+            author: {
+              "@type": "Person",
+              name: review.author,
+            },
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: review.rating,
+              bestRating: 5,
+              worstRating: 1,
+            },
+            reviewBody: review.reviewBody,
+            ...(review.reviewTitle ? { name: review.reviewTitle } : {}),
+          })),
+        }
+      : {}),
   };
 
   const structuredData = (
     [
       professionalServiceSchema,
-      ...buildReviewSchemas(serviceReviewInputs),
       ...buildReviewSchemas(bookReviewInputs),
     ].filter(Boolean) as JsonLdShape[]
   );

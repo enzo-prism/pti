@@ -10,7 +10,8 @@
     "build:dev": "vite build --mode development",
     "postbuild": "react-snap",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "verify:seo": "node scripts/verify-seo.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
