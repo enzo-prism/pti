@@ -57,10 +57,14 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 ## SEO, Analytics, and Automation
 - `<SEO />` centralizes per-page meta tags. Ensure new pages provide `title`, `description`, and optional `image` props.
 - Google Analytics 4 helpers live in `src/lib/analytics.ts` and expect the production GA ID (`G-XCBKH87HG5`). Analytics are suppressed during development builds.
+- Build-time SEO verification (recommended): `npm run build` runs `react-snap` prerendering plus verifiers that check sitemap output, per-page canonicals, unique `<title>` tags, and valid JSON-LD.
 - Sitemap tooling: run `tsx scripts/generate-sitemap.ts` to regenerate `public/sitemap.xml` and `node scripts/verify-sitemap.mjs` to validate URLs before deploying.
+- Live-site smoke checks: run `npm run verify:live` to confirm redirects (www → apex, slash normalization), real 404 behavior, and prerendered route HTML in production.
 
 ## Deployment Notes
-- `npm run build` emits the static bundle in `dist/` for hosting providers like Vercel or Netlify (a `vercel.json` is included for convenience).
+- `npm run build` emits the static bundle in `dist/` and prerenders key routes for SEO; avoid deploying with `vite build` alone or crawlers will see the generic SPA shell HTML.
+- Cloudflare Pages: set build command to `npm run build` and output directory to `dist/` (the repo includes redirects and edge canonicalization logic).
+- Vercel: `vercel.json` includes canonical redirects (www → apex), legacy URL redirects, and SPA fallback for client-side routing.
 - The project originated in Lovable; changes pushed to `main` remain compatible with the Lovable editor experience.
 
 ## Coding Standards
