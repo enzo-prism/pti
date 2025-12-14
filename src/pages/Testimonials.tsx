@@ -427,7 +427,6 @@ const Testimonials = () => {
       author: testimonial.author,
       reviewBody: testimonial.quote,
       rating: testimonial.rating ?? 5,
-      reviewTitle: testimonial.role,
     }));
 
   const bookReviewInputs: ReviewInput[] = amazonBookReviews.map((review) => ({
@@ -471,7 +470,6 @@ const Testimonials = () => {
               worstRating: 1,
             },
             reviewBody: review.reviewBody,
-            ...(review.reviewTitle ? { name: review.reviewTitle } : {}),
           })),
         }
       : {}),

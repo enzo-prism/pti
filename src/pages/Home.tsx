@@ -69,7 +69,6 @@ const Home = () => {
         bestRating: 5,
         worstRating: 1,
       },
-      name: testimonial.role,
       reviewBody: testimonial.quote,
     })),
   };
