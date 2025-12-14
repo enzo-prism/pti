@@ -33,9 +33,12 @@ const normalizePathname = (value: string): string => {
 
   const withLeadingSlash = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
   const withoutQueryOrHash = withLeadingSlash.split(/[?#]/, 1)[0];
-  const withoutIndexHtml = withoutQueryOrHash.replace(/\/index\.html$/i, "/");
-  if (withoutIndexHtml === "/") return "/";
-  return withoutIndexHtml.replace(/\/+$/, "");
+  const withoutHtmlEntrypoint = withoutQueryOrHash.replace(
+    /\/(?:index|200)\.html$/i,
+    "/"
+  );
+  if (withoutHtmlEntrypoint === "/") return "/";
+  return withoutHtmlEntrypoint.replace(/\/+$/, "");
 };
 
 const normalizeCanonicalHref = (value: string): string => {

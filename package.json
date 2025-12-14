@@ -8,10 +8,12 @@
     "prebuild": "tsx scripts/generate-sitemap.ts",
     "build": "vite build",
     "build:dev": "vite build --mode development",
-    "postbuild": "react-snap",
+    "postbuild": "react-snap && npm run verify:sitemap && npm run verify:seo && npm run verify:prerender",
     "lint": "eslint .",
     "preview": "vite preview",
-    "verify:seo": "node scripts/verify-seo.mjs"
+    "verify:seo": "node scripts/verify-seo.mjs",
+    "verify:sitemap": "node scripts/verify-sitemap.mjs",
+    "verify:prerender": "node scripts/verify-prerender.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

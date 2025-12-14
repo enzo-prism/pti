@@ -15,9 +15,12 @@ const normalizePathname = (pathname: string): string => {
   const raw = (pathname || "/").trim();
   const withLeadingSlash = raw.startsWith("/") ? raw : `/${raw}`;
   const singleSlashes = withLeadingSlash.replace(/\/{2,}/g, "/");
-  const withoutIndex = singleSlashes.replace(/\/index\.html$/i, "/");
-  if (withoutIndex === "/") return "/";
-  return withoutIndex.replace(/\/+$/, "");
+  const withoutHtmlEntrypoint = singleSlashes.replace(
+    /\/(?:index|200)\.html$/i,
+    "/"
+  );
+  if (withoutHtmlEntrypoint === "/") return "/";
+  return withoutHtmlEntrypoint.replace(/\/+$/, "");
 };
 
 const isHtmlRequest = (request: Request): boolean => {
@@ -95,4 +98,3 @@ export const onRequest = async (context: MiddlewareContext): Promise<Response> =
     headers: spaResponse.headers,
   });
 };
-
