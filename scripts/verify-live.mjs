@@ -34,6 +34,17 @@ const extractTitle = (html) => {
   return match?.[1]?.trim() ?? "";
 };
 
+const extractMetaDescription = (html) => {
+  const match =
+    html.match(
+      /<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["'][^>]*>/i
+    ) ??
+    html.match(
+      /<meta[^>]*content=["']([^"']*)["'][^>]*name=["']description["'][^>]*>/i
+    );
+  return match?.[1]?.trim() ?? "";
+};
+
 const extractCanonical = (html) => {
   const match =
     html.match(
@@ -132,15 +143,25 @@ const checks = [
   {
     name: "Prerendered About page HTML",
     run: async () => {
+      const { body: homeBody } = await fetchManual(`${BASE_URL}/`, {
+        method: "GET",
+      });
       const { response, body } = await fetchManual(`${BASE_URL}/about`, {
         method: "GET",
       });
       expect(response.status === 200, `Expected 200, got ${response.status}`);
+      const homeDescription = extractMetaDescription(homeBody);
       const title = extractTitle(body);
+      const description = extractMetaDescription(body);
       const canonical = extractCanonical(body);
       expect(
         title && title !== "Practice Transitions Institute",
         `Expected route-specific title, got ${JSON.stringify(title)}`
+      );
+      expect(description, "Expected meta description on /about");
+      expect(
+        !homeDescription || description !== homeDescription,
+        "Expected /about meta description to differ from homepage"
       );
       expect(
         canonical === `${CANONICAL_BASE}/about`,
@@ -172,4 +193,3 @@ const run = async () => {
 };
 
 run();
-
