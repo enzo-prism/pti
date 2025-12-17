@@ -2,9 +2,27 @@ import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
 
 export const SITE_NAME = "Practice Transitions Institute";
 export const FALLBACK_SITE_URL = "https://practicetransitionsinstitute.com";
-export const CANONICAL_SITE_URL =
-  (import.meta.env.VITE_CANONICAL_SITE_URL as string | undefined) ||
-  FALLBACK_SITE_URL;
+
+const normalizeSiteUrl = (value: string): string => {
+  const trimmed = value.trim();
+  if (!trimmed) return FALLBACK_SITE_URL;
+
+  try {
+    const url = new URL(trimmed);
+    url.protocol = "https:";
+    if (url.hostname.toLowerCase() === "www.practicetransitionsinstitute.com") {
+      url.hostname = "practicetransitionsinstitute.com";
+    }
+    return url.origin;
+  } catch {
+    return FALLBACK_SITE_URL;
+  }
+};
+
+export const CANONICAL_SITE_URL = normalizeSiteUrl(
+  (import.meta.env.VITE_CANONICAL_SITE_URL as string | undefined) ??
+    FALLBACK_SITE_URL
+);
 
 export const DEFAULT_OG_IMAGE =
   "/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png";

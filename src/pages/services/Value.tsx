@@ -4,16 +4,33 @@ import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section"
 import { Cta } from "@/components/ui/cta";
 import { CheckCircle, TrendingUp, Users, Building, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SEO from "@/components/layout/SEO";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { serviceOfferings } from "@/data/services";
+import { buildServiceOfferingsSchema } from "@/lib/structuredData";
 
 const Value = () => {
+  const offering = serviceOfferings.find(
+    (service) => service.url === "/services/value"
+  );
+  const structuredData = offering ? buildServiceOfferingsSchema([offering]) : [];
+
   return (
     <>
+      <SEO
+        title="Opinion of Value"
+        description={
+          offering?.description ??
+          "Comprehensive valuation services to determine the true market value of your dental practice."
+        }
+        path="/services/value"
+        structuredData={structuredData}
+      />
       {/* Hero Section */}
       <section className="pt-20 pb-12 md:pt-28 md:pb-16 bg-gradient-to-b from-accent to-white">
         <div className="container px-4">

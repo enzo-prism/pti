@@ -71,6 +71,28 @@ const isRedirect = (status) => status === 301 || status === 308;
 
 const checks = [
   {
+    name: "llms.txt available",
+    run: async () => {
+      const { response, body } = await fetchManual(`${BASE_URL}/llms.txt`, {
+        method: "GET",
+      });
+      expect(response.status === 200, `Expected 200, got ${response.status}`);
+      const contentType = (response.headers.get("content-type") ?? "").toLowerCase();
+      expect(
+        contentType.includes("text/plain"),
+        `Expected text/plain content-type, got ${JSON.stringify(contentType)}`
+      );
+      expect(
+        body.includes("Practice Transitions Institute"),
+        "Expected llms.txt to include site name"
+      );
+      expect(
+        body.includes(CANONICAL_BASE),
+        `Expected llms.txt to include ${CANONICAL_BASE}`
+      );
+    },
+  },
+  {
     name: "www → apex redirect",
     run: async () => {
       const { response, location } = await fetchManual(

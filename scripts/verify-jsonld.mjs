@@ -59,6 +59,20 @@ if (!htmlFiles.length) {
 const failures = [];
 let checkedScripts = 0;
 
+const normalizeType = (value) => {
+  if (typeof value === "string") return [value];
+  if (Array.isArray(value)) return value.filter((item) => typeof item === "string");
+  return [];
+};
+
+const getNodes = (parsed) => {
+  if (!parsed || typeof parsed !== "object") return [];
+  if (Array.isArray(parsed["@graph"])) {
+    return parsed["@graph"].filter((node) => node && typeof node === "object");
+  }
+  return [parsed];
+};
+
 for (const filePath of htmlFiles) {
   const html = fs.readFileSync(filePath, "utf8");
   const scripts = extractJsonLdScripts(html);
@@ -91,6 +105,61 @@ for (const filePath of htmlFiles) {
         reason: "@graph must be an array when present",
       });
     }
+
+    const nodes = getNodes(parsed);
+    for (const node of nodes) {
+      const id = typeof node["@id"] === "string" ? node["@id"] : null;
+      const types = normalizeType(node["@type"]);
+      const isBusinessNode =
+        typeof id === "string" && /#business$/.test(id);
+      const isLocalBusinessNode = types.includes("LocalBusiness") || types.includes("ProfessionalService");
+
+      if (!isBusinessNode && !isLocalBusinessNode) continue;
+
+      if ("review" in node) {
+        failures.push({
+          filePath,
+          reason: "Local business schema must not include review",
+        });
+      }
+
+      if ("aggregateRating" in node) {
+        failures.push({
+          filePath,
+          reason: "Local business schema must not include aggregateRating",
+        });
+      }
+
+      if (!("name" in node)) {
+        failures.push({
+          filePath,
+          reason: "Business schema missing name",
+        });
+      }
+
+      if (!("address" in node)) {
+        failures.push({
+          filePath,
+          reason: "Business schema missing address",
+        });
+      }
+
+      if (types.includes("ProfessionalService")) {
+        if (!("telephone" in node)) {
+          failures.push({
+            filePath,
+            reason: "ProfessionalService schema missing telephone",
+          });
+        }
+
+        if (!("openingHoursSpecification" in node)) {
+          failures.push({
+            filePath,
+            reason: "ProfessionalService schema missing openingHoursSpecification",
+          });
+        }
+      }
+    }
   }
 }
 
@@ -105,4 +174,3 @@ if (failures.length) {
 console.log(
   `✅ JSON-LD verified (${checkedScripts} scripts across ${htmlFiles.length} HTML files)`
 );
-

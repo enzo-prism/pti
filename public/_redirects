@@ -1,5 +1,8 @@
 # Netlify/Cloudflare Pages redirects for Practice Transitions Institute
 
+# Canonical host normalization (www -> apex)
+https://www.practicetransitionsinstitute.com/*  https://practicetransitionsinstitute.com/:splat  301
+
 # Canonical path normalization
 /index.html  /  301
 /*/index.html  /:splat  301

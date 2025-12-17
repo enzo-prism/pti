@@ -12,11 +12,7 @@ import { LatestUpdateCard } from "@/components/ui/latest-update-card";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { getLatestUpdate } from "@/data/updates";
 import {
-  buildOrganizationSchema,
-  buildProfessionalServiceSchema,
-  buildWebSiteSchema,
   buildServiceOfferingsSchema,
-  type JsonLdShape,
 } from "@/lib/structuredData";
 import { serviceOfferings } from "@/data/services";
 import { BUSINESS_AGGREGATE_RATING } from "@/lib/siteMetadata";
@@ -48,37 +44,7 @@ const Home = () => {
     },
   ] as const;
 
-  const professionalServiceSchema: JsonLdShape = {
-    ...buildProfessionalServiceSchema(),
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: BUSINESS_AGGREGATE_RATING.ratingValue,
-      reviewCount: BUSINESS_AGGREGATE_RATING.reviewCount,
-      bestRating: 5,
-      worstRating: 1,
-    },
-    review: featuredTestimonials.map((testimonial) => ({
-      "@type": "Review",
-      author: {
-        "@type": "Person",
-        name: testimonial.author,
-      },
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: testimonial.rating,
-        bestRating: 5,
-        worstRating: 1,
-      },
-      reviewBody: testimonial.quote,
-    })),
-  };
-  
-  const structuredData = [
-    buildOrganizationSchema(),
-    professionalServiceSchema,
-    buildWebSiteSchema({ enableSearch: true }),
-    ...buildServiceOfferingsSchema(serviceOfferings),
-  ];
+  const structuredData = buildServiceOfferingsSchema(serviceOfferings);
 
   return (
     <>
@@ -87,6 +53,7 @@ const Home = () => {
         description="We guide dentists through every stage of their practice transition, ensuring a smooth, profitable, and stress-free process."
         image="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png"
         structuredData={structuredData}
+        includeLocalBusinessSchema
       />
       
       {/* Hero Section */}

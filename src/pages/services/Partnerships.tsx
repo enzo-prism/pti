@@ -4,16 +4,33 @@ import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section"
 import { Cta } from "@/components/ui/cta";
 import { Handshake, FileText, Scale, CheckCircle, Users, Target, TrendingUp, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SEO from "@/components/layout/SEO";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { serviceOfferings } from "@/data/services";
+import { buildServiceOfferingsSchema } from "@/lib/structuredData";
 
 const Partnerships = () => {
+  const offering = serviceOfferings.find(
+    (service) => service.url === "/services/partnerships"
+  );
+  const structuredData = offering ? buildServiceOfferingsSchema([offering]) : [];
+
   return (
     <>
+      <SEO
+        title="Partnerships"
+        description={
+          offering?.description ??
+          "Creating equitable partnership arrangements that benefit all parties involved."
+        }
+        path="/services/partnerships"
+        structuredData={structuredData}
+      />
       {/* Hero Section */}
       <section className="pt-20 pb-12 md:pt-28 md:pb-16 bg-gradient-to-b from-accent to-white">
         <div className="container px-4">

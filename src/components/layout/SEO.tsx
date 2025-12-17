@@ -1,8 +1,15 @@
 
 import { Helmet } from "react-helmet-async";
 import type { BreadcrumbNode } from "@/lib/breadcrumbs";
-import { buildBreadcrumbJsonLd } from "@/lib/breadcrumbs";
+import { buildBreadcrumbSchema } from "@/lib/breadcrumbs";
+import { getBreadcrumbsForPath } from "@/lib/routeBreadcrumbs";
 import type { JsonLdShape } from "@/lib/structuredData";
+import {
+  buildOrganizationSchema,
+  buildProfessionalServiceSchema,
+  buildWebPageSchema,
+  buildWebSiteSchema,
+} from "@/lib/structuredData";
 import {
   SITE_NAME,
   DEFAULT_OG_IMAGE,
@@ -20,6 +27,7 @@ interface SEOProps {
   robots?: string;
   breadcrumbs?: BreadcrumbNode[];
   structuredData?: JsonLdShape | JsonLdShape[] | null;
+  includeLocalBusinessSchema?: boolean;
 }
 
 const isAbsoluteUrl = (value: string) => /^https?:\/\//i.test(value);
@@ -171,12 +179,13 @@ const SEO = ({
   description,
   path = "/",
   image,
-  breadcrumbs,
+  breadcrumbs: breadcrumbsProp,
   structuredData,
   canonicalPath,
   canonicalUrl,
   noindex,
   robots,
+  includeLocalBusinessSchema = false,
 }: SEOProps) => {
   const fullTitle = buildTitleTag(title);
   const canonicalSource = canonicalUrl ?? canonicalPath ?? path;
@@ -189,25 +198,42 @@ const SEO = ({
   const ogImageUrl = isAbsoluteUrl(imageSource)
     ? imageSource
     : buildAbsoluteUrl(imageSource);
-  const breadcrumbJsonLd = breadcrumbs
-    ? buildBreadcrumbJsonLd(breadcrumbs)
-    : null;
+  const breadcrumbs =
+    breadcrumbsProp ?? getBreadcrumbsForPath(normalizePathname(path)) ?? undefined;
+  const breadcrumbSchema = breadcrumbs ? buildBreadcrumbSchema(breadcrumbs) : null;
+
   const structuredDataPayload = Array.isArray(structuredData)
     ? structuredData.filter(Boolean)
     : structuredData
     ? [structuredData]
     : [];
-  const jsonLdGraphPayload =
-    structuredDataPayload.length > 1
-      ? {
-          "@context": "https://schema.org",
-          "@graph": structuredDataPayload.map((schema) => {
-            if (schema["@context"] !== "https://schema.org") return schema;
-            const { ["@context"]: _context, ...rest } = schema;
-            return rest;
-          }),
-        }
-      : structuredDataPayload[0] ?? null;
+
+  const shouldEmitStructuredData = !robotsContent?.toLowerCase().includes("noindex");
+  const businessSchema = includeLocalBusinessSchema
+    ? buildProfessionalServiceSchema()
+    : buildOrganizationSchema();
+  const baseSchemas: JsonLdShape[] = [
+    businessSchema,
+    buildWebSiteSchema({ enableSearch: true }),
+    buildWebPageSchema({
+      url,
+      name: fullTitle,
+      description,
+      image: ogImageUrl,
+    }),
+    ...(breadcrumbSchema ? [breadcrumbSchema] : []),
+  ];
+
+  const jsonLdGraphPayload = shouldEmitStructuredData
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [...baseSchemas, ...structuredDataPayload].map((schema) => {
+          if (schema["@context"] !== "https://schema.org") return schema;
+          const { ["@context"]: _context, ...rest } = schema;
+          return rest;
+        }),
+      }
+    : null;
 
   return (
     <Helmet defer={false}>
@@ -229,14 +255,6 @@ const SEO = ({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImageUrl} />
-      {breadcrumbJsonLd && (
-        <script
-          type="application/ld+json"
-          key={`breadcrumbs-${path}`}
-        >
-          {breadcrumbJsonLd}
-        </script>
-      )}
       {jsonLdGraphPayload && (
         <script
           key={`structured-data-${path}`}

@@ -5,16 +5,33 @@ import { Cta } from "@/components/ui/cta";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { DollarSign, FileText, TrendingUp, CheckCircle, Shield, Users, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SEO from "@/components/layout/SEO";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { serviceOfferings } from "@/data/services";
+import { buildServiceOfferingsSchema } from "@/lib/structuredData";
 
 const Selling = () => {
+  const offering = serviceOfferings.find(
+    (service) => service.url === "/services/selling"
+  );
+  const structuredData = offering ? buildServiceOfferingsSchema([offering]) : [];
+
   return (
     <>
+      <SEO
+        title="Selling a Practice"
+        description={
+          offering?.description ??
+          "Strategic guidance and support for selling your practice to achieve maximum value."
+        }
+        path="/services/selling"
+        structuredData={structuredData}
+      />
       {/* Hero Section */}
       <section className="pt-20 pb-12 md:pt-28 md:pb-16 bg-gradient-to-b from-accent to-white">
         <div className="container px-4">

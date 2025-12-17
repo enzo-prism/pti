@@ -8,13 +8,9 @@ import SEO from "@/components/layout/SEO";
 import { BookReviewCard } from "@/components/ui/book-review-card";
 import { amazonBookReviews } from "@/data/amazonReviews";
 import {
-  buildAggregateRatingSchema,
-  buildProfessionalServiceSchema,
   buildReviewSchemas,
   type ReviewInput,
-  type JsonLdShape,
 } from "@/lib/structuredData";
-import { buildAbsoluteUrl, SITE_NAME } from "@/lib/siteMetadata";
 
 const Testimonials = () => {
   const [activeFilter, setActiveFilter] = useState<'all' | 'seller' | 'buyer' | 'workshop' | 'valuation' | 'book'>('all');
@@ -421,14 +417,6 @@ const Testimonials = () => {
     return quote.substring(0, length) + "...";
   };
 
-  const serviceReviewInputs: ReviewInput[] = testimonialsData
-    .filter((testimonial) => typeof testimonial.rating === "number")
-    .map((testimonial) => ({
-      author: testimonial.author,
-      reviewBody: testimonial.quote,
-      rating: testimonial.rating ?? 5,
-    }));
-
   const bookReviewInputs: ReviewInput[] = amazonBookReviews.map((review) => ({
     author: review.reviewerName,
     reviewBody: review.reviewText,
@@ -442,45 +430,7 @@ const Testimonials = () => {
     },
     isVerified: review.isVerifiedPurchase,
   }));
-
-  const serviceAggregate = buildAggregateRatingSchema(serviceReviewInputs, {
-    "@type": "ProfessionalService",
-    "@id": `${buildAbsoluteUrl()}#professional-service`,
-    name: SITE_NAME,
-    url: buildAbsoluteUrl(),
-  });
-
-  const professionalServiceSchema: JsonLdShape = {
-    ...buildProfessionalServiceSchema(),
-    ...(serviceAggregate && "aggregateRating" in serviceAggregate
-      ? { aggregateRating: serviceAggregate.aggregateRating }
-      : {}),
-    ...(serviceReviewInputs.length
-      ? {
-          review: serviceReviewInputs.map((review) => ({
-            "@type": "Review",
-            author: {
-              "@type": "Person",
-              name: review.author,
-            },
-            reviewRating: {
-              "@type": "Rating",
-              ratingValue: review.rating,
-              bestRating: 5,
-              worstRating: 1,
-            },
-            reviewBody: review.reviewBody,
-          })),
-        }
-      : {}),
-  };
-
-  const structuredData = (
-    [
-      professionalServiceSchema,
-      ...buildReviewSchemas(bookReviewInputs),
-    ].filter(Boolean) as JsonLdShape[]
-  );
+  const structuredData = buildReviewSchemas(bookReviewInputs);
 
   return (
     <>

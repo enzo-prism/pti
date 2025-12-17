@@ -24,10 +24,14 @@ const walk = (dir) => {
   return files;
 };
 
+const countMatches = (html, pattern) => (html.match(pattern) ?? []).length;
+
 const extractTitle = (html) => {
   const match = html.match(/<title>([^<]*)<\/title>/i);
   return match?.[1]?.trim() ?? "";
 };
+
+const countTitleTags = (html) => countMatches(html, /<title\b/gi);
 
 const extractMetaDescription = (html) => {
   const match =
@@ -39,6 +43,12 @@ const extractMetaDescription = (html) => {
     );
   return match?.[1]?.trim() ?? "";
 };
+
+const countMetaDescriptions = (html) =>
+  countMatches(html, /<meta\b[^>]*\bname=["']description["'][^>]*>/gi);
+
+const countCanonicalLinks = (html) =>
+  countMatches(html, /<link\b[^>]*\brel=["']canonical["'][^>]*>/gi);
 
 const extractRobots = (html) => {
   const match =
@@ -60,7 +70,32 @@ if (!htmlFiles.length) {
 
 const titlesByValue = new Map();
 for (const filePath of htmlFiles) {
+  if (filePath.endsWith(`${path.sep}200.html`)) continue;
   const html = fs.readFileSync(filePath, "utf8");
+  const titleCount = countTitleTags(html);
+  if (titleCount !== 1) {
+    console.error(
+      `❌ Expected exactly 1 <title> tag in ${filePath}, found ${titleCount}`
+    );
+    process.exit(1);
+  }
+
+  const metaDescriptionCount = countMetaDescriptions(html);
+  if (metaDescriptionCount > 1) {
+    console.error(
+      `❌ Expected at most 1 meta description tag in ${filePath}, found ${metaDescriptionCount}`
+    );
+    process.exit(1);
+  }
+
+  const canonicalCount = countCanonicalLinks(html);
+  if (canonicalCount > 1) {
+    console.error(
+      `❌ Expected at most 1 canonical link tag in ${filePath}, found ${canonicalCount}`
+    );
+    process.exit(1);
+  }
+
   const title = extractTitle(html);
   if (!title) continue;
   const list = titlesByValue.get(title) ?? [];
@@ -84,6 +119,22 @@ for (const filePath of htmlFiles) {
   const html = fs.readFileSync(filePath, "utf8");
   const robots = extractRobots(html).toLowerCase();
   if (robots.includes("noindex")) continue;
+
+  const descriptionCount = countMetaDescriptions(html);
+  if (descriptionCount !== 1) {
+    console.error(
+      `❌ Expected exactly 1 meta description tag in ${filePath}, found ${descriptionCount}`
+    );
+    process.exit(1);
+  }
+
+  const canonicalCount = countCanonicalLinks(html);
+  if (canonicalCount !== 1) {
+    console.error(
+      `❌ Expected exactly 1 canonical link tag in ${filePath}, found ${canonicalCount}`
+    );
+    process.exit(1);
+  }
 
   const description = extractMetaDescription(html);
   if (!description) {

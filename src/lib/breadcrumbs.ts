@@ -1,4 +1,5 @@
 import { buildAbsoluteUrl } from "./siteMetadata";
+import type { JsonLdShape } from "./structuredData";
 
 export interface BreadcrumbNode {
   name: string;
@@ -13,6 +14,17 @@ export const HOME_CRUMB: BreadcrumbNode = {
 export const buildBreadcrumbJsonLd = (
   nodes: BreadcrumbNode[]
 ): string | null => {
+  const schema = buildBreadcrumbSchema(nodes);
+  return schema ? JSON.stringify(schema) : null;
+};
+
+export const shouldRenderBreadcrumbJsonLd = (nodes?: BreadcrumbNode[]) => {
+  return Array.isArray(nodes) && nodes.length >= 2;
+};
+
+export const buildBreadcrumbSchema = (
+  nodes: BreadcrumbNode[]
+): JsonLdShape | null => {
   const normalizedNodes = nodes.filter(
     (node) => node.name && (node.path || node === nodes[nodes.length - 1])
   );
@@ -38,13 +50,9 @@ export const buildBreadcrumbJsonLd = (
     return baseData;
   });
 
-  return JSON.stringify({
+  return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement,
-  });
-};
-
-export const shouldRenderBreadcrumbJsonLd = (nodes?: BreadcrumbNode[]) => {
-  return Array.isArray(nodes) && nodes.length >= 2;
+  };
 };

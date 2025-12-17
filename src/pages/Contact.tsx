@@ -16,6 +16,7 @@ const Contact = () => {
         description="Call or message Practice Transitions Institute to discuss dental practice valuations, sales, associateships, and personalized guidance."
         path="/contact"
         structuredData={contactSchema}
+        includeLocalBusinessSchema
       />
       <Layout>
         <div className="pt-24 md:pt-32 bg-gradient-to-b from-accent to-white">
