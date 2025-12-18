@@ -43,11 +43,14 @@ export const BUSINESS_ADDRESS = {
   postalCode: "94403",
   addressCountry: "US",
 };
+export const BUSINESS_LOCATION = `${BUSINESS_ADDRESS.streetAddress}, ${BUSINESS_ADDRESS.addressLocality}, ${BUSINESS_ADDRESS.addressRegion} ${BUSINESS_ADDRESS.postalCode}`;
 
 export const BUSINESS_HOURS = [
   "Mo-Fr 09:00-17:00",
   "Sa 09:00-12:00",
 ];
+export const BUSINESS_PRICE_RANGE = "$$";
+export const DEFAULT_LOCALE = "en-US";
 
 export const BUSINESS_OPENING_HOURS_SPECIFICATION = [
   {
@@ -106,5 +109,10 @@ export const buildPostalAddress = () => ({
   postalCode: BUSINESS_ADDRESS.postalCode,
   addressCountry: BUSINESS_ADDRESS.addressCountry,
 });
+
+export const buildGoogleMapsUrl = () =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    BUSINESS_LOCATION
+  )}`;
 
 export const getPhoneNumber = () => PHONE_NUMBER;

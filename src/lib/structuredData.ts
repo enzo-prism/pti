@@ -2,8 +2,12 @@ import type { ServiceOffering } from "@/data/services";
 import type { BlogPost } from "@/data/blogPosts";
 import {
   BUSINESS_DESCRIPTION,
+  BUSINESS_HOURS,
   BUSINESS_OPENING_HOURS_SPECIFICATION,
+  BUSINESS_PRICE_RANGE,
+  DEFAULT_LOCALE,
   SERVICE_AREAS,
+  SITE_CONTACT_EMAIL,
   SITE_NAME,
   DEFAULT_OG_IMAGE,
   SOCIAL_PROFILES,
@@ -11,6 +15,7 @@ import {
   buildAbsoluteUrl,
   buildContactPoint,
   buildPostalAddress,
+  buildGoogleMapsUrl,
 } from "@/lib/siteMetadata";
 import { PHONE_NUMBER_TEL } from "@/lib/constants";
 import { parseEventDate } from "@/lib/dateUtils";
@@ -21,50 +26,66 @@ export const BUSINESS_ID = `${buildAbsoluteUrl()}#business`;
 export const WEBSITE_ID = `${buildAbsoluteUrl()}#website`;
 export const LOGO_ID = `${buildAbsoluteUrl()}#logo`;
 
+const resolveAbsoluteUrl = (value: string): string =>
+  value.startsWith("http") ? value : buildAbsoluteUrl(value);
+
+const normalizeServiceAreas = () =>
+  SERVICE_AREAS.length === 1 ? SERVICE_AREAS[0] : SERVICE_AREAS;
+
 const buildImageObject = (url: string, id?: string): JsonLdShape => ({
   "@type": "ImageObject",
   ...(id ? { "@id": id } : {}),
   url,
 });
 
-export const buildOrganizationSchema = (): JsonLdShape => {
-  return buildBusinessSchema();
-};
-
-export const buildBusinessSchema = (options?: {
-  includeLocalBusiness?: boolean;
+const buildBusinessSchema = (input: {
+  types: string[];
+  includeLocalBusinessFields?: boolean;
 }): JsonLdShape => {
-  const logoUrl = buildAbsoluteUrl(DEFAULT_OG_IMAGE);
+  const logoUrl = resolveAbsoluteUrl(DEFAULT_OG_IMAGE);
+
   const base: JsonLdShape = {
     "@context": "https://schema.org",
     "@id": BUSINESS_ID,
-    "@type": options?.includeLocalBusiness
-      ? ["Organization", "ProfessionalService"]
-      : "Organization",
+    "@type": input.types,
     name: SITE_NAME,
     description: BUSINESS_DESCRIPTION,
     url: buildAbsoluteUrl(),
     logo: buildImageObject(logoUrl, LOGO_ID),
-    image: logoUrl,
+    image: [logoUrl],
     address: buildPostalAddress(),
+    telephone: PHONE_NUMBER_TEL,
+    email: SITE_CONTACT_EMAIL,
     contactPoint: [buildContactPoint()],
-    areaServed: SERVICE_AREAS.length === 1 ? SERVICE_AREAS[0] : SERVICE_AREAS,
+    areaServed: normalizeServiceAreas(),
   };
 
   if (SOCIAL_PROFILES.length) {
     base.sameAs = SOCIAL_PROFILES;
   }
 
-  if (options?.includeLocalBusiness) {
-    base.telephone = PHONE_NUMBER_TEL;
+  if (input.includeLocalBusinessFields) {
+    const mapUrl = buildGoogleMapsUrl();
+    base.openingHours = BUSINESS_HOURS;
     base.openingHoursSpecification = BUSINESS_OPENING_HOURS_SPECIFICATION;
+    base.priceRange = BUSINESS_PRICE_RANGE;
+    if (mapUrl) {
+      base.hasMap = mapUrl;
+    }
   }
 
   return base;
 };
 
+export const buildOrganizationSchema = (): JsonLdShape => {
+  return buildBusinessSchema({ types: ["Organization"] });
+};
+
 export const buildProfessionalServiceSchema = (): JsonLdShape => {
-  return buildBusinessSchema({ includeLocalBusiness: true });
+  return buildBusinessSchema({
+    types: ["Organization", "ProfessionalService"],
+    includeLocalBusinessFields: true,
+  });
 };
 
 export const buildWebSiteSchema = (options?: {
@@ -79,6 +100,7 @@ export const buildWebSiteSchema = (options?: {
     publisher: {
       "@id": BUSINESS_ID,
     },
+    inLanguage: DEFAULT_LOCALE,
   };
 
   if (options?.enableSearch) {
@@ -111,10 +133,15 @@ export const buildWebPageSchema = (input: {
     about: {
       "@id": BUSINESS_ID,
     },
+    inLanguage: DEFAULT_LOCALE,
   };
 
   if (input.image) {
-    page.primaryImageOfPage = buildImageObject(input.image);
+    const imageUrl = resolveAbsoluteUrl(input.image);
+    page.primaryImageOfPage = buildImageObject(
+      imageUrl,
+      `${input.url}#primaryimage`
+    );
   }
 
   return page;
@@ -125,31 +152,22 @@ export const buildServiceOfferingsSchema = (
 ): JsonLdShape[] => {
   if (!offerings.length) return [];
 
-  return offerings.map((offering) => ({
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: offering.title,
-    description: offering.description,
-    provider: {
-      "@id": BUSINESS_ID,
-    },
-    areaServed: SERVICE_AREAS,
-    url: buildAbsoluteUrl(offering.url),
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
+  return offerings.map((offering) => {
+    const url = buildAbsoluteUrl(offering.url);
+    return {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": `${url}#service`,
       name: offering.title,
-      itemListElement: [
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: offering.title,
-            description: offering.description,
-          },
-        },
-      ],
-    },
-  }));
+      description: offering.description,
+      serviceType: offering.title,
+      provider: {
+        "@id": BUSINESS_ID,
+      },
+      areaServed: normalizeServiceAreas(),
+      url,
+    };
+  });
 };
 
 export interface FAQItem {
@@ -177,6 +195,7 @@ export const buildFAQSchema = (items: FAQItem[]): JsonLdShape | null => {
 export const buildBlogItemListSchema = (posts: BlogPost[]): JsonLdShape => ({
   "@context": "https://schema.org",
   "@type": "ItemList",
+  name: `${SITE_NAME} Blog`,
   itemListElement: posts.map((post, index) => ({
     "@type": "ListItem",
     position: index + 1,
@@ -191,11 +210,7 @@ export const buildBlogPostingSchema = (
 ): JsonLdShape => {
   const postUrl = buildAbsoluteUrl(`/blog/${post.slug}`);
   const publishedDate = new Date(post.date).toISOString();
-  const imageSource = post.featuredImage
-    ? post.featuredImage.startsWith("http")
-      ? post.featuredImage
-      : buildAbsoluteUrl(post.featuredImage)
-    : buildAbsoluteUrl(DEFAULT_OG_IMAGE);
+  const imageSource = resolveAbsoluteUrl(post.featuredImage ?? DEFAULT_OG_IMAGE);
 
   return {
     "@context": "https://schema.org",
@@ -213,12 +228,15 @@ export const buildBlogPostingSchema = (
     publisher: {
       "@id": BUSINESS_ID,
     },
-    image: imageSource,
+    image: buildImageObject(imageSource, `${postUrl}#primaryimage`),
     url: postUrl,
     mainEntityOfPage: {
-      "@type": "WebPage",
       "@id": `${postUrl}#webpage`,
     },
+    isPartOf: {
+      "@id": WEBSITE_ID,
+    },
+    inLanguage: DEFAULT_LOCALE,
   };
 };
 
@@ -234,10 +252,29 @@ export interface StructuredEventInput {
   isVirtual?: boolean;
 }
 
+const buildEventStartDate = (date: string, time?: string): string => {
+  const baseDate = parseEventDate(date);
+  if (!time) return baseDate.toISOString();
+
+  const timeMatch = time.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?/i);
+  if (!timeMatch) return baseDate.toISOString();
+
+  let hours = Number.parseInt(timeMatch[1], 10);
+  const minutes = timeMatch[2] ? Number.parseInt(timeMatch[2], 10) : 0;
+  const meridiem = timeMatch[3]?.toUpperCase();
+
+  if (meridiem === "PM" && hours < 12) hours += 12;
+  if (meridiem === "AM" && hours === 12) hours = 0;
+
+  const withTime = new Date(baseDate);
+  withTime.setHours(hours, minutes, 0, 0);
+  return withTime.toISOString();
+};
+
 export const buildEventSchema = (
   event: StructuredEventInput
 ): JsonLdShape => {
-  const startDate = parseEventDate(event.date).toISOString();
+  const startDate = buildEventStartDate(event.date, event.time);
   const isVirtual =
     event.isVirtual ||
     /online|virtual/i.test(event.location) ||
@@ -247,17 +284,19 @@ export const buildEventSchema = (
     event.registrationLink.startsWith("tel:")
       ? event.registrationLink
       : buildAbsoluteUrl(event.registrationLink);
+  const eventUrl = buildAbsoluteUrl(`/events#event-${event.id}`);
 
   return {
     "@context": "https://schema.org",
     "@type": "Event",
+    "@id": eventUrl,
     name: event.title,
     description: event.description,
+    startDate,
     eventAttendanceMode: isVirtual
       ? "https://schema.org/OnlineEventAttendanceMode"
       : "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
-    startDate,
     location: isVirtual
       ? {
           "@type": "VirtualLocation",
@@ -278,6 +317,7 @@ export const buildEventSchema = (
     organizer: {
       "@id": BUSINESS_ID,
     },
+    url: eventUrl,
   };
 };
 
@@ -294,27 +334,35 @@ export interface ReviewInput {
 export const buildReviewSchemas = (reviews: ReviewInput[]): JsonLdShape[] => {
   if (!reviews.length) return [];
 
-  return reviews.map((review) => ({
-    "@context": "https://schema.org",
-    "@type": "Review",
-    author: {
-      "@type": "Person",
-      name: review.author,
-    },
-    reviewRating: {
-      "@type": "Rating",
-      ratingValue: review.rating,
-      bestRating: 5,
-      worstRating: 1,
-    },
-    reviewBody: review.reviewBody,
-    ...(review.reviewTitle ? { name: review.reviewTitle } : {}),
-    ...(review.datePublished
-      ? { datePublished: new Date(review.datePublished).toISOString() }
-      : {}),
-    ...(review.itemReviewed ? { itemReviewed: review.itemReviewed } : {}),
-    ...(review.isVerified ? { isVerified: true } : {}),
-  }));
+  return reviews
+    .filter(
+      (review) =>
+        review.author &&
+        review.reviewBody &&
+        Number.isFinite(review.rating) &&
+        review.itemReviewed
+    )
+    .map((review) => ({
+      "@context": "https://schema.org",
+      "@type": "Review",
+      author: {
+        "@type": "Person",
+        name: review.author,
+      },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: review.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      reviewBody: review.reviewBody,
+      ...(review.reviewTitle ? { name: review.reviewTitle } : {}),
+      ...(review.datePublished
+        ? { datePublished: new Date(review.datePublished).toISOString() }
+        : {}),
+      ...(review.itemReviewed ? { itemReviewed: review.itemReviewed } : {}),
+      ...(review.isVerified ? { isVerified: true } : {}),
+    }));
 };
 
 export const buildAggregateRatingSchema = (
@@ -346,13 +394,21 @@ export const buildAggregateRatingSchema = (
   };
 };
 
-export const buildContactPageSchema = (): JsonLdShape => ({
+export const buildContactPageSchema = (
+  url: string = buildAbsoluteUrl("/contact")
+): JsonLdShape => ({
   "@context": "https://schema.org",
   "@type": "ContactPage",
+  "@id": `${url}#contactpage`,
+  url,
   about: {
     "@id": BUSINESS_ID,
   },
   mainEntity: {
     "@id": BUSINESS_ID,
   },
+  isPartOf: {
+    "@id": WEBSITE_ID,
+  },
+  inLanguage: DEFAULT_LOCALE,
 });

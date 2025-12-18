@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button";
 import SEO from "@/components/layout/SEO";
 import { VideoDialog } from "@/components/ui/video-dialog";
 import { RecommendationCard } from "@/components/ui/recommendation-card";
-import { buildAbsoluteUrl, SITE_NAME } from "@/lib/siteMetadata";
+import { buildAbsoluteUrl } from "@/lib/siteMetadata";
+import { BUSINESS_ID } from "@/lib/structuredData";
 
 const About = () => {
   const leaders = [
@@ -46,9 +47,7 @@ const About = () => {
     name: leader.name,
     jobTitle: leader.role,
     affiliation: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: buildAbsoluteUrl(),
+      "@id": BUSINESS_ID,
     },
     ...(leader.image
       ? {

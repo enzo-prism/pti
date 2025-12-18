@@ -3,6 +3,8 @@ Allow: /
 
 # Sitemap
 Sitemap: https://practicetransitionsinstitute.com/sitemap.xml
+# LLM overview
+# llms.txt: https://practicetransitionsinstitute.com/llms.txt
 
 # Block access to admin areas (if any exist in the future)
 Disallow: /admin/

@@ -43,6 +43,14 @@ const checks = [
         /https:\/\/practicetransitionsinstitute\.com/i.test(content),
         "llms.txt missing canonical domain"
       );
+      expect(
+        /info@practicetransitions\.com/i.test(content),
+        "llms.txt missing contact email"
+      );
+      expect(
+        /\+1[- ]?833[- ]?784[- ]?1121/.test(content),
+        "llms.txt missing contact phone"
+      );
     },
   },
   {
@@ -76,4 +84,3 @@ try {
   console.error(`   ${error?.message ?? error}`);
   process.exit(1);
 }
-

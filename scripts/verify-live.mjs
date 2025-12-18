@@ -90,6 +90,14 @@ const checks = [
         body.includes(CANONICAL_BASE),
         `Expected llms.txt to include ${CANONICAL_BASE}`
       );
+      expect(
+        /info@practicetransitions\.com/i.test(body),
+        "Expected llms.txt to include contact email"
+      );
+      expect(
+        /\+1[- ]?833[- ]?784[- ]?1121/.test(body),
+        "Expected llms.txt to include contact phone"
+      );
     },
   },
   {

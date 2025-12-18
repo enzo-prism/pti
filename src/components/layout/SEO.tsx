@@ -13,6 +13,7 @@ import {
 import {
   SITE_NAME,
   DEFAULT_OG_IMAGE,
+  CANONICAL_SITE_URL,
   buildAbsoluteUrl,
 } from "@/lib/siteMetadata";
 
@@ -34,6 +35,7 @@ const isAbsoluteUrl = (value: string) => /^https?:\/\//i.test(value);
 
 const TITLE_MAX_LENGTH = 65;
 const SHORT_SITE_NAME = "PTI";
+const CANONICAL_HOSTNAME = new URL(CANONICAL_SITE_URL).hostname.toLowerCase();
 
 const normalizePathname = (value: string): string => {
   const trimmed = value.trim();
@@ -64,6 +66,12 @@ const normalizeCanonicalHref = (value: string): string => {
 
 const normalizeTitleWhitespace = (value: string): string =>
   value.trim().replace(/\s+/g, " ");
+
+const isCanonicalHost = (): boolean => {
+  if (typeof window === "undefined") return true;
+  const hostname = window.location.hostname.toLowerCase();
+  return hostname === CANONICAL_HOSTNAME;
+};
 
 const truncateAtWord = (value: string, maxLength: number): string => {
   if (value.length <= maxLength) return value;
@@ -185,7 +193,7 @@ const SEO = ({
   canonicalUrl,
   noindex,
   robots,
-  includeLocalBusinessSchema = false,
+  includeLocalBusinessSchema = true,
 }: SEOProps) => {
   const fullTitle = buildTitleTag(title);
   const canonicalSource = canonicalUrl ?? canonicalPath ?? path;
@@ -193,7 +201,10 @@ const SEO = ({
     ? normalizeCanonicalHref(canonicalSource)
     : buildAbsoluteUrl(normalizeCanonicalHref(canonicalSource));
   const url = canonicalHref;
-  const robotsContent = robots ?? (noindex ? "noindex, nofollow" : undefined);
+  const baseRobotsContent = robots ?? (noindex ? "noindex, nofollow" : undefined);
+  const robotsContent = isCanonicalHost()
+    ? baseRobotsContent
+    : "noindex, nofollow";
   const imageSource = image || DEFAULT_OG_IMAGE;
   const ogImageUrl = isAbsoluteUrl(imageSource)
     ? imageSource
