@@ -62,6 +62,7 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 - Build-time SEO verification (recommended): `npm run build:ci` runs `react-snap` prerendering plus `npm run verify` checks for sitemap output, canonicals, unique `<title>` tags, and JSON-LD validity.
 - Prerender route generation: routes are derived from `scripts/route-config.ts` and `src/data/blogPosts.ts` at build time, so no manual include list updates are needed.
 - Sitemap tooling: run `tsx scripts/generate-sitemap.ts` to regenerate `public/sitemap.xml` before building.
+- Deploy freshness: `public/build-info.json` stamps each build and `src/lib/deployGuard.ts` forces a reload if a newer build is detected; `/sw-kill.html` clears caches/service workers for manual resets.
 - Live-site smoke checks: run `npm run verify:live` to confirm redirects (www → apex, slash normalization), real 404 behavior, and prerendered route HTML in production.
 
 ## Deployment Notes

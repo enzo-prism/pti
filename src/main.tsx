@@ -1,6 +1,9 @@
 import { createRoot, hydrateRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
+import { runDeployGuard } from "@/lib/deployGuard";
+
+void runDeployGuard();
 
 // Polyfills for older Chromium used by prerenderers.
 if (!Array.prototype.at) {
