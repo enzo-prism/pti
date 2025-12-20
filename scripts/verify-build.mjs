@@ -101,6 +101,31 @@ if (!fs.existsSync(DIST_DIR)) {
   process.exit(1);
 }
 
+const buildInfoPath = path.join(DIST_DIR, "build-info.json");
+if (!fs.existsSync(buildInfoPath)) {
+  recordFailure(`build-info.json not found in dist/: ${buildInfoPath}`);
+} else {
+  try {
+    const raw = fs.readFileSync(buildInfoPath, "utf8");
+    const parsed = JSON.parse(raw);
+    const buildId =
+      typeof parsed?.buildId === "string" ? parsed.buildId.trim() : "";
+    const builtAt =
+      typeof parsed?.builtAt === "string" ? parsed.builtAt.trim() : "";
+
+    if (!buildId) {
+      recordFailure("build-info.json missing non-empty buildId");
+    }
+    if (!builtAt) {
+      recordFailure("build-info.json missing non-empty builtAt");
+    }
+  } catch (error) {
+    recordFailure(
+      `build-info.json is not valid JSON: ${error?.message ?? error}`
+    );
+  }
+}
+
 const allFiles = walk(DIST_DIR);
 const htmlFiles = allFiles.filter((file) => file.endsWith(".html"));
 

@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsx scripts/generate-sitemap.ts && vite build && tsx scripts/run-react-snap.ts",
+    "build": "tsx scripts/generate-sitemap.ts && tsx scripts/write-build-info.ts && vite build && tsx scripts/run-react-snap.ts",
     "build:ci": "npm run build && npm run verify",
     "build:dev": "vite build --mode development",
-    "build:lovable": "tsx scripts/generate-sitemap.ts && vite build",
+    "build:lovable": "tsx scripts/generate-sitemap.ts && tsx scripts/write-build-info.ts && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "verify": "node scripts/verify-build.mjs",
