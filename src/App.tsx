@@ -1,12 +1,11 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { useGoogleAnalytics } from "@/hooks/use-google-analytics";
-import Index from "./pages/Home"; // Changed from Index to Home
+import Index from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Faq from "./pages/Faq";
 import Testimonials from "./pages/Testimonials";
@@ -17,7 +16,6 @@ import Services from "./pages/Services";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import DrNjo from "./pages/DrNjo";
-import UpdateDetail from "./pages/UpdateDetail";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Layout from "./components/layout/Layout";
@@ -28,6 +26,12 @@ import Value from "./pages/services/Value";
 import Selling from "./pages/services/Selling";
 import Associateships from "./pages/services/Associateships";
 import Partnerships from "./pages/services/Partnerships";
+
+// Redirect /updates/:slug to /blog/:slug
+const UpdatesRedirect = () => {
+  const { slug } = useParams<{ slug: string }>();
+  return <Navigate to={`/blog/${slug}`} replace />;
+};
 
 const queryClient = new QueryClient();
 
@@ -56,7 +60,7 @@ const AppWithAnalytics = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy-policy" element={<Layout><PrivacyPolicy /></Layout>} />
         <Route path="/terms-of-service" element={<Layout><TermsOfService /></Layout>} />
-        <Route path="/updates/:slug" element={<Layout><UpdateDetail /></Layout>} />
+        <Route path="/updates/:slug" element={<UpdatesRedirect />} />
         <Route path="/drnjo" element={<MinimalLayout><DrNjo /></MinimalLayout>} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<Layout><NotFound /></Layout>} />

@@ -2,16 +2,16 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { Update } from "@/data/updates";
+import type { BlogPost } from "@/data/blogPosts";
 
 interface LatestUpdateCardProps {
-  update: Update;
+  post: BlogPost;
   className?: string;
-  href?: string;
 }
 
-export function LatestUpdateCard({ update, className, href }: LatestUpdateCardProps) {
-  const targetHref = href ?? `/updates/${update.slug}`;
+export function LatestUpdateCard({ post, className }: LatestUpdateCardProps) {
+  const targetHref = `/blog/${post.slug}`;
+  const featuredImage = post.featuredImage || "/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png";
 
   return (
     <div className={cn(
@@ -22,8 +22,8 @@ export function LatestUpdateCard({ update, className, href }: LatestUpdateCardPr
         {/* Image Section */}
         <div className="relative">
           <img
-            src={update.featuredImage}
-            alt={update.title}
+            src={featuredImage}
+            alt={post.featuredImageAlt || post.title}
             className="w-full h-64 md:h-full object-cover"
           />
           <div className="absolute top-4 left-4">
@@ -37,15 +37,15 @@ export function LatestUpdateCard({ update, className, href }: LatestUpdateCardPr
         <div className="p-6 md:p-8 flex flex-col justify-center">
           <div className="flex items-center text-gray-500 text-sm mb-3">
             <Calendar className="h-4 w-4 mr-2" />
-            <span>{update.date}</span>
+            <span>{post.date}</span>
           </div>
 
           <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 leading-tight">
-            {update.title}
+            {post.title}
           </h3>
 
           <p className="text-gray-600 leading-relaxed mb-6 line-clamp-3">
-            {update.excerpt}
+            {post.excerpt}
           </p>
 
           <Button asChild variant="outline" className="w-fit">

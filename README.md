@@ -44,7 +44,7 @@ Routes are registered in `src/App.tsx` and wrapped by `src/components/layout/Lay
 - **Testimonials**: Maintained inline in `src/pages/Testimonials.tsx`. Entries include `quote`, `author`, `role`, `rating`, and `category` (`seller`, `buyer`, `workshop`, `valuation`, or `book`). Filters on the page rely on `category`, so keep values consistent.
 - **Amazon book reviews**: Stored in `src/data/amazonReviews.ts` and rendered via `BookReviewCard` when the "Book Reviews" filter is active.
 - **Events**: Update `src/data/events.ts`; the events page derives grouped views and "past" logic from this dataset.
-- **Blog posts & updates**: Authored as Markdown-in-strings inside `src/data/blogPosts.ts` and `src/data/updates.ts`. Each post includes metadata for slugs, gradients, and series links.
+- **Blog posts**: Authored as Markdown-in-strings inside `src/data/blogPosts.ts`. Each post includes metadata for slugs, gradients, and series links. The homepage displays the most recent blog post automatically.
 - **Global contact info**: Shared constants like phone numbers live in `src/lib/constants.ts`; update here to propagate across components.
 
 When editing long-form strings (blog posts, testimonials), preserve existing formatting such as Markdown headers and paragraph breaks to keep rendering consistent.
@@ -58,6 +58,7 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 - `<SEO />` centralizes per-page meta tags. Ensure new pages provide `title`, `description`, and optional `image` props.
 - Google Analytics 4 helpers live in `src/lib/analytics.ts` and expect the production GA ID (`G-XCBKH87HG5`). Analytics are suppressed during development builds.
 - Build-time SEO verification (recommended): `npm run build` runs `react-snap` prerendering plus verifiers that check sitemap output, per-page canonicals, unique `<title>` tags, and valid JSON-LD.
+- Dynamic route generation: `tsx scripts/update-react-snap-routes.ts` regenerates the react-snap include list from `blogPosts.ts` before each build.
 - Sitemap tooling: run `tsx scripts/generate-sitemap.ts` to regenerate `public/sitemap.xml` and `node scripts/verify-sitemap.mjs` to validate URLs before deploying.
 - Live-site smoke checks: run `npm run verify:live` to confirm redirects (www → apex, slash normalization), real 404 behavior, and prerendered route HTML in production.
 

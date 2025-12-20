@@ -9,14 +9,15 @@ import { StaggeredGrid } from "@/components/ui/staggered-grid";
 import { HeroContent } from "@/components/ui/hero-content";
 import { LatestUpdateCard } from "@/components/ui/latest-update-card";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
-import { getLatestUpdate } from "@/data/updates";
-import { getBlogPostBySlug } from "@/data/blogPosts";
+import { blogPosts } from "@/data/blogPosts";
 import { BUSINESS_AGGREGATE_RATING } from "@/lib/siteMetadata";
+
 const Home = () => {
   const isMobile = useIsMobile();
-  const latestUpdate = getLatestUpdate();
-  const latestUpdateBlogPost = latestUpdate ? getBlogPostBySlug(latestUpdate.slug) : undefined;
-  const latestUpdateHref = latestUpdateBlogPost ? `/blog/${latestUpdateBlogPost.slug}` : latestUpdate ? `/updates/${latestUpdate.slug}` : undefined;
+  // Get the most recent blog post (sorted by date, newest first)
+  const latestPost = blogPosts.length > 0 
+    ? [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0]
+    : null;
   const featuredTestimonials = [{
     quote: "I started with Michael in 2018 and have had an outstanding experience! He brings a wealth of knowledge and a truly professional, friendly approach to my dental practice. His advice is not only practical but also easy to implement, and I've seen improvements in patient satisfaction and office efficiency.",
     author: "G. Allen Herrera, DDS",
@@ -185,7 +186,7 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
-              {latestUpdate && <LatestUpdateCard update={latestUpdate} href={latestUpdateHref} />}
+              {latestPost && <LatestUpdateCard post={latestPost} />}
             </ScrollReveal>
           </div>
         </div>
