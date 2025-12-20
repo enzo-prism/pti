@@ -21,6 +21,56 @@ if (!String.prototype.at) {
   };
 }
 
+const cleanupForForceReload = () => {
+  if (typeof window === "undefined") return;
+  const url = new URL(window.location.href);
+  if (!url.searchParams.has("forceReload")) return;
+
+  const cleanup = async () => {
+    if ("serviceWorker" in navigator) {
+      try {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(
+          registrations.map((registration) =>
+            registration.unregister().catch(() => false)
+          )
+        );
+      } catch {
+        // Best-effort cleanup only.
+      }
+    }
+
+    if ("caches" in window && typeof caches.keys === "function") {
+      try {
+        const keys = await caches.keys();
+        await Promise.all(keys.map((key) => caches.delete(key)));
+      } catch {
+        // Best-effort cleanup only.
+      }
+    }
+
+    try {
+      const keys = Object.keys(localStorage);
+      for (const key of keys) {
+        if (key.startsWith("pti.") || key.startsWith("build")) {
+          localStorage.removeItem(key);
+        }
+      }
+    } catch {
+      // Best-effort cleanup only.
+    }
+  };
+
+  cleanup().finally(() => {
+    url.searchParams.delete("forceReload");
+    const query = url.searchParams.toString();
+    const next = `${url.pathname}${query ? `?${query}` : ""}${url.hash}`;
+    window.history.replaceState({}, "", next || "/");
+  });
+};
+
+cleanupForForceReload();
+
 const rootElement = document.getElementById("root");
 if (!rootElement) {
   throw new Error("Missing root element");
