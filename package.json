@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsx scripts/generate-sitemap.ts && tsx scripts/update-react-snap-routes.ts && vite build && react-snap && npm run verify:sitemap && npm run verify:static && npm run verify:seo && npm run verify:prerender && npm run verify:jsonld",
+    "build": "tsx scripts/generate-sitemap.ts && vite build && react-snap && npm run verify:sitemap && npm run verify:static && npm run verify:seo && npm run verify:prerender && npm run verify:jsonld",
     "build:dev": "vite build --mode development",
     "build:lovable": "tsx scripts/generate-sitemap.ts && vite build",
     "lint": "eslint .",
