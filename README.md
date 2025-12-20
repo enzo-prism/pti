@@ -19,13 +19,9 @@ Common scripts:
 | Command | Description |
 | --- | --- |
 | `npm run dev` | Start Vite in development mode with hot module replacement |
-| `npm run build` | Create a Lovable-safe production bundle in `dist/` (no prerendering) |
-| `npm run build:ssg` | Build + prerender routes with react-snap |
-| `npm run build:ci` | Build + prerender + verify (strict) |
-| `npm run build:dev` | Produce a debuggable development build |
+| `npm run build` | Create production bundle in `dist/` |
 | `npm run preview` | Serve the last build locally |
 | `npm run lint` | Run ESLint using the repo's TypeScript-aware config |
-| `npm run verify` | Validate build output (sitemap, SEO tags, JSON-LD, prerendered routes) |
 
 ## Project Structure
 
@@ -37,7 +33,7 @@ src/
   lib/              # Utilities, constants, sitemap helpers, analytics
   pages/            # Route-level views grouped by feature area
   index.css         # Global Tailwind layers and custom styles
-scripts/            # Automation for sitemap generation and verification
+scripts/            # Automation for sitemap generation
 public/             # Static assets served as-is
 ```
 
@@ -57,22 +53,20 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 - shadcn/ui components are exported from `src/components/ui`; co-locate any custom variants or wrappers alongside them.
 - Animations rely on utility classes defined under `@layer components` in `src/index.css`.
 
-## SEO, Analytics, and Automation
+## SEO and Analytics
 - `<SEO />` centralizes per-page meta tags. Ensure new pages provide `title`, `description`, and optional `image` props.
 - Google Analytics 4 helpers live in `src/lib/analytics.ts` and expect the production GA ID (`G-XCBKH87HG5`). Analytics are suppressed during development builds.
-- Build-time SEO verification (recommended): `npm run build:ci` runs `react-snap` prerendering plus `npm run verify` checks for sitemap output, canonicals, unique `<title>` tags, and JSON-LD validity.
-- Lovable-safe build: `npm run build` avoids headless Chromium; use `npm run build:ssg` locally when you want prerendered HTML.
-- Prerender route generation: routes are derived from `scripts/route-config.ts` and `src/data/blogPosts.ts` at build time, so no manual include list updates are needed.
-- Sitemap tooling: run `tsx scripts/generate-sitemap.ts` to regenerate `public/sitemap.xml` before building.
-- Deploy freshness: `public/build-info.json` stamps each build and `src/lib/deployGuard.ts` forces a reload if a newer build is detected; `/sw-kill.html` clears caches/service workers for manual resets.
-- Live-site smoke checks: run `npm run verify:live` to confirm redirects (www → apex, slash normalization), real 404 behavior, and prerendered route HTML in production.
-- Live build stamp check: `EXPECTED_GIT_SHA=$(git rev-parse HEAD) npm run verify:live` to assert production matches the current commit.
+- Sitemap: run `tsx scripts/generate-sitemap.ts` to regenerate `public/sitemap.xml` (runs automatically as prebuild step).
+- Routes are derived from `scripts/route-config.ts` and `src/data/blogPosts.ts`.
 
-## Deployment Notes
-- `npm run build` emits the static bundle in `dist/` without prerendering; use `npm run build:ssg` when prerendered HTML is required.
-- Cloudflare Pages: set build command to `npm run build` and output directory to `dist/` (canonicalization and legacy redirects live in `functions/_middleware.ts`).
-- Lovable native deployments: use `npm run build:lovable` (alias of `npm run build`).
-- The project originated in Lovable; changes pushed to `main` remain compatible with the Lovable editor experience.
+## Deployment
+The build produces a single-page application (SPA) that works identically in all environments.
+
+- **Build command**: `npm run build`
+- **Output directory**: `dist/`
+- **URL handling**: Legacy redirects and SPA fallback are configured in `public/_redirects` (Cloudflare Pages format)
+
+The same build works for both Lovable native deployments and Cloudflare Pages.
 
 ## Coding Standards
 - TypeScript is required for production code, with 2-space indentation enforced by ESLint and the repo configuration.

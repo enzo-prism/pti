@@ -43,11 +43,3 @@ jobs:
           directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           wranglerVersion: "3"
-
-      - name: Wait for Cloudflare Pages to propagate
-        run: sleep 30
-
-      - name: Verify live SEO
-        run: npm run verify:live
-        env:
-          LIVE_BASE_URL: https://practicetransitionsinstitute.com
