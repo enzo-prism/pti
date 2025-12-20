@@ -66,6 +66,7 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 - Sitemap tooling: run `tsx scripts/generate-sitemap.ts` to regenerate `public/sitemap.xml` before building.
 - Deploy freshness: `public/build-info.json` stamps each build and `src/lib/deployGuard.ts` forces a reload if a newer build is detected; `/sw-kill.html` clears caches/service workers for manual resets.
 - Live-site smoke checks: run `npm run verify:live` to confirm redirects (www → apex, slash normalization), real 404 behavior, and prerendered route HTML in production.
+- Live build stamp check: `EXPECTED_GIT_SHA=$(git rev-parse HEAD) npm run verify:live` to assert production matches the current commit.
 
 ## Deployment Notes
 - `npm run build` emits the static bundle in `dist/` without prerendering; use `npm run build:ssg` when prerendered HTML is required.

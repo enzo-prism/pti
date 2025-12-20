@@ -71,6 +71,40 @@ const isRedirect = (status) => status === 301 || status === 308;
 
 const checks = [
   {
+    name: "Live build-info stamp",
+    run: async () => {
+      const response = await fetch(`${BASE_URL}/build-info.json`, { cache: "no-store" });
+      expect(response.ok, `Expected 200, got ${response.status}`);
+      let data;
+      try {
+        data = await response.json();
+      } catch (error) {
+        throw new Error(`Invalid JSON in build-info.json: ${error?.message ?? error}`);
+      }
+
+      const buildId =
+        typeof data?.buildId === "string" ? data.buildId.trim() : "";
+      const builtAt =
+        typeof data?.builtAt === "string" ? data.builtAt.trim() : "";
+      const gitSha =
+        typeof data?.gitSha === "string" && data.gitSha.trim()
+          ? data.gitSha.trim()
+          : "unknown";
+
+      console.log(`live build: sha=${gitSha} buildId=${buildId || "unknown"} builtAt=${builtAt || "unknown"}`);
+
+      expect(buildId, "build-info.json missing buildId");
+      expect(builtAt, "build-info.json missing builtAt");
+
+      const expectedSha = process.env.EXPECTED_GIT_SHA?.trim();
+      if (expectedSha && gitSha !== expectedSha) {
+        throw new Error(
+          `Expected live git SHA to be ${expectedSha}, got ${gitSha}`
+        );
+      }
+    },
+  },
+  {
     name: "llms.txt available",
     run: async () => {
       const { response, body } = await fetchManual(`${BASE_URL}/llms.txt`, {
