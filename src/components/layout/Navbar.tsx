@@ -56,22 +56,19 @@ const Navbar = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex w-full flex-wrap items-center justify-between gap-x-4 gap-y-3 md:gap-y-4 lg:flex-nowrap">
           <div className="order-1 flex w-full items-center justify-between md:w-auto md:gap-4">
-            <Link to="/" className="flex max-w-full flex-col text-left" onClick={closeMenu}>
-              <span className="text-sm md:text-base font-medium text-gray-600">
+            <div className="flex max-w-full flex-col text-left">
+              <Link to="/" className="text-sm md:text-base font-medium text-gray-600 hover:text-primary transition-colors" onClick={closeMenu}>
                 Serving The United States
-              </span>
+              </Link>
               <a 
                 href={`tel:${PHONE_NUMBER_TEL}`}
                 className="mt-1 flex items-center text-sm md:text-base font-semibold text-gray-800 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  trackCTAClick('phone_call', 'navbar');
-                }}
+                onClick={() => trackCTAClick('phone_call', 'navbar')}
               >
                 <Phone className="mr-1 h-3 w-3 md:h-4 md:w-4" />
                 {PHONE_NUMBER}
               </a>
-            </Link>
+            </div>
 
             {/* Mobile menu button */}
             <button 
