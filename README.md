@@ -19,8 +19,9 @@ Common scripts:
 | Command | Description |
 | --- | --- |
 | `npm run dev` | Start Vite in development mode with hot module replacement |
-| `npm run build` | Create a production bundle in `dist/` |
-| `npm run build:ci` | Build and verify the prerendered output |
+| `npm run build` | Create a Lovable-safe production bundle in `dist/` (no prerendering) |
+| `npm run build:ssg` | Build + prerender routes with react-snap |
+| `npm run build:ci` | Build + prerender + verify (strict) |
 | `npm run build:dev` | Produce a debuggable development build |
 | `npm run preview` | Serve the last build locally |
 | `npm run lint` | Run ESLint using the repo's TypeScript-aware config |
@@ -60,15 +61,16 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 - `<SEO />` centralizes per-page meta tags. Ensure new pages provide `title`, `description`, and optional `image` props.
 - Google Analytics 4 helpers live in `src/lib/analytics.ts` and expect the production GA ID (`G-XCBKH87HG5`). Analytics are suppressed during development builds.
 - Build-time SEO verification (recommended): `npm run build:ci` runs `react-snap` prerendering plus `npm run verify` checks for sitemap output, canonicals, unique `<title>` tags, and JSON-LD validity.
+- Lovable-safe build: `npm run build` avoids headless Chromium; use `npm run build:ssg` locally when you want prerendered HTML.
 - Prerender route generation: routes are derived from `scripts/route-config.ts` and `src/data/blogPosts.ts` at build time, so no manual include list updates are needed.
 - Sitemap tooling: run `tsx scripts/generate-sitemap.ts` to regenerate `public/sitemap.xml` before building.
 - Deploy freshness: `public/build-info.json` stamps each build and `src/lib/deployGuard.ts` forces a reload if a newer build is detected; `/sw-kill.html` clears caches/service workers for manual resets.
 - Live-site smoke checks: run `npm run verify:live` to confirm redirects (www → apex, slash normalization), real 404 behavior, and prerendered route HTML in production.
 
 ## Deployment Notes
-- `npm run build` emits the static bundle in `dist/` and prerenders key routes for SEO; avoid deploying with `vite build` alone or crawlers will see the generic SPA shell HTML.
+- `npm run build` emits the static bundle in `dist/` without prerendering; use `npm run build:ssg` when prerendered HTML is required.
 - Cloudflare Pages: set build command to `npm run build` and output directory to `dist/` (canonicalization and legacy redirects live in `functions/_middleware.ts`).
-- Lovable native deployments: use `npm run build:lovable` for sitemap generation plus a Vite build without prerender verification.
+- Lovable native deployments: use `npm run build:lovable` (alias of `npm run build`).
 - The project originated in Lovable; changes pushed to `main` remain compatible with the Lovable editor experience.
 
 ## Coding Standards

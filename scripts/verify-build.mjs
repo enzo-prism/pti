@@ -205,6 +205,7 @@ const titlesByValue = new Map();
 for (const filePath of htmlFiles) {
   if (filePath.endsWith(`${path.sep}200.html`)) continue;
   const html = htmlByPath.get(filePath) ?? "";
+  const robots = extractRobots(html).toLowerCase();
   const titleCount = countTitleTags(html);
   if (titleCount !== 1) {
     recordFailure(`Expected exactly 1 <title> tag in ${filePath}, found ${titleCount}`);
@@ -224,11 +225,13 @@ for (const filePath of htmlFiles) {
     );
   }
 
-  const title = extractTitle(html);
-  if (!title) continue;
-  const list = titlesByValue.get(title) ?? [];
-  list.push(filePath);
-  titlesByValue.set(title, list);
+  if (!robots.includes("noindex")) {
+    const title = extractTitle(html);
+    if (!title) continue;
+    const list = titlesByValue.get(title) ?? [];
+    list.push(filePath);
+    titlesByValue.set(title, list);
+  }
 }
 
 for (const [title, files] of titlesByValue.entries()) {

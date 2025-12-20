@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     target: "es2019",
+    emptyOutDir: true,
   },
   plugins: [
     react(),
