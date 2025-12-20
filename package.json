@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsx scripts/generate-sitemap.ts && vite build && react-snap && npm run verify:sitemap && npm run verify:static && npm run verify:seo && npm run verify:prerender && npm run verify:jsonld",
+    "build": "tsx scripts/generate-sitemap.ts && tsx scripts/update-react-snap-routes.ts && vite build && react-snap && npm run verify:sitemap && npm run verify:static && npm run verify:seo && npm run verify:prerender && npm run verify:jsonld",
     "build:dev": "vite build --mode development",
+    "build:lovable": "tsx scripts/generate-sitemap.ts && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "verify:seo": "node scripts/verify-seo.mjs",
@@ -92,6 +93,7 @@
     "vite": "^5.4.1"
   },
   "reactSnap": {
+    "_note": "When adding blog posts, run scripts/update-react-snap-routes.ts to refresh prerendered routes.",
     "source": "dist",
     "concurrency": 1,
     "skipThirdPartyRequests": true,
@@ -106,20 +108,35 @@
     "waitFor": 1000,
     "include": [
       "/",
-      "/about",
       "/services",
       "/services/value",
       "/services/selling",
       "/services/associateships",
       "/services/partnerships",
       "/blog",
-      "/faq",
+      "/about",
+      "/drnjo",
       "/events",
       "/testimonials",
+      "/faq",
       "/contact",
-      "/drnjo",
       "/privacy-policy",
-      "/terms-of-service"
+      "/terms-of-service",
+      "/blog/attitude-hidden-key-shaping-dentistry-future",
+      "/blog/creating-culture-dental-offices-part-ii",
+      "/blog/creating-culture-dental-offices-part-iii",
+      "/blog/creating-culture-dental-offices-part-iv",
+      "/blog/creating-culture-todays-dental-offices",
+      "/blog/debugging-myths-practice-transitions-part-1-timeline",
+      "/blog/debugging-myths-practice-transitions-part-2-advisory-team",
+      "/blog/debugging-myths-practice-transitions-part-3-valuation",
+      "/blog/debugging-myths-practice-transitions-part-4-requirements",
+      "/blog/dugoni-business-club-donation",
+      "/blog/empowering-next-generation-dugoni-lunch-learn",
+      "/blog/so-much-to-be-thankful-for",
+      "/blog/with-every-crisis-comes-opportunities",
+      "/blog/work-staff-shortages-dentistry",
+      "/404"
     ]
   }
 }

@@ -58,13 +58,14 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 - `<SEO />` centralizes per-page meta tags. Ensure new pages provide `title`, `description`, and optional `image` props.
 - Google Analytics 4 helpers live in `src/lib/analytics.ts` and expect the production GA ID (`G-XCBKH87HG5`). Analytics are suppressed during development builds.
 - Build-time SEO verification (recommended): `npm run build` runs `react-snap` prerendering plus verifiers that check sitemap output, per-page canonicals, unique `<title>` tags, and valid JSON-LD.
-- Dynamic route generation: `tsx scripts/update-react-snap-routes.ts` regenerates the react-snap include list from `blogPosts.ts` before each build.
+- Dynamic route generation: `npm run build` runs `tsx scripts/update-react-snap-routes.ts` to refresh the react-snap include list from `blogPosts.ts` (run it manually if needed).
 - Sitemap tooling: run `tsx scripts/generate-sitemap.ts` to regenerate `public/sitemap.xml` and `node scripts/verify-sitemap.mjs` to validate URLs before deploying.
 - Live-site smoke checks: run `npm run verify:live` to confirm redirects (www → apex, slash normalization), real 404 behavior, and prerendered route HTML in production.
 
 ## Deployment Notes
 - `npm run build` emits the static bundle in `dist/` and prerenders key routes for SEO; avoid deploying with `vite build` alone or crawlers will see the generic SPA shell HTML.
 - Cloudflare Pages: set build command to `npm run build` and output directory to `dist/` (canonicalization and legacy redirects live in `functions/_middleware.ts`).
+- Lovable native deployments: use `npm run build:lovable` for sitemap generation plus a Vite build without prerender verification.
 - The project originated in Lovable; changes pushed to `main` remain compatible with the Lovable editor experience.
 
 ## Coding Standards

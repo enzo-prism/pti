@@ -8,15 +8,9 @@
 import { SitemapStream, streamToPromise } from 'sitemap';
 import fs from 'fs';
 import path from 'path';
+import { STATIC_ROUTES, getBlogPosts } from './route-config';
 
-// Import blog posts from data source
-let blogPosts: any[] = [];
-try {
-  const blogData = await import('../src/data/blogPosts.js');
-  blogPosts = blogData.blogPosts || blogData.default || [];
-} catch (error) {
-  console.warn('⚠️  Could not import blog posts, using empty array');
-}
+const blogPosts = await getBlogPosts();
 
 // Determine base URL from environment or fallback
 const BASE_URL = (
@@ -27,32 +21,21 @@ const BASE_URL = (
 
 console.log(`🌐 Generating sitemap for: ${BASE_URL}`);
 
-// Static routes from React Router (CORRECTED /drnjo not /dr-njo)
-const staticRoutes = [
-  { url: '/', changefreq: 'weekly', priority: 1.0 },
-  { url: '/services', changefreq: 'weekly', priority: 0.9 },
-  { url: '/services/value', changefreq: 'weekly', priority: 0.9 },
-  { url: '/services/selling', changefreq: 'weekly', priority: 0.9 },
-  { url: '/services/associateships', changefreq: 'weekly', priority: 0.9 },
-  { url: '/services/partnerships', changefreq: 'weekly', priority: 0.9 },
-  { url: '/blog', changefreq: 'daily', priority: 0.8 },
-  { url: '/about', changefreq: 'monthly', priority: 0.7 },
-  { url: '/drnjo', changefreq: 'monthly', priority: 0.7 }, // CORRECTED
-  { url: '/events', changefreq: 'weekly', priority: 0.7 },
-  { url: '/testimonials', changefreq: 'monthly', priority: 0.7 },
-  { url: '/faq', changefreq: 'monthly', priority: 0.7 },
-  { url: '/contact', changefreq: 'monthly', priority: 0.7 },
-  { url: '/privacy-policy', changefreq: 'yearly', priority: 0.3 },
-  { url: '/terms-of-service', changefreq: 'yearly', priority: 0.3 }
-] as const;
+const staticRoutes = STATIC_ROUTES.map((route) => ({
+  url: route.path,
+  changefreq: route.changefreq,
+  priority: route.priority,
+})) as const;
 
 // Blog post routes
-const blogRoutes = blogPosts.map(post => ({
-  url: `/blog/${post.slug}`,
-  changefreq: 'monthly',
-  priority: 0.6,
-  lastmod: post.date || post.lastmod
-}));
+const blogRoutes = blogPosts
+  .filter((post) => post?.slug)
+  .map(post => ({
+    url: `/blog/${post.slug}`,
+    changefreq: 'monthly',
+    priority: 0.6,
+    lastmod: post.date || post.lastmod
+  }));
 
 // Combine all URLs
 const allUrls = [...staticRoutes, ...blogRoutes];

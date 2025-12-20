@@ -1,10 +1,11 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { useEffect, type JSX } from "react";
+import { useEffect, useState, type JSX } from "react";
 import { ArrowLeft, Calendar, Clock, User, Share2, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
+import { Skeleton } from "@/components/ui/skeleton";
 import { getBlogPostBySlug, getRelatedPosts, getSeriesPosts } from "@/data/blogPosts";
 import SEO from "@/components/layout/SEO";
 import { formatLocalDate } from "@/lib/dateUtils";
@@ -26,6 +27,7 @@ import { buildBlogPostingSchema } from "@/lib/structuredData";
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getBlogPostBySlug(slug) : null;
+  const [isLoading, setIsLoading] = useState(true);
   
   // Track blog post view
   useEffect(() => {
@@ -33,6 +35,12 @@ const BlogPost = () => {
       trackBlogPostView(post.title, post.category);
     }
   }, [post]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const timeout = setTimeout(() => setIsLoading(false), 120);
+    return () => clearTimeout(timeout);
+  }, [slug]);
   
   if (!slug || !post) {
     return <Navigate to="/blog" replace />;
@@ -132,6 +140,52 @@ const BlogPost = () => {
     </div>
   );
 
+  const BlogPostSkeleton = () => (
+    <>
+      <section className="bg-white pt-24 pb-8 md:pt-28 md:pb-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          <Skeleton className="h-4 w-36" />
+          <Skeleton className="h-8 w-3/4" />
+          <Skeleton className="h-5 w-full" />
+          <Skeleton className="h-5 w-2/3" />
+          <div className="grid gap-3 sm:grid-cols-3">
+            <Skeleton className="h-4 w-28" />
+            <Skeleton className="h-4 w-24" />
+            <Skeleton className="h-4 w-20" />
+          </div>
+        </div>
+      </section>
+
+      <Section padding="none" className="pb-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Skeleton className="aspect-[16/9] w-full rounded-2xl" />
+          <div className="mt-6 flex justify-center">
+            <Skeleton className="h-4 w-56" />
+          </div>
+        </div>
+      </Section>
+
+      <Section padding="none" className="bg-slate-50/80 py-14 md:py-20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 md:gap-12 lg:grid-cols-[minmax(0,1fr)_300px] xl:grid-cols-[minmax(0,1fr)_340px]">
+            <div className="space-y-4">
+              <Skeleton className="h-5 w-full" />
+              <Skeleton className="h-5 w-11/12" />
+              <Skeleton className="h-5 w-10/12" />
+              <Skeleton className="h-5 w-full" />
+              <Skeleton className="h-5 w-9/12" />
+              <Skeleton className="h-5 w-8/12" />
+            </div>
+            <aside className="hidden lg:block space-y-6">
+              <Skeleton className="h-52 w-full rounded-3xl" />
+              <Skeleton className="h-52 w-full rounded-3xl" />
+            </aside>
+          </div>
+        </div>
+      </Section>
+    </>
+  );
+
   return (
     <>
       <SEO 
@@ -145,9 +199,12 @@ const BlogPost = () => {
         ]}
         structuredData={structuredData}
       />
-
-      {/* Header Section */}
-      <section className="bg-white pt-24 pb-8 md:pt-28 md:pb-10">
+      {isLoading ? (
+        <BlogPostSkeleton />
+      ) : (
+      <>
+        {/* Header Section */}
+        <section className="bg-white pt-24 pb-8 md:pt-28 md:pb-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-4 sm:mb-6">
             <Breadcrumb className="w-full">
@@ -367,6 +424,8 @@ const BlogPost = () => {
             </div>
           </div>
         </Section>
+      )}
+      </>
       )}
     </>
   );
