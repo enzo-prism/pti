@@ -47,7 +47,6 @@ Primary topics: practice valuation, selling, partnerships, associateships, and t
 - FAQ: https://practicetransitionsinstitute.com/faq
 - Contact: https://practicetransitionsinstitute.com/contact
 - Dr. Njo consultation page: https://practicetransitionsinstitute.com/drnjo
-- Updates (legacy): https://practicetransitionsinstitute.com/updates/:slug
 - Privacy Policy: https://practicetransitionsinstitute.com/privacy-policy
 - Terms of Service: https://practicetransitionsinstitute.com/terms-of-service
 
