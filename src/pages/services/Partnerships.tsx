@@ -12,13 +12,11 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { serviceOfferings } from "@/data/services";
-import { buildServiceOfferingsSchema } from "@/lib/structuredData";
 
 const Partnerships = () => {
   const offering = serviceOfferings.find(
     (service) => service.url === "/services/partnerships"
   );
-  const structuredData = offering ? buildServiceOfferingsSchema([offering]) : [];
 
   return (
     <>
@@ -29,7 +27,6 @@ const Partnerships = () => {
           "Creating equitable partnership arrangements that benefit all parties involved."
         }
         path="/services/partnerships"
-        structuredData={structuredData}
       />
       {/* Hero Section */}
       <section className="pt-20 pb-12 md:pt-28 md:pb-16 bg-gradient-to-b from-accent to-white">

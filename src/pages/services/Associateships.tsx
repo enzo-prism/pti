@@ -10,14 +10,12 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useIsMobile } from "@/hooks/use-mobile";
 import SEO from "@/components/layout/SEO";
 import { serviceOfferings } from "@/data/services";
-import { buildServiceOfferingsSchema } from "@/lib/structuredData";
 
 const Associateships = () => {
   const isMobile = useIsMobile();
   const offering = serviceOfferings.find(
     (service) => service.url === "/services/associateships"
   );
-  const structuredData = offering ? buildServiceOfferingsSchema([offering]) : [];
 
   return (
     <>
@@ -28,7 +26,6 @@ const Associateships = () => {
           "Structured pathways for associates to buy in and transition into ownership roles."
         }
         path="/services/associateships"
-        structuredData={structuredData}
       />
       {/* Hero Section */}
       <section className="pt-12 pb-8 md:pt-20 md:pb-16 lg:pt-32 lg:pb-24 bg-gradient-to-br from-white to-accent relative overflow-hidden">

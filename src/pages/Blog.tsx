@@ -8,7 +8,6 @@ import { Link, useSearchParams } from "react-router-dom";
 import SEO from "@/components/layout/SEO";
 import { blogPosts } from "@/data/blogPosts";
 import { formatLocalDate } from "@/lib/dateUtils";
-import { buildBlogItemListSchema } from "@/lib/structuredData";
 
 const Blog = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -51,15 +50,12 @@ const Blog = () => {
     updateSearchQuery('');
   };
 
-  const structuredData = [buildBlogItemListSchema(sortedPosts)];
-
   return (
     <>
       <SEO 
         title="Dental Practice Transitions Blog"
         description="Stay informed with expert insights on dental practice transitions, valuations, and business strategies. Get the latest tips and trends from industry professionals."
         path="/blog"
-        structuredData={structuredData}
       />
 
       {/* Enhanced Hero Section */}

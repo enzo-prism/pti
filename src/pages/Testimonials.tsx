@@ -7,10 +7,6 @@ import { Star } from "lucide-react";
 import SEO from "@/components/layout/SEO";
 import { BookReviewCard } from "@/components/ui/book-review-card";
 import { amazonBookReviews } from "@/data/amazonReviews";
-import {
-  buildReviewSchemas,
-  type ReviewInput,
-} from "@/lib/structuredData";
 
 const Testimonials = () => {
   const [activeFilter, setActiveFilter] = useState<'all' | 'seller' | 'buyer' | 'workshop' | 'valuation' | 'book'>('all');
@@ -417,28 +413,12 @@ const Testimonials = () => {
     return quote.substring(0, length) + "...";
   };
 
-  const bookReviewInputs: ReviewInput[] = amazonBookReviews.map((review) => ({
-    author: review.reviewerName,
-    reviewBody: review.reviewText,
-    rating: review.rating,
-    reviewTitle: review.reviewTitle,
-    datePublished: review.reviewDate,
-    itemReviewed: {
-      "@type": "Book",
-      name: "Dental Practice Transitions Handbook",
-      url: "https://www.amazon.com/Dental-Practice-Transitions-Handbook-Healthcare/dp/1627878718/",
-    },
-    isVerified: review.isVerifiedPurchase,
-  }));
-  const structuredData = buildReviewSchemas(bookReviewInputs);
-
   return (
     <>
       <SEO 
         title="Testimonials from Dental Professionals & Partners"
         description="Discover how Practice Transitions Institute helps dentists across the country with valuations, practice sales, and transitions."
         path="/testimonials"
-        structuredData={structuredData}
       />
       <div className="pt-28 bg-gradient-to-b from-accent to-white relative overflow-hidden">
         {/* Speech bubbles background */}

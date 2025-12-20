@@ -12,10 +12,6 @@ import { LatestUpdateCard } from "@/components/ui/latest-update-card";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { getLatestUpdate } from "@/data/updates";
 import { getBlogPostBySlug } from "@/data/blogPosts";
-import {
-  buildServiceOfferingsSchema,
-} from "@/lib/structuredData";
-import { serviceOfferings } from "@/data/services";
 import { BUSINESS_AGGREGATE_RATING } from "@/lib/siteMetadata";
 
 const Home = () => {
@@ -54,15 +50,12 @@ const Home = () => {
     },
   ] as const;
 
-  const structuredData = buildServiceOfferingsSchema(serviceOfferings);
-
   return (
     <>
       <SEO
         title="From Acquisition to Legacy - Dental Practice Transitions"
         description="We guide dentists through every stage of their practice transition, ensuring a smooth, profitable, and stress-free process."
         image="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png"
-        structuredData={structuredData}
         includeLocalBusinessSchema
       />
       

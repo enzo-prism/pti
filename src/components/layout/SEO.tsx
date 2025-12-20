@@ -193,7 +193,7 @@ const SEO = ({
   canonicalUrl,
   noindex,
   robots,
-  includeLocalBusinessSchema = true,
+  includeLocalBusinessSchema = false,
 }: SEOProps) => {
   const fullTitle = buildTitleTag(title);
   const canonicalSource = canonicalUrl ?? canonicalPath ?? path;

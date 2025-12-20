@@ -45,10 +45,6 @@ export const BUSINESS_ADDRESS = {
 };
 export const BUSINESS_LOCATION = `${BUSINESS_ADDRESS.streetAddress}, ${BUSINESS_ADDRESS.addressLocality}, ${BUSINESS_ADDRESS.addressRegion} ${BUSINESS_ADDRESS.postalCode}`;
 
-export const BUSINESS_HOURS = [
-  "Mo-Fr 09:00-17:00",
-  "Sa 09:00-12:00",
-];
 export const BUSINESS_PRICE_RANGE = "$$";
 export const DEFAULT_LOCALE = "en-US";
 
@@ -73,8 +69,6 @@ export const BUSINESS_OPENING_HOURS_SPECIFICATION = [
   },
 ] as const;
 
-export const SERVICE_AREAS = ["United States"];
-export const AVAILABLE_LANGUAGES = ["English"];
 export const SOCIAL_PROFILES: string[] = [];
 export const SITE_SEARCH_PATH = "/blog";
 
@@ -91,15 +85,6 @@ export const buildAbsoluteUrl = (path = "/"): string => {
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
   return `${getSiteUrl()}${normalizedPath}`;
 };
-
-export const buildContactPoint = () => ({
-  "@type": "ContactPoint",
-  telephone: PHONE_NUMBER_TEL,
-  contactType: "customer support",
-  email: SITE_CONTACT_EMAIL,
-  areaServed: SERVICE_AREAS[0] ?? "United States",
-  availableLanguage: AVAILABLE_LANGUAGES[0] ?? "English",
-});
 
 export const buildPostalAddress = () => ({
   "@type": "PostalAddress",

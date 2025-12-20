@@ -59,6 +59,14 @@ if (!htmlFiles.length) {
 const failures = [];
 let checkedScripts = 0;
 
+const DISALLOWED_TYPES = new Set(["Service", "Review"]);
+const DISALLOWED_FIELDS = [
+  "availableLanguage",
+  "provider",
+  "serviceType",
+  "isVerified",
+];
+
 const normalizeType = (value) => {
   if (typeof value === "string") return [value];
   if (Array.isArray(value)) return value.filter((item) => typeof item === "string");
@@ -76,6 +84,8 @@ const getNodes = (parsed) => {
 for (const filePath of htmlFiles) {
   const html = fs.readFileSync(filePath, "utf8");
   const scripts = extractJsonLdScripts(html);
+  let businessNodeCount = 0;
+
   for (const scriptContent of scripts) {
     checkedScripts += 1;
     let parsed;
@@ -108,11 +118,31 @@ for (const filePath of htmlFiles) {
 
     const nodes = getNodes(parsed);
     for (const node of nodes) {
+      for (const field of DISALLOWED_FIELDS) {
+        if (field in node) {
+          failures.push({
+            filePath,
+            reason: `Disallowed field present: ${field}`,
+          });
+        }
+      }
+
       const id = typeof node["@id"] === "string" ? node["@id"] : null;
       const types = normalizeType(node["@type"]);
       const isBusinessNode =
         typeof id === "string" && /#business$/.test(id);
       const isLocalBusinessNode = types.includes("LocalBusiness") || types.includes("ProfessionalService");
+      const isOrganizationNode = types.includes("Organization");
+      const isBusinessType = isOrganizationNode || isLocalBusinessNode;
+
+      if (types.some((type) => DISALLOWED_TYPES.has(type))) {
+        failures.push({
+          filePath,
+          reason: `Disallowed @type present: ${types.filter((type) => DISALLOWED_TYPES.has(type)).join(", ")}`,
+        });
+      }
+
+      if (isBusinessType) businessNodeCount += 1;
 
       if (!isBusinessNode && !isLocalBusinessNode) continue;
 
@@ -160,6 +190,13 @@ for (const filePath of htmlFiles) {
         }
       }
     }
+  }
+
+  if (scripts.length && businessNodeCount !== 1) {
+    failures.push({
+      filePath,
+      reason: `Expected exactly 1 business schema node, found ${businessNodeCount}`,
+    });
   }
 }
 

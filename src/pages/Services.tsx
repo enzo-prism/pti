@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import SEO from "@/components/layout/SEO";
 import { serviceOfferings } from "@/data/services";
-import { buildServiceOfferingsSchema } from "@/lib/structuredData";
 
 const serviceIconMap: Record<string, JSX.Element> = {
   "Opinion of Value": <FileText className="h-8 w-8 text-blue-600" />,
@@ -31,8 +30,6 @@ const Services = () => {
       <ArrowUpRight className="h-8 w-8 text-primary" />
     ),
   }));
-  const structuredData = buildServiceOfferingsSchema(serviceOfferings);
-
   const benefits = [
     {
       icon: <Award className="h-6 w-6 text-primary" />,
@@ -62,7 +59,6 @@ const Services = () => {
         title="Dental Transition Services"
         description="Comprehensive dental practice transition services including valuations, sales support, partnership planning, and associate buy-ins."
         path="/services"
-        structuredData={structuredData}
       />
       {/* Hero Section */}
       <section className="pt-28 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-accent to-white">
