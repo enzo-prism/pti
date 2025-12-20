@@ -5,16 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsx scripts/generate-sitemap.ts && vite build && react-snap && npm run verify:sitemap && npm run verify:static && npm run verify:seo && npm run verify:prerender && npm run verify:jsonld",
+    "build": "tsx scripts/generate-sitemap.ts && vite build && tsx scripts/run-react-snap.ts",
+    "build:ci": "npm run build && npm run verify",
     "build:dev": "vite build --mode development",
     "build:lovable": "tsx scripts/generate-sitemap.ts && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "verify:seo": "node scripts/verify-seo.mjs",
-    "verify:sitemap": "node scripts/verify-sitemap.mjs",
-    "verify:static": "node scripts/verify-static.mjs",
-    "verify:prerender": "node scripts/verify-prerender.mjs",
-    "verify:jsonld": "node scripts/verify-jsonld.mjs",
+    "verify": "node scripts/verify-build.mjs",
     "verify:live": "node scripts/verify-live.mjs"
   },
   "dependencies": {
@@ -93,7 +90,7 @@
     "vite": "^5.4.1"
   },
   "reactSnap": {
-    "_note": "When adding blog posts, manually add their /blog/slug path to this include array.",
+    "_note": "Routes are generated from scripts/route-config.ts at build time.",
     "source": "dist",
     "concurrency": 1,
     "skipThirdPartyRequests": true,
@@ -105,38 +102,6 @@
       "--disable-extensions",
       "--disable-background-networking"
     ],
-    "waitFor": 1000,
-    "include": [
-      "/",
-      "/services",
-      "/services/value",
-      "/services/selling",
-      "/services/associateships",
-      "/services/partnerships",
-      "/blog",
-      "/about",
-      "/drnjo",
-      "/events",
-      "/testimonials",
-      "/faq",
-      "/contact",
-      "/privacy-policy",
-      "/terms-of-service",
-      "/blog/attitude-hidden-key-shaping-dentistry-future",
-      "/blog/creating-culture-dental-offices-part-ii",
-      "/blog/creating-culture-dental-offices-part-iii",
-      "/blog/creating-culture-dental-offices-part-iv",
-      "/blog/creating-culture-todays-dental-offices",
-      "/blog/debugging-myths-practice-transitions-part-1-timeline",
-      "/blog/debugging-myths-practice-transitions-part-2-advisory-team",
-      "/blog/debugging-myths-practice-transitions-part-3-valuation",
-      "/blog/debugging-myths-practice-transitions-part-4-requirements",
-      "/blog/dugoni-business-club-donation",
-      "/blog/empowering-next-generation-dugoni-lunch-learn",
-      "/blog/so-much-to-be-thankful-for",
-      "/blog/with-every-crisis-comes-opportunities",
-      "/blog/work-staff-shortages-dentistry",
-      "/404"
-    ]
+    "waitFor": 1000
   }
 }

@@ -20,9 +20,11 @@ Common scripts:
 | --- | --- |
 | `npm run dev` | Start Vite in development mode with hot module replacement |
 | `npm run build` | Create a production bundle in `dist/` |
+| `npm run build:ci` | Build and verify the prerendered output |
 | `npm run build:dev` | Produce a debuggable development build |
 | `npm run preview` | Serve the last build locally |
 | `npm run lint` | Run ESLint using the repo's TypeScript-aware config |
+| `npm run verify` | Validate build output (sitemap, SEO tags, JSON-LD, prerendered routes) |
 
 ## Project Structure
 
@@ -57,9 +59,9 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 ## SEO, Analytics, and Automation
 - `<SEO />` centralizes per-page meta tags. Ensure new pages provide `title`, `description`, and optional `image` props.
 - Google Analytics 4 helpers live in `src/lib/analytics.ts` and expect the production GA ID (`G-XCBKH87HG5`). Analytics are suppressed during development builds.
-- Build-time SEO verification (recommended): `npm run build` runs `react-snap` prerendering plus verifiers that check sitemap output, per-page canonicals, unique `<title>` tags, and valid JSON-LD.
-- Dynamic route generation: `npm run build` runs `tsx scripts/update-react-snap-routes.ts` to refresh the react-snap include list from `blogPosts.ts` (run it manually if needed).
-- Sitemap tooling: run `tsx scripts/generate-sitemap.ts` to regenerate `public/sitemap.xml` and `node scripts/verify-sitemap.mjs` to validate URLs before deploying.
+- Build-time SEO verification (recommended): `npm run build:ci` runs `react-snap` prerendering plus `npm run verify` checks for sitemap output, canonicals, unique `<title>` tags, and JSON-LD validity.
+- Prerender route generation: routes are derived from `scripts/route-config.ts` and `src/data/blogPosts.ts` at build time, so no manual include list updates are needed.
+- Sitemap tooling: run `tsx scripts/generate-sitemap.ts` to regenerate `public/sitemap.xml` before building.
 - Live-site smoke checks: run `npm run verify:live` to confirm redirects (www → apex, slash normalization), real 404 behavior, and prerendered route HTML in production.
 
 ## Deployment Notes
