@@ -7,9 +7,12 @@ import type { Update } from "@/data/updates";
 interface LatestUpdateCardProps {
   update: Update;
   className?: string;
+  href?: string;
 }
 
-export function LatestUpdateCard({ update, className }: LatestUpdateCardProps) {
+export function LatestUpdateCard({ update, className, href }: LatestUpdateCardProps) {
+  const targetHref = href ?? `/updates/${update.slug}`;
+
   return (
     <div className={cn(
       "bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover-scale",
@@ -46,7 +49,7 @@ export function LatestUpdateCard({ update, className }: LatestUpdateCardProps) {
           </p>
 
           <Button asChild variant="outline" className="w-fit">
-            <Link to={`/updates/${update.slug}`} className="flex items-center">
+            <Link to={targetHref} className="flex items-center">
               Read Full Story <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>

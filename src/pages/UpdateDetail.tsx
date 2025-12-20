@@ -24,6 +24,7 @@ export default function UpdateDetail() {
   const canonicalPath = matchingBlogPost
     ? `/blog/${matchingBlogPost.slug}`
     : `/updates/${update.slug}`;
+  const robots = matchingBlogPost ? "noindex,follow" : undefined;
 
   // Convert markdown-style content to JSX
   const formatContent = (content: string) => {
@@ -74,6 +75,7 @@ export default function UpdateDetail() {
         image={update.featuredImage}
         path={`/updates/${update.slug}`}
         canonicalPath={canonicalPath}
+        robots={robots}
         breadcrumbs={[
           HOME_CRUMB,
           { name: update.title, path: `/updates/${update.slug}` },

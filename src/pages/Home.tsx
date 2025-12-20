@@ -11,6 +11,7 @@ import { HeroContent } from "@/components/ui/hero-content";
 import { LatestUpdateCard } from "@/components/ui/latest-update-card";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { getLatestUpdate } from "@/data/updates";
+import { getBlogPostBySlug } from "@/data/blogPosts";
 import {
   buildServiceOfferingsSchema,
 } from "@/lib/structuredData";
@@ -19,6 +20,15 @@ import { BUSINESS_AGGREGATE_RATING } from "@/lib/siteMetadata";
 
 const Home = () => {
   const isMobile = useIsMobile();
+  const latestUpdate = getLatestUpdate();
+  const latestUpdateBlogPost = latestUpdate
+    ? getBlogPostBySlug(latestUpdate.slug)
+    : undefined;
+  const latestUpdateHref = latestUpdateBlogPost
+    ? `/blog/${latestUpdateBlogPost.slug}`
+    : latestUpdate
+    ? `/updates/${latestUpdate.slug}`
+    : undefined;
 
   const featuredTestimonials = [
     {
@@ -218,7 +228,9 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
-              <LatestUpdateCard update={getLatestUpdate()!} />
+              {latestUpdate && (
+                <LatestUpdateCard update={latestUpdate} href={latestUpdateHref} />
+              )}
             </ScrollReveal>
           </div>
         </div>

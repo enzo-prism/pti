@@ -1,6 +1,7 @@
 const CANONICAL_HOST = "practicetransitionsinstitute.com";
 const WWW_HOST = `www.${CANONICAL_HOST}`;
 
+// Single source of truth for edge canonicalization and legacy redirects.
 const LEGACY_REDIRECTS: Record<string, string> = {
   "/dr-njo": "/drnjo",
   "/meet-our-team": "/about",

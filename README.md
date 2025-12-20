@@ -63,8 +63,7 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 
 ## Deployment Notes
 - `npm run build` emits the static bundle in `dist/` and prerenders key routes for SEO; avoid deploying with `vite build` alone or crawlers will see the generic SPA shell HTML.
-- Cloudflare Pages: set build command to `npm run build` and output directory to `dist/` (the repo includes redirects and edge canonicalization logic).
-- Vercel: `vercel.json` includes canonical redirects (www → apex), legacy URL redirects, and SPA fallback for client-side routing.
+- Cloudflare Pages: set build command to `npm run build` and output directory to `dist/` (canonicalization and legacy redirects live in `functions/_middleware.ts`).
 - The project originated in Lovable; changes pushed to `main` remain compatible with the Lovable editor experience.
 
 ## Coding Standards
