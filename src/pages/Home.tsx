@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,57 +12,35 @@ import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { getLatestUpdate } from "@/data/updates";
 import { getBlogPostBySlug } from "@/data/blogPosts";
 import { BUSINESS_AGGREGATE_RATING } from "@/lib/siteMetadata";
-
 const Home = () => {
   const isMobile = useIsMobile();
   const latestUpdate = getLatestUpdate();
-  const latestUpdateBlogPost = latestUpdate
-    ? getBlogPostBySlug(latestUpdate.slug)
-    : undefined;
-  const latestUpdateHref = latestUpdateBlogPost
-    ? `/blog/${latestUpdateBlogPost.slug}`
-    : latestUpdate
-    ? `/updates/${latestUpdate.slug}`
-    : undefined;
-
-  const featuredTestimonials = [
-    {
-      quote:
-        "I started with Michael in 2018 and have had an outstanding experience! He brings a wealth of knowledge and a truly professional, friendly approach to my dental practice. His advice is not only practical but also easy to implement, and I've seen improvements in patient satisfaction and office efficiency.",
-      author: "G. Allen Herrera, DDS",
-      role: "Practice Buyer",
-      rating: 5,
-    },
-    {
-      quote:
-        "Dr. Michael has become not only a colleague, but a trusted friend who has helped navigate the challenging landscape of a multi state, multi-practice operation. His availability is his best ability.",
-      author: "Blaine Leeds",
-      role: "Multi-Practice Owner",
-      rating: 5,
-    },
-    {
-      quote:
-        "I attended Mike's practice transition seminar and read his book. He was very knowledgeable and a seasoned expert in this area. I decided to use his consultation service to handle my practice sale. He was able to match a buyer within 2 weeks and completed the transaction within 45 days.",
-      author: "Tony Choi",
-      role: "Practice Seller",
-      rating: 5,
-    },
-  ] as const;
-
-  return (
-    <>
-      <SEO
-        title="From Acquisition to Legacy - Dental Practice Transitions"
-        description="We guide dentists through every stage of their practice transition, ensuring a smooth, profitable, and stress-free process."
-        image="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png"
-        includeLocalBusinessSchema
-      />
+  const latestUpdateBlogPost = latestUpdate ? getBlogPostBySlug(latestUpdate.slug) : undefined;
+  const latestUpdateHref = latestUpdateBlogPost ? `/blog/${latestUpdateBlogPost.slug}` : latestUpdate ? `/updates/${latestUpdate.slug}` : undefined;
+  const featuredTestimonials = [{
+    quote: "I started with Michael in 2018 and have had an outstanding experience! He brings a wealth of knowledge and a truly professional, friendly approach to my dental practice. His advice is not only practical but also easy to implement, and I've seen improvements in patient satisfaction and office efficiency.",
+    author: "G. Allen Herrera, DDS",
+    role: "Practice Buyer",
+    rating: 5
+  }, {
+    quote: "Dr. Michael has become not only a colleague, but a trusted friend who has helped navigate the challenging landscape of a multi state, multi-practice operation. His availability is his best ability.",
+    author: "Blaine Leeds",
+    role: "Multi-Practice Owner",
+    rating: 5
+  }, {
+    quote: "I attended Mike's practice transition seminar and read his book. He was very knowledgeable and a seasoned expert in this area. I decided to use his consultation service to handle my practice sale. He was able to match a buyer within 2 weeks and completed the transaction within 45 days.",
+    author: "Tony Choi",
+    role: "Practice Seller",
+    rating: 5
+  }] as const;
+  return <>
+      <SEO title="From Acquisition to Legacy - Dental Practice Transitions" description="We guide dentists through every stage of their practice transition, ensuring a smooth, profitable, and stress-free process." image="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png" includeLocalBusinessSchema />
       
       {/* Hero Section */}
-      <section className={`relative min-h-screen overflow-hidden hero-gradient pt-24 md:pt-32 flex items-center justify-center ${isMobile ? 'pb-20 md:pb-8' : 'pb-8'}`} style={{ 
-        minHeight: isMobile ? 'calc(100vh - 4rem)' : 'calc(100vh - 6rem)',
-        paddingBottom: isMobile ? 'max(5rem, env(safe-area-inset-bottom, 1.25rem))' : undefined
-      }}>
+      <section className={`relative min-h-screen overflow-hidden hero-gradient pt-24 md:pt-32 flex items-center justify-center ${isMobile ? 'pb-20 md:pb-8' : 'pb-8'}`} style={{
+      minHeight: isMobile ? 'calc(100vh - 4rem)' : 'calc(100vh - 6rem)',
+      paddingBottom: isMobile ? 'max(5rem, env(safe-area-inset-bottom, 1.25rem))' : undefined
+    }}>
         {/* Gradient overlay for better text contrast */}
         <div className="absolute inset-0 hero-gradient-overlay" />
         
@@ -111,11 +88,7 @@ const Home = () => {
             </ScrollReveal>
             <ScrollReveal direction="magnetic" delay={200} intensity="subtle">
               <div className="rounded-xl overflow-hidden shadow-lg order-1 md:order-2">
-                <img 
-                  src="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png" 
-                  alt="PTI team members with dental professionals" 
-                  className="w-full h-auto object-cover"
-                />
+                <img src="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png" alt="PTI team members with dental professionals" className="w-full h-auto object-cover" />
               </div>
             </ScrollReveal>
           </div>
@@ -137,39 +110,31 @@ const Home = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                number: 1,
-                title: "Discovery and Plan",
-                description: "We align your goals with a clear, customized roadmap"
-              },
-              {
-                number: 2,
-                title: "Know Your Value", 
-                description: "Get a clear, data-backed valuation you can trust."
-              },
-              {
-                number: 3,
-                title: "Navigate the Deal",
-                description: "We handle complex negotiations to maximize your return."
-              },
-              {
-                number: 4,
-                title: "Transition Support",
-                description: "We ensure a smooth hand-off for your team and patients."
-              },
-              {
-                number: 5,
-                title: "Protect What Matters",
-                description: "Safeguard your reputation, relationships, for peace of mind."
-              },
-              {
-                number: 6,
-                title: "Map Your Next Move",
-                description: "We help you plan confidently for life after the sale."
-              }
-            ].map((step, index) => (
-              <ScrollReveal key={step.number} direction="scale" delay={index * 100} intensity="subtle">
+            {[{
+            number: 1,
+            title: "Discovery and Plan",
+            description: "We align your goals with a clear, customized roadmap"
+          }, {
+            number: 2,
+            title: "Know Your Value",
+            description: "Get a clear, data-backed valuation you can trust."
+          }, {
+            number: 3,
+            title: "Navigate the Deal",
+            description: "We handle complex negotiations to maximize your return."
+          }, {
+            number: 4,
+            title: "Transition Support",
+            description: "We ensure a smooth hand-off for your team and patients."
+          }, {
+            number: 5,
+            title: "Protect What Matters",
+            description: "Safeguard your reputation, relationships, for peace of mind."
+          }, {
+            number: 6,
+            title: "Map Your Next Move",
+            description: "We help you plan confidently for life after the sale."
+          }].map((step, index) => <ScrollReveal key={step.number} direction="scale" delay={index * 100} intensity="subtle">
                 <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-all hover-scale duration-300 h-full flex flex-col">
                   <div className="flex items-start mb-4 md:mb-6">
                     <div className="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center mr-4 text-lg font-bold flex-shrink-0 shadow-lg">
@@ -181,8 +146,7 @@ const Home = () => {
                     {step.description}
                   </p>
                 </div>
-              </ScrollReveal>
-            ))}
+              </ScrollReveal>)}
           </div>
         </div>
       </Section>
@@ -221,9 +185,7 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
-              {latestUpdate && (
-                <LatestUpdateCard update={latestUpdate} href={latestUpdateHref} />
-              )}
+              {latestUpdate && <LatestUpdateCard update={latestUpdate} href={latestUpdateHref} />}
             </ScrollReveal>
           </div>
         </div>
@@ -247,21 +209,9 @@ const Home = () => {
               </ScrollReveal>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {featuredTestimonials.map((testimonial, index) => (
-                <ScrollReveal
-                  key={testimonial.author}
-                  direction="up"
-                  delay={100 + index * 100}
-                  intensity="subtle"
-                >
-                  <TestimonialCard
-                    quote={testimonial.quote}
-                    author={testimonial.author}
-                    role={testimonial.role}
-                    className="h-full"
-                  />
-                </ScrollReveal>
-              ))}
+              {featuredTestimonials.map((testimonial, index) => <ScrollReveal key={testimonial.author} direction="up" delay={100 + index * 100} intensity="subtle">
+                  <TestimonialCard quote={testimonial.quote} author={testimonial.author} role={testimonial.role} className="h-full" />
+                </ScrollReveal>)}
             </div>
             <div className="mt-10 text-center">
               <Button asChild variant="outline" size={isMobile ? "default" : "lg"}>
@@ -282,9 +232,7 @@ const Home = () => {
             </h2>
           </ScrollReveal>
           <ScrollReveal direction="blur-in" delay={200} intensity="normal">
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white opacity-90 mb-4 sm:mb-6 md:mb-8 leading-relaxed">
-              Take the first step toward a successful transition with expert guidance you can trust.
-            </p>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white opacity-90 mb-4 sm:mb-6 md:mb-8 leading-relaxed">Take the first step toward a successful transition with expert guidance you can trust!</p>
           </ScrollReveal>
           <ScrollReveal direction="magnetic" delay={300} intensity="strong">
             <Button asChild variant="secondary" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 hover-lift !bg-white hover:!bg-white border border-white">
@@ -293,8 +241,6 @@ const Home = () => {
           </ScrollReveal>
         </div>
       </Section>
-    </>
-  );
+    </>;
 };
-
 export default Home;
