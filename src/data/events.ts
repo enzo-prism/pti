@@ -75,7 +75,7 @@ export const rawEvents: RawEvent[] = [
   {
     id: 4,
     title: "Mastering Your Dental Transition Into and Out of Practice",
-    date: "March 27, 2026",
+    date: "April 10, 2026",
     time: "8am - 3pm",
     location: "Orange County, CA",
     description: {
