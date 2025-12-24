@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { PHONE_NUMBER } from "@/lib/constants";
+import { BUILD_ID, BUILD_DATE } from "@/lib/buildInfo";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -103,13 +104,19 @@ const Footer = () => {
           <p className="text-gray-500 text-xs mb-4 sm:mb-0 text-center sm:text-left">
             &copy; {currentYear} Practice Transitions Institute. All rights reserved.
           </p>
-          <div className="flex space-x-4">
+          <div className="flex items-center space-x-4">
             <Link to="/privacy-policy" className="text-gray-500 hover:text-primary text-xs transition-colors">
               Privacy Policy
             </Link>
             <Link to="/terms-of-service" className="text-gray-500 hover:text-primary text-xs transition-colors">
               Terms of Service
             </Link>
+            <span 
+              className="text-gray-400 text-[10px] font-mono cursor-help" 
+              title={`Build: ${BUILD_DATE}`}
+            >
+              v{BUILD_ID}
+            </span>
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { useGoogleAnalytics } from "@/hooks/use-google-analytics";
+import { useAnalytics } from "@/hooks/use-analytics";
 import Index from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Faq from "./pages/Faq";
@@ -38,6 +39,7 @@ const queryClient = new QueryClient();
 // Analytics wrapper component
 const AppWithAnalytics = () => {
   useGoogleAnalytics();
+  useAnalytics(); // Load GA/Hotjar only in production on canonical host
   return (
     <>
       <Toaster />
