@@ -15,6 +15,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
   { path: "/about", changefreq: "monthly", priority: 0.7 },
   { path: "/drnjo", changefreq: "monthly", priority: 0.7 },
   { path: "/events", changefreq: "weekly", priority: 0.7 },
+  { path: "/events/leadership-retreat", changefreq: "monthly", priority: 0.6 },
   { path: "/testimonials", changefreq: "monthly", priority: 0.7 },
   { path: "/faq", changefreq: "monthly", priority: 0.7 },
   { path: "/contact", changefreq: "monthly", priority: 0.7 },

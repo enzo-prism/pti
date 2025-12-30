@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import Faq from "./pages/Faq";
 import Testimonials from "./pages/Testimonials";
 import Events from "./pages/Events";
+import LeadershipRetreat from "./pages/LeadershipRetreat";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -58,6 +59,7 @@ const AppWithAnalytics = () => {
         <Route path="/faq" element={<Layout><Faq /></Layout>} />
         <Route path="/testimonials" element={<Layout><Testimonials /></Layout>} />
         <Route path="/events" element={<Layout><Events /></Layout>} />
+        <Route path="/events/leadership-retreat" element={<Layout><LeadershipRetreat /></Layout>} />
         <Route path="/speaking-engagements/" element={<Navigate to="/events" replace />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy-policy" element={<Layout><PrivacyPolicy /></Layout>} />

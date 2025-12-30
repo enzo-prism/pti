@@ -203,6 +203,7 @@ export interface StructuredEventInput {
   registrationLink: string;
   type: string;
   isVirtual?: boolean;
+  detailPath?: string;
 }
 
 const buildEventStartDate = (date: string, time?: string): string => {
@@ -237,7 +238,9 @@ export const buildEventSchema = (
     event.registrationLink.startsWith("tel:")
       ? event.registrationLink
       : buildAbsoluteUrl(event.registrationLink);
-  const eventUrl = buildAbsoluteUrl(`/events#event-${event.id}`);
+  const eventUrl = event.detailPath
+    ? buildAbsoluteUrl(event.detailPath)
+    : buildAbsoluteUrl(`/events#event-${event.id}`);
 
   return {
     "@context": "https://schema.org",

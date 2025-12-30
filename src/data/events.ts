@@ -3,6 +3,7 @@ export interface RawEvent {
   id: number;
   title: string;
   date: string;
+  dateDisplay?: string;
   time: string;
   location: string;
   description: string | {
@@ -11,6 +12,7 @@ export interface RawEvent {
   };
   type: "webinar" | "seminar" | "workshop" | "conference";
   registrationLink: string;
+  detailPath?: string;
   speakers?: Array<{
     name: string;
     title: string;
@@ -91,6 +93,18 @@ export const rawEvents: RawEvent[] = [
     },
     type: "seminar",
     registrationLink: "tel:+18337841121"
+  },
+  {
+    id: 7,
+    title: "Leadership Retreat",
+    date: "June 4, 2026",
+    dateDisplay: "June 4-6, 2026",
+    time: "Multi-day",
+    location: "Savannah, GA",
+    description: "An immersive leadership retreat for practice owners ready to lead with clarity and confidence, hosted by MaryLynn Wheaton and Liz Armato with featured speaker Brian Parsley and a PTI panel on transition readiness.",
+    type: "conference",
+    registrationLink: "https://www.dentistretreat.com/",
+    detailPath: "/events/leadership-retreat"
   },
   {
     id: 5,

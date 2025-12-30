@@ -4,7 +4,6 @@ import {
   Clock,
   MapPin,
   ChevronRight,
-  ChevronDown,
   Phone,
   Mail,
 } from "lucide-react";
@@ -174,6 +173,7 @@ const Events = () => {
         registrationLink: event.registrationLink,
         type: event.type,
         isVirtual: event.type === "webinar",
+        detailPath: event.detailPath,
       })
     );
 
@@ -264,6 +264,7 @@ const Events = () => {
                 />
               );
             }
+            const dateLabel = event.dateDisplay ?? event.date;
             
             // Render single event card for individual events
             return (
@@ -325,7 +326,7 @@ const Events = () => {
                     <Calendar size={16} className={`mr-2 flex-shrink-0 ${
                       event.isPast ? "text-gray-400" : "text-primary"
                     }`} />
-                    <span className={event.isPast ? "" : "font-medium"}>{event.date}</span>
+                    <span className={event.isPast ? "" : "font-medium"}>{dateLabel}</span>
                   </div>
                   <div className={`flex items-center text-sm ${
                     event.isPast ? "text-gray-500" : "text-gray-600"
@@ -349,35 +350,28 @@ const Events = () => {
                 <div className={`mb-4 ${
                   event.isPast ? "text-gray-500" : "text-gray-600"
                 }`}>
-                  {(() => {
-                    console.log('Event description:', event.description, 'Type:', typeof event.description);
-                    if (typeof event.description === 'string') {
-                      return (
-                        <p className="text-sm leading-relaxed line-clamp-3">
-                          {event.description}
-                        </p>
-                      );
-                    } else {
-                      return (
-                        <div className="space-y-3">
-                          <p className="text-sm leading-relaxed">
-                            {event.description.intro}
-                          </p>
-                          <div>
-                            <p className="text-sm font-semibold mb-2">At this seminar, you'll discover how to:</p>
-                            <ul className="text-sm space-y-1">
-                              {event.description.learningPoints.map((point, index) => (
-                                <li key={index} className="flex items-start">
-                                  <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                                  {point}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-                      );
-                    }
-                  })()}
+                  {typeof event.description === "string" ? (
+                    <p className="text-sm leading-relaxed line-clamp-3">
+                      {event.description}
+                    </p>
+                  ) : (
+                    <div className="space-y-3">
+                      <p className="text-sm leading-relaxed">
+                        {event.description.intro}
+                      </p>
+                      <div>
+                        <p className="text-sm font-semibold mb-2">At this seminar, you'll discover how to:</p>
+                        <ul className="text-sm space-y-1">
+                          {event.description.learningPoints.map((point, index) => (
+                            <li key={index} className="flex items-start">
+                              <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                              {point}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 
                 {/* Speakers Section for Webinars */}
@@ -425,25 +419,31 @@ const Events = () => {
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3">
                   {!event.isPast ? (
-                    <>
-                      <Button 
-                        size="sm" 
-                        className="flex-1 sm:flex-none"
-                        onClick={() => window.open('tel:+18337841121', '_self')}
-                      >
-                        <Phone size={16} className="mr-2" />
-                        Call to Register
+                    event.detailPath ? (
+                      <Button asChild size="sm" className="flex-1 sm:flex-none">
+                        <Link to={event.detailPath}>View Details</Link>
                       </Button>
-                      <Button 
-                        size="sm" 
-                        variant="outline"
-                        className="flex-1 sm:flex-none"
-                        onClick={() => window.open('mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry', '_self')}
-                      >
-                        <Mail size={16} className="mr-2" />
-                        Email Us to Register
-                      </Button>
-                    </>
+                    ) : (
+                      <>
+                        <Button 
+                          size="sm" 
+                          className="flex-1 sm:flex-none"
+                          onClick={() => window.open('tel:+18337841121', '_self')}
+                        >
+                          <Phone size={16} className="mr-2" />
+                          Call to Register
+                        </Button>
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          className="flex-1 sm:flex-none"
+                          onClick={() => window.open('mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry', '_self')}
+                        >
+                          <Mail size={16} className="mr-2" />
+                          Email Us to Register
+                        </Button>
+                      </>
+                    )
                   ) : (
                     <Button className="w-full sm:w-auto" variant="outline" disabled>
                       <span className="text-gray-500 cursor-not-allowed">
