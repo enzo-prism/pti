@@ -198,12 +198,17 @@ const Home = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-10">
               <ScrollReveal direction="scale" delay={50} intensity="subtle">
-                <img
-                  src="https://res.cloudinary.com/dhqpqfw6w/image/upload/v1767551710/university-of-the-pacific-dr-njo_pkcbs4.webp"
-                  alt="University of the Pacific, Dr. Njo"
-                  className="mx-auto mb-5 w-32 sm:w-36 md:w-40 h-auto"
-                  loading="lazy"
-                />
+                <figure className="mx-auto mb-8 max-w-5xl">
+                  <img
+                    src="https://res.cloudinary.com/dhqpqfw6w/image/upload/v1767551710/university-of-the-pacific-dr-njo_pkcbs4.webp"
+                    alt="Dr. Michael Njo with University of the Pacific colleagues"
+                    className="w-full h-auto rounded-2xl border border-gray-200 shadow-lg"
+                    loading="lazy"
+                  />
+                  <figcaption className="mt-3 text-xs sm:text-sm text-gray-500 text-center">
+                    Dr. Michael Njo with University of the Pacific colleagues.
+                  </figcaption>
+                </figure>
               </ScrollReveal>
               <ScrollReveal direction="up" delay={100} intensity="subtle">
                 <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4">
