@@ -100,6 +100,18 @@ const About = () => {
                 What began as Dr. Njo's vision to provide better service has grown into a comprehensive transitions firm with a dedicated team of experts guiding dental professionals through major career milestones.
               </p>
             </div>
+            <div className="mt-6 inline-flex flex-col sm:flex-row sm:items-center gap-3 rounded-xl border border-gray-100 bg-gray-50 px-4 py-3">
+              <img
+                src="https://res.cloudinary.com/dhqpqfw6w/image/upload/v1767551710/university-of-the-pacific-dr-njo_pkcbs4.webp"
+                alt="University of the Pacific, Arthur A. Dugoni School of Dentistry"
+                className="h-12 w-auto sm:h-14"
+                loading="lazy"
+              />
+              <div className="text-xs sm:text-sm text-gray-600">
+                <p className="font-semibold text-gray-900">Academic affiliation</p>
+                <p>University of the Pacific, Dugoni School of Dentistry</p>
+              </div>
+            </div>
           </div>
           <div className="animate-fade-in animate-delay-100 order-1 lg:order-2">
             <img 

@@ -197,6 +197,14 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-10">
+              <ScrollReveal direction="scale" delay={50} intensity="subtle">
+                <img
+                  src="https://res.cloudinary.com/dhqpqfw6w/image/upload/v1767551710/university-of-the-pacific-dr-njo_pkcbs4.webp"
+                  alt="University of the Pacific, Dr. Njo"
+                  className="mx-auto mb-5 w-32 sm:w-36 md:w-40 h-auto"
+                  loading="lazy"
+                />
+              </ScrollReveal>
               <ScrollReveal direction="up" delay={100} intensity="subtle">
                 <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4">
                   Trusted by Dental Professionals
