@@ -2,6 +2,7 @@ import { Section } from "@/components/ui/section";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { DrNjoGallerySlider } from "@/components/DrNjoGallerySlider";
 import { Phone, Mail } from "lucide-react";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
 import SEO from "@/components/layout/SEO";
@@ -86,6 +87,27 @@ const DrNjo = () => {
           </div>
         </div>
       </div>
+
+      {/* Photo Gallery */}
+      <Section className="py-12 sm:py-16 md:py-20">
+        <div className="max-w-6xl mx-auto">
+          <ScrollReveal direction="up" delay={0}>
+            <div className="text-center mb-8 sm:mb-10">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">
+                Dr. Njo Photo Gallery
+              </h2>
+              <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                A rotating view of Dr. Njo's events and professional moments.
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={100}>
+            <div className="max-w-5xl mx-auto">
+              <DrNjoGallerySlider />
+            </div>
+          </ScrollReveal>
+        </div>
+      </Section>
 
       {/* Contact Information */}
       <Section background="light" className="py-12 sm:py-16 md:py-20">
