@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import SEO from "@/components/layout/SEO";
 import { VideoDialog } from "@/components/ui/video-dialog";
 import { RecommendationCard } from "@/components/ui/recommendation-card";
+import { DrNjoGallerySlider } from "@/components/DrNjoGallerySlider";
 import { buildAbsoluteUrl } from "@/lib/siteMetadata";
 import { BUSINESS_ID } from "@/lib/structuredData";
 
@@ -102,15 +103,13 @@ const About = () => {
             </div>
           </div>
           <div className="animate-fade-in animate-delay-100 order-1 lg:order-2">
-            <figure className="rounded-2xl shadow-lg border border-gray-100 overflow-hidden bg-white">
-              <img 
-                src="https://res.cloudinary.com/dhqpqfw6w/image/upload/v1767551710/university-of-the-pacific-dr-njo_pkcbs4.webp" 
-                alt="Dr. Michael Njo with University of the Pacific colleagues" 
-                className="w-full h-auto"
-                loading="lazy"
+            <figure className="space-y-3">
+              <DrNjoGallerySlider
+                frameClassName="shadow-lg"
+                ariaLabel="Dr. Njo photo gallery"
               />
-              <figcaption className="px-4 py-3 text-sm text-gray-600 text-center">
-                Dr. Michael Njo with University of the Pacific colleagues at the Dugoni School of Dentistry.
+              <figcaption className="px-2 text-sm text-gray-600 text-center">
+                Moments from Dr. Njo's leadership, teaching, and community work.
               </figcaption>
             </figure>
           </div>

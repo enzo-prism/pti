@@ -9,6 +9,7 @@ import { StaggeredGrid } from "@/components/ui/staggered-grid";
 import { HeroContent } from "@/components/ui/hero-content";
 import { LatestUpdateCard } from "@/components/ui/latest-update-card";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
+import { DrNjoGallerySlider } from "@/components/DrNjoGallerySlider";
 import { blogPosts } from "@/data/blogPosts";
 import { BUSINESS_AGGREGATE_RATING } from "@/lib/siteMetadata";
 
@@ -199,14 +200,12 @@ const Home = () => {
             <div className="text-center mb-10">
               <ScrollReveal direction="scale" delay={50} intensity="subtle">
                 <figure className="mx-auto mb-8 max-w-5xl">
-                  <img
-                    src="https://res.cloudinary.com/dhqpqfw6w/image/upload/v1767551710/university-of-the-pacific-dr-njo_pkcbs4.webp"
-                    alt="Dr. Michael Njo with University of the Pacific colleagues"
-                    className="w-full h-auto rounded-2xl border border-gray-200 shadow-lg"
-                    loading="lazy"
+                  <DrNjoGallerySlider
+                    frameClassName="shadow-lg"
+                    ariaLabel="Dr. Njo community photo gallery"
                   />
                   <figcaption className="mt-3 text-xs sm:text-sm text-gray-500 text-center">
-                    Dr. Michael Njo with University of the Pacific colleagues.
+                    Highlights from Dr. Njo's work with colleagues and the dental community.
                   </figcaption>
                 </figure>
               </ScrollReveal>
