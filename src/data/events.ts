@@ -129,7 +129,7 @@ export const rawEvents: RawEvent[] = [
   {
     id: 6,
     title: "Mastering Your Dental Transition Into and Out of Practice",
-    date: "October 16, 2026",
+    date: "October 2, 2026",
     time: "8am - 3pm",
     location: "Sacramento, CA",
     description: {
