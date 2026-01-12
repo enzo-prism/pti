@@ -14,6 +14,7 @@ import {
   SITE_NAME,
   DEFAULT_OG_IMAGE,
   CANONICAL_SITE_URL,
+  DEFAULT_LOCALE,
   buildAbsoluteUrl,
 } from "@/lib/siteMetadata";
 
@@ -29,6 +30,15 @@ interface SEOProps {
   breadcrumbs?: BreadcrumbNode[];
   structuredData?: JsonLdShape | JsonLdShape[] | null;
   includeLocalBusinessSchema?: boolean;
+  ogType?: "website" | "article";
+  author?: string;
+  article?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    author?: string;
+    section?: string;
+    tags?: string[];
+  };
 }
 
 const isAbsoluteUrl = (value: string) => /^https?:\/\//i.test(value);
@@ -194,6 +204,9 @@ const SEO = ({
   noindex,
   robots,
   includeLocalBusinessSchema = false,
+  ogType,
+  author,
+  article,
 }: SEOProps) => {
   const fullTitle = buildTitleTag(title);
   const canonicalSource = canonicalUrl ?? canonicalPath ?? path;
@@ -245,6 +258,8 @@ const SEO = ({
         }),
       }
     : null;
+  const resolvedOgType = ogType ?? (article ? "article" : "website");
+  const articleAuthor = article?.author ?? author;
 
   return (
     <Helmet defer={false}>
@@ -252,14 +267,33 @@ const SEO = ({
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
       {robotsContent && <meta name="robots" content={robotsContent} />}
+      {author && <meta name="author" content={author} />}
       
       {/* OpenGraph Meta Tags */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImageUrl} />
       <meta property="og:url" content={url} />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={resolvedOgType} />
       <meta property="og:site_name" content={SITE_NAME} />
+      <meta property="og:locale" content={DEFAULT_LOCALE} />
+      {resolvedOgType === "article" && article?.publishedTime && (
+        <meta property="article:published_time" content={article.publishedTime} />
+      )}
+      {resolvedOgType === "article" && article?.modifiedTime && (
+        <meta property="article:modified_time" content={article.modifiedTime} />
+      )}
+      {resolvedOgType === "article" && articleAuthor && (
+        <meta property="article:author" content={articleAuthor} />
+      )}
+      {resolvedOgType === "article" && article?.section && (
+        <meta property="article:section" content={article.section} />
+      )}
+      {resolvedOgType === "article" && article?.tags?.length
+        ? article.tags.map((tag) => (
+            <meta key={`article-tag-${tag}`} property="article:tag" content={tag} />
+          ))
+        : null}
       
       {/* Twitter Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />

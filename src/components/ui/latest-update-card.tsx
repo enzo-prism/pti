@@ -25,6 +25,8 @@ export function LatestUpdateCard({ post, className }: LatestUpdateCardProps) {
             src={featuredImage}
             alt={post.featuredImageAlt || post.title}
             className="w-full h-64 md:h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute top-4 left-4">
             <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">

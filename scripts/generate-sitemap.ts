@@ -21,11 +21,25 @@ async function generateSitemap() {
   console.log(`🌐 Generating sitemap for: ${BASE_URL}`);
 
   const blogPosts = await getBlogPosts();
+  const buildInfoPath = path.resolve("public", "build-info.json");
+  let buildIso = new Date().toISOString();
+  if (fs.existsSync(buildInfoPath)) {
+    try {
+      const raw = fs.readFileSync(buildInfoPath, "utf8");
+      const parsed = JSON.parse(raw) as { buildIso?: string };
+      if (parsed.buildIso) {
+        buildIso = parsed.buildIso;
+      }
+    } catch (error) {
+      console.warn("⚠️  Failed to read build-info.json for lastmod:", error);
+    }
+  }
 
   const staticRoutes = STATIC_ROUTES.map((route) => ({
     url: route.path,
     changefreq: route.changefreq,
     priority: route.priority,
+    lastmod: buildIso,
   })) as const;
 
   // Blog post routes

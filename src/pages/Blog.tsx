@@ -7,8 +7,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Calendar, Clock, ArrowRight, Search, X } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import SEO from "@/components/layout/SEO";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPosts, categories } from "@/data/blogPosts";
 import { formatLocalDate } from "@/lib/dateUtils";
+import { cn } from "@/lib/utils";
 
 const Blog = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -52,6 +53,7 @@ const Blog = () => {
   
   const featuredPost = filteredPosts[0]; // First filtered post as featured
   const regularPosts = filteredPosts.slice(1); // Rest of the filtered posts
+  const topicLinks = categories.filter((category) => category !== "All");
   
   const handleClearSearch = () => {
     updateSearchQuery('');
@@ -161,6 +163,32 @@ const Blog = () => {
                   {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'} found
                 </p>
               )}
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm">
+                <Link
+                  to="/blog"
+                  className={cn(
+                    "rounded-full border border-white/30 px-3 py-1.5 text-blue-100 transition hover:border-white/60 hover:text-white",
+                    !searchQuery && "bg-white/15 text-white"
+                  )}
+                >
+                  All topics
+                </Link>
+                {topicLinks.map((category) => {
+                  const isActive = searchQuery.toLowerCase() === category.toLowerCase();
+                  return (
+                    <Link
+                      key={category}
+                      to={`/blog?search=${encodeURIComponent(category)}`}
+                      className={cn(
+                        "rounded-full border border-white/30 px-3 py-1.5 text-blue-100 transition hover:border-white/60 hover:text-white",
+                        isActive && "bg-white/15 text-white"
+                      )}
+                    >
+                      {category}
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -208,6 +236,8 @@ const Blog = () => {
                       src={featuredPost.featuredImage} 
                       alt={featuredPost.featuredImageAlt ?? featuredPost.title}
                       className="w-full h-full object-cover"
+                      decoding="async"
+                      loading="eager"
                     />
                   ) : (
                     <div className={`w-full h-full ${featuredPost.gradient}`} />
@@ -245,6 +275,8 @@ const Blog = () => {
                         src="/lovable-uploads/0fbfd01f-6249-49ce-baea-1b42e6bd44f4.png" 
                         alt="Michael Njo, DDS" 
                         className="w-10 h-10 rounded-full object-cover mr-3"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <div>
                         <p className="font-medium text-gray-900">{featuredPost.author}</p>
@@ -283,6 +315,8 @@ const Blog = () => {
                       src={post.featuredImage} 
                       alt={post.featuredImageAlt ?? post.title}
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                   ) : (
                     <div className={`w-full h-full ${post.gradient}`} />

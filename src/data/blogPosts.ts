@@ -1122,7 +1122,10 @@ We are available to answer your questions. Please feel free to reach out to us!`
   }
 ];
 
-export const categories = ["All", "Personal Reflections", "Practice Management", "Practice Transitions"];
+export const categories = [
+  "All",
+  ...Array.from(new Set(blogPosts.map((post) => post.category))).sort(),
+];
 
 export const getBlogPostBySlug = (slug: string): BlogPost | undefined => {
   return blogPosts.find(post => post.slug === slug);
@@ -1131,6 +1134,7 @@ export const getBlogPostBySlug = (slug: string): BlogPost | undefined => {
 export const getRelatedPosts = (currentPostId: number, category: string, limit: number = 3): BlogPost[] => {
   return blogPosts
     .filter(post => post.id !== currentPostId && (post.category === category || category === "All"))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, limit);
 };
 

@@ -7,8 +7,15 @@ const TYPEFORM_INITIAL_HEIGHT = 1000;
 export const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const isPrerender =
+    typeof navigator !== "undefined" && navigator.userAgent === "ReactSnap";
 
   useEffect(() => {
+    if (isPrerender) {
+      setIsLoading(false);
+      return;
+    }
+
     // Load Typeform embed script
     const script = document.createElement('script');
     script.src = "//embed.typeform.com/next/embed.js";
@@ -38,7 +45,37 @@ export const ContactForm = () => {
         console.log('Script already removed');
       }
     };
-  }, []);
+  }, [isPrerender]);
+
+  if (isPrerender) {
+    return (
+      <div>
+        <h2 className="text-2xl font-semibold mb-2">Reach Out to Start the Conversation</h2>
+        <div className="mb-6 text-gray-600">
+          <p className="mb-2">Call us: (833) 784 – 1121</p>
+          <p>Email us: Complete the form below</p>
+        </div>
+        <div
+          className="flex items-center justify-center border rounded-lg bg-muted"
+          style={{ minHeight: `${TYPEFORM_INITIAL_HEIGHT}px` }}
+        >
+          <div className="text-center">
+            <p className="text-muted-foreground mb-4">
+              The contact form loads on the live site. Use the link below if it does not appear.
+            </p>
+            <a
+              href="https://fxuqp40sseh.typeform.com/to/cYOs5Ma2"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              Open form in new window
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (hasError) {
     return (

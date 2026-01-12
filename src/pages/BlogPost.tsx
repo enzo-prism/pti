@@ -13,6 +13,7 @@ import { SeriesNavigation } from "@/components/ui/series-navigation";
 import { marked } from "marked";
 import { trackBlogPostView } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
+import { getAuthorProfile } from "@/data/authors";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -45,12 +46,22 @@ const BlogPost = () => {
   if (!slug || !post) {
     return <Navigate to="/blog" replace />;
   }
-  const structuredData = buildBlogPostingSchema(post);
+  const authorProfile = getAuthorProfile(post.author);
+  const authorName = authorProfile?.name ?? post.author;
+  const authorRole = authorProfile?.role;
+  const authorBio = authorProfile?.bio ??
+    (authorProfile?.type === "Organization"
+      ? `${authorName} shares guidance for dentists navigating valuations, transitions, and practice ownership decisions.`
+      : `${authorName} is a dental practice transition expert with extensive experience helping dentists navigate career changes, practice sales, and business strategies.`);
+  const authorImage = authorProfile?.image;
+  const authorUrl = authorProfile?.url;
+  const publishedIso = new Date(`${post.date}T00:00:00Z`).toISOString();
+  const structuredData = buildBlogPostingSchema(post, { authorProfile });
 
   const relatedPosts = getRelatedPosts(post.id, post.category, 2);
   const seriesPosts = post.series ? getSeriesPosts(post.series.id) : [];
   const metaItems = [
-    { icon: User, label: post.author, helper: "Author" },
+    { icon: User, label: authorName, helper: "Author" },
     { icon: Calendar, label: formatLocalDate(post.date), helper: "Published" },
     { icon: Clock, label: post.readTime, helper: "Read time" },
   ];
@@ -118,9 +129,9 @@ const BlogPost = () => {
       <p className="text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-white/70 sm:text-xs">Continue learning</p>
       <h3 className="mt-3 text-lg font-semibold leading-tight text-white sm:text-xl">Bring PTI to your journey</h3>
       <p className="mt-2 text-sm leading-relaxed text-white/85 md:text-base">
-        Join our upcoming workshops or share this article with a colleague who is planning their next transition.
+        Join our upcoming workshops, explore transition services, or share this article with a colleague planning their next move.
       </p>
-      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between md:flex-col md:items-stretch">
+      <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-1">
         <Button
           asChild
           variant="secondary"
@@ -130,9 +141,18 @@ const BlogPost = () => {
             Browse PTI Events <ArrowRight className="h-4 w-4" />
           </Link>
         </Button>
+        <Button
+          asChild
+          variant="secondary"
+          className="w-full justify-center rounded-full bg-white text-primary hover:bg-slate-100 sm:flex-1"
+        >
+          <Link to="/services" className="flex items-center justify-center gap-2 text-sm font-semibold md:text-base">
+            Explore PTI Services <ArrowRight className="h-4 w-4" />
+          </Link>
+        </Button>
         <a
           href={emailShareHref}
-          className="flex items-center justify-center gap-2 rounded-full border border-white/40 px-4 py-2.5 text-sm font-medium text-white/90 transition hover:bg-white/10 sm:flex-1"
+          className="flex items-center justify-center gap-2 rounded-full border border-white/40 px-4 py-2.5 text-sm font-medium text-white/90 transition hover:bg-white/10 sm:col-span-2 md:col-span-1"
         >
           <Share2 className="h-4 w-4" /> Share via Email
         </a>
@@ -192,6 +212,16 @@ const BlogPost = () => {
         title={post.title}
         description={post.excerpt}
         path={`/blog/${post.slug}`}
+        image={post.featuredImage}
+        author={authorName}
+        ogType="article"
+        article={{
+          publishedTime: publishedIso,
+          modifiedTime: publishedIso,
+          author: authorName,
+          section: post.category,
+          tags: [post.category],
+        }}
         breadcrumbs={[
           HOME_CRUMB,
           { name: "Blog", path: "/blog" },
@@ -289,6 +319,8 @@ const BlogPost = () => {
                     "w-full h-auto max-h-[70vh] object-contain",
                     post.featuredImageFit === "cover" && "object-cover h-full w-full"
                   )}
+                  decoding="async"
+                  loading="eager"
                 />
               ) : (
                 <div className={`h-full w-full ${post.gradient}`} />
@@ -323,8 +355,44 @@ const BlogPost = () => {
 
               <div className="mt-14 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
                 <h3 className="text-lg font-semibold text-slate-900">About the Author</h3>
-                <p className="mt-2 text-sm sm:text-base leading-relaxed text-slate-600">
-                  <strong className="font-semibold text-slate-900">{post.author}</strong> is a dental practice transition expert with extensive experience helping dentists navigate career changes, practice sales, and business strategies.
+                <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center">
+                  {authorImage && (
+                    <div className="h-16 w-16 overflow-hidden rounded-full ring-2 ring-white shadow-sm">
+                      <img
+                        src={authorImage}
+                        alt={authorName}
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  )}
+                  <div className="space-y-1">
+                    {authorUrl ? (
+                      authorUrl.startsWith("/") ? (
+                        <Link to={authorUrl} className="text-base font-semibold text-slate-900 hover:text-primary">
+                          {authorName}
+                        </Link>
+                      ) : (
+                        <a
+                          href={authorUrl}
+                          className="text-base font-semibold text-slate-900 hover:text-primary"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {authorName}
+                        </a>
+                      )
+                    ) : (
+                      <p className="text-base font-semibold text-slate-900">{authorName}</p>
+                    )}
+                    {authorRole && (
+                      <p className="text-xs uppercase tracking-[0.2em] text-slate-500">{authorRole}</p>
+                    )}
+                  </div>
+                </div>
+                <p className="mt-3 text-sm sm:text-base leading-relaxed text-slate-600">
+                  {authorBio}
                 </p>
                 <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-slate-500">
                   <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 shadow-sm ring-1 ring-slate-200">
@@ -377,6 +445,8 @@ const BlogPost = () => {
                             "h-full w-full object-cover transition duration-500 group-hover:scale-105",
                             relatedPost.featuredImageFit === "contain" && "h-auto w-auto max-h-full max-w-full object-contain group-hover:scale-100"
                           )}
+                          loading="lazy"
+                          decoding="async"
                         />
                       ) : (
                         <div className={`h-full w-full ${relatedPost.gradient}`} />

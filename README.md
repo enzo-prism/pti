@@ -58,6 +58,7 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 - Google Analytics 4 helpers live in `src/lib/analytics.ts` and expect the production GA ID (`G-XCBKH87HG5`). Analytics are suppressed during development builds.
 - Sitemap: run `tsx scripts/generate-sitemap.ts` to regenerate `public/sitemap.xml` (runs automatically as prebuild step).
 - Routes are derived from `scripts/route-config.ts` and `src/data/blogPosts.ts`.
+- Social profiles (schema `sameAs`): set `VITE_SOCIAL_PROFILES` to a comma-separated list of profile URLs.
 
 ## Deployment
 The build produces a single-page application (SPA) that works identically in all environments.
@@ -65,6 +66,7 @@ The build produces a single-page application (SPA) that works identically in all
 - **Build command**: `npm run build`
 - **Output directory**: `dist/`
 - **URL handling**: Legacy redirects and SPA fallback are configured in `public/_redirects` (Cloudflare Pages format)
+- **Pre-rendered output**: `npm run build:ssg` runs `react-snap` to snapshot routes for SEO.
 
 The same build works for both Lovable native deployments and Cloudflare Pages.
 

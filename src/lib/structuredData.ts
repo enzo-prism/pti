@@ -1,4 +1,5 @@
 import type { BlogPost } from "@/data/blogPosts";
+import type { AuthorProfile } from "@/data/authors";
 import {
   BUSINESS_DESCRIPTION,
   BUSINESS_OPENING_HOURS_SPECIFICATION,
@@ -159,11 +160,25 @@ export const buildFAQSchema = (items: FAQItem[]): JsonLdShape | null => {
 
 export const buildBlogPostingSchema = (
   post: BlogPost,
-  options?: { category?: string }
+  options?: { category?: string; authorProfile?: AuthorProfile }
 ): JsonLdShape => {
   const postUrl = buildAbsoluteUrl(`/blog/${post.slug}`);
-  const publishedDate = new Date(post.date).toISOString();
+  const publishedDate = new Date(`${post.date}T00:00:00Z`).toISOString();
   const imageSource = resolveAbsoluteUrl(post.featuredImage ?? DEFAULT_OG_IMAGE);
+  const authorProfile = options?.authorProfile;
+  const authorSchema = authorProfile
+    ? {
+        "@type": authorProfile.type,
+        name: authorProfile.name,
+        ...(authorProfile.url
+          ? { url: resolveAbsoluteUrl(authorProfile.url) }
+          : {}),
+        ...(authorProfile.sameAs?.length ? { sameAs: authorProfile.sameAs } : {}),
+      }
+    : {
+        "@type": "Person",
+        name: post.author,
+      };
 
   return {
     "@context": "https://schema.org",
@@ -174,10 +189,7 @@ export const buildBlogPostingSchema = (
     articleSection: options?.category ?? post.category,
     datePublished: publishedDate,
     dateModified: publishedDate,
-    author: {
-      "@type": "Person",
-      name: post.author,
-    },
+    author: authorSchema,
     publisher: {
       "@id": BUSINESS_ID,
     },

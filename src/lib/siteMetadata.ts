@@ -69,7 +69,12 @@ export const BUSINESS_OPENING_HOURS_SPECIFICATION = [
   },
 ] as const;
 
-export const SOCIAL_PROFILES: string[] = [];
+const SOCIAL_PROFILE_SOURCE =
+  (import.meta.env.VITE_SOCIAL_PROFILES as string | undefined) ?? "";
+export const SOCIAL_PROFILES: string[] = SOCIAL_PROFILE_SOURCE
+  .split(",")
+  .map((value) => value.trim())
+  .filter(Boolean);
 export const SITE_SEARCH_PATH = "/blog";
 
 export const getSiteUrl = (): string => {
