@@ -20,7 +20,7 @@ const normalizeSiteUrl = (value: string): string => {
 };
 
 export const CANONICAL_SITE_URL = normalizeSiteUrl(
-  (import.meta.env.VITE_CANONICAL_SITE_URL as string | undefined) ??
+  (process.env.NEXT_PUBLIC_CANONICAL_SITE_URL as string | undefined) ??
     FALLBACK_SITE_URL
 );
 
@@ -70,7 +70,7 @@ export const BUSINESS_OPENING_HOURS_SPECIFICATION = [
 ] as const;
 
 const SOCIAL_PROFILE_SOURCE =
-  (import.meta.env.VITE_SOCIAL_PROFILES as string | undefined) ?? "";
+  (process.env.NEXT_PUBLIC_SOCIAL_PROFILES as string | undefined) ?? "";
 export const SOCIAL_PROFILES: string[] = SOCIAL_PROFILE_SOURCE
   .split(",")
   .map((value) => value.trim())
@@ -78,7 +78,6 @@ export const SOCIAL_PROFILES: string[] = SOCIAL_PROFILE_SOURCE
 export const SITE_SEARCH_PATH = "/blog";
 
 export const getSiteUrl = (): string => {
-  if (import.meta.env.PROD) return CANONICAL_SITE_URL;
   if (typeof window !== "undefined" && window.location.origin) {
     return window.location.origin;
   }

@@ -4,9 +4,8 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 import { Button } from "./button";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowRight, MapPin, DollarSign, Grid } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 interface MetadataItem {
   label: string;
@@ -37,8 +36,6 @@ export function PracticeCard({
   className,
   metadata,
 }: PracticeCardProps) {
-  const isMobile = useIsMobile();
-  
   // Status badge configuration
   const statusConfig: Record<string, { color: string; label: string }> = {
     available: {
@@ -147,7 +144,7 @@ export function PracticeCard({
 
       <CardFooter className="pt-0 pb-4 px-4">
         <Button asChild variant="outline" size="sm" className="w-full hover:bg-primary hover:text-white transition-colors border-primary text-primary text-sm py-2 rounded-full">
-          <Link to={url} className="w-full flex items-center justify-center">
+          <Link href={url} className="w-full flex items-center justify-center">
             {status === "available" ? "Inquire Now" : "View Details"}
             <ArrowRight className="ml-2 h-3.5 w-3.5" />
           </Link>

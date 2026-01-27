@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -51,7 +51,7 @@ export function LatestUpdateCard({ post, className }: LatestUpdateCardProps) {
           </p>
 
           <Button asChild variant="outline" className="w-fit">
-            <Link to={targetHref} className="flex items-center">
+            <Link href={targetHref} className="flex items-center">
               Read Full Story <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>

@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 
 const GA_ID = "G-XCBKH87HG5";
@@ -11,7 +13,11 @@ const CANONICAL_HOST = "practicetransitionsinstitute.com";
 export function useAnalytics() {
   useEffect(() => {
     // Only load analytics in production on canonical host
-    const isProduction = import.meta.env.PROD;
+    const vercelEnv = process.env.NEXT_PUBLIC_VERCEL_ENV;
+    const isProduction =
+      typeof vercelEnv === "string"
+        ? vercelEnv === "production"
+        : process.env.NODE_ENV === "production";
     const isCanonicalHost = 
       typeof window !== "undefined" && 
       window.location.hostname === CANONICAL_HOST;

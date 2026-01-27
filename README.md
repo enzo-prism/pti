@@ -1,16 +1,15 @@
 # Practice Transitions Institute Website
 
-PTI's marketing site is a Vite + React application that showcases services, success stories, events, and long-form resources for dentists preparing for major career transitions. The project is typed end-to-end with TypeScript, styled with Tailwind CSS and shadcn/ui primitives, and routed with React Router.
+PTI's marketing site is a Next.js App Router application that showcases services, success stories, events, and long-form resources for dentists preparing for major career transitions. The project is typed end-to-end with TypeScript, styled with Tailwind CSS and shadcn/ui primitives, and rendered server-first for SEO.
 
 ## Tech Stack
-- Vite build system with SWC-powered React plugin
-- React 18 + React Router 6 for views and routing
+- Next.js 14 App Router with React 18
 - TypeScript with strict configuration
-- Tailwind CSS design system (tokens in `tailwind.config.ts`) and custom globals in `src/index.css`
+- Tailwind CSS design system (tokens in `tailwind.config.ts`) and custom globals in `src/app/globals.css`
 - shadcn/ui component primitives backed by Radix UI
 
 ## Getting Started
-1. Install Node.js 18+ (use `nvm` or a similar version manager).
+1. Install Node.js 22.x (use `nvm` or a similar version manager).
 2. Install dependencies: `npm install`
 3. Launch the dev server: `npm run dev`
 
@@ -18,29 +17,28 @@ Common scripts:
 
 | Command | Description |
 | --- | --- |
-| `npm run dev` | Start Vite in development mode with hot module replacement |
-| `npm run build` | Create production bundle in `dist/` |
-| `npm run preview` | Serve the last build locally |
+| `npm run dev` | Start Next.js in development mode |
+| `npm run build` | Create production build in `.next/` |
+| `npm run start` | Serve the production build locally |
 | `npm run lint` | Run ESLint using the repo's TypeScript-aware config |
 
 ## Project Structure
 
 ```
 src/
+  app/              # Next.js routes, layouts, metadata, sitemap/robots
   components/       # Reusable UI (shadcn wrappers, layout building blocks)
   data/             # Structured content for blogs, events, book reviews, updates
   hooks/            # Custom hooks (e.g., responsive helpers)
-  lib/              # Utilities, constants, sitemap helpers, analytics
-  pages/            # Route-level views grouped by feature area
-  index.css         # Global Tailwind layers and custom styles
-scripts/            # Automation for sitemap generation
+  lib/              # Utilities, constants, SEO helpers, analytics
+  views/            # Route-level view components consumed by app routes
 public/             # Static assets served as-is
 ```
 
-Routes are registered in `src/App.tsx` and wrapped by `src/components/layout/Layout.tsx`, which also mounts the `<SEO />` metadata component.
+Routes live in `src/app` and are wrapped by `src/app/(site)/layout.tsx` or `src/app/(minimal)/layout.tsx`. SEO metadata and JSON-LD are set per route using `src/lib/seo.ts` and `src/components/StructuredData.tsx`.
 
 ## Managing Site Content
-- **Testimonials**: Maintained inline in `src/pages/Testimonials.tsx`. Entries include `quote`, `author`, `role`, `rating`, and `category` (`seller`, `buyer`, `workshop`, `valuation`, or `book`). Filters on the page rely on `category`, so keep values consistent.
+- **Testimonials**: Maintained inline in `src/views/Testimonials.tsx`. Entries include `quote`, `author`, `role`, `rating`, and `category` (`seller`, `buyer`, `workshop`, `valuation`, or `book`). Filters on the page rely on `category`, so keep values consistent.
 - **Amazon book reviews**: Stored in `src/data/amazonReviews.ts` and rendered via `BookReviewCard` when the "Book Reviews" filter is active.
 - **Events**: Update `src/data/events.ts`; the events page derives grouped views and "past" logic from this dataset.
 - **Blog posts**: Authored as Markdown-in-strings inside `src/data/blogPosts.ts`. Each post includes metadata for slugs, gradients, and series links. The homepage displays the most recent blog post automatically.
@@ -51,24 +49,21 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 ## UI Conventions
 - Tailwind utility classes are preferred; extend design tokens in `tailwind.config.ts` when adding new colors or spacing.
 - shadcn/ui components are exported from `src/components/ui`; co-locate any custom variants or wrappers alongside them.
-- Animations rely on utility classes defined under `@layer components` in `src/index.css`.
+- Animations rely on utility classes defined under `@layer components` in `src/app/globals.css`.
 
 ## SEO and Analytics
-- `<SEO />` centralizes per-page meta tags. Ensure new pages provide `title`, `description`, and optional `image` props.
+- Per-page metadata is generated with `buildPageMetadata` in `src/lib/seo.ts`.
+- JSON-LD is rendered with `StructuredData` from `src/components/StructuredData.tsx`.
 - Google Analytics 4 helpers live in `src/lib/analytics.ts` and expect the production GA ID (`G-XCBKH87HG5`). Analytics are suppressed during development builds.
-- Sitemap: run `tsx scripts/generate-sitemap.ts` to regenerate `public/sitemap.xml` (runs automatically as prebuild step).
-- Routes are derived from `scripts/route-config.ts` and `src/data/blogPosts.ts`.
-- Social profiles (schema `sameAs`): set `VITE_SOCIAL_PROFILES` to a comma-separated list of profile URLs.
+- Sitemap and robots are generated at runtime by `src/app/sitemap.ts` and `src/app/robots.ts`.
+- Social profiles (schema `sameAs`): set `NEXT_PUBLIC_SOCIAL_PROFILES` to a comma-separated list of profile URLs.
 
 ## Deployment
-The build produces a single-page application (SPA) that works identically in all environments.
+The site deploys via Vercel using Next.js defaults.
 
 - **Build command**: `npm run build`
-- **Output directory**: `dist/`
-- **URL handling**: Legacy redirects and SPA fallback are configured in `public/_redirects` (Cloudflare Pages format)
-- **Pre-rendered output**: `npm run build:ssg` runs `react-snap` to snapshot routes for SEO.
-
-The same build works for both Lovable native deployments and Cloudflare Pages.
+- **Output directory**: `.next/`
+- **Redirects**: Vercel redirects are defined in `vercel.json`; portable legacy redirects remain in `public/_redirects`.
 
 ## Coding Standards
 - TypeScript is required for production code, with 2-space indentation enforced by ESLint and the repo configuration.

@@ -1,5 +1,7 @@
-import { ReactNode } from 'react';
-import type { CSSProperties } from 'react';
+"use client";
+
+import { ReactNode } from "react";
+import type { CSSProperties } from "react";
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 import { cn } from '@/lib/utils';
 

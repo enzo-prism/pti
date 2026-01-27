@@ -6,6 +6,3 @@
 /client-testimonials /testimonials 301
 /contact-us /contact 301
 /updates/* /blog/:splat 301
-
-# SPA fallback - must be last
-/* /index.html 200

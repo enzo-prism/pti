@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
@@ -71,7 +71,7 @@ export function Cta({
           size="lg" 
           className="font-medium"
         >
-          <Link to={buttonUrl}>{buttonText}</Link>
+          <Link href={buttonUrl}>{buttonText}</Link>
         </Button>
       </div>
     </div>

@@ -1,6 +1,8 @@
 
+"use client";
+
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowRight, Check, Search, Filter, Map, MapPin, DollarSign, Grid } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PracticeCard } from "@/components/ui/practice-card";
@@ -8,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 // Sample data - in a real app, this would come from an API or CMS
 const availablePractices = [
@@ -103,7 +104,6 @@ export function PracticeTransitions({
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredAvailable, setFilteredAvailable] = useState(availablePractices);
   const [filteredSold, setFilteredSold] = useState(soldPractices);
-  const isMobile = useIsMobile();
 
   useEffect(() => {
     // Filter practices based on search query
@@ -260,7 +260,7 @@ export function PracticeTransitions({
         <div className="mt-6 text-center">
           <div className="space-y-3">
             <Button asChild size="sm" className="w-full sm:w-auto rounded-full text-sm">
-              <Link to="/transitions" className="flex items-center justify-center">
+              <Link href="/transitions" className="flex items-center justify-center">
                 View All {activeTab === "available" ? "Available Practices" : "Completed Transitions"}
                 <ArrowRight className="ml-2 h-3.5 w-3.5" />
               </Link>
@@ -268,7 +268,7 @@ export function PracticeTransitions({
             
             {activeTab === "available" && (
               <Button asChild variant="outline" size="sm" className="w-full sm:w-auto rounded-full text-sm">
-                <Link to="/contact" className="flex items-center justify-center">
+                <Link href="/contact" className="flex items-center justify-center">
                   <Search className="mr-2 h-3.5 w-3.5" />
                   Inquire About a Practice
                 </Link>
@@ -277,7 +277,7 @@ export function PracticeTransitions({
             
             {activeTab === "sold" && (
               <Button asChild variant="outline" size="sm" className="w-full sm:w-auto rounded-full text-sm">
-                <Link to="/contact" className="flex items-center justify-center">
+                <Link href="/contact" className="flex items-center justify-center">
                   <Check className="mr-2 h-3.5 w-3.5" />
                   Schedule Your Transition
                 </Link>

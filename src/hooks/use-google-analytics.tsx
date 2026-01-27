@@ -1,10 +1,13 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { initializeAnalytics, trackPageView } from '@/lib/analytics';
+"use client";
+
+import { useEffect } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { initializeAnalytics, trackPageView } from "@/lib/analytics";
 
 // Custom hook for Google Analytics integration
 export const useGoogleAnalytics = () => {
-  const location = useLocation();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   // Initialize analytics on first load
   useEffect(() => {
@@ -13,7 +16,8 @@ export const useGoogleAnalytics = () => {
 
   // Track page views on route changes
   useEffect(() => {
-    const path = location.pathname + location.search;
+    const query = searchParams?.toString();
+    const path = `${pathname}${query ? `?${query}` : ""}`;
     
     // Get page title from document or generate from path
     const pageTitle = document.title || getPageTitleFromPath(path);
@@ -24,7 +28,7 @@ export const useGoogleAnalytics = () => {
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [location]);
+  }, [pathname, searchParams]);
 };
 
 // Helper function to generate page title from path

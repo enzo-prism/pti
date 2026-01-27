@@ -1,13 +1,11 @@
 
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { PHONE_NUMBER } from "@/lib/constants";
 import { BUILD_ID, BUILD_DATE } from "@/lib/buildInfo";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const isMobile = useIsMobile();
   
   return (
     <footer className="bg-gray-50 pt-12 pb-6 border-t">
@@ -15,7 +13,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           {/* Logo and About */}
           <div>
-            <Link to="/" className="inline-block mb-4">
+            <Link href="/" className="inline-block mb-4">
               <div className="h-12 w-auto bg-white rounded-lg overflow-hidden">
                 <img 
                   src="/lovable-uploads/18b2244b-dbb5-4dd6-a1ca-c6a28fed53c6.png"
@@ -35,19 +33,19 @@ const Footer = () => {
             <h4 className="text-base font-semibold mb-3 text-gray-800">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/about" className="text-gray-600 text-sm hover:text-primary transition-colors">About Us</Link>
+                <Link href="/about" className="text-gray-600 text-sm hover:text-primary transition-colors">About Us</Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-600 text-sm hover:text-primary transition-colors">Services</Link>
+                <Link href="/services" className="text-gray-600 text-sm hover:text-primary transition-colors">Services</Link>
               </li>
               <li>
-                <Link to="/testimonials" className="text-gray-600 text-sm hover:text-primary transition-colors">Testimonials</Link>
+                <Link href="/testimonials" className="text-gray-600 text-sm hover:text-primary transition-colors">Testimonials</Link>
               </li>
               <li>
-                <Link to="/blog" className="text-gray-600 text-sm hover:text-primary transition-colors">Blog</Link>
+                <Link href="/blog" className="text-gray-600 text-sm hover:text-primary transition-colors">Blog</Link>
               </li>
               <li>
-                <Link to="/faq" className="text-gray-600 text-sm hover:text-primary transition-colors">FAQ</Link>
+                <Link href="/faq" className="text-gray-600 text-sm hover:text-primary transition-colors">FAQ</Link>
               </li>
             </ul>
           </div>
@@ -57,19 +55,19 @@ const Footer = () => {
             <h4 className="text-base font-semibold mb-3 text-gray-800">Our Services</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/services" className="text-gray-600 text-sm hover:text-primary transition-colors">Services at a Glance</Link>
+                <Link href="/services" className="text-gray-600 text-sm hover:text-primary transition-colors">Services at a Glance</Link>
               </li>
               <li>
-                <Link to="/services/value" className="text-gray-600 text-sm hover:text-primary transition-colors">Opinion of Value</Link>
+                <Link href="/services/value" className="text-gray-600 text-sm hover:text-primary transition-colors">Opinion of Value</Link>
               </li>
               <li>
-                <Link to="/services/selling" className="text-gray-600 text-sm hover:text-primary transition-colors">Selling a Practice</Link>
+                <Link href="/services/selling" className="text-gray-600 text-sm hover:text-primary transition-colors">Selling a Practice</Link>
               </li>
               <li>
-                <Link to="/services/associateships" className="text-gray-600 text-sm hover:text-primary transition-colors">Associateships/Buying In</Link>
+                <Link href="/services/associateships" className="text-gray-600 text-sm hover:text-primary transition-colors">Associateships/Buying In</Link>
               </li>
               <li>
-                <Link to="/services/partnerships" className="text-gray-600 text-sm hover:text-primary transition-colors">Partnerships</Link>
+                <Link href="/services/partnerships" className="text-gray-600 text-sm hover:text-primary transition-colors">Partnerships</Link>
               </li>
             </ul>
           </div>
@@ -105,10 +103,10 @@ const Footer = () => {
             &copy; {currentYear} Practice Transitions Institute. All rights reserved.
           </p>
           <div className="flex items-center space-x-4">
-            <Link to="/privacy-policy" className="text-gray-500 hover:text-primary text-xs transition-colors">
+            <Link href="/privacy-policy" className="text-gray-500 hover:text-primary text-xs transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms-of-service" className="text-gray-500 hover:text-primary text-xs transition-colors">
+            <Link href="/terms-of-service" className="text-gray-500 hover:text-primary text-xs transition-colors">
               Terms of Service
             </Link>
             <span 

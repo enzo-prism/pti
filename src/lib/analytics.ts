@@ -15,7 +15,11 @@ export interface AnalyticsEvent {
 }
 
 // Check if we're in production and analytics should be enabled
-const isProduction = import.meta.env.PROD;
+const vercelEnv = process.env.NEXT_PUBLIC_VERCEL_ENV;
+const isProduction =
+  typeof vercelEnv === "string"
+    ? vercelEnv === "production"
+    : process.env.NODE_ENV === "production";
 const GA_MEASUREMENT_ID = 'G-XCBKH87HG5';
 
 // Initialize Google Analytics

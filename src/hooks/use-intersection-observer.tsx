@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 
 interface UseIntersectionObserverOptions {
   threshold?: number | number[];

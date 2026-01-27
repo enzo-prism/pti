@@ -1,0 +1,20 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        { "type": "host", "value": "www.practicetransitionsinstitute.com" }
+      ],
+      "destination": "https://practicetransitionsinstitute.com/:path*",
+      "permanent": true
+    },
+    { "source": "/dr-njo", "destination": "/drnjo", "permanent": true },
+    { "source": "/meet-our-team", "destination": "/about", "permanent": true },
+    { "source": "/speaking-engagements", "destination": "/events", "permanent": true },
+    { "source": "/podcasts", "destination": "/blog", "permanent": true },
+    { "source": "/client-testimonials", "destination": "/testimonials", "permanent": true },
+    { "source": "/contact-us", "destination": "/contact", "permanent": true },
+    { "source": "/updates/:splat", "destination": "/blog/:splat", "permanent": true }
+  ]
+}

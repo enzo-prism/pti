@@ -1,3 +1,5 @@
+"use client";
+
 import { Calendar, Clock, MapPin, Phone, Mail, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";

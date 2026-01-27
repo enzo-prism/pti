@@ -1145,7 +1145,7 @@ export const getSeriesPosts = (seriesId: string): BlogPost[] => {
 };
 
 // Run link validation in development
-if (typeof window !== 'undefined' && import.meta.env.DEV) {
+if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
   import('../lib/linkValidation')
     .then(({ validateInternalBlogLinks }) => {
       validateInternalBlogLinks();

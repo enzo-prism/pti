@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ReactNode, CSSProperties } from "react";
@@ -23,7 +23,7 @@ export function ServiceCard({
 }: ServiceCardProps) {
   return (
     <Link
-      to={url}
+      href={url}
       className={cn(
         "group bg-white p-6 sm:p-8 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col h-full animate-fade-in",
         className

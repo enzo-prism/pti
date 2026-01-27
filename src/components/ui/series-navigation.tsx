@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 interface SeriesNavigationProps {
   currentPost: BlogPost;
@@ -95,7 +95,7 @@ export function SeriesNavigation({ currentPost, seriesPosts }: SeriesNavigationP
               </div>
               {post.id !== currentPost.id && (
                 <Button asChild variant="ghost" size="sm" className="ml-2 shrink-0 min-h-[44px] min-w-[44px]">
-                  <Link to={`/blog/${post.slug}`}>
+                  <Link href={`/blog/${post.slug}`}>
                     <span className="hidden sm:inline">Read</span>
                     <span className="sm:hidden">→</span>
                   </Link>
@@ -111,7 +111,7 @@ export function SeriesNavigation({ currentPost, seriesPosts }: SeriesNavigationP
         <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4">
           {previousPost ? (
             <Button asChild variant="outline" className="flex-1 min-h-[64px] p-3">
-              <Link to={`/blog/${previousPost.slug}`} className="flex items-center gap-2 sm:gap-3 text-left">
+              <Link href={`/blog/${previousPost.slug}`} className="flex items-center gap-2 sm:gap-3 text-left">
                 <ChevronLeft className="h-4 w-4 shrink-0" />
                 <div className="min-w-0 flex-1">
                   <p className="text-xs text-muted-foreground">Previous</p>
@@ -127,7 +127,7 @@ export function SeriesNavigation({ currentPost, seriesPosts }: SeriesNavigationP
           
           {nextPost ? (
             <Button asChild variant="outline" className="flex-1 min-h-[64px] p-3">
-              <Link to={`/blog/${nextPost.slug}`} className="flex items-center gap-2 sm:gap-3 justify-end text-right">
+              <Link href={`/blog/${nextPost.slug}`} className="flex items-center gap-2 sm:gap-3 justify-end text-right">
                 <div className="min-w-0 flex-1">
                   <p className="text-xs text-muted-foreground">Next</p>
                   <p className="text-xs sm:text-sm font-medium leading-tight">

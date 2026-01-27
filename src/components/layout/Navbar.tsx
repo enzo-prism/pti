@@ -1,5 +1,8 @@
+"use client";
+
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
@@ -9,7 +12,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
@@ -25,7 +28,7 @@ const Navbar = () => {
 
   useEffect(() => {
     closeMenu();
-  }, [location]);
+  }, [pathname]);
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -57,7 +60,7 @@ const Navbar = () => {
         <div className="flex w-full flex-wrap items-center justify-between gap-x-4 gap-y-3 md:gap-y-4 lg:flex-nowrap">
           <div className="order-1 flex w-full items-center justify-between md:w-auto md:gap-4">
             <div className="flex max-w-full flex-col text-left">
-              <Link to="/" className="text-sm md:text-base font-medium text-gray-600 hover:text-primary transition-colors" onClick={closeMenu}>
+              <Link href="/" className="text-sm md:text-base font-medium text-gray-600 hover:text-primary transition-colors" onClick={closeMenu}>
                 Serving The United States
               </Link>
               <a 
@@ -86,7 +89,7 @@ const Navbar = () => {
             className="order-2 hidden shrink-0 md:inline-flex md:ml-auto lg:order-3 lg:ml-4"
           >
             <Link 
-              to="/contact"
+              href="/contact"
               onClick={() => trackCTAClick('book_consultation', 'navbar_desktop')}
             >
               Book Consultation
@@ -104,9 +107,9 @@ const Navbar = () => {
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
                 <Link
-                  to={item.path}
+                  href={item.path}
                   className={`flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
-                    location.pathname === item.path || location.pathname.startsWith(item.path) ? "text-primary" : "text-gray-700"
+                    pathname === item.path || pathname.startsWith(item.path) ? "text-primary" : "text-gray-700"
                   }`}
                 >
                   {item.name} <ChevronDown size={16} className="ml-1" />
@@ -116,7 +119,7 @@ const Navbar = () => {
                     {item.dropdown.map((subItem) => (
                       <Link
                         key={subItem.name}
-                        to={subItem.path}
+                        href={subItem.path}
                         className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors"
                       >
                         {subItem.name}
@@ -128,9 +131,9 @@ const Navbar = () => {
             ) : (
               <Link
                 key={item.name}
-                to={item.path}
+                href={item.path}
                 className={`rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
-                  location.pathname === item.path ? "text-primary" : "text-gray-700"
+                  pathname === item.path ? "text-primary" : "text-gray-700"
                 }`}
               >
                 {item.name}
@@ -152,9 +155,9 @@ const Navbar = () => {
                 <div key={item.name} className="py-2">
                   <div className="flex items-center">
                     <Link
-                      to={item.path}
+                      href={item.path}
                       className={`flex-1 py-2 text-lg font-medium ${
-                        location.pathname === item.path || location.pathname.startsWith(item.path) ? "text-primary" : "text-gray-700"
+                        pathname === item.path || pathname.startsWith(item.path) ? "text-primary" : "text-gray-700"
                       }`}
                       onClick={closeMenu}
                     >
@@ -176,7 +179,7 @@ const Navbar = () => {
                       {item.dropdown.map((subItem) => (
                         <Link
                           key={subItem.name}
-                          to={subItem.path}
+                          href={subItem.path}
                           className="block py-2 text-gray-600 hover:text-primary"
                           onClick={closeMenu}
                         >
@@ -189,10 +192,10 @@ const Navbar = () => {
               ) : (
                 <Link
                   key={item.name}
-                  to={item.path}
-                  className={`py-2 text-lg font-medium block ${
-                    location.pathname === item.path ? "text-primary" : "text-gray-700"
-                  }`}
+                href={item.path}
+                className={`py-2 text-lg font-medium block ${
+                  pathname === item.path ? "text-primary" : "text-gray-700"
+                }`}
                   onClick={closeMenu}
                 >
                   {item.name}
@@ -201,7 +204,7 @@ const Navbar = () => {
             ))}
             <Button className="mt-4 w-full" asChild>
               <Link 
-                to="/contact" 
+                href="/contact" 
                 onClick={(e) => {
                   closeMenu();
                   trackCTAClick('book_consultation', 'navbar_mobile');
