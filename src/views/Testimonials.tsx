@@ -437,7 +437,7 @@ const Testimonials = () => {
     ? allTestimonials.filter(t => t.category === "book")
     : testimonials.filter(t => t.category === activeFilter);
   
-  const truncateQuote = (quote, length = 200) => {
+  const truncateQuote = (quote: string, length = 200): string => {
     if (quote.length <= length) return quote;
     return quote.substring(0, length) + "...";
   };
