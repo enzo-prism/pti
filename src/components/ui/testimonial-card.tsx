@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import { Quote } from "lucide-react";
 import { CSSProperties } from "react";
+import Image from "next/image";
 
 interface TestimonialCardProps {
   quote: string;
@@ -35,9 +36,11 @@ export function TestimonialCard({
       <div className="flex items-center">
         {imageUrl && (
           <div className="mr-3">
-            <img 
-              src={imageUrl} 
-              alt={author} 
+            <Image
+              src={imageUrl}
+              alt={author}
+              width={40}
+              height={40}
               className="h-10 w-10 rounded-full object-cover"
             />
           </div>

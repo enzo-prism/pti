@@ -2,9 +2,9 @@ import Testimonials from "@/views/Testimonials";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 
-const title = "Client Testimonials";
+const title = "Dental Practice Transition Testimonials";
 const description =
-  "Hear how dentists describe working with Practice Transitions Institute during their practice transitions.";
+  "Hear from dentists who trusted PTI for practice valuation, sales, partnerships, and transition planning.";
 
 export const metadata = buildPageMetadata({
   title,

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, CheckCircle, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
@@ -89,7 +90,14 @@ const Home = () => {
             </ScrollReveal>
             <ScrollReveal direction="magnetic" delay={200} intensity="subtle">
               <div className="rounded-xl overflow-hidden shadow-lg order-1 md:order-2">
-                <img src="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png" alt="PTI team members with dental professionals" className="w-full h-auto object-cover" />
+                <Image
+                  src="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png"
+                  alt="PTI team members with dental professionals"
+                  width={1920}
+                  height={1279}
+                  className="w-full h-auto object-cover"
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                />
               </div>
             </ScrollReveal>
           </div>

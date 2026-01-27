@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 import { BookReviewCard } from "./book-review-card";
 import { amazonBookReviews } from "@/data/amazonReviews";
+import Image from "next/image";
 
 interface RecommendationCardProps {
   className?: string;
@@ -41,10 +42,13 @@ export function RecommendationCard({
   return (
     <div className={cn("bg-white rounded-lg shadow-sm p-6 md:p-8", className)}>
       <div className="flex flex-col gap-6">
-        <img
+        <Image
           src={imageUrl}
           alt={name}
+          width={160}
+          height={192}
           className="w-40 h-48 object-cover object-top rounded-lg shadow-md mx-auto"
+          sizes="160px"
         />
         <div className="flex-1">
           <h3 className="text-2xl md:text-3xl font-semibold mb-1">{name}</h3>
@@ -88,10 +92,13 @@ export function RecommendationCard({
             <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 mt-6">
               <div className="flex flex-col sm:flex-row items-start gap-4">
                 <div className="flex-shrink-0 mx-auto sm:mx-0">
-                  <img 
-                    src={bookImage} 
-                    alt={bookTitle || "Book cover"} 
+                  <Image
+                    src={bookImage}
+                    alt={bookTitle || "Book cover"}
+                    width={80}
+                    height={120}
                     className="w-20 h-auto object-cover rounded shadow-sm"
+                    sizes="80px"
                   />
                 </div>
                 <div className="flex-1 text-center sm:text-left">

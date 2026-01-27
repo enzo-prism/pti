@@ -3,9 +3,9 @@ import Blog from "@/views/Blog";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 
-const title = "Dental Practice Transition Blog";
+const title = "Dental Practice Transition Blog & Insights";
 const description =
-  "Insights and guidance on dental practice valuation, sales, and ownership transitions from PTI experts.";
+  "Expert insights on dental practice valuation, sales, ownership transitions, and growth strategies from PTI.";
 
 type BlogSearchParams = {
   search?: string | string[];

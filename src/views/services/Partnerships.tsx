@@ -11,6 +11,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { serviceOfferings } from "@/data/services";
+import Image from "next/image";
 
 const Partnerships = () => {
   const offering = serviceOfferings.find(
@@ -53,11 +54,15 @@ const Partnerships = () => {
             </div>
           </div>
           <div className="animate-fade-in animate-delay-100">
-            <img 
-              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3" 
-              alt="Dental partners collaborating" 
-              className="rounded-lg shadow-md w-full"
-            />
+            <div className="relative aspect-video overflow-hidden rounded-lg shadow-md">
+              <Image
+                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3"
+                alt="Dental partners collaborating"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </Section>

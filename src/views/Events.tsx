@@ -26,6 +26,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { MultiDateEventCard } from "@/components/ui/multi-date-event-card";
 import { buildEventSchema } from "@/lib/structuredData";
+import Image from "next/image";
 
 interface EventDate {
   date: string;
@@ -380,17 +381,16 @@ const Events = () => {
                         <div key={index} className="flex flex-col items-center text-center group">
                           <div className="relative mb-2 w-12 sm:w-16">
                             <AspectRatio ratio={4/5}>
-                              <img
+                              <Image
                                 src={speaker.imageUrl}
                                 alt={speaker.name}
-                                className={`w-full h-full object-cover rounded-lg border-2 border-white shadow-md transition-all duration-200 ${
+                                fill
+                                sizes="(min-width: 640px) 64px, 48px"
+                                className={`object-cover rounded-lg border-2 border-white shadow-md transition-all duration-200 ${
                                   event.isPast 
                                     ? "grayscale opacity-70" 
                                     : "group-hover:scale-105"
                                 }`}
-                                onError={(e) => {
-                                  e.currentTarget.src = '/placeholder.svg';
-                                }}
                               />
                             </AspectRatio>
                             {!event.isPast && (

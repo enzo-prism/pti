@@ -3,9 +3,9 @@ import { StructuredData } from "@/components/StructuredData";
 import { buildContactPageSchema } from "@/lib/structuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 
-const title = "Contact Practice Transitions Institute";
+const title = "Contact PTI for Dental Practice Transitions";
 const description =
-  "Get in touch with PTI to discuss valuations, practice sales, and transition planning.";
+  "Schedule a consultation with PTI to discuss practice valuation, sales, partnerships, or associateships.";
 
 const contactSchema = buildContactPageSchema();
 

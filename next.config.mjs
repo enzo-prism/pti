@@ -7,6 +7,18 @@ const nextConfig = {
         protocol: "https",
         hostname: "res.cloudinary.com",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.theforage.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.huntersure.com",
+      },
     ],
   },
   env: {

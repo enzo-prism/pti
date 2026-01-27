@@ -3,7 +3,7 @@ import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 
 const title = "Privacy Policy";
-const description = "Read the Practice Transitions Institute privacy policy.";
+const description = "Practice Transitions Institute privacy policy and data practices.";
 
 export const metadata = buildPageMetadata({
   title,

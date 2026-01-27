@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/carousel";
 import { drNjoGalleryImages, type DrNjoGalleryImage } from "@/data/drNjoGallery";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface DrNjoGallerySliderProps {
   images?: DrNjoGalleryImage[];
@@ -47,14 +48,14 @@ export function DrNjoGallerySlider({
                 frameClassName
               )}
             >
-              <div className="flex h-[240px] items-center justify-center sm:h-[320px] md:h-[420px] lg:h-[520px]">
-                <img
+              <div className="relative h-[240px] sm:h-[320px] md:h-[420px] lg:h-[520px]">
+                <Image
                   src={image.src}
                   alt={image.alt}
-                  className={cn("h-full w-full object-contain", imageClassName)}
-                  loading={index === 0 ? "eager" : "lazy"}
-                  decoding="async"
+                  fill
                   sizes={DEFAULT_SIZES}
+                  className={cn("object-contain", imageClassName)}
+                  priority={index === 0}
                 />
               </div>
             </div>

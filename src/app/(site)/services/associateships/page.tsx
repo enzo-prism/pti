@@ -2,9 +2,9 @@ import Associateships from "@/views/services/Associateships";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 
-const title = "Dental Associateships & Buying In";
+const title = "Dental Associateships & Buy-In Planning";
 const description =
-  "Secure the right associateship or buy-in opportunity with PTI guidance on fit, valuation, and transition strategy.";
+  "Find the right associateship or buy-in opportunity with guidance on fit, valuation, and transition strategy.";
 
 export const metadata = buildPageMetadata({
   title,

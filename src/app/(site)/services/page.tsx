@@ -4,7 +4,7 @@ import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 
 const title = "Dental Practice Transition Services";
 const description =
-  "Explore PTI services for valuations, practice sales, partnerships, and associateships tailored to dentists at every career stage.";
+  "Explore PTI services for dental practice valuation, sales, partnerships, and associateships tailored to dentists at every career stage.";
 
 export const metadata = buildPageMetadata({
   title,

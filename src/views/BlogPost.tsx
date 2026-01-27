@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { getAuthorProfile } from "@/data/authors";
 import { buildAbsoluteUrl } from "@/lib/siteMetadata";
 import { BlogPostAnalytics } from "@/components/blog/BlogPostAnalytics";
+import Image from "next/image";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -264,12 +265,13 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                 <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center">
                   {authorImage && (
                     <div className="h-16 w-16 overflow-hidden rounded-full ring-2 ring-white shadow-sm">
-                      <img
+                      <Image
                         src={authorImage}
                         alt={authorName}
+                        width={64}
+                        height={64}
                         className="h-full w-full object-cover"
-                        loading="lazy"
-                        decoding="async"
+                        sizes="64px"
                       />
                     </div>
                   )}
@@ -344,15 +346,15 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                       )}
                     >
                       {relatedPost.featuredImage ? (
-                        <img
+                        <Image
                           src={relatedPost.featuredImage}
                           alt={relatedPost.featuredImageAlt ?? relatedPost.title}
+                          fill
+                          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                           className={cn(
-                            "h-full w-full object-cover transition duration-500 group-hover:scale-105",
-                            relatedPost.featuredImageFit === "contain" && "h-auto w-auto max-h-full max-w-full object-contain group-hover:scale-100"
+                            "object-cover transition duration-500 group-hover:scale-105",
+                            relatedPost.featuredImageFit === "contain" && "object-contain group-hover:scale-100"
                           )}
-                          loading="lazy"
-                          decoding="async"
                         />
                       ) : (
                         <div className={`h-full w-full ${relatedPost.gradient}`} />

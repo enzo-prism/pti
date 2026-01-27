@@ -24,9 +24,19 @@ const STATIC_ROUTES = [
 const toBlogLastModified = (dateString: string) =>
   new Date(`${dateString}T00:00:00Z`);
 
+const resolveBuildDate = (): Date => {
+  const rawTimestamp = process.env.NEXT_PUBLIC_BUILD_TIMESTAMP;
+  const numericTimestamp = rawTimestamp ? Number(rawTimestamp) : Date.now();
+  return Number.isFinite(numericTimestamp)
+    ? new Date(numericTimestamp)
+    : new Date();
+};
+
 export default function sitemap(): MetadataRoute.Sitemap {
+  const buildDate = resolveBuildDate();
   const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((route) => ({
     url: buildAbsoluteUrl(route.path),
+    lastModified: buildDate,
     changeFrequency: route.changeFrequency as MetadataRoute.Sitemap[number]["changeFrequency"],
     priority: route.priority,
   }));

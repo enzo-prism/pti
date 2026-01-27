@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { PHONE_NUMBER } from "@/lib/constants";
 import { BUILD_ID, BUILD_DATE } from "@/lib/buildInfo";
@@ -15,10 +16,13 @@ const Footer = () => {
           <div>
             <Link href="/" className="inline-block mb-4">
               <div className="h-12 w-auto bg-white rounded-lg overflow-hidden">
-                <img 
+                <Image
                   src="/lovable-uploads/18b2244b-dbb5-4dd6-a1ca-c6a28fed53c6.png"
-                  alt="PTI Logo"
+                  alt="Practice Transitions Institute logo"
+                  width={971}
+                  height={943}
                   className="h-full w-auto object-contain"
+                  sizes="48px"
                 />
               </div>
             </Link>

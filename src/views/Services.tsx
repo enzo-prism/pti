@@ -13,6 +13,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { serviceOfferings } from "@/data/services";
+import Image from "next/image";
 
 const serviceIconMap: Record<string, JSX.Element> = {
   "Opinion of Value": <FileText className="h-8 w-8 text-blue-600" />,
@@ -88,11 +89,15 @@ const Services = () => {
             </p>
           </div>
           <div className="animate-fade-in animate-delay-100">
-            <img 
-              src="https://www.theforage.com/blog/wp-content/uploads/2022/09/management-consultant.jpg" 
-              alt="Dental practice consultants in a meeting" 
-              className="rounded-lg shadow-md"
-            />
+            <div className="relative aspect-video overflow-hidden rounded-lg shadow-md">
+              <Image
+                src="https://www.theforage.com/blog/wp-content/uploads/2022/09/management-consultant.jpg"
+                alt="Dental practice consultants in a meeting"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </Section>
@@ -199,11 +204,15 @@ const Services = () => {
             </div>
           </div>
           <div className="order-1 md:order-2 animate-fade-in animate-delay-100">
-            <img 
-              src="https://www.huntersure.com/wp-content/uploads/2020/06/Consultants.jpg" 
-              alt="Dental practice consultation" 
-              className="rounded-lg shadow-md"
-            />
+            <div className="relative aspect-video overflow-hidden rounded-lg shadow-md">
+              <Image
+                src="https://www.huntersure.com/wp-content/uploads/2020/06/Consultants.jpg"
+                alt="Dental practice consultation"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </Section>

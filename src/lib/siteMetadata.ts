@@ -24,8 +24,7 @@ export const CANONICAL_SITE_URL = normalizeSiteUrl(
     FALLBACK_SITE_URL
 );
 
-export const DEFAULT_OG_IMAGE =
-  "/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png";
+export const DEFAULT_OG_IMAGE = "/opengraph.png";
 
 export const BUSINESS_DESCRIPTION =
   "Practice Transitions Institute guides dentists through valuations, sales, partnerships, and associateships with personalized, end-to-end transition support.";
@@ -69,12 +68,7 @@ export const BUSINESS_OPENING_HOURS_SPECIFICATION = [
   },
 ] as const;
 
-const SOCIAL_PROFILE_SOURCE =
-  (process.env.NEXT_PUBLIC_SOCIAL_PROFILES as string | undefined) ?? "";
-export const SOCIAL_PROFILES: string[] = SOCIAL_PROFILE_SOURCE
-  .split(",")
-  .map((value) => value.trim())
-  .filter(Boolean);
+export const SOCIAL_PROFILES: string[] = [];
 export const SITE_SEARCH_PATH = "/blog";
 
 export const getSiteUrl = (): string => {

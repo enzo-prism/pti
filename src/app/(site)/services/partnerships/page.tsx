@@ -2,9 +2,9 @@ import Partnerships from "@/views/services/Partnerships";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 
-const title = "Dental Practice Partnerships";
+const title = "Dental Practice Partnership Structuring";
 const description =
-  "Build a strong dental partnership with PTI's transition consulting and deal structuring expertise.";
+  "Build equitable dental partnerships with PTI guidance on valuation, deal structure, and long-term success.";
 
 export const metadata = buildPageMetadata({
   title,

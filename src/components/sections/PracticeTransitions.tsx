@@ -19,7 +19,7 @@ const availablePractices = [
     title: "Modern General Practice",
     location: "San Francisco, CA",
     description: "Well-established practice with 6 operatories, digital radiography, and a strong patient base. Perfect for a dentist looking to step into ownership with minimal changes needed.",
-    url: "/transitions/p1",
+    url: "/contact",
     revenue: "$1.2M+",
     operatories: 6
   },
@@ -29,7 +29,7 @@ const availablePractices = [
     title: "Family Dental Practice",
     location: "Seattle, WA",
     description: "Thriving family practice with 30+ years of goodwill. 4 fully equipped operatories in a convenient location with ample parking. Owner willing to stay on for transition period.",
-    url: "/transitions/p2",
+    url: "/contact",
     revenue: "$950K+",
     operatories: 4
   },
@@ -39,7 +39,7 @@ const availablePractices = [
     title: "Pediatric Specialty Practice",
     location: "Portland, OR",
     description: "Established pediatric practice in growing suburban area. State-of-the-art equipment and dedicated staff. Owner retiring after 25 years of service to the community.",
-    url: "/transitions/p3",
+    url: "/contact",
     revenue: "$1.5M+",
     operatories: 5
   }
@@ -53,7 +53,7 @@ const soldPractices = [
     location: "Los Angeles, CA",
     description: "Multi-doctor practice with 8 operatories successfully transitioned to new ownership. Full-price offer with favorable terms for both parties.",
     date: "Sold Q1 2023",
-    url: "/transitions/s1",
+    url: "/contact",
     revenue: "$2.1M",
     operatories: 8
   },
@@ -64,7 +64,7 @@ const soldPractices = [
     location: "San Diego, CA",
     description: "Profitable practice in prime location sold to associate after 5-year transition plan. Smooth handover with 98% patient retention.",
     date: "Sold Q4 2022",
-    url: "/transitions/s2",
+    url: "/contact",
     revenue: "$1.1M",
     operatories: 5
   },
@@ -75,7 +75,7 @@ const soldPractices = [
     location: "Denver, CO",
     description: "Specialized orthodontic practice successfully merged with larger group. Owner achieved retirement goals while ensuring continuity of care.",
     date: "Sold Q2 2022",
-    url: "/transitions/s3",
+    url: "/contact",
     revenue: "$1.8M",
     operatories: 6
   }
@@ -260,29 +260,13 @@ export function PracticeTransitions({
         <div className="mt-6 text-center">
           <div className="space-y-3">
             <Button asChild size="sm" className="w-full sm:w-auto rounded-full text-sm">
-              <Link href="/transitions" className="flex items-center justify-center">
-                View All {activeTab === "available" ? "Available Practices" : "Completed Transitions"}
+              <Link href="/contact" className="flex items-center justify-center">
+                {activeTab === "available"
+                  ? "Inquire About a Practice"
+                  : "Schedule Your Consultation"}
                 <ArrowRight className="ml-2 h-3.5 w-3.5" />
               </Link>
             </Button>
-            
-            {activeTab === "available" && (
-              <Button asChild variant="outline" size="sm" className="w-full sm:w-auto rounded-full text-sm">
-                <Link href="/contact" className="flex items-center justify-center">
-                  <Search className="mr-2 h-3.5 w-3.5" />
-                  Inquire About a Practice
-                </Link>
-              </Button>
-            )}
-            
-            {activeTab === "sold" && (
-              <Button asChild variant="outline" size="sm" className="w-full sm:w-auto rounded-full text-sm">
-                <Link href="/contact" className="flex items-center justify-center">
-                  <Check className="mr-2 h-3.5 w-3.5" />
-                  Schedule Your Transition
-                </Link>
-              </Button>
-            )}
           </div>
         </div>
       )}

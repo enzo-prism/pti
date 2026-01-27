@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -20,13 +21,13 @@ export function LatestUpdateCard({ post, className }: LatestUpdateCardProps) {
     )}>
       <div className="grid md:grid-cols-2 gap-6 md:gap-8">
         {/* Image Section */}
-        <div className="relative">
-          <img
+        <div className="relative h-64 md:h-full min-h-[16rem]">
+          <Image
             src={featuredImage}
             alt={post.featuredImageAlt || post.title}
-            className="w-full h-64 md:h-full object-cover"
-            loading="lazy"
-            decoding="async"
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="object-cover"
           />
           <div className="absolute top-4 left-4">
             <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">

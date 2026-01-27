@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
@@ -12,10 +13,14 @@ export const HeroContent: React.FC<HeroContentProps> = ({ className }) => {
       {/* Logo */}
       <div className="mb-8">
         <div className="bg-white rounded-xl p-6 mx-auto inline-block shadow-lg drop-shadow-lg">
-          <img 
-            src="/lovable-uploads/18b2244b-dbb5-4dd6-a1ca-c6a28fed53c6.png" 
-            alt="PTI Logo" 
+          <Image
+            src="/lovable-uploads/18b2244b-dbb5-4dd6-a1ca-c6a28fed53c6.png"
+            alt="Practice Transitions Institute logo"
+            width={224}
+            height={224}
             className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 object-contain"
+            sizes="(min-width: 768px) 224px, (min-width: 640px) 192px, 160px"
+            priority
           />
         </div>
       </div>

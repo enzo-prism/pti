@@ -136,6 +136,29 @@ export const buildWebPageSchema = (input: {
   return page;
 };
 
+export const buildPersonSchema = (input: {
+  name: string;
+  jobTitle?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+}): JsonLdShape => {
+  const person: JsonLdShape = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: input.name,
+    ...(input.jobTitle ? { jobTitle: input.jobTitle } : {}),
+    ...(input.description ? { description: input.description } : {}),
+    ...(input.url ? { url: resolveAbsoluteUrl(input.url) } : {}),
+    ...(input.image ? { image: resolveAbsoluteUrl(input.image) } : {}),
+    worksFor: {
+      "@id": BUSINESS_ID,
+    },
+  };
+
+  return person;
+};
+
 export interface FAQItem {
   question: string;
   answer: string;
@@ -209,6 +232,7 @@ export interface StructuredEventInput {
   id: string | number;
   title: string;
   date: string;
+  endDate?: string;
   time?: string;
   location: string;
   description: string;
@@ -241,6 +265,9 @@ export const buildEventSchema = (
   event: StructuredEventInput
 ): JsonLdShape => {
   const startDate = buildEventStartDate(event.date, event.time);
+  const endDate = event.endDate
+    ? parseEventDate(event.endDate).toISOString()
+    : undefined;
   const isVirtual =
     event.isVirtual ||
     /online|virtual/i.test(event.location) ||
@@ -261,6 +288,7 @@ export const buildEventSchema = (
     name: event.title,
     description: event.description,
     startDate,
+    ...(endDate ? { endDate } : {}),
     eventAttendanceMode: isVirtual
       ? "https://schema.org/OnlineEventAttendanceMode"
       : "https://schema.org/OfflineEventAttendanceMode",

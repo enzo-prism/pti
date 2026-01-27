@@ -2,9 +2,9 @@ import Selling from "@/views/services/Selling";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 
-const title = "Selling a Dental Practice";
+const title = "Dental Practice Sale Advisory & Brokerage";
 const description =
-  "Plan and execute a successful dental practice sale with PTI's expert guidance, negotiation support, and transition planning.";
+  "Plan and execute a successful dental practice sale with PTI's advisory, marketing, and negotiation support.";
 
 export const metadata = buildPageMetadata({
   title,

@@ -215,7 +215,12 @@ export const buildPageMetadata = (input: PageMetadataInput): Metadata => {
       siteName: SITE_NAME,
       locale: DEFAULT_LOCALE,
       type: ogType,
-      images: [imageUrl],
+      images: [
+        {
+          url: imageUrl,
+          alt: title,
+        },
+      ],
       ...(ogType === "article"
         ? {
             publishedTime: article?.publishedTime,
@@ -230,7 +235,12 @@ export const buildPageMetadata = (input: PageMetadataInput): Metadata => {
       card: "summary_large_image",
       title,
       description,
-      images: [imageUrl],
+      images: [
+        {
+          url: imageUrl,
+          alt: title,
+        },
+      ],
     },
     robots: buildRobotsMetadata(noindex),
   };

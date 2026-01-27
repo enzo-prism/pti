@@ -144,7 +144,7 @@ const Transitions = () => {
                   location={practice.location}
                   description={practice.description}
                   date={practice.status === "sold" ? (practice as SoldPractice).date : undefined}
-                  url={`/transitions/${practice.id}`}
+                  url="/contact"
                   metadata={[
                     { label: "Revenue", value: practice.revenue },
                     { label: "Operatories", value: practice.operatories.toString() }

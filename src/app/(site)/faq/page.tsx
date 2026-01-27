@@ -6,7 +6,7 @@ import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 
 const title = "Dental Practice Transition FAQ";
 const description =
-  "Find answers to common questions about valuations, sales, partnerships, and dental practice transitions.";
+  "Answers to common questions about practice valuation, selling, partnerships, and associateships.";
 
 const faqSchema = buildFAQSchema(faqItems);
 

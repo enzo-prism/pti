@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -71,10 +72,14 @@ const Blog = ({ initialQuery = "" }: BlogProps) => {
             {/* Logo and Title - Mobile Optimized */}
             <div className="flex flex-col md:flex-row items-center justify-center mb-8 md:mb-12 text-center md:text-left">
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 mb-4 md:mb-0 md:mr-6">
-                <img 
-                  src="/lovable-uploads/18b2244b-dbb5-4dd6-a1ca-c6a28fed53c6.png" 
-                  alt="PTI Logo" 
+                <Image
+                  src="/lovable-uploads/18b2244b-dbb5-4dd6-a1ca-c6a28fed53c6.png"
+                  alt="Practice Transitions Institute logo"
+                  width={64}
+                  height={64}
                   className="w-12 h-12 md:w-16 md:h-16 object-contain"
+                  sizes="(min-width: 768px) 64px, 48px"
+                  priority
                 />
               </div>
               <div>
@@ -179,12 +184,13 @@ const Blog = ({ initialQuery = "" }: BlogProps) => {
               <div className="md:flex lg:flex">
                 <div className="md:w-2/5 lg:w-2/5 aspect-video md:aspect-auto relative">
                   {featuredPost.featuredImage ? (
-                    <img 
-                      src={featuredPost.featuredImage} 
+                    <Image
+                      src={featuredPost.featuredImage}
                       alt={featuredPost.featuredImageAlt ?? featuredPost.title}
-                      className="w-full h-full object-cover"
-                      decoding="async"
-                      loading="eager"
+                      fill
+                      sizes="(min-width: 1024px) 40vw, 100vw"
+                      className="object-cover"
+                      priority
                     />
                   ) : (
                     <div className={`w-full h-full ${featuredPost.gradient}`} />
@@ -218,12 +224,13 @@ const Blog = ({ initialQuery = "" }: BlogProps) => {
                   
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div className="flex items-center">
-                      <img 
-                        src="/lovable-uploads/0fbfd01f-6249-49ce-baea-1b42e6bd44f4.png" 
-                        alt="Michael Njo, DDS" 
+                      <Image
+                        src="/lovable-uploads/0fbfd01f-6249-49ce-baea-1b42e6bd44f4.png"
+                        alt="Michael Njo, DDS"
+                        width={40}
+                        height={40}
                         className="w-10 h-10 rounded-full object-cover mr-3"
-                        loading="lazy"
-                        decoding="async"
+                        sizes="40px"
                       />
                       <div>
                         <p className="font-medium text-gray-900">{featuredPost.author}</p>
@@ -258,12 +265,12 @@ const Blog = ({ initialQuery = "" }: BlogProps) => {
               <Link href={`/blog/${post.slug}`}>
                 <div className="aspect-video relative overflow-hidden">
                   {post.featuredImage ? (
-                    <img 
-                      src={post.featuredImage} 
+                    <Image
+                      src={post.featuredImage}
                       alt={post.featuredImageAlt ?? post.title}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover"
                     />
                   ) : (
                     <div className={`w-full h-full ${post.gradient}`} />

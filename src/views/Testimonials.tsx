@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
 import { BookReviewCard } from "@/components/ui/book-review-card";
 import { amazonBookReviews } from "@/data/amazonReviews";
+import Image from "next/image";
 
 const Testimonials = () => {
   const [activeFilter, setActiveFilter] = useState<'all' | 'seller' | 'buyer' | 'workshop' | 'valuation' | 'book'>('all');
@@ -631,10 +632,13 @@ const Testimonials = () => {
             
             <div className="grid md:grid-cols-3 gap-8 mb-6">
               <div className="md:col-span-1">
-                <img 
-                  src="/lovable-uploads/bccc97e0-b404-49e4-bd5d-ae51c3f45346.png" 
+                <Image
+                  src="/lovable-uploads/bccc97e0-b404-49e4-bd5d-ae51c3f45346.png"
                   alt="Dr. Matt Asaro, DDS - Cosmetic Dentist at Asaro Dental Aesthetics"
+                  width={1303}
+                  height={1586}
                   className="w-full h-auto rounded-lg shadow-md"
+                  sizes="(min-width: 1024px) 33vw, 100vw"
                 />
                 <div className="text-center mt-4">
                   <h4 className="font-semibold text-gray-900">Dr. Matt Asaro, DDS</h4>

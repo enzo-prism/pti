@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 import { Button } from "./button";
 import Link from "next/link";
 import { ArrowRight, MapPin, DollarSign, Grid } from "lucide-react";
+import Image from "next/image";
 
 interface MetadataItem {
   label: string;
@@ -78,11 +79,12 @@ export function PracticeCard({
     >
       <div className="relative aspect-4/3 overflow-hidden">
         {imageSrc ? (
-          <img 
-            src={imageSrc} 
-            alt={title} 
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            loading="lazy"
+          <Image
+            src={imageSrc}
+            alt={title}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
           <div 
@@ -145,7 +147,7 @@ export function PracticeCard({
       <CardFooter className="pt-0 pb-4 px-4">
         <Button asChild variant="outline" size="sm" className="w-full hover:bg-primary hover:text-white transition-colors border-primary text-primary text-sm py-2 rounded-full">
           <Link href={url} className="w-full flex items-center justify-center">
-            {status === "available" ? "Inquire Now" : "View Details"}
+            {status === "available" ? "Inquire Now" : "Schedule a Consultation"}
             <ArrowRight className="ml-2 h-3.5 w-3.5" />
           </Link>
         </Button>

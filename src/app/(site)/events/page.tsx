@@ -5,9 +5,9 @@ import { rawEvents } from "@/data/events";
 import { buildEventSchema } from "@/lib/structuredData";
 import { parseEventDate } from "@/lib/dateUtils";
 
-const title = "Dental Practice Transition Events";
+const title = "Dental Practice Transition Events & Workshops";
 const description =
-  "Upcoming seminars, webinars, and workshops from PTI to help dentists plan successful practice transitions.";
+  "Upcoming webinars, seminars, and workshops for dentists planning practice transitions.";
 
 const formatEventDescription = (event: (typeof rawEvents)[number]) => {
   if (typeof event.description === "string") {

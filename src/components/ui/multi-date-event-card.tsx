@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { trackCTAClick } from "@/lib/analytics";
 import { useState } from "react";
+import Image from "next/image";
 
 interface EventDate {
   date: string;
@@ -258,10 +259,13 @@ export const MultiDateEventCard = ({
               {speakers.map((speaker, index) => (
                 <div key={index} className="flex flex-col items-center text-center">
                   <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden mb-2">
-                    <img 
-                      src={speaker.imageUrl} 
+                    <Image
+                      src={speaker.imageUrl}
                       alt={speaker.name}
+                      width={64}
+                      height={64}
                       className="w-full h-full object-cover"
+                      sizes="(min-width: 768px) 64px, 48px"
                     />
                   </div>
                   <h5 className={`text-xs font-medium leading-tight ${

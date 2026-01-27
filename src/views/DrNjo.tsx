@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { DrNjoGallerySlider } from "@/components/DrNjoGallerySlider";
 import { Phone, Mail } from "lucide-react";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
+import Image from "next/image";
 
 const DrNjo = () => {
   return (
@@ -67,13 +68,13 @@ const DrNjo = () => {
                 {/* Photo Container */}
                 <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
                   {/* Professional Headshot */}
-                  <img 
+                  <Image
                     src="/lovable-uploads/7f7f714e-f3e5-4943-a190-b0a9ed982709.png"
                     alt="Dr. Michael Njo - Dental Practice Transition Expert"
-                    className="w-full h-full object-cover object-top"
-                    loading="lazy"
-                    width="400"
-                    height="500"
+                    fill
+                    sizes="(min-width: 1280px) 384px, (min-width: 1024px) 320px, (min-width: 640px) 288px, 256px"
+                    className="object-cover object-top"
+                    priority
                   />
                   {/* Subtle overlay for better text contrast */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>

@@ -4,19 +4,23 @@ import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 import { rawEvents } from "@/data/events";
 import { buildEventSchema } from "@/lib/structuredData";
 
-const title = "Leadership Retreat for Practice Owners";
+const title = "Dental Practice Leadership Retreat 2026";
 const description =
   "Join PTI's leadership retreat in Savannah, GA for practice owners ready to lead with clarity and confidence.";
 
 const retreatEvent = rawEvents.find(
   (event) => event.detailPath === "/events/leadership-retreat"
 );
+const retreatEndDate = retreatEvent?.dateDisplay
+  ? "June 6, 2026"
+  : undefined;
 
 const retreatSchema = retreatEvent
   ? buildEventSchema({
       id: retreatEvent.id,
       title: retreatEvent.title,
       date: retreatEvent.date,
+      endDate: retreatEndDate,
       time: retreatEvent.time,
       location: retreatEvent.location,
       description:

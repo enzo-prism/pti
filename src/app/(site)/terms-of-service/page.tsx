@@ -3,7 +3,7 @@ import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 
 const title = "Terms of Service";
-const description = "Review the Practice Transitions Institute terms of service.";
+const description = "Practice Transitions Institute terms governing website use.";
 
 export const metadata = buildPageMetadata({
   title,

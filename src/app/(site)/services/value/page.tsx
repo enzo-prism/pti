@@ -2,9 +2,9 @@ import Value from "@/views/services/Value";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 
-const title = "Opinion of Value for Dental Practices";
+const title = "Dental Practice Valuation (Opinion of Value)";
 const description =
-  "Receive a data-backed opinion of value for your dental practice, built to inform confident transition decisions.";
+  "Get a clear, data-backed valuation for your dental practice with PTI's Opinion of Value service.";
 
 export const metadata = buildPageMetadata({
   title,
