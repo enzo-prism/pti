@@ -1,4 +1,4 @@
-import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "./constants.ts";
+import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "./constants";
 
 export const SITE_NAME = "Practice Transitions Institute";
 export const FALLBACK_SITE_URL = "https://practicetransitionsinstitute.com";

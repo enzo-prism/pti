@@ -1,9 +1,9 @@
-import { blogPosts } from "../data/blogPosts.ts";
+import { blogPosts } from "../data/blogPosts";
 import {
   SITE_NAME,
   BUSINESS_DESCRIPTION,
   buildAbsoluteUrl,
-} from "./siteMetadata.ts";
+} from "./siteMetadata";
 
 const RSS_DESCRIPTION =
   "Expert insights on dental practice valuation, sales, ownership transitions, and growth strategies from PTI.";
