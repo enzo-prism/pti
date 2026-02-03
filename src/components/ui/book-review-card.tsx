@@ -34,7 +34,7 @@ export function BookReviewCard({ review, className, style }: BookReviewCardProps
 
       {/* Review text */}
       <blockquote className="text-gray-700 mb-4 text-sm leading-relaxed">
-        "{review.reviewText}"
+        &ldquo;{review.reviewText}&rdquo;
       </blockquote>
 
       {/* Reviewer info and date */}

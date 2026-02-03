@@ -1,6 +1,8 @@
 import Associateships from "@/views/services/Associateships";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
+import { buildServiceSchema } from "@/lib/structuredData";
+import { serviceOfferings } from "@/data/services";
 
 const title = "Dental Associateships & Buy-In Planning";
 const description =
@@ -13,6 +15,11 @@ export const metadata = buildPageMetadata({
 });
 
 export default function Page() {
+  const service = serviceOfferings.find(
+    (offering) => offering.url === "/services/associateships"
+  );
+  const serviceSchema = service ? buildServiceSchema(service) : null;
+
   return (
     <>
       <StructuredData
@@ -20,6 +27,7 @@ export default function Page() {
           title,
           description,
           path: "/services/associateships",
+          structuredData: serviceSchema,
         })}
       />
       <Associateships />

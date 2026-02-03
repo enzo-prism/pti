@@ -204,7 +204,7 @@ const Events = () => {
           </p>
           <div className="max-w-5xl mx-auto px-4">
             <p className="text-base md:text-lg text-blue-50/95 leading-relaxed">
-              Thinking about buying or selling a practice? Our sessions walk you through every step — from understanding practice value and tax implications to exploring deal structures, increasing value, and planning your next move. You'll get straightforward guidance and expert insights to help you make informed decisions.
+              Thinking about buying or selling a practice? Our sessions walk you through every step — from understanding practice value and tax implications to exploring deal structures, increasing value, and planning your next move. You&apos;ll get straightforward guidance and expert insights to help you make informed decisions.
             </p>
           </div>
         </div>
@@ -216,7 +216,7 @@ const Events = () => {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
             <SectionTitle>Upcoming Events</SectionTitle>
-            <SectionSubtitle>Don't miss our latest educational opportunities</SectionSubtitle>
+            <SectionSubtitle>Don&apos;t miss our latest educational opportunities</SectionSubtitle>
           </div>
           {pastEvents.length > 0 && (
             <button
@@ -356,7 +356,7 @@ const Events = () => {
                         {event.description.intro}
                       </p>
                       <div>
-                        <p className="text-sm font-semibold mb-2">At this seminar, you'll discover how to:</p>
+                        <p className="text-sm font-semibold mb-2">At this seminar, you&apos;ll discover how to:</p>
                         <ul className="text-sm space-y-1">
                           {event.description.learningPoints.map((point, index) => (
                             <li key={index} className="flex items-start">
@@ -516,7 +516,7 @@ const Events = () => {
             
             <div className="bg-gray-50 rounded-lg p-4 mb-6">
               <p className="text-gray-600 text-sm leading-relaxed">
-                Our team of experts can deliver engaging, educational presentations tailored to your group's 
+                Our team of experts can deliver engaging, educational presentations tailored to your group&apos;s 
                 specific needs and interests. All presentations can be modified for length and format.
               </p>
             </div>

@@ -13,8 +13,8 @@ const TermsOfService = () => {
           </p>
 
           <p>
-            These Terms of Service ("Terms") govern your access to and use of
-            the Practice Transitions Institute website (the "Site"). By using
+            These Terms of Service (&ldquo;Terms&rdquo;) govern your access to and use of
+            the Practice Transitions Institute website (the &ldquo;Site&rdquo;). By using
             the Site, you agree to these Terms.
           </p>
 
@@ -59,7 +59,7 @@ const TermsOfService = () => {
             Disclaimers & Limitation of Liability
           </h2>
           <p>
-            The Site is provided "as is" without warranties of any kind. To the
+            The Site is provided &ldquo;as is&rdquo; without warranties of any kind. To the
             fullest extent permitted by law, PTI will not be liable for any
             damages arising from your use of the Site.
           </p>

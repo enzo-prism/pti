@@ -22,7 +22,7 @@ export const ScrollReveal = ({
   duration,
   intensity = 'normal'
 }: ScrollRevealProps) => {
-  const { elementRef, isIntersecting } = useIntersectionObserver({
+  const { elementRef, isIntersecting } = useIntersectionObserver<HTMLDivElement>({
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
   });
@@ -106,7 +106,7 @@ export const ScrollReveal = ({
 
   return (
     <div
-      ref={elementRef as any}
+      ref={elementRef}
       className={cn(
         'gpu-accelerated will-change-transform',
         isIntersecting ? getAnimationClass() : '',

@@ -8,12 +8,12 @@ interface UseIntersectionObserverOptions {
   triggerOnce?: boolean;
 }
 
-export const useIntersectionObserver = (
+export const useIntersectionObserver = <T extends HTMLElement = HTMLElement>(
   options: UseIntersectionObserverOptions = {}
 ) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
-  const elementRef = useRef<HTMLElement>(null);
+  const elementRef = useRef<T | null>(null);
 
   const {
     threshold = 0.1,
@@ -54,12 +54,12 @@ export const useIntersectionObserver = (
   return { elementRef, isIntersecting };
 };
 
-export const useStaggeredIntersection = (
+export const useStaggeredIntersection = <T extends HTMLElement = HTMLElement>(
   itemCount: number,
   options: UseIntersectionObserverOptions = {}
 ) => {
   const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set());
-  const { elementRef, isIntersecting } = useIntersectionObserver(options);
+  const { elementRef, isIntersecting } = useIntersectionObserver<T>(options);
 
   useEffect(() => {
     if (isIntersecting) {

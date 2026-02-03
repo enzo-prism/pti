@@ -73,7 +73,7 @@ export function RecommendationCard({
           
           {quote && (
             <blockquote className="text-gray-600 italic text-lg leading-relaxed mb-4">
-              "{quote}"
+              &ldquo;{quote}&rdquo;
             </blockquote>
           )}
           

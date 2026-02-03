@@ -42,7 +42,7 @@ const Associateships = () => {
               Your Path to Practice Ownership
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-4 animate-fade-in animate-delay-100 px-3 leading-relaxed">
-              Whether you're an associate dentist looking to buy into a practice or a practice owner wanting to bring on an associate with a path to ownership, our structured approach ensures a successful transition.
+              Whether you&apos;re an associate dentist looking to buy into a practice or a practice owner wanting to bring on an associate with a path to ownership, our structured approach ensures a successful transition.
             </p>
             <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-8 animate-fade-in animate-delay-200 px-3 leading-relaxed">
               We create clear, equitable arrangements that protect both parties and establish a foundation for long-term success.
@@ -73,7 +73,7 @@ const Associateships = () => {
               </div>
               <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2">Needs Assessment</h3>
               <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                We evaluate the practice and the associate's goals to ensure alignment and compatibility.
+                We evaluate the practice and the associate&apos;s goals to ensure alignment and compatibility.
               </p>
             </CardContent>
           </Card>
@@ -120,7 +120,7 @@ const Associateships = () => {
       <Section className="py-8 sm:py-12 md:py-16">
         <SectionTitle centered>Associateship Benefits</SectionTitle>
         <SectionSubtitle centered>
-          Whether you're an associate exploring ownership or a practice owner planning for the future, a well-structured associate-to-buy-in path benefits both sides of the equation.
+          Whether you&apos;re an associate exploring ownership or a practice owner planning for the future, a well-structured associate-to-buy-in path benefits both sides of the equation.
         </SectionSubtitle>
         <div className="grid gap-8 sm:gap-12 lg:grid-cols-2 px-3">
           <div className="animate-fade-in">
@@ -239,7 +239,7 @@ const Associateships = () => {
                 How long should an associateship last before a buy-in?
               </AccordionTrigger>
               <AccordionContent className="text-xs sm:text-sm md:text-base text-gray-600 pb-4 leading-relaxed">
-                Typically, 1-3 years is recommended to ensure compatibility and allow the associate to build relationships with patients. The exact timeline should be based on practice needs and the associate's readiness.
+                Typically, 1-3 years is recommended to ensure compatibility and allow the associate to build relationships with patients. The exact timeline should be based on practice needs and the associate&apos;s readiness.
               </AccordionContent>
             </AccordionItem>
             
@@ -248,7 +248,7 @@ const Associateships = () => {
                 How is the buy-in price determined?
               </AccordionTrigger>
               <AccordionContent className="text-xs sm:text-sm md:text-base text-gray-600 pb-4 leading-relaxed">
-                The buy-in price is typically based on a current practice valuation, often adjusted to account for the associate's contribution to practice growth. We establish the valuation methodology in advance so both parties have clear expectations.
+                The buy-in price is typically based on a current practice valuation, often adjusted to account for the associate&apos;s contribution to practice growth. We establish the valuation methodology in advance so both parties have clear expectations.
               </AccordionContent>
             </AccordionItem>
             
@@ -263,10 +263,10 @@ const Associateships = () => {
             
             <AccordionItem value="item-4" className="bg-white rounded-lg shadow-sm border border-gray-100 px-4 sm:px-6">
               <AccordionTrigger className="text-sm sm:text-base md:text-lg font-semibold text-left py-4 hover:no-underline">
-                What happens if the associateship doesn't work out?
+                What happens if the associateship doesn&apos;t work out?
               </AccordionTrigger>
               <AccordionContent className="text-xs sm:text-sm md:text-base text-gray-600 pb-4 leading-relaxed">
-                We recommend establishing clear termination provisions in the initial agreement, including notice periods and non-compete considerations. This protects both parties if the arrangement isn't a good fit.
+                We recommend establishing clear termination provisions in the initial agreement, including notice periods and non-compete considerations. This protects both parties if the arrangement isn&apos;t a good fit.
               </AccordionContent>
             </AccordionItem>
           </Accordion>

@@ -173,6 +173,7 @@ interface PageMetadataInput {
   path?: string;
   image?: string;
   canonicalPath?: string;
+  rssPath?: string;
   ogType?: "website" | "article";
   noindex?: boolean;
   author?: string;
@@ -192,6 +193,7 @@ export const buildPageMetadata = (input: PageMetadataInput): Metadata => {
     path = "/",
     image,
     canonicalPath,
+    rssPath,
     ogType = "website",
     noindex,
     author,
@@ -202,12 +204,21 @@ export const buildPageMetadata = (input: PageMetadataInput): Metadata => {
   const imageUrl = resolveAbsoluteUrl(image ?? DEFAULT_OG_IMAGE);
   const url = buildAbsoluteUrl(canonical);
 
+  const alternates: Metadata["alternates"] = {
+    canonical,
+  };
+
+  if (rssPath) {
+    alternates.types = {
+      ...(alternates.types ?? {}),
+      "application/rss+xml": rssPath,
+    };
+  }
+
   const metadata: Metadata = {
     title: fullTitle,
     description,
-    alternates: {
-      canonical,
-    },
+    alternates,
     openGraph: {
       title,
       description,

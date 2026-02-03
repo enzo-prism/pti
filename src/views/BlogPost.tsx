@@ -214,27 +214,28 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
               className={cn(
                 "w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-black/5 sm:rounded-[2.25rem] md:rounded-[2.75rem]",
                 post.featuredImage
-                  ? "bg-white flex items-center justify-center"
+                  ? "bg-white relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]"
                   : "aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]"
               )}
             >
               {post.featuredImage ? (
-                <img
+                <Image
                   src={post.featuredImage}
                   alt={post.featuredImageAlt ?? post.title}
+                  fill
                   className={cn(
-                    "w-full h-auto max-h-[70vh] object-contain",
-                    post.featuredImageFit === "cover" && "object-cover h-full w-full"
+                    "object-contain",
+                    post.featuredImageFit === "cover" && "object-cover"
                   )}
-                  decoding="async"
-                  loading="eager"
+                  sizes="(min-width: 1024px) 896px, 100vw"
+                  priority
                 />
               ) : (
                 <div className={`h-full w-full ${post.gradient}`} />
               )}
             </div>
             <p className="mt-6 text-center text-sm italic text-slate-600 sm:text-base">
-              "As a man thinketh in his heart, so is he." — Proverbs 23:7
+              &ldquo;As a man thinketh in his heart, so is he.&rdquo; — Proverbs 23:7
             </p>
           </div>
         </Section>

@@ -59,12 +59,12 @@ const Home = () => {
       <Section background="light" className="py-12 md:py-20 contain-layout">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
           <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
-            <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">You've built something great, now what?</SectionTitle>
+            <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">You&apos;ve built something great, now what?</SectionTitle>
           </ScrollReveal>
           <ScrollReveal direction="elastic" delay={200}>
             <div className="bg-white p-6 sm:p-8 md:p-12 rounded-xl shadow-sm border border-gray-100 hover-lift gpu-accelerated">
               <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
-                Selling or buying a practice can feel overwhelming. You're facing complex decisions with your life's work at stake. How do you ensure a smooth transition, get a fair value, and protect your legacy?
+                Selling or buying a practice can feel overwhelming. You&apos;re facing complex decisions with your life&apos;s work at stake. How do you ensure a smooth transition, get a fair value, and protect your legacy?
               </p>
             </div>
           </ScrollReveal>
@@ -171,7 +171,7 @@ const Home = () => {
                     The Risk of Going Alone
                   </h3>
                   <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                    Don't risk your future. Without expert guidance, you could face financial losses, post-sale litigation, unnecessary stress, and a compromised legacy.
+                    Don&apos;t risk your future. Without expert guidance, you could face financial losses, post-sale litigation, unnecessary stress, and a compromised legacy.
                   </p>
                 </div>
                 
@@ -212,7 +212,7 @@ const Home = () => {
                     ariaLabel="Dr. Njo community photo gallery"
                   />
                   <figcaption className="mt-3 text-xs sm:text-sm text-gray-500 text-center">
-                    Highlights from Dr. Njo's work with colleagues and the dental community.
+                    Highlights from Dr. Njo&apos;s work with colleagues and the dental community.
                   </figcaption>
                 </figure>
               </ScrollReveal>
@@ -256,7 +256,7 @@ const Home = () => {
           </ScrollReveal>
           <ScrollReveal direction="magnetic" delay={300} intensity="strong">
             <Button asChild variant="secondary" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 hover-lift !bg-white hover:!bg-white border border-white">
-              <Link href="/contact">Let's Talk</Link>
+              <Link href="/contact">Let&apos;s Talk</Link>
             </Button>
           </ScrollReveal>
         </div>

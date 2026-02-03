@@ -15,13 +15,13 @@ export const StaggeredGrid = ({
   itemClassName,
   staggerDelay = 100
 }: StaggeredGridProps) => {
-  const { elementRef, isItemVisible } = useStaggeredIntersection(children.length, {
+  const { elementRef, isItemVisible } = useStaggeredIntersection<HTMLDivElement>(children.length, {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
   });
 
   return (
-    <div ref={elementRef as React.RefObject<HTMLDivElement>} className={cn('gpu-accelerated', className)}>
+    <div ref={elementRef} className={cn('gpu-accelerated', className)}>
       {children.map((child, index) => (
         <div
           key={index}

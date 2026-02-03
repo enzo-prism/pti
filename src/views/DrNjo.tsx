@@ -94,7 +94,7 @@ const DrNjo = () => {
                 Dr. Njo Photo Gallery
               </h2>
               <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                A rotating view of Dr. Njo's events and professional moments.
+                A rotating view of Dr. Njo&apos;s events and professional moments.
               </p>
             </div>
           </ScrollReveal>

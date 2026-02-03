@@ -1,8 +1,12 @@
 // Google Analytics 4 utility functions
 declare global {
   interface Window {
-    gtag: (command: string, targetId: string | Date, config?: any) => void;
-    dataLayer: any[];
+    gtag?: (
+      command: string,
+      targetId: string | Date,
+      config?: Record<string, unknown>
+    ) => void;
+    dataLayer?: unknown[];
   }
 }
 
@@ -11,7 +15,7 @@ export interface AnalyticsEvent {
   event_category: string;
   event_label?: string;
   value?: number;
-  custom_parameters?: Record<string, any>;
+  custom_parameters?: Record<string, unknown>;
 }
 
 // Check if we're in production and analytics should be enabled

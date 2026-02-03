@@ -64,7 +64,7 @@ const Selling = () => {
             </div>
             <h3 className="text-xl font-semibold mb-3">In-Depth Valuation</h3>
             <p className="text-gray-600 leading-relaxed">
-              We meticulously assess your practice's value, providing a clear and accurate foundation for a successful sale.
+              We meticulously assess your practice&apos;s value, providing a clear and accurate foundation for a successful sale.
             </p>
           </div>
           
@@ -168,15 +168,15 @@ const Selling = () => {
                 Why do I need a professional dental practice valuation?
               </AccordionTrigger>
               <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-                A professional valuation provides an unbiased and accurate assessment of your practice's market value, 
-                crucial for fair negotiations whether you're buying or selling. It also helps with financial planning 
+                A professional valuation provides an unbiased and accurate assessment of your practice&apos;s market value, 
+                crucial for fair negotiations whether you&apos;re buying or selling. It also helps with financial planning 
                 and understanding your most significant asset.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-2" className="bg-white rounded-lg border border-gray-200">
               <AccordionTrigger className="px-4 sm:px-6 py-4 text-sm sm:text-base md:text-lg font-semibold">
-                What factors significantly impact my dental practice's value?
+                What factors significantly impact my dental practice&apos;s value?
               </AccordionTrigger>
               <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
                 Key factors include your financial performance (revenue, profitability), patient demographics and retention, 

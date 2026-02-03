@@ -461,7 +461,7 @@ const Testimonials = () => {
             </h1>
             <p className="text-lg text-gray-600 animate-fade-in animate-delay-100">
               Helping dentists through one of the most important transitions of their career is an honor.
-              We're proud to share the kind words from clients who've trusted us to guide them — and we're
+              We&apos;re proud to share the kind words from clients who&apos;ve trusted us to guide them — and we&apos;re
               deeply thankful for the opportunity to be part of their journey.
             </p>
           </div>
@@ -616,9 +616,9 @@ const Testimonials = () => {
             
             <div className="bg-accent p-6 rounded-lg">
               <p className="italic text-gray-700 mb-2">
-                "PTI didn't just help me sell my practice; they helped me secure my legacy. 
-                Three years later, my staff is still there, my patients are happy, and I've been able to 
-                enjoy retirement knowing my life's work is in good hands."
+                &ldquo;PTI didn&apos;t just help me sell my practice; they helped me secure my legacy. 
+                Three years later, my staff is still there, my patients are happy, and I&apos;ve been able to 
+                enjoy retirement knowing my life&apos;s work is in good hands.&rdquo;
               </p>
               <p className="font-medium">— Dr. James Williams, General Dentist (Retired)</p>
             </div>
@@ -665,7 +665,7 @@ const Testimonials = () => {
                   >
                     Asaro Dental Aesthetics
                   </a>, we are dedicated to more than just enhancing smiles; we transform lives. 
-                  Cosmetic dentistry is no longer just about changing how you look—it's about embracing transformation 
+                  Cosmetic dentistry is no longer just about changing how you look—it&apos;s about embracing transformation 
                   and self-care as a lifestyle. The emotional impact of this work brings tears and speechlessness, 
                   making this work a deeply fulfilling experience.
                 </p>
@@ -700,9 +700,9 @@ const Testimonials = () => {
             
             <div className="bg-accent p-6 rounded-lg">
               <p className="italic text-gray-700 mb-2">
-                "Cosmetic dentistry is no longer just about changing how you look—it's about embracing transformation 
+                &ldquo;Cosmetic dentistry is no longer just about changing how you look—it&apos;s about embracing transformation 
                 and self-care as a lifestyle. The emotional impact of this work brings tears and speechlessness, 
-                making this work a deeply fulfilling experience."
+                making this work a deeply fulfilling experience.&rdquo;
               </p>
               <p className="font-medium">— Matt Asaro, DDS, <a 
                 href="https://asarodentalaesthetics.com/" 

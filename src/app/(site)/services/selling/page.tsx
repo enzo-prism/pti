@@ -1,6 +1,8 @@
 import Selling from "@/views/services/Selling";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
+import { buildServiceSchema } from "@/lib/structuredData";
+import { serviceOfferings } from "@/data/services";
 
 const title = "Dental Practice Sale Advisory & Brokerage";
 const description =
@@ -13,10 +15,20 @@ export const metadata = buildPageMetadata({
 });
 
 export default function Page() {
+  const service = serviceOfferings.find(
+    (offering) => offering.url === "/services/selling"
+  );
+  const serviceSchema = service ? buildServiceSchema(service) : null;
+
   return (
     <>
       <StructuredData
-        data={buildPageJsonLd({ title, description, path: "/services/selling" })}
+        data={buildPageJsonLd({
+          title,
+          description,
+          path: "/services/selling",
+          structuredData: serviceSchema,
+        })}
       />
       <Selling />
     </>

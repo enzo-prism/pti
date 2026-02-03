@@ -13,7 +13,7 @@ const PrivacyPolicy = () => {
           </p>
 
           <p>
-            Practice Transitions Institute ("PTI", "we", "us") respects your
+            Practice Transitions Institute (&ldquo;PTI&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) respects your
             privacy. This policy explains what information we collect on this
             website and how we use it.
           </p>

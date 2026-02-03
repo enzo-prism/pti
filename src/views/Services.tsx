@@ -74,13 +74,13 @@ const Services = () => {
               Your goals. Your practice. Our Expertise.
             </h2>
             <p className="text-gray-600 mb-4">
-              Your practice is more than a business — it's the result of years of dedication and 
+              Your practice is more than a business — it&apos;s the result of years of dedication and 
               care. At Practice Transitions Institute, we help you protect that legacy, unlock value, 
               and make confident decisions at every career stage.
             </p>
             <p className="text-gray-600 mb-4">
-              Whether you're preparing to sell, bring on a partner, buy into a practice, or simply want 
-              to understand your practice's worth, our expert team provides step-by-step support 
+              Whether you&apos;re preparing to sell, bring on a partner, buy into a practice, or simply want 
+              to understand your practice&apos;s worth, our expert team provides step-by-step support 
               tailored to your goals.
             </p>
             <p className="text-gray-600">

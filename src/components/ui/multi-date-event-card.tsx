@@ -145,7 +145,7 @@ export const MultiDateEventCard = ({
                 {description.intro}
               </p>
               <div>
-                <p className="text-sm font-semibold mb-2">At this seminar, you'll discover how to:</p>
+                <p className="text-sm font-semibold mb-2">At this seminar, you&apos;ll discover how to:</p>
                 <ul className="text-sm space-y-1">
                   {description.learningPoints.map((point, index) => (
                     <li key={index} className="flex items-start">

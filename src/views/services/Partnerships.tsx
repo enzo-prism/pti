@@ -245,7 +245,7 @@ const Partnerships = () => {
                 What are the tax implications of forming a dental partnership?
               </AccordionTrigger>
               <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-                Partnerships typically file informational tax returns, and profits and losses are passed through to the individual partners. It's essential to consult with a tax advisor specializing in dental practices.
+                Partnerships typically file informational tax returns, and profits and losses are passed through to the individual partners. It&apos;s essential to consult with a tax advisor specializing in dental practices.
               </AccordionContent>
             </AccordionItem>
 

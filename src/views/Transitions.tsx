@@ -54,7 +54,7 @@ const Transitions = () => {
         <Section>
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-4">Practice Not Found</h2>
-            <p className="text-sm">The practice you're looking for doesn't exist or has been removed.</p>
+            <p className="text-sm">The practice you&apos;re looking for doesn&apos;t exist or has been removed.</p>
           </div>
         </Section>
       );

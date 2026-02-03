@@ -1,6 +1,7 @@
 import Services from "@/views/Services";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
+import { buildServiceItemListSchema } from "@/lib/structuredData";
 
 const title = "Dental Practice Transition Services";
 const description =
@@ -13,9 +14,18 @@ export const metadata = buildPageMetadata({
 });
 
 export default function Page() {
+  const serviceListSchema = buildServiceItemListSchema();
+
   return (
     <>
-      <StructuredData data={buildPageJsonLd({ title, description, path: "/services" })} />
+      <StructuredData
+        data={buildPageJsonLd({
+          title,
+          description,
+          path: "/services",
+          structuredData: serviceListSchema,
+        })}
+      />
       <Services />
     </>
   );

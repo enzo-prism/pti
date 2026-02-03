@@ -7,6 +7,7 @@ import {
   DEFAULT_LOCALE,
   SITE_NAME,
   DEFAULT_OG_IMAGE,
+  SITE_CONTACT_EMAIL,
   SOCIAL_PROFILES,
   SITE_SEARCH_PATH,
   buildAbsoluteUrl,
@@ -15,12 +16,15 @@ import {
 } from "@/lib/siteMetadata";
 import { PHONE_NUMBER_TEL } from "@/lib/constants";
 import { parseEventDate } from "@/lib/dateUtils";
+import { blogPosts } from "@/data/blogPosts";
+import { serviceOfferings, type ServiceOffering } from "@/data/services";
 
 export type JsonLdShape = Record<string, unknown>;
 
 export const BUSINESS_ID = `${buildAbsoluteUrl()}#business`;
 export const WEBSITE_ID = `${buildAbsoluteUrl()}#website`;
 export const LOGO_ID = `${buildAbsoluteUrl()}#logo`;
+const AREA_SERVED = "United States";
 
 const resolveAbsoluteUrl = (value: string): string =>
   value.startsWith("http") ? value : buildAbsoluteUrl(value);
@@ -48,6 +52,17 @@ const buildBusinessSchema = (input: {
     image: logoUrl,
     address: buildPostalAddress(),
     telephone: PHONE_NUMBER_TEL,
+    areaServed: AREA_SERVED,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: PHONE_NUMBER_TEL,
+        email: SITE_CONTACT_EMAIL,
+        contactType: "customer service",
+        areaServed: AREA_SERVED,
+        availableLanguage: "English",
+      },
+    ],
   };
 
   if (SOCIAL_PROFILES.length) {
@@ -159,6 +174,45 @@ export const buildPersonSchema = (input: {
   return person;
 };
 
+export const buildServiceSchema = (
+  service: ServiceOffering,
+  options?: { includeContext?: boolean }
+): JsonLdShape => {
+  const includeContext = options?.includeContext !== false;
+  const url = resolveAbsoluteUrl(service.url);
+
+  return {
+    ...(includeContext ? { "@context": "https://schema.org" } : {}),
+    "@type": "Service",
+    name: service.title,
+    description: service.description,
+    url,
+    serviceType: service.title,
+    provider: {
+      "@id": BUSINESS_ID,
+    },
+    areaServed: AREA_SERVED,
+  };
+};
+
+export const buildServiceItemListSchema = (
+  services: ServiceOffering[] = serviceOfferings
+): JsonLdShape | null => {
+  const items = services.filter((service) => service.url && service.title);
+  if (!items.length) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${SITE_NAME} Service Offerings`,
+    itemListElement: items.map((service, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: buildServiceSchema(service, { includeContext: false }),
+    })),
+  };
+};
+
 export interface FAQItem {
   question: string;
   answer: string;
@@ -225,6 +279,35 @@ export const buildBlogPostingSchema = (
       "@id": WEBSITE_ID,
     },
     inLanguage: DEFAULT_LOCALE,
+  };
+};
+
+export const buildBlogItemListSchema = (
+  posts: BlogPost[] = blogPosts
+): JsonLdShape | null => {
+  const items = posts.filter((post) => post.slug);
+  if (!items.length) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${SITE_NAME} Blog Articles`,
+    itemListElement: items.map((post, index) => {
+      const postUrl = buildAbsoluteUrl(`/blog/${post.slug}`);
+      const publishedDate = new Date(`${post.date}T00:00:00Z`).toISOString();
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "BlogPosting",
+          name: post.title,
+          headline: post.title,
+          description: post.excerpt,
+          url: postUrl,
+          datePublished: publishedDate,
+        },
+      };
+    }),
   };
 };
 
