@@ -5,6 +5,22 @@ export interface DrNjoGalleryImage {
 
 export const drNjoGalleryImages: DrNjoGalleryImage[] = [
   {
+    src: "https://res.cloudinary.com/dhqpqfw6w/image/upload/v1770776241/1_uiehhq.jpg",
+    alt: "Thank you for the interview and your inspiring insights"
+  },
+  {
+    src: "https://res.cloudinary.com/dhqpqfw6w/image/upload/v1770776279/3_yt7juv.jpg",
+    alt: "From admissions interviewee to senior IDS attendee at UOP Sacramento, sharing gratitude and gifts from Shuang's country with Dr. Njo"
+  },
+  {
+    src: "https://res.cloudinary.com/dhqpqfw6w/image/upload/v1770776282/2_lxrfhn.jpg",
+    alt: "Dr. Michael Njo guiding and mentoring dental professionals"
+  },
+  {
+    src: "https://res.cloudinary.com/dhqpqfw6w/image/upload/v1770776307/Updated_cskep5.png",
+    alt: "Dr. Michael Njo in action supporting and educating dental professionals"
+  },
+  {
     src: "https://res.cloudinary.com/dhqpqfw6w/image/upload/v1767707725/Leadership-retreat_peohe1.webp",
     alt: "Dr. Njo at leadership retreat"
   },
