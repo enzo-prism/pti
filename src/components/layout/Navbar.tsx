@@ -13,6 +13,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const pathname = usePathname();
+  const currentPath = pathname ?? "/";
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
@@ -109,7 +110,7 @@ const Navbar = () => {
                 <Link
                   href={item.path}
                   className={`flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
-                    pathname === item.path || pathname.startsWith(item.path) ? "text-primary" : "text-gray-700"
+                    currentPath === item.path || currentPath.startsWith(item.path) ? "text-primary" : "text-gray-700"
                   }`}
                 >
                   {item.name} <ChevronDown size={16} className="ml-1" />
@@ -133,7 +134,7 @@ const Navbar = () => {
                 key={item.name}
                 href={item.path}
                 className={`rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
-                  pathname === item.path ? "text-primary" : "text-gray-700"
+                  currentPath === item.path ? "text-primary" : "text-gray-700"
                 }`}
               >
                 {item.name}
@@ -157,7 +158,7 @@ const Navbar = () => {
                     <Link
                       href={item.path}
                       className={`flex-1 py-2 text-lg font-medium ${
-                        pathname === item.path || pathname.startsWith(item.path) ? "text-primary" : "text-gray-700"
+                        currentPath === item.path || currentPath.startsWith(item.path) ? "text-primary" : "text-gray-700"
                       }`}
                       onClick={closeMenu}
                     >
@@ -194,7 +195,7 @@ const Navbar = () => {
                   key={item.name}
                 href={item.path}
                 className={`py-2 text-lg font-medium block ${
-                  pathname === item.path ? "text-primary" : "text-gray-700"
+                  currentPath === item.path ? "text-primary" : "text-gray-700"
                 }`}
                   onClick={closeMenu}
                 >
