@@ -16,14 +16,7 @@ const Testimonials = () => {
   
   const testimonialsData = [
     {
-      quote: "We confidently recommend Dr. Michael Njo to our dental clients who are seeking thoughtful, results-driven coaching grounded in real-world ownership experience. Dr. Njo understands that a dental practice is both a clinical operation and a closely held business. His coaching helps dentists make smarter operational and strategic decisions that improve profitability, strengthen leadership, and build long-term practice value. What sets Dr. Njo apart is his ability to meet clients where they are. From associates preparing for ownership to established practice owners planning for growth or transition, his guidance is clear, disciplined, and aligned with each doctor's goals. For dentists who want to run stronger practices and create meaningful long-term value, Dr. Njo is a trusted and highly effective advisor.",
-      author: "The Phillips Group",
-      role: "Dental Client Advisory Firm",
-      rating: 5.0,
-      category: "workshop"
-    },
-    {
-      quote: "I started with Michael in 2018 and have had an outstanding experience! He brings a wealth of knowledge and a truly professional, friendly approach to my dental practice. His advice is not only practical but also easy to implement, and I've seen improvements in patient satisfaction and office efficiency.\n\nMost recently, Michael and his team helped facilitate a chart sale that was fair to both seller and buyer (myself). He expertly guided us through the process and continues to monitor our progress, ensuring a smooth and successful transfer of patients. I highly recommend Michael to any dental team looking to level up their game!\n\nG. Allen Herrera, DDS",
+      quote: "I started with Michael in 2018 and have had an outstanding experience! He brings a wealth of knowledge and a truly professional, friendly approach to my dental practice. His advice is not only practical but also easy to implement, and I've seen improvements in patient satisfaction and office efficiency. Most recently, Michael and his team helped facilitate a chart sale that was fair to both seller and buyer (myself). He expertly guided us through the process and continues to monitor our progress, ensuring a smooth and successful transfer of patients. I highly recommend Michael to any dental team looking to level up their game!",
       author: "G. Allen Herrera, DDS",
       role: "Practice Buyer",
       rating: 5.0,
@@ -48,7 +41,7 @@ const Testimonials = () => {
       category: "workshop"
     },
     {
-      quote: "Dr. Michael has become not only a colleague, but a trusted friend who has helped navigate the challenging landscape of a multi state, multi-practice operation. His availability is his best ability. His efficient, calm leadership really made our transition smooth. Providing healthcare for patients becomes harder every day. Dr. Michael makes it easier.",
+      quote: "Dr. Michael has become not only a colleague, but a trusted friend who has helped navigate the challenging landscape of a multi state, multi- practice operation. His availability is his best ability. His efficient, calm leadership really made our transition smooth. Providing healthcare for patients becomes harder every day. Dr. Michael makes it easier.",
       author: "Blaine Leeds",
       role: "Multi-Practice Owner",
       rating: 5.0,
@@ -146,6 +139,20 @@ const Testimonials = () => {
       category: "seller"
     },
     {
+      quote: "Dr. Njo is an exceptional dental consultant and broker who brings unmatched expertise, integrity and strategic insight to every engagement. His deep understanding of both clinical practice operations and the business side of dentistry makes him an invaluable resource for dentists at every stage of their careers. As a consultant, Dr. Njo has a remarkable ability to evaluate a practice comprehensively--from production and profitability to systems, team performance and growth opportunities. His recommendations are thoughtful, data-driven and tailored to the specific goals of each client. He doesn't just identify opportunities; he provides clear, actionable strategies that lead to measurable results. As a broker, Dr. Njo demonstrates professionalism and transparency throughout the entire transaction process. He skillfully guides buyers and sellers with confidence, ensuring smooth transitions while protecting their best interests. His attention to detail, market knowledge and negotiation skills consistently lead to successful outcomes. What truly sets Dr. Njo apart is his commitment to relationships. He builds trust, communicates clearly and genuinely cares about the long-term success of the dentists and practices he serves. I highly recommend Dr. Njo to any dental professional seeking expert consulting guidance or a trusted partner in buying or selling a practice.",
+      author: "Kevin Valle",
+      role: "Practice Owner",
+      rating: 5.0,
+      category: "valuation"
+    },
+    {
+      quote: "I have worked with Dr. Michael Njo for nearly twenty years serving as my pediatric dental practice consultant. Just as importantly, he has been a trusted mentor and close friend during this time. Michael sets himself apart as a consultant with the unique expertise he has in the field, his impeccable character, and the bold short- and long-term strategic vision he sees for his clients.\n\nMichael has great experience in practice consulting because he has worked with dentists in many different stages of their careers from scratch starts to practice transitions. I think that any problem that I run into, Michael has seen it before and knows how to address it. In this way he can help identify what is not working and suggest improvements before small issues turn into big problems.\n\nMichael has a vast network of contacts that is invaluable. He has referred me to professionals in the banking, personal financial, dental insurance, fee schedules, payment processing, and staffing industries, among others. Specifically, Michael has helped us adopt marketing strategies to attract new patients, help our practice stand out in a crowded market, and deliver an exceptional patient experience.\n\nIn my practice, Michael's skill with team building has been instrumental in attracting, onboarding and maintaining talent in a challenging labor market. He is the first person I reach out to when there are staff issues in my practice. He created a bonus program to incentivize our team to go above and beyond. Michael gives me strategies to employ with my team while calmly reassuring me things will improve when I overreact to minor personality conflicts.\n\nIn all he does, Michael operates with integrity in his work. I have known him to dismiss clients because he didn't feel they operated ethically. Michael feels that distancing from these clients actually improves his business by upholding his standard. He is very loyal in his service to improving dental practice performance and enjoyment through his coaching.\n\nMichael is true to improving the entire dental practice. He understands that if a dental team is not taken care of, we cannot care for our patients. Michael will assess situations from a neutral perspective to give the best advice, even telling me things I do not want to hear when needed. Similarly, when helping with practice transitions, he understands that any deal must take care of all parties in the transaction or it will not be a success.\n\nEach practice owner has a different path and Michael helps optimize each situation with his bold vision. He has helped me negotiate leases, analyze opportunities to purchase real estate, review contracts, lower interest rates on loans and open a second practice. Michael's coaching is invaluable to ensure that our satellite office does not detract from our main practice location.\n\nMichael understands how our professional life relates to, and supports our personal goals. His experience consulting with many practitioners in different phases of life gives him a foundation to provide the guidance I have needed. During hard times he has an uncanny sense of when I need him to check in to see how I am doing.\n\nI want to thank Michael for his help throughout my career. We began working together a few years after I opened my practice when I was struggling during the Great Recession of 2008. He picked me up during the most challenging time of my life and has since helped double the production in my office many times over. Michael has helped me grow as a person and dental professional and I look forward to continuing our relationship.",
+      author: "Jon Sierk",
+      role: "Pediatric Dentist",
+      rating: 5.0,
+      category: "buyer"
+    },
+    {
       quote: "Michael and I have worked together for almost two years in pursuit of achieving my goal of practice ownership. He has coached, supported, encouraged, and guided me through the process from start to finish. He has made a breeze of what could have been the most stressful time in my career, and I have confidently taken one step after another knowing I was being coached by the best. I cannot recommend Michael and the Dental Strategies team more.",
       author: "Christian Lopez Cornejo",
       role: "Practice Buyer",
@@ -188,7 +195,7 @@ const Testimonials = () => {
       category: "seller"
     },
     {
-      quote: "Favorite part about DBC is learning from Dr. Njo and working with the rest of the executive board",
+      quote: "Favorite part about DBC is learning from Dr. Njo and working with the rest of the executive board.",
       author: "Armaan Grewal",
       role: "Dugoni Business Club Member",
       company: "9/15/2025",
@@ -416,6 +423,46 @@ const Testimonials = () => {
       company: "",
       rating: 5.0,
       category: "seller"
+    },
+    {
+      quote: "Very insightful book! I found the chapters in this book extremely informative. It covers topics that every Dentist should know, but are rarely talked about in dental school or dental circles. It was a great read coming right out of dental school. I highly recommend.",
+      author: "Dr. A. Jaraha",
+      role: "Amazon Reviewer",
+      company: "Book Review",
+      rating: 5.0,
+      category: "book"
+    },
+    {
+      quote: "In Dental Practice Transitions Handbook, Dr. Michael A. Njo deftly navigates the ever-changing landscape of dental practice transitions, providing insightful advice and guidance to dental professionals at any stage of their career. Dr. Njo's approach emphasizes the importance of careful planning and educated decision-making to ensure long-term success in a field that has seen significant changes in recent years. The ideal audience for Dental Practice Transitions Handbook is dental professionals at any stage of their career, particularly those who are considering a transition, such as a partnership, acquisition, or sale of a practice. I wholeheartedly recommend Dental Practice Transitions Handbook by Dr. Michael A. Njo.",
+      author: "Technoguru",
+      role: "Amazon Reviewer",
+      company: "Book Review",
+      rating: 5.0,
+      category: "book"
+    },
+    {
+      quote: "Dr. Njo is very knowledgable on all aspects of private practice dentistry. Reading this book will give you a lot of valuable insight to what decisions you should and shouldn't make in order to maximize your success in your dental career.",
+      author: "Amazon Customer",
+      role: "Amazon Reviewer",
+      company: "Book Review",
+      rating: 5.0,
+      category: "book"
+    },
+    {
+      quote: "I listened to the author lecture about this book and the topic. I have started reading it and am so thankful that I have the resource at my fingertips!",
+      author: "Sloane",
+      role: "Amazon Reviewer",
+      company: "Book Review",
+      rating: 5.0,
+      category: "book"
+    },
+    {
+      quote: "We confidently recommend Dr. Michael Njo to our dental clients who are seeking thoughtful, results-driven coaching grounded in real-world ownership experience. Dr. Njo understands that a dental practice is both a clinical operation and a closely held business. His coaching helps dentists make smarter operational and strategic decisions that improve profitability, strengthen leadership, and build long-term practice value. What sets Dr. Njo apart ishis ability to meet clients where they are. From associates preparing for ownership to established practice owners planning for growth or transition, his guidance is clear, disciplined, and aligned with each doctor's goals. For dentists who want to run stronger practices and create meaningful long-term value, Dr. Njo is a trusted and highly effective advisor.",
+      author: "The Phillips Group",
+      role: "Advisory Group",
+      company: "The Phillips Group",
+      rating: 5.0,
+      category: "valuation"
     }
   ];
 
