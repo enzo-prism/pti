@@ -139,7 +139,7 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
 
   return (
     <>
-      <BlogPostAnalytics title={post.title} category={post.category} />
+      <BlogPostAnalytics title={post.title} category={post.category} slug={post.slug} />
       {/* Header Section */}
       <section className="bg-white pt-24 pb-8 md:pt-28 md:pb-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

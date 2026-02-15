@@ -54,7 +54,9 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 ## SEO and Analytics
 - Per-page metadata is generated with `buildPageMetadata` in `src/lib/seo.ts`.
 - JSON-LD is rendered with `StructuredData` from `src/components/StructuredData.tsx`.
-- Google Analytics 4 helpers live in `src/lib/analytics.ts` and expect the production GA ID (`G-XCBKH87HG5`). Analytics are suppressed during development builds.
+- Google Analytics 4 helpers live in `src/lib/analytics.ts`. Configure `NEXT_PUBLIC_GA_MEASUREMENT_ID` for the GA4 stream (legacy fallback ID remains during migration), and `NEXT_PUBLIC_HOTJAR_ID` optionally for Hotjar.
+- Analytics run only on production + canonical host with a valid GA measurement ID. `NEXT_PUBLIC_VERCEL_ENV` is optional and, when set, controls production detection.
+- Lead-focused key events emitted by the app include `generate_lead`, `book_consultation_click`, and `phone_call_click`.
 - Sitemap and robots are generated at runtime by `src/app/sitemap.ts` and `src/app/robots.ts`.
 - Social profiles (schema `sameAs`): set `NEXT_PUBLIC_SOCIAL_PROFILES` to a comma-separated list of profile URLs.
 

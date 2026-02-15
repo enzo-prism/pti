@@ -1,14 +1,27 @@
-
 "use client";
 
-import { useEffect, useState } from "react";
-import { trackContactFormSubmit, trackCTAClick } from "@/lib/analytics";
+import { useEffect, useRef, useState } from "react";
+import {
+  trackContactFormStart,
+  trackContactFormSubmit,
+  trackSelectCta,
+} from "@/lib/analytics";
 
 const TYPEFORM_INITIAL_HEIGHT = 1000;
+const TYPEFORM_WIDGET_URL = "https://fxuqp40sseh.typeform.com/to/cYOs5Ma2";
+const TYPEFORM_EMBED_SCRIPT = "https://embed.typeform.com/next/embed.js";
+const TYPEFORM_FORM_ID = "cYOs5Ma2";
+const TYPEFORM_PROVIDER = "typeform";
+
+type TypeformSubmitCallback = () => void;
+type TypeformWindow = Window & Record<string, unknown>;
 
 export const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const submitCallbackRef = useRef(
+    `ptiTypeformSubmit_${Math.random().toString(36).slice(2)}`
+  );
   const isPrerender =
     typeof navigator !== "undefined" && navigator.userAgent === "ReactSnap";
 
@@ -18,34 +31,35 @@ export const ContactForm = () => {
       return;
     }
 
-    // Load Typeform embed script
-    const script = document.createElement('script');
-    script.src = "//embed.typeform.com/next/embed.js";
+    const callbackName = submitCallbackRef.current;
+    const win = window as unknown as TypeformWindow;
+    win[callbackName] = (() => {
+      trackContactFormSubmit("contact", TYPEFORM_FORM_ID, TYPEFORM_PROVIDER);
+    }) as TypeformSubmitCallback;
+
+    // Load Typeform embed script.
+    const script = document.createElement("script");
+    script.src = TYPEFORM_EMBED_SCRIPT;
     script.async = true;
-    
+
     script.onload = () => {
-      console.log('Typeform script loaded successfully');
       setIsLoading(false);
-      
-      // Track that contact form was displayed
-      trackCTAClick('contact_form_displayed', 'contact_page');
+      trackContactFormStart(TYPEFORM_FORM_ID, TYPEFORM_PROVIDER);
     };
-    
+
     script.onerror = () => {
-      console.error('Failed to load Typeform script');
       setHasError(true);
       setIsLoading(false);
     };
-    
+
     document.body.appendChild(script);
 
     return () => {
-      // Cleanup script when component unmounts
-      try {
-        document.body.removeChild(script);
-      } catch (error) {
-        console.log('Script already removed');
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
       }
+
+      delete win[callbackName];
     };
   }, [isPrerender]);
 
@@ -66,7 +80,7 @@ export const ContactForm = () => {
               The contact form loads on the live site. Use the link below if it does not appear.
             </p>
             <a
-              href="https://fxuqp40sseh.typeform.com/to/cYOs5Ma2"
+              href={TYPEFORM_WIDGET_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline"
@@ -94,11 +108,16 @@ export const ContactForm = () => {
           <div className="text-center">
             <p className="text-muted-foreground mb-4">Unable to load the form. Please try again or contact us directly.</p>
             <a 
-              href="https://fxuqp40sseh.typeform.com/to/cYOs5Ma2" 
+              href={TYPEFORM_WIDGET_URL}
               target="_blank" 
               rel="noopener noreferrer"
               className="text-primary hover:underline"
-              onClick={() => trackCTAClick('external_form_link', 'contact_page_error_fallback')}
+              onClick={() =>
+                trackSelectCta(
+                  "external_form_link",
+                  "contact_page_error_fallback"
+                )
+              }
             >
               Open form in new window
             </a>
@@ -124,11 +143,12 @@ export const ContactForm = () => {
         </div>
       )}
       <div 
-        data-tf-widget="https://fxuqp40sseh.typeform.com/to/cYOs5Ma2"
+        data-tf-widget={TYPEFORM_WIDGET_URL}
         data-tf-opacity="100"
         data-tf-hide-headers
         data-tf-hide-footer
         data-tf-auto-resize="true"
+        data-tf-on-submit={submitCallbackRef.current}
         data-tf-height={TYPEFORM_INITIAL_HEIGHT}
         className="w-full"
         style={{ opacity: isLoading ? 0 : 1, minHeight: `${TYPEFORM_INITIAL_HEIGHT}px` }}

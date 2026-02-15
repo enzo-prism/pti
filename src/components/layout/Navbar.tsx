@@ -6,7 +6,10 @@ import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
-import { trackCTAClick } from "@/lib/analytics";
+import {
+  trackBookConsultationClick,
+  trackPhoneCallClick,
+} from "@/lib/analytics";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -67,7 +70,7 @@ const Navbar = () => {
               <a 
                 href={`tel:${PHONE_NUMBER_TEL}`}
                 className="mt-1 flex items-center text-sm md:text-base font-semibold text-gray-800 transition-colors hover:text-primary whitespace-nowrap"
-                onClick={() => trackCTAClick('phone_call', 'navbar')}
+                onClick={() => trackPhoneCallClick("navbar")}
               >
                 <Phone className="mr-1 h-3 w-3 md:h-4 md:w-4" />
                 {PHONE_NUMBER}
@@ -91,7 +94,7 @@ const Navbar = () => {
           >
             <Link 
               href="/contact"
-              onClick={() => trackCTAClick('book_consultation', 'navbar_desktop')}
+              onClick={() => trackBookConsultationClick("navbar_desktop")}
             >
               Book Consultation
             </Link>
@@ -206,9 +209,9 @@ const Navbar = () => {
             <Button className="mt-4 w-full" asChild>
               <Link 
                 href="/contact" 
-                onClick={(e) => {
+                onClick={() => {
                   closeMenu();
-                  trackCTAClick('book_consultation', 'navbar_mobile');
+                  trackBookConsultationClick("navbar_mobile");
                 }}
               >
                 Book Consultation

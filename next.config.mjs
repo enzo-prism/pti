@@ -23,7 +23,9 @@ const nextConfig = {
   },
   env: {
     NEXT_PUBLIC_BUILD_TIMESTAMP: Date.now().toString(),
-    NEXT_PUBLIC_VERCEL_ENV: process.env.VERCEL_ENV ?? "development",
+    ...(process.env.VERCEL_ENV
+      ? { NEXT_PUBLIC_VERCEL_ENV: process.env.VERCEL_ENV }
+      : {}),
   },
 };
 

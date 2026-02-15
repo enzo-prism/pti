@@ -1,7 +1,7 @@
 import { CANONICAL_SITE_URL } from "@/lib/siteMetadata";
 
 type GtagFunction = (
-  command: string,
+  command: "js" | "config" | "event",
   target: string | Date,
   params?: Record<string, unknown>
 ) => void;
@@ -10,6 +10,7 @@ type AnalyticsWindow = Window & {
   dataLayer?: unknown[];
   gtag?: GtagFunction;
   __gaConfigured?: boolean;
+  __gaLastTrackedPath?: string;
 };
 
 declare global {
@@ -17,26 +18,85 @@ declare global {
     dataLayer?: unknown[];
     gtag?: GtagFunction;
     __gaConfigured?: boolean;
+    __gaLastTrackedPath?: string;
   }
 }
 
-// Analytics event types
-export interface AnalyticsEvent {
-  event_category: string;
-  event_label?: string;
-  value?: number;
-  custom_parameters?: Record<string, unknown>;
-}
+type AnalyticsValue = string | number | boolean | null | undefined;
+type AnalyticsParams = Record<string, AnalyticsValue>;
 
-export const GA_MEASUREMENT_ID = "G-XCBKH87HG5";
-export const HOTJAR_ID = 6575519;
+const LEGACY_GA_MEASUREMENT_ID = "G-XCBKH87HG5";
+const LEGACY_HOTJAR_ID = 6575519;
+const GA_MEASUREMENT_ID_REGEX = /^G-[A-Z0-9]+$/;
+const EVENT_NAME_REGEX = /^[a-zA-Z][a-zA-Z0-9_]{0,39}$/;
+const RESERVED_CUSTOM_EVENT_NAMES = new Set(["click", "page_view"]);
 
 const CANONICAL_HOSTNAME = new URL(CANONICAL_SITE_URL).hostname.toLowerCase();
-const vercelEnv = process.env.NEXT_PUBLIC_VERCEL_ENV;
-const isProduction =
-  typeof vercelEnv === "string"
-    ? vercelEnv === "production"
-    : process.env.NODE_ENV === "production";
+
+const resolveProductionMode = (): boolean => {
+  const vercelEnv = process.env.NEXT_PUBLIC_VERCEL_ENV?.trim().toLowerCase();
+  if (vercelEnv) {
+    return vercelEnv === "production";
+  }
+
+  return process.env.NODE_ENV === "production";
+};
+
+const resolveMeasurementId = (): string | null => {
+  const configuredId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
+  if (typeof configuredId === "string") {
+    const normalizedConfiguredId = configuredId.trim().toUpperCase();
+    if (!normalizedConfiguredId) {
+      return null;
+    }
+
+    return GA_MEASUREMENT_ID_REGEX.test(normalizedConfiguredId)
+      ? normalizedConfiguredId
+      : null;
+  }
+
+  return GA_MEASUREMENT_ID_REGEX.test(LEGACY_GA_MEASUREMENT_ID)
+    ? LEGACY_GA_MEASUREMENT_ID
+    : null;
+};
+
+const resolveHotjarId = (): number | null => {
+  const configuredId = process.env.NEXT_PUBLIC_HOTJAR_ID;
+
+  if (typeof configuredId !== "string") {
+    return LEGACY_HOTJAR_ID;
+  }
+
+  const normalizedConfiguredId = configuredId.trim();
+  if (!normalizedConfiguredId) {
+    return null;
+  }
+
+  const parsedHotjarId = Number.parseInt(normalizedConfiguredId, 10);
+  if (!Number.isFinite(parsedHotjarId) || parsedHotjarId <= 0) {
+    return null;
+  }
+
+  return parsedHotjarId;
+};
+
+const isCanonicalHostname = (hostname: string): boolean => {
+  const normalizedHostname = hostname.toLowerCase();
+  return (
+    normalizedHostname === CANONICAL_HOSTNAME ||
+    normalizedHostname === `www.${CANONICAL_HOSTNAME}`
+  );
+};
+
+const isProduction = resolveProductionMode();
+export const GA_MEASUREMENT_ID = resolveMeasurementId();
+export const HOTJAR_ID = resolveHotjarId();
+
+export const isValidGaMeasurementId = (
+  measurementId: string | null | undefined
+): measurementId is string =>
+  typeof measurementId === "string" && GA_MEASUREMENT_ID_REGEX.test(measurementId);
 
 const ensureGtagBridge = (): AnalyticsWindow => {
   const win = window as AnalyticsWindow;
@@ -52,19 +112,20 @@ const ensureGtagBridge = (): AnalyticsWindow => {
 };
 
 export const shouldEnableAnalytics = (): boolean => {
-  if (!isProduction || typeof window === "undefined") {
+  if (
+    !isProduction ||
+    typeof window === "undefined" ||
+    !isValidGaMeasurementId(GA_MEASUREMENT_ID)
+  ) {
     return false;
   }
 
-  const hostname = window.location.hostname.toLowerCase();
-  return (
-    hostname === CANONICAL_HOSTNAME || hostname === `www.${CANONICAL_HOSTNAME}`
-  );
+  return isCanonicalHostname(window.location.hostname);
 };
 
 // Initialize Google Analytics. Safe to call multiple times.
 export const initializeAnalytics = () => {
-  if (!shouldEnableAnalytics()) {
+  if (!shouldEnableAnalytics() || !GA_MEASUREMENT_ID) {
     return;
   }
 
@@ -89,11 +150,22 @@ export const trackPageView = (
     return;
   }
 
-  initializeAnalytics();
-  const pageLocation =
+  const win = ensureGtagBridge();
+  const normalizedPath =
     path.startsWith("http://") || path.startsWith("https://")
       ? path
-      : `${window.location.origin}${path}`;
+      : path.startsWith("/")
+        ? path
+        : `/${path}`;
+  if (win.__gaLastTrackedPath === normalizedPath) {
+    return;
+  }
+
+  initializeAnalytics();
+  const pageLocation =
+    normalizedPath.startsWith("http://") || normalizedPath.startsWith("https://")
+      ? normalizedPath
+      : `${window.location.origin}${normalizedPath}`;
 
   const pagePayload: Record<string, unknown> = {
     page_location: pageLocation,
@@ -104,63 +176,116 @@ export const trackPageView = (
     pagePayload.page_referrer = options.referrer;
   }
 
-  (window as AnalyticsWindow).gtag?.("event", "page_view", pagePayload);
+  win.gtag?.("event", "page_view", pagePayload);
+  win.__gaLastTrackedPath = normalizedPath;
 };
 
 // Track custom events.
-export const trackEvent = (eventName: string, parameters: AnalyticsEvent) => {
+export const trackEvent = (eventName: string, parameters: AnalyticsParams = {}) => {
   if (!shouldEnableAnalytics()) {
+    return;
+  }
+
+  if (
+    !EVENT_NAME_REGEX.test(eventName) ||
+    RESERVED_CUSTOM_EVENT_NAMES.has(eventName)
+  ) {
     return;
   }
 
   initializeAnalytics();
 
+  const filteredParameters = Object.fromEntries(
+    Object.entries(parameters).filter(
+      ([, value]) => value !== undefined && value !== null
+    )
+  );
+
   (window as AnalyticsWindow).gtag?.("event", eventName, {
-    event_category: parameters.event_category,
-    event_label: parameters.event_label,
-    value: parameters.value,
-    ...parameters.custom_parameters,
+    ...filteredParameters,
   });
 };
 
-// Predefined event tracking functions
-export const trackContactFormSubmit = () => {
-  trackEvent("form_submit", {
-    event_category: "engagement",
-    event_label: "contact_form",
+export const trackBookConsultationClick = (location: string) => {
+  trackEvent("book_consultation_click", {
+    location,
+  });
+};
+
+export const trackPhoneCallClick = (location: string) => {
+  trackEvent("phone_call_click", {
+    location,
+  });
+};
+
+export const trackSelectCta = (ctaName: string, ctaLocation: string) => {
+  trackEvent("select_cta", {
+    cta_name: ctaName,
+    cta_location: ctaLocation,
+  });
+};
+
+export const trackBlogPostView = (
+  postTitle: string,
+  category: string,
+  postSlug: string
+) => {
+  trackEvent("view_blog_post", {
+    post_title: postTitle,
+    content_category: category,
+    post_slug: postSlug,
+  });
+};
+
+export const trackSeriesNavigation = (
+  seriesId: string,
+  fromPart: number,
+  toPart: number
+) => {
+  trackEvent("blog_series_navigation", {
+    series_id: seriesId,
+    from_part: fromPart,
+    to_part: toPart,
+  });
+};
+
+export const trackEventRegistrationClick = (
+  eventName: string,
+  channel: "phone" | "email" | "external" | "alternative_email"
+) => {
+  trackEvent("event_registration_click", {
+    event_name: eventName,
+    channel,
+  });
+};
+
+export const trackContactFormStart = (
+  formId = "contact_form",
+  formProvider = "typeform"
+) => {
+  trackEvent("form_start", {
+    form_id: formId,
+    form_provider: formProvider,
+  });
+};
+
+export const trackContactFormSubmit = (
+  leadType = "contact",
+  formId = "contact_form",
+  formProvider = "typeform"
+) => {
+  trackEvent("generate_lead", {
+    lead_type: leadType,
+    form_id: formId,
+    form_provider: formProvider,
   });
 };
 
 export const trackServiceView = (serviceName: string) => {
-  trackEvent("page_view", {
-    event_category: "services",
-    event_label: serviceName,
+  trackEvent("view_service", {
+    service_name: serviceName,
   });
 };
 
-export const trackBlogPostView = (postTitle: string, category: string) => {
-  trackEvent("page_view", {
-    event_category: "blog",
-    event_label: postTitle,
-    custom_parameters: {
-      content_category: category,
-    },
-  });
-};
-
-export const trackCTAClick = (ctaName: string, location: string) => {
-  trackEvent("click", {
-    event_category: "cta",
-    event_label: ctaName,
-    custom_parameters: {
-      click_location: location,
-    },
-  });
-};
-
-export const trackSeriesNavigation = (fromPart: string, toPart: string) => {
-  trackEvent("navigation", {
-    event_category: "blog_series",
-    event_label: `${fromPart}_to_${toPart}`,
-  });
-};
+// Backward-compatible alias while components migrate.
+export const trackCTAClick = trackSelectCta;

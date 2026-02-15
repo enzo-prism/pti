@@ -34,7 +34,12 @@ export function GoogleAnalytics() {
     }
 
     const query = searchParams?.toString();
-    const path = `${pathname}${query ? `?${query}` : ""}`;
+    const normalizedPathname = pathname ?? "/";
+    const path = `${normalizedPathname}${query ? `?${query}` : ""}`;
+    if (previousPathRef.current === path) {
+      return;
+    }
+
     const referrer = previousPathRef.current
       ? `${window.location.origin}${previousPathRef.current}`
       : document.referrer || undefined;
@@ -50,13 +55,13 @@ export function GoogleAnalytics() {
     return () => window.clearTimeout(timer);
   }, [isEnabled, pathname, searchParams]);
 
-  if (!isEnabled) {
+  if (!isEnabled || !GA_MEASUREMENT_ID) {
     return null;
   }
 
   return (
     <Script
-      id="google-tag-manager"
+      id="google-analytics"
       src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
       strategy="afterInteractive"
     />

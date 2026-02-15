@@ -3,7 +3,7 @@
 import { Calendar, Clock, MapPin, Phone, Mail, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
-import { trackCTAClick } from "@/lib/analytics";
+import { trackEventRegistrationClick } from "@/lib/analytics";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -57,6 +57,7 @@ export const MultiDateEventCard = ({
   const locationText = uniqueLocations.length === 1 
     ? uniqueLocations[0] 
     : `${uniqueLocations.length} locations available`;
+  const normalizedEventName = title.replace(/\s+/g, "_").toLowerCase();
 
   return (
     <div 
@@ -295,7 +296,7 @@ export const MultiDateEventCard = ({
                     className="flex-1 sm:flex-none"
                     onClick={() => {
                       window.open(registrationLink, '_self');
-                      trackCTAClick('event_phone_registration', `event_${title.replace(/\s+/g, '_').toLowerCase()}`);
+                      trackEventRegistrationClick(normalizedEventName, "phone");
                     }}
                   >
                     <Phone size={16} className="mr-2" />
@@ -307,7 +308,7 @@ export const MultiDateEventCard = ({
                     className="flex-1 sm:flex-none"
                     onClick={() => {
                       window.open('mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry', '_self');
-                      trackCTAClick('event_email_registration', `event_${title.replace(/\s+/g, '_').toLowerCase()}`);
+                      trackEventRegistrationClick(normalizedEventName, "email");
                     }}
                   >
                     <Mail size={16} className="mr-2" />
@@ -319,7 +320,10 @@ export const MultiDateEventCard = ({
                   <Button 
                     size="sm" 
                     className="flex-1 sm:flex-none"
-                    onClick={() => window.open(registrationLink, '_self')}
+                    onClick={() => {
+                      window.open(registrationLink, "_self");
+                      trackEventRegistrationClick(normalizedEventName, "email");
+                    }}
                   >
                     <Mail size={16} className="mr-2" />
                     Email us to register
@@ -328,7 +332,16 @@ export const MultiDateEventCard = ({
                     size="sm" 
                     variant="outline"
                     className="flex-1 sm:flex-none"
-                    onClick={() => window.open('mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry', '_self')}
+                    onClick={() => {
+                      window.open(
+                        "mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry",
+                        "_self"
+                      );
+                      trackEventRegistrationClick(
+                        normalizedEventName,
+                        "alternative_email"
+                      );
+                    }}
                   >
                     <Mail size={16} className="mr-2" />
                     Alternative Email
@@ -341,7 +354,7 @@ export const MultiDateEventCard = ({
                     className="flex-1 sm:flex-none"
                     onClick={() => {
                       window.open(registrationLink, '_blank');
-                      trackCTAClick('event_external_registration', `event_${title.replace(/\s+/g, '_').toLowerCase()}`);
+                      trackEventRegistrationClick(normalizedEventName, "external");
                     }}
                   >
                     Register Now
@@ -350,7 +363,13 @@ export const MultiDateEventCard = ({
                     size="sm" 
                     variant="outline"
                     className="flex-1 sm:flex-none"
-                    onClick={() => window.open('mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry', '_self')}
+                    onClick={() => {
+                      window.open(
+                        "mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry",
+                        "_self"
+                      );
+                      trackEventRegistrationClick(normalizedEventName, "email");
+                    }}
                   >
                     <Mail size={16} className="mr-2" />
                     Email us to register

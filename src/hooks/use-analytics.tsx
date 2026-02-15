@@ -11,7 +11,7 @@ type AnalyticsWindow = Window & { hj?: HotjarFunction; _hjSettings?: { hjid: num
  */
 export function useAnalytics() {
   useEffect(() => {
-    if (!shouldEnableAnalytics()) {
+    if (!shouldEnableAnalytics() || !HOTJAR_ID) {
       return;
     }
 
