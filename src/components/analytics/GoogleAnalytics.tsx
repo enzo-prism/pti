@@ -5,7 +5,6 @@ import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
 import {
   GA_MEASUREMENT_ID,
-  initializeAnalytics,
   shouldEnableAnalytics,
   trackPageView,
 } from "@/lib/analytics";
@@ -19,14 +18,6 @@ export function GoogleAnalytics() {
   useEffect(() => {
     setIsEnabled(shouldEnableAnalytics());
   }, []);
-
-  useEffect(() => {
-    if (!isEnabled) {
-      return;
-    }
-
-    initializeAnalytics();
-  }, [isEnabled]);
 
   useEffect(() => {
     if (!isEnabled) {
@@ -60,10 +51,26 @@ export function GoogleAnalytics() {
   }
 
   return (
-    <Script
-      id="google-analytics"
-      src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-      strategy="afterInteractive"
-    />
+    <>
+      <Script
+        id="google-analytics-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = window.gtag || gtag;
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: false });
+            window.__gaConfigured = true;
+          `,
+        }}
+      />
+      <Script
+        id="google-analytics"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        strategy="afterInteractive"
+      />
+    </>
   );
 }

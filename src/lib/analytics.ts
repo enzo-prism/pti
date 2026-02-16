@@ -103,9 +103,13 @@ const ensureGtagBridge = (): AnalyticsWindow => {
   win.dataLayer = win.dataLayer || [];
 
   if (typeof win.gtag !== "function") {
-    win.gtag = (...args: unknown[]) => {
-      win.dataLayer?.push(args);
-    };
+    const gtagBridge = function (...args: unknown[]) {
+      // Preserve Google’s expected queue shape by pushing an arguments object.
+      // eslint-disable-next-line prefer-rest-params
+      win.dataLayer?.push(arguments);
+    } as GtagFunction;
+
+    win.gtag = gtagBridge;
   }
 
   return win;
