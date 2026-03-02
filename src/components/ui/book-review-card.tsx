@@ -37,10 +37,9 @@ export function BookReviewCard({ review, className, style }: BookReviewCardProps
         &ldquo;{review.reviewText}&rdquo;
       </blockquote>
 
-      {/* Reviewer info and date */}
+      {/* Reviewer info */}
       <div className="flex items-center justify-between text-xs text-gray-500">
         <span className="font-medium">{review.reviewerName}</span>
-        <span>Reviewed on {review.reviewDate}</span>
       </div>
 
       {/* Amazon branding */}

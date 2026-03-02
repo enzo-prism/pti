@@ -3,12 +3,14 @@ import { cn } from "@/lib/utils";
 import { Quote } from "lucide-react";
 import { CSSProperties } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface TestimonialCardProps {
   quote: string;
   author: string;
   role?: string;
   company?: string;
+  reviewHref?: string;
   className?: string;
   imageUrl?: string;
   style?: CSSProperties;
@@ -19,6 +21,7 @@ export function TestimonialCard({
   author,
   role,
   company,
+  reviewHref,
   className,
   imageUrl,
   style,
@@ -54,6 +57,16 @@ export function TestimonialCard({
           )}
         </div>
       </div>
+      {reviewHref && (
+        <div className="mt-4 pt-3 border-t border-gray-100">
+          <Link
+            href={reviewHref}
+            className="text-sm font-medium text-primary hover:underline"
+          >
+            Read full review
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

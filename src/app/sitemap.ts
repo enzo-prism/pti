@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { blogPosts } from "@/data/blogPosts";
+import { reviews } from "@/data/reviews";
 import { buildAbsoluteUrl } from "@/lib/siteMetadata";
 
 const STATIC_ROUTES = [
@@ -50,5 +51,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     }));
 
-  return [...staticEntries, ...blogEntries];
+  const reviewEntries: MetadataRoute.Sitemap = reviews.map((review) => ({
+    url: buildAbsoluteUrl(`/testimonials/${review.slug}`),
+    lastModified: review.sourceDateISO
+      ? new Date(`${review.sourceDateISO}T00:00:00Z`)
+      : buildDate,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticEntries, ...blogEntries, ...reviewEntries];
 }

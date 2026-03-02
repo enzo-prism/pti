@@ -1,5 +1,6 @@
 import type { BlogPost } from "@/data/blogPosts";
 import type { AuthorProfile } from "@/data/authors";
+import type { ReviewRecord } from "@/data/reviews";
 import {
   BUSINESS_DESCRIPTION,
   BUSINESS_OPENING_HOURS_SPECIFICATION,
@@ -308,6 +309,93 @@ export const buildBlogItemListSchema = (
         },
       };
     }),
+  };
+};
+
+export const buildReviewSchema = (
+  review: ReviewRecord,
+  pageUrl: string
+): JsonLdShape => {
+  const url = resolveAbsoluteUrl(pageUrl);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    "@id": `${url}#review`,
+    url,
+    author: {
+      "@type": "Person",
+      name: review.sourceAuthorName,
+    },
+    reviewBody: review.quote,
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: review.rating,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    itemReviewed: {
+      "@type": "ProfessionalService",
+      "@id": BUSINESS_ID,
+      name: SITE_NAME,
+      url: buildAbsoluteUrl(),
+    },
+    publisher: {
+      "@id": BUSINESS_ID,
+    },
+    inLanguage: DEFAULT_LOCALE,
+    ...(review.sourceDateISO ? { datePublished: review.sourceDateISO } : {}),
+  };
+};
+
+export const buildReviewItemListSchema = (
+  records: ReviewRecord[],
+  pageUrl: string
+): JsonLdShape | null => {
+  if (!records.length) return null;
+
+  const url = resolveAbsoluteUrl(pageUrl);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${url}#review-list`,
+    name: `${SITE_NAME} Reviews`,
+    numberOfItems: records.length,
+    itemListElement: records.map((review, index) => {
+      const reviewUrl = buildAbsoluteUrl(`/testimonials/${review.slug}`);
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        url: reviewUrl,
+        name: `${review.displayAuthorName} review`,
+        item: {
+          "@id": `${reviewUrl}#review`,
+        },
+      };
+    }),
+  };
+};
+
+export const buildAggregateRatingSchema = (
+  records: ReviewRecord[]
+): JsonLdShape | null => {
+  if (!records.length) return null;
+
+  const totalRating = records.reduce((sum, review) => sum + review.rating, 0);
+  const ratingValue = Number((totalRating / records.length).toFixed(2));
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "AggregateRating",
+    "@id": `${buildAbsoluteUrl("/testimonials")}#aggregate-rating`,
+    ratingValue,
+    reviewCount: records.length,
+    bestRating: 5,
+    worstRating: 1,
+    itemReviewed: {
+      "@id": BUSINESS_ID,
+    },
   };
 };
 

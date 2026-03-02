@@ -25,8 +25,8 @@ import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { MultiDateEventCard } from "@/components/ui/multi-date-event-card";
-import { buildEventSchema } from "@/lib/structuredData";
 import Image from "next/image";
+import { getFeaturedReviews } from "@/data/reviews";
 
 interface EventDate {
   date: string;
@@ -41,17 +41,9 @@ interface Event extends RawEvent {
   eventDates?: EventDate[];
 }
 
-const getEventDescription = (event: RawEvent | Event): string => {
-  if (typeof event.description === "string") {
-    return event.description;
-  }
-
-  const details = event.description;
-  return [details.intro, ...(details.learningPoints ?? [])].join(" ");
-};
-
 const Events = () => {
   const [showPastEvents, setShowPastEvents] = useState(false);
+  const workshopReview = getFeaturedReviews("events")[0];
 
   // Optimized event grouping with proper deduplication
   const events: Event[] = useMemo(() => {
@@ -162,23 +154,6 @@ const Events = () => {
     }
   };
   
-  const upcomingEventSchemas = events
-    .filter((event) => !event.isPast)
-    .map((event) =>
-      buildEventSchema({
-        id: event.id,
-        title: event.title,
-        date: event.date,
-        time: event.time,
-        location: event.location,
-        description: getEventDescription(event),
-        registrationLink: event.registrationLink,
-        type: event.type,
-        isVirtual: event.type === "webinar",
-        detailPath: event.detailPath,
-      })
-    );
-
   return (
     <>
       <div className="min-h-screen bg-white">
@@ -472,13 +447,16 @@ const Events = () => {
         <div className="max-w-4xl mx-auto">
           <SectionTitle centered>What Our Attendees Say</SectionTitle>
           <div className="flex justify-center">
-            <TestimonialCard
-              quote="The seminar provided invaluable insights into practice valuation and transition planning. The speakers were knowledgeable and the content was extremely practical for my situation."
-              author="Dr. Sarah Johnson"
-              role="General Dentist"
-              company="Private Practice Owner"
-              className="max-w-2xl"
-            />
+            {workshopReview && (
+              <TestimonialCard
+                quote={workshopReview.quote}
+                author={workshopReview.displayAuthorName}
+                role={workshopReview.role}
+                company={workshopReview.company}
+                reviewHref={`/testimonials/${workshopReview.slug}`}
+                className="max-w-2xl"
+              />
+            )}
           </div>
         </div>
       </Section>

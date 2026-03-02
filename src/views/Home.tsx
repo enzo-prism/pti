@@ -13,7 +13,7 @@ import { LatestUpdateCard } from "@/components/ui/latest-update-card";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { DrNjoGallerySlider } from "@/components/DrNjoGallerySlider";
 import { blogPosts } from "@/data/blogPosts";
-import { BUSINESS_AGGREGATE_RATING } from "@/lib/siteMetadata";
+import { getFeaturedReviews, getReviewAggregate, reviews } from "@/data/reviews";
 
 const Home = () => {
   const isMobile = useIsMobile();
@@ -21,22 +21,8 @@ const Home = () => {
   const latestPost = blogPosts.length > 0 
     ? [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0]
     : null;
-  const featuredTestimonials = [{
-    quote: "I started with Michael in 2018 and have had an outstanding experience! He brings a wealth of knowledge and a truly professional, friendly approach to my dental practice. His advice is not only practical but also easy to implement, and I've seen improvements in patient satisfaction and office efficiency.",
-    author: "G. Allen Herrera, DDS",
-    role: "Practice Buyer",
-    rating: 5
-  }, {
-    quote: "Dr. Michael has become not only a colleague, but a trusted friend who has helped navigate the challenging landscape of a multi state, multi-practice operation. His availability is his best ability.",
-    author: "Blaine Leeds",
-    role: "Multi-Practice Owner",
-    rating: 5
-  }, {
-    quote: "I attended Mike's practice transition seminar and read his book. He was very knowledgeable and a seasoned expert in this area. I decided to use his consultation service to handle my practice sale. He was able to match a buyer within 2 weeks and completed the transaction within 45 days.",
-    author: "Tony Choi",
-    role: "Practice Seller",
-    rating: 5
-  }] as const;
+  const featuredTestimonials = getFeaturedReviews("home");
+  const aggregateRating = getReviewAggregate(reviews);
   return <>
       {/* Hero Section */}
       <section className={`relative min-h-screen overflow-hidden hero-gradient pt-24 md:pt-32 flex items-center justify-center ${isMobile ? 'pb-20 md:pb-8' : 'pb-8'}`} style={{
@@ -223,14 +209,21 @@ const Home = () => {
               </ScrollReveal>
               <ScrollReveal direction="blur-in" delay={200} intensity="subtle">
                 <SectionSubtitle centered={true}>
-                  Rated {BUSINESS_AGGREGATE_RATING.ratingValue}/5 from{" "}
-                  {BUSINESS_AGGREGATE_RATING.reviewCount} reviews
+                  Rated {aggregateRating.ratingValue}/5 from{" "}
+                  {aggregateRating.reviewCount} reviews
                 </SectionSubtitle>
               </ScrollReveal>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {featuredTestimonials.map((testimonial, index) => <ScrollReveal key={testimonial.author} direction="up" delay={100 + index * 100} intensity="subtle">
-                  <TestimonialCard quote={testimonial.quote} author={testimonial.author} role={testimonial.role} className="h-full" />
+              {featuredTestimonials.map((testimonial, index) => <ScrollReveal key={testimonial.id} direction="up" delay={100 + index * 100} intensity="subtle">
+                  <TestimonialCard
+                    quote={testimonial.quote}
+                    author={testimonial.displayAuthorName}
+                    role={testimonial.role}
+                    company={testimonial.company}
+                    reviewHref={`/testimonials/${testimonial.slug}`}
+                    className="h-full"
+                  />
                 </ScrollReveal>)}
             </div>
             <div className="mt-10 text-center">

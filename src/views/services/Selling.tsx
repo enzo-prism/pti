@@ -11,12 +11,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { serviceOfferings } from "@/data/services";
+import { getFeaturedReviews } from "@/data/reviews";
 
 const Selling = () => {
-  const offering = serviceOfferings.find(
-    (service) => service.url === "/services/selling"
-  );
+  const sellerTestimonials = getFeaturedReviews("selling").slice(0, 3);
 
   return (
     <>
@@ -216,25 +214,16 @@ const Selling = () => {
         </SectionSubtitle>
         
         <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
-          <TestimonialCard
-            quote="I feel extremely fortunate to have found and chosen Fred Heppner to help me through the process of selling my practice. I enjoyed Fred's straightforward demeanor, and his ability to simplify for me what would have been an overly complex endeavor. The sale happened very quickly and efficiently, and I couldn't be more pleased with the outcome!"
-            author="Jeff Lewis, DDS, FACP"
-            role="Orthodontist"
-          />
-          
-          <TestimonialCard
-            quote="Be careful what you ask for, because I will get it for you. That is what Michael from Dental Strategies said to me at our first face-to-face meeting. That was March 2023. We were referred to Michael after our practice was on the market for a year with few inquiries. We closed July 31, 2023 with full cash offer to a wonderful couple. That is testimony, thank you Michael."
-            author="Keith Long"
-            role="Practice Seller"
-            company="1 year ago"
-          />
-          
-          <TestimonialCard
-            quote="I attended Mike's practice transition seminar and read his book. He was a very knowledgeable and seasoned expert in this area. I decided to use his consultation service to handle my practice sale. He was able to match a buyer within 2 weeks and completed the transaction within 45 days. He was so amazingly efficient throughout the transition process. I highly recommend him to any dentist interested in selling or buying a dental practice. Thanks again, Mike, you are my Superman."
-            author="Tony Choi"
-            role="Practice Seller"
-            company="4 months ago"
-          />
+          {sellerTestimonials.map((review) => (
+            <TestimonialCard
+              key={review.id}
+              quote={review.quote}
+              author={review.displayAuthorName}
+              role={review.role}
+              company={review.company}
+              reviewHref={`/testimonials/${review.slug}`}
+            />
+          ))}
         </div>
         
         <div className="text-center mt-8">
