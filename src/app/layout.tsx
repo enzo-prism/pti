@@ -24,6 +24,8 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
+const iconVersion = process.env.NEXT_PUBLIC_BUILD_TIMESTAMP ?? "1";
+
 export const metadata: Metadata = {
   metadataBase: new URL(CANONICAL_SITE_URL),
   title: SITE_NAME,
@@ -60,10 +62,41 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-256.png", sizes: "256x256", type: "image/png" },
+      { url: `/favicon.ico?v=${iconVersion}`, sizes: "any" },
+      {
+        url: `/favicon-16.png?v=${iconVersion}`,
+        sizes: "16x16",
+        type: "image/png",
+      },
+      {
+        url: `/favicon-32.png?v=${iconVersion}`,
+        sizes: "32x32",
+        type: "image/png",
+      },
+      {
+        url: `/favicon-192.png?v=${iconVersion}`,
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: `/favicon-256.png?v=${iconVersion}`,
+        sizes: "256x256",
+        type: "image/png",
+      },
+      {
+        url: `/favicon-512.png?v=${iconVersion}`,
+        sizes: "512x512",
+        type: "image/png",
+      },
     ],
-    apple: [{ url: "/favicon-256.png", sizes: "256x256", type: "image/png" }],
+    shortcut: [`/favicon.ico?v=${iconVersion}`],
+    apple: [
+      {
+        url: `/apple-touch-icon.png?v=${iconVersion}`,
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
   },
   appleWebApp: {
     capable: true,
