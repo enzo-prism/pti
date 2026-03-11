@@ -3,7 +3,7 @@ import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "./constants";
 export const SITE_NAME = "Practice Transitions Institute";
 export const FALLBACK_SITE_URL = "https://practicetransitionsinstitute.com";
 
-const normalizeSiteUrl = (value: string): string => {
+export const normalizeSiteUrl = (value: string): string => {
   const trimmed = value.trim();
   if (!trimmed) return FALLBACK_SITE_URL;
 
@@ -71,17 +71,15 @@ export const BUSINESS_OPENING_HOURS_SPECIFICATION = [
 export const SOCIAL_PROFILES: string[] = [];
 export const SITE_SEARCH_PATH = "/blog";
 
-export const getSiteUrl = (): string => {
-  if (typeof window !== "undefined" && window.location.origin) {
-    return window.location.origin;
-  }
-
-  return CANONICAL_SITE_URL;
-};
+export const getSiteUrl = (): string => CANONICAL_SITE_URL;
 
 export const buildAbsoluteUrl = (path = "/"): string => {
+  if (/^https?:\/\//i.test(path)) {
+    return path;
+  }
+
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-  return `${getSiteUrl()}${normalizedPath}`;
+  return `${CANONICAL_SITE_URL}${normalizedPath}`;
 };
 
 export const buildPostalAddress = () => ({

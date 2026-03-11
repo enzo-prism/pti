@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Suspense } from "react";
 import { Inter, Montserrat } from "next/font/google";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { HotjarAnalytics } from "@/components/analytics/HotjarAnalytics";
 import { Providers } from "@/components/providers";
 import {
   SITE_NAME,
@@ -124,9 +125,9 @@ export default function RootLayout({
       className={`${inter.variable} ${montserrat.variable}`}
     >
       <body className="min-h-screen bg-background text-foreground antialiased">
-        <Suspense fallback={null}>
-          <Providers>{children}</Providers>
-        </Suspense>
+        <Providers>{children}</Providers>
+        <GoogleAnalytics />
+        <HotjarAnalytics />
       </body>
     </html>
   );

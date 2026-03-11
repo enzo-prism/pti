@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import Image from "next/image";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight, Search, X } from "lucide-react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { blogPosts, categories } from "@/data/blogPosts";
 import { formatLocalDate } from "@/lib/dateUtils";
 import { cn } from "@/lib/utils";
@@ -18,7 +18,6 @@ interface BlogProps {
 }
 
 const Blog = ({ initialQuery = "" }: BlogProps) => {
-  const searchParams = useSearchParams();
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState(initialQuery);
 
@@ -28,14 +27,10 @@ const Blog = ({ initialQuery = "" }: BlogProps) => {
 
   const updateSearchQuery = (value: string) => {
     setSearchQuery(value);
-    const params = new URLSearchParams(searchParams?.toString());
-    if (value) {
-      params.set("search", value);
-    } else {
-      params.delete("search");
-    }
-    const queryString = params.toString();
-    router.replace(queryString ? `/blog?${queryString}` : "/blog");
+    const nextUrl = value ? `/blog?search=${encodeURIComponent(value)}` : "/blog";
+    startTransition(() => {
+      router.replace(nextUrl, { scroll: false });
+    });
   };
 
   // Sort posts by date (most recent first)

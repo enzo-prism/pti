@@ -151,7 +151,12 @@ const resolveAbsoluteUrl = (value: string): string =>
   isAbsoluteUrl(value) ? value : buildAbsoluteUrl(value);
 
 const buildRobotsMetadata = (noindex?: boolean): Metadata["robots"] => {
-  const isProduction = process.env.VERCEL_ENV === "production";
+  const deploymentEnv =
+    process.env.NEXT_PUBLIC_VERCEL_ENV?.trim().toLowerCase() ??
+    process.env.VERCEL_ENV?.trim().toLowerCase();
+  const isProduction = deploymentEnv
+    ? deploymentEnv === "production"
+    : process.env.NODE_ENV === "production";
   const shouldIndex = isProduction && !noindex;
 
   return {
