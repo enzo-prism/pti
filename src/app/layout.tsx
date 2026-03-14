@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { HotjarAnalytics } from "@/components/analytics/HotjarAnalytics";
 import { Providers } from "@/components/providers";
@@ -126,6 +127,7 @@ export default function RootLayout({
     >
       <body className="min-h-screen bg-background text-foreground antialiased">
         <Providers>{children}</Providers>
+        <Analytics />
         <GoogleAnalytics />
         <HotjarAnalytics />
       </body>
