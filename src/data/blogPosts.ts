@@ -24,6 +24,173 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 16,
+    title: "When Should You Tell Staff You Are Selling Your Dental Practice?",
+    excerpt: "Learn the right time to tell staff about a dental practice sale, how to balance confidentiality with trust, and how smoother communication supports a successful transition.",
+    category: "Practice Transitions",
+    date: "2026-03-15",
+    readTime: "7 min read",
+    gradient: "bg-gradient-to-br from-primary via-emerald-600 to-cyan-500",
+    slug: "when-to-tell-staff-youre-selling-your-dental-practice",
+    author: "Practice Transitions Institute",
+    metaTitle: "When to Tell Staff You Are Selling Your Dental Practice",
+    content: `For many dentists, one of the hardest parts of [selling a dental practice](/services/selling) is not the valuation, the buyer search, or even the negotiation. It is deciding when to tell the team.
+
+That hesitation makes sense. Staff members are central to the value and continuity of a dental practice. They know the systems, they know the patients, and in many cases they carry long-standing relationships that matter deeply to retention after a transition. Tell them too early, and you risk unnecessary anxiety, rumors, or turnover. Tell them too late, and people may feel blindsided, mistrusted, or resentful.
+
+That is why the question is not only emotional. It is operational. It sits right next to other high-stakes transition decisions like [when to get a dental practice valuation](/blog/when-should-you-get-a-dental-practice-valuation) and how to sequence the full transition plan.
+
+So when should you tell staff you are selling your dental practice?
+
+In most cases, not at the beginning. And not after everything is already final. The strongest timing is usually when you have a serious, committed buyer and a clear transition path, but before closing, so the team has enough context to absorb the change productively.
+
+## Why timing matters so much
+
+A practice sale is not just a transaction. It is a change event for employees, patients, and the future owner.
+
+Staff concerns are predictable and reasonable. They are wondering:
+
+- Will I still have my job?
+- Will the new doctor change hours, pay, or systems?
+- Will the culture change?
+- What should I say if patients ask questions?
+- Why am I hearing this now?
+
+If those questions surface too early, before you can answer them clearly, fear tends to fill the gap. If they surface too late, trust can erode quickly.
+
+That is why communication timing is not a side issue. It is a core transition decision.
+
+## The risk of telling staff too early
+
+Some sellers feel tempted to be fully transparent from the moment they start considering a sale. Emotionally, that can feel honest. Strategically, it often creates problems.
+
+If staff learn about a potential sale before there is a real buyer and defined plan, the practice may face:
+
+- unnecessary speculation and stress
+- key team members exploring other opportunities
+- accidental leaks to patients, vendors, or competitors
+- reduced focus during a sensitive period
+- buyer concern about instability inside the practice
+
+Confidentiality protects value. That is not about secrecy for its own sake. It is about avoiding preventable disruption while the transition is still uncertain.
+
+This is especially important in dental practices where patient loyalty is tied closely to familiar faces at the front desk, hygiene team, and assistants. If key staff leave prematurely, the practice may become less attractive to buyers and harder to transition smoothly.
+
+## The risk of telling staff too late
+
+Waiting until the sale is effectively done creates a different set of problems.
+
+If the team hears the news only after everything is signed and nearly closed, they may assume:
+
+- you did not trust them
+- their role in the future practice was not considered
+- the buyer may be planning immediate changes
+- they are expected to adapt instantly with no input
+
+That reaction can create resistance at exactly the wrong time. A buyer stepping into an office needs stability, professionalism, and a staff that is willing to help patients feel secure. If the transition starts with anger or suspicion, patient retention and team morale can suffer fast.
+
+## The best general rule
+
+While every transition has nuances, a practical rule of thumb is this:
+
+Tell staff once you have an accepted offer from a serious buyer, financing is progressing or approved, and the purchase agreement and transition plan are clear enough that you can communicate with confidence.
+
+That timing usually gives you three advantages at once:
+
+1. The sale is real enough that the conversation has substance.
+2. The confidentiality risk window is shorter.
+3. Staff have enough time to process the news and meet the incoming doctor before closing.
+
+This is consistent with what experienced transition advisors often recommend, and it aligns with PTI's own [FAQ guidance](/faq) to maintain confidentiality during the early stages and communicate once there is a committed buyer and defined plan.
+
+## Situations where timing may change
+
+There is no perfect universal formula. Some practices need a slightly different sequence.
+
+### If your office manager is essential to reporting or operations
+
+You may need to involve one trusted person earlier than the rest of the team. If that happens, make the reason clear and keep the circle tight.
+
+### If heavy insurance credentialing is required
+
+Some transitions require earlier operational coordination so the buyer can move through credentialing and onboarding without causing coverage or scheduling issues.
+
+### If you practice in a small community
+
+In smaller markets, confidentiality may matter even more because news travels quickly and can reach patients before the transition message is ready.
+
+### If the team is unusually long-tenured
+
+A highly loyal team may need extra care in how the message is framed, especially if many employees have been with you for years and see the practice as part of their own identity.
+
+## What staff need to hear in that first conversation
+
+Once the timing is right, the next question is how to tell them.
+
+A good first staff meeting should reduce uncertainty, not amplify it. In most cases, the team wants clarity on five things:
+
+### 1. Why you made the decision
+
+You do not need to overshare, but people deserve a real explanation. Retirement planning, lifestyle goals, family priorities, health, or the desire to transition intentionally are all understandable reasons.
+
+### 2. Why you chose this buyer
+
+This matters a lot. Staff want to know the future owner was selected thoughtfully, not randomly. Talk about shared values, clinical philosophy, patient care continuity, or long-term fit.
+
+### 3. What happens next
+
+Outline the timeline, the expected closing process, and what will stay stable in the near term.
+
+### 4. What this means for patients
+
+Reassure the team that continuity of care and patient trust remain central. Staff need language they can use with confidence.
+
+### 5. Whether their role matters
+
+It does. Say it directly. In many transitions, the team is one of the main reasons the buyer feels good about moving forward.
+
+## How PTI's approach fits this topic
+
+Practice Transitions Institute positions itself as a trusted advisor, not just a broker. That matters here because staff communication sits at the intersection of valuation, timing, confidentiality, buyer readiness, and human dynamics.
+
+A transition consultant can help you avoid the two most common mistakes:
+
+- announcing too early from emotion
+- waiting too long out of avoidance
+
+Instead, the conversation can be placed inside a broader transition plan that includes valuation, buyer selection, negotiation, communication sequencing, and handoff support. That is why many dentists benefit from working through the full scope of [PTI's transition services](/services), not just the sale documents.
+
+## A better question than "when?"
+
+Dentists often ask, "When should I tell my staff?" A better question is, "When can I tell my staff in a way that protects trust and supports a successful transition?"
+
+That shift matters. It moves the decision away from anxiety and toward execution.
+
+If you cannot yet answer the team's most important questions, it is probably too early. If you are about to hand them a completed sale with no space to process it, it is probably too late.
+
+The right moment is usually the point where the sale is credible, the buyer is committed, and the message can be delivered with calm, clarity, and purpose.
+
+## FAQ
+
+### Should I tell my staff before listing the practice?
+
+Usually no. In most cases, that is earlier than necessary and can create avoidable instability.
+
+### Should I wait until after closing?
+
+Usually no. That can damage trust and make the buyer's first days in the office much harder.
+
+### Can I tell one key team member early?
+
+Sometimes, yes. If one person is operationally essential, limited early disclosure may make sense.
+
+### Who should help me decide timing?
+
+A dental transition consultant, along with your attorney and CPA when needed, can help you time the conversation based on your specific deal structure and practice dynamics.
+
+If you are preparing to sell and want a transition plan that protects confidentiality, supports staff trust, and preserves practice value, [contact Practice Transitions Institute](/contact) for a confidential consultation.`,
+  },
+  {
     id: 15,
     title: "When Should You Get a Dental Practice Valuation? 5 Moments Dentists Should Not Wait",
     excerpt: "Not sure when to value your dental practice? Learn the key moments to get a professional valuation before a sale, partnership, associate buy-in, or long-term transition plan.",
