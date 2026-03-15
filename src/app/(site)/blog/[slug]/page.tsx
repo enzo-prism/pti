@@ -40,7 +40,7 @@ export function generateMetadata({
   const publishedTime = new Date(`${post.date}T00:00:00Z`).toISOString();
 
   return buildPageMetadata({
-    title: post.title,
+    title: post.metaTitle ?? post.title,
     description: post.excerpt,
     path: `/blog/${post.slug}`,
     image: post.featuredImage ?? DEFAULT_OG_IMAGE,

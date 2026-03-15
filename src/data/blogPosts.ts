@@ -9,8 +9,10 @@ export interface BlogPost {
   slug: string;
   author: string;
   content: string;
+  metaTitle?: string;
   featuredImage?: string;
   featuredImageAlt?: string;
+  featuredImageCaption?: string;
   featuredImageFit?: "cover" | "contain";
   series?: {
     id: string;
@@ -21,6 +23,149 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: 15,
+    title: "When Should You Get a Dental Practice Valuation? 5 Moments Dentists Should Not Wait",
+    excerpt: "Not sure when to value your dental practice? Learn the key moments to get a professional valuation before a sale, partnership, associate buy-in, or long-term transition plan.",
+    category: "Practice Transitions",
+    date: "2026-03-14",
+    readTime: "7 min read",
+    gradient: "bg-gradient-to-br from-primary via-sky-600 to-cyan-500",
+    slug: "when-should-you-get-a-dental-practice-valuation",
+    author: "Practice Transitions Institute",
+    metaTitle: "When Should You Get a Dental Practice Valuation?",
+    content: `Many dentists assume they only need a valuation when they are ready to sell immediately. In practice, that is often too late.
+
+A professional [dental practice valuation](/services/value) is not just about setting an asking price. It is about making smarter decisions before a transaction becomes urgent. It gives you a baseline for planning, helps you avoid emotional guesswork, and creates a clearer path whether you are thinking about retirement, a partner, an [associate buy-in](/services/associateships), or simply understanding the value of what you have built.
+
+At Practice Transitions Institute, valuation is part of a bigger transition strategy. That matters because the right number is only useful when it connects to your goals, timeline, and next move.
+
+## Why valuation matters before you are under pressure
+
+Once a seller is in a hurry, leverage usually drops.
+
+A valuation done early gives you time to improve what can still be improved, organize your records, and think through deal structure before negotiations begin. It also helps reduce the misunderstandings that can derail transactions once a buyer enters the picture.
+
+Industry guidance consistently reinforces that point. Accurate valuation is not only a starting point for buying or selling a dental practice. It is also relevant for future associate sales, retirement planning, and partnership changes.
+
+The message is simple: valuation is most useful when it gives you options, not when you are already cornered by a deadline.
+
+## 1. Get a valuation before you plan to sell the whole practice
+
+If you believe you may sell in the next few years, now is a smart time to establish a realistic value range.
+
+PTI's own [transition FAQ](/faq) notes that pre-sale preparation ideally begins 1 to 3 years before a planned sale. That timeline makes sense because a valuation often reveals issues that can be addressed before going to market, including incomplete financial records, stale equipment, lease concerns, patient retention questions, or underperforming collections.
+
+An early valuation helps answer practical questions such as:
+
+- What is the practice likely worth today?
+- What factors are helping or hurting value?
+- What improvements are worth making before listing?
+- How much time do you have to strengthen the practice?
+
+For owners who want to protect legacy and maximize value, this is one of the highest-leverage steps you can take.
+
+## 2. Get a valuation before bringing on a partner or selling to an associate
+
+This is one of the most overlooked uses of valuation.
+
+If you plan to sell part of the practice now and transition more gradually later, both sides need a credible starting point. Without it, a future disagreement about value is almost guaranteed.
+
+Early valuation helps the process move more smoothly because it gives the current owner and the incoming dentist a shared baseline and a fairer way to measure how value changes over time.
+
+This can be especially important when:
+
+- An associate may buy in over stages
+- A senior doctor wants to reduce days but stay involved
+- A group is forming and ownership percentages need to be set fairly
+- Family members are entering the practice and expectations need to stay clear
+
+When the number is defined up front, relationships tend to stay healthier.
+
+## 3. Get a valuation when retirement planning depends on the practice
+
+Many owners treat the practice as one of their largest assets, but surprisingly few know its current value.
+
+That creates risk. If your retirement planning assumes a certain sale outcome and the actual market value is different, the gap can affect timing, lifestyle, and tax strategy.
+
+A professional opinion of value gives you a more grounded picture of where you stand today. It also helps your financial advisor, CPA, and attorney plan with real numbers instead of assumptions.
+
+Even if you are not close to selling, a valuation can help answer questions like:
+
+- Am I on track to exit when I want to?
+- Would another few years of ownership materially change value?
+- Should I invest in upgrades now or preserve cash?
+- Would a phased transition make more sense than a full exit?
+
+## 4. Get a valuation if your practice is changing in a meaningful way
+
+A practice does not need to be listed for sale to justify valuation.
+
+Major operational changes can affect value, including:
+
+- Expanding operatories or adding a second location
+- Bringing in new technology
+- Adding associates or specialties
+- Experiencing a major revenue shift
+- Renegotiating or extending the office lease
+- Preparing for a merger, DSO conversation, or partnership discussion
+
+A fresh valuation helps you understand whether those changes are increasing real market value or simply increasing complexity. That distinction matters.
+
+## 5. Get a valuation if you want to reduce stress before the transition process starts
+
+Uncertainty creates stress. Owners often feel it in the months before a sale, especially when they do not know what buyers will actually care about.
+
+A valuation done with transition guidance can reduce that stress because it turns vague concerns into concrete action items. Instead of wondering whether the practice is ready, you can work from a plan.
+
+PTI's [services](/services) are designed around exactly that kind of support: step-by-step guidance, time savings, reduced stress, and strategy tailored to your goals. For many dentists, that is as valuable as the number itself.
+
+## What a valuation usually takes into account
+
+A dental practice valuation is not pulled from a simple online calculator. It is built from multiple factors, including:
+
+- Revenue history and profitability
+- Patient base and retention
+- Location and local market conditions
+- Equipment age and condition
+- Facility quality and lease terms
+- Growth potential
+- Transition structure and buyer expectations
+
+A strong valuation process also depends on accurate records. If your bookkeeping, production reports, or lease details are disorganized, that should be addressed early.
+
+## Common mistake: waiting until you are emotionally ready
+
+Many dentists wait for a moment when they finally feel ready to sell. The problem is that emotional readiness and business readiness are not the same thing.
+
+You do not need to commit to a sale to benefit from valuation. In fact, the opposite is usually true. The earlier you understand the current value of the practice, the easier it becomes to make confident decisions without pressure.
+
+## The best time is usually earlier than you think
+
+If there is one theme across transition guidance, PTI's own [FAQ](/faq), and real-world seller experience, it is this: the best time to get a dental practice valuation is before you urgently need one.
+
+Whether you are exploring retirement, planning a future associate transition, or simply trying to understand your options, valuation creates clarity. And clarity creates leverage.
+
+## FAQ
+
+### Do I need a valuation if I am not selling yet?
+
+Yes. A valuation can help with long-term planning, retirement strategy, partnership discussions, and future associate sales.
+
+### How far in advance should I value my practice before selling?
+
+Many owners benefit from starting 1 to 3 years before a planned sale so there is time to prepare thoughtfully.
+
+### Is an opinion of value the same as a formal appraisal?
+
+Not always. They serve different purposes, and the right option depends on your situation and transaction goals.
+
+### What if I only want to sell part of the practice?
+
+Early valuation is especially helpful in partial sales and phased transitions because it sets a fair starting point for both sides.
+
+If you are wondering when to get a dental practice valuation, this is a good signal that the time may already be now. [Contact the PTI team](/contact) if you want to understand your current value, identify your strongest options, and build a transition plan that protects both your legacy and your next chapter.`,
+  },
   {
     id: 14,
     title: "Attitude: The Hidden Key to Shaping Dentistry's Future",
@@ -33,6 +178,7 @@ export const blogPosts: BlogPost[] = [
     author: "Michael Njo, DDS",
     featuredImage: "https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761757553/Frame_1_psbk9m.png",
     featuredImageAlt: "Dentist reviewing insurance documents alongside uplifting messaging",
+    featuredImageCaption: "As a man thinketh in his heart, so is he. — Proverbs 23:7",
     featuredImageFit: "contain",
     content: `Over the past several months, I have noticed that attitude has become a recurring topic in books, articles, and professional conversations. In my last newsletter, I recommended reading *As a Man Thinketh* by James Allen—and the feedback from many of you was overwhelmingly positive.
 

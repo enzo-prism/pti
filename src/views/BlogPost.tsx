@@ -234,9 +234,11 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                 <div className={`h-full w-full ${post.gradient}`} />
               )}
             </div>
-            <p className="mt-6 text-center text-sm italic text-slate-600 sm:text-base">
-              &ldquo;As a man thinketh in his heart, so is he.&rdquo; — Proverbs 23:7
-            </p>
+            {post.featuredImageCaption ? (
+              <p className="mt-6 text-center text-sm italic text-slate-600 sm:text-base">
+                {post.featuredImageCaption}
+              </p>
+            ) : null}
           </div>
         </Section>
       )}
