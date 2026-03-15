@@ -5,6 +5,10 @@ export interface DrNjoGalleryImage {
 
 export const drNjoGalleryImages: DrNjoGalleryImage[] = [
   {
+    src: "https://res.cloudinary.com/dhqpqfw6w/image/upload/v1773587933/d85667bc-c2ea-4be4-9bfd-790829b947d3_wgoug0.webp",
+    alt: "Michael Njo, DDS presenting to General Practice Residency residents holding the Dental Practice Transitions Handbook he wrote"
+  },
+  {
     src: "https://res.cloudinary.com/dhqpqfw6w/image/upload/v1770776241/1_uiehhq.jpg",
     alt: "Thank you for the interview and your inspiring insights"
   },

@@ -85,6 +85,75 @@ const DrNjo = () => {
         </div>
       </div>
 
+      {/* Educational Leadership */}
+      <Section background="light" className="py-12 sm:py-16 md:py-20">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-12 items-center">
+          <ScrollReveal direction="up" delay={0}>
+            <figure className="space-y-3">
+              <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src="https://res.cloudinary.com/dhqpqfw6w/image/upload/v1773587933/d85667bc-c2ea-4be4-9bfd-790829b947d3_wgoug0.webp"
+                    alt="Michael Njo, DDS presenting to General Practice Residency residents holding the Dental Practice Transitions Handbook he wrote"
+                    fill
+                    sizes="(min-width: 1280px) 560px, (min-width: 1024px) 48vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <figcaption className="text-sm text-muted-foreground leading-relaxed">
+                Dr. Njo presenting to residents in a General Practice Residency program, with residents
+                holding the <em>Dental Practice Transitions Handbook</em> he wrote.
+              </figcaption>
+            </figure>
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={100}>
+            <div className="space-y-5">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-primary">
+                Education and Impact
+              </p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight text-foreground">
+                Helping GPR residents understand the business of dentistry
+              </h2>
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+                Michael Njo, DDS regularly speaks with General Practice Residency (GPR) residents and
+                dental students about contracts, career planning, practice ownership, and dental practice
+                transitions. As the author of the <em>Dental Practice Transitions Handbook</em>, he shares
+                practical guidance that helps young dentists make stronger decisions early in their careers.
+              </p>
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+                This work reflects Dr. Njo&apos;s long-standing commitment to mentorship across dentistry. By
+                teaching residents and early-career dentists how to evaluate associateships, acquisitions,
+                partnerships, and future practice sales, he helps build confident private-practice leaders
+                while extending PTI&apos;s impact far beyond a single transaction.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                <div className="rounded-xl border border-gray-200 bg-white p-4">
+                  <p className="text-sm font-semibold text-foreground">Published author</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Wrote the <em>Dental Practice Transitions Handbook</em>.
+                  </p>
+                </div>
+                <div className="rounded-xl border border-gray-200 bg-white p-4">
+                  <p className="text-sm font-semibold text-foreground">Resident educator</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Speaks with GPR residents about ownership and career decisions.
+                  </p>
+                </div>
+                <div className="rounded-xl border border-gray-200 bg-white p-4">
+                  <p className="text-sm font-semibold text-foreground">Trusted mentor</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Guides dentists from training through transition and practice growth.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </Section>
+
       {/* Photo Gallery */}
       <Section className="py-12 sm:py-16 md:py-20">
         <div className="max-w-6xl mx-auto">
@@ -94,7 +163,8 @@ const DrNjo = () => {
                 Dr. Njo Photo Gallery
               </h2>
               <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                A rotating view of Dr. Njo&apos;s events and professional moments.
+                A rotating view of Dr. Njo&apos;s teaching, authorship, and leadership across the dental
+                community.
               </p>
             </div>
           </ScrollReveal>

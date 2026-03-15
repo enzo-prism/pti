@@ -3,15 +3,15 @@ import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 import { buildPersonSchema } from "@/lib/structuredData";
 
-const title = "Dr. Michael Njo - Dental Practice Transition Expert";
+const title = "Michael Njo, DDS | Author, Lecturer & Dental Practice Transition Expert";
 const description =
-  "Learn about Dr. Michael Njo's experience guiding dentists through practice valuations, sales, and transitions.";
+  "Learn how Michael Njo, DDS guides dentists through practice valuations, ownership transitions, and GPR resident education as the author of Dental Practice Transitions Handbook.";
 
 const personSchema = buildPersonSchema({
-  name: "Dr. Michael Njo",
-  jobTitle: "Founder & Transition Consultant",
+  name: "Michael Njo, DDS",
+  jobTitle: "Founder, Author, Lecturer & Transition Consultant",
   description:
-    "Dr. Michael Njo is a dental practice transition expert with decades of clinical and consulting experience.",
+    "Michael Njo, DDS is a dental practice transition expert, author, and lecturer with decades of clinical and consulting experience supporting dentists, students, and GPR residents.",
   image: "/lovable-uploads/d30c74a1-48bb-404e-9e9d-bc93119a695d.png",
   url: "/drnjo",
 });
