@@ -24,6 +24,202 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 17,
+    title: "What Documents Should You Gather Before Selling Your Dental Practice?",
+    excerpt: "Preparing to sell your dental practice? Learn which financial, legal, operational, and transition documents to gather early so your sale moves faster and with less stress.",
+    category: "Practice Transitions",
+    date: "2026-03-19",
+    readTime: "7 min read",
+    gradient: "bg-gradient-to-br from-primary via-blue-600 to-teal-500",
+    slug: "documents-before-selling-your-dental-practice",
+    author: "Practice Transitions Institute",
+    metaTitle: "Documents Needed Before Selling a Dental Practice",
+    content: `Many dentists assume the hardest part of [selling a dental practice](/services/selling) is finding the right buyer. In reality, one of the most common causes of delay shows up earlier: the seller is not fully organized when due diligence begins.
+
+That friction builds fast. Buyers ask for reports, agreements, and supporting records. Your attorney, CPA, broker, and valuation advisor need clean information to guide strategy. If documents are incomplete, outdated, or scattered across different systems, the sale process slows down and confidence starts to erode.
+
+So what documents should you gather before selling your dental practice?
+
+Start with financial records, legal agreements, operational information, and the materials needed for a realistic [dental practice valuation](/services/value). The more organized you are before going to market, the easier it becomes to protect value and keep negotiations moving.
+
+## Why document prep matters more than most sellers expect
+
+A buyer is not only evaluating equipment, production, and patient flow. They are evaluating the stability, quality, and transferability of the entire practice.
+
+That means they want evidence, not just verbal assurances.
+
+If you say collections are strong, they will want reports.
+
+If you say the lease is favorable, they will want the lease.
+
+If you say the team is stable, they will want documentation around staffing and compensation.
+
+If you say the equipment is in good shape, they will want a real inventory and condition overview.
+
+Preparation does more than make diligence easier. It gives your advisory team a stronger foundation for pricing, positioning, and negotiating the transition.
+
+## 1. Financial documents
+
+This is usually the first category buyers and advisors want to review.
+
+At a minimum, gather:
+
+- profit and loss statements for the last three years
+- business tax returns for the last three years
+- year-to-date production and collections reports
+- procedure mix reports
+- accounts receivable aging reports
+- payer mix or insurance participation data
+- major expense breakdowns
+- notes on discretionary or non-recurring seller expenses when relevant
+
+Clean financial data is essential if you want to support your asking price and avoid confusion during diligence. It also makes a [practice valuation](/services/value) much more useful because the analysis can be grounded in real numbers instead of rough estimates.
+
+## 2. Practice valuation materials
+
+A sale should not begin with guesswork.
+
+Before listing, prepare the materials your advisor will need to assess the practice properly. Some of these overlap with financial records, but they often also include:
+
+- production by provider
+- active patient counts
+- new patient trends
+- hygiene percentage of production
+- procedure category breakdowns
+- facility details
+- equipment age and condition notes
+- ownership structure information
+
+A valuation is not just a price tag. It is the foundation for strategy. If you have not thought through that step yet, this article on [when to get a dental practice valuation](/blog/when-should-you-get-a-dental-practice-valuation) is a good next read.
+
+## 3. Legal and ownership documents
+
+This is where many sellers discover gaps that have been sitting quietly for years.
+
+Pull together:
+
+- lease agreement and renewal options
+- real estate ownership information if applicable
+- corporate documents and formation records
+- shareholder, partnership, or operating agreements
+- associate agreements
+- independent contractor agreements
+- employment agreements for key team members
+- vendor contracts
+- equipment leases or financing agreements
+- nondisclosure agreements already in use
+
+Buyers want to know what obligations transfer, what restrictions exist, and whether there are hidden issues that could affect closing. A missing signature, expired agreement, or vague lease provision can create more trouble than most sellers expect.
+
+## 4. Staff and operational records
+
+A practice sale is not purely financial. Operational continuity matters.
+
+You do not need to share private staff details too early in the process, but you should have organized internal records ready for the right stage of diligence.
+
+That can include:
+
+- staff roster with roles and tenure
+- compensation structure summaries
+- office hours and scheduling templates
+- technology stack and software systems list
+- procedure or workflow documentation if available
+- insurance credentialing status overview
+- summary of recurring vendors and service providers
+
+This supports a cleaner handoff and helps the buyer understand what they are stepping into.
+
+## 5. Facility and equipment documentation
+
+A polished office does not remove the need for documentation.
+
+Sellers should be ready with:
+
+- equipment inventory
+- approximate purchase dates
+- maintenance records if available
+- warranty information when relevant
+- list of major technology and imaging systems
+- facility improvement history
+- landlord contact information
+
+If a buyer has to reconstruct the condition of the office from memory and guesswork, trust drops. If you provide a clear inventory and support records, the process feels more credible and professional.
+
+## 6. Patient base and production trend reports
+
+The buyer needs to understand not just how the practice performed in the past, but what kind of patient engine it really has.
+
+Useful reports often include:
+
+- active patient count definitions and totals
+- new patient numbers by month
+- recall and hygiene trends
+- provider schedule utilization
+- top procedure categories
+- concentration risk if a small number of patients or referral sources drive unusual revenue
+
+This becomes especially important if the story of the practice depends on growth potential. Buyers and lenders usually want proof that the opportunity is real.
+
+## 7. Transition planning notes
+
+As the sale becomes more serious, transition planning matters more than many sellers expect.
+
+These may not all begin as formal documents, but it helps to write them down early:
+
+- your preferred timeline to close
+- your desired post-sale workback period, if any
+- communication considerations for staff and patients
+- buyer profile preferences
+- goals around legacy, continuity, or associate retention
+
+These notes help your advisory team guide the sale toward the outcome you actually want instead of reacting to every deal opportunity the same way.
+
+## Common mistakes sellers make
+
+The most common problems are not dramatic. They are procedural.
+
+Sellers often:
+
+- wait until a buyer asks before gathering records
+- rely on verbal estimates instead of clean reports
+- discover old agreements were never updated
+- underestimate how much the lease matters
+- confuse production with collections in important conversations
+- start marketing before valuation and document prep are complete
+
+Each of these issues can slow diligence, weaken negotiating leverage, or create unnecessary stress during the transaction.
+
+## A better way to think about preparation
+
+Do not think of document gathering as administrative busywork. Think of it as transition readiness.
+
+A well-prepared seller sends a strong message to buyers, lenders, and advisors: this practice is being transferred thoughtfully.
+
+That tends to create better conversations, cleaner diligence, and a smoother path to closing.
+
+If you are early in the process, document prep usually works best alongside a broader transition plan, not as a separate task. That is one reason sellers often benefit from looking at the full scope of [PTI's transition services](/services/selling) before the practice officially goes to market.
+
+## FAQ
+
+### Do I need a valuation before gathering documents?
+
+Usually, you gather documents in order to support the valuation. The two steps work together.
+
+### How many years of financials should I prepare?
+
+Three years is a practical baseline in most cases, along with current year-to-date reporting.
+
+### Should I organize staff information before telling the team?
+
+Yes. Internal preparation should happen before staff communication timing is finalized.
+
+### Can I wait until I have a buyer?
+
+You can, but it usually makes the process slower and more stressful. Early organization gives you more control.
+
+If you are thinking about selling your dental practice, [contact Practice Transitions Institute](/contact) for a confidential consultation and a transition plan grounded in valuation, preparation, and experienced execution.`,
+  },
+  {
     id: 16,
     title: "When Should You Tell Staff You Are Selling Your Dental Practice?",
     excerpt: "Learn the right time to tell staff about a dental practice sale, how to balance confidentiality with trust, and how smoother communication supports a successful transition.",
