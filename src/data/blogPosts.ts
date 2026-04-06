@@ -24,6 +24,152 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 38,
+    title: "What Should a Dental Practice NDA Include Before You Share Financials?",
+    excerpt: "Learn what a dental practice NDA should cover before financials, staff details, and operational information are shared with a buyer, and why confidentiality discipline protects deal value.",
+    category: "Practice Transitions",
+    date: "2026-04-06",
+    readTime: "6 min read",
+    gradient: "bg-gradient-to-br from-primary via-indigo-600 to-cyan-500",
+    slug: "what-should-a-dental-practice-nda-include-before-sharing-financials",
+    author: "Practice Transitions Institute",
+    metaTitle: "Dental Practice NDA Before Sharing Financials | PTI",
+    content: `If you are preparing to sell your dental practice, there is a moment when buyer interest starts to feel real. Questions get more specific. Buyers want numbers. They ask about collections, overhead, staff, lease terms, and patient flow.
+
+That is exactly when discipline matters most.
+
+Before you share financials or other sensitive practice information, you need a solid confidentiality agreement in place. Many dentists call it an NDA. Whatever you call it, the point is the same: protect the practice while still allowing a serious buyer to evaluate the opportunity.
+
+At Practice Transitions Institute, confidentiality is not a side detail. It is one of the foundations of a smooth transition. A weak process here can damage staff confidence, unsettle patients, and reduce leverage before the deal is even close.
+
+## Why the NDA matters so early
+Once sensitive information leaves your hands, you cannot fully take it back. Revenue, collections, profit margins, payer mix, staff structure, and patient metrics all tell a detailed story about how your practice runs.
+
+If that information is shared too loosely, several problems can follow:
+
+- staff hear rumors before you are ready
+- competitors or casual shoppers gain access to sensitive data
+- buyers treat the process casually because the seller has no guardrails
+- confidentiality breaches create distraction and mistrust
+
+A proper NDA helps set the tone. It tells the buyer this is a serious process, not an open file cabinet.
+
+## The NDA should clearly define what is confidential
+This is one of the first places weak agreements fall apart. If the document is too vague, it leaves room for arguments later.
+
+A dental practice confidentiality agreement should usually cover more than tax returns or profit and loss statements. It should also address:
+
+- production and collections data
+- fee schedules and payer mix
+- staffing information and compensation details
+- patient and referral patterns
+- lease terms and landlord communications
+- operational systems, workflows, and vendor relationships
+- transition planning documents and correspondence
+
+In short, if the information could affect practice value, team stability, negotiation leverage, or market perception, it should likely be treated as confidential.
+
+## It should say who is actually bound by the agreement
+This gets overlooked all the time. A buyer may not be the only person reviewing the practice.
+
+They may share information with:
+- a spouse or partner
+- a lender
+- an attorney
+- an accountant or consultant
+- a partner in a group purchase
+
+A good NDA should make clear who can receive information and under what conditions. If the buyer is allowed to share documents with advisors, those people should also be bound by confidentiality obligations.
+
+Without that language, sensitive information can spread far beyond the original conversation.
+
+## It should limit how the information can be used
+The buyer should not just promise to keep information private. They should also agree to use it only for evaluating the potential transaction.
+
+That matters because confidentiality risk is not limited to gossip. Sometimes the bigger risk is competitive misuse. A buyer who does not move forward should not be able to walk away with detailed knowledge about your pricing, systems, staffing, or patient patterns and use it for another purpose.
+
+The NDA should make that boundary explicit.
+
+## It should address how information is shared and returned
+Not every buyer needs every document on day one.
+
+A disciplined transition process usually releases information in stages. Early conversations may involve high-level summaries. Deeper financials and operational details come later, after the buyer has been screened more carefully.
+
+Your NDA should support that controlled flow. It is also wise to include language requiring the buyer to return or destroy confidential materials if the deal does not move forward.
+
+That does not guarantee perfect enforcement, but it gives the seller a much stronger position and reinforces that information access is conditional, not permanent.
+
+## It should protect anonymity when possible
+In many dental transitions, confidentiality is not just about documents. It is about identity.
+
+At the early stage, a seller may not want the practice name, exact location, or identifying team details disclosed broadly. This matters even more if the owner has not told staff, patients, or referral sources.
+
+A strong process often keeps marketing materials generalized until the buyer is screened and has signed the right paperwork. The NDA should work together with that process, not replace it.
+
+## It should make breach consequences clear
+No NDA can eliminate risk entirely. A reckless or dishonest person can still cause damage. But the agreement should make the consequences of breach serious enough that a legitimate buyer takes it seriously.
+
+That can include acknowledgment that unauthorized disclosure may cause real harm and may justify legal remedies. The exact language should come from your attorney, but the principle is simple: confidentiality should be enforceable, not symbolic.
+
+## The NDA is not a substitute for buyer screening
+This is the part many sellers miss.
+
+A signed NDA does not automatically mean the buyer is qualified. It only means they signed a form.
+
+Before deeper financials are shared, sellers should still ask whether the buyer is financially credible, professionally serious, and aligned with the practice. PTI emphasizes this in buyer screening because a confidential process works best when information is shared only with buyers who are actually capable of moving forward.
+
+In other words, the best sequence is not:
+
+1. get excited
+2. send documents
+3. hope for the best
+
+It is:
+
+1. screen the buyer
+2. get the confidentiality agreement signed
+3. release information in stages
+4. keep the process structured
+
+That order saves sellers from a lot of avoidable chaos.
+
+## Common mistakes sellers make
+Here are a few of the most common problems:
+
+### Using a generic NDA without dental-specific thinking
+A broad template may miss important categories of dental practice information, especially around staff, patient flow, lease details, or transition timing.
+
+### Sharing too much too soon
+Not every interested buyer needs detailed reports immediately. Oversharing weakens leverage and increases risk.
+
+### Forgetting about advisors and lenders
+If the agreement does not address who else can receive information, the seller may lose control of the circle fast.
+
+### Treating confidentiality as paperwork instead of process
+The NDA is one tool. The real protection comes from disciplined screening, staged disclosure, and thoughtful communication.
+
+## FAQ
+
+### Should I require an NDA before sending any financials?
+Yes, that is usually the right move. Once financial data is shared, the confidentiality risk is real.
+
+### Does an NDA protect staff information too?
+It should. Staffing details can be highly sensitive during a transition and should not be shared casually.
+
+### Can a buyer share information with a lender?
+Usually yes, but that should be addressed clearly in the agreement and limited to transaction-related review.
+
+### Is a signed NDA enough to trust a buyer?
+No. It helps, but it does not replace qualification, screening, and controlled information release.
+
+## Confidentiality protects value, not just privacy
+A dental practice sale can lose momentum fast if confidentiality slips. Staff get uneasy. Patients sense instability. Sellers start negotiating from a defensive position.
+
+That is why the NDA matters before financials are shared. It protects more than numbers. It protects timing, leverage, and the integrity of the entire transition.
+
+If you are getting ready to sell and want a disciplined process around buyer screening, confidentiality, valuation, and deal structure, Practice Transitions Institute can help you move forward with far less noise and far more control.`,
+  }
+,  {
     id: 37,
     title: "7 Practical Ways Dentists Can Improve Practice Value Before a Sale",
     excerpt: "Simple, high impact steps dentists can take in the 12 to 24 months before selling to improve practice value, profitability, and buyer interest.",
