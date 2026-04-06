@@ -2,17 +2,17 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CheckCircle, AlertTriangle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { StaggeredGrid } from "@/components/ui/staggered-grid";
 import { HeroContent } from "@/components/ui/hero-content";
 import { LatestUpdateCard } from "@/components/ui/latest-update-card";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { DrNjoGallerySlider } from "@/components/DrNjoGallerySlider";
 import { blogPosts } from "@/data/blogPosts";
+import { latestBoardMeetingImages } from "@/data/drNjoGallery";
 import { getFeaturedReviews, getReviewAggregate, reviews } from "@/data/reviews";
 
 const Home = () => {
@@ -40,6 +40,55 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Latest Board Meeting Photos */}
+      <Section background="white" className="py-10 md:py-14 border-b border-gray-100">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.35fr)] lg:items-center">
+            <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
+              <div className="max-w-xl">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80 sm:text-sm">
+                  Latest From PTI
+                </p>
+                <SectionTitle className="mb-4 text-2xl sm:text-3xl md:text-4xl">
+                  Michael and the team are energized about what&apos;s next in dentistry.
+                </SectionTitle>
+                <p className="text-base leading-relaxed text-gray-700 sm:text-lg">
+                  These new board meeting photos capture the conversations, collaboration, and momentum behind the work PTI is building for dental practices and the industry ahead.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {latestBoardMeetingImages.map((image, index) => (
+                <ScrollReveal
+                  key={image.src}
+                  direction="scale"
+                  delay={150 + index * 100}
+                  intensity="subtle"
+                >
+                  <figure className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        priority={index === 0}
+                        sizes="(min-width: 1024px) 32vw, (min-width: 640px) 44vw, 100vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    <figcaption className="px-4 py-3 text-sm leading-relaxed text-gray-600">
+                      {index === 0
+                        ? "Board meeting conversations focused on the relationships and opportunities shaping the next chapter."
+                        : "Shared excitement around the ideas, partnerships, and industry work the team is advancing."}
+                    </figcaption>
+                  </figure>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Section>
 
       {/* The Problem Section */}
       <Section background="light" className="py-12 md:py-20 contain-layout">

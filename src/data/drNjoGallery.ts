@@ -3,7 +3,19 @@ export interface DrNjoGalleryImage {
   alt: string;
 }
 
+export const latestBoardMeetingImages: DrNjoGalleryImage[] = [
+  {
+    src: "https://res.cloudinary.com/dhqpqfw6w/image/upload/v1775498279/658e38a4-1106-4e70-962f-35fcf7d7804e_fdiyal.jpg",
+    alt: "Michael Njo and PTI team members gathering at a recent board meeting as they discuss upcoming work in the dental industry"
+  },
+  {
+    src: "https://res.cloudinary.com/dhqpqfw6w/image/upload/v1775498279/81c0ff26-0e34-40d4-8c0c-b5b4bfe03fcb_llntcv.jpg",
+    alt: "Michael Njo and the PTI team at a recent board meeting dinner, energized about what is ahead in the dental industry"
+  }
+];
+
 export const drNjoGalleryImages: DrNjoGalleryImage[] = [
+  ...latestBoardMeetingImages,
   {
     src: "https://res.cloudinary.com/dhqpqfw6w/image/upload/v1773587933/d85667bc-c2ea-4be4-9bfd-790829b947d3_wgoug0.webp",
     alt: "Michael Njo, DDS presenting to General Practice Residency residents holding the Dental Practice Transitions Handbook he wrote"
