@@ -48,13 +48,23 @@ export function DrNjoGallerySlider({
                 frameClassName
               )}
             >
-              <div className="relative h-[240px] sm:h-[320px] md:h-[420px] lg:h-[520px]">
+              <div
+                className={cn(
+                  "relative h-[280px] sm:h-[360px] md:h-[460px] lg:h-[560px]",
+                  image.fit === "contain" && "bg-slate-50"
+                )}
+              >
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
                   sizes={DEFAULT_SIZES}
-                  className={cn("object-contain", imageClassName)}
+                  className={cn(
+                    image.fit === "contain"
+                      ? "object-contain p-4 sm:p-6"
+                      : "object-cover",
+                    imageClassName
+                  )}
                   priority={index === 0}
                 />
               </div>

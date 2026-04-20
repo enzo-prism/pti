@@ -89,20 +89,23 @@ export function RecommendationCard({
           )}
           
           {bookImage && bookUrl && (
-            <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 mt-6">
-              <div className="flex flex-col sm:flex-row items-start gap-4">
-                <div className="flex-shrink-0 mx-auto sm:mx-0">
+            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-4 sm:p-5 mt-6">
+              <div className="grid gap-5 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center">
+                <div className="mx-auto w-full max-w-xl">
                   <Image
                     src={bookImage}
                     alt={bookTitle || "Book cover"}
-                    width={80}
-                    height={120}
-                    className="w-20 h-auto object-cover rounded shadow-sm"
-                    sizes="80px"
+                    width={560}
+                    height={360}
+                    className="w-full h-auto object-contain rounded-xl border border-gray-200 bg-white p-3 shadow-sm"
+                    sizes="(min-width: 1024px) 360px, 100vw"
                   />
                 </div>
-                <div className="flex-1 text-center sm:text-left">
-                  <h4 className="font-semibold text-lg mb-2 text-gray-900">{bookTitle}</h4>
+                <div className="flex-1 text-center lg:text-left">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary/80 mb-2">
+                    Published Resource
+                  </p>
+                  <h4 className="font-semibold text-xl mb-2 text-gray-900">{bookTitle}</h4>
                   <p className="text-sm text-gray-600 mb-4 leading-relaxed">{bookDescription}</p>
                   <Button asChild variant="default" size="sm" className="w-full sm:w-auto">
                     <a href={bookUrl} target="_blank" rel="noopener noreferrer">
