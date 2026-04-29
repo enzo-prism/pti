@@ -411,6 +411,8 @@ export interface StructuredEventInput {
   type: string;
   isVirtual?: boolean;
   detailPath?: string;
+  offerPrice?: number;
+  offerPriceCurrency?: string;
 }
 
 const buildEventStartDate = (date: string, time?: string): string => {
@@ -449,8 +451,10 @@ export const buildEventSchema = (
       ? event.registrationLink
       : buildAbsoluteUrl(event.registrationLink);
   const eventUrl = event.detailPath
-    ? buildAbsoluteUrl(event.detailPath)
+    ? `${buildAbsoluteUrl(event.detailPath)}#event-${event.id}`
     : buildAbsoluteUrl(`/events#event-${event.id}`);
+  const offerPrice = event.offerPrice ?? 0;
+  const offerPriceCurrency = event.offerPriceCurrency ?? "USD";
 
   return {
     "@context": "https://schema.org",
@@ -477,8 +481,8 @@ export const buildEventSchema = (
     offers: {
       "@type": "Offer",
       url: registrationUrl,
-      price: 0,
-      priceCurrency: "USD",
+      price: offerPrice,
+      priceCurrency: offerPriceCurrency,
       availability: "https://schema.org/InStock",
     },
     organizer: {

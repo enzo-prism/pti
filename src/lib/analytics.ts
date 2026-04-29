@@ -255,7 +255,7 @@ export const trackSeriesNavigation = (
 
 export const trackEventRegistrationClick = (
   eventName: string,
-  channel: "phone" | "email" | "external" | "alternative_email"
+  channel: "phone" | "email" | "external" | "alternative_email" | "form"
 ) => {
   trackEvent("event_registration_click", {
     event_name: eventName,

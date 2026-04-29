@@ -1,3 +1,8 @@
+import {
+  PRACTICE_TRANSITION_SEMINAR_PATH,
+  PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
+} from "@/data/practiceTransitionSeminar";
+
 // Event data with type definitions
 export interface RawEvent {
   id: number;
@@ -13,6 +18,8 @@ export interface RawEvent {
   type: "webinar" | "seminar" | "workshop" | "conference";
   registrationLink: string;
   detailPath?: string;
+  offerPrice?: number;
+  offerPriceCurrency?: string;
   speakers?: Array<{
     name: string;
     title: string;
@@ -110,40 +117,44 @@ export const rawEvents: RawEvent[] = [
     id: 5,
     title: "Mastering Your Dental Transition Into and Out of Practice",
     date: "July 17, 2026",
-    time: "8am - 3pm",
-    location: "University of the Pacific (UOP) Arthur A. Dugoni School of Dentistry, San Francisco, CA",
+    time: "8:00 AM - 3:00 PM",
+    location: "Kohan Group, 490 Post St., Ste 1135, San Francisco, CA",
     description: {
-      intro: "Whether entering, expanding, or exiting your career, meticulous planning is essential. Practice Transitions Institute's experts guide you through each stage, helping you avoid costly missteps and ensuring a seamless and prosperous transition.",
+      intro: "Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day seminar gives you practical guidance for making your next move with clarity and confidence.",
       learningPoints: [
-        "Negotiate a win-win practice transition",
-        "Understand the economic climate and its effect on practice value and ownership",
-        "Develop clear associate/partnership agreements safeguarding your interests and fostering collaboration",
-        "Determine the value of a practice",
-        "Maximize your practice value for a lucrative transition",
-        "Avoid tax pitfalls by structuring the sale to minimize tax liability and maximize financial gains"
+        "Increase your practice value before you sell",
+        "Avoid tax pitfalls that can reduce your net gains",
+        "Structure agreements that protect you and build trust",
+        "Understand how today's market affects practice value and ownership",
+        "Approach a win-win practice transition with more confidence"
       ]
     },
     type: "seminar",
-    registrationLink: "tel:+18337841121"
+    registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
+    detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
+    offerPrice: 297,
+    offerPriceCurrency: "USD"
   },
   {
     id: 6,
     title: "Mastering Your Dental Transition Into and Out of Practice",
     date: "October 2, 2026",
-    time: "8am - 3pm",
-    location: "Sacramento, CA",
+    time: "8:00 AM - 3:00 PM",
+    location: "TDIC Headquarters, 1201 K St, 14th Floor, Sacramento, CA",
     description: {
-      intro: "Whether entering, expanding, or exiting your career, meticulous planning is essential. Practice Transitions Institute's experts guide you through each stage, helping you avoid costly missteps and ensuring a seamless and prosperous transition.",
+      intro: "Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day seminar gives you practical guidance for making your next move with clarity and confidence.",
       learningPoints: [
-        "Negotiate a win-win practice transition",
-        "Understand the economic climate and its effect on practice value and ownership",
-        "Develop clear associate/partnership agreements safeguarding your interests and fostering collaboration",
-        "Determine the value of a practice",
-        "Maximize your practice value for a lucrative transition",
-        "Avoid tax pitfalls by structuring the sale to minimize tax liability and maximize financial gains"
+        "Increase your practice value before you sell",
+        "Avoid tax pitfalls that can reduce your net gains",
+        "Structure agreements that protect you and build trust",
+        "Understand how today's market affects practice value and ownership",
+        "Approach a win-win practice transition with more confidence"
       ]
     },
     type: "seminar",
-    registrationLink: "tel:+18337841121"
+    registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
+    detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
+    offerPrice: 297,
+    offerPriceCurrency: "USD"
   }
 ];

@@ -1,4 +1,5 @@
 # Legacy URL redirects (301 permanent)
+/seminar /events/practice-transition-seminar 301
 /dr-njo /drnjo 301
 /meet-our-team /about 301
 /speaking-engagements /events 301

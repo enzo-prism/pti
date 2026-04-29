@@ -85,8 +85,14 @@ const Events = () => {
           return dateA.getTime() - dateB.getTime();
         });
 
-        // Use the most detailed description (usually from 2026 events)
-        const detailedEvent = groupEvents.find(e => typeof e.description === 'object') || groupEvents[0];
+        // Use the upcoming detailed event when available so grouped CTAs stay current.
+        const detailedEvent =
+          groupEvents.find(
+            (e) => !e.isPast && e.detailPath && typeof e.description === "object"
+          ) ||
+          groupEvents.find((e) => !e.isPast && typeof e.description === "object") ||
+          groupEvents.find((e) => typeof e.description === "object") ||
+          groupEvents[0];
         
         // Create unique event dates array with deduplication
         const eventDateMap = new Map<string, EventDate>();

@@ -50,6 +50,14 @@ const ROUTE_BREADCRUMBS: Record<string, BreadcrumbNode[]> = {
     { name: "Events", path: "/events" },
     { name: "Leadership Retreat", path: "/events/leadership-retreat" },
   ],
+  "/events/practice-transition-seminar": [
+    HOME_CRUMB,
+    { name: "Events", path: "/events" },
+    {
+      name: "Practice Transitions Seminar",
+      path: "/events/practice-transition-seminar",
+    },
+  ],
   "/blog": [
     HOME_CRUMB,
     { name: "Blog", path: "/blog" },

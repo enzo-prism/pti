@@ -9,6 +9,7 @@
       "destination": "https://practicetransitionsinstitute.com/:path*",
       "permanent": true
     },
+    { "source": "/seminar", "destination": "/events/practice-transition-seminar", "permanent": true },
     { "source": "/dr-njo", "destination": "/drnjo", "permanent": true },
     { "source": "/meet-our-team", "destination": "/about", "permanent": true },
     { "source": "/speaking-engagements", "destination": "/events", "permanent": true },

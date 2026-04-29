@@ -187,6 +187,7 @@ describe("analytics events", () => {
     analytics.trackBlogPostView("Title", "Culture", "sample-slug");
     analytics.trackSeriesNavigation("debugging-myths", 1, 2);
     analytics.trackEventRegistrationClick("webinar_event", "external");
+    analytics.trackEventRegistrationClick("practice_transition_seminar", "form");
     analytics.trackContactFormStart("cYOs5Ma2", "typeform");
     analytics.trackContactFormSubmit("contact", "cYOs5Ma2", "typeform");
 
@@ -202,6 +203,14 @@ describe("analytics events", () => {
     expect(eventNames).toContain("form_start");
     expect(eventNames).toContain("generate_lead");
     expect(eventNames).not.toContain("click");
+
+    const registrationPayloads = eventCalls
+      .filter((call) => call[1] === "event_registration_click")
+      .map((call) => call[2] as Record<string, unknown>);
+    expect(registrationPayloads).toContainEqual({
+      event_name: "practice_transition_seminar",
+      channel: "form",
+    });
   });
 
   it("blocks reserved custom event names", async () => {

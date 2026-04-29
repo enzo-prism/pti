@@ -4,8 +4,10 @@ import { Calendar, Clock, MapPin, Phone, Mail, ChevronDown, ChevronUp } from "lu
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { trackEventRegistrationClick } from "@/lib/analytics";
+import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface EventDate {
   date: string;
@@ -58,6 +60,12 @@ export const MultiDateEventCard = ({
     ? uniqueLocations[0] 
     : `${uniqueLocations.length} locations available`;
   const normalizedEventName = title.replace(/\s+/g, "_").toLowerCase();
+  const isInternalRegistrationLink = registrationLink.startsWith("/");
+  const registrationButtonLabel = registrationLink.includes(
+    "/events/practice-transition-seminar"
+  )
+    ? "Register for a Seminar"
+    : "Register Now";
 
   return (
     <div 
@@ -345,6 +353,35 @@ export const MultiDateEventCard = ({
                   >
                     <Mail size={16} className="mr-2" />
                     Alternative Email
+                  </Button>
+                </>
+              ) : isInternalRegistrationLink ? (
+                <>
+                  <Button size="sm" className="flex-1 sm:flex-none" asChild>
+                    <Link
+                      href={registrationLink}
+                      onClick={() => {
+                        trackEventRegistrationClick(normalizedEventName, "form");
+                      }}
+                    >
+                      {registrationButtonLabel}
+                    </Link>
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="flex-1 sm:flex-none"
+                    asChild
+                  >
+                    <a
+                      href={`tel:${PHONE_NUMBER_TEL}`}
+                      onClick={() => {
+                        trackEventRegistrationClick(normalizedEventName, "phone");
+                      }}
+                    >
+                      <Phone size={16} className="mr-2" />
+                      Call {PHONE_NUMBER}
+                    </a>
                   </Button>
                 </>
               ) : (

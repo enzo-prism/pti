@@ -36,6 +36,8 @@ const upcomingEventSchemas = rawEvents
       type: event.type,
       isVirtual: event.type === "webinar",
       detailPath: event.detailPath,
+      offerPrice: event.offerPrice,
+      offerPriceCurrency: event.offerPriceCurrency,
     })
   );
 
