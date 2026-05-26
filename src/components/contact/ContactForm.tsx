@@ -166,11 +166,13 @@ export const ContactForm = () => {
 
   return (
     <div ref={containerRef}>
-      <h2 className="text-2xl font-semibold mb-2">Reach Out to Start the Conversation</h2>
-      <div className="mb-6 text-gray-600">
-        <p className="mb-2">Call us: (833) 784 – 1121</p>
-        <p>Email us: Complete the form below</p>
-      </div>
+      <h2 className="mb-2 text-xl font-semibold text-gray-900 sm:text-2xl">
+        Send us a message
+      </h2>
+      <p className="mb-6 text-sm text-gray-600 sm:text-base">
+        Prefer to write? Fill out the quick form below and the PTI team will get
+        back to you.
+      </p>
       {isLoading && (
         <div
           className="flex items-center justify-center"
