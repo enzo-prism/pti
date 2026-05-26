@@ -3123,7 +3123,7 @@ Please email me at dentalstrategies@gmail.com for any questions or suggestions f
     gradient: "bg-gradient-to-br from-emerald-400 via-teal-500 to-blue-600",
     slug: "empowering-next-generation-dugoni-lunch-learn",
     author: "Practice Transitions Institute",
-    featuredImage: "/lovable-uploads/flyer-photo.png",
+    featuredImage: "/lovable-uploads/flyer-photo.webp",
     featuredImageAlt: "Lunch & Learn flyer for Dr. Michael Njo's presentation at the Dugoni School of Dentistry",
     featuredImageFit: "contain",
     content: `On October 8th, Dr. Michael Njo, founder of the Practice Transitions Institute (PTI), spoke at a Lunch & Learn hosted by the Dugoni Business Club. The event, titled "During and Beyond Dental School," brought together a packed room of dental students eager to learn about life after graduation—covering everything from navigating contracts and exploring career options to building a solid foundation for long-term success.
@@ -3132,7 +3132,7 @@ Please email me at dentalstrategies@gmail.com for any questions or suggestions f
 
 During his talk, Dr. Njo shared personal experiences and practical advice from his decades-long career in dentistry. He emphasized the importance of understanding the business side of dentistry early on—knowledge that often separates successful practitioners from those who feel unprepared for ownership or associate agreements. Students had the opportunity to hear firsthand about how small, informed decisions—like reading a contract carefully or knowing the right questions to ask—can dramatically impact their professional trajectory.
 
-![Dr. Michael Njo presenting to Dugoni students during the Lunch & Learn session](/lovable-uploads/presentation-photo.png)
+![Dr. Michael Njo presenting to Dugoni students during the Lunch & Learn session](/lovable-uploads/presentation-photo.webp)
 
 ## Connecting Education to PTI's Mission
 
@@ -3154,7 +3154,7 @@ As the session concluded, students stayed behind to ask thoughtful questions abo
     gradient: "bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600",
     slug: "dugoni-business-club-donation",
     author: "Michael Njo, DDS",
-    featuredImage: "/lovable-uploads/dugoni-business-club-donation-ceremony.jpg",
+    featuredImage: "/lovable-uploads/dugoni-business-club-donation-ceremony.webp",
     featuredImageAlt: "Dugoni Business Club members presenting a donation check to the Arthur A. Dugoni School of Dentistry",
     content: `**September 3, 2025 — San Francisco, CA**
 

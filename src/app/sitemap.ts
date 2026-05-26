@@ -17,6 +17,7 @@ const STATIC_ROUTES = [
   { path: "/events/practice-transition-seminar", changeFrequency: "weekly", priority: 0.7 },
   { path: "/events/leadership-retreat", changeFrequency: "monthly", priority: 0.6 },
   { path: "/testimonials", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/gallery", changeFrequency: "monthly", priority: 0.6 },
   { path: "/faq", changeFrequency: "monthly", priority: 0.7 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.7 },
   { path: "/privacy-policy", changeFrequency: "yearly", priority: 0.3 },

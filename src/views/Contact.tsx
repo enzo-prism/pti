@@ -1,6 +1,7 @@
 
 import { Section } from "@/components/ui/section";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { ContactChannels } from "@/components/contact/ContactChannels";
 
 const Contact = () => {
   return (
@@ -11,15 +12,20 @@ const Contact = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">
               Let&apos;s Talk About Your Next Chapter
             </h1>
-            <div className="text-lg text-gray-600 animate-fade-in animate-delay-100 text-center max-w-2xl mx-auto">
-              <p className="mb-4">
-                Whether you&apos;re planning to sell, buy, or just exploring your options, we&apos;re here to help you
-                make smart, confident decisions about your dental practice.
-              </p>
+            <p className="text-lg text-gray-600 animate-fade-in animate-delay-100 max-w-2xl mx-auto">
+              Whether you&apos;re planning to sell, buy, or just exploring your options, we&apos;re here to help you
+              make smart, confident decisions about your dental practice.
+            </p>
+
+            <div className="mt-8 text-left animate-fade-in animate-delay-100">
+              <ContactChannels />
+            </div>
+
+            <div className="mt-8 text-lg text-gray-600 animate-fade-in animate-delay-100 max-w-2xl mx-auto">
               <p className="mb-4">
                 No pressure. No sales pitch. Just honest guidance from people who know the industry.
               </p>
-              <div>
+              <div className="text-left sm:text-center">
                 <p className="font-semibold mb-2">What You Can Expect:</p>
                 <ul className="space-y-1">
                   <li>• A quick, friendly conversation—no obligation</li>

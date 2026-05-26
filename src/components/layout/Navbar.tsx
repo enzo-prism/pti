@@ -3,7 +3,20 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, Phone } from "lucide-react";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Phone,
+  Home,
+  Users,
+  Briefcase,
+  Quote,
+  Images,
+  CalendarDays,
+  Newspaper,
+  HelpCircle,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
 import {
@@ -35,11 +48,12 @@ const Navbar = () => {
   }, [pathname]);
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About Us", path: "/about" },
-    { 
-      name: "Services", 
+    { name: "Home", path: "/", icon: Home },
+    { name: "About Us", path: "/about", icon: Users },
+    {
+      name: "Services",
       path: "/services",
+      icon: Briefcase,
       dropdown: [
         { name: "Services at a Glance", path: "/services" },
         { name: "Opinion of Value", path: "/services/value" },
@@ -48,10 +62,11 @@ const Navbar = () => {
         { name: "Partnerships", path: "/services/partnerships" },
       ]
     },
-    { name: "Testimonials", path: "/testimonials" },
-    { name: "Events", path: "/events" },
-    { name: "Blog", path: "/blog" },
-    { name: "FAQ", path: "/faq" },
+    { name: "Testimonials", path: "/testimonials", icon: Quote },
+    { name: "Gallery", path: "/gallery", icon: Images },
+    { name: "Events", path: "/events", icon: CalendarDays },
+    { name: "Blog", path: "/blog", icon: Newspaper },
+    { name: "FAQ", path: "/faq", icon: HelpCircle },
   ];
 
   return (
@@ -116,6 +131,7 @@ const Navbar = () => {
                     currentPath === item.path || currentPath.startsWith(item.path) ? "text-primary" : "text-gray-700"
                   }`}
                 >
+                  <item.icon size={16} className="mr-1.5 shrink-0" aria-hidden="true" />
                   {item.name} <ChevronDown size={16} className="ml-1" />
                 </Link>
                 {isServicesOpen && (
@@ -136,10 +152,11 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 href={item.path}
-                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
+                className={`inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
                   currentPath === item.path ? "text-primary" : "text-gray-700"
                 }`}
               >
+                <item.icon size={16} className="shrink-0" aria-hidden="true" />
                 {item.name}
               </Link>
             )
@@ -160,11 +177,12 @@ const Navbar = () => {
                   <div className="flex items-center">
                     <Link
                       href={item.path}
-                      className={`flex-1 py-2 text-lg font-medium ${
+                      className={`flex flex-1 items-center gap-2.5 py-2 text-lg font-medium ${
                         currentPath === item.path || currentPath.startsWith(item.path) ? "text-primary" : "text-gray-700"
                       }`}
                       onClick={closeMenu}
                     >
+                      <item.icon size={20} className="shrink-0" aria-hidden="true" />
                       {item.name}
                     </Link>
                     <button 
@@ -197,11 +215,12 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                 href={item.path}
-                className={`py-2 text-lg font-medium block ${
+                className={`flex items-center gap-2.5 py-2 text-lg font-medium ${
                   currentPath === item.path ? "text-primary" : "text-gray-700"
                 }`}
                   onClick={closeMenu}
                 >
+                  <item.icon size={20} className="shrink-0" aria-hidden="true" />
                   {item.name}
                 </Link>
               )

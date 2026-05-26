@@ -1,7 +1,5 @@
-"use client";
-
 import Image from "next/image";
-import { Mail, Phone } from "lucide-react";
+import { ExternalLink, Mail, Phone } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Section, SectionSubtitle, SectionTitle } from "@/components/ui/section";
@@ -12,7 +10,11 @@ import {
   drNjoRelationshipImages,
   drNjoSpeakingAuthorshipImages,
 } from "@/data/drNjoGallery";
-import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
+import {
+  MICHAEL_NJO_WEBSITE_URL,
+  PHONE_NUMBER,
+  PHONE_NUMBER_TEL,
+} from "@/lib/constants";
 
 const [
   bluePrintFlyer,
@@ -55,23 +57,28 @@ const DrNjo = () => {
                 community.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
-                <Button
-                  size="lg"
-                  className="font-medium px-8 text-base"
-                  onClick={() => window.location.href = `tel:${PHONE_NUMBER_TEL}`}
-                >
-                  <Phone className="w-5 h-5 mr-3" />
-                  Call Now
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center md:justify-start pt-4">
+                <Button asChild size="lg" className="font-medium px-8 text-base">
+                  <a href={`tel:${PHONE_NUMBER_TEL}`}>
+                    <Phone className="w-5 h-5 mr-3" />
+                    Call Now
+                  </a>
                 </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="px-8 text-base"
-                  onClick={() => window.location.href = "mailto:dentalstrategies@gmail.com"}
-                >
-                  <Mail className="w-5 h-5 mr-3" />
-                  Send Email
+                <Button asChild variant="outline" size="lg" className="px-8 text-base">
+                  <a href="mailto:dentalstrategies@gmail.com">
+                    <Mail className="w-5 h-5 mr-3" />
+                    Send Email
+                  </a>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="px-8 text-base">
+                  <a
+                    href={MICHAEL_NJO_WEBSITE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLink className="w-5 h-5 mr-3" />
+                    Visit Website
+                  </a>
                 </Button>
               </div>
             </div>
@@ -271,12 +278,8 @@ const DrNjo = () => {
                     <p className="text-muted-foreground mb-4 text-sm sm:text-base">
                       Speak directly with Dr. Njo for immediate consultation
                     </p>
-                    <Button
-                      variant="outline"
-                      className="w-full min-h-[44px] text-sm sm:text-base"
-                      onClick={() => window.location.href = `tel:${PHONE_NUMBER_TEL}`}
-                    >
-                      {PHONE_NUMBER}
+                    <Button asChild variant="outline" className="w-full min-h-[44px] text-sm sm:text-base">
+                      <a href={`tel:${PHONE_NUMBER_TEL}`}>{PHONE_NUMBER}</a>
                     </Button>
                   </div>
                 </CardContent>
@@ -294,12 +297,8 @@ const DrNjo = () => {
                     <p className="text-muted-foreground mb-4 text-sm sm:text-base">
                       Send your questions for a detailed written response
                     </p>
-                    <Button
-                      variant="outline"
-                      className="w-full min-h-[44px] text-sm sm:text-base"
-                      onClick={() => window.location.href = "mailto:dentalstrategies@gmail.com"}
-                    >
-                      Send Email
+                    <Button asChild variant="outline" className="w-full min-h-[44px] text-sm sm:text-base">
+                      <a href="mailto:dentalstrategies@gmail.com">Send Email</a>
                     </Button>
                   </div>
                 </CardContent>

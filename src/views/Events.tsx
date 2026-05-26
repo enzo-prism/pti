@@ -170,15 +170,16 @@ const Events = () => {
       <Section background="primary" className="pt-24 md:pt-32 pb-12 md:pb-20 relative overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/90"></div>
-        <div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `url(/lovable-uploads/387f8cf6-b01b-4a65-873f-7abdbafa078f.png)`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}
-        ></div>
-        
+        <Image
+          src="/lovable-uploads/events-hero-office.webp"
+          alt=""
+          aria-hidden="true"
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 object-cover opacity-20"
+        />
+
         <div className="relative z-10 text-center text-white">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
             Learn. Connect. Transition With Confidence.
@@ -256,7 +257,7 @@ const Events = () => {
                   : "bg-white border-2 border-gray-200 shadow-sm hover:shadow-lg hover:border-primary/30"
               } ${event.type === "webinar" && !event.isPast ? "bg-cover bg-center" : ""}`}
               style={event.type === "webinar" && !event.isPast ? {
-                backgroundImage: `url(/lovable-uploads/387f8cf6-b01b-4a65-873f-7abdbafa078f.png)`,
+                backgroundImage: `url(/lovable-uploads/events-hero-office.webp)`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
               } : {}}

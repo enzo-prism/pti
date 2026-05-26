@@ -26,7 +26,11 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
-const iconVersion = process.env.NEXT_PUBLIC_BUILD_TIMESTAMP ?? "1";
+// Bump only when the favicon/icon assets actually change. Using a manual
+// version (instead of the per-build timestamp) lets browsers keep icons cached
+// across deploys rather than re-downloading all of them every release.
+const ICON_VERSION = "3";
+const iconVersion = ICON_VERSION;
 
 export const metadata: Metadata = {
   metadataBase: new URL(CANONICAL_SITE_URL),
@@ -126,6 +130,14 @@ export default function RootLayout({
       className={`${inter.variable} ${montserrat.variable}`}
     >
       <body className="min-h-screen bg-background text-foreground antialiased">
+        {/* Resource hints for third-party origins used across the site. */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://static.hotjar.com" />
+        <link rel="dns-prefetch" href="https://script.hotjar.com" />
+        <link rel="dns-prefetch" href="https://embed.typeform.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <Providers>{children}</Providers>
         <Analytics />
         <GoogleAnalytics />

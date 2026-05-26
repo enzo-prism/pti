@@ -68,10 +68,10 @@ const Blog = ({ initialQuery = "" }: BlogProps) => {
             <div className="flex flex-col md:flex-row items-center justify-center mb-8 md:mb-12 text-center md:text-left">
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 mb-4 md:mb-0 md:mr-6">
                 <Image
-                  src="/lovable-uploads/18b2244b-dbb5-4dd6-a1ca-c6a28fed53c6.png"
+                  src="/lovable-uploads/pti-logo.webp"
                   alt="Practice Transitions Institute logo"
-                  width={64}
-                  height={64}
+                  width={480}
+                  height={466}
                   className="w-12 h-12 md:w-16 md:h-16 object-contain"
                   sizes="(min-width: 768px) 64px, 48px"
                   priority

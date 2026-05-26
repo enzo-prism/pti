@@ -1,25 +1,18 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { HeroContent } from "@/components/ui/hero-content";
 import { LatestUpdateCard } from "@/components/ui/latest-update-card";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
-import { DrNjoPhotoCard } from "@/components/DrNjoPhotoCard";
 import { blogPosts } from "@/data/blogPosts";
-import {
-  authorityCalloutImages,
-  homeGalleryImages,
-} from "@/data/drNjoGallery";
+import { galleryPhotos, homeGalleryPreview } from "@/data/galleryImages";
 import { getFeaturedReviews, getReviewAggregate, reviews } from "@/data/reviews";
+import { cn } from "@/lib/utils";
 
 const Home = () => {
-  const isMobile = useIsMobile();
   const latestPost =
     blogPosts.length > 0
       ? [...blogPosts].sort(
@@ -28,21 +21,15 @@ const Home = () => {
       : null;
   const featuredTestimonials = getFeaturedReviews("home");
   const aggregateRating = getReviewAggregate(reviews);
-  const [leadershipQuoteGraphic, leadershipMedalPortrait] = authorityCalloutImages;
-  const [featureImage, ...supportingMosaicImages] = homeGalleryImages;
+  const remainingGalleryCount = Math.max(
+    galleryPhotos.length - homeGalleryPreview.length,
+    0
+  );
 
   return (
     <>
       <section
-        className={`relative min-h-screen overflow-hidden hero-gradient pt-24 md:pt-32 flex items-center justify-center ${
-          isMobile ? "pb-20 md:pb-8" : "pb-8"
-        }`}
-        style={{
-          minHeight: isMobile ? "calc(100vh - 4rem)" : "calc(100vh - 6rem)",
-          paddingBottom: isMobile
-            ? "max(5rem, env(safe-area-inset-bottom, 1.25rem))"
-            : undefined,
-        }}
+        className="relative flex items-center justify-center overflow-hidden hero-gradient pt-24 md:pt-32 min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-6rem)] pb-[max(5rem,env(safe-area-inset-bottom,1.25rem))] md:pb-8"
       >
         <div className="absolute inset-0 hero-gradient-overlay" />
         <div className="relative z-10 w-full">
@@ -54,51 +41,74 @@ const Home = () => {
 
       <Section background="white" className="py-10 md:py-14 border-b border-gray-100">
         <div className="max-w-6xl mx-auto">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.35fr)] lg:items-center">
+          <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
             <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
               <div className="max-w-xl">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80 sm:text-sm">
-                  Latest From PTI
+                <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80 sm:text-sm">
+                  Inside PTI
                 </p>
-                <SectionTitle className="mb-4 text-2xl sm:text-3xl md:text-4xl">
-                  Michael and the team are energized about what&apos;s next in dentistry.
+                <SectionTitle className="mb-0 text-2xl sm:text-3xl md:text-4xl">
+                  The people and partnerships behind every transition.
                 </SectionTitle>
-                <p className="text-base leading-relaxed text-gray-700 sm:text-lg">
-                  A curated look at the conversations, collaboration, and trusted
-                  relationships shaping PTI&apos;s next chapter in dentistry.
-                </p>
               </div>
             </ScrollReveal>
-
-            <div className="grid gap-4 xl:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)]">
-              <ScrollReveal direction="scale" delay={150} intensity="subtle">
-                <DrNjoPhotoCard
-                  image={featureImage}
-                  priority
-                  sizes="(min-width: 1280px) 36vw, (min-width: 1024px) 44vw, 100vw"
-                  frameClassName="shadow-sm"
-                />
-              </ScrollReveal>
-
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
-                {supportingMosaicImages.map((image, index) => (
-                  <ScrollReveal
-                    key={image.id}
-                    direction="scale"
-                    delay={225 + index * 100}
-                    intensity="subtle"
-                  >
-                    <DrNjoPhotoCard
-                      image={image}
-                      priority={index === 0}
-                      sizes="(min-width: 1280px) 22vw, (min-width: 640px) 44vw, 100vw"
-                      frameClassName="shadow-sm"
-                    />
-                  </ScrollReveal>
-                ))}
-              </div>
-            </div>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="shrink-0 self-start sm:self-auto"
+            >
+              <Link href="/gallery" className="flex items-center justify-center">
+                View the gallery
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+              </Link>
+            </Button>
           </div>
+
+          <ScrollReveal direction="scale" delay={150} intensity="subtle">
+            <div className="grid auto-rows-[8.5rem] grid-cols-2 gap-2.5 sm:auto-rows-[10rem] sm:gap-3 md:grid-cols-4 md:gap-4 lg:auto-rows-[11.5rem]">
+              {homeGalleryPreview.map(({ photo, focus }, index) => {
+                const isFeature = index === 0;
+                const isLast = index === homeGalleryPreview.length - 1;
+                return (
+                  <Link
+                    key={photo.id}
+                    href="/gallery"
+                    aria-label="View the PTI photo gallery"
+                    className={cn(
+                      "group relative overflow-hidden rounded-2xl border border-gray-200 bg-slate-100 shadow-sm transition-shadow duration-300 hover:shadow-lg",
+                      isFeature && "col-span-2 row-span-2"
+                    )}
+                  >
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      fill
+                      priority={isFeature}
+                      sizes={
+                        isFeature
+                          ? "(min-width: 768px) 580px, 100vw"
+                          : "(min-width: 768px) 290px, 50vw"
+                      }
+                      style={{ objectPosition: focus }}
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    {isLast && remainingGalleryCount > 0 ? (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center bg-primary/70 text-white transition-colors duration-300 group-hover:bg-primary/80">
+                        <span className="text-xl font-bold leading-none sm:text-2xl">
+                          +{remainingGalleryCount}
+                        </span>
+                        <span className="mt-1 text-[0.65rem] font-medium uppercase tracking-[0.18em] sm:text-xs">
+                          Photos
+                        </span>
+                      </div>
+                    ) : null}
+                  </Link>
+                );
+              })}
+            </div>
+          </ScrollReveal>
         </div>
       </Section>
 
@@ -138,7 +148,7 @@ const Home = () => {
                 <Button
                   asChild
                   variant="outline"
-                  size={isMobile ? "default" : "lg"}
+                  size="lg"
                   className="w-full sm:w-auto"
                 >
                   <Link href="/about" className="flex items-center justify-center">
@@ -302,51 +312,6 @@ const Home = () => {
               </ScrollReveal>
             </div>
 
-            <div className="grid gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center mb-10 md:mb-12">
-              <ScrollReveal direction="scale" delay={80} intensity="subtle">
-                <DrNjoPhotoCard
-                  image={leadershipQuoteGraphic}
-                  sizes="(min-width: 1280px) 34vw, (min-width: 1024px) 44vw, 100vw"
-                  frameClassName="shadow-lg"
-                />
-              </ScrollReveal>
-
-              <ScrollReveal direction="up" delay={140} intensity="subtle">
-                <div className="rounded-[1.75rem] border border-gray-200 bg-white p-6 sm:p-8 shadow-sm">
-                  <div className="flex flex-col sm:flex-row gap-5 sm:items-center">
-                    <div className="w-full sm:w-28 sm:flex-shrink-0">
-                      <DrNjoPhotoCard
-                        image={leadershipMedalPortrait}
-                        showCaption={false}
-                        sizes="112px"
-                        frameClassName="shadow-none"
-                      />
-                    </div>
-                    <div className="text-left">
-                      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80">
-                        Recognition Beyond the Transaction
-                      </p>
-                      <h3 className="text-2xl font-semibold text-gray-900 mb-3">
-                        A public track record that matches the private guidance.
-                      </h3>
-                      <p className="text-base leading-relaxed text-gray-600 mb-5">
-                        Dr. Njo&apos;s authority shows up in published resources,
-                        speaking circles, community leadership, and the long-term
-                        relationships he has built across dentistry. The work is
-                        not theoretical, and the trust around it is visible.
-                      </p>
-                      <Button asChild variant="outline">
-                        <Link href="/drnjo">
-                          See Dr. Njo&apos;s Full Photo Story{" "}
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {featuredTestimonials.map((testimonial, index) => (
                 <ScrollReveal
@@ -370,7 +335,7 @@ const Home = () => {
               <Button
                 asChild
                 variant="outline"
-                size={isMobile ? "default" : "lg"}
+                size="lg"
               >
                 <Link href="/testimonials">Read More Stories</Link>
               </Button>
@@ -400,7 +365,7 @@ const Home = () => {
             <Button
               asChild
               variant="secondary"
-              size={isMobile ? "default" : "lg"}
+              size="lg"
               className="w-full sm:w-auto text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 hover-lift !bg-white hover:!bg-white border border-white"
             >
               <Link href="/contact">Let&apos;s Talk</Link>

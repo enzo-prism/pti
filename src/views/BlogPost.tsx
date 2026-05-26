@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Calendar, Clock, User, Share2, ArrowRight } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, User, Share2, ArrowRight, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,7 +7,7 @@ import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section"
 import { getRelatedPosts, getSeriesPosts, type BlogPost } from "@/data/blogPosts";
 import { formatLocalDate } from "@/lib/dateUtils";
 import { SeriesNavigation } from "@/components/ui/series-navigation";
-import { marked } from "marked";
+import { renderMarkdown } from "@/lib/markdown";
 import { cn } from "@/lib/utils";
 import { getAuthorProfile } from "@/data/authors";
 import { buildAbsoluteUrl } from "@/lib/siteMetadata";
@@ -36,6 +36,7 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
       : `${authorName} is a dental practice transition expert with extensive experience helping dentists navigate career changes, practice sales, and business strategies.`);
   const authorImage = authorProfile?.image;
   const authorUrl = authorProfile?.url;
+  const authorWebsite = authorProfile?.website;
 
   const relatedPosts = getRelatedPosts(post.id, post.category, 2);
   const seriesPosts = post.series ? getSeriesPosts(post.series.id) : [];
@@ -62,7 +63,7 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
           />
         );
       }
-      const htmlContent = marked(segment.trim());
+      const htmlContent = renderMarkdown(segment.trim());
       return (
         <div
           key={key}
@@ -313,6 +314,19 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                   <Button asChild variant="outline" className="rounded-full border-primary/40 text-primary hover:bg-primary/5">
                     <a href="mailto:dentalstrategies@gmail.com">Email the PTI team</a>
                   </Button>
+                  {authorWebsite && (
+                    <Button asChild variant="outline" className="rounded-full border-primary/40 text-primary hover:bg-primary/5">
+                      <a
+                        href={authorWebsite}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                        Visit {authorName}&apos;s website
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </div>
             </article>

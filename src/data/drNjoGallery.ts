@@ -25,7 +25,7 @@ export interface DrNjoGalleryImage {
 const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
   backstageQuote: {
     id: "backstageQuote",
-    src: "/lovable-uploads/drnjo-2026/backstage-mastermind-quote.png",
+    src: "/lovable-uploads/drnjo-2026/backstage-mastermind-quote.webp",
     alt: "Backstage Mastermind quote graphic featuring Dr. Michael Njo and a testimonial about handling the business details of a dental practice",
     caption:
       "External recognition that positions Dr. Njo as a trusted partner for dentists who want to stay focused on patients while the operational details are handled well.",

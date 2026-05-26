@@ -1,115 +1,183 @@
 "use client";
 
-import { ReactNode } from "react";
-import type { CSSProperties } from "react";
-import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
-import { cn } from '@/lib/utils';
+import {
+  ReactNode,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
+import { cn } from "@/lib/utils";
+
+type RevealDirection =
+  | "up"
+  | "down"
+  | "left"
+  | "right"
+  | "scale"
+  | "blur-in"
+  | "elastic"
+  | "bounce"
+  | "parallax"
+  | "magnetic"
+  | "morphing";
 
 interface ScrollRevealProps {
   children: ReactNode;
   className?: string;
   delay?: number;
-  direction?: 'up' | 'down' | 'left' | 'right' | 'scale' | 'blur-in' | 'elastic' | 'bounce' | 'parallax' | 'magnetic' | 'morphing';
+  direction?: RevealDirection;
   duration?: number;
-  intensity?: 'subtle' | 'normal' | 'strong';
+  intensity?: "subtle" | "normal" | "strong";
 }
 
-export const ScrollReveal = ({ 
-  children, 
+// useLayoutEffect warns when run during SSR; fall back to useEffect on the server.
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+export const ScrollReveal = ({
+  children,
   className,
   delay = 0,
-  direction = 'up',
+  direction = "up",
   duration,
-  intensity = 'normal'
+  intensity = "normal",
 }: ScrollRevealProps) => {
-  const { elementRef, isIntersecting } = useIntersectionObserver<HTMLDivElement>({
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-  });
+  const elementRef = useRef<HTMLDivElement>(null);
+  // Content is visible by default. Server render, no-JS, and reduced-motion all
+  // paint immediately and stay crawlable — only below-the-fold elements opt in
+  // to an entrance animation once JS runs.
+  const [animate, setAnimate] = useState(false);
+  const [revealed, setRevealed] = useState(true);
+
+  // Runs before paint: hide (without a flash) only elements that start below the
+  // fold, so the LCP/above-the-fold content never depends on JS to appear.
+  useIsomorphicLayoutEffect(() => {
+    const element = elementRef.current;
+    if (!element || typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const viewportHeight =
+      window.innerHeight || document.documentElement.clientHeight;
+    const { top } = element.getBoundingClientRect();
+    const startsWithinInitialViewport = top < viewportHeight * 0.9;
+    if (startsWithinInitialViewport) return;
+
+    setAnimate(true);
+    setRevealed(false);
+  }, []);
+
+  useEffect(() => {
+    if (!animate) return;
+    const element = elementRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setRevealed(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [animate]);
 
   const getAnimationClass = () => {
     const baseClass = (() => {
       switch (direction) {
-        case 'up':
-          return 'animate-slide-up';
-        case 'down':
-          return 'animate-slide-down';
-        case 'left':
-          return 'animate-slide-left';
-        case 'right':
-          return 'animate-slide-right';
-        case 'scale':
-          return 'animate-scale-elegant';
-        case 'blur-in':
-          return 'animate-blur-reveal';
-        case 'elastic':
-          return 'animate-elastic-bounce';
-        case 'bounce':
-          return 'animate-soft-bounce';
-        case 'parallax':
-          return 'animate-parallax-float';
-        case 'magnetic':
-          return 'animate-magnetic-rise';
-        case 'morphing':
-          return 'animate-morphing-reveal';
+        case "up":
+          return "animate-slide-up";
+        case "down":
+          return "animate-slide-down";
+        case "left":
+          return "animate-slide-left";
+        case "right":
+          return "animate-slide-right";
+        case "scale":
+          return "animate-scale-elegant";
+        case "blur-in":
+          return "animate-blur-reveal";
+        case "elastic":
+          return "animate-elastic-bounce";
+        case "bounce":
+          return "animate-soft-bounce";
+        case "parallax":
+          return "animate-parallax-float";
+        case "magnetic":
+          return "animate-magnetic-rise";
+        case "morphing":
+          return "animate-morphing-reveal";
         default:
-          return 'animate-slide-up';
+          return "animate-slide-up";
       }
     })();
 
-    if (direction === 'up') {
-      if (intensity === 'subtle') return `${baseClass}-subtle`;
-      if (intensity === 'strong') return `${baseClass}-strong`;
+    if (direction === "up") {
+      if (intensity === "subtle") return `${baseClass}-subtle`;
+      if (intensity === "strong") return `${baseClass}-strong`;
     }
 
     return baseClass;
   };
 
   const initialTransform = () => {
-    const multiplier = intensity === 'subtle' ? 0.5 : intensity === 'strong' ? 1.5 : 1;
-    
+    const multiplier =
+      intensity === "subtle" ? 0.5 : intensity === "strong" ? 1.5 : 1;
+
     switch (direction) {
-      case 'up':
+      case "up":
         return `translate3d(0, ${30 * multiplier}px, 0)`;
-      case 'down':
+      case "down":
         return `translate3d(0, ${-30 * multiplier}px, 0)`;
-      case 'left':
+      case "left":
         return `translate3d(${-30 * multiplier}px, 0, 0)`;
-      case 'right':
+      case "right":
         return `translate3d(${30 * multiplier}px, 0, 0)`;
-      case 'scale':
-        return `scale3d(${0.9 - (0.1 * (multiplier - 1))}, ${0.9 - (0.1 * (multiplier - 1))}, 1)`;
-      case 'blur-in':
+      case "scale":
+        return `scale3d(${0.9 - 0.1 * (multiplier - 1)}, ${
+          0.9 - 0.1 * (multiplier - 1)
+        }, 1)`;
+      case "blur-in":
         return `translate3d(0, ${20 * multiplier}px, 0) scale3d(0.95, 0.95, 1)`;
-      case 'elastic':
+      case "elastic":
         return `translate3d(0, ${40 * multiplier}px, 0) scale3d(0.8, 0.8, 1)`;
-      case 'bounce':
+      case "bounce":
         return `translate3d(0, ${35 * multiplier}px, 0) scale3d(0.85, 0.85, 1)`;
-      case 'parallax':
+      case "parallax":
         return `translate3d(0, ${25 * multiplier}px, 0) scale3d(0.92, 0.92, 1)`;
-      case 'magnetic':
+      case "magnetic":
         return `translate3d(0, ${45 * multiplier}px, 0) scale3d(0.88, 0.88, 1)`;
-      case 'morphing':
+      case "morphing":
         return `translate3d(0, ${20 * multiplier}px, 0) scale3d(0.9, 0.9, 1)`;
       default:
         return `translate3d(0, ${30 * multiplier}px, 0)`;
     }
   };
 
+  const isHidden = animate && !revealed;
   const style: CSSProperties = {
-    opacity: isIntersecting ? undefined : 0,
-    transform: isIntersecting ? undefined : initialTransform(),
+    opacity: isHidden ? 0 : undefined,
+    transform: isHidden ? initialTransform() : undefined,
     animationDelay: `${delay}ms`,
-    animationFillMode: 'both',
-    ...(typeof duration === 'number' ? { animationDuration: `${duration}ms` } : {})
+    animationFillMode: "both",
+    ...(typeof duration === "number"
+      ? { animationDuration: `${duration}ms` }
+      : {}),
   };
 
   return (
     <div
       ref={elementRef}
       className={cn(
-        'gpu-accelerated will-change-transform',
-        isIntersecting ? getAnimationClass() : '',
+        animate && "gpu-accelerated will-change-transform",
+        animate && revealed ? getAnimationClass() : "",
         className
       )}
       style={style}

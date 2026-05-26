@@ -19,17 +19,54 @@ type TypeformWindow = Window & Record<string, unknown>;
 export const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const submitCallbackRef = useRef(
     `ptiTypeformSubmit_${Math.random().toString(36).slice(2)}`
   );
   const isPrerender =
     typeof navigator !== "undefined" && navigator.userAgent === "ReactSnap";
 
+  // Start loading the embed only as it nears the viewport (with a short
+  // fallback), so the heavy third-party script stays off the initial render
+  // path but the form still appears promptly and reliably.
+  useEffect(() => {
+    if (isPrerender || shouldLoad) return;
+
+    const element = containerRef.current;
+    const trigger = () => setShouldLoad(true);
+    let observer: IntersectionObserver | undefined;
+
+    if (element && "IntersectionObserver" in window) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            trigger();
+            observer?.disconnect();
+          }
+        },
+        { rootMargin: "600px 0px" }
+      );
+      observer.observe(element);
+    } else {
+      trigger();
+    }
+
+    // Safety net: load even if the observer never fires.
+    const timeoutHandle = window.setTimeout(trigger, 2500);
+
+    return () => {
+      observer?.disconnect();
+      window.clearTimeout(timeoutHandle);
+    };
+  }, [isPrerender, shouldLoad]);
+
   useEffect(() => {
     if (isPrerender) {
       setIsLoading(false);
       return;
     }
+    if (!shouldLoad) return;
 
     const callbackName = submitCallbackRef.current;
     const win = window as unknown as TypeformWindow;
@@ -61,7 +98,7 @@ export const ContactForm = () => {
 
       delete win[callbackName];
     };
-  }, [isPrerender]);
+  }, [isPrerender, shouldLoad]);
 
   if (isPrerender) {
     return (
@@ -101,15 +138,15 @@ export const ContactForm = () => {
           <p className="mb-2">Call us: (833) 784 – 1121</p>
           <p>Email us: Complete the form below</p>
         </div>
-        <div 
+        <div
           className="flex items-center justify-center border rounded-lg bg-muted"
           style={{ minHeight: `${TYPEFORM_INITIAL_HEIGHT}px` }}
         >
           <div className="text-center">
             <p className="text-muted-foreground mb-4">Unable to load the form. Please try again or contact us directly.</p>
-            <a 
+            <a
               href={TYPEFORM_WIDGET_URL}
-              target="_blank" 
+              target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline"
               onClick={() =>
@@ -128,21 +165,21 @@ export const ContactForm = () => {
   }
 
   return (
-    <div>
+    <div ref={containerRef}>
       <h2 className="text-2xl font-semibold mb-2">Reach Out to Start the Conversation</h2>
       <div className="mb-6 text-gray-600">
         <p className="mb-2">Call us: (833) 784 – 1121</p>
         <p>Email us: Complete the form below</p>
       </div>
       {isLoading && (
-        <div 
+        <div
           className="flex items-center justify-center"
           style={{ minHeight: `${TYPEFORM_INITIAL_HEIGHT}px` }}
         >
           <div className="text-muted-foreground">Loading form...</div>
         </div>
       )}
-      <div 
+      <div
         data-tf-widget={TYPEFORM_WIDGET_URL}
         data-tf-opacity="100"
         data-tf-hide-headers

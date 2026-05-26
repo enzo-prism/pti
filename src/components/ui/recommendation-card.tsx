@@ -1,4 +1,5 @@
 
+import { ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
@@ -16,6 +17,7 @@ interface RecommendationCardProps {
   hasNewInfo?: boolean;
   quote?: string;
   videoUrl?: string;
+  websiteUrl?: string;
   bookUrl?: string;
   bookImage?: string;
   bookTitle?: string;
@@ -33,6 +35,7 @@ export function RecommendationCard({
   hasNewInfo = false,
   quote,
   videoUrl,
+  websiteUrl,
   bookUrl,
   bookImage,
   bookTitle,
@@ -77,15 +80,32 @@ export function RecommendationCard({
             </blockquote>
           )}
           
-          {videoUrl && (
-            <Button variant="outline" className="flex items-center gap-2 mb-4 w-full sm:w-auto">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-play">
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-              </svg>
-              <a href={videoUrl} target="_blank" rel="noopener noreferrer">
-                Watch the Interview
-              </a>
-            </Button>
+          {(videoUrl || websiteUrl) && (
+            <div className="flex flex-col gap-3 mb-4 sm:flex-row">
+              {videoUrl && (
+                <Button variant="outline" className="flex items-center gap-2 w-full sm:w-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-play">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <a href={videoUrl} target="_blank" rel="noopener noreferrer">
+                    Watch the Interview
+                  </a>
+                </Button>
+              )}
+              {websiteUrl && (
+                <Button asChild variant="outline" className="w-full sm:w-auto">
+                  <a
+                    href={websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    Visit Website
+                  </a>
+                </Button>
+              )}
+            </div>
           )}
           
           {bookImage && bookUrl && (

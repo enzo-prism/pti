@@ -1,3 +1,5 @@
+import { MICHAEL_NJO_WEBSITE_URL } from "@/lib/constants";
+
 export type AuthorProfile = {
   name: string;
   type: "Person" | "Organization";
@@ -5,6 +7,7 @@ export type AuthorProfile = {
   bio?: string;
   url?: string;
   image?: string;
+  website?: string;
   sameAs?: string[];
 };
 
@@ -16,6 +19,8 @@ const AUTHOR_PROFILES: Record<string, AuthorProfile> = {
     bio: "Dental practice transition expert, author, and educator with 30+ years in clinical dentistry, guiding dentists through valuations, sales, ownership transitions, and early-career decision making.",
     url: "/drnjo",
     image: "/lovable-uploads/7f7f714e-f3e5-4943-a190-b0a9ed982709.png",
+    website: MICHAEL_NJO_WEBSITE_URL,
+    sameAs: [MICHAEL_NJO_WEBSITE_URL],
   },
   "Practice Transitions Institute": {
     name: "Practice Transitions Institute",

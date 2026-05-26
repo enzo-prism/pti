@@ -2,8 +2,7 @@ import { Users, Shield, Target, Star, Heart } from "lucide-react";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
 import { RecommendationCard } from "@/components/ui/recommendation-card";
-import { DrNjoPhotoCard } from "@/components/DrNjoPhotoCard";
-import { aboutGalleryImages } from "@/data/drNjoGallery";
+import { MICHAEL_NJO_WEBSITE_URL } from "@/lib/constants";
 
 export const leaders = [
   {
@@ -16,6 +15,7 @@ export const leaders = [
     hasNewInfo: true,
     image: "/lovable-uploads/d30c74a1-48bb-404e-9e9d-bc93119a695d.png",
     videoUrl: "https://youtu.be/Jes6h2F3yhc?si=sVQZKyw1uB5Fi5_F",
+    websiteUrl: MICHAEL_NJO_WEBSITE_URL,
     bookUrl:
       "https://www.amazon.com/Dental-Practice-Transitions-Handbook-Healthcare/dp/1627878718/ref=sr_1_2?dchild=1&keywords=Dental+Practice+Transitions+Handbook&qid=1632933680&s=books&sr=1-2",
     bookImage: "/lovable-uploads/drnjo-2026/handbook-cover-spread.webp",
@@ -45,9 +45,6 @@ export const leaders = [
   },
 ];
 
-const [handbookSpread, publicationSpread, bluePrintFlyer, dugoniGroupPhoto] =
-  aboutGalleryImages;
-
 const About = () => {
   return (
     <>
@@ -68,72 +65,70 @@ const About = () => {
         </div>
       </section>
 
-      <Section className="py-8 md:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-8 lg:gap-12 items-start">
-          <div className="animate-fade-in order-2 lg:order-1">
-            <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 text-center lg:text-left">
-              Our Story: A Partnership Rooted in Your Success
-            </h2>
-            <div className="space-y-4 text-sm md:text-base">
-              <p className="text-gray-600 leading-relaxed">
-                Practice Transitions Institute (PTI) was founded on a simple,
-                yet profound principle: to transform the dental practice
-                transition experience. <strong>Dr. Michael Njo</strong> envisioned
-                a new standard—one that moved beyond mere transactions to forge{" "}
+      <Section className="py-12 md:py-20">
+        <div className="mx-auto max-w-5xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80 animate-fade-in">
+              Our Story
+            </p>
+            <SectionTitle centered className="text-2xl md:text-4xl mb-4">
+              A Partnership Rooted in Your Success
+            </SectionTitle>
+            <SectionSubtitle centered className="text-base md:text-lg mb-0">
+              Practice Transitions Institute was founded to transform the dental
+              transition experience — moving beyond transactions toward trusted,
+              relationship-driven partnerships.
+            </SectionSubtitle>
+          </div>
+
+          <div className="mt-10 grid gap-8 md:mt-14 lg:grid-cols-[1.35fr_1fr] lg:items-start lg:gap-12">
+            <div className="animate-fade-in space-y-5 text-sm leading-relaxed text-gray-600 md:text-base">
+              <p className="border-l-2 border-primary/30 pl-5 text-base text-gray-700 md:text-lg">
+                PTI was founded on a simple yet profound principle: to transform
+                the dental practice transition experience.{" "}
+                <strong>Dr. Michael Njo</strong> envisioned a new standard — one
+                that moved beyond mere transactions to forge{" "}
                 <strong>trusted, relationship-driven partnerships</strong>.
               </p>
-              <p className="text-gray-600 leading-relaxed">
+              <p>
                 Today, that vision thrives. Under{" "}
-                <strong>Dr. Njo&apos;s leadership</strong>, the strategic insights of{" "}
-                <strong>Fred Heppner in transitions and practice management</strong>,
-                and <strong>Liz Armato&apos;s operational expertise</strong>, PTI
-                offers truly personalized guidance. Our mission is clear: to help
+                <strong>Dr. Njo&apos;s leadership</strong>, the strategic insight
+                of <strong>Fred Heppner</strong> in transitions and practice
+                management, and <strong>Liz Armato&apos;s</strong> operational
+                expertise, PTI offers truly personalized guidance — helping
                 dentists navigate significant career milestones with{" "}
-                <strong>unwavering care and integrity</strong>, ensuring the
-                legacy of each practice is preserved, and every outcome is a
-                win-win.
+                <strong>unwavering care and integrity</strong>, so the legacy of
+                each practice is preserved and every outcome is a win-win.
               </p>
-              <p className="text-gray-600 leading-relaxed">
+              <p>
                 What began as Dr. Njo&apos;s vision to provide better service has
                 grown into a comprehensive transitions firm with a dedicated team
                 of experts guiding dental professionals through major career
                 milestones.
               </p>
             </div>
-          </div>
 
-          <div className="animate-fade-in animate-delay-100 order-1 lg:order-2">
-            <div className="mb-4">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80 text-center lg:text-left">
-                Leadership, Teaching, and Authorship
-              </p>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <DrNjoPhotoCard
-                  image={handbookSpread}
-                  priority
-                  className="sm:col-span-2"
-                  sizes="(min-width: 1024px) 44vw, 100vw"
-                />
-                <DrNjoPhotoCard
-                  image={publicationSpread}
-                  sizes="(min-width: 1024px) 20vw, 100vw"
-                />
-                <DrNjoPhotoCard
-                  image={bluePrintFlyer}
-                  sizes="(min-width: 1024px) 20vw, 100vw"
-                />
-                <DrNjoPhotoCard
-                  image={dugoniGroupPhoto}
-                  className="sm:col-span-2"
-                  sizes="(min-width: 1024px) 44vw, 100vw"
-                />
+            <aside className="animate-fade-in animate-delay-100 lg:sticky lg:top-28">
+              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-primary/90 p-8 text-white shadow-xl md:p-10">
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-2 -top-6 select-none font-serif text-[7rem] leading-none text-white/15"
+                >
+                  &ldquo;
+                </span>
+                <p className="relative text-xs font-semibold uppercase tracking-[0.24em] text-white/70">
+                  Our Founding Principle
+                </p>
+                <p className="relative mt-4 text-xl font-semibold leading-snug md:text-2xl">
+                  Move beyond transactions to build trusted, relationship-driven
+                  partnerships — protecting the legacy behind every practice.
+                </p>
+                <p className="relative mt-6 border-t border-white/20 pt-5 text-sm leading-relaxed text-white/80">
+                  The standard Dr. Michael Njo set out to create — and the one
+                  PTI lives by today.
+                </p>
               </div>
-            </div>
-            <p className="px-1 text-sm text-gray-600 leading-relaxed text-center lg:text-left">
-              These moments show how PTI&apos;s story is grounded in published
-              thinking, community leadership, and real-world education across the
-              profession.
-            </p>
+            </aside>
           </div>
         </div>
       </Section>
@@ -163,6 +158,7 @@ const About = () => {
                 bio={leader.bio}
                 hasNewInfo={leader.hasNewInfo}
                 videoUrl={leader.videoUrl}
+                websiteUrl={leader.websiteUrl}
                 bookUrl={leader.bookUrl}
                 bookImage={leader.bookImage}
                 bookTitle={leader.bookTitle}

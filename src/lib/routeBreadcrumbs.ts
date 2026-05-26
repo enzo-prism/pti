@@ -41,6 +41,10 @@ const ROUTE_BREADCRUMBS: Record<string, BreadcrumbNode[]> = {
     HOME_CRUMB,
     { name: "Testimonials", path: "/testimonials" },
   ],
+  "/gallery": [
+    HOME_CRUMB,
+    { name: "Gallery", path: "/gallery" },
+  ],
   "/events": [
     HOME_CRUMB,
     { name: "Events", path: "/events" },

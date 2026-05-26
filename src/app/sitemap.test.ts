@@ -19,7 +19,7 @@ describe("sitemap metadata", () => {
     const entries = sitemap();
     const urls = entries.map((entry) => entry.url);
     const uniqueUrls = new Set(urls);
-    const expectedCount = 17 + blogPosts.filter((post) => post.slug).length + reviews.length;
+    const expectedCount = 18 + blogPosts.filter((post) => post.slug).length + reviews.length;
 
     expect(entries).toHaveLength(expectedCount);
     expect(uniqueUrls.size).toBe(entries.length);
@@ -36,6 +36,7 @@ describe("sitemap metadata", () => {
     expect(urls).toContain(
       "https://practicetransitionsinstitute.com/events/practice-transition-seminar"
     );
+    expect(urls).toContain("https://practicetransitionsinstitute.com/gallery");
     expect(urls).toContain("https://practicetransitionsinstitute.com/faq");
     expect(urls).toContain("https://practicetransitionsinstitute.com/contact");
     expect(urls).toContain(

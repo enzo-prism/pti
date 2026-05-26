@@ -1,6 +1,3 @@
-
-"use client";
-
 import Link from "next/link";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
@@ -9,11 +6,9 @@ import { Users, FileText, TrendingUp, CheckCircle, ArrowRight, Plus } from "luci
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { getFeaturedReviews } from "@/data/reviews";
 
 const Associateships = () => {
-  const isMobile = useIsMobile();
   const associateshipReview = getFeaturedReviews("associateships")[0];
 
   return (
@@ -46,7 +41,7 @@ const Associateships = () => {
               We create clear, equitable arrangements that protect both parties and establish a foundation for long-term success.
             </p>
             <div className="flex justify-center px-3">
-              <Button asChild size={isMobile ? "default" : "lg"} className="w-full sm:w-auto text-sm sm:text-base">
+              <Button asChild size="lg" className="w-full sm:w-auto text-sm sm:text-base">
                 <Link href="/contact">Schedule a Consultation</Link>
               </Button>
             </div>

@@ -158,6 +158,7 @@ export const buildPersonSchema = (input: {
   description?: string;
   image?: string;
   url?: string;
+  sameAs?: string[];
 }): JsonLdShape => {
   const person: JsonLdShape = {
     "@context": "https://schema.org",
@@ -167,6 +168,9 @@ export const buildPersonSchema = (input: {
     ...(input.description ? { description: input.description } : {}),
     ...(input.url ? { url: resolveAbsoluteUrl(input.url) } : {}),
     ...(input.image ? { image: resolveAbsoluteUrl(input.image) } : {}),
+    ...(input.sameAs?.length
+      ? { sameAs: input.sameAs.map(resolveAbsoluteUrl) }
+      : {}),
     worksFor: {
       "@id": BUSINESS_ID,
     },
@@ -510,3 +514,38 @@ export const buildContactPageSchema = (
   },
   inLanguage: DEFAULT_LOCALE,
 });
+
+export interface GalleryImageInput {
+  src: string;
+  alt: string;
+  caption: string;
+  width?: number;
+  height?: number;
+}
+
+export const buildImageGallerySchema = (
+  images: GalleryImageInput[],
+  options?: { url?: string; name?: string; description?: string }
+): JsonLdShape | null => {
+  if (!images.length) return null;
+
+  const url = options?.url ?? buildAbsoluteUrl("/gallery");
+  return {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    "@id": `${url}#gallery`,
+    url,
+    name: options?.name ?? `${SITE_NAME} Photo Gallery`,
+    ...(options?.description ? { description: options.description } : {}),
+    isPartOf: { "@id": WEBSITE_ID },
+    inLanguage: DEFAULT_LOCALE,
+    associatedMedia: images.map((image) => ({
+      "@type": "ImageObject",
+      contentUrl: resolveAbsoluteUrl(image.src),
+      name: image.alt,
+      caption: image.caption,
+      ...(image.width ? { width: image.width } : {}),
+      ...(image.height ? { height: image.height } : {}),
+    })),
+  };
+};

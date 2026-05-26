@@ -380,7 +380,7 @@ const PracticeTransitionSeminar = () => {
           className="absolute inset-0 opacity-20"
           style={{
             backgroundImage:
-              "url(/lovable-uploads/387f8cf6-b01b-4a65-873f-7abdbafa078f.png)",
+              "url(/lovable-uploads/events-hero-office.webp)",
             backgroundPosition: "center",
             backgroundSize: "cover",
           }}
