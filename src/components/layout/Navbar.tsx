@@ -23,6 +23,7 @@ import {
   trackBookConsultationClick,
   trackPhoneCallClick,
 } from "@/lib/analytics";
+import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,6 +31,45 @@ const Navbar = () => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const pathname = usePathname();
   const currentPath = pathname ?? "/";
+
+  // A section is "selected" on its own page and any nested page (e.g. Blog stays
+  // selected on /blog/a-post). Home only matches the exact root.
+  const isActive = (path: string) =>
+    path === "/"
+      ? currentPath === "/"
+      : currentPath === path || currentPath.startsWith(`${path}/`);
+
+  const navLinkClass = (active: boolean) =>
+    cn(
+      "inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-1",
+      active
+        ? "bg-primary/10 text-primary hover:bg-primary/15"
+        : "text-gray-700 hover:bg-primary/5 hover:text-primary"
+    );
+
+  const dropdownItemClass = (active: boolean) =>
+    cn(
+      "block px-4 py-3 text-sm transition-colors",
+      active
+        ? "bg-primary/10 font-medium text-primary"
+        : "text-gray-700 hover:bg-primary hover:text-white"
+    );
+
+  const mobileNavLinkClass = (active: boolean) =>
+    cn(
+      "flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-lg font-medium transition-colors",
+      active
+        ? "bg-primary/10 text-primary"
+        : "text-gray-700 hover:bg-primary/5 hover:text-primary"
+    );
+
+  const mobileDropdownItemClass = (active: boolean) =>
+    cn(
+      "block rounded-md px-3 py-2 transition-colors",
+      active
+        ? "bg-primary/10 font-medium text-primary"
+        : "text-gray-600 hover:bg-primary/5 hover:text-primary"
+    );
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
@@ -125,12 +165,7 @@ const Navbar = () => {
                 onMouseEnter={() => setIsServicesOpen(true)}
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
-                <Link
-                  href={item.path}
-                  className={`flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
-                    currentPath === item.path || currentPath.startsWith(item.path) ? "text-primary" : "text-gray-700"
-                  }`}
-                >
+                <Link href={item.path} className={navLinkClass(isActive(item.path))}>
                   <item.icon size={16} className="mr-1.5 shrink-0" aria-hidden="true" />
                   {item.name} <ChevronDown size={16} className="ml-1" />
                 </Link>
@@ -140,7 +175,7 @@ const Navbar = () => {
                       <Link
                         key={subItem.name}
                         href={subItem.path}
-                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors"
+                        className={dropdownItemClass(currentPath === subItem.path)}
                       >
                         {subItem.name}
                       </Link>
@@ -152,9 +187,7 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 href={item.path}
-                className={`inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
-                  currentPath === item.path ? "text-primary" : "text-gray-700"
-                }`}
+                className={navLinkClass(isActive(item.path))}
               >
                 <item.icon size={16} className="shrink-0" aria-hidden="true" />
                 {item.name}
@@ -177,9 +210,7 @@ const Navbar = () => {
                   <div className="flex items-center">
                     <Link
                       href={item.path}
-                      className={`flex flex-1 items-center gap-2.5 py-2 text-lg font-medium ${
-                        currentPath === item.path || currentPath.startsWith(item.path) ? "text-primary" : "text-gray-700"
-                      }`}
+                      className={cn(mobileNavLinkClass(isActive(item.path)), "flex-1")}
                       onClick={closeMenu}
                     >
                       <item.icon size={20} className="shrink-0" aria-hidden="true" />
@@ -202,7 +233,7 @@ const Navbar = () => {
                         <Link
                           key={subItem.name}
                           href={subItem.path}
-                          className="block py-2 text-gray-600 hover:text-primary"
+                          className={mobileDropdownItemClass(currentPath === subItem.path)}
                           onClick={closeMenu}
                         >
                           {subItem.name}
@@ -214,10 +245,8 @@ const Navbar = () => {
               ) : (
                 <Link
                   key={item.name}
-                href={item.path}
-                className={`flex items-center gap-2.5 py-2 text-lg font-medium ${
-                  currentPath === item.path ? "text-primary" : "text-gray-700"
-                }`}
+                  href={item.path}
+                  className={mobileNavLinkClass(isActive(item.path))}
                   onClick={closeMenu}
                 >
                   <item.icon size={20} className="shrink-0" aria-hidden="true" />
