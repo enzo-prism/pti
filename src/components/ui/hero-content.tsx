@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface HeroContentProps {
@@ -45,8 +46,16 @@ export const HeroContent: React.FC<HeroContentProps> = ({ className }) => {
 
       {/* CTA Button */}
       <div className="mb-8 sm:mb-4">
-        <Button asChild variant="secondary" size="lg" className="text-base px-8 py-4 bg-white hover:bg-white">
-          <Link href="/contact">Let&apos;s Talk</Link>
+        <Button
+          asChild
+          variant="secondary"
+          size="lg"
+          className="group text-base px-8 py-4 bg-white hover:bg-white shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/25 active:translate-y-0"
+        >
+          <Link href="/contact">
+            Let&apos;s Talk
+            <ArrowRight className="h-5 w-5 transition-transform duration-300 ease-out group-hover:translate-x-1" />
+          </Link>
         </Button>
       </div>
     </div>
