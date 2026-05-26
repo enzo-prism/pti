@@ -24,6 +24,41 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 39,
+    title: "Dr. Michael Njo Leads Associate Workshop at the SMCDS Peninsula Dental Compliance Symposium",
+    excerpt: "Dr. Michael Njo worked with future dental buyers and associates at the SMCDS Peninsula Dental Compliance Symposium, helping associate dentists prepare for job opportunities and long-term ownership decisions.",
+    category: "Community Impact",
+    date: "2026-05-26",
+    readTime: "2 min read",
+    gradient: "bg-gradient-to-br from-primary via-sky-600 to-emerald-500",
+    slug: "smcds-peninsula-dental-compliance-symposium-associate-workshop",
+    author: "Practice Transitions Institute",
+    metaTitle: "SMCDS Associate Workshop with Dr. Michael Njo | PTI",
+    featuredImage: "/lovable-uploads/drnjo-2026/san-mateo-symposium-workshop.jpg",
+    featuredImageAlt: "Dr. Michael Njo leading a workshop with associate dentists at the SMCDS Peninsula Dental Compliance Symposium",
+    featuredImageCaption: "Dr. Michael Njo working with future dental buyers and associates during the SMCDS Peninsula Dental Compliance Symposium.",
+    featuredImageFit: "cover",
+    content: `At the SMCDS Peninsula Dental Compliance Symposium, Dr. Michael Njo spent time with associate dentists preparing for one of the most important early-career steps: finding the right professional opportunity and understanding how today's job decisions can shape future ownership options.
+
+The workshop focused on preparing associate dentists to find jobs with more clarity. Dr. Njo worked with future dental buyers and associates on how to think beyond the first offer, ask better questions, and connect a job search to a longer-term practice transition strategy.
+
+![Dr. Michael Njo with future dental professionals at the SMCDS Peninsula Dental Compliance Symposium](/lovable-uploads/drnjo-2026/smcds-associate-workshop-2.jpg)
+
+## Preparing associate dentists for what comes next
+
+For many dentists, the associate stage is where the next chapter begins. The right position can build clinical confidence, mentorship, financial awareness, and a clearer path toward partnership or practice ownership. The wrong fit can create frustration and delay.
+
+That is why PTI's educational work starts before a dentist is ready to buy or sell. By helping doctors understand contracts, practice culture, compensation, growth potential, and transition timing earlier, Dr. Njo helps them make career decisions with more confidence.
+
+## Connecting education to practice transitions
+
+Practice transitions are not only about transactions. They are about people making informed career choices at the right time. Whether a dentist is exploring an associateship, preparing for ownership, or thinking years ahead about a future sale, education creates a stronger foundation.
+
+PTI is grateful for opportunities to support dental societies, students, residents, associates, and practice owners through practical conversations like this one.
+
+**Planning your next step?** [Contact the PTI team](/contact) to talk through associateship, partnership, ownership, or practice transition questions.`
+  },
+  {
     id: 38,
     title: "What Should a Dental Practice NDA Include Before You Share Financials?",
     excerpt: "Learn what a dental practice NDA should cover before financials, staff details, and operational information are shared with a buyer, and why confidentiality discipline protects deal value.",
