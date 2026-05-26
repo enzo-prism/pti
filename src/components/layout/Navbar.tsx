@@ -14,8 +14,6 @@ import {
   Quote,
   Images,
   CalendarDays,
-  Newspaper,
-  HelpCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
@@ -105,8 +103,6 @@ const Navbar = () => {
     { name: "Testimonials", path: "/testimonials", icon: Quote },
     { name: "Gallery", path: "/gallery", icon: Images },
     { name: "Events", path: "/events", icon: CalendarDays },
-    { name: "Blog", path: "/blog", icon: Newspaper },
-    { name: "FAQ", path: "/faq", icon: HelpCircle },
   ];
 
   return (
