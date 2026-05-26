@@ -18,6 +18,7 @@ interface RecommendationCardProps {
   quote?: string;
   videoUrl?: string;
   websiteUrl?: string;
+  websiteLabel?: string;
   bookUrl?: string;
   bookImage?: string;
   bookTitle?: string;
@@ -36,6 +37,7 @@ export function RecommendationCard({
   quote,
   videoUrl,
   websiteUrl,
+  websiteLabel = "Visit Website",
   bookUrl,
   bookImage,
   bookTitle,
@@ -101,7 +103,7 @@ export function RecommendationCard({
                     className="flex items-center gap-2"
                   >
                     <ExternalLink className="h-4 w-4" />
-                    Visit Website
+                    {websiteLabel}
                   </a>
                 </Button>
               )}

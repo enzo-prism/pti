@@ -2,7 +2,7 @@ import { Users, Shield, Target, Star, Heart } from "lucide-react";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
 import { RecommendationCard } from "@/components/ui/recommendation-card";
-import { MICHAEL_NJO_WEBSITE_URL } from "@/lib/constants";
+import { MICHAEL_NJO_WEBSITE_URL, DENTIST_RETREAT_URL } from "@/lib/constants";
 
 export const leaders = [
   {
@@ -32,6 +32,8 @@ export const leaders = [
       "My passion lies in making sure dentists feel informed, supported, and confident through every step of their transition. Helping guide that journey is what I love most.",
     ],
     image: "/lovable-uploads/3f9aad4c-9a99-4c2e-8cc6-1666dffe409e.png",
+    websiteUrl: DENTIST_RETREAT_URL,
+    websiteLabel: "Visit Dentist Retreat",
   },
   {
     name: "Fred Heppner",
@@ -159,6 +161,7 @@ const About = () => {
                 hasNewInfo={leader.hasNewInfo}
                 videoUrl={leader.videoUrl}
                 websiteUrl={leader.websiteUrl}
+                websiteLabel={leader.websiteLabel}
                 bookUrl={leader.bookUrl}
                 bookImage={leader.bookImage}
                 bookTitle={leader.bookTitle}
