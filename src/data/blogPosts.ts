@@ -20,6 +20,12 @@ export interface BlogPost {
     part: number;
     total: number;
   };
+  cta?: {
+    title: string;
+    description: string;
+    bookingUrl: string;
+    bookingLabel: string;
+  };
 }
 
 export const blogPosts: BlogPost[] = [
@@ -2047,6 +2053,14 @@ Most problems come from unclear expectations, weak valuation methods, vague gove
     slug: "dso-vs-private-buyer-dental-practice",
     author: "Practice Transitions Institute",
     metaTitle: "DSO vs Private Buyer for a Dental Practice Sale | PTI",
+    cta: {
+      title: "Curious what a DSO would actually pay for your practice?",
+      description:
+        "Book a free 30-minute Zoom call with Dr. Michael Njo to talk through DSO pricing, deal structure, and whether a DSO or private-buyer sale better fits your timeline and goals.",
+      bookingUrl:
+        "https://calendly.com/michael-dental-strategies/dso-pricing-practice-transition-intro-call",
+      bookingLabel: "Book a DSO Pricing Call",
+    },
     content: `If you are planning a dental practice transition in 2026, one of the biggest decisions is not just when to sell. It is who to sell to.
 
 For many owners, the real choice comes down to two very different buyer types: a DSO or a private buyer. Both can lead to a successful closing, but they usually come with different expectations around valuation, structure, post-sale work, control, and legacy.

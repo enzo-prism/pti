@@ -8,6 +8,7 @@ import { getRelatedPosts, getSeriesPosts, type BlogPost } from "@/data/blogPosts
 import { formatLocalDate } from "@/lib/dateUtils";
 import { SeriesNavigation } from "@/components/ui/series-navigation";
 import { renderMarkdown } from "@/lib/markdown";
+import { BookMeetingButton } from "@/components/BookMeetingButton";
 import { cn } from "@/lib/utils";
 import { getAuthorProfile } from "@/data/authors";
 import { buildAbsoluteUrl } from "@/lib/siteMetadata";
@@ -256,6 +257,29 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
               {post.series && seriesPosts.length > 1 && (
                 <div className="mt-14">
                   <SeriesNavigation currentPost={post} seriesPosts={seriesPosts} />
+                </div>
+              )}
+
+              {post.cta && (
+                <div className="mt-14 overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-br from-primary to-primary/90 p-6 text-white shadow-md sm:p-8 md:p-10">
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-white/70 sm:text-xs">
+                    Talk it through
+                  </p>
+                  <h3 className="mt-3 text-xl font-semibold leading-snug sm:text-2xl">
+                    {post.cta.title}
+                  </h3>
+                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/85 sm:text-base">
+                    {post.cta.description}
+                  </p>
+                  <div className="mt-6">
+                    <BookMeetingButton
+                      href={post.cta.bookingUrl}
+                      label={post.cta.bookingLabel}
+                      location={`blog_post_cta_${post.slug}`}
+                      variant="secondary"
+                      className="w-full sm:w-auto"
+                    />
+                  </div>
                 </div>
               )}
 
