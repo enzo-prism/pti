@@ -2,6 +2,7 @@
 import { ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { BookMeetingButton } from "@/components/BookMeetingButton";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 import { BookReviewCard } from "./book-review-card";
 import { amazonBookReviews } from "@/data/amazonReviews";
@@ -19,6 +20,7 @@ interface RecommendationCardProps {
   videoUrl?: string;
   websiteUrl?: string;
   websiteLabel?: string;
+  bookingUrl?: string;
   bookUrl?: string;
   bookImage?: string;
   bookTitle?: string;
@@ -38,6 +40,7 @@ export function RecommendationCard({
   videoUrl,
   websiteUrl,
   websiteLabel = "Visit Website",
+  bookingUrl,
   bookUrl,
   bookImage,
   bookTitle,
@@ -82,8 +85,17 @@ export function RecommendationCard({
             </blockquote>
           )}
           
-          {(videoUrl || websiteUrl) && (
+          {(bookingUrl || videoUrl || websiteUrl) && (
             <div className="flex flex-col gap-3 mb-4 sm:flex-row">
+              {bookingUrl && (
+                <BookMeetingButton
+                  href={bookingUrl}
+                  location="about_leader_card"
+                  label="Schedule a 30-Min Meeting"
+                  size="default"
+                  className="w-full sm:w-auto"
+                />
+              )}
               {videoUrl && (
                 <Button variant="outline" className="flex items-center gap-2 w-full sm:w-auto">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-play">

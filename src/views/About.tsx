@@ -1,8 +1,14 @@
+import Link from "next/link";
 import { Users, Shield, Target, Star, Heart } from "lucide-react";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
-import { Cta } from "@/components/ui/cta";
+import { Button } from "@/components/ui/button";
+import { BookMeetingButton } from "@/components/BookMeetingButton";
 import { RecommendationCard } from "@/components/ui/recommendation-card";
-import { MICHAEL_NJO_WEBSITE_URL, DENTIST_RETREAT_URL } from "@/lib/constants";
+import {
+  MICHAEL_NJO_WEBSITE_URL,
+  DENTIST_RETREAT_URL,
+  MICHAEL_NJO_CALENDLY_URL,
+} from "@/lib/constants";
 
 export const leaders = [
   {
@@ -16,6 +22,7 @@ export const leaders = [
     image: "/lovable-uploads/d30c74a1-48bb-404e-9e9d-bc93119a695d.png",
     videoUrl: "https://youtu.be/Jes6h2F3yhc?si=sVQZKyw1uB5Fi5_F",
     websiteUrl: MICHAEL_NJO_WEBSITE_URL,
+    bookingUrl: MICHAEL_NJO_CALENDLY_URL,
     bookUrl:
       "https://www.amazon.com/Dental-Practice-Transitions-Handbook-Healthcare/dp/1627878718/ref=sr_1_2?dchild=1&keywords=Dental+Practice+Transitions+Handbook&qid=1632933680&s=books&sr=1-2",
     bookImage: "/lovable-uploads/drnjo-2026/handbook-cover-spread.webp",
@@ -162,6 +169,7 @@ const About = () => {
                 videoUrl={leader.videoUrl}
                 websiteUrl={leader.websiteUrl}
                 websiteLabel={leader.websiteLabel}
+                bookingUrl={leader.bookingUrl}
                 bookUrl={leader.bookUrl}
                 bookImage={leader.bookImage}
                 bookTitle={leader.bookTitle}
@@ -362,14 +370,32 @@ const About = () => {
       </Section>
 
       <Section background="light" className="py-6 md:py-8">
-        <Cta
-          title="Ready to Explore Your Options?"
-          description="Schedule a complimentary consultation with our expert team to explore your options."
-          buttonText="Book Your Consultation"
-          buttonUrl="/contact"
-          background="primary"
-          className="mx-4 md:mx-0"
-        />
+        <div className="mx-4 rounded-lg bg-primary px-4 py-12 text-center text-white sm:px-6 md:mx-0 md:py-16">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="mb-4 text-2xl font-bold md:text-3xl">
+              Ready to Explore Your Options?
+            </h2>
+            <p className="mb-8 text-lg opacity-90">
+              Book a complimentary 30-minute meeting with Dr. Michael Njo — or
+              send us a message and our team will be in touch.
+            </p>
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <BookMeetingButton
+                location="about_page_cta"
+                variant="secondary"
+                className="w-full sm:w-auto"
+              />
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="w-full border-white bg-transparent text-white hover:bg-white hover:text-primary sm:w-auto"
+              >
+                <Link href="/contact">Send Us a Message</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
       </Section>
     </>
   );

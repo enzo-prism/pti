@@ -1,5 +1,6 @@
 import { CheckCircle2 } from "lucide-react";
 import { Section } from "@/components/ui/section";
+import { BookMeetingButton } from "@/components/BookMeetingButton";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactChannels } from "@/components/contact/ContactChannels";
 
@@ -24,7 +25,26 @@ const Contact = () => {
               decisions about your dental practice.
             </p>
 
-            <div className="mt-6 text-left animate-fade-in animate-delay-100 sm:mt-8">
+            <div className="mt-7 flex flex-col items-center gap-3 animate-fade-in animate-delay-100 sm:mt-8">
+              <BookMeetingButton
+                location="contact_page_hero"
+                className="w-full sm:w-auto"
+              />
+              <p className="text-xs text-gray-500 sm:text-sm">
+                Free 30-minute video call with Dr. Michael Njo — pick a time that
+                works for you.
+              </p>
+            </div>
+
+            <div className="relative mt-8 flex items-center gap-4">
+              <span className="h-px flex-1 bg-gray-200" />
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-gray-400">
+                Or reach us directly
+              </span>
+              <span className="h-px flex-1 bg-gray-200" />
+            </div>
+
+            <div className="mt-6 text-left animate-fade-in animate-delay-100">
               <ContactChannels />
             </div>
 
@@ -57,8 +77,8 @@ const Contact = () => {
         </div>
       </div>
 
-      <Section className="mb-0 pb-0 -mb-16 md:-mb-20">
-        <div className="max-w-4xl mx-auto">
+      <Section background="light" id="contact-form">
+        <div className="mx-auto max-w-2xl">
           <ContactForm />
         </div>
       </Section>
