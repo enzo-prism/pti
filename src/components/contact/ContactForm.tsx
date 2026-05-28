@@ -13,6 +13,7 @@ import {
   Send,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -63,6 +64,10 @@ const contactFormSchema = z.object({
     .trim()
     .min(10, "Please share a few details — at least 10 characters.")
     .max(3000, "Please keep your message under 3000 characters."),
+  consent: z.boolean().refine((value) => value === true, {
+    message:
+      "Please confirm the PTI team may contact you using the details above.",
+  }),
   // Honeypot: real visitors never see or fill this.
   _gotcha: z.string().optional(),
 });
@@ -101,6 +106,7 @@ export const ContactForm = () => {
       phone: "",
       interest: "",
       message: "",
+      consent: false,
       _gotcha: "",
     },
   });
@@ -146,6 +152,10 @@ export const ContactForm = () => {
       payload.append("interest", label);
     }
     payload.append("message", values.message);
+    payload.append(
+      "consent",
+      "Yes — consents to be contacted by email, text, and phone"
+    );
     payload.append("_subject", `New website inquiry from ${values.name}`);
 
     try {
@@ -369,6 +379,35 @@ export const ContactForm = () => {
                     className="min-h-[140px] resize-y text-base md:text-sm"
                   />
                 </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="consent"
+            render={({ field }) => (
+              <FormItem className="space-y-2 rounded-lg border border-gray-200 bg-gray-50/70 p-4">
+                <div className="flex items-start gap-3">
+                  <FormControl>
+                    <Checkbox
+                      ref={field.ref}
+                      name={field.name}
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                      onBlur={field.onBlur}
+                      aria-required="true"
+                      className="mt-0.5"
+                    />
+                  </FormControl>
+                  <FormLabel className="text-sm font-normal leading-relaxed text-gray-700">
+                    I agree that the PTI team may contact me using the details
+                    I&apos;ve provided — including by email, text message, and
+                    phone call.
+                    <RequiredMark />
+                  </FormLabel>
+                </div>
                 <FormMessage />
               </FormItem>
             )}
