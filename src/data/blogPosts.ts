@@ -30,6 +30,92 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 40,
+    title: "7 Questions to Ask Before Hiring a Dental Practice Transition Firm",
+    excerpt: "Before choosing representation for a dental practice sale, ask about experience, valuation, confidentiality, buyer network, fees, who handles the transaction, references, and who the firm represents.",
+    category: "Practice Transitions",
+    date: "2026-06-09",
+    readTime: "5 min read",
+    gradient: "bg-gradient-to-br from-primary via-blue-600 to-cyan-500",
+    slug: "questions-before-hiring-dental-practice-transition-firm",
+    author: "Practice Transitions Institute",
+    metaTitle: "7 Questions Before Hiring a Dental Practice Transition Firm | PTI",
+    cta: {
+      title: "Thinking about selling your dental practice?",
+      description:
+        "Book a confidential conversation with Dr. Michael Njo before you choose representation, share financials, or start speaking with buyers.",
+      bookingUrl: "https://calendly.com/michael-dental-strategies/30min",
+      bookingLabel: "Talk With Dr. Njo",
+    },
+    content: `Selling a dental practice is one of the most important financial, professional, and personal decisions a dentist will make.
+
+The advisor you choose can shape confidentiality, valuation, buyer quality, deal structure, team communication, and the legacy you leave behind. Before you hire a transition firm or broker, slow the process down and ask questions that reveal how the firm actually works.
+
+At Practice Transitions Institute, we believe dentists deserve transparency, expertise, advocacy, and a process designed around their goals.
+
+## 1. How many dental practices have you successfully sold?
+
+Experience matters, but the type of experience matters even more.
+
+Practice Transitions Institute focuses on dental and healthcare practice transitions, including practice acquisitions, sales, partnerships, associate buy-ins, mergers, and succession planning. Every transition is different, so sellers need guidance that combines technical expertise with personal judgment.
+
+## 2. How do you determine the value of my practice?
+
+Valuation is both science and art.
+
+A strong valuation should look beyond a simple revenue multiple. It should consider financial performance, profitability, growth trends, patient demographics, location, facility condition, equipment, team stability, and market demand.
+
+The goal is not only to determine fair market value. It is also to identify opportunities to strengthen value before a sale.
+
+## 3. How will you market my practice while maintaining confidentiality?
+
+Confidentiality is one of the highest priorities in a dental practice sale.
+
+A structured process should include buyer screening, confidentiality agreements, and controlled disclosure of information. The goal is to protect your team, patients, and reputation while giving qualified buyers the information they need to evaluate the opportunity responsibly.
+
+## 4. How large is your buyer network?
+
+The right buyer is not always found through a public listing.
+
+Through decades of relationships in dentistry, organized dentistry, dental education, industry partnerships, and transition consulting, PTI maintains a network of qualified buyers, associates, specialists, investors, and strategic partners. That network can create opportunities before a practice is ever widely marketed.
+
+## 5. What services are included in your fee?
+
+A transition firm should be clear about what is included.
+
+PTI engagements may include valuation, transition planning, buyer identification, negotiations, due diligence coordination, team transition guidance, succession planning, and collaboration with attorneys, accountants, and lenders.
+
+The objective is to manage the process from strategy to successful closing, not simply introduce a buyer.
+
+## 6. Who will personally handle my transaction?
+
+Dentists deserve to know who will actually guide the process.
+
+When you engage Practice Transitions Institute, you work directly with Michael Njo, DDS, and experienced transition advisors. Accessibility, communication, and personal involvement matter throughout the process. A seller needs a trusted advisor, not just a transaction coordinator.
+
+## 7. Can you provide references from dentists who have sold through your firm?
+
+References help you understand what the process feels like after the first conversation.
+
+PTI is proud of the long-term relationships built with clients. Many dentists we have advised remain professional colleagues and friends, and prospective clients are encouraged to speak with dentists who have experienced the process.
+
+## Bonus question: who are you representing, me or the buyer?
+
+This question matters.
+
+At Practice Transitions Institute, the commitment is to the client. Recommendations should be guided by what is in the seller's best interest. Transparency, integrity, and fiduciary responsibility are fundamental to the way the process should work.
+
+## Why choose Practice Transitions Institute?
+
+Because we have sat in your chair.
+
+As a former practice owner and clinician, Michael Njo understands the emotional and financial significance of a transition. PTI helps dentists maximize value, minimize risk, preserve their legacy, and achieve a successful outcome.
+
+Trust. Experience. Results.
+
+**Thinking about selling your dental practice?** [Contact Practice Transitions Institute](/contact) for a confidential conversation before you choose representation.`
+  },
+  {
     id: 39,
     title: "Dr. Michael Njo Leads Associate Workshop at the SMCDS Peninsula Dental Compliance Symposium",
     excerpt: "Dr. Michael Njo worked with future dental buyers and associates at the SMCDS Peninsula Dental Compliance Symposium, helping associate dentists prepare for job opportunities and long-term ownership decisions.",
