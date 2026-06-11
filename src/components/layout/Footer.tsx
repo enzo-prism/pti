@@ -2,7 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
+import {
+  PHONE_NUMBER,
+  PHONE_NUMBER_TEL,
+  PRACTICE_SALE_CHECKLIST_PATH,
+} from "@/lib/constants";
 import { SITE_CONTACT_EMAIL, BUSINESS_ADDRESS } from "@/lib/siteMetadata";
 import { BUILD_ID, BUILD_DATE } from "@/lib/buildInfo";
 
@@ -13,6 +17,7 @@ const exploreLinks = [
   { name: "Events", path: "/events" },
   { name: "Blog", path: "/blog" },
   { name: "FAQ", path: "/faq" },
+  { name: "Sale Readiness Checklist", path: PRACTICE_SALE_CHECKLIST_PATH },
 ];
 
 const serviceLinks = [
@@ -32,7 +37,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t-4 border-primary bg-[#06243f] text-white">
+    <footer className="border-t-4 border-primary bg-[#06243f] text-white print:hidden">
       <div className="container mx-auto px-4 py-12 sm:px-6 md:py-16">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.3fr] lg:gap-12">
           {/* Brand */}

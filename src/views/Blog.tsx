@@ -1,29 +1,40 @@
 "use client";
 
-import { startTransition, useEffect, useState } from "react";
+import { startTransition, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, ArrowRight, Search, X } from "lucide-react";
+import { Calendar, Clock, ArrowRight, ClipboardCheck, Search, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { blogPosts, categories } from "@/data/blogPosts";
+import type { BlogPostSummary } from "@/data/blogPosts";
+import { PRACTICE_SALE_CHECKLIST_PATH } from "@/lib/constants";
 import { formatLocalDate } from "@/lib/dateUtils";
 import { cn } from "@/lib/utils";
 
 interface BlogProps {
-  initialQuery?: string;
+  posts: BlogPostSummary[];
 }
 
-const Blog = ({ initialQuery = "" }: BlogProps) => {
-  const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState(initialQuery);
+const readSearchFromLocation = () => {
+  if (typeof window === "undefined") return "";
+  return new URLSearchParams(window.location.search).get("search") ?? "";
+};
 
+const Blog = ({ posts }: BlogProps) => {
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // The route is statically generated, so ?search= deep links are applied
+  // after hydration (and on history navigation) instead of via searchParams.
   useEffect(() => {
-    setSearchQuery(initialQuery);
-  }, [initialQuery]);
+    const syncFromLocation = () => setSearchQuery(readSearchFromLocation());
+    syncFromLocation();
+    window.addEventListener("popstate", syncFromLocation);
+    return () => window.removeEventListener("popstate", syncFromLocation);
+  }, []);
 
   const updateSearchQuery = (value: string) => {
     setSearchQuery(value);
@@ -34,12 +45,23 @@ const Blog = ({ initialQuery = "" }: BlogProps) => {
   };
 
   // Sort posts by date (most recent first)
-  const sortedPosts = [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  
+  const sortedPosts = useMemo(
+    () =>
+      [...posts].sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      ),
+    [posts]
+  );
+
+  const topicLinks = useMemo(
+    () => Array.from(new Set(posts.map((post) => post.category))).sort(),
+    [posts]
+  );
+
   // Filter posts based on search query
   const filteredPosts = sortedPosts.filter(post => {
     if (!searchQuery.trim()) return true;
-    
+
     const query = searchQuery.toLowerCase();
     return (
       post.title.toLowerCase().includes(query) ||
@@ -48,11 +70,10 @@ const Blog = ({ initialQuery = "" }: BlogProps) => {
       post.author.toLowerCase().includes(query)
     );
   });
-  
+
   const featuredPost = filteredPosts[0]; // First filtered post as featured
   const regularPosts = filteredPosts.slice(1); // Rest of the filtered posts
-  const topicLinks = categories.filter((category) => category !== "All");
-  
+
   const handleClearSearch = () => {
     updateSearchQuery('');
   };
@@ -113,28 +134,30 @@ const Blog = ({ initialQuery = "" }: BlogProps) => {
                 </p>
               )}
               <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm">
-                <Link
-                  href="/blog"
+                <button
+                  type="button"
+                  onClick={handleClearSearch}
                   className={cn(
                     "rounded-full border border-white/30 px-3 py-1.5 text-blue-100 transition hover:border-white/60 hover:text-white",
                     !searchQuery && "bg-white/15 text-white"
                   )}
                 >
                   All topics
-                </Link>
+                </button>
                 {topicLinks.map((category) => {
                   const isActive = searchQuery.toLowerCase() === category.toLowerCase();
                   return (
-                    <Link
+                    <button
                       key={category}
-                      href={`/blog?search=${encodeURIComponent(category)}`}
+                      type="button"
+                      onClick={() => updateSearchQuery(category)}
                       className={cn(
                         "rounded-full border border-white/30 px-3 py-1.5 text-blue-100 transition hover:border-white/60 hover:text-white",
                         isActive && "bg-white/15 text-white"
                       )}
                     >
                       {category}
-                    </Link>
+                    </button>
                   );
                 })}
               </div>
@@ -323,43 +346,29 @@ const Blog = ({ initialQuery = "" }: BlogProps) => {
         )}
       </Section>
 
-      {/* Newsletter Signup */}
+      {/* Lead magnet CTA */}
       <Section background="primary">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="mb-8">
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Stay Ahead of the Curve</h3>
-            <p className="text-blue-100 text-lg leading-relaxed">
-              Join thousands of dental professionals who trust our insights. Get the latest strategies, market trends, and expert guidance delivered to your inbox weekly.
-            </p>
-          </div>
-          
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 mb-8">
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 max-w-lg mx-auto">
-              <input 
-                type="email" 
-                placeholder="Enter your email address"
-                className="flex-1 px-4 md:px-6 py-3 md:py-4 bg-white rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 text-base md:text-lg"
-              />
-              <Button size="lg" variant="secondary" className="whitespace-nowrap px-6 md:px-8 py-3 md:py-4">
-                Subscribe Now
-              </Button>
-            </div>
-          </div>
-          
-          <div className="flex flex-wrap justify-center gap-6 text-blue-200 text-sm">
-            <div className="flex items-center">
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
-              Weekly insights
-            </div>
-            <div className="flex items-center">
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
-              No spam, ever
-            </div>
-            <div className="flex items-center">
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
-              Unsubscribe anytime
-            </div>
-          </div>
+          <ClipboardCheck className="mx-auto mb-6 h-12 w-12 text-white/80" aria-hidden="true" />
+          <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Thinking about selling in the next few years?
+          </h3>
+          <p className="text-blue-100 text-lg leading-relaxed mb-8">
+            Start with our free Practice Sale Readiness Checklist — the
+            documents, numbers, and decisions to line up before you ever talk
+            to a buyer.
+          </p>
+          <Button
+            asChild
+            size="lg"
+            variant="secondary"
+            className="!bg-white text-primary hover:!bg-white/90"
+          >
+            <Link href={PRACTICE_SALE_CHECKLIST_PATH}>
+              Get the Free Checklist
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
         </div>
       </Section>
     </>

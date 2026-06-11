@@ -66,6 +66,13 @@ const ROUTE_BREADCRUMBS: Record<string, BreadcrumbNode[]> = {
     HOME_CRUMB,
     { name: "Blog", path: "/blog" },
   ],
+  "/resources/practice-sale-readiness-checklist": [
+    HOME_CRUMB,
+    {
+      name: "Practice Sale Readiness Checklist",
+      path: "/resources/practice-sale-readiness-checklist",
+    },
+  ],
   "/faq": [
     HOME_CRUMB,
     { name: "FAQ", path: "/faq" },

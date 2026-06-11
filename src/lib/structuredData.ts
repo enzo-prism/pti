@@ -246,6 +246,9 @@ export const buildBlogPostingSchema = (
 ): JsonLdShape => {
   const postUrl = buildAbsoluteUrl(`/blog/${post.slug}`);
   const publishedDate = new Date(`${post.date}T00:00:00Z`).toISOString();
+  const modifiedDate = post.dateModified
+    ? new Date(`${post.dateModified}T00:00:00Z`).toISOString()
+    : publishedDate;
   const imageSource = resolveAbsoluteUrl(post.featuredImage ?? DEFAULT_OG_IMAGE);
   const authorProfile = options?.authorProfile;
   const authorSchema = authorProfile
@@ -270,7 +273,7 @@ export const buildBlogPostingSchema = (
     description: post.excerpt,
     articleSection: options?.category ?? post.category,
     datePublished: publishedDate,
-    dateModified: publishedDate,
+    dateModified: modifiedDate,
     author: authorSchema,
     publisher: {
       "@id": BUSINESS_ID,

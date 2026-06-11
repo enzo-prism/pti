@@ -106,8 +106,8 @@ const Navbar = () => {
   ];
 
   return (
-    <header 
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+    <header
+      className={`fixed w-full top-0 z-50 transition-all duration-300 print:hidden ${
         isScrolled ? "bg-white shadow-md py-2" : "bg-white shadow-sm py-4"
       }`}
     >

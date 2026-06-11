@@ -3,7 +3,6 @@ import { Inter, Montserrat } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { HotjarAnalytics } from "@/components/analytics/HotjarAnalytics";
-import { Providers } from "@/components/providers";
 import {
   SITE_NAME,
   BUSINESS_DESCRIPTION,
@@ -114,7 +113,6 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
   viewportFit: "cover",
 };
 
@@ -137,7 +135,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://script.hotjar.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        <Providers>{children}</Providers>
+        {children}
         <Analytics />
         <GoogleAnalytics />
         <HotjarAnalytics />

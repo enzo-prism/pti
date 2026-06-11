@@ -11,7 +11,8 @@ import { renderMarkdown } from "@/lib/markdown";
 import { BookMeetingButton } from "@/components/BookMeetingButton";
 import { cn } from "@/lib/utils";
 import { getAuthorProfile } from "@/data/authors";
-import { buildAbsoluteUrl } from "@/lib/siteMetadata";
+import { buildAbsoluteUrl, SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
+import { PRACTICE_SALE_CHECKLIST_PATH } from "@/lib/constants";
 import { BlogPostAnalytics } from "@/components/blog/BlogPostAnalytics";
 import Image from "next/image";
 import {
@@ -111,6 +112,15 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
         Join our upcoming workshops, explore transition services, or share this article with a colleague planning their next move.
       </p>
       <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-1">
+        <Button
+          asChild
+          variant="secondary"
+          className="w-full justify-center rounded-full bg-white text-primary hover:bg-slate-100 sm:flex-1"
+        >
+          <Link href={PRACTICE_SALE_CHECKLIST_PATH} className="flex items-center justify-center gap-2 text-sm font-semibold md:text-base">
+            Get the Sale Readiness Checklist <ArrowRight className="h-4 w-4" />
+          </Link>
+        </Button>
         <Button
           asChild
           variant="secondary"
@@ -336,7 +346,7 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                     Practice Transitions Institute
                   </span>
                   <Button asChild variant="outline" className="rounded-full border-primary/40 text-primary hover:bg-primary/5">
-                    <a href="mailto:dentalstrategies@gmail.com">Email the PTI team</a>
+                    <a href={`mailto:${SITE_CONTACT_EMAIL}`}>Email the PTI team</a>
                   </Button>
                   {authorWebsite && (
                     <Button asChild variant="outline" className="rounded-full border-primary/40 text-primary hover:bg-primary/5">

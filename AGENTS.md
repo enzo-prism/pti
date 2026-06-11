@@ -6,10 +6,9 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 ## Key directories and source of truth
 - `src/app`: route-level pages, layouts, and metadata.
 - `src/views`: route-level view components consumed by app routes.
-- `src/components`: reusable UI and layout; `src/components/ui` is the shadcn/ui layer.
-- `src/hooks`: shared hooks like `useIsMobile`, `useScrollToTop`, and analytics helpers.
+- `src/components`: reusable UI and layout; `src/components/ui` is the shadcn/ui layer (only components actually in use are kept — add new shadcn components only when something imports them).
 - `src/lib`: utilities, analytics, SEO helpers, structured data, date utilities, constants.
-- `src/data`: static content (blog posts, events, amazon reviews, FAQs).
+- `src/data`: static content (blog posts, events, canonical reviews, FAQs).
 - `public`: static assets, redirects, and `lovable-uploads` image folder.
 
 ## Local commands
@@ -17,30 +16,33 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 - `npm run build`: production build.
 - `npm run start`: serve production build locally.
 - `npm run lint`: ESLint on the full repo.
+- `npm run test`: Vitest suite (`*.test.ts` colocated with source).
 
 ## Routing and layout
 - Routes live in `src/app`. `src/app/(site)/layout.tsx` adds `Navbar` and `Footer`.
 - `DrNjo` uses the `(minimal)` route group.
-- Legacy URL redirects are in `public/_redirects` (portable) and `vercel.json` (Vercel host redirects).
-- Add new routes to `src/lib/routeBreadcrumbs.ts` for breadcrumb data.
+- Legacy URL redirects are in `public/_redirects` (portable) and `vercel.json` (Vercel host + www→apex redirects). There is no middleware.
+- Add new routes to `src/lib/routeBreadcrumbs.ts` for breadcrumb data and to `STATIC_ROUTES` in `src/app/sitemap.ts`.
 
 ## Content management
 - Blog posts: `src/data/blogPosts.ts` (Markdown-in-strings, optional embedded HTML).
   - Required fields: `id`, `title`, `excerpt`, `category`, `date` (YYYY-MM-DD), `readTime`, `slug`, `author`.
-  - Optional fields: `featuredImage`, `featuredImageAlt`, `featuredImageFit`, `series`.
+  - Optional fields: `dateModified`, `featuredImage`, `featuredImageAlt`, `featuredImageFit`, `series`, `cta`.
   - Dev-only internal link validation runs via `src/lib/linkValidation.ts`; `/blog/...` links must match slugs.
+  - IMPORTANT: never import `blogPosts` from a client component — the full markdown bodies would ship in the JS bundle. Listing surfaces receive `BlogPostSummary[]` props mapped via `toBlogPostSummary` in a server page (see `src/app/(site)/blog/page.tsx`).
 - Events: `src/data/events.ts` (date strings like "March 28, 2025"; optional `dateDisplay` for ranges).
-- Testimonials: inline in `src/views/Testimonials.tsx`.
+- Testimonials: canonical reviews dataset in `src/data/reviews.ts` (see `docs/reviews-runbook.md`).
 - Amazon reviews: `src/data/amazonReviews.ts`.
-- Business contact info: `src/lib/constants.ts` and `src/lib/siteMetadata.ts`.
+- Lead magnet: `/resources/practice-sale-readiness-checklist` (`src/views/PracticeSaleChecklist.tsx`, form in `src/components/resources/`).
+- Business contact info: `src/lib/constants.ts` and `SITE_CONTACT_EMAIL` in `src/lib/siteMetadata.ts` — always use these constants, never hardcode emails or phone numbers.
 
 ## Blog system behavior
-- Listing page: `src/views/Blog.tsx` with `?search=` query param.
+- Listing page: `src/views/Blog.tsx` (client component receiving summaries as props). The route is statically generated; `?search=` deep links are applied after hydration from `window.location.search`.
 - Post page: `src/views/BlogPost.tsx` uses `marked` and `dangerouslySetInnerHTML`.
   - Content is split on blank lines, so avoid extra blank lines inside HTML blocks.
   - Do not introduce untrusted HTML (no sanitization is applied).
 - Series navigation uses `post.series` and `getSeriesPosts`.
-- Related posts are filtered by category and left in array order (no recency sort).
+- Related posts are filtered by category and sorted most-recent first.
 - Use `formatLocalDate` for display to avoid timezone shifts.
 
 ## SEO and structured data
@@ -50,15 +52,15 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 - Search schema targets `/blog` via `SITE_SEARCH_PATH`.
 
 ## Analytics
-- `useAnalytics` injects GA + Hotjar only in production on the canonical host.
-- `useGoogleAnalytics` tracks SPA page views.
-- Custom events in `src/lib/analytics.ts` (blog views, CTAs, series navigation).
+- `GoogleAnalytics` and `HotjarAnalytics` (in `src/components/analytics/`) are mounted from the root layout and inject GA + Hotjar only in production on the canonical host (`shouldEnableAnalytics` in `src/lib/analytics.ts`).
+- Custom events in `src/lib/analytics.ts` (lead generation, blog views, CTAs, series navigation).
 
 ## Styling and UI conventions
 - Tailwind is primary; extend tokens in `tailwind.config.ts` (primary is `#06437A`).
 - Global styles and utilities live in `src/app/globals.css` under Tailwind layers.
 - Common layout helpers: `Section`, `SectionTitle`, `SectionSubtitle`.
-- Fonts are loaded in `src/app/globals.css` (Inter and Montserrat).
+- Fonts are loaded via `next/font` (Inter and Montserrat) in `src/app/layout.tsx`.
+- `Navbar` and `Footer` are `print:hidden`; keep printable pages (e.g., the checklist) working when adding chrome.
 - Use the `@` alias for `src` imports.
 
 ## Assets
@@ -76,7 +78,8 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 - Prefer `cn` for class merging and shadcn patterns for variants.
 
 ## Testing and verification
-- No automated tests yet. If you add tests, use `.test.ts(x)` next to source files.
+- Vitest suite lives next to source files (`*.test.ts`); run with `npm run test`.
+- The sitemap test asserts the static-route count — update it when adding routes.
 - For UI changes, manually verify key routes: `/`, `/blog`, `/blog/:slug`, `/events`, `/contact`.
 
 ## Commit and PR guidelines

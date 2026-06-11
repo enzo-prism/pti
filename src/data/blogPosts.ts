@@ -4,6 +4,9 @@ export interface BlogPost {
   excerpt: string;
   category: string;
   date: string;
+  // Set when a published post receives a substantive update (YYYY-MM-DD).
+  // Feeds article modifiedTime metadata and BlogPosting dateModified.
+  dateModified?: string;
   readTime: string;
   gradient: string;
   slug: string;
@@ -4230,6 +4233,16 @@ export const categories = [
   ...Array.from(new Set(blogPosts.map((post) => post.category))).sort(),
 ];
 
+// Listing surfaces (e.g. /blog) must never import `blogPosts` from a client
+// component: the full markdown bodies would ship in the JS bundle. Server
+// pages map posts through this helper and pass the summaries down as props.
+export type BlogPostSummary = Omit<BlogPost, "content">;
+
+export const toBlogPostSummary = (post: BlogPost): BlogPostSummary => {
+  const { content, ...summary } = post;
+  return summary;
+};
+
 export const getBlogPostBySlug = (slug: string): BlogPost | undefined => {
   return blogPosts.find(post => post.slug === slug);
 };
@@ -4247,8 +4260,10 @@ export const getSeriesPosts = (seriesId: string): BlogPost[] => {
     .sort((a, b) => (a.series?.part || 0) - (b.series?.part || 0));
 };
 
-// Run link validation in development
-if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
+// Run link validation in development. This module is only evaluated on the
+// server now (client surfaces receive summaries as props), so the check runs
+// during dev-server rendering rather than in the browser.
+if (typeof window === "undefined" && process.env.NODE_ENV === "development") {
   import('../lib/linkValidation')
     .then(({ validateInternalBlogLinks }) => {
       validateInternalBlogLinks();

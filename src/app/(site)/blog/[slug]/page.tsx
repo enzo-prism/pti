@@ -38,6 +38,9 @@ export function generateMetadata({
   }
 
   const publishedTime = new Date(`${post.date}T00:00:00Z`).toISOString();
+  const modifiedTime = post.dateModified
+    ? new Date(`${post.dateModified}T00:00:00Z`).toISOString()
+    : publishedTime;
 
   return buildPageMetadata({
     title: post.metaTitle ?? post.title,
@@ -48,7 +51,7 @@ export function generateMetadata({
     author: post.author,
     article: {
       publishedTime,
-      modifiedTime: publishedTime,
+      modifiedTime,
       author: post.author,
       section: post.category,
     },

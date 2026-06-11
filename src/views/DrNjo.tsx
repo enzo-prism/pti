@@ -15,6 +15,7 @@ import {
   PHONE_NUMBER,
   PHONE_NUMBER_TEL,
 } from "@/lib/constants";
+import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
 
 const [
   bluePrintFlyer,
@@ -65,7 +66,7 @@ const DrNjo = () => {
                   </a>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="px-8 text-base">
-                  <a href="mailto:dentalstrategies@gmail.com">
+                  <a href={`mailto:${SITE_CONTACT_EMAIL}`}>
                     <Mail className="w-5 h-5 mr-3" />
                     Send Email
                   </a>
@@ -298,7 +299,7 @@ const DrNjo = () => {
                       Send your questions for a detailed written response
                     </p>
                     <Button asChild variant="outline" className="w-full min-h-[44px] text-sm sm:text-base">
-                      <a href="mailto:dentalstrategies@gmail.com">Send Email</a>
+                      <a href={`mailto:${SITE_CONTACT_EMAIL}`}>Send Email</a>
                     </Button>
                   </div>
                 </CardContent>

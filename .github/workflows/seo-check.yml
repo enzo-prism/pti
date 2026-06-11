@@ -20,15 +20,19 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install
         run: npm ci
 
-      - name: Build (includes prerender + SEO verifiers)
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
         run: npm run build
         env:
-          VITE_CANONICAL_SITE_URL: https://practicetransitionsinstitute.com
-          SITEMAP_BASE_URL: https://practicetransitionsinstitute.com
-
+          NEXT_PUBLIC_CANONICAL_SITE_URL: https://practicetransitionsinstitute.com

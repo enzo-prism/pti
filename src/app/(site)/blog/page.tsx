@@ -3,46 +3,22 @@ import Blog from "@/views/Blog";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 import { buildBlogItemListSchema } from "@/lib/structuredData";
+import { blogPosts, toBlogPostSummary } from "@/data/blogPosts";
 
 const title = "Dental Practice Transition Blog & Insights";
 const description =
   "Expert insights on dental practice valuation, sales, ownership transitions, and growth strategies from PTI.";
 
-type BlogSearchParams = {
-  search?: string | string[];
-};
+export const metadata: Metadata = buildPageMetadata({
+  title,
+  description,
+  path: "/blog",
+  rssPath: "/blog/rss.xml",
+});
 
-const resolveSearchQuery = (searchParams?: BlogSearchParams): string => {
-  if (!searchParams?.search) return "";
-  if (Array.isArray(searchParams.search)) {
-    return searchParams.search[0] ?? "";
-  }
-  return searchParams.search;
-};
-
-export function generateMetadata({
-  searchParams,
-}: {
-  searchParams?: BlogSearchParams;
-}): Metadata {
-  const query = resolveSearchQuery(searchParams).trim();
-
-  return buildPageMetadata({
-    title,
-    description,
-    path: "/blog",
-    noindex: Boolean(query),
-    rssPath: "/blog/rss.xml",
-  });
-}
-
-export default function Page({
-  searchParams,
-}: {
-  searchParams?: BlogSearchParams;
-}) {
-  const query = resolveSearchQuery(searchParams);
+export default function Page() {
   const blogListSchema = buildBlogItemListSchema();
+  const summaries = blogPosts.map(toBlogPostSummary);
 
   return (
     <>
@@ -54,7 +30,7 @@ export default function Page({
           structuredData: blogListSchema,
         })}
       />
-      <Blog initialQuery={query} />
+      <Blog posts={summaries} />
     </>
   );
 }

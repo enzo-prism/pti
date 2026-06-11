@@ -15,6 +15,7 @@ import {
   isEventPast,
   createEventDateKey,
 } from "@/lib/dateUtils";
+import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
 import { rawEvents, type RawEvent } from "@/data/events";
 import {
   Section,
@@ -417,7 +418,7 @@ const Events = () => {
                           size="sm" 
                           variant="outline"
                           className="flex-1 sm:flex-none"
-                          onClick={() => window.open('mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry', '_self')}
+                          onClick={() => window.open(`mailto:${SITE_CONTACT_EMAIL}?subject=Event Registration Inquiry`, '_self')}
                         >
                           <Mail size={16} className="mr-2" />
                           Email Us to Register
@@ -557,7 +558,7 @@ const Events = () => {
             
             <div className="text-center">
               <Button asChild size="lg" className="w-full sm:w-auto">
-                <a href="mailto:dentalstrategies@gmail.com,elizabetharmato@gmail.com?subject=Speaking%20Engagement%20Request">Request a Speaking Engagement</a>
+                <a href={`mailto:${SITE_CONTACT_EMAIL}?subject=Speaking%20Engagement%20Request`}>Request a Speaking Engagement</a>
               </Button>
             </div>
           </div>

@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { trackEventRegistrationClick } from "@/lib/analytics";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
+import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
+
+const EVENT_REGISTRATION_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=Event Registration Inquiry`;
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -315,7 +318,7 @@ export const MultiDateEventCard = ({
                     variant="outline"
                     className="flex-1 sm:flex-none"
                     onClick={() => {
-                      window.open('mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry', '_self');
+                      window.open(EVENT_REGISTRATION_MAILTO, '_self');
                       trackEventRegistrationClick(normalizedEventName, "email");
                     }}
                   >
@@ -341,10 +344,7 @@ export const MultiDateEventCard = ({
                     variant="outline"
                     className="flex-1 sm:flex-none"
                     onClick={() => {
-                      window.open(
-                        "mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry",
-                        "_self"
-                      );
+                      window.open(EVENT_REGISTRATION_MAILTO, "_self");
                       trackEventRegistrationClick(
                         normalizedEventName,
                         "alternative_email"
@@ -401,10 +401,7 @@ export const MultiDateEventCard = ({
                     variant="outline"
                     className="flex-1 sm:flex-none"
                     onClick={() => {
-                      window.open(
-                        "mailto:elizabetharmato@gmail.com,dentalstrategies@gmail.com?subject=Event Registration Inquiry",
-                        "_self"
-                      );
+                      window.open(EVENT_REGISTRATION_MAILTO, "_self");
                       trackEventRegistrationClick(normalizedEventName, "email");
                     }}
                   >
