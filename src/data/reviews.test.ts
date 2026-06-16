@@ -27,8 +27,8 @@ describe("reviews dataset", () => {
   it("computes aggregate rating and count from unified records", () => {
     const aggregate = getReviewAggregate(reviews);
     expect(aggregate).toEqual({
-      ratingValue: 4.97,
-      reviewCount: 35,
+      ratingValue: 4.99,
+      reviewCount: 83,
     });
   });
 

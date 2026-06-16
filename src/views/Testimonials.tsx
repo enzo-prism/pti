@@ -33,6 +33,7 @@ const GOOGLE_REVIEW_URL = "https://g.page/r/CedyctFdKTRNEAE/review";
 const sourceLabels: Record<ReviewSource, string> = {
   google: "Google",
   amazon: "Amazon",
+  alignable: "Alignable",
   internal: "Client",
 };
 
@@ -41,6 +42,7 @@ const categoryLabels: Record<ReviewCategory, string> = {
   seller: "Seller",
   workshop: "Workshop",
   valuation: "Valuation",
+  consulting: "Consulting",
   book: "Book Review",
 };
 
@@ -49,9 +51,10 @@ const CATEGORY_ORDER: ReviewCategory[] = [
   "seller",
   "workshop",
   "valuation",
+  "consulting",
   "book",
 ];
-const SOURCE_ORDER: ReviewSource[] = ["google", "amazon", "internal"];
+const SOURCE_ORDER: ReviewSource[] = ["google", "alignable", "amazon", "internal"];
 
 const matchesSearch = (review: ReviewRecord, query: string): boolean => {
   if (!query) return true;

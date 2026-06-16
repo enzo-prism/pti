@@ -32,6 +32,7 @@ type Params = {
 const sourceLabels: Record<ReviewSource, string> = {
   google: "Google",
   amazon: "Amazon",
+  alignable: "Alignable",
   internal: "Client",
 };
 
@@ -40,6 +41,7 @@ const categoryLabels: Record<ReviewCategory, string> = {
   seller: "Seller",
   workshop: "Workshop",
   valuation: "Valuation",
+  consulting: "Consulting",
   book: "Book Review",
 };
 
