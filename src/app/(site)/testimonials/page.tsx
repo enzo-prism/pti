@@ -1,7 +1,7 @@
 import Testimonials from "@/views/Testimonials";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
-import { reviews } from "@/data/reviews";
+import { getReviewAggregate, reviews } from "@/data/reviews";
 import {
   buildAggregateRatingSchema,
   buildReviewItemListSchema,
@@ -36,7 +36,7 @@ export default function Page() {
           structuredData: reviewStructuredData,
         })}
       />
-      <Testimonials />
+      <Testimonials reviews={reviews} aggregate={getReviewAggregate(reviews)} />
     </>
   );
 }

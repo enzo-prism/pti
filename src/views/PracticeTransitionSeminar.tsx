@@ -54,7 +54,7 @@ import {
   practiceTransitionSeminarLearningPoints,
   practiceTransitionSeminarValuePoints,
 } from "@/data/practiceTransitionSeminar";
-import { getReviewBySlug } from "@/data/reviews";
+import type { ReviewRecord } from "@/data/reviews";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
 import {
   trackContactFormStart,
@@ -109,8 +109,6 @@ const defaultFormValues: SeminarFormValues = {
   smsConsent: false,
   gotcha: "",
 };
-
-const testimonial = getReviewBySlug("ankit-sidana-seminar-mentorship");
 
 const isMoreThanOneAttendee = (value: AttendeeCount) =>
   value !== "" && value !== "1";
@@ -272,7 +270,13 @@ const buildFormPayload = (values: SeminarFormValues) => {
   };
 };
 
-const PracticeTransitionSeminar = () => {
+interface PracticeTransitionSeminarProps {
+  testimonial?: ReviewRecord;
+}
+
+const PracticeTransitionSeminar = ({
+  testimonial,
+}: PracticeTransitionSeminarProps) => {
   const [values, setValues] = useState<SeminarFormValues>(defaultFormValues);
   const [errors, setErrors] = useState<SeminarFormErrors>({});
   const [submitStatus, setSubmitStatus] = useState<

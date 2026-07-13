@@ -1,7 +1,7 @@
-import Selling from "@/views/services/Selling";
+import Selling, { sellingFaqs } from "@/views/services/Selling";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
-import { buildServiceSchema } from "@/lib/structuredData";
+import { buildFAQSchema, buildServiceSchema } from "@/lib/structuredData";
 import { serviceOfferings } from "@/data/services";
 
 const title = "Dental Practice Sale Advisory & Brokerage";
@@ -19,6 +19,7 @@ export default function Page() {
     (offering) => offering.url === "/services/selling"
   );
   const serviceSchema = service ? buildServiceSchema(service) : null;
+  const faqSchema = buildFAQSchema(sellingFaqs);
 
   return (
     <>
@@ -27,7 +28,9 @@ export default function Page() {
           title,
           description,
           path: "/services/selling",
-          structuredData: serviceSchema,
+          structuredData: [serviceSchema, faqSchema].filter(
+            (schema): schema is NonNullable<typeof schema> => schema !== null
+          ),
         })}
       />
       <Selling />

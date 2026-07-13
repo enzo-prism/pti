@@ -84,7 +84,6 @@ const Home = () => {
                       src={photo.src}
                       alt={photo.alt}
                       fill
-                      priority={isFeature}
                       sizes={
                         isFeature
                           ? "(min-width: 768px) 580px, 100vw"

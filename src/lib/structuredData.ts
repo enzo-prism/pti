@@ -3,6 +3,7 @@ import type { AuthorProfile } from "@/data/authors";
 import type { ReviewRecord } from "@/data/reviews";
 import {
   BUSINESS_DESCRIPTION,
+  BUSINESS_GEO,
   BUSINESS_OPENING_HOURS_SPECIFICATION,
   BUSINESS_PRICE_RANGE,
   DEFAULT_LOCALE,
@@ -74,6 +75,11 @@ const buildBusinessSchema = (input: {
     const mapUrl = buildGoogleMapsUrl();
     base.openingHoursSpecification = BUSINESS_OPENING_HOURS_SPECIFICATION;
     base.priceRange = BUSINESS_PRICE_RANGE;
+    base.geo = {
+      "@type": "GeoCoordinates",
+      latitude: BUSINESS_GEO.latitude,
+      longitude: BUSINESS_GEO.longitude,
+    };
     if (mapUrl) {
       base.hasMap = mapUrl;
     }

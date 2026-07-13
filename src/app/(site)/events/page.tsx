@@ -2,6 +2,7 @@ import Events from "@/views/Events";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 import { rawEvents } from "@/data/events";
+import { getFeaturedReviews } from "@/data/reviews";
 import { buildEventSchema } from "@/lib/structuredData";
 import { parseEventDate } from "@/lib/dateUtils";
 
@@ -58,7 +59,7 @@ export default function Page() {
           structuredData: upcomingEventSchemas,
         })}
       />
-      <Events />
+      <Events workshopReview={getFeaturedReviews("events")[0]} />
     </>
   );
 }

@@ -1,9 +1,0 @@
-# Legacy URL redirects (301 permanent)
-/seminar /events/practice-transition-seminar 301
-/dr-njo /drnjo 301
-/meet-our-team /about 301
-/speaking-engagements /events 301
-/podcasts /blog 301
-/client-testimonials /testimonials 301
-/contact-us /contact 301
-/updates/* /blog/:splat 301

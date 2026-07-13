@@ -212,10 +212,7 @@
         transparent 70%
       );
     background-size: 400% 400%, 300% 300%, 200% 200%;
-    animation: 
-      hero-wave 28s cubic-bezier(0.4, 0.0, 0.2, 1) infinite,
-      hero-orbital 35s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite,
-      hero-shimmer 15s linear infinite;
+    animation: hero-wave 28s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
     position: relative;
     will-change: background-position;
     transform: translateZ(0);
@@ -236,7 +233,7 @@
       linear-gradient(-45deg, transparent 0%, transparent 20%, rgba(255, 255, 255, 0.06) 35%, rgba(255, 255, 255, 0.12) 40%, rgba(255, 255, 255, 0.06) 45%, transparent 60%, transparent 100%),
       linear-gradient(135deg, transparent 0%, transparent 25%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0.1) 45%, rgba(255, 255, 255, 0.05) 50%, transparent 65%, transparent 100%);
     background-size: 300% 300%, 400% 400%, 350% 350%;
-    animation: hero-streaks-1 16s linear infinite, hero-streaks-2 20s linear infinite reverse, hero-streaks-3 24s linear infinite;
+    animation: hero-streaks-1 20s linear infinite;
     will-change: background-position;
     transform: translateZ(0);
     backface-visibility: hidden;
@@ -259,10 +256,6 @@
       /* Additional subtle streak */
       linear-gradient(75deg, transparent 0%, transparent 35%, rgba(255, 255, 255, 0.04) 48%, rgba(255, 255, 255, 0.08) 52%, rgba(255, 255, 255, 0.04) 56%, transparent 70%, transparent 100%);
     background-size: 100% 100%, 100% 100%, 100% 100%, 250% 250%;
-    animation: hero-glow-drift 18s ease-in-out infinite, hero-glow-orbit 22s linear infinite, hero-glow-pulse 14s ease-in-out infinite, hero-streaks-slow 28s linear infinite;
-    will-change: background-position, filter;
-    transform: translateZ(0);
-    backface-visibility: hidden;
     filter: blur(0.5px);
     pointer-events: none;
   }
@@ -297,10 +290,7 @@
         hsl(var(--hero-gradient-1) / 0.3) 100%
       );
     background-size: 350% 350%, 250% 250%, 180% 180%, 100% 100%;
-    animation: 
-      hero-overlay 32s cubic-bezier(0.4, 0.0, 0.2, 1) infinite reverse,
-      hero-particles 40s ease-in-out infinite,
-      hero-breathing 8s ease-in-out infinite;
+    animation: hero-breathing 8s ease-in-out infinite;
   }
 
   /* Gradient Animations */
@@ -310,7 +300,7 @@
       hsl(var(--accent)) 50%, 
       hsl(var(--primary)) 100%);
     background-size: 400% 400%;
-    animation: gradient-shift 8s ease-in-out infinite, mesh-morph 12s ease-in-out infinite;
+    animation: gradient-shift 8s ease-in-out infinite;
   }
 
   /* Accessibility: Reduce motion for users who prefer it */

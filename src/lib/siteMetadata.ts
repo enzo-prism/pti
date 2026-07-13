@@ -1,4 +1,8 @@
-import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "./constants";
+import {
+  MICHAEL_NJO_WEBSITE_URL,
+  PHONE_NUMBER,
+  PHONE_NUMBER_TEL,
+} from "./constants";
 
 export const SITE_NAME = "Practice Transitions Institute";
 export const FALLBACK_SITE_URL = "https://practicetransitionsinstitute.com";
@@ -39,6 +43,14 @@ export const BUSINESS_ADDRESS = {
 };
 export const BUSINESS_LOCATION = `${BUSINESS_ADDRESS.streetAddress}, ${BUSINESS_ADDRESS.addressLocality}, ${BUSINESS_ADDRESS.addressRegion} ${BUSINESS_ADDRESS.postalCode}`;
 
+// Approximate coordinates for the San Mateo (Campus Drive) office. Used for the
+// `geo` field on the LocalBusiness/ProfessionalService schema so search engines
+// can place the business; Google reconciles the precise pin from the address.
+export const BUSINESS_GEO = {
+  latitude: 37.5386,
+  longitude: -122.2967,
+};
+
 export const BUSINESS_PRICE_RANGE = "$$";
 export const DEFAULT_LOCALE = "en-US";
 
@@ -63,7 +75,11 @@ export const BUSINESS_OPENING_HOURS_SPECIFICATION = [
   },
 ] as const;
 
-export const SOCIAL_PROFILES: string[] = [];
+// `sameAs` targets that consolidate the brand's identity for search engines.
+// michaelnjodds.com is the founder's official professional site (verified,
+// same operator). Append the firm's Google Business Profile, LinkedIn, Facebook,
+// and YouTube URLs here as they are confirmed to strengthen entity consolidation.
+export const SOCIAL_PROFILES: string[] = [MICHAEL_NJO_WEBSITE_URL];
 export const SITE_SEARCH_PATH = "/blog";
 
 export const getSiteUrl = (): string => CANONICAL_SITE_URL;

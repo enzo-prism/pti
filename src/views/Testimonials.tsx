@@ -15,12 +15,10 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import {
-  getReviewAggregate,
-  reviews,
-  type ReviewCategory,
-  type ReviewRecord,
-  type ReviewSource,
+import type {
+  ReviewCategory,
+  ReviewRecord,
+  ReviewSource,
 } from "@/data/reviews";
 import { trackSelectCta } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
@@ -165,12 +163,15 @@ const Stars = ({
   </div>
 );
 
-const Testimonials = () => {
+interface TestimonialsProps {
+  reviews: ReviewRecord[];
+  aggregate: { ratingValue: number; reviewCount: number };
+}
+
+const Testimonials = ({ reviews, aggregate }: TestimonialsProps) => {
   const [sourceFilter, setSourceFilter] = useState<SourceFilter>("all");
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("all");
   const [searchQuery, setSearchQuery] = useState("");
-
-  const aggregate = useMemo(() => getReviewAggregate(reviews), []);
 
   const { categoryCounts, sourceCounts } = useMemo(() => {
     const categoryCounts = {} as Record<ReviewCategory, number>;
@@ -181,7 +182,7 @@ const Testimonials = () => {
       sourceCounts[review.source] = (sourceCounts[review.source] ?? 0) + 1;
     }
     return { categoryCounts, sourceCounts };
-  }, []);
+  }, [reviews]);
 
   const availableCategories = CATEGORY_ORDER.filter(
     (category) => (categoryCounts[category] ?? 0) > 0
@@ -200,7 +201,7 @@ const Testimonials = () => {
       }
       return matchesSearch(review, searchQuery);
     });
-  }, [categoryFilter, searchQuery, sourceFilter]);
+  }, [reviews, categoryFilter, searchQuery, sourceFilter]);
 
   const hasActiveFilters =
     searchQuery.trim().length > 0 ||

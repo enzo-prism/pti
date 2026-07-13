@@ -29,7 +29,7 @@ import { MultiDateEventCard } from "@/components/ui/multi-date-event-card";
 import { DrNjoPhotoCard } from "@/components/DrNjoPhotoCard";
 import { eventsSpeakingHighlightImages } from "@/data/drNjoGallery";
 import Image from "next/image";
-import { getFeaturedReviews } from "@/data/reviews";
+import type { ReviewRecord } from "@/data/reviews";
 
 interface EventDate {
   date: string;
@@ -44,9 +44,12 @@ interface Event extends RawEvent {
   eventDates?: EventDate[];
 }
 
-const Events = () => {
+interface EventsProps {
+  workshopReview?: ReviewRecord;
+}
+
+const Events = ({ workshopReview }: EventsProps) => {
   const [showPastEvents, setShowPastEvents] = useState(false);
-  const workshopReview = getFeaturedReviews("events")[0];
   const [bluePrintFlyer, publicationSpread] = eventsSpeakingHighlightImages;
 
   // Optimized event grouping with proper deduplication

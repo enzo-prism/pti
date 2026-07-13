@@ -17,13 +17,17 @@ const exploreLinks = [
   { name: "Events", path: "/events" },
   { name: "Blog", path: "/blog" },
   { name: "FAQ", path: "/faq" },
+  { name: "Resources", path: "/resources" },
+  { name: "What's My Practice Worth?", path: "/resources/how-much-is-my-dental-practice-worth" },
   { name: "Sale Readiness Checklist", path: PRACTICE_SALE_CHECKLIST_PATH },
+  { name: "Sell a Practice in California", path: "/locations/california" },
 ];
 
 const serviceLinks = [
   { name: "Services at a Glance", path: "/services" },
   { name: "Opinion of Value", path: "/services/value" },
   { name: "Selling a Practice", path: "/services/selling" },
+  { name: "Selling to a DSO", path: "/services/selling-to-a-dso" },
   { name: "Associateships / Buying In", path: "/services/associateships" },
   { name: "Partnerships", path: "/services/partnerships" },
 ];

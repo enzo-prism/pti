@@ -18,6 +18,12 @@ export const serviceOfferings: ServiceOffering[] = [
     url: "/services/selling",
   },
   {
+    title: "Selling to a DSO",
+    description:
+      "Independent DSO offer evaluation, valuation baselines, and negotiation support before you sign a letter of intent.",
+    url: "/services/selling-to-a-dso",
+  },
+  {
     title: "Associateships/Buy In",
     description:
       "Structured pathways for associates to buy in and transition into ownership roles.",

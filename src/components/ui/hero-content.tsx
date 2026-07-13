@@ -26,18 +26,18 @@ export const HeroContent: React.FC<HeroContentProps> = ({ className }) => {
         </div>
       </div>
       
-      {/* Main Headline */}
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white drop-shadow-lg">
+      {/* Tagline */}
+      <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white drop-shadow-lg">
         From Acquisition to{' '}
         <span className="text-blue-100 font-extrabold">
           Legacy
         </span>
-      </h1>
+      </p>
 
-      {/* Subtitle */}
-      <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-blue-50 mb-6 drop-shadow-md">
+      {/* Main Headline */}
+      <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-blue-50 mb-6 drop-shadow-md">
         We Help You Navigate Your Dental Practice Transition with Certainty
-      </h2>
+      </h1>
 
       {/* Description */}
       <p className="text-base sm:text-lg md:text-xl text-blue-50/90 leading-relaxed mb-8 max-w-3xl mx-auto drop-shadow-sm">

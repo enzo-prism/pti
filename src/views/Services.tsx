@@ -8,6 +8,7 @@ import {
   Users,
   Handshake,
   Award,
+  Building2,
   Clock,
   Smile,
   ArrowUpRight,
@@ -18,6 +19,7 @@ import Image from "next/image";
 const serviceIconMap: Record<string, JSX.Element> = {
   "Opinion of Value": <FileText className="h-8 w-8 text-blue-600" />,
   "Selling a Practice": <DollarSign className="h-8 w-8 text-emerald-600" />,
+  "Selling to a DSO": <Building2 className="h-8 w-8 text-sky-600" />,
   "Associateships/Buy In": <Users className="h-8 w-8 text-orange-600" />,
   Partnerships: <Handshake className="h-8 w-8 text-purple-600" />,
 };

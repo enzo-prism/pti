@@ -1,6 +1,6 @@
 "use client";
 
-import { BlogPost } from "@/data/blogPosts";
+import type { BlogPost } from "@/data/blogPosts";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";

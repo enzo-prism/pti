@@ -27,6 +27,11 @@ const ROUTE_BREADCRUMBS: Record<string, BreadcrumbNode[]> = {
     { name: "Services", path: "/services" },
     { name: "Selling a Practice", path: "/services/selling" },
   ],
+  "/services/selling-to-a-dso": [
+    HOME_CRUMB,
+    { name: "Services", path: "/services" },
+    { name: "Selling to a DSO", path: "/services/selling-to-a-dso" },
+  ],
   "/services/associateships": [
     HOME_CRUMB,
     { name: "Services", path: "/services" },
@@ -66,12 +71,29 @@ const ROUTE_BREADCRUMBS: Record<string, BreadcrumbNode[]> = {
     HOME_CRUMB,
     { name: "Blog", path: "/blog" },
   ],
+  "/resources": [
+    HOME_CRUMB,
+    { name: "Resources", path: "/resources" },
+  ],
   "/resources/practice-sale-readiness-checklist": [
     HOME_CRUMB,
+    { name: "Resources", path: "/resources" },
     {
       name: "Practice Sale Readiness Checklist",
       path: "/resources/practice-sale-readiness-checklist",
     },
+  ],
+  "/resources/how-much-is-my-dental-practice-worth": [
+    HOME_CRUMB,
+    { name: "Resources", path: "/resources" },
+    {
+      name: "How Much Is My Dental Practice Worth?",
+      path: "/resources/how-much-is-my-dental-practice-worth",
+    },
+  ],
+  "/locations/california": [
+    HOME_CRUMB,
+    { name: "California", path: "/locations/california" },
   ],
   "/faq": [
     HOME_CRUMB,

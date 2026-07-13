@@ -14,6 +14,7 @@ import {
   practiceTransitionSeminarFaqs,
   practiceTransitionSeminarLearningPoints,
 } from "@/data/practiceTransitionSeminar";
+import { getReviewBySlug } from "@/data/reviews";
 
 const eventDescription = [
   "A one-day seminar for dentists preparing to buy, sell, partner, bring on an associate, or better understand practice value.",
@@ -57,7 +58,9 @@ export default function Page() {
           structuredData: structuredSchemas,
         })}
       />
-      <PracticeTransitionSeminar />
+      <PracticeTransitionSeminar
+        testimonial={getReviewBySlug("ankit-sidana-seminar-mentorship")}
+      />
     </>
   );
 }

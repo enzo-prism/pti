@@ -96,6 +96,7 @@ const Navbar = () => {
         { name: "Services at a Glance", path: "/services" },
         { name: "Opinion of Value", path: "/services/value" },
         { name: "Selling a Practice", path: "/services/selling" },
+        { name: "Selling to a DSO", path: "/services/selling-to-a-dso" },
         { name: "Associateships/Buying In", path: "/services/associateships" },
         { name: "Partnerships", path: "/services/partnerships" },
       ]
