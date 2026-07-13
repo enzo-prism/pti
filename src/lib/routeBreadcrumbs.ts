@@ -91,9 +91,24 @@ const ROUTE_BREADCRUMBS: Record<string, BreadcrumbNode[]> = {
       path: "/resources/how-much-is-my-dental-practice-worth",
     },
   ],
+  "/locations": [
+    HOME_CRUMB,
+    { name: "Locations", path: "/locations" },
+  ],
   "/locations/california": [
     HOME_CRUMB,
+    { name: "Locations", path: "/locations" },
     { name: "California", path: "/locations/california" },
+  ],
+  "/locations/texas": [
+    HOME_CRUMB,
+    { name: "Locations", path: "/locations" },
+    { name: "Texas", path: "/locations/texas" },
+  ],
+  "/locations/florida": [
+    HOME_CRUMB,
+    { name: "Locations", path: "/locations" },
+    { name: "Florida", path: "/locations/florida" },
   ],
   "/faq": [
     HOME_CRUMB,

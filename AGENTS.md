@@ -21,8 +21,8 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 ## Routing and layout
 - Routes live in `src/app`. `src/app/(site)/layout.tsx` adds `Navbar` and `Footer`.
 - `DrNjo` uses the `(minimal)` route group.
-- Legacy URL redirects are in `public/_redirects` (portable) and `vercel.json` (Vercel host + www→apex redirects). There is no middleware.
-- Add new routes to `src/lib/routeBreadcrumbs.ts` for breadcrumb data and to `STATIC_ROUTES` in `src/app/sitemap.ts`.
+- Legacy URL redirects live in `vercel.json` (Vercel host + www→apex + legacy path redirects). The old portable `public/_redirects` and `public/_headers` files were removed after the Vercel migration. There is no middleware.
+- Add new routes to `src/lib/routeBreadcrumbs.ts` for breadcrumb data and to `STATIC_ROUTES` in `src/app/sitemap.ts`, then bump the static-route count assertion in `src/app/sitemap.test.ts`.
 
 ## Content management
 - Blog posts: `src/data/blogPosts.ts` (Markdown-in-strings, optional embedded HTML).
@@ -34,6 +34,9 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 - Testimonials: canonical reviews dataset in `src/data/reviews.ts` (see `docs/reviews-runbook.md`).
 - Amazon reviews: `src/data/amazonReviews.ts`.
 - Lead magnet: `/resources/practice-sale-readiness-checklist` (`src/views/PracticeSaleChecklist.tsx`, form in `src/components/resources/`).
+- Resources hub: `/resources` (`src/views/Resources.tsx`) links the calculator, checklist, DSO guide, and blog.
+- Valuation pillar + calculator: `/resources/how-much-is-my-dental-practice-worth` (`src/views/PracticeWorth.tsx`) embeds the client-side `src/components/resources/PracticeValueCalculator.tsx` (percent-of-collections + earnings-multiple estimate; emits the `calculate_practice_value` analytics event).
+- Location / service-area pages: content lives in `src/data/locations.ts` (one entry per state with distinct, accurate market context — never templated doorway copy). The shared renderer is `src/views/locations/LocationView.tsx`; the `/locations` hub is `src/views/Locations.tsx`. To add a state: add a `LOCATIONS` entry, create `src/app/(site)/locations/<slug>/page.tsx` (mirror an existing one, `includeLocalBusinessSchema: true`), and register it in `routeBreadcrumbs.ts` + `sitemap.ts` (+ test count).
 - Business contact info: `src/lib/constants.ts` and `SITE_CONTACT_EMAIL` in `src/lib/siteMetadata.ts` — always use these constants, never hardcode emails or phone numbers.
 
 ## Blog system behavior
@@ -47,8 +50,10 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 
 ## SEO and structured data
 - `src/lib/seo.ts` builds metadata; `src/components/StructuredData.tsx` renders JSON-LD.
-- `src/lib/structuredData.ts` includes schemas for blog posts, events, and contact.
+- `src/lib/structuredData.ts` includes schemas for blog posts, events, contact, and FAQs (`buildFAQSchema`). The `ProfessionalService`/`LocalBusiness` schema carries `geo` (`BUSINESS_GEO` in `siteMetadata.ts`) and `sameAs`.
 - Canonical host is controlled by `NEXT_PUBLIC_CANONICAL_SITE_URL` in `src/lib/siteMetadata.ts`.
+- `sameAs` profiles come from `NEXT_PUBLIC_SOCIAL_PROFILES` (comma-separated URLs); when unset it defaults to the founder's official site. Set it in Vercel to add the Google Business Profile, LinkedIn, etc. without a code change.
+- FAQ pages/sections export a plain `{ question, answer }[]` array from the view and pass `buildFAQSchema(...)` into `buildPageJsonLd({ structuredData })` (see `/services/selling`, `/resources/how-much-is-my-dental-practice-worth`).
 - Search schema targets `/blog` via `SITE_SEARCH_PATH`.
 
 ## Analytics

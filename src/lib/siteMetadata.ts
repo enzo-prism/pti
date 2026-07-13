@@ -76,10 +76,22 @@ export const BUSINESS_OPENING_HOURS_SPECIFICATION = [
 ] as const;
 
 // `sameAs` targets that consolidate the brand's identity for search engines.
-// michaelnjodds.com is the founder's official professional site (verified,
-// same operator). Append the firm's Google Business Profile, LinkedIn, Facebook,
-// and YouTube URLs here as they are confirmed to strengthen entity consolidation.
-export const SOCIAL_PROFILES: string[] = [MICHAEL_NJO_WEBSITE_URL];
+// Configure via NEXT_PUBLIC_SOCIAL_PROFILES (comma-separated URLs) to add the
+// firm's Google Business Profile, LinkedIn, Facebook, and YouTube without a code
+// change. When unset, we default to the founder's official professional site
+// (michaelnjodds.com) so at least one verified identity link is always emitted.
+const parseSocialProfiles = (raw: string | undefined): string[] => {
+  const configured = (raw ?? "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter((value) => /^https?:\/\//i.test(value));
+
+  return configured.length ? configured : [MICHAEL_NJO_WEBSITE_URL];
+};
+
+export const SOCIAL_PROFILES: string[] = parseSocialProfiles(
+  process.env.NEXT_PUBLIC_SOCIAL_PROFILES
+);
 export const SITE_SEARCH_PATH = "/blog";
 
 export const getSiteUrl = (): string => CANONICAL_SITE_URL;

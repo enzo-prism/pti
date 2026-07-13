@@ -4,8 +4,8 @@ import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 
-const location = getLocation("california");
-const path = "/locations/california";
+const location = getLocation("florida");
+const path = "/locations/florida";
 
 export const metadata = location
   ? buildPageMetadata({

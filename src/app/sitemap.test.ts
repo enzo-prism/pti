@@ -8,7 +8,7 @@ describe("sitemap metadata", () => {
     const entries = sitemap();
     const urls = entries.map((entry) => entry.url);
     const uniqueUrls = new Set(urls);
-    const expectedCount = 23 + blogPosts.filter((post) => post.slug).length + reviews.length;
+    const expectedCount = 26 + blogPosts.filter((post) => post.slug).length + reviews.length;
 
     expect(entries).toHaveLength(expectedCount);
     expect(uniqueUrls.size).toBe(entries.length);
@@ -37,8 +37,15 @@ describe("sitemap metadata", () => {
       "https://practicetransitionsinstitute.com/services/selling-to-a-dso"
     );
     expect(urls).toContain("https://practicetransitionsinstitute.com/resources");
+    expect(urls).toContain("https://practicetransitionsinstitute.com/locations");
     expect(urls).toContain(
       "https://practicetransitionsinstitute.com/locations/california"
+    );
+    expect(urls).toContain(
+      "https://practicetransitionsinstitute.com/locations/texas"
+    );
+    expect(urls).toContain(
+      "https://practicetransitionsinstitute.com/locations/florida"
     );
     expect(urls).toContain("https://practicetransitionsinstitute.com/contact");
     expect(urls).toContain(

@@ -20,7 +20,7 @@ const exploreLinks = [
   { name: "Resources", path: "/resources" },
   { name: "What's My Practice Worth?", path: "/resources/how-much-is-my-dental-practice-worth" },
   { name: "Sale Readiness Checklist", path: PRACTICE_SALE_CHECKLIST_PATH },
-  { name: "Sell a Practice in California", path: "/locations/california" },
+  { name: "Locations", path: "/locations" },
 ];
 
 const serviceLinks = [

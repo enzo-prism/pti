@@ -52,6 +52,8 @@ Routes live in `src/app` and are wrapped by `src/app/(site)/layout.tsx` or `src/
 - **Blog posts**: Authored as Markdown-in-strings inside `src/data/blogPosts.ts`. Each post includes metadata for slugs, gradients, and series links, plus an optional `dateModified` for substantive updates. The homepage displays the most recent blog post automatically.
   - Client components must never import `blogPosts` directly (the full markdown bodies would ship in the JS bundle). Listing surfaces receive `BlogPostSummary[]` props mapped via `toBlogPostSummary` in a server page — see `src/app/(site)/blog/page.tsx`.
 - **Lead magnet**: `/resources/practice-sale-readiness-checklist` (`src/views/PracticeSaleChecklist.tsx`) is a printable checklist with a Formspree email-capture form (`src/components/resources/ChecklistSignupForm.tsx`).
+- **Resources hub & valuation calculator**: `/resources` (`src/views/Resources.tsx`) indexes the free tools. `/resources/how-much-is-my-dental-practice-worth` (`src/views/PracticeWorth.tsx`) is the valuation pillar page and embeds the interactive `PracticeValueCalculator` (`src/components/resources/`).
+- **Location pages**: State service-area content is data-driven in `src/data/locations.ts`, rendered by `src/views/locations/LocationView.tsx`, with a `/locations` hub (`src/views/Locations.tsx`). Keep each state's copy genuinely distinct — these are not templated doorway pages. Adding a state requires a `LOCATIONS` entry, a route under `src/app/(site)/locations/`, and registration in `routeBreadcrumbs.ts` + `sitemap.ts` (and the sitemap test count).
 - **Global contact info**: Shared constants like phone numbers live in `src/lib/constants.ts`; the business email is `SITE_CONTACT_EMAIL` in `src/lib/siteMetadata.ts`. Update here to propagate across components.
 
 When editing long-form strings (blog posts, testimonials), preserve existing formatting such as Markdown headers and paragraph breaks to keep rendering consistent.
@@ -72,14 +74,15 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 - Analytics run only on production + canonical host with a valid GA measurement ID. `NEXT_PUBLIC_VERCEL_ENV` is optional and, when set, controls production detection.
 - Lead-focused key events emitted by the app include `generate_lead`, `book_consultation_click`, and `phone_call_click`.
 - Sitemap and robots are generated at runtime by `src/app/sitemap.ts` and `src/app/robots.ts`.
-- Social profiles (schema `sameAs`): set `NEXT_PUBLIC_SOCIAL_PROFILES` to a comma-separated list of profile URLs.
+- Social profiles (schema `sameAs`): set `NEXT_PUBLIC_SOCIAL_PROFILES` to a comma-separated list of profile URLs (Google Business Profile, LinkedIn, Facebook, YouTube). When unset, it defaults to the founder's official site so at least one verified identity link is emitted.
+- FAQ rich results: pages/sections expose a `{ question, answer }[]` array and pass `buildFAQSchema(...)` through `buildPageJsonLd`. Business structured data includes `geo` coordinates (`BUSINESS_GEO`).
 
 ## Deployment
 The site deploys via Vercel using Next.js defaults.
 
 - **Build command**: `npm run build`
 - **Output directory**: `.next/`
-- **Redirects**: Vercel redirects are defined in `vercel.json`; portable legacy redirects remain in `public/_redirects`.
+- **Redirects**: All redirects (www→apex host normalization and legacy path redirects) are defined in `vercel.json`. The former Cloudflare/Vite `public/_redirects` and `public/_headers` files were removed after the Vercel migration.
 
 ## Coding Standards
 - TypeScript is required for production code, with 2-space indentation enforced by ESLint and the repo configuration.

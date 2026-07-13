@@ -33,6 +33,97 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 41,
+    title: "How to Sell a Dental Practice: A Step-by-Step Guide",
+    excerpt:
+      "A complete, step-by-step walkthrough of selling a dental practice — from valuation and preparation to choosing a buyer, the letter of intent, due diligence, financing, and closing.",
+    category: "Practice Transitions",
+    date: "2026-07-12",
+    readTime: "9 min read",
+    gradient: "bg-gradient-to-br from-primary via-blue-600 to-cyan-500",
+    slug: "how-to-sell-a-dental-practice-step-by-step",
+    author: "Michael Njo, DDS",
+    metaTitle: "How to Sell a Dental Practice: A Step-by-Step Guide | PTI",
+    cta: {
+      title: "Ready to plan your dental practice sale?",
+      description:
+        "Book a confidential conversation with Dr. Michael Njo to map out your timeline, valuation, and options before you take a single step toward the market.",
+      bookingUrl: "https://calendly.com/michael-dental-strategies/30min",
+      bookingLabel: "Talk With Dr. Njo",
+    },
+    content: `Selling your dental practice is likely the largest financial transaction of your career, and one of the most personal. Done well, it protects your legacy, your team, and your patients while maximizing what you walk away with. Done in a hurry, it leaves money and peace of mind on the table.
+
+This guide walks through the sale process end to end, in the order the decisions actually come up. Wherever a step deserves its own deep dive, we link to a detailed article so you can go as far as you need.
+
+## Step 1: Understand what your practice is worth
+
+Everything downstream — pricing, negotiation, financing, taxes — starts from a credible number. Skip this step and you are negotiating blind.
+
+Start with a realistic estimate using our [dental practice value calculator](/resources/how-much-is-my-dental-practice-worth), then get a defensible figure with a professional [Opinion of Value](/services/value). A serious valuation looks past a simple revenue multiple to your true cash flow, patient base, payer mix, location, and team — the same factors a buyer, a lender, and a DSO acquisition team will scrutinize.
+
+## Step 2: Strengthen your value before you go to market
+
+The best time to improve your sale price is the year or two before you sell, not the week you list.
+
+Small, deliberate changes — tightening overhead, stabilizing your team, updating aging equipment, and documenting systems — can meaningfully move your number. Our guide to [improving practice value before selling](/blog/improve-practice-value-before-selling) covers the highest-impact moves.
+
+## Step 3: Assemble your advisory team
+
+A dental practice sale touches valuation, contracts, taxes, and financing at once. No single advisor covers all of it.
+
+At a minimum you want a transition advisor, a dental-experienced attorney, and a CPA who understands practice sales. Choosing the right lead advisor matters most — see the [questions to ask before hiring a transition firm](/blog/questions-before-hiring-dental-practice-transition-firm) so you know who is actually representing your interests.
+
+## Step 4: Organize your documents
+
+Buyers and lenders move at the speed of your paperwork. Disorganized records slow the deal and erode confidence in your numbers.
+
+Gather two to three years of financials and tax returns, production and collections reports, an accounts-receivable aging summary, your lease, and an equipment list. Our checklist of [documents to prepare before selling](/blog/documents-before-selling-your-dental-practice) is a good place to start.
+
+## Step 5: Decide who you want to sell to
+
+Not all buyers — or offers — are alike. The two broad paths are a private buyer (an individual dentist or partner) and a Dental Support Organization.
+
+DSO offers can carry a higher headline number, but the structure behind it — earnouts, equity rollovers, holdbacks, and multi-year work-back terms — changes the real value dramatically. Weigh the trade-offs with our guide on [selling to a DSO versus a private buyer](/blog/dso-vs-private-buyer-dental-practice), and if you have already received an offer, our [DSO offer review service](/services/selling-to-a-dso) helps you read it clearly.
+
+## Step 6: Market confidentially and screen buyers
+
+Confidentiality protects your team, your patients, and your reputation while the practice is for sale.
+
+A structured process uses buyer screening and confidentiality agreements, and only releases sensitive information to serious, qualified prospects. Learn what separates a real buyer from a tire-kicker in [what makes a buyer qualified for your practice](/blog/what-makes-a-buyer-qualified-for-your-dental-practice).
+
+## Step 7: Negotiate the letter of intent
+
+The letter of intent sets the framework for the whole deal — price, structure, and often an exclusivity period — before the binding contracts are drafted.
+
+Because an LOI can lock you into exclusivity, the time to negotiate the important terms is before you sign it. See [what belongs in a dental practice letter of intent](/blog/dental-practice-letter-of-intent).
+
+## Step 8: Get through due diligence
+
+Once the LOI is signed, the buyer verifies everything you have represented. Clean, organized records make this stage fast; surprises make it painful.
+
+Our [due diligence checklist](/blog/dental-practice-due-diligence-checklist) shows what buyers typically request and how to prepare so nothing derails the deal late.
+
+## Step 9: Confirm the buyer's financing
+
+A deal is only real when it can fund. Most practice purchases rely on bank financing, and the terms shape your certainty of closing.
+
+Understanding the buyer's path — see [SBA versus conventional loans for buying a dental practice](/blog/sba-vs-conventional-loan-buying-a-dental-practice-2026) — helps you gauge how solid an offer really is.
+
+## Step 10: Close and transition
+
+Closing is the paperwork; the transition is what your patients and team actually experience.
+
+Plan how and when you will [tell your staff](/blog/when-to-tell-staff-youre-selling-your-dental-practice) and [tell your patients](/blog/how-should-you-tell-patients-you-are-selling-your-dental-practice), and set expectations for any post-sale period — [how long a seller should stay after closing](/blog/how-long-should-a-seller-stay-after-closing-a-dental-practice-sale) is a common negotiation point.
+
+## How long does it all take?
+
+From preparation to closing, a well-run dental practice sale typically spans several months to a year or more, depending on your market, your readiness, and the buyer. Our article on [how long it takes to sell a dental practice](/blog/how-long-to-sell-a-dental-practice) breaks the timeline down stage by stage.
+
+## The bottom line
+
+Selling your practice is a process, not an event. The dentists who do best start early, price from a credible valuation, prepare their records, and lean on advisors who represent them — not the buyer. Wherever you are on that path, a confidential conversation is the fastest way to a clear plan.`,
+  },
+  {
     id: 40,
     title: "7 Questions to Ask Before Hiring a Dental Practice Transition Firm",
     excerpt: "Before choosing representation for a dental practice sale, ask about experience, valuation, confidentiality, buyer network, fees, who handles the transaction, references, and who the firm represents.",
