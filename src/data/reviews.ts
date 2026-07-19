@@ -332,19 +332,6 @@ const googleReviews: ReviewRecord[] = [
     sortOrder: 25,
   },
   {
-    id: "google-alexander-zaykov",
-    slug: "alexander-zaykov-fred-and-liz",
-    source: "google",
-    category: "valuation",
-    rating: 5,
-    quote:
-      "I had the pleasure of meeting Fred & Liz. Fred's insight is a goldmine for anyone looking to purchase or sell a dental practice. Fred's expertise in valuations and legalities is impressive. The resources provided seem comprehensive and well-crafted, a testament to their experience. If you're a dentist considering a practice transaction, I recommend tapping into their knowledge and experience.",
-    sourceAuthorName: "Alexander Zaykov",
-    displayAuthorName: "Alexander Zaykov",
-    role: "Dentist",
-    sortOrder: 26,
-  },
-  {
     id: "google-maricela-murillo",
     slug: "maricela-murillo-full-support",
     source: "google",

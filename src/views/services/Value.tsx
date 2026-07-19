@@ -241,23 +241,6 @@ const Value = () => {
         />
       </Section>
 
-      {/* Valuation Testimonial Section */}
-      <Section background="white">
-        <div className="max-w-4xl mx-auto">
-          <SectionTitle centered>What Our Clients Say</SectionTitle>
-          <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100">
-            <div className="text-center">
-              <blockquote className="text-lg md:text-xl text-gray-700 italic mb-6">
-                &ldquo;I had the pleasure of meeting Fred &amp; Liz. Fred&apos;s insight is a goldmine for anyone looking to purchase or sell a dental practice. Fred&apos;s expertise in valuations and legalities is impressive. The resources provided seem comprehensive and well-crafted, a testament to their experience. If you&apos;re a dentist considering a practice transaction, I recommend tapping into their knowledge and experience.&rdquo;
-              </blockquote>
-              <div className="flex flex-col items-center">
-                <p className="font-semibold text-gray-900 text-lg">Dr. Alexander Zaykov</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Section>
-
       {/* Final CTA Section */}
       <Section className="mb-8">
         <Cta 

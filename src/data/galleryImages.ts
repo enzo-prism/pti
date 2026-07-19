@@ -89,17 +89,6 @@ const additionalPhotos: GalleryPhoto[] = [
     fit: "cover",
   },
   {
-    id: "team-fred-heppner",
-    src: "/lovable-uploads/1a104794-17ea-4b67-b3f2-17a24be7dc49.png",
-    alt: "Portrait of Fred Heppner, transition consultant at Practice Transitions Institute",
-    caption:
-      "Fred Heppner — Transition Consultant who has guided hundreds of dental practices through seamless transitions.",
-    category: "team",
-    width: 364,
-    height: 460,
-    fit: "cover",
-  },
-  {
     id: "dugoni-lunch-learn-presentation",
     src: "/lovable-uploads/presentation-photo.webp",
     alt: "Dr. Michael Njo presenting to Dugoni students during a Lunch & Learn session",
