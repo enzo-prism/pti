@@ -230,17 +230,6 @@ const Value = () => {
         </div>
       </Section>
 
-      {/* Second CTA Section After FAQ */}
-      <Section>
-        <Cta 
-          title="Get Expert Guidance on Your Practice Valuation"
-          description="Let our specialists help you understand your practice&apos;s true market value."
-          buttonText="Get Started Today"
-          buttonUrl="/contact"
-          background="light"
-        />
-      </Section>
-
       {/* Final CTA Section */}
       <Section className="mb-8">
         <Cta 
