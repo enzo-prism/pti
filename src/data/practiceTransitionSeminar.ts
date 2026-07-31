@@ -6,6 +6,9 @@ export const PRACTICE_TRANSITION_SEMINAR_FORM_ENDPOINT =
   "https://formspree.io/f/xlgzrjev";
 export const PRACTICE_TRANSITION_SEMINAR_FORM_ID =
   "practice_transition_seminar";
+export const PRACTICE_TRANSITION_SEMINAR_FORM_KEY = "seminar";
+export const PRACTICE_TRANSITION_SEMINAR_FORM_SITE = "pti-website";
+export const PRACTICE_TRANSITION_SEMINAR_FORM_QA_FIELD = "_codex_test";
 export const PRACTICE_TRANSITION_SEMINAR_FORM_NAME =
   "PTI Seminar Registration";
 export const PRACTICE_TRANSITION_SEMINAR_FORM_PROVIDER = "formspree";

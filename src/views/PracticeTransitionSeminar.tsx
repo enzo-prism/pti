@@ -45,8 +45,11 @@ import {
   PRACTICE_TRANSITION_SEMINAR_EYEBROW,
   PRACTICE_TRANSITION_SEMINAR_FORM_ENDPOINT,
   PRACTICE_TRANSITION_SEMINAR_FORM_ID,
+  PRACTICE_TRANSITION_SEMINAR_FORM_KEY,
   PRACTICE_TRANSITION_SEMINAR_FORM_NAME,
   PRACTICE_TRANSITION_SEMINAR_FORM_PROVIDER,
+  PRACTICE_TRANSITION_SEMINAR_FORM_QA_FIELD,
+  PRACTICE_TRANSITION_SEMINAR_FORM_SITE,
   PRACTICE_TRANSITION_SEMINAR_HEADLINE,
   PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
   practiceTransitionSeminarEvents,
@@ -123,9 +126,13 @@ const buildUtmPayload = () => {
       campaign_source: "",
       campaign_medium: "",
       campaign_name: "",
+      page_path: "",
+      referrer: "",
       utm_source: "",
       utm_medium: "",
       utm_campaign: "",
+      utm_term: "",
+      utm_content: "",
     };
   }
 
@@ -136,12 +143,16 @@ const buildUtmPayload = () => {
 
   return {
     page_url: window.location.href,
+    page_path: window.location.pathname,
+    referrer: document.referrer,
     campaign_source: params.get("campaign_source") ?? utmSource,
     campaign_medium: params.get("campaign_medium") ?? utmMedium,
     campaign_name: params.get("campaign_name") ?? utmCampaign,
     utm_source: utmSource,
     utm_medium: utmMedium,
     utm_campaign: utmCampaign,
+    utm_term: params.get("utm_term") ?? "",
+    utm_content: params.get("utm_content") ?? "",
   };
 };
 
@@ -265,6 +276,10 @@ const buildFormPayload = (values: SeminarFormValues) => {
     tags: "event-registration,practice-transition-seminar",
     message: buildMessage(values, selectedEventLabel),
     submitted_at: new Date().toISOString(),
+    site: PRACTICE_TRANSITION_SEMINAR_FORM_SITE,
+    form_key: PRACTICE_TRANSITION_SEMINAR_FORM_KEY,
+    environment: process.env.NEXT_PUBLIC_VERCEL_ENV ?? process.env.NODE_ENV ?? "production",
+    [PRACTICE_TRANSITION_SEMINAR_FORM_QA_FIELD]: "false",
     _gotcha: values.gotcha,
     ...buildUtmPayload(),
   };
