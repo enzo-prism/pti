@@ -156,5 +156,27 @@ export const rawEvents: RawEvent[] = [
     detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
     offerPrice: 297,
     offerPriceCurrency: "USD"
+  },
+  {
+    id: 8,
+    title: "Mastering Your Dental Transition Into and Out of Practice",
+    date: "March 12, 2027",
+    time: "8:00 AM - 3:00 PM",
+    location: "The Phillips Group, 2300 E Katella Ave #405, Anaheim, CA",
+    description: {
+      intro: "Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day seminar gives you practical guidance for making your next move with clarity and confidence.",
+      learningPoints: [
+        "Increase your practice value before you sell",
+        "Avoid tax pitfalls that can reduce your net gains",
+        "Structure agreements that protect you and build trust",
+        "Understand how today's market affects practice value and ownership",
+        "Approach a win-win practice transition with more confidence"
+      ]
+    },
+    type: "seminar",
+    registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
+    detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
+    offerPrice: 297,
+    offerPriceCurrency: "USD"
   }
 ];

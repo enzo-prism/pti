@@ -10,10 +10,12 @@ describe("events dataset", () => {
     const upcomingSeminars = rawEvents.filter(
       (event) =>
         event.title === "Mastering Your Dental Transition Into and Out of Practice" &&
-        (event.date === "July 17, 2026" || event.date === "October 2, 2026")
+        (event.date === "July 17, 2026" ||
+          event.date === "October 2, 2026" ||
+          event.date === "March 12, 2027")
     );
 
-    expect(upcomingSeminars).toHaveLength(2);
+    expect(upcomingSeminars).toHaveLength(3);
 
     for (const event of upcomingSeminars) {
       expect(event.registrationLink).toBe(PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH);
@@ -31,5 +33,12 @@ describe("events dataset", () => {
     expect(sanFrancisco?.location).toContain("490 Post St.");
     expect(sacramento?.location).toContain("TDIC Headquarters");
     expect(sacramento?.location).toContain("1201 K St");
+  });
+
+  it("uses the confirmed venue for the 2027 Anaheim seminar", () => {
+    const anaheim = rawEvents.find((event) => event.date === "March 12, 2027");
+
+    expect(anaheim?.location).toContain("The Phillips Group");
+    expect(anaheim?.location).toContain("2300 E Katella Ave #405");
   });
 });

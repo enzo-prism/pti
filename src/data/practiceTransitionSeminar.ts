@@ -16,7 +16,7 @@ export const PRACTICE_TRANSITION_SEMINAR_FORM_PROVIDER = "formspree";
 export const PRACTICE_TRANSITION_SEMINAR_PAGE_TITLE =
   "Dental Practice Transition Seminar | PTI";
 export const PRACTICE_TRANSITION_SEMINAR_META_DESCRIPTION =
-  "Join Practice Transitions Institute for a one-day seminar on buying, selling, and transitioning a dental practice with clarity and confidence. Upcoming dates in San Francisco and Sacramento.";
+  "Join Practice Transitions Institute for a one-day seminar on buying, selling, and transitioning a dental practice with clarity and confidence. Upcoming dates in San Francisco, Sacramento, and Anaheim.";
 export const PRACTICE_TRANSITION_SEMINAR_EYEBROW =
   "Practice Transitions Seminar";
 export const PRACTICE_TRANSITION_SEMINAR_HEADLINE =
@@ -62,6 +62,20 @@ export const practiceTransitionSeminarEvents: PracticeTransitionSeminarEvent[] =
     venueName: "TDIC Headquarters",
     addressLines: ["1201 K St, 14th Floor", "Sacramento, CA"],
     earlyBirdDeadline: "September 2, 2026",
+    earlyBirdPrice: 297,
+    standardPrice: 397,
+    guestPrice: 197,
+  },
+  {
+    id: "pti-seminar-anaheim-2027",
+    value: "march-12-2027-anaheim",
+    label: "March 12, 2027 - Anaheim",
+    city: "Anaheim",
+    date: "March 12, 2027",
+    time: "8:00 AM - 3:00 PM",
+    venueName: "The Phillips Group",
+    addressLines: ["2300 E Katella Ave #405", "Anaheim, CA"],
+    earlyBirdDeadline: "February 12, 2027",
     earlyBirdPrice: 297,
     standardPrice: 397,
     guestPrice: 197,
