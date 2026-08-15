@@ -4,6 +4,7 @@ import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 import { buildBlogItemListSchema } from "@/lib/structuredData";
 import { blogPosts, toBlogPostSummary } from "@/data/blogPosts";
+import { communityImpactPosts } from "@/data/communityImpactPosts";
 
 const title = "Dental Practice Transition Blog & Insights";
 const description =
@@ -18,7 +19,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function Page() {
   const blogListSchema = buildBlogItemListSchema();
-  const summaries = blogPosts.map(toBlogPostSummary);
+  const summaries = [...communityImpactPosts, ...blogPosts].map(toBlogPostSummary);
 
   return (
     <>
