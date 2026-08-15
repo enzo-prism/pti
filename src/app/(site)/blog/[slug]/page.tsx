@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogPostView } from "@/views/BlogPost";
 import { blogPosts } from "@/data/blogPosts";
+import { communityImpactPosts } from "@/data/communityImpactPosts";
 import { getAuthorProfile } from "@/data/authors";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
@@ -13,12 +14,14 @@ type BlogParams = {
   slug: string;
 };
 
-const getPost = (slug: string) => blogPosts.find((post) => post.slug === slug);
+const allBlogPosts = [...communityImpactPosts, ...blogPosts];
+
+const getPost = (slug: string) => allBlogPosts.find((post) => post.slug === slug);
 
 export const dynamicParams = false;
 
 export const generateStaticParams = (): BlogParams[] =>
-  blogPosts
+  allBlogPosts
     .filter((post) => post.slug)
     .map((post) => ({ slug: post.slug }));
 
