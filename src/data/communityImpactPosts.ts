@@ -13,7 +13,15 @@ export const communityImpactPosts: BlogPost[] = [
     slug: "panel-of-experts-dinner-roseville",
     author: "Practice Transitions Institute",
     metaTitle: "Panel of Experts Dinner | Practice Transitions Institute",
-    content: `Great night with great Dentists and referral partners! Thank you Provide, Patterson, Sarv Designs, and Carr for including me at this vibrant event. It is so fun to enjoy an evening with Dentists who have dreams and a team that can realize those dreams! Looking forward to the next event in Roseville August 27th!\n\nIt is a honor to autograph my book at the Panel of Experts dinner- Practice Transitions Handbook. Stay tuned for my release of my second book this Month!!!`,
+    featuredImage: "/lovable-uploads/drnjo-2026/IMG_4918.jpeg",
+    featuredImageAlt: "Panel of Experts dinner with dentists and referral partners",
+    featuredImageCaption: "Great night with dentists and referral partners at the Panel of Experts dinner.",
+    featuredImageFit: "cover",
+    content: `Great night with great Dentists and referral partners! Thank you Provide, Patterson, Sarv Designs, and Carr for including me at this vibrant event. It is so fun to enjoy an evening with Dentists who have dreams and a team that can realize those dreams! Looking forward to the next event in Roseville August 27th!
+
+![Dr. Michael Njo autographing Practice Transitions Handbook at the Panel of Experts dinner](/lovable-uploads/drnjo-2026/IMG_4923.jpeg)
+
+It is a honor to autograph my book at the Panel of Experts dinner- Practice Transitions Handbook. Stay tuned for my release of my second book this Month!!!`,
   },
   {
     id: 42,
@@ -27,6 +35,10 @@ export const communityImpactPosts: BlogPost[] = [
     slug: "amazing-4-days-with-industry-leaders",
     author: "Practice Transitions Institute",
     metaTitle: "An Amazing 4 days with Industry leaders | Practice Transitions Institute",
-    content: `An Amazing 4 days with Industry leaders!!!\n\n<div class=\"instagram-embed\" style=\"max-width:540px;margin:1.5rem auto;min-height:720px;\"><iframe src=\"https://www.instagram.com/reel/Db9NKdHJAk2/embed\" width=\"100%\" height=\"720\" frameborder=\"0\" scrolling=\"no\" allowtransparency=\"true\" allow=\"encrypted-media; clipboard-write\" title=\"Instagram reel: An Amazing 4 days with Industry leaders\" loading=\"lazy\"></iframe></div>\n\nVideo credit: [@backstagedentistry](https://www.instagram.com/reel/Db9NKdHJAk2/) on Instagram.`,
+    content: `An Amazing 4 days with Industry leaders!!!
+
+<div class="instagram-embed" style="max-width:540px;margin:1.5rem auto;min-height:720px;"><iframe src="https://www.instagram.com/reel/Db9NKdHJAk2/embed" width="100%" height="720" frameborder="0" scrolling="no" allowtransparency="true" allow="encrypted-media; clipboard-write" title="Instagram reel: An Amazing 4 days with Industry leaders" loading="lazy"></iframe></div>
+
+Video credit: [@backstagedentistry](https://www.instagram.com/reel/Db9NKdHJAk2/) on Instagram.`,
   },
 ];
