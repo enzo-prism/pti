@@ -165,9 +165,9 @@ export interface HomeGalleryTile {
 const HOME_PREVIEW: Array<{ id: string; focus: string }> = [
   { id: "officeSelfieGroup", focus: "center 38%" },
   { id: "smcds-symposium-workshop", focus: "55% center" },
-  { id: "mayflowerTrio", focus: "center 30%" },
+  { id: "dugoni-donation-ceremony", focus: "center 40%" },
   { id: "dinnerTableFour", focus: "center 35%" },
-  { id: "conferenceRoomMeeting", focus: "center 45%" },
+  { id: "smcds-associate-workshop", focus: "center 45%" },
 ];
 
 export const homeGalleryPreview: HomeGalleryTile[] = HOME_PREVIEW.map(

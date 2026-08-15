@@ -74,7 +74,7 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
     caption:
       "A broad community moment that reinforces Dr. Njo's ties to the dental school, alumni network, and the next generation of practice leaders.",
     category: "leadership-community",
-    fit: "cover",
+    fit: "contain",
     aspect: "landscape",
     featuredOn: ["about", "drnjo"],
   },
@@ -85,7 +85,7 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
     caption:
       "Leadership conversations focused on strategy, ownership, and where dentistry is heading next.",
     category: "leadership-community",
-    fit: "cover",
+    fit: "contain",
     aspect: "landscape",
     featuredOn: ["home", "drnjo"],
   },
@@ -96,7 +96,7 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
     caption:
       "Professional relationships built over years of trust, perspective, and shared work in the dental industry.",
     category: "leadership-community",
-    fit: "cover",
+    fit: "contain",
     aspect: "landscape",
     featuredOn: ["home", "drnjo"],
   },
@@ -140,7 +140,7 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
     caption:
       "Long-term professional relationships built far beyond the transaction itself.",
     category: "relationships",
-    fit: "cover",
+    fit: "contain",
     aspect: "landscape",
     featuredOn: ["drnjo"],
   },

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { blogPosts } from "@/data/blogPosts";
+import { communityImpactPosts } from "@/data/communityImpactPosts";
 import { reviews } from "@/data/reviews";
 import sitemap from "./sitemap";
 
@@ -8,7 +9,8 @@ describe("sitemap metadata", () => {
     const entries = sitemap();
     const urls = entries.map((entry) => entry.url);
     const uniqueUrls = new Set(urls);
-    const expectedCount = 26 + blogPosts.filter((post) => post.slug).length + reviews.length;
+    const allBlogPosts = [...communityImpactPosts, ...blogPosts];
+    const expectedCount = 26 + allBlogPosts.filter((post) => post.slug).length + reviews.length;
 
     expect(entries).toHaveLength(expectedCount);
     expect(uniqueUrls.size).toBe(entries.length);
@@ -49,7 +51,7 @@ describe("sitemap metadata", () => {
     );
     expect(urls).toContain("https://practicetransitionsinstitute.com/contact");
     expect(urls).toContain(
-      `https://practicetransitionsinstitute.com/blog/${blogPosts.find((post) => post.slug)?.slug}`
+      `https://practicetransitionsinstitute.com/blog/${allBlogPosts.find((post) => post.slug)?.slug}`
     );
     expect(urls).toContain(
       `https://practicetransitionsinstitute.com/testimonials/${reviews[0]?.slug}`
@@ -69,7 +71,7 @@ describe("sitemap metadata", () => {
     const blogEntry = entries.find(
       (entry) => entry.url === "https://practicetransitionsinstitute.com/blog"
     );
-    const latestPostDate = blogPosts
+    const latestPostDate = [...communityImpactPosts, ...blogPosts]
       .map((post) => post.dateModified ?? post.date)
       .sort()
       .at(-1);

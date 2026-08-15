@@ -35,6 +35,10 @@ It is an honor to autograph my book at the Panel of Experts dinner — Practice 
     slug: "amazing-4-days-with-industry-leaders",
     author: "Practice Transitions Institute",
     metaTitle: "An Amazing 4 days with Industry leaders | Practice Transitions Institute",
+    featuredImage: "/lovable-uploads/drnjo-2026/industry-leaders-reel-poster.webp",
+    featuredImageAlt: "Still from the Backstage Dentistry reel covering four days with industry leaders",
+    featuredImageCaption: "Video still from @backstagedentistry on Instagram.",
+    featuredImageFit: "cover",
     content: `An Amazing 4 days with Industry leaders!!!
 
 <div class=\"instagram-embed\" style=\"max-width:540px;margin:1.5rem auto;min-height:720px;\"><iframe src=\"https://www.instagram.com/reel/Db9NKdHJAk2/embed\" width=\"100%\" height=\"720\" frameborder=\"0\" scrolling=\"no\" allowtransparency=\"true\" allow=\"encrypted-media; clipboard-write\" title=\"Instagram reel: An Amazing 4 days with Industry leaders\" loading=\"lazy\"></iframe></div>

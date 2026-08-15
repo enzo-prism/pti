@@ -30,6 +30,8 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
   - Optional fields: `dateModified`, `featuredImage`, `featuredImageAlt`, `featuredImageFit`, `series`, `cta`.
   - Dev-only internal link validation runs via `src/lib/linkValidation.ts`; `/blog/...` links must match slugs.
   - IMPORTANT: never import `blogPosts` from a client component — the full markdown bodies would ship in the JS bundle. Listing surfaces receive `BlogPostSummary[]` props mapped via `toBlogPostSummary` in a server page (see `src/app/(site)/blog/page.tsx`).
+- Recent photo/video community posts: `src/data/communityImpactPosts.ts` (merged ahead of `blogPosts` in the blog listing, post route, and sitemap). Photo stories need a real `featuredImage` — a gradient-only hero looks like a missing photograph.
+- Gallery storytelling set: `src/data/drNjoGallery.ts` plus dimensions in `src/data/galleryImages.ts`. Files live in `public/lovable-uploads/drnjo-2026/`. Several historical thumbs (`mayflower-trio`, `conference-room-meeting`, `dugoni-group-photo`, `dinner-duo`, `publication-spread`, `blue-print-for-success-flyer`, `black-tie-medal-portrait`) are native ~240–320px; keep `fit: "contain"` so they are not cover-cropped and upscaled. Do not invent higher-resolution replacements unless a true original is supplied.
 - Events: `src/data/events.ts` (date strings like "March 28, 2025"; optional `dateDisplay` for ranges).
 - Testimonials: canonical reviews dataset in `src/data/reviews.ts` (see `docs/reviews-runbook.md`).
 - Amazon reviews: `src/data/amazonReviews.ts`.
@@ -70,6 +72,8 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 
 ## Assets
 - Use `/lovable-uploads/...` for local assets in `public/lovable-uploads`.
+- Panel of Experts dinner photos: `public/lovable-uploads/drnjo-2026/IMG_4918.webp`, `IMG_4923.webp`, `IMG_3346.webp` (1600×2133 WebP from the original iPhone JPEGs).
+- Industry-leaders reel stays an Instagram embed; the blog hero uses a saved poster at `public/lovable-uploads/drnjo-2026/industry-leaders-reel-poster.webp`. Do not hotlink Instagram CDN URLs (they expire).
 - External image URLs are allowed; include meaningful `alt` text.
 - `featuredImageFit` supports `"cover"` or `"contain"` for blog posts.
 
