@@ -1,12 +1,9 @@
 import type { MetadataRoute } from "next";
 import { blogPosts } from "@/data/blogPosts";
+import { communityImpactPosts } from "@/data/communityImpactPosts";
 import { reviews } from "@/data/reviews";
 import { buildAbsoluteUrl } from "@/lib/siteMetadata";
 
-// `lastModified` is a maintained, real content-change date (YYYY-MM-DD).
-// Update it when a page's visible content meaningfully changes — a fake,
-// always-changing lastmod (e.g. the deploy timestamp) teaches crawlers to
-// ignore the signal entirely.
 interface StaticRoute {
   path: string;
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
@@ -44,9 +41,10 @@ const STATIC_ROUTES: StaticRoute[] = [
 ];
 
 const toUtcDate = (dateString: string) => new Date(`${dateString}T00:00:00Z`);
+const allBlogPosts = [...communityImpactPosts, ...blogPosts];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const latestPostDate = blogPosts
+  const latestPostDate = allBlogPosts
     .map((post) => post.dateModified ?? post.date)
     .sort()
     .at(-1);
@@ -62,7 +60,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
-  const blogEntries: MetadataRoute.Sitemap = blogPosts
+  const blogEntries: MetadataRoute.Sitemap = allBlogPosts
     .filter((post) => post.slug)
     .map((post) => ({
       url: buildAbsoluteUrl(`/blog/${post.slug}`),
