@@ -2,11 +2,12 @@ import Link from "next/link";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
-import { Users, FileText, TrendingUp, CheckCircle, ArrowRight, Plus } from "lucide-react";
+import { Users, FileText, TrendingUp, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { getFeaturedReviews } from "@/data/reviews";
+import { ServiceEngagementDetails } from "@/components/services/ServiceEngagementDetails";
 
 const Associateships = () => {
   const associateshipReview = getFeaturedReviews("associateships")[0];
@@ -18,10 +19,10 @@ const Associateships = () => {
         <div className="container relative z-10 px-3 sm:px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 animate-fade-in leading-tight">
-              Grow Your Practice, Secure Your Future: Expert Guidance on Associateships & Buy-Ins
+              Build a Clear Path From Associateship to Ownership
             </h1>
             <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4 sm:mb-6 md:mb-8 animate-fade-in animate-delay-200 max-w-3xl mx-auto px-2 leading-relaxed">
-              From early planning to the final buy-in, we provide comprehensive support to create mutually beneficial arrangements that pave the way for lasting success.
+              PTI helps practice owners and associates align expectations, test fit, establish a valuation method, and coordinate the business terms of a potential buy-in.
             </p>
           </div>
         </div>
@@ -35,14 +36,14 @@ const Associateships = () => {
               Your Path to Practice Ownership
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-4 animate-fade-in animate-delay-100 px-3 leading-relaxed">
-              Whether you&apos;re an associate dentist looking to buy into a practice or a practice owner wanting to bring on an associate with a path to ownership, our structured approach ensures a successful transition.
+              Whether you&apos;re an associate considering a buy-in or a practice owner planning succession, the path should define responsibilities, compensation, timing, valuation, and what happens if either party changes course.
             </p>
             <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-8 animate-fade-in animate-delay-200 px-3 leading-relaxed">
-              We create clear, equitable arrangements that protect both parties and establish a foundation for long-term success.
+              PTI helps both parties clarify the business terms, then coordinates with each party&apos;s attorney, CPA, and lender as the arrangement is documented and financed.
             </p>
             <div className="flex justify-center px-3">
               <Button asChild size="lg" className="w-full sm:w-auto text-sm sm:text-base">
-                <Link href="/contact">Schedule a Consultation</Link>
+                <Link href="/contact">Discuss an Associateship or Buy-In</Link>
               </Button>
             </div>
           </div>
@@ -66,7 +67,7 @@ const Associateships = () => {
               </div>
               <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2">Needs Assessment</h3>
               <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                We evaluate the practice and the associate&apos;s goals to ensure alignment and compatibility.
+                We compare the practice&apos;s needs with the associate&apos;s clinical, financial, leadership, and ownership goals.
               </p>
             </CardContent>
           </Card>
@@ -76,9 +77,9 @@ const Associateships = () => {
               <div className="bg-accent rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-3 sm:mb-4">
                 <Users className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
               </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2">Structured Agreement</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2">Business-Term Framework</h3>
               <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                We develop clear terms for the associateship period, including responsibilities and compensation.
+                We help define responsibilities, compensation, decision rights, milestones, and exit scenarios for each party&apos;s attorney to document.
               </p>
             </CardContent>
           </Card>
@@ -90,7 +91,7 @@ const Associateships = () => {
               </div>
               <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2">Buy-In Strategy</h3>
               <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                We create a clear path to ownership with defined timelines, valuation methods, and financing options.
+                We establish the planned timing, valuation method, ownership percentage, and financing questions that need to be resolved.
               </p>
             </CardContent>
           </Card>
@@ -100,9 +101,9 @@ const Associateships = () => {
               <div className="bg-accent rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-3 sm:mb-4">
                 <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
               </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2">Successful Transition</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2">Implementation Support</h3>
               <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                We guide the execution of the buy-in process, ensuring a smooth transition to co-ownership.
+                We coordinate the business workstreams and help both dentists prepare for new roles, communication, and governance.
               </p>
             </CardContent>
           </Card>
@@ -167,8 +168,8 @@ const Associateships = () => {
               <div className="flex items-start gap-3">
                 <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-semibold text-sm sm:text-base md:text-lg mb-1">Increased Practice Value</h4>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Adding an associate often increases production and overall practice valuation.</p>
+                  <h4 className="font-semibold text-sm sm:text-base md:text-lg mb-1">Capacity and Continuity</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">An associate may expand clinical capacity and create a planned path for patient and team continuity.</p>
                 </div>
               </div>
               
@@ -192,11 +193,20 @@ const Associateships = () => {
         </div>
       </Section>
 
+      <ServiceEngagementDetails
+        deliverables={[
+          "Goals, fit, and readiness assessment",
+          "Compensation, milestone, valuation, and ownership framework",
+          "Implementation coordination with each party's advisors",
+        ]}
+        timeline="Associateship and buy-in timing depends on readiness, performance milestones, financing, and the parties' goals. PTI documents the proposed phases and review points rather than applying a fixed timeline."
+      />
+
       {/* Testimonial Section */}
       <Section background="light" className="py-8 sm:py-12 md:py-16">
         <SectionTitle centered>What Our Clients Say</SectionTitle>
         <SectionSubtitle centered>
-          Hear from dentists who have successfully navigated practice transitions with our guidance
+          A buyer review presented as recorded in PTI&apos;s review library
         </SectionSubtitle>
         
         <div className="max-w-2xl mx-auto mt-8 px-3">
@@ -212,12 +222,13 @@ const Associateships = () => {
         </div>
       </Section>
 
-      {/* CTA Section - Moved Up */}
+      {/* CTA Section */}
       <Section className="py-8 sm:py-12 md:py-16">
         <div className="px-3">
           <Cta 
             title="Ready to Discuss Your Associateship or Buy-In?"
-            buttonText="Book Your Consultation"
+            description="Start with a confidential conversation about the practice, the people involved, and the ownership path being considered."
+            buttonText="Discuss an Associateship or Buy-In"
             buttonUrl="/contact"
             className="rounded-lg"
           />
@@ -236,7 +247,7 @@ const Associateships = () => {
                 How long should an associateship last before a buy-in?
               </AccordionTrigger>
               <AccordionContent className="text-xs sm:text-sm md:text-base text-gray-600 pb-4 leading-relaxed">
-                Typically, 1-3 years is recommended to ensure compatibility and allow the associate to build relationships with patients. The exact timeline should be based on practice needs and the associate&apos;s readiness.
+                There is no single timeline that fits every practice. The parties should define the clinical, financial, leadership, and relationship milestones that must be met before a buy-in, then schedule formal review points.
               </AccordionContent>
             </AccordionItem>
             
@@ -254,7 +265,7 @@ const Associateships = () => {
                 What financing options are available for associates?
               </AccordionTrigger>
               <AccordionContent className="text-xs sm:text-sm md:text-base text-gray-600 pb-4 leading-relaxed">
-                Associates can explore traditional bank loans, SBA loans, seller financing, or a combination of these. We help identify the most advantageous options based on the specific situation.
+                Financing may include a conventional bank loan, an SBA-backed loan, seller financing, or a combination. PTI can help organize the questions and coordinate with lenders, while the lender determines eligibility and terms.
               </AccordionContent>
             </AccordionItem>
             
@@ -263,7 +274,7 @@ const Associateships = () => {
                 What happens if the associateship doesn&apos;t work out?
               </AccordionTrigger>
               <AccordionContent className="text-xs sm:text-sm md:text-base text-gray-600 pb-4 leading-relaxed">
-                We recommend establishing clear termination provisions in the initial agreement, including notice periods and non-compete considerations. This protects both parties if the arrangement isn&apos;t a good fit.
+                The initial documents should address notice, patient and team communication, compensation, access to information, and other exit terms. Each party should have independent legal advice, including for any restrictive covenant.
               </AccordionContent>
             </AccordionItem>
           </Accordion>

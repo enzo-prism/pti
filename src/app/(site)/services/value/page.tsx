@@ -6,7 +6,7 @@ import { serviceOfferings } from "@/data/services";
 
 const title = "Dental Practice Valuation (Opinion of Value)";
 const description =
-  "Get a clear, data-backed valuation for your dental practice with PTI's Opinion of Value service.";
+  "Get a documented dental practice valuation based on financial performance, operations, and market context, with assumptions and limitations explained.";
 
 export const metadata = buildPageMetadata({
   title,

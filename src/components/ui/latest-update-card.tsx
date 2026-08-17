@@ -38,8 +38,8 @@ export function LatestUpdateCard({ post, className }: LatestUpdateCardProps) {
 
         {/* Content Section */}
         <div className="p-6 md:p-8 flex flex-col justify-center">
-          <div className="flex items-center text-gray-500 text-sm mb-3">
-            <Calendar className="h-4 w-4 mr-2" />
+          <div className="mb-3 flex items-center text-sm text-gray-700">
+            <Calendar className="mr-2 h-4 w-4" aria-hidden="true" />
             <span>{post.date}</span>
           </div>
 
@@ -47,7 +47,7 @@ export function LatestUpdateCard({ post, className }: LatestUpdateCardProps) {
             {post.title}
           </h3>
 
-          <p className="text-gray-600 leading-relaxed mb-6 line-clamp-3">
+          <p className="mb-6 line-clamp-3 leading-relaxed text-gray-700">
             {post.excerpt}
           </p>
 

@@ -3,10 +3,13 @@ import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 import { rawEvents } from "@/data/events";
 import { buildEventSchema } from "@/lib/structuredData";
+import { isEventPast } from "@/lib/dateUtils";
 
-const title = "Dental Practice Leadership Retreat 2026";
+const title = "2026 Dental Practice Leadership Retreat Archive";
 const description =
-  "Join PTI's leadership retreat in Savannah, GA for practice owners ready to lead with clarity and confidence.";
+  "An archive of PTI's participation in the June 2026 dental practice leadership retreat in Savannah, Georgia.";
+
+export const revalidate = 3600;
 
 const retreatEvent = rawEvents.find(
   (event) => event.detailPath === "/events/leadership-retreat"
@@ -14,6 +17,7 @@ const retreatEvent = rawEvents.find(
 const retreatEndDate = retreatEvent?.dateDisplay
   ? "June 6, 2026"
   : undefined;
+const retreatIsPast = retreatEvent ? isEventPast(retreatEvent.date) : true;
 
 const retreatSchema = retreatEvent
   ? buildEventSchema({
@@ -31,6 +35,8 @@ const retreatSchema = retreatEvent
       type: retreatEvent.type,
       isVirtual: retreatEvent.type === "webinar",
       detailPath: retreatEvent.detailPath,
+      eventStatus: retreatIsPast ? "completed" : "scheduled",
+      registrationOpen: !retreatIsPast,
     })
   : null;
 

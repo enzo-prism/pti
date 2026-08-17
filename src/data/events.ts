@@ -1,11 +1,15 @@
 import {
   PRACTICE_TRANSITION_SEMINAR_PATH,
   PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
+  getSeminarRegistrationPrice,
+  practiceTransitionSeminarEvents,
+  practiceTransitionSeminarLearningPoints,
 } from "@/data/practiceTransitionSeminar";
+import { isEventPast, parseEventDate, sortEventDates } from "@/lib/dateUtils";
 
 // Event data with type definitions
 export interface RawEvent {
-  id: number;
+  id: string | number;
   title: string;
   date: string;
   dateDisplay?: string;
@@ -26,6 +30,28 @@ export interface RawEvent {
     imageUrl: string;
   }>;
 }
+
+const practiceTransitionSeminarDescription = {
+  intro:
+    "Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day seminar gives you practical guidance for making your next move with clarity and confidence.",
+  learningPoints: practiceTransitionSeminarLearningPoints,
+};
+
+const practiceTransitionEvents: RawEvent[] = practiceTransitionSeminarEvents.map(
+  (event) => ({
+    id: event.id,
+    title: "Mastering Your Dental Transition Into and Out of Practice",
+    date: event.date,
+    time: event.time,
+    location: `${event.venueName}, ${event.addressLines.join(", ")}`,
+    description: practiceTransitionSeminarDescription,
+    type: "seminar",
+    registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
+    detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
+    offerPrice: event.earlyBirdPrice,
+    offerPriceCurrency: "USD",
+  })
+);
 
 export const rawEvents: RawEvent[] = [
   {
@@ -113,70 +139,29 @@ export const rawEvents: RawEvent[] = [
     registrationLink: "https://www.dentistretreat.com/",
     detailPath: "/events/leadership-retreat"
   },
-  {
-    id: 5,
-    title: "Mastering Your Dental Transition Into and Out of Practice",
-    date: "July 17, 2026",
-    time: "8:00 AM - 3:00 PM",
-    location: "Kohan Group, 490 Post St., Ste 1135, San Francisco, CA",
-    description: {
-      intro: "Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day seminar gives you practical guidance for making your next move with clarity and confidence.",
-      learningPoints: [
-        "Increase your practice value before you sell",
-        "Avoid tax pitfalls that can reduce your net gains",
-        "Structure agreements that protect you and build trust",
-        "Understand how today's market affects practice value and ownership",
-        "Approach a win-win practice transition with more confidence"
-      ]
-    },
-    type: "seminar",
-    registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
-    detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
-    offerPrice: 297,
-    offerPriceCurrency: "USD"
-  },
-  {
-    id: 6,
-    title: "Mastering Your Dental Transition Into and Out of Practice",
-    date: "October 2, 2026",
-    time: "8:00 AM - 3:00 PM",
-    location: "TDIC Headquarters, 1201 K St, 14th Floor, Sacramento, CA",
-    description: {
-      intro: "Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day seminar gives you practical guidance for making your next move with clarity and confidence.",
-      learningPoints: [
-        "Increase your practice value before you sell",
-        "Avoid tax pitfalls that can reduce your net gains",
-        "Structure agreements that protect you and build trust",
-        "Understand how today's market affects practice value and ownership",
-        "Approach a win-win practice transition with more confidence"
-      ]
-    },
-    type: "seminar",
-    registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
-    detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
-    offerPrice: 297,
-    offerPriceCurrency: "USD"
-  },
-  {
-    id: 8,
-    title: "Mastering Your Dental Transition Into and Out of Practice",
-    date: "March 12, 2027",
-    time: "8:00 AM - 3:00 PM",
-    location: "The Phillips Group, 2300 E Katella Ave #405, Anaheim, CA",
-    description: {
-      intro: "Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day seminar gives you practical guidance for making your next move with clarity and confidence.",
-      learningPoints: [
-        "Increase your practice value before you sell",
-        "Avoid tax pitfalls that can reduce your net gains",
-        "Structure agreements that protect you and build trust",
-        "Understand how today's market affects practice value and ownership",
-        "Approach a win-win practice transition with more confidence"
-      ]
-    },
-    type: "seminar",
-    registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
-    detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
-    offerPrice: 297,
-    offerPriceCurrency: "USD"
-  }
+  ...practiceTransitionEvents,
 ];
+
+export const getUpcomingRawEvents = (
+  referenceDate: Date = new Date()
+): RawEvent[] =>
+  sortEventDates(
+    rawEvents.filter((event) => !isEventPast(event.date, referenceDate))
+  ).map((event) => {
+    const seminar = practiceTransitionSeminarEvents.find(
+      (candidate) => candidate.date === event.date
+    );
+    return seminar
+      ? { ...event, offerPrice: getSeminarRegistrationPrice(seminar, referenceDate) }
+      : event;
+  });
+
+export const getPastRawEvents = (
+  referenceDate: Date = new Date()
+): RawEvent[] =>
+  [...rawEvents]
+    .filter((event) => isEventPast(event.date, referenceDate))
+    .sort(
+      (a, b) =>
+        parseEventDate(b.date).getTime() - parseEventDate(a.date).getTime()
+    );

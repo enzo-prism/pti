@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
-import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
-import { HotjarAnalytics } from "@/components/analytics/HotjarAnalytics";
+import { AnalyticsProviders } from "@/components/analytics/AnalyticsProviders";
+import { CookieConsent } from "@/components/privacy/CookieConsent";
 import {
   SITE_NAME,
   BUSINESS_DESCRIPTION,
@@ -125,17 +124,12 @@ export default function RootLayout({
       className={`${inter.variable} ${montserrat.variable}`}
     >
       <body className="min-h-screen bg-background text-foreground antialiased">
-        {/* Resource hints for third-party origins used across the site. */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://static.hotjar.com" />
-        <link rel="dns-prefetch" href="https://script.hotjar.com" />
+        {/* Resource hints for public image origins used across the site. */}
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         {children}
-        <Analytics />
-        <GoogleAnalytics />
-        <HotjarAnalytics />
+        <AnalyticsProviders />
+        <CookieConsent />
       </body>
     </html>
   );

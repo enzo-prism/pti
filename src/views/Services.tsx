@@ -12,6 +12,7 @@ import {
   Clock,
   Smile,
   ArrowUpRight,
+  SearchCheck,
 } from "lucide-react";
 import { serviceOfferings } from "@/data/services";
 import Image from "next/image";
@@ -20,7 +21,8 @@ const serviceIconMap: Record<string, JSX.Element> = {
   "Opinion of Value": <FileText className="h-8 w-8 text-blue-600" />,
   "Selling a Practice": <DollarSign className="h-8 w-8 text-emerald-600" />,
   "Selling to a DSO": <Building2 className="h-8 w-8 text-sky-600" />,
-  "Associateships/Buy In": <Users className="h-8 w-8 text-orange-600" />,
+  "Buying a Practice": <SearchCheck className="h-8 w-8 text-teal-600" />,
+  "Associateships and Buy-Ins": <Users className="h-8 w-8 text-orange-600" />,
   Partnerships: <Handshake className="h-8 w-8 text-purple-600" />,
 };
 
@@ -34,23 +36,23 @@ const Services = () => {
   const benefits = [
     {
       icon: <Award className="h-6 w-6 text-primary" />,
-      title: "Expert Guidance",
-      description: "Our team specializes exclusively in dental practice transitions, offering unparalleled expertise."
+      title: "Transition-Focused Guidance",
+      description: "Work with a team focused on dental practice sales, acquisitions, valuations, and ownership changes."
     },
     {
       icon: <Clock className="h-6 w-6 text-primary" />,
-      title: "Time Savings",
-      description: "We handle the complex details so you can focus on your practice and patients."
+      title: "A Coordinated Process",
+      description: "Keep decisions, documents, advisors, and deadlines organized while you continue caring for patients."
     },
     {
       icon: <DollarSign className="h-6 w-6 text-primary" />,
-      title: "Maximized Value",
-      description: "Strategic approaches to ensure the best financial outcome for your transition."
+      title: "Better Decision Support",
+      description: "Use valuation, market context, and deal analysis to compare options on more than a headline price."
     },
     {
       icon: <Smile className="h-6 w-6 text-primary" />,
-      title: "Reduced Stress",
-      description: "A smooth, well-managed process that minimizes disruption and anxiety."
+      title: "Clear Roles and Next Steps",
+      description: "Know who is responsible, which decision comes next, and when to involve your attorney, CPA, or lender."
     }
   ];
 
@@ -60,9 +62,9 @@ const Services = () => {
       <section className="pt-28 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-accent to-white">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">Services at a Glance</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">Dental Practice Transition Services</h1>
             <p className="text-xl text-gray-700 animate-fade-in animate-delay-100">
-              Dental Transition Services That Puts You First
+              Clear guidance for selling, buying, valuing, and structuring ownership
             </p>
           </div>
         </div>
@@ -73,28 +75,29 @@ const Services = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Your goals. Your practice. Our Expertise.
+              Choose the Path That Fits Your Goals
             </h2>
             <p className="text-gray-600 mb-4">
-              Your practice is more than a business — it&apos;s the result of years of dedication and 
-              care. At Practice Transitions Institute, we help you protect that legacy, unlock value, 
+              Your practice is more than a business. It is the result of years of dedication and
+              care. At Practice Transitions Institute, we help you protect that legacy, unlock value,
               and make confident decisions at every career stage.
             </p>
             <p className="text-gray-600 mb-4">
-              Whether you&apos;re preparing to sell, bring on a partner, buy into a practice, or simply want 
-              to understand your practice&apos;s worth, our expert team provides step-by-step support 
+              Whether you&apos;re preparing to sell, evaluating a practice to buy, bringing on a partner, or simply want
+              to understand your practice&apos;s worth, our expert team provides step-by-step support
               tailored to your goals.
             </p>
             <p className="text-gray-600">
-              We specialize exclusively in dental transitions, and we bring 
-              unmatched expertise, integrity, and strategy to every client relationship.
+              PTI provides transition strategy and transaction support, then
+              coordinates with your attorney, CPA, and lender when their licensed
+              expertise is required.
             </p>
           </div>
           <div className="animate-fade-in animate-delay-100">
             <div className="relative aspect-video overflow-hidden rounded-lg shadow-md">
               <Image
-                src="https://www.theforage.com/blog/wp-content/uploads/2022/09/management-consultant.jpg"
-                alt="Dental practice consultants in a meeting"
+                src="/lovable-uploads/drnjo-2026/conference-room-meeting.webp"
+                alt="Dental professionals reviewing a practice transition plan"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
@@ -108,7 +111,7 @@ const Services = () => {
       <Section background="light">
         <SectionTitle centered>Our Core Services</SectionTitle>
         <SectionSubtitle centered>
-          Comprehensive solutions tailored to your dental practice transition needs
+          Select the service that matches the decision in front of you
         </SectionSubtitle>
         
         <div className="grid md:grid-cols-2 gap-8 mt-8">
@@ -128,9 +131,9 @@ const Services = () => {
 
       {/* Benefits Section */}
       <Section>
-        <SectionTitle centered>Why Choose PTI</SectionTitle>
+        <SectionTitle centered>What PTI Adds to the Process</SectionTitle>
         <SectionSubtitle centered>
-          The PTI advantage for your practice transition journey
+          Practical support for the financial, operational, and human sides of a transition
         </SectionSubtitle>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
@@ -197,9 +200,9 @@ const Services = () => {
                   4
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Successful Transition</h3>
+                  <h3 className="text-xl font-semibold mb-2">Closing and Handoff</h3>
                   <p className="text-gray-600">
-                    We finalize all details and ensure a smooth handover, setting everyone up for success.
+                    We coordinate the final workstreams and help you prepare the team, patients, and new owner for the handoff.
                   </p>
                 </div>
               </div>
@@ -208,8 +211,8 @@ const Services = () => {
           <div className="order-1 md:order-2 animate-fade-in animate-delay-100">
             <div className="relative aspect-video overflow-hidden rounded-lg shadow-md">
               <Image
-                src="https://www.huntersure.com/wp-content/uploads/2020/06/Consultants.jpg"
-                alt="Dental practice consultation"
+                src="/lovable-uploads/drnjo-2026/standing-trio.webp"
+                alt="Practice Transitions Institute team members"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
@@ -222,9 +225,9 @@ const Services = () => {
       {/* CTA Section */}
       <Section className="mb-8">
         <Cta 
-          title="Ready to Discuss Your Practice Transition?"
-          description="Schedule a complimentary consultation with our team of experts."
-          buttonText="Book Your Consultation"
+          title="Which Transition Path Fits Your Situation?"
+          description="Start with a confidential 30-minute call about your goals, timeline, and the decision in front of you."
+          buttonText="Schedule a Free 30-Minute Call"
           buttonUrl="/contact"
         />
       </Section>

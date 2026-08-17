@@ -10,9 +10,11 @@ import {
   PRACTICE_TRANSITION_SEMINAR_PAGE_TITLE,
   PRACTICE_TRANSITION_SEMINAR_PATH,
   PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
-  practiceTransitionSeminarEvents,
   practiceTransitionSeminarFaqs,
   practiceTransitionSeminarLearningPoints,
+  getPastPracticeTransitionSeminarEvents,
+  getSeminarRegistrationPrice,
+  getUpcomingPracticeTransitionSeminarEvents,
 } from "@/data/practiceTransitionSeminar";
 import { getReviewBySlug } from "@/data/reviews";
 
@@ -21,25 +23,9 @@ const eventDescription = [
   ...practiceTransitionSeminarLearningPoints,
 ].join(" ");
 
-const eventSchemas = practiceTransitionSeminarEvents.map((event) =>
-  buildEventSchema({
-    id: event.id,
-    title: `Practice Transitions Seminar - ${event.city}`,
-    date: event.date,
-    time: event.time,
-    location: `${event.venueName}, ${event.addressLines.join(", ")}`,
-    description: eventDescription,
-    registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
-    type: "seminar",
-    detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
-    offerPrice: event.earlyBirdPrice,
-  })
-);
-
 const faqSchema = buildFAQSchema(practiceTransitionSeminarFaqs);
-const structuredSchemas = faqSchema
-  ? [...eventSchemas, faqSchema]
-  : eventSchemas;
+
+export const revalidate = 3600;
 
 export const metadata = buildPageMetadata({
   title: PRACTICE_TRANSITION_SEMINAR_PAGE_TITLE,
@@ -48,6 +34,29 @@ export const metadata = buildPageMetadata({
 });
 
 export default function Page() {
+  const referenceDate = new Date();
+  const upcomingEvents = getUpcomingPracticeTransitionSeminarEvents(referenceDate);
+  const archivedEvents = getPastPracticeTransitionSeminarEvents(referenceDate);
+  const eventSchemas = upcomingEvents.map((event) =>
+    buildEventSchema({
+      id: event.id,
+      title: `Practice Transitions Seminar - ${event.city}`,
+      date: event.date,
+      time: event.time,
+      location: `${event.venueName}, ${event.addressLines.join(", ")}`,
+      description: eventDescription,
+      registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
+      type: "seminar",
+      detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
+      offerPrice: getSeminarRegistrationPrice(event, referenceDate),
+      offerPriceCurrency: "USD",
+      registrationOpen: true,
+    })
+  );
+  const structuredSchemas = faqSchema
+    ? [...eventSchemas, faqSchema]
+    : eventSchemas;
+
   return (
     <>
       <StructuredData
@@ -60,6 +69,9 @@ export default function Page() {
       />
       <PracticeTransitionSeminar
         testimonial={getReviewBySlug("ankit-sidana-seminar-mentorship")}
+        events={upcomingEvents}
+        archivedEvents={archivedEvents}
+        referenceDateIso={referenceDate.toISOString()}
       />
     </>
   );

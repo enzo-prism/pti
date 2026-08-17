@@ -51,14 +51,16 @@ import {
   PRACTICE_TRANSITION_SEMINAR_FORM_QA_FIELD,
   PRACTICE_TRANSITION_SEMINAR_FORM_SITE,
   PRACTICE_TRANSITION_SEMINAR_HEADLINE,
-  PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
-  practiceTransitionSeminarEvents,
+  getPracticeTransitionSeminarEvent,
+  getSeminarRegistrationPrice,
   practiceTransitionSeminarFaqs,
   practiceTransitionSeminarLearningPoints,
   practiceTransitionSeminarValuePoints,
+  type PracticeTransitionSeminarEvent,
 } from "@/data/practiceTransitionSeminar";
 import type { ReviewRecord } from "@/data/reviews";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
+import { isEventUpcoming } from "@/lib/dateUtils";
 import {
   trackContactFormStart,
   trackContactFormSubmit,
@@ -79,7 +81,7 @@ const heardAboutOptions = [
 type AttendeeCount = (typeof attendeeOptions)[number] | "";
 type HeardAbout = (typeof heardAboutOptions)[number] | "";
 
-interface SeminarFormValues {
+export interface SeminarFormValues {
   selectedEvent: string;
   name: string;
   email: string;
@@ -95,10 +97,12 @@ interface SeminarFormValues {
   gotcha: string;
 }
 
-type SeminarFormErrors = Partial<Record<keyof SeminarFormValues, string>>;
+export type SeminarFormErrors = Partial<Record<keyof SeminarFormValues, string>>;
 
-const defaultFormValues: SeminarFormValues = {
-  selectedEvent: practiceTransitionSeminarEvents[0]?.value ?? "",
+const buildDefaultFormValues = (
+  events: PracticeTransitionSeminarEvent[]
+): SeminarFormValues => ({
+  selectedEvent: events[0]?.value ?? "",
   name: "",
   email: "",
   phone: "",
@@ -111,13 +115,15 @@ const defaultFormValues: SeminarFormValues = {
   paymentConsent: false,
   smsConsent: false,
   gotcha: "",
-};
+});
 
 const isMoreThanOneAttendee = (value: AttendeeCount) =>
   value !== "" && value !== "1";
 
 const isEmailLike = (value: string) =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+
+const isPhoneLike = (value: string) => value.replace(/\D/g, "").length >= 10;
 
 const buildUtmPayload = () => {
   if (typeof window === "undefined") {
@@ -156,11 +162,17 @@ const buildUtmPayload = () => {
   };
 };
 
-const validateForm = (values: SeminarFormValues): SeminarFormErrors => {
+export const validateSeminarRegistration = (
+  values: SeminarFormValues,
+  availableEvents: PracticeTransitionSeminarEvent[]
+): SeminarFormErrors => {
   const errors: SeminarFormErrors = {};
 
-  if (!values.selectedEvent) {
-    errors.selectedEvent = "Choose a seminar date.";
+  if (
+    !values.selectedEvent ||
+    !getPracticeTransitionSeminarEvent(values.selectedEvent, availableEvents)
+  ) {
+    errors.selectedEvent = "Choose an available seminar date.";
   }
   if (!values.name.trim()) {
     errors.name = "Enter your full name.";
@@ -168,8 +180,8 @@ const validateForm = (values: SeminarFormValues): SeminarFormErrors => {
   if (!isEmailLike(values.email)) {
     errors.email = "Enter a valid email address.";
   }
-  if (!values.phone.trim()) {
-    errors.phone = "Enter your mobile phone number.";
+  if (!isPhoneLike(values.phone)) {
+    errors.phone = "Enter a valid phone number with an area code.";
   }
   if (!values.cityState.trim()) {
     errors.cityState = "Enter your city and state.";
@@ -201,9 +213,6 @@ const formatCurrency = (value: number) => `$${value}`;
 
 const getFieldErrorId = (field: keyof SeminarFormValues) =>
   `seminar-form-${field}-error`;
-
-const getSelectedEvent = (selectedEvent: string) =>
-  practiceTransitionSeminarEvents.find((event) => event.value === selectedEvent);
 
 const buildMessage = (
   values: SeminarFormValues,
@@ -247,8 +256,14 @@ const buildMessage = (
   ].join("\n");
 };
 
-const buildFormPayload = (values: SeminarFormValues) => {
-  const selectedEvent = getSelectedEvent(values.selectedEvent);
+const buildFormPayload = (
+  values: SeminarFormValues,
+  availableEvents: PracticeTransitionSeminarEvent[]
+) => {
+  const selectedEvent = getPracticeTransitionSeminarEvent(
+    values.selectedEvent,
+    availableEvents
+  );
   const selectedEventLabel = selectedEvent?.label ?? "Practice Transition Seminar";
   const source =
     values.heardAbout === "Other"
@@ -287,12 +302,24 @@ const buildFormPayload = (values: SeminarFormValues) => {
 
 interface PracticeTransitionSeminarProps {
   testimonial?: ReviewRecord;
+  events: PracticeTransitionSeminarEvent[];
+  archivedEvents?: PracticeTransitionSeminarEvent[];
+  referenceDateIso: string;
 }
 
 const PracticeTransitionSeminar = ({
   testimonial,
+  events,
+  archivedEvents = [],
+  referenceDateIso,
 }: PracticeTransitionSeminarProps) => {
-  const [values, setValues] = useState<SeminarFormValues>(defaultFormValues);
+  const availableEvents = useMemo(
+    () => events.filter((event) => isEventUpcoming(event.date)),
+    [events]
+  );
+  const [values, setValues] = useState<SeminarFormValues>(() =>
+    buildDefaultFormValues(events)
+  );
   const [errors, setErrors] = useState<SeminarFormErrors>({});
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "submitting" | "success" | "error"
@@ -301,15 +328,36 @@ const PracticeTransitionSeminar = ({
   const [isHydrated, setIsHydrated] = useState(false);
   const formStartedRef = useRef(false);
   const submittingRef = useRef(false);
+  const statusRef = useRef<HTMLDivElement>(null);
 
   const selectedEvent = useMemo(
-    () => getSelectedEvent(values.selectedEvent),
-    [values.selectedEvent]
+    () =>
+      getPracticeTransitionSeminarEvent(values.selectedEvent, availableEvents),
+    [availableEvents, values.selectedEvent]
+  );
+
+  const pricingReferenceDate = useMemo(
+    () => new Date(referenceDateIso),
+    [referenceDateIso]
   );
 
   useEffect(() => {
     setIsHydrated(true);
   }, []);
+
+  useEffect(() => {
+    if (availableEvents.length === 0 || selectedEvent) return;
+    setValues((current) => ({
+      ...current,
+      selectedEvent: availableEvents[0].value,
+    }));
+  }, [availableEvents, selectedEvent]);
+
+  useEffect(() => {
+    if (submitStatus === "success" || (submitStatus === "error" && submitMessage)) {
+      statusRef.current?.focus();
+    }
+  }, [submitMessage, submitStatus]);
 
   const updateValue = <K extends keyof SeminarFormValues>(
     field: K,
@@ -339,12 +387,20 @@ const PracticeTransitionSeminar = ({
 
     trackFormStartOnce();
 
-    const nextErrors = validateForm(values);
+    const nextErrors = validateSeminarRegistration(values, availableEvents);
     setErrors(nextErrors);
 
     if (Object.keys(nextErrors).length > 0) {
       setSubmitStatus("error");
       setSubmitMessage("Please complete the highlighted fields and try again.");
+      const firstInvalidField = Object.keys(nextErrors)[0] as keyof SeminarFormValues;
+      const focusId =
+        firstInvalidField === "selectedEvent"
+          ? `seminar-option-${availableEvents[0]?.value ?? "none"}`
+          : `seminar-${firstInvalidField.replace(/[A-Z]/g, (letter) =>
+              `-${letter.toLowerCase()}`
+            )}`;
+      window.requestAnimationFrame(() => document.getElementById(focusId)?.focus());
       return;
     }
 
@@ -359,7 +415,7 @@ const PracticeTransitionSeminar = ({
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(buildFormPayload(values)),
+        body: JSON.stringify(buildFormPayload(values, availableEvents)),
       });
 
       if (!response.ok) {
@@ -368,9 +424,9 @@ const PracticeTransitionSeminar = ({
 
       setSubmitStatus("success");
       setSubmitMessage(
-        "Thank you for registering. We'll send event details by email shortly. Our team will also follow up to confirm your registration and take payment."
+        "Your request is in. A PTI team member will contact you within one business day. Your seat is confirmed after PTI reaches you and completes payment by phone."
       );
-      setValues(defaultFormValues);
+      setValues(buildDefaultFormValues(availableEvents));
       setErrors({});
       trackContactFormSubmit(
         "event_registration",
@@ -425,11 +481,13 @@ const PracticeTransitionSeminar = ({
                 approach their next move with confidence.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg" variant="secondary">
-                  <a href="#register" onClick={handleRegisterCta}>
-                    Register for a Seminar
-                  </a>
-                </Button>
+                {availableEvents.length > 0 && (
+                  <Button asChild size="lg" variant="secondary">
+                    <a href="#register" onClick={handleRegisterCta}>
+                      Request a Seminar Seat
+                    </a>
+                  </Button>
+                )}
                 <Button asChild size="lg" variant="outline">
                   <a
                     href={`tel:${PHONE_NUMBER_TEL}`}
@@ -444,7 +502,7 @@ const PracticeTransitionSeminar = ({
             </div>
 
             <div className="grid gap-3">
-              {practiceTransitionSeminarEvents.map((event) => (
+              {availableEvents.map((event) => (
                 <Card
                   key={event.id}
                   className="border-white/20 bg-white/95 text-foreground shadow-lg"
@@ -509,18 +567,26 @@ const PracticeTransitionSeminar = ({
         <div className="grid gap-8 lg:grid-cols-[minmax(0,0.66fr)_minmax(320px,0.34fr)] lg:items-start">
           <div>
             <div className="mb-6">
-              <SectionTitle>Reserve Your Seat</SectionTitle>
+              <SectionTitle>
+                {availableEvents.length > 0
+                  ? "Request Your Seat"
+                  : "Join the Next Seminar"}
+              </SectionTitle>
               <SectionSubtitle className="mb-0">
-                Complete the form below and our team will follow up to confirm
-                your registration, answer any questions, and take payment by
-                phone.
+                {availableEvents.length > 0
+                  ? "Submit a seat request below. PTI will call within one business day to answer questions, take payment, and confirm your registration. A form submission alone does not reserve a seat."
+                  : "There are no seminar dates open for registration right now. Contact PTI and we will let you know when the next date is announced."}
               </SectionSubtitle>
             </div>
 
             <Card className="border-border">
               <CardContent className="p-5 md:p-6">
                 {submitStatus === "success" && (
-                  <Alert className="mb-6 border-green-200 bg-green-50 text-green-900">
+                  <Alert
+                    ref={statusRef}
+                    tabIndex={-1}
+                    className="mb-6 border-green-200 bg-green-50 text-green-900 focus:outline-none focus:ring-2 focus:ring-primary"
+                  >
                     <CheckCircle2 className="h-4 w-4 text-green-700" />
                     <AlertTitle>Registration request received</AlertTitle>
                     <AlertDescription>{submitMessage}</AlertDescription>
@@ -528,14 +594,21 @@ const PracticeTransitionSeminar = ({
                 )}
 
                 {submitStatus === "error" && submitMessage && (
-                  <Alert variant="destructive" className="mb-6">
+                  <Alert
+                    ref={statusRef}
+                    tabIndex={-1}
+                    variant="destructive"
+                    className="mb-6 focus:outline-none focus:ring-2 focus:ring-destructive"
+                  >
                     <AlertCircle className="h-4 w-4" />
                     <AlertTitle>Check the form</AlertTitle>
                     <AlertDescription>{submitMessage}</AlertDescription>
                   </Alert>
                 )}
 
+                {availableEvents.length > 0 ? (
                 <form
+                  id="seminar-register-form"
                   onFocusCapture={trackFormStartOnce}
                   onSubmit={handleSubmit}
                   noValidate
@@ -588,7 +661,7 @@ const PracticeTransitionSeminar = ({
                           : undefined
                       }
                     >
-                      {practiceTransitionSeminarEvents.map((event) => (
+                      {availableEvents.map((event) => (
                         <Label
                           key={event.value}
                           htmlFor={`seminar-option-${event.value}`}
@@ -626,6 +699,8 @@ const PracticeTransitionSeminar = ({
                       <Input
                         id="seminar-name"
                         name="name"
+                        autoComplete="name"
+                        required
                         value={values.name}
                         onChange={(event) =>
                           updateValue("name", event.target.value)
@@ -651,6 +726,9 @@ const PracticeTransitionSeminar = ({
                         id="seminar-email"
                         name="email"
                         type="email"
+                        inputMode="email"
+                        autoComplete="email"
+                        required
                         value={values.email}
                         onChange={(event) =>
                           updateValue("email", event.target.value)
@@ -676,6 +754,9 @@ const PracticeTransitionSeminar = ({
                         id="seminar-phone"
                         name="phone"
                         type="tel"
+                        inputMode="tel"
+                        autoComplete="tel"
+                        required
                         value={values.phone}
                         onChange={(event) =>
                           updateValue("phone", event.target.value)
@@ -714,6 +795,8 @@ const PracticeTransitionSeminar = ({
                       <Input
                         id="seminar-city-state"
                         name="city_state"
+                        autoComplete="address-level2"
+                        required
                         value={values.cityState}
                         onChange={(event) =>
                           updateValue("cityState", event.target.value)
@@ -748,6 +831,7 @@ const PracticeTransitionSeminar = ({
                         }
                       >
                         <SelectTrigger
+                          id="seminar-attendee-count"
                           aria-invalid={Boolean(errors.attendeeCount)}
                           aria-describedby={
                             errors.attendeeCount
@@ -784,6 +868,7 @@ const PracticeTransitionSeminar = ({
                         }
                       >
                         <SelectTrigger
+                          id="seminar-heard-about"
                           aria-invalid={Boolean(errors.heardAbout)}
                           aria-describedby={
                             errors.heardAbout
@@ -893,7 +978,8 @@ const PracticeTransitionSeminar = ({
                           className="leading-relaxed"
                         >
                           I understand PTI will contact me to confirm my
-                          registration and take payment.
+                          registration and take payment by phone. My seat is not
+                          confirmed until payment is completed.
                         </Label>
                         {errors.paymentConsent && (
                           <p
@@ -921,9 +1007,21 @@ const PracticeTransitionSeminar = ({
                         I agree to receive text messages from Practice
                         Transitions Institute related to my registration.
                         Message and data rates may apply. Reply STOP at any time
-                        to opt out.
+                        to opt out. This optional consent is not a condition of
+                        registration.
                       </Label>
                     </div>
+                    <p className="text-xs leading-relaxed text-muted-foreground">
+                      PTI uses your information to process this request and
+                      follow up about the selected event. Review our{" "}
+                      <Link
+                        href="/privacy-policy"
+                        className="font-medium text-primary underline underline-offset-4"
+                      >
+                        privacy policy
+                      </Link>
+                      . Do not enter payment-card information in this form.
+                    </p>
                   </div>
 
                   <Button
@@ -934,9 +1032,25 @@ const PracticeTransitionSeminar = ({
                   >
                     {submitStatus === "submitting"
                       ? "Submitting..."
-                      : "Reserve My Seat"}
+                      : "Request My Seat"}
                   </Button>
                 </form>
+                ) : (
+                  <div className="space-y-4 text-center">
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      Call or email PTI to ask about future dates or private
+                      transition education for your group.
+                    </p>
+                    <div className="flex flex-col justify-center gap-3 sm:flex-row">
+                      <Button asChild>
+                        <a href={`tel:${PHONE_NUMBER_TEL}`}>Call {PHONE_NUMBER}</a>
+                      </Button>
+                      <Button asChild variant="outline">
+                        <Link href="/contact">Contact PTI</Link>
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
@@ -949,33 +1063,52 @@ const PracticeTransitionSeminar = ({
                   Registration and Pricing
                 </CardTitle>
                 <CardDescription>
-                  Register 30 days in advance and save $100 on the first
-                  participant.
+                  The first participant&apos;s price is based on the selected
+                  seminar&apos;s early-bird deadline.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid gap-3 text-sm">
-                  <div className="flex items-center justify-between rounded-lg bg-primary/5 p-3">
-                    <span className="font-medium">Early Bird</span>
-                    <span className="font-semibold text-primary">$297</span>
-                  </div>
-                  <div className="flex items-center justify-between rounded-lg bg-background p-3">
-                    <span className="font-medium">Standard</span>
-                    <span className="font-semibold">$397</span>
-                  </div>
-                  <div className="flex items-center justify-between rounded-lg bg-background p-3">
-                    <span className="font-medium">Additional Guests</span>
-                    <span className="font-semibold">$197 each</span>
-                  </div>
+                  {selectedEvent ? (
+                    <>
+                      <div className="flex items-center justify-between rounded-lg bg-primary/5 p-3">
+                        <span className="font-medium">Current Price</span>
+                        <span className="font-semibold text-primary">
+                          {formatCurrency(
+                            getSeminarRegistrationPrice(
+                              selectedEvent,
+                              pricingReferenceDate
+                            )
+                          )}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between rounded-lg bg-background p-3">
+                        <span className="font-medium">Standard</span>
+                        <span className="font-semibold">
+                          {formatCurrency(selectedEvent.standardPrice)}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between rounded-lg bg-background p-3">
+                        <span className="font-medium">Additional Guests</span>
+                        <span className="font-semibold">
+                          {formatCurrency(selectedEvent.guestPrice)} each
+                        </span>
+                      </div>
+                    </>
+                  ) : (
+                    <p className="rounded-lg bg-background p-3 text-muted-foreground">
+                      Pricing will be published with the next seminar date.
+                    </p>
+                  )}
                 </div>
                 <Separator />
                 <div className="space-y-3 text-sm text-muted-foreground">
-                  {practiceTransitionSeminarEvents.map((event) => (
+                  {availableEvents.map((event) => (
                     <div key={event.id} className="flex items-start gap-2">
                       <Calendar className="mt-0.5 h-4 w-4 text-primary" />
                       <p>
                         <span className="font-medium text-foreground">
-                          {event.city} early bird:
+                          {event.city} early-bird deadline:
                         </span>{" "}
                         {event.earlyBirdDeadline}
                       </p>
@@ -1017,6 +1150,17 @@ const PracticeTransitionSeminar = ({
             )}
           </aside>
         </div>
+        {archivedEvents.length > 0 && (
+          <p className="mt-8 text-center text-sm text-muted-foreground">
+            {archivedEvents.length} completed seminar
+            {archivedEvents.length === 1 ? " is" : "s are"} archived and no
+            longer available for registration. See the complete history on the{" "}
+            <Link href="/events" className="font-medium text-primary underline underline-offset-4">
+              events page
+            </Link>
+            .
+          </p>
+        )}
       </Section>
 
       <Section>

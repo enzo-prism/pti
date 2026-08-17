@@ -32,6 +32,24 @@ interface ScrollRevealProps {
   intensity?: "subtle" | "normal" | "strong";
 }
 
+interface RevealEnvironment {
+  top: number;
+  viewportHeight: number;
+  reducedMotion: boolean;
+  supportsIntersectionObserver: boolean;
+}
+
+export const shouldAnimateReveal = ({
+  top,
+  viewportHeight,
+  reducedMotion,
+  supportsIntersectionObserver,
+}: RevealEnvironment): boolean =>
+  supportsIntersectionObserver &&
+  !reducedMotion &&
+  viewportHeight > 0 &&
+  top >= viewportHeight * 0.9;
+
 // useLayoutEffect warns when run during SSR; fall back to useEffect on the server.
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -56,13 +74,19 @@ export const ScrollReveal = ({
   useIsomorphicLayoutEffect(() => {
     const element = elementRef.current;
     if (!element || typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const motionQuery = window.matchMedia?.("(prefers-reduced-motion: reduce)");
 
     const viewportHeight =
       window.innerHeight || document.documentElement.clientHeight;
     const { top } = element.getBoundingClientRect();
-    const startsWithinInitialViewport = top < viewportHeight * 0.9;
-    if (startsWithinInitialViewport) return;
+    const canAnimate = shouldAnimateReveal({
+      top,
+      viewportHeight,
+      reducedMotion: motionQuery?.matches ?? false,
+      supportsIntersectionObserver: "IntersectionObserver" in window,
+    });
+    if (!canAnimate) return;
 
     setAnimate(true);
     setRevealed(false);
@@ -73,20 +97,42 @@ export const ScrollReveal = ({
     const element = elementRef.current;
     if (!element) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setRevealed(true);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
-    );
+    const reveal = () => setRevealed(true);
+    const motionQuery = window.matchMedia?.("(prefers-reduced-motion: reduce)");
+    const handleMotionChange = (event: MediaQueryListEvent) => {
+      if (event.matches) reveal();
+    };
+    const fallbackTimer = window.setTimeout(reveal, 2500);
 
-    observer.observe(element);
-    return () => observer.disconnect();
+    try {
+      if (!("IntersectionObserver" in window)) {
+        reveal();
+        return () => window.clearTimeout(fallbackTimer);
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              reveal();
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.05, rootMargin: "0px 0px -48px 0px" }
+      );
+
+      motionQuery?.addEventListener?.("change", handleMotionChange);
+      observer.observe(element);
+      return () => {
+        window.clearTimeout(fallbackTimer);
+        motionQuery?.removeEventListener?.("change", handleMotionChange);
+        observer.disconnect();
+      };
+    } catch {
+      reveal();
+      return () => window.clearTimeout(fallbackTimer);
+    }
   }, [animate]);
 
   const getAnimationClass = () => {
@@ -176,7 +222,8 @@ export const ScrollReveal = ({
     <div
       ref={elementRef}
       className={cn(
-        animate && "gpu-accelerated will-change-transform",
+        animate && !revealed && "gpu-accelerated will-change-transform",
+        animate && revealed && "!opacity-100",
         animate && revealed ? getAnimationClass() : "",
         className
       )}

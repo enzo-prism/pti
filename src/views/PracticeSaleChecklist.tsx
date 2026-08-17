@@ -153,7 +153,7 @@ const PracticeSaleChecklist = () => {
             />
           </div>
 
-          <div className="space-y-8">
+          <div id="checklist" className="scroll-mt-24 space-y-8">
             {checklistGroups.map((group) => (
               <div
                 key={group.title}

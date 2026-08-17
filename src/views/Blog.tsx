@@ -18,31 +18,50 @@ interface BlogProps {
   posts: BlogPostSummary[];
 }
 
-const readSearchFromLocation = () => {
-  if (typeof window === "undefined") return "";
-  return new URLSearchParams(window.location.search).get("search") ?? "";
+const readFiltersFromLocation = () => {
+  if (typeof window === "undefined") return { search: "", topic: "All" };
+  const params = new URLSearchParams(window.location.search);
+  return {
+    search: params.get("search") ?? "",
+    topic: params.get("topic") ?? "All",
+  };
 };
 
 const Blog = ({ posts }: BlogProps) => {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTopic, setSelectedTopic] = useState("All");
 
   // The route is statically generated, so ?search= deep links are applied
   // after hydration (and on history navigation) instead of via searchParams.
   useEffect(() => {
-    const syncFromLocation = () => setSearchQuery(readSearchFromLocation());
+    const syncFromLocation = () => {
+      const filters = readFiltersFromLocation();
+      setSearchQuery(filters.search);
+      setSelectedTopic(filters.topic);
+    };
     syncFromLocation();
     window.addEventListener("popstate", syncFromLocation);
     return () => window.removeEventListener("popstate", syncFromLocation);
   }, []);
 
-  const updateSearchQuery = (value: string) => {
-    setSearchQuery(value);
-    const nextUrl = value ? `/blog?search=${encodeURIComponent(value)}` : "/blog";
+  const updateFilters = ({ search, topic }: { search: string; topic: string }) => {
+    setSearchQuery(search);
+    setSelectedTopic(topic);
+    const params = new URLSearchParams();
+    if (search) params.set("search", search);
+    if (topic !== "All") params.set("topic", topic);
+    const query = params.toString();
     startTransition(() => {
-      router.replace(nextUrl, { scroll: false });
+      router.replace(query ? `/blog?${query}` : "/blog", { scroll: false });
     });
   };
+
+  const updateSearchQuery = (value: string) =>
+    updateFilters({ search: value, topic: selectedTopic });
+
+  const updateTopic = (topic: string) =>
+    updateFilters({ search: searchQuery, topic });
 
   // Sort posts by date (most recent first)
   const sortedPosts = useMemo(
@@ -54,12 +73,13 @@ const Blog = ({ posts }: BlogProps) => {
   );
 
   const topicLinks = useMemo(
-    () => Array.from(new Set(posts.map((post) => post.category))).sort(),
+    () => ["All", ...Array.from(new Set(posts.map((post) => post.category))).sort()],
     [posts]
   );
 
   // Filter posts based on search query
   const filteredPosts = sortedPosts.filter(post => {
+    if (selectedTopic !== "All" && post.category !== selectedTopic) return false;
     if (!searchQuery.trim()) return true;
 
     const query = searchQuery.toLowerCase();
@@ -77,6 +97,9 @@ const Blog = ({ posts }: BlogProps) => {
   const handleClearSearch = () => {
     updateSearchQuery('');
   };
+
+  const topicLabel = (category: string) =>
+    category === "Community Impact" ? "News & Community" : category;
 
   return (
     <>
@@ -114,6 +137,7 @@ const Blog = ({ posts }: BlogProps) => {
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <input 
                   type="text" 
+                  aria-label="Search PTI articles"
                   placeholder="Search articles, topics, or categories..."
                   value={searchQuery}
                   onChange={(e) => updateSearchQuery(e.target.value)}
@@ -121,7 +145,9 @@ const Blog = ({ posts }: BlogProps) => {
                 />
                 {searchQuery && (
                   <button
+                    type="button"
                     onClick={handleClearSearch}
+                    aria-label="Clear article search"
                     className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors p-1"
                   >
                     <X className="h-5 w-5" />
@@ -129,34 +155,28 @@ const Blog = ({ posts }: BlogProps) => {
                 )}
               </div>
               {searchQuery && (
-                <p className="text-center text-blue-200 mt-4">
+                <p className="text-center text-blue-200 mt-4" aria-live="polite">
                   {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'} found
                 </p>
               )}
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm">
-                <button
-                  type="button"
-                  onClick={handleClearSearch}
-                  className={cn(
-                    "rounded-full border border-white/30 px-3 py-1.5 text-blue-100 transition hover:border-white/60 hover:text-white",
-                    !searchQuery && "bg-white/15 text-white"
-                  )}
-                >
-                  All topics
-                </button>
+              <div
+                className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm"
+                aria-label="Filter articles by topic"
+              >
                 {topicLinks.map((category) => {
-                  const isActive = searchQuery.toLowerCase() === category.toLowerCase();
+                  const isActive = selectedTopic === category;
                   return (
                     <button
                       key={category}
                       type="button"
-                      onClick={() => updateSearchQuery(category)}
+                      onClick={() => updateTopic(category)}
+                      aria-pressed={isActive}
                       className={cn(
                         "rounded-full border border-white/30 px-3 py-1.5 text-blue-100 transition hover:border-white/60 hover:text-white",
                         isActive && "bg-white/15 text-white"
                       )}
                     >
-                      {category}
+                      {category === "All" ? "All articles" : topicLabel(category)}
                     </button>
                   );
                 })}
@@ -184,15 +204,15 @@ const Blog = ({ posts }: BlogProps) => {
             <div className="mb-16">
               <div className="flex items-center justify-between mb-8">
                 <div>
-                  <SectionTitle>{searchQuery ? 'Top Result' : 'Featured Article'}</SectionTitle>
+                  <SectionTitle>{searchQuery || selectedTopic !== "All" ? 'Top Result' : 'Latest Update'}</SectionTitle>
                   <SectionSubtitle className="mb-0">
-                    {searchQuery ? 'Most relevant article for your search' : 'Our latest insights on dental practice transitions'}
+                    {searchQuery || selectedTopic !== "All" ? 'The newest article matching your filters' : 'The newest insight or community update from PTI'}
                   </SectionSubtitle>
                 </div>
-                {!searchQuery && (
+                {!searchQuery && selectedTopic === "All" && (
                   <Badge variant="outline" className="hidden md:flex items-center gap-2">
                     <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                    Latest
+                    Latest published
                   </Badge>
                 )}
               </div>
@@ -271,9 +291,9 @@ const Blog = ({ posts }: BlogProps) => {
             {regularPosts.length > 0 && (
               <>
                 <div className="mb-12">
-                  <SectionTitle>{searchQuery ? 'More Results' : 'Latest Articles'}</SectionTitle>
+                  <SectionTitle>{searchQuery || selectedTopic !== "All" ? 'More Results' : 'Latest Articles'}</SectionTitle>
                   <SectionSubtitle>
-                    {searchQuery ? 'Additional articles matching your search' : 'Expert insights and practical guidance for dental practice owners'}
+                    {searchQuery || selectedTopic !== "All" ? 'Additional articles matching your filters' : 'Expert insights, practical guidance, and PTI community news'}
                   </SectionSubtitle>
                 </div>
 

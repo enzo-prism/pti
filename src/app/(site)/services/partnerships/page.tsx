@@ -6,7 +6,7 @@ import { serviceOfferings } from "@/data/services";
 
 const title = "Dental Practice Partnership Structuring";
 const description =
-  "Build equitable dental partnerships with PTI guidance on valuation, deal structure, and long-term success.";
+  "Plan a dental practice partnership with PTI guidance on fit, valuation, ownership, compensation, governance, exits, and outside-advisor coordination.";
 
 export const metadata = buildPageMetadata({
   title,

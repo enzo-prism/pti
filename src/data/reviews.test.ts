@@ -40,4 +40,17 @@ describe("reviews dataset", () => {
       "google-tony-choi",
     ]);
   });
+
+  it("uses distinct story titles for repeated first-name reviewers", () => {
+    for (const author of ["Christina", "Lois", "Michelle"]) {
+      const repeated = reviews.filter(
+        (review) => review.displayAuthorName === author
+      );
+      expect(repeated.length).toBeGreaterThan(1);
+      expect(repeated.every((review) => Boolean(review.storyTitle))).toBe(true);
+      expect(new Set(repeated.map((review) => review.storyTitle)).size).toBe(
+        repeated.length
+      );
+    }
+  });
 });

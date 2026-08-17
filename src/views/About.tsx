@@ -15,7 +15,7 @@ export const leaders = [
     name: "Dr. Michael Njo",
     role: "Founder & Transition Consultant",
     bio: [
-      "With over 30 years in dentistry, I've had the honor of guiding countless dentists through one of the most important decisions of their careers — transitioning their practice. I wrote the Dental Practice Transitions Handbook to help demystify the process, and I've taught at both UCSF and the University of the Pacific, where I continue to support future dentists as part of the admissions team and as an advisor to the Dugoni Business Club. I also speak with dental students and General Practice Residency (GPR) residents about contracts, ownership, and practice transitions so they can build a stronger foundation early in their careers.",
+      "With over 30 years in dentistry, I've had the honor of guiding dentists through one of the most important decisions of their careers: transitioning their practice. I wrote the Dental Practice Transitions Handbook to help demystify the process, and I've taught at both UCSF and the University of the Pacific, where I continue to support future dentists as part of the admissions team and as an advisor to the Dugoni Business Club. I also speak with dental students and General Practice Residency (GPR) residents about contracts, ownership, and practice transitions so they can build a stronger foundation early in their careers.",
       "I also serve on the Board of Directors for the Dugoni Alumni Association and the California Dental Association Leadership Council, where I'm proud to contribute to the future of dental education and policy. My work today is rooted in the same values that guided my clinical career: integrity, clarity, and doing what's best for both doctors and patients.",
     ],
     hasNewInfo: true,
@@ -34,8 +34,8 @@ export const leaders = [
     name: "Liz Armato",
     role: "COO",
     bio: [
-      "With over 25 years in the dental industry, I've had the privilege of working in client service, engagement, marketing, and strategic partnerships — including many impactful years at Pride Institute, one of the most respected dental consulting firms in the U.S.",
-      "While at Pride, I had the pleasure of working alongside Michael and Fred as part of the transitions team — and I'm thrilled to be reunited with them now at PTI, where we bring that same collaborative spirit to every client we serve.",
+      "With over 25 years in the dental industry, I've had the privilege of working in client service, engagement, marketing, and strategic partnerships, including many years at Pride Institute.",
+      "While at Pride, I worked alongside Michael as part of the transitions team. At PTI, we bring that same collaborative spirit to every client we serve.",
       "My passion lies in making sure dentists feel informed, supported, and confident through every step of their transition. Helping guide that journey is what I love most.",
     ],
     image: "/lovable-uploads/3f9aad4c-9a99-4c2e-8cc6-1666dffe409e.png",
@@ -54,11 +54,10 @@ const About = () => {
               About Practice Transitions Institute
             </h1>
             <p className="text-lg md:text-xl text-gray-700 animate-fade-in animate-delay-100 leading-relaxed">
-              At Practice Transitions Institute, we take pride in our collective
-              wealth of experience, ensuring a deep understanding of the dynamics
-              involved in dental transitions. With a commitment to personalized
-              solutions, we look forward to collaborating with you on a journey
-              to a seamlessly successful transition.
+              PTI guides dentists through practice valuations, sales,
+              acquisitions, DSO offers, buy-ins, and partnerships. We bring the
+              financial, operational, and human decisions into one coordinated
+              transition plan.
             </p>
           </div>
         </div>
@@ -71,39 +70,34 @@ const About = () => {
               Our Story
             </p>
             <SectionTitle centered className="text-2xl md:text-4xl mb-4">
-              A Partnership Rooted in Your Success
+              A Transition Firm Built Around Clear Advice
             </SectionTitle>
             <SectionSubtitle centered className="text-base md:text-lg mb-0">
-              Practice Transitions Institute was founded to transform the dental
-              transition experience — moving beyond transactions toward trusted,
-              relationship-driven partnerships.
+              Practice Transitions Institute was founded to give dentists a more
+              personal, coordinated way to navigate ownership changes and major
+              career decisions.
             </SectionSubtitle>
           </div>
 
           <div className="mt-10 grid gap-8 md:mt-14 lg:grid-cols-[1.35fr_1fr] lg:items-start lg:gap-12">
             <div className="animate-fade-in space-y-5 text-sm leading-relaxed text-gray-600 md:text-base">
               <p className="border-l-2 border-primary/30 pl-5 text-base text-gray-700 md:text-lg">
-                PTI was founded on a simple yet profound principle: to transform
-                the dental practice transition experience.{" "}
-                <strong>Dr. Michael Njo</strong> envisioned a new standard — one
-                that moved beyond mere transactions to forge{" "}
-                <strong>trusted, relationship-driven partnerships</strong>.
+                <strong>Dr. Michael Njo</strong> founded PTI after experiencing
+                dentistry as a clinician, owner, educator, and transition advisor.
+                The goal is practical: give dentists the context and personal
+                guidance needed to make an informed transition decision.
               </p>
               <p>
-                Today, that vision thrives. Under{" "}
-                <strong>Dr. Njo&apos;s leadership</strong>, the strategic insight
-                of <strong>Fred Heppner</strong> in transitions and practice
-                management, and <strong>Liz Armato&apos;s</strong> operational
-                expertise, PTI offers truly personalized guidance — helping
-                dentists navigate significant career milestones with{" "}
-                <strong>unwavering care and integrity</strong>, so the legacy of
-                each practice is preserved and every outcome is a win-win.
+                Under <strong>Dr. Njo&apos;s leadership</strong> and{" "}
+                <strong>Liz Armato&apos;s</strong> operational direction, PTI helps
+                clients clarify goals, understand value and deal structure,
+                coordinate outside advisors, and prepare for the people affected
+                by a transition.
               </p>
               <p>
-                What began as Dr. Njo&apos;s vision to provide better service has
-                grown into a comprehensive transitions firm with a dedicated team
-                of experts guiding dental professionals through major career
-                milestones.
+                Each written engagement defines the work, the PTI lead, who PTI
+                represents, fees, and when an attorney, CPA, lender, or other
+                licensed professional should be involved.
               </p>
             </div>
 
@@ -119,12 +113,11 @@ const About = () => {
                   Our Founding Principle
                 </p>
                 <p className="relative mt-4 text-xl font-semibold leading-snug md:text-2xl">
-                  Move beyond transactions to build trusted, relationship-driven
-                  partnerships — protecting the legacy behind every practice.
+                  Put the dentist&apos;s goals, the practice&apos;s value, and the people
+                  affected by the transition in the same plan.
                 </p>
                 <p className="relative mt-6 border-t border-white/20 pt-5 text-sm leading-relaxed text-white/80">
-                  The standard Dr. Michael Njo set out to create — and the one
-                  PTI lives by today.
+                  The operating principle behind PTI&apos;s transition work.
                 </p>
               </div>
             </aside>
@@ -138,8 +131,8 @@ const About = () => {
             Meet Our Leadership Team
           </SectionTitle>
           <SectionSubtitle centered className="text-base md:text-lg px-4">
-            The experienced professionals who founded and lead Practice
-            Transitions Institute
+            The professionals responsible for PTI&apos;s transition strategy and
+            client experience
           </SectionSubtitle>
         </div>
 
@@ -180,12 +173,12 @@ const About = () => {
             {
               title: "Integrity",
               description:
-                "We prioritize ethical practices and transparency in all our dealings, ensuring our clients always receive honest advice even when it's not what they might want to hear.",
+                "We explain our role, scope, fees, and potential conflicts so clients can make decisions with the right context.",
             },
             {
               title: "Expertise",
               description:
-                "Our team maintains the highest level of knowledge in dental practice transitions through continuous education and staying current with industry trends.",
+                "We focus on dental practice transitions and coordinate with attorneys, CPAs, lenders, and other specialists when their expertise is required.",
             },
             {
               title: "Client Focus",
@@ -215,7 +208,7 @@ const About = () => {
             Why Dentists Choose PTI
           </SectionTitle>
           <SectionSubtitle centered className="text-base md:text-lg px-4">
-            A transition partner you can trust — from your first question to your
+            A transition partner from your first question to your
             final signature.
           </SectionSubtitle>
         </div>
@@ -225,28 +218,28 @@ const About = () => {
               icon: Users,
               title: "We've Been in Your Shoes",
               description:
-                "We've walked the path — from clinical care to leadership to transitions. We understand what's at stake.",
+                "Our perspective includes clinical care, practice ownership, leadership, and transition advisory work.",
               iconColor: "text-blue-600",
             },
             {
               icon: Shield,
               title: "More Than a Broker",
               description:
-                "We guide, educate, and advocate — not just sell. You get a trusted advisor, not just a dealmaker.",
+                "We help you understand the decision, prepare the work, and coordinate the transaction, not simply identify a counterparty.",
               iconColor: "text-emerald-600",
             },
             {
               icon: Target,
               title: "Custom-Fit Strategy",
               description:
-                "No cookie-cutter plans here. We tailor every step to your practice, your timeline, and your vision.",
+                "The written scope reflects your practice, timeline, goals, and the transition path you are considering.",
               iconColor: "text-orange-600",
             },
             {
               icon: Star,
               title: "Trusted Leadership",
               description:
-                "Our expertise and values shape everything we do — from policy to personal care.",
+                "Clients know the PTI lead, the next milestone, and which decisions belong with an outside licensed advisor.",
               iconColor: "text-purple-600",
             },
             {
@@ -277,26 +270,29 @@ const About = () => {
       </Section>
 
       <Section background="light" className="py-8 md:py-16">
+        <SectionTitle centered className="mb-8 text-2xl md:text-4xl">
+          Support for Each Side of a Transition
+        </SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
           {[
             {
-              number: "500+",
-              label: "Successful Transitions",
+              number: "Seller",
+              label: "Preparation and Representation",
               numberColor: "text-blue-600",
             },
             {
-              number: "92",
-              label: "Years of Experience",
+              number: "Buyer",
+              label: "Acquisition Advisory",
               numberColor: "text-emerald-600",
             },
             {
-              number: "42",
-              label: "States Served",
+              number: "Value",
+              label: "Practice Analysis",
               numberColor: "text-orange-600",
             },
             {
-              number: "98%",
-              label: "Client Satisfaction",
+              number: "Ownership",
+              label: "Buy-Ins and Partnerships",
               numberColor: "text-purple-600",
             },
           ].map((stat, index) => (
@@ -318,29 +314,29 @@ const About = () => {
 
       <Section className="py-8 md:py-16">
         <SectionTitle centered className="text-2xl md:text-4xl mb-6 md:mb-8">
-          Client Experiences
+          What Clients Describe
         </SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
           {[
             {
               title: "Seamless Process",
               description:
-                "Clients consistently praise PTI for making a stressful process smooth and efficient, citing responsive, hands-on support from our team throughout their transition journey.",
+                "Client reviews describe responsive, hands-on support during complex practice and career decisions.",
             },
             {
-              title: "Trusted match making",
+              title: "Buyer Fit",
               description:
-                "Dentists value our careful screening and personalized approach, which ensures only qualified and well-matched buyers are presented, preserving the practice's legacy.",
+                "Seller reviews often focus on buyer fit, team and patient continuity, and the legacy of the practice.",
             },
             {
               title: "Educational Value",
               description:
-                "Our seminars and workshops provide practical, actionable guidance, earning high marks from participants who frequently become long-term clients after attending.",
+                "Workshop reviews highlight practical guidance about buying, selling, valuation, contracts, and ownership planning.",
             },
             {
-              title: "Outcome Satisfaction",
+              title: "Decision Support",
               description:
-                "Numerous testimonials reflect deep gratitude for our role in securing favorable transitions and enhancing the quality of life for dentists facing major career changes.",
+                "Reviews from buyers, sellers, and consulting clients describe clearer decisions, steady communication, and coordinated next steps.",
             },
           ].map((experience, index) => (
             <div
@@ -366,7 +362,7 @@ const About = () => {
               Ready to Explore Your Options?
             </h2>
             <p className="mb-8 text-lg opacity-90">
-              Book a complimentary 30-minute meeting with Dr. Michael Njo — or
+              Book a complimentary 30-minute meeting with Dr. Michael Njo, or
               send us a message and our team will be in touch.
             </p>
             <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">

@@ -1,4 +1,8 @@
-import type { BlogPost } from "@/data/blogPosts";
+import {
+  blogPosts,
+  getBlogMetaDescription,
+  type BlogPost,
+} from "@/data/blogPosts";
 import type { AuthorProfile } from "@/data/authors";
 import type { ReviewRecord } from "@/data/reviews";
 import {
@@ -18,7 +22,6 @@ import {
 } from "@/lib/siteMetadata";
 import { PHONE_NUMBER_TEL } from "@/lib/constants";
 import { parseEventDate } from "@/lib/dateUtils";
-import { blogPosts } from "@/data/blogPosts";
 import { serviceOfferings, type ServiceOffering } from "@/data/services";
 
 export type JsonLdShape = Record<string, unknown>;
@@ -276,7 +279,7 @@ export const buildBlogPostingSchema = (
     "@type": "BlogPosting",
     "@id": `${postUrl}#blogposting`,
     headline: post.title,
-    description: post.excerpt,
+    description: getBlogMetaDescription(post),
     articleSection: options?.category ?? post.category,
     datePublished: publishedDate,
     dateModified: modifiedDate,
@@ -316,7 +319,7 @@ export const buildBlogItemListSchema = (
           "@type": "BlogPosting",
           name: post.title,
           headline: post.title,
-          description: post.excerpt,
+          description: getBlogMetaDescription(post),
           url: postUrl,
           datePublished: publishedDate,
         },
@@ -426,7 +429,15 @@ export interface StructuredEventInput {
   detailPath?: string;
   offerPrice?: number;
   offerPriceCurrency?: string;
+  eventStatus?: "scheduled" | "completed" | "cancelled";
+  registrationOpen?: boolean;
 }
+
+const EVENT_STATUS_URLS = {
+  scheduled: "https://schema.org/EventScheduled",
+  completed: "https://schema.org/EventCompleted",
+  cancelled: "https://schema.org/EventCancelled",
+} as const;
 
 const buildEventStartDate = (date: string, time?: string): string => {
   const baseDate = parseEventDate(date);
@@ -460,7 +471,8 @@ export const buildEventSchema = (
     event.type === "webinar";
   const registrationUrl =
     event.registrationLink.startsWith("http") ||
-    event.registrationLink.startsWith("tel:")
+    event.registrationLink.startsWith("tel:") ||
+    event.registrationLink.startsWith("mailto:")
       ? event.registrationLink
       : buildAbsoluteUrl(event.registrationLink);
   const eventUrl = event.detailPath
@@ -468,6 +480,7 @@ export const buildEventSchema = (
     : buildAbsoluteUrl(`/events#event-${event.id}`);
   const offerPrice = event.offerPrice ?? 0;
   const offerPriceCurrency = event.offerPriceCurrency ?? "USD";
+  const registrationOpen = event.registrationOpen ?? true;
 
   return {
     "@context": "https://schema.org",
@@ -480,7 +493,7 @@ export const buildEventSchema = (
     eventAttendanceMode: isVirtual
       ? "https://schema.org/OnlineEventAttendanceMode"
       : "https://schema.org/OfflineEventAttendanceMode",
-    eventStatus: "https://schema.org/EventScheduled",
+    eventStatus: EVENT_STATUS_URLS[event.eventStatus ?? "scheduled"],
     location: isVirtual
       ? {
           "@type": "VirtualLocation",
@@ -491,13 +504,17 @@ export const buildEventSchema = (
           name: event.location,
           address: event.location,
         },
-    offers: {
-      "@type": "Offer",
-      url: registrationUrl,
-      price: offerPrice,
-      priceCurrency: offerPriceCurrency,
-      availability: "https://schema.org/InStock",
-    },
+    ...(registrationOpen
+      ? {
+          offers: {
+            "@type": "Offer",
+            url: registrationUrl,
+            price: offerPrice,
+            priceCurrency: offerPriceCurrency,
+            availability: "https://schema.org/InStock",
+          },
+        }
+      : {}),
     organizer: {
       "@id": BUSINESS_ID,
     },

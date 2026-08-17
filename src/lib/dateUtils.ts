@@ -1,4 +1,7 @@
-import { parse, isAfter, startOfDay } from "date-fns";
+import { format, isValid, parse, startOfDay } from "date-fns";
+
+const EVENT_DATE_FORMAT = "MMMM d, yyyy";
+const EVENT_DATE_PARSE_REFERENCE = new Date(2000, 0, 1);
 
 /**
  * Parse a date string as a local date to avoid timezone issues
@@ -7,7 +10,20 @@ import { parse, isAfter, startOfDay } from "date-fns";
  */
 export const parseLocalDate = (dateString: string): Date => {
   const [year, month, day] = dateString.split('-').map(Number);
-  return new Date(year, month - 1, day); // month is 0-indexed
+  const parsedDate = new Date(year, month - 1, day);
+
+  if (
+    !Number.isInteger(year) ||
+    !Number.isInteger(month) ||
+    !Number.isInteger(day) ||
+    parsedDate.getFullYear() !== year ||
+    parsedDate.getMonth() !== month - 1 ||
+    parsedDate.getDate() !== day
+  ) {
+    throw new RangeError(`Invalid local date: ${dateString}`);
+  }
+
+  return parsedDate; // month is 0-indexed
 };
 
 /**
@@ -30,13 +46,22 @@ export const formatLocalDate = (
  * @returns Date object
  */
 export const parseEventDate = (dateString: string): Date => {
-  try {
-    // Parse dates like "March 28, 2025" or "August 27, 2025"
-    return parse(dateString, "MMMM d, yyyy", new Date());
-  } catch (error) {
-    console.warn(`Failed to parse date: ${dateString}`, error);
-    return new Date(); // fallback to current date
+  const parsedDate = parse(
+    dateString.trim(),
+    EVENT_DATE_FORMAT,
+    EVENT_DATE_PARSE_REFERENCE
+  );
+
+  if (
+    !isValid(parsedDate) ||
+    format(parsedDate, EVENT_DATE_FORMAT) !== dateString.trim()
+  ) {
+    throw new RangeError(
+      `Invalid event date "${dateString}". Expected a real date formatted as "${EVENT_DATE_FORMAT}".`
+    );
   }
+
+  return parsedDate;
 };
 
 /**
@@ -44,12 +69,27 @@ export const parseEventDate = (dateString: string): Date => {
  * @param dateString - Date string to check
  * @returns true if the date is in the past
  */
-export const isEventPast = (dateString: string): boolean => {
+export const isEventPast = (
+  dateString: string,
+  referenceDate: Date = new Date()
+): boolean => {
   const eventDate = parseEventDate(dateString);
-  const today = startOfDay(new Date());
+  const today = startOfDay(referenceDate);
   const eventDay = startOfDay(eventDate);
-  return !isAfter(eventDay, today) && eventDay.getTime() !== today.getTime();
+  return eventDay.getTime() < today.getTime();
 };
+
+/** An event remains current for the full calendar day on which it occurs. */
+export const isEventUpcoming = (
+  dateString: string,
+  referenceDate: Date = new Date()
+): boolean => !isEventPast(dateString, referenceDate);
+
+/** Sort event-style display dates in ascending chronological order. */
+export const sortEventDates = <T extends { date: string }>(events: T[]): T[] =>
+  [...events].sort(
+    (a, b) => parseEventDate(a.date).getTime() - parseEventDate(b.date).getTime()
+  );
 
 /**
  * Create a unique key for an event date to prevent duplicates

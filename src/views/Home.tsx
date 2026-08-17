@@ -1,6 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeDollarSign,
+  Building2,
+  Handshake,
+  Scale,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
@@ -9,8 +15,43 @@ import { LatestUpdateCard } from "@/components/ui/latest-update-card";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { blogPosts } from "@/data/blogPosts";
 import { galleryPhotos, homeGalleryPreview } from "@/data/galleryImages";
-import { getFeaturedReviews, getReviewAggregate, reviews } from "@/data/reviews";
+import { getFeaturedReviews, reviews } from "@/data/reviews";
 import { cn } from "@/lib/utils";
+
+const transitionPaths = [
+  {
+    title: "Sell Your Practice",
+    description:
+      "Prepare for market, understand value, compare options, and navigate the deal without losing sight of your team, patients, or legacy.",
+    href: "/services/selling",
+    cta: "Explore Seller Guidance",
+    icon: BadgeDollarSign,
+  },
+  {
+    title: "Buy or Buy In",
+    description:
+      "Evaluate ownership opportunities, structure an associate buy-in, and enter negotiations with a clear view of the numbers and terms.",
+    href: "/services/buying",
+    cta: "Explore Buyer Guidance",
+    icon: Building2,
+  },
+  {
+    title: "Evaluate a DSO Offer",
+    description:
+      "Compare the headline offer with the complete economics, obligations, risks, and fit before signing a letter of intent.",
+    href: "/services/selling-to-a-dso",
+    cta: "Review DSO Support",
+    icon: Scale,
+  },
+  {
+    title: "Build a Partnership",
+    description:
+      "Create an equitable ownership structure with clear expectations, decision rights, compensation, and an intentional path forward.",
+    href: "/services/partnerships",
+    cta: "Explore Partnership Support",
+    icon: Handshake,
+  },
+];
 
 const Home = () => {
   const latestPost =
@@ -20,7 +61,6 @@ const Home = () => {
         )[0]
       : null;
   const featuredTestimonials = getFeaturedReviews("home");
-  const aggregateRating = getReviewAggregate(reviews);
   const remainingGalleryCount = Math.max(
     galleryPhotos.length - homeGalleryPreview.length,
     0
@@ -29,22 +69,65 @@ const Home = () => {
   return (
     <>
       <section
-        className="relative flex items-center justify-center overflow-hidden hero-gradient pt-24 md:pt-32 min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-6rem)] pb-[max(5rem,env(safe-area-inset-bottom,1.25rem))] md:pb-8"
+        className="hero-gradient relative flex min-h-[calc(100svh-4.5rem)] items-center justify-center overflow-hidden py-12 sm:py-16 md:py-20"
       >
         <div className="absolute inset-0 hero-gradient-overlay" />
         <div className="relative z-10 w-full">
-          <ScrollReveal direction="morphing" delay={200} intensity="strong">
-            <HeroContent className="text-white" />
-          </ScrollReveal>
+          <HeroContent className="text-white" />
         </div>
       </section>
+
+      <Section id="transition-goals" background="white" className="border-b border-slate-100 py-12 md:py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-primary">
+              Start With Your Goal
+            </p>
+            <SectionTitle centered className="mb-4 text-balance text-2xl sm:text-3xl md:text-4xl">
+              Guidance built around the transition you are actually making
+            </SectionTitle>
+            <SectionSubtitle centered className="mb-9 text-pretty">
+              Choose the path closest to your situation. PTI will help you
+              understand the decisions, tradeoffs, and next steps.
+            </SectionSubtitle>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2">
+            {transitionPaths.map((path, index) => (
+              <ScrollReveal key={path.title} delay={index * 75} intensity="subtle">
+                <Link
+                  href={path.href}
+                  className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 motion-reduce:transform-none sm:p-7"
+                >
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <path.icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <h3 className="mt-5 text-xl font-bold text-slate-950">
+                    {path.title}
+                  </h3>
+                  <p className="mt-2 flex-1 text-pretty text-base leading-relaxed text-slate-700">
+                    {path.description}
+                  </p>
+                  <span className="mt-5 inline-flex items-center font-semibold text-primary">
+                    {path.cta}
+                    <ArrowRight
+                      className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transform-none"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </Section>
 
       <Section background="white" className="py-10 md:py-14 border-b border-gray-100">
         <div className="max-w-6xl mx-auto">
           <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
             <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
               <div className="max-w-xl">
-                <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80 sm:text-sm">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-primary sm:text-sm">
                   Inside PTI
                 </p>
                 <SectionTitle className="mb-0 text-2xl sm:text-3xl md:text-4xl">
@@ -74,7 +157,6 @@ const Home = () => {
                   <Link
                     key={photo.id}
                     href="/gallery"
-                    aria-label="View the PTI photo gallery"
                     className={cn(
                       "group relative overflow-hidden rounded-2xl border border-gray-200 bg-slate-100 shadow-sm transition-shadow duration-300 hover:shadow-lg",
                       isFeature && "col-span-2 row-span-2"
@@ -141,7 +223,7 @@ const Home = () => {
                 </SectionTitle>
                 <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-6 md:mb-8">
                   With decades of dental and consulting experience, we go beyond
-                  brokerage to guide you with expertise, strategy and care – so
+                  brokerage to guide you with expertise, strategy, and care, so
                   you can move forward with confidence.
                 </p>
                 <Button
@@ -160,7 +242,7 @@ const Home = () => {
             <ScrollReveal direction="magnetic" delay={200} intensity="subtle">
               <div className="rounded-xl overflow-hidden shadow-lg order-1 md:order-2">
                 <Image
-                  src="/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png"
+                  src="/lovable-uploads/pti-team-with-dental-professionals.webp"
                   alt="PTI team members with dental professionals"
                   width={1920}
                   height={1279}
@@ -194,7 +276,7 @@ const Home = () => {
                 number: 1,
                 title: "Discovery and Plan",
                 description:
-                  "We align your goals with a clear, customized roadmap",
+                  "We align your goals with a clear, customized roadmap.",
               },
               {
                 number: 2,
@@ -217,7 +299,7 @@ const Home = () => {
                 number: 5,
                 title: "Protect What Matters",
                 description:
-                  "Safeguard your reputation, relationships, for peace of mind.",
+                  "Safeguard your reputation and relationships for greater peace of mind.",
               },
               {
                 number: 6,
@@ -232,7 +314,7 @@ const Home = () => {
                 delay={index * 100}
                 intensity="subtle"
               >
-                <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-all hover-scale duration-300 h-full flex flex-col">
+                <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-[box-shadow,transform] hover-scale duration-300 h-full flex flex-col">
                   <div className="flex items-start mb-4 md:mb-6">
                     <div className="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center mr-4 text-lg font-bold flex-shrink-0 shadow-lg">
                       {step.number}
@@ -241,7 +323,7 @@ const Home = () => {
                       {step.title}
                     </h3>
                   </div>
-                  <p className="text-base text-gray-600 leading-relaxed ml-16 flex-grow">
+                  <p className="ml-16 flex-grow text-base leading-relaxed text-gray-700">
                     {step.description}
                   </p>
                 </div>
@@ -258,24 +340,23 @@ const Home = () => {
               <div className="bg-gray-50 border border-gray-100 p-8 sm:p-10 md:p-12 rounded-xl text-center hover-lift gpu-accelerated">
                 <div className="mb-8">
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                    The Risk of Going Alone
+                    Protect the Value You Built
                   </h3>
                   <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                    Don&apos;t risk your future. Without expert guidance, you could
-                    face financial losses, post-sale litigation, unnecessary
-                    stress, and a compromised legacy.
+                    A transition affects more than the purchase price. PTI helps
+                    you examine the complete terms, anticipate obligations, and
+                    make informed decisions about your financial future.
                   </p>
                 </div>
 
                 <div className="border-t border-gray-200 pt-8">
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                    Your Success Story
+                    Protect the People Behind the Practice
                   </h3>
                   <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                    With PTI, you can confidently move into your next chapter.
-                    Imagine a smooth, successful transition, a secure financial
-                    future, and the peace of mind knowing your legacy is in good
-                    hands.
+                    Plan for continuity across your patients, team, reputation,
+                    and professional relationships while creating a practical
+                    path into your next chapter.
                   </p>
                 </div>
               </div>
@@ -305,8 +386,8 @@ const Home = () => {
               </ScrollReveal>
               <ScrollReveal direction="blur-in" delay={200} intensity="subtle">
                 <SectionSubtitle centered>
-                  Rated {aggregateRating.ratingValue}/5 from{" "}
-                  {aggregateRating.reviewCount} reviews
+                  Explore {reviews.length} published client experiences and the
+                  transition challenges behind them.
                 </SectionSubtitle>
               </ScrollReveal>
             </div>
@@ -356,8 +437,8 @@ const Home = () => {
           </ScrollReveal>
           <ScrollReveal direction="blur-in" delay={200} intensity="normal">
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white opacity-90 mb-4 sm:mb-6 md:mb-8 leading-relaxed">
-              Take the first step toward a successful transition with expert
-              guidance you can trust!
+              Bring your goals, questions, and current options. We&apos;ll help you
+              identify the most useful next step.
             </p>
           </ScrollReveal>
           <ScrollReveal direction="magnetic" delay={300} intensity="strong">
@@ -367,7 +448,7 @@ const Home = () => {
               size="lg"
               className="w-full sm:w-auto text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 hover-lift !bg-white hover:!bg-white border border-white"
             >
-              <Link href="/contact">Let&apos;s Talk</Link>
+              <Link href="/contact">Book a Confidential Consultation</Link>
             </Button>
           </ScrollReveal>
         </div>

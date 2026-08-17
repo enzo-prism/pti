@@ -58,7 +58,8 @@ export const MultiDateEventCard = ({
     .filter(date => date.isPast)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   
-  const uniqueLocations = [...new Set(eventDates.map(date => date.location))];
+  const currentDates = upcomingDates.length > 0 ? upcomingDates : pastDates;
+  const uniqueLocations = [...new Set(currentDates.map(date => date.location))];
   const locationText = uniqueLocations.length === 1 
     ? uniqueLocations[0] 
     : `${uniqueLocations.length} locations available`;
@@ -102,7 +103,9 @@ export const MultiDateEventCard = ({
                 </span>
               )}
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
-                {eventDates.length} dates
+                {upcomingDates.length > 0
+                  ? `${upcomingDates.length} upcoming ${upcomingDates.length === 1 ? "date" : "dates"}`
+                  : `${pastDates.length} completed ${pastDates.length === 1 ? "date" : "dates"}`}
               </span>
             </div>
             <h3 className={`text-lg md:text-xl font-semibold leading-tight ${
@@ -122,7 +125,7 @@ export const MultiDateEventCard = ({
               isPast ? "text-gray-400" : "text-primary"
             }`} />
             <span className={isPast ? "" : "font-medium"}>
-              {upcomingDates.length > 0 ? `Next: ${upcomingDates[0].date}` : `Last: ${eventDates[eventDates.length - 1].date}`}
+              {upcomingDates.length > 0 ? `Next: ${upcomingDates[0].date}` : `Last: ${pastDates[0]?.date}`}
             </span>
           </div>
           <div className={`flex items-center text-sm ${
@@ -131,7 +134,7 @@ export const MultiDateEventCard = ({
             <Clock size={16} className={`mr-2 flex-shrink-0 ${
               isPast ? "text-gray-400" : "text-primary"
             }`} />
-            <span>{eventDates[0].time}</span>
+            <span>{currentDates[0]?.time}</span>
           </div>
           <div className={`flex items-center text-sm ${
             isPast ? "text-gray-500" : "text-gray-600"
@@ -177,7 +180,9 @@ export const MultiDateEventCard = ({
             <h4 className={`text-sm font-semibold ${
               isPast ? "text-gray-600" : "text-gray-900"
             }`}>
-              Available Dates & Locations
+              {upcomingDates.length > 0
+                ? "Upcoming Dates & Locations"
+                : "Completed Dates & Locations"}
             </h4>
           </div>
           

@@ -66,7 +66,7 @@ export function SectionTitle({
   return (
     <h2 
       className={cn(
-        "text-3xl md:text-4xl font-bold mb-6 animate-fade-in",
+        "text-3xl md:text-4xl font-bold mb-6",
         centered && "text-center",
         className
       )}
@@ -88,7 +88,7 @@ export function SectionSubtitle({
   return (
     <p 
       className={cn(
-        "text-lg text-gray-600 mb-8 max-w-3xl animate-fade-in animate-delay-100",
+        "mb-8 max-w-3xl text-lg text-gray-700",
         centered && "text-center mx-auto",
         className
       )}

@@ -1,21 +1,25 @@
 import { describe, expect, it } from "vitest";
-import { rawEvents } from "@/data/events";
+import { getUpcomingRawEvents, rawEvents } from "@/data/events";
 import {
+  getPastPracticeTransitionSeminarEvents,
+  getSeminarRegistrationPrice,
+  getUpcomingPracticeTransitionSeminarEvents,
   PRACTICE_TRANSITION_SEMINAR_PATH,
   PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
+  practiceTransitionSeminarEvents,
 } from "@/data/practiceTransitionSeminar";
 
 describe("events dataset", () => {
   it("routes upcoming practice transition seminars to the native registration page", () => {
-    const upcomingSeminars = rawEvents.filter(
+    const upcomingSeminars = getUpcomingRawEvents(new Date(2026, 7, 17)).filter(
       (event) =>
-        event.title === "Mastering Your Dental Transition Into and Out of Practice" &&
-        (event.date === "July 17, 2026" ||
-          event.date === "October 2, 2026" ||
-          event.date === "March 12, 2027")
+        event.title === "Mastering Your Dental Transition Into and Out of Practice"
     );
 
-    expect(upcomingSeminars).toHaveLength(3);
+    expect(upcomingSeminars.map((event) => event.date)).toEqual([
+      "October 2, 2026",
+      "March 12, 2027",
+    ]);
 
     for (const event of upcomingSeminars) {
       expect(event.registrationLink).toBe(PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH);
@@ -23,6 +27,50 @@ describe("events dataset", () => {
       expect(event.offerPrice).toBe(297);
       expect(event.offerPriceCurrency).toBe("USD");
     }
+  });
+
+  it("uses one seminar schedule as the source for event cards and registration", () => {
+    const eventCardSeminars = rawEvents.filter(
+      (event) => event.detailPath === PRACTICE_TRANSITION_SEMINAR_PATH
+    );
+
+    expect(eventCardSeminars).toHaveLength(practiceTransitionSeminarEvents.length);
+    expect(eventCardSeminars.map((event) => event.date)).toEqual(
+      practiceTransitionSeminarEvents.map((event) => event.date)
+    );
+  });
+
+  it("archives expired seminar dates and never returns them as registrable", () => {
+    const referenceDate = new Date(2026, 7, 17);
+
+    expect(
+      getUpcomingPracticeTransitionSeminarEvents(referenceDate).map(
+        (event) => event.value
+      )
+    ).toEqual(["october-2-2026-sacramento", "march-12-2027-anaheim"]);
+    expect(
+      getPastPracticeTransitionSeminarEvents(referenceDate).map(
+        (event) => event.value
+      )
+    ).toEqual(["july-17-2026-san-francisco"]);
+  });
+
+  it("switches from early-bird to standard pricing after the deadline", () => {
+    const sacramento = practiceTransitionSeminarEvents.find(
+      (event) => event.city === "Sacramento"
+    );
+    expect(sacramento).toBeDefined();
+    expect(
+      getSeminarRegistrationPrice(sacramento!, new Date(2026, 8, 2, 23, 59))
+    ).toBe(297);
+    expect(
+      getSeminarRegistrationPrice(sacramento!, new Date(2026, 8, 3, 0, 1))
+    ).toBe(397);
+    const eventsAfterDeadline = getUpcomingRawEvents(new Date(2026, 8, 3));
+    expect(
+      eventsAfterDeadline.find((event) => event.date === "October 2, 2026")
+        ?.offerPrice
+    ).toBe(397);
   });
 
   it("uses confirmed venues for the 2026 San Francisco and Sacramento seminars", () => {

@@ -25,7 +25,6 @@ export default function Page() {
           title: location.seoTitle,
           description: location.seoDescription,
           path,
-          includeLocalBusinessSchema: true,
         })}
       />
       <LocationView location={location} />

@@ -12,11 +12,12 @@ interface StaticRoute {
 }
 
 const STATIC_ROUTES: StaticRoute[] = [
-  { path: "/", changeFrequency: "weekly", priority: 1.0, lastModified: "2026-07-02" },
+  { path: "/", changeFrequency: "weekly", priority: 1.0, lastModified: "2026-08-17" },
   { path: "/services", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-07-02" },
   { path: "/services/value", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-02-02" },
   { path: "/services/selling", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-03-02" },
   { path: "/services/selling-to-a-dso", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-07-02" },
+  { path: "/services/buying", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-08-17" },
   { path: "/services/associateships", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-05-26" },
   { path: "/services/partnerships", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-02-02" },
   { path: "/blog", changeFrequency: "daily", priority: 0.8 },
@@ -36,7 +37,7 @@ const STATIC_ROUTES: StaticRoute[] = [
   { path: "/gallery", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-05-26" },
   { path: "/faq", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-01-27" },
   { path: "/contact", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-05-28" },
-  { path: "/privacy-policy", changeFrequency: "yearly", priority: 0.3, lastModified: "2026-02-02" },
+  { path: "/privacy-policy", changeFrequency: "yearly", priority: 0.3, lastModified: "2026-08-17" },
   { path: "/terms-of-service", changeFrequency: "yearly", priority: 0.3, lastModified: "2026-02-02" },
 ];
 

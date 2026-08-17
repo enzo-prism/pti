@@ -47,4 +47,23 @@ describe("event structured data", () => {
       priceCurrency: "USD",
     });
   });
+
+  it("marks archived events completed and removes registration offers", () => {
+    const schema = buildEventSchema({
+      id: "leadership-retreat-2026",
+      title: "Leadership Retreat",
+      date: "June 4, 2026",
+      endDate: "June 6, 2026",
+      location: "Savannah, GA",
+      description: "A completed leadership retreat.",
+      registrationLink: "https://www.dentistretreat.com/",
+      type: "conference",
+      detailPath: "/events/leadership-retreat",
+      eventStatus: "completed",
+      registrationOpen: false,
+    });
+
+    expect(schema.eventStatus).toBe("https://schema.org/EventCompleted");
+    expect(schema).not.toHaveProperty("offers");
+  });
 });

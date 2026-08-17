@@ -1,12 +1,14 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { AlertCircle, CheckCircle2, Loader2, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { BookMeetingButton } from "@/components/BookMeetingButton";
+import { PrintChecklistButton } from "@/components/resources/PrintChecklistButton";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
 import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
 import {
@@ -24,8 +26,14 @@ type SubmitState = "idle" | "submitting" | "success" | "error";
 export const ChecklistSignupForm = () => {
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [consent, setConsent] = useState(false);
-  const [consentError, setConsentError] = useState(false);
   const startedRef = useRef(false);
+  const statusRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (submitState === "success" || submitState === "error") {
+      statusRef.current?.focus();
+    }
+  }, [submitState]);
 
   const handleFirstInteraction = () => {
     if (startedRef.current) return;
@@ -35,11 +43,6 @@ export const ChecklistSignupForm = () => {
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    if (!consent) {
-      setConsentError(true);
-      return;
-    }
 
     const formElement = event.currentTarget;
     const payload = new FormData(formElement);
@@ -52,9 +55,12 @@ export const ChecklistSignupForm = () => {
 
     payload.set("form_name", FORM_NAME);
     payload.set(
-      "consent",
-      "Yes — consents to be contacted by email, text, and phone"
+      "marketing_consent",
+      consent
+        ? "Yes — opted into occasional educational emails"
+        : "No — resource access only"
     );
+    payload.set("resource_accessed_at", new Date().toISOString());
     payload.set(
       "_subject",
       "Practice Sale Readiness Checklist request — PTI website"
@@ -81,19 +87,25 @@ export const ChecklistSignupForm = () => {
 
   if (submitState === "success") {
     return (
-      <div className="rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-sm sm:p-8">
+      <div
+        ref={statusRef}
+        tabIndex={-1}
+        role="status"
+        className="rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-sm outline-none focus:ring-2 focus:ring-primary sm:p-8"
+      >
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
           <CheckCircle2 className="h-6 w-6 text-primary" aria-hidden="true" />
         </div>
         <h3 className="mt-4 text-lg font-semibold text-gray-900 sm:text-xl">
-          Thank you — your checklist is on its way.
+          Your printable checklist is ready.
         </h3>
         <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-gray-600 sm:text-base">
-          A member of the PTI team will email your copy within one business
-          day. In the meantime, you can print or save this page — or talk
-          through your readiness directly with Dr. Njo.
+          Use the button below to open your browser&apos;s print dialog and save a
+          clean PDF immediately. You can also talk through your readiness with
+          Dr. Njo.
         </p>
-        <div className="mt-6 flex justify-center">
+        <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+          <PrintChecklistButton />
           <BookMeetingButton
             location="checklist_form_success"
             label="Book a 30-Minute Meeting"
@@ -113,11 +125,11 @@ export const ChecklistSignupForm = () => {
       className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8"
     >
       <h3 className="text-lg font-semibold text-gray-900 sm:text-xl">
-        Get your copy by email
+        Save an instant printable copy
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-gray-600 sm:text-base">
-        We&apos;ll send the checklist along with practical transition guidance
-        from the PTI team — no automated sales pitch.
+        Enter your email to unlock the print and Save as PDF button immediately.
+        Educational emails are optional.
       </p>
 
       <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -159,29 +171,28 @@ export const ChecklistSignupForm = () => {
             checked={consent}
             onCheckedChange={(value) => {
               setConsent(value === true);
-              if (value === true) setConsentError(false);
             }}
-            aria-required="true"
             className="mt-0.5"
           />
           <Label
             htmlFor="checklist-consent"
             className="text-sm font-normal leading-relaxed text-gray-700"
           >
-            I agree that the PTI team may contact me using the details
-            I&apos;ve provided — including by email, text message, and phone
-            call.{" "}
-            <span aria-hidden="true" className="text-destructive">
-              *
-            </span>
+            Email me occasional dental-practice transition guidance from PTI.
+            This is optional and is not required to access the checklist. I can
+            unsubscribe at any time.
           </Label>
         </div>
-        {consentError && (
-          <p role="alert" className="text-sm font-medium text-destructive">
-            Please confirm the PTI team may contact you using the details
-            above.
-          </p>
-        )}
+        <p className="pl-8 text-xs leading-relaxed text-gray-500">
+          PTI uses your email to provide this requested resource. See our{" "}
+          <Link
+            href="/privacy-policy"
+            className="font-medium text-primary underline underline-offset-2"
+          >
+            privacy policy
+          </Link>
+          .
+        </p>
       </div>
 
       {/* Honeypot: positioned off-screen and hidden from assistive tech. */}
@@ -201,8 +212,10 @@ export const ChecklistSignupForm = () => {
 
       {submitState === "error" && (
         <div
+          ref={statusRef}
+          tabIndex={-1}
           role="alert"
-          className="mt-4 flex items-start gap-3 rounded-lg border border-destructive/30 bg-destructive/5 p-4 text-sm"
+          className="mt-4 flex items-start gap-3 rounded-lg border border-destructive/30 bg-destructive/5 p-4 text-sm outline-none focus:ring-2 focus:ring-destructive"
         >
           <AlertCircle
             className="mt-0.5 h-5 w-5 shrink-0 text-destructive"
@@ -231,7 +244,8 @@ export const ChecklistSignupForm = () => {
 
       <div className="mt-5 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-gray-500 sm:text-sm">
-          We&apos;ll only use your details to respond to your request.
+          Resource access is immediate. Marketing emails require the optional
+          checkbox above.
         </p>
         <Button
           type="submit"
@@ -246,7 +260,7 @@ export const ChecklistSignupForm = () => {
             </>
           ) : (
             <>
-              Email me the checklist
+              Get instant checklist access
               <Send aria-hidden="true" />
             </>
           )}

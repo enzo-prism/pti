@@ -6,7 +6,7 @@ import { serviceOfferings } from "@/data/services";
 
 const title = "Selling Your Dental Practice to a DSO";
 const description =
-  "Received a DSO offer? PTI reviews the LOI, values your practice independently, compares DSO vs private buyer paths, and negotiates on your behalf.";
+  "Received a DSO offer? PTI reviews the business terms, develops an independent valuation baseline, compares sale paths, and coordinates negotiation with your advisors.";
 const path = "/services/selling-to-a-dso";
 
 export const metadata = buildPageMetadata({

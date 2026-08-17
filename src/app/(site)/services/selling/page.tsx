@@ -6,7 +6,7 @@ import { serviceOfferings } from "@/data/services";
 
 const title = "Dental Practice Sale Advisory & Brokerage";
 const description =
-  "Plan and execute a successful dental practice sale with PTI's advisory, marketing, and negotiation support.";
+  "Plan a confidential dental practice sale with PTI support for readiness, valuation, buyer screening, offer comparison, negotiation, diligence, and handoff.";
 
 export const metadata = buildPageMetadata({
   title,

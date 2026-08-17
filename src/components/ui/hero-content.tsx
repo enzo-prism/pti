@@ -10,52 +10,53 @@ interface HeroContentProps {
 
 export const HeroContent: React.FC<HeroContentProps> = ({ className }) => {
   return (
-    <div className={`max-w-4xl mx-auto text-center px-4 ${className || ''}`}>
-      {/* Logo */}
-      <div className="mb-8">
-        <div className="bg-white rounded-xl p-6 mx-auto inline-block shadow-lg drop-shadow-lg">
+    <div className={`mx-auto max-w-5xl px-4 text-center ${className || ""}`}>
+      <div className="mb-5 sm:mb-6">
+        <div className="mx-auto inline-block rounded-2xl bg-white p-3 shadow-xl sm:p-4">
           <Image
             src="/lovable-uploads/pti-logo.webp"
-            alt="Practice Transitions Institute logo"
+            alt=""
             width={480}
             height={466}
-            className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 object-contain"
-            sizes="(min-width: 768px) 224px, (min-width: 640px) 192px, 160px"
+            className="h-24 w-24 object-contain sm:h-28 sm:w-28 md:h-32 md:w-32"
+            sizes="(min-width: 768px) 128px, (min-width: 640px) 112px, 96px"
             priority
           />
         </div>
       </div>
-      
-      {/* Tagline */}
-      <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white drop-shadow-lg">
-        From Acquisition to{' '}
-        <span className="text-blue-100 font-extrabold">
-          Legacy
-        </span>
-      </p>
 
-      {/* Main Headline */}
-      <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-blue-50 mb-6 drop-shadow-md">
-        We Help You Navigate Your Dental Practice Transition with Certainty
+      <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-blue-100 sm:text-base">
+        Independent Guidance for Dentists
+      </p>
+      <h1 className="text-balance text-3xl font-bold leading-tight text-white drop-shadow-lg sm:text-4xl md:text-5xl lg:text-6xl">
+        Dental Practice Transitions, Guided From Acquisition to Legacy
       </h1>
 
-      {/* Description */}
-      <p className="text-base sm:text-lg md:text-xl text-blue-50/90 leading-relaxed mb-8 max-w-3xl mx-auto drop-shadow-sm">
-        We guide dentists through every stage of their practice transition, ensuring a smooth, profitable, and stress-free process.
+      <p className="mx-auto mt-5 max-w-3xl text-pretty text-base leading-relaxed text-blue-50 sm:text-lg md:text-xl">
+        Get a clear valuation, practical deal guidance, and personal support for
+        selling, buying, associate buy-ins, partnerships, or evaluating a DSO
+        offer.
       </p>
 
-      {/* CTA Button */}
-      <div className="mb-8 sm:mb-4">
+      <div className="mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
         <Button
           asChild
           variant="secondary"
           size="lg"
-          className="group text-base px-8 py-4 bg-white hover:bg-white shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/25 active:translate-y-0"
+          className="group min-h-12 bg-white px-7 text-base shadow-lg hover:-translate-y-0.5 hover:bg-white hover:shadow-xl motion-reduce:transform-none"
         >
           <Link href="/contact">
-            Let&apos;s Talk
-            <ArrowRight className="h-5 w-5 transition-transform duration-300 ease-out group-hover:translate-x-1" />
+            Book a Confidential Consultation
+            <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transform-none" />
           </Link>
+        </Button>
+        <Button
+          asChild
+          variant="outline"
+          size="lg"
+          className="min-h-12 border-white/70 bg-transparent px-7 text-base text-white hover:bg-white/10 hover:text-white"
+        >
+          <Link href="/services">Explore Transition Services</Link>
         </Button>
       </div>
     </div>

@@ -33,7 +33,7 @@ const sourceLabels: Record<ReviewSource, string> = {
   google: "Google",
   amazon: "Amazon",
   alignable: "Alignable",
-  internal: "Client",
+  internal: "Provided directly",
 };
 
 const categoryLabels: Record<ReviewCategory, string> = {
@@ -68,7 +68,7 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   }
 
   return buildPageMetadata({
-    title: `${review.displayAuthorName} Review`,
+    title: review.storyTitle ?? `${review.displayAuthorName} Review`,
     description: toDescription(review.quote),
     path: `/testimonials/${review.slug}`,
   });
@@ -84,14 +84,14 @@ export default function Page({ params }: { params: Params }) {
   const breadcrumbs = [
     HOME_CRUMB,
     { name: "Testimonials", path: "/testimonials" },
-    { name: review.displayAuthorName },
+    { name: review.storyTitle ?? review.displayAuthorName },
   ];
 
   return (
     <>
       <StructuredData
         data={buildPageJsonLd({
-          title: `${review.displayAuthorName} Review`,
+          title: review.storyTitle ?? `${review.displayAuthorName} Review`,
           description: toDescription(review.quote),
           path,
           breadcrumbs,
@@ -116,7 +116,7 @@ export default function Page({ params }: { params: Params }) {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbPage>{review.displayAuthorName}</BreadcrumbPage>
+                <BreadcrumbPage>{review.storyTitle ?? review.displayAuthorName}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -140,7 +140,7 @@ export default function Page({ params }: { params: Params }) {
             </div>
 
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-              {review.displayAuthorName}
+              {review.storyTitle ?? review.displayAuthorName}
             </h1>
 
             <div className="flex flex-wrap items-center gap-2 text-amber-500">
@@ -178,6 +178,23 @@ export default function Page({ params }: { params: Params }) {
               <p className="text-xs text-gray-500 mt-1">
                 Source author record: {review.sourceAuthorName}
               </p>
+              {review.sourceUrl ? (
+                <p className="mt-2 text-xs text-gray-500">
+                  <a
+                    href={review.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-primary hover:underline"
+                  >
+                    View the public source
+                  </a>
+                </p>
+              ) : review.source === "internal" ? (
+                <p className="mt-2 text-xs text-gray-500">
+                  This feedback was provided directly to PTI and is shown as
+                  recorded in the review library.
+                </p>
+              ) : null}
             </CardContent>
           </Card>
 

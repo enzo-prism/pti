@@ -2,9 +2,9 @@ import About from "@/views/About";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 
-const title = "About PTI Dental Practice Transition Experts";
+const title = "About Practice Transitions Institute";
 const description =
-  "Meet the PTI leadership team and learn our approach to dental practice valuation, sales, partnerships, and associateships.";
+  "Meet PTI's leadership and learn how the firm guides dental practice valuations, sales, acquisitions, DSO offers, buy-ins, and partnerships.";
 
 export const metadata = buildPageMetadata({
   title,

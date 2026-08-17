@@ -1,9 +1,8 @@
 import Testimonials from "@/views/Testimonials";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
-import { getReviewAggregate, reviews } from "@/data/reviews";
+import { reviews } from "@/data/reviews";
 import {
-  buildAggregateRatingSchema,
   buildReviewItemListSchema,
   type JsonLdShape,
 } from "@/lib/structuredData";
@@ -21,8 +20,7 @@ export const metadata = buildPageMetadata({
 
 export default function Page() {
   const reviewListSchema = buildReviewItemListSchema(reviews, path);
-  const aggregateRatingSchema = buildAggregateRatingSchema(reviews);
-  const reviewStructuredData = [reviewListSchema, aggregateRatingSchema].filter(
+  const reviewStructuredData = [reviewListSchema].filter(
     (schema): schema is JsonLdShape => Boolean(schema)
   );
 
@@ -36,7 +34,7 @@ export default function Page() {
           structuredData: reviewStructuredData,
         })}
       />
-      <Testimonials reviews={reviews} aggregate={getReviewAggregate(reviews)} />
+      <Testimonials reviews={reviews} />
     </>
   );
 }

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
-import { CheckCircle, TrendingUp, Users, Building, ArrowRight } from "lucide-react";
+import { CheckCircle, TrendingUp, Users, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -10,13 +10,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { serviceOfferings } from "@/data/services";
+import { ServiceEngagementDetails } from "@/components/services/ServiceEngagementDetails";
 
 const Value = () => {
-  const offering = serviceOfferings.find(
-    (service) => service.url === "/services/value"
-  );
-
   return (
     <>
       {/* Hero Section */}
@@ -24,14 +20,14 @@ const Value = () => {
         <div className="container px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 animate-fade-in leading-tight">
-              Don&apos;t Leave Your Legacy to Chance.<br />Know Your Practice&apos;s Value.
+              Understand Your Dental Practice&apos;s Value
             </h1>
             <p className="text-lg md:text-xl text-gray-700 mb-8 animate-fade-in animate-delay-100 leading-relaxed">
-              Our comprehensive and expert valuation provides the clarity you need, before making any transition decisions.
+              Get a documented analysis of financial performance, operations, and market context before a sale, buy-in, partnership, or long-term planning decision.
             </p>
             <div className="flex justify-center">
               <Button asChild size="lg">
-                <Link href="/contact">Schedule a Consultation</Link>
+                <Link href="/contact">Request a Valuation Consultation</Link>
               </Button>
             </div>
           </div>
@@ -48,10 +44,10 @@ const Value = () => {
               consequences, jeopardizing your future and the legacy you&apos;ve built.
             </p>
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-              Practice Transitions Institute provides the expert guidance you need to navigate this critical stage. 
-              We understand the nuances of dental practice valuation and offer a clear, comprehensive approach to 
-              ensure you have an accurate picture of your practice&apos;s worth, protecting your investment and paving 
-              the way for a successful transition.
+              Practice Transitions Institute reviews the information available,
+              documents the assumptions used, and explains the valuation range and
+              its limitations. A valuation supports decision-making, but the final
+              price still depends on the market, buyer, financing, and deal terms.
             </p>
           </div>
         </div>
@@ -99,7 +95,8 @@ const Value = () => {
         
         <div className="text-center mt-8">
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            Our multi-faceted approach ensures a valuation that is both accurate and reflective of your practice&apos;s unique value.
+            The result is a documented opinion of value based on the information
+            reviewed and the purpose of the engagement.
           </p>
         </div>
       </Section>
@@ -137,7 +134,7 @@ const Value = () => {
             <div>
               <h3 className="text-xl font-semibold mb-2">Clear Communication</h3>
               <p className="text-gray-600 leading-relaxed">
-                We&apos;ll walk you through our findings, ensuring you understand every aspect of your practice&apos;s value.
+                We walk through the findings, assumptions, and limits so you can use the analysis appropriately.
               </p>
             </div>
           </div>
@@ -154,30 +151,14 @@ const Value = () => {
         </div>
       </Section>
 
-      {/* Enhanced CTA Section After What to Expect */}
-      <Section background="primary">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/20 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 animate-fade-in animate-delay-100">
-              Start Your Valuation Today
-            </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in animate-delay-200">
-              Get the expert insights you need to make informed transition decisions.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in animate-delay-300">
-              <Button 
-                asChild 
-                size="lg" 
-                variant="secondary"
-                className="font-semibold px-8 py-3 hover-scale"
-              >
-                <Link href="/contact">Schedule a Consultation</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </Section>
+      <ServiceEngagementDetails
+        deliverables={[
+          "Requested financial and operational information checklist",
+          "Written opinion of value with assumptions and methodology",
+          "Findings review and planning discussion",
+        ]}
+        timeline="Timing depends on the valuation purpose, the scope agreed in writing, and when complete records are available. PTI confirms the required information and estimated delivery date before work begins."
+      />
 
       {/* FAQ Section */}
       <Section background="light">
@@ -190,9 +171,7 @@ const Value = () => {
                 Why do I need a professional dental practice valuation?
               </AccordionTrigger>
               <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-                A professional valuation provides an unbiased and accurate assessment of your practice&apos;s market value, 
-                crucial for fair negotiations whether you&apos;re buying or selling. It also helps with financial planning 
-                and understanding your most significant asset.
+                A professional valuation provides a documented estimate of market value based on the available financial, operational, and market information. It supports negotiations and planning, but it does not guarantee a final sale price.
               </AccordionContent>
             </AccordionItem>
 
@@ -221,9 +200,7 @@ const Value = () => {
                 What are the different types of valuations, and which one is right for me?
               </AccordionTrigger>
               <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-                We offer various levels of valuation, from an initial Opinion of Value for preliminary planning to a 
-                comprehensive Standard Valuation for most transactions and a Certified Valuation for complex situations 
-                or legal purposes. We can help you determine the best fit for your needs.
+                The right scope depends on the decision you need to make and who will rely on the work. PTI explains the available scope, deliverables, limits, fee, and whether a separate credentialed appraisal or legal expert is appropriate before the engagement begins.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -233,9 +210,9 @@ const Value = () => {
       {/* Final CTA Section */}
       <Section className="mb-8">
         <Cta 
-          title="Ready to Discover Your Practice&apos;s True Value?"
+          title="Need a Clearer View of Your Practice&apos;s Value?"
           description="Schedule a consultation to discuss which valuation approach is right for your needs."
-          buttonText="Schedule a Consultation"
+          buttonText="Request a Valuation Consultation"
           buttonUrl="/contact"
         />
       </Section>

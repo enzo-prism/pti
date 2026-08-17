@@ -6,8 +6,6 @@ import {
 } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
 import { Button } from "@/components/ui/button";
-import { getFeaturedReviews } from "@/data/reviews";
-import { TestimonialCard } from "@/components/ui/testimonial-card";
 import type { LocationContent, LocationIconKey } from "@/data/locations";
 import {
   Building2,
@@ -33,8 +31,6 @@ const ICONS: Record<LocationIconKey, typeof MapPin> = {
 };
 
 const LocationView = ({ location }: { location: LocationContent }) => {
-  const testimonials = getFeaturedReviews("selling").slice(0, 3);
-
   return (
     <>
       {/* Hero Section */}
@@ -52,7 +48,7 @@ const LocationView = ({ location }: { location: LocationContent }) => {
             </p>
             <div className="flex justify-center">
               <Button asChild size="lg">
-                <Link href="/contact">Schedule a Confidential Consultation</Link>
+                <Link href="/contact">Discuss a {location.state} Transition</Link>
               </Button>
             </div>
           </div>
@@ -70,6 +66,20 @@ const LocationView = ({ location }: { location: LocationContent }) => {
               {paragraph}
             </p>
           ))}
+        </div>
+      </Section>
+
+      <Section background="light">
+        <div className="mx-auto max-w-4xl rounded-2xl border border-blue-100 bg-white p-7 shadow-sm md:p-9">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
+            A practical first step
+          </p>
+          <h2 className="mt-3 text-2xl font-bold text-gray-900 md:text-3xl">
+            {location.firstStep.title}
+          </h2>
+          <p className="mt-4 leading-relaxed text-gray-600">
+            {location.firstStep.description}
+          </p>
         </div>
       </Section>
 
@@ -127,7 +137,7 @@ const LocationView = ({ location }: { location: LocationContent }) => {
                 >
                   Opinion of Value
                 </Link>{" "}
-                grounded in your practice&apos;s real cash flow and your local market —
+                grounded in your practice&apos;s real cash flow and your local market,
                 or get a quick estimate with our{" "}
                 <Link
                   href="/resources/how-much-is-my-dental-practice-worth"
@@ -167,9 +177,16 @@ const LocationView = ({ location }: { location: LocationContent }) => {
           <div className="flex items-start gap-4">
             <ScrollText className="h-6 w-6 text-orange-600 flex-shrink-0 mt-1" />
             <div>
-              <h3 className="text-xl font-semibold mb-2">Structure a buy-in</h3>
+              <h3 className="text-xl font-semibold mb-2">Buy or structure a buy-in</h3>
               <p className="text-gray-600 leading-relaxed">
-                Bringing an associate toward ownership? We structure{" "}
+                Evaluating a full acquisition? Start with PTI&apos;s{" "}
+                <Link
+                  href="/services/buying"
+                  className="text-primary font-semibold hover:underline"
+                >
+                  buyer and acquisition advisory
+                </Link>
+                . Bringing an associate toward ownership? We help plan{" "}
                 <Link
                   href="/services/associateships"
                   className="text-primary font-semibold hover:underline"
@@ -183,7 +200,7 @@ const LocationView = ({ location }: { location: LocationContent }) => {
                 >
                   partnerships
                 </Link>{" "}
-                that work for everyone.
+                with the business terms coordinated for outside advisors.
               </p>
             </div>
           </div>
@@ -193,12 +210,38 @@ const LocationView = ({ location }: { location: LocationContent }) => {
             <div>
               <h3 className="text-xl font-semibold mb-2">Plan around your goals</h3>
               <p className="text-gray-600 leading-relaxed">
-                Retirement timeline, tax planning, team continuity, and legacy — we
+                Retirement timeline, tax planning, team continuity, and legacy all
                 help you sequence the decisions so the transition happens on your
                 terms.
               </p>
             </div>
           </div>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="mx-auto max-w-4xl rounded-xl border border-gray-200 bg-gray-50 p-6">
+          <h2 className="text-xl font-semibold text-gray-900">
+            Official {location.state} references
+          </h2>
+          <p className="mt-2 text-sm leading-relaxed text-gray-600">
+            Use these agency sources with advice from your attorney and CPA. PTI
+            provides transition guidance, not legal or tax advice.
+          </p>
+          <ul className="mt-4 space-y-2">
+            {location.officialReferences.map((reference) => (
+              <li key={reference.url}>
+                <a
+                  href={reference.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-primary hover:underline"
+                >
+                  {reference.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </Section>
 
@@ -224,32 +267,10 @@ const LocationView = ({ location }: { location: LocationContent }) => {
       <Section className="mb-8">
         <Cta
           title={`Thinking About a Transition in ${location.state}?`}
-          description="Start with a confidential conversation about your practice and your timeline — no obligation to sell."
-          buttonText="Book Your Free Consultation"
+          description="Start with a confidential conversation about your practice, your market, and the transition decision in front of you."
+          buttonText={`Discuss a ${location.state} Transition`}
           buttonUrl="/contact"
         />
-      </Section>
-
-      {/* Testimonials */}
-      <Section background="light">
-        <SectionTitle centered>What Dentists Say</SectionTitle>
-        <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
-          {testimonials.map((review) => (
-            <TestimonialCard
-              key={review.id}
-              quote={review.quote}
-              author={review.displayAuthorName}
-              role={review.role}
-              company={review.company}
-              reviewHref={`/testimonials/${review.slug}`}
-            />
-          ))}
-        </div>
-        <div className="text-center mt-8">
-          <Button asChild variant="outline" size="lg">
-            <Link href="/testimonials">View All Testimonials</Link>
-          </Button>
-        </div>
       </Section>
     </>
   );

@@ -16,7 +16,7 @@ export const PRACTICE_TRANSITION_SEMINAR_FORM_PROVIDER = "formspree";
 export const PRACTICE_TRANSITION_SEMINAR_PAGE_TITLE =
   "Dental Practice Transition Seminar | PTI";
 export const PRACTICE_TRANSITION_SEMINAR_META_DESCRIPTION =
-  "Join Practice Transitions Institute for a one-day seminar on buying, selling, and transitioning a dental practice with clarity and confidence. Upcoming dates in San Francisco, Sacramento, and Anaheim.";
+  "Join Practice Transitions Institute for a one-day seminar on buying, selling, and transitioning a dental practice. See current dates, locations, pricing, and registration details.";
 export const PRACTICE_TRANSITION_SEMINAR_EYEBROW =
   "Practice Transitions Seminar";
 export const PRACTICE_TRANSITION_SEMINAR_HEADLINE =
@@ -82,6 +82,43 @@ export const practiceTransitionSeminarEvents: PracticeTransitionSeminarEvent[] =
   },
 ];
 
+export const getUpcomingPracticeTransitionSeminarEvents = (
+  referenceDate: Date = new Date()
+): PracticeTransitionSeminarEvent[] =>
+  sortEventDates(
+    practiceTransitionSeminarEvents.filter((event) =>
+      isEventUpcoming(event.date, referenceDate)
+    )
+  );
+
+export const getPastPracticeTransitionSeminarEvents = (
+  referenceDate: Date = new Date()
+): PracticeTransitionSeminarEvent[] =>
+  [...practiceTransitionSeminarEvents]
+    .filter((event) => isEventPast(event.date, referenceDate))
+    .sort(
+      (a, b) =>
+        parseEventDate(b.date).getTime() - parseEventDate(a.date).getTime()
+    );
+
+export const getPracticeTransitionSeminarEvent = (
+  value: string,
+  events: PracticeTransitionSeminarEvent[] = practiceTransitionSeminarEvents
+) => events.find((event) => event.value === value);
+
+export const isSeminarEarlyBirdPriceAvailable = (
+  event: PracticeTransitionSeminarEvent,
+  referenceDate: Date = new Date()
+) => isEventUpcoming(event.earlyBirdDeadline, referenceDate);
+
+export const getSeminarRegistrationPrice = (
+  event: PracticeTransitionSeminarEvent,
+  referenceDate: Date = new Date()
+) =>
+  isSeminarEarlyBirdPriceAvailable(event, referenceDate)
+    ? event.earlyBirdPrice
+    : event.standardPrice;
+
 export const practiceTransitionSeminarLearningPoints = [
   "Increase your practice value before you sell",
   "Avoid tax pitfalls that can reduce your net gains",
@@ -125,3 +162,9 @@ export const practiceTransitionSeminarFaqs = [
       "Choose the date that is most convenient, or call PTI at (833) 784-1121 with questions.",
   },
 ];
+import {
+  isEventPast,
+  isEventUpcoming,
+  parseEventDate,
+  sortEventDates,
+} from "@/lib/dateUtils";

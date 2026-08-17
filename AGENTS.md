@@ -17,6 +17,7 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 - `npm run start`: serve production build locally.
 - `npm run lint`: ESLint on the full repo.
 - `npm run test`: Vitest suite (`*.test.ts` colocated with source).
+- `npm run rss:check`: validates the generated blog RSS document.
 
 ## Routing and layout
 - Routes live in `src/app`. `src/app/(site)/layout.tsx` adds `Navbar` and `Footer`.
@@ -32,20 +33,21 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
   - IMPORTANT: never import `blogPosts` from a client component — the full markdown bodies would ship in the JS bundle. Listing surfaces receive `BlogPostSummary[]` props mapped via `toBlogPostSummary` in a server page (see `src/app/(site)/blog/page.tsx`).
 - Recent photo/video community posts: `src/data/communityImpactPosts.ts` (merged ahead of `blogPosts` in the blog listing, post route, and sitemap). Photo stories need a real `featuredImage` — a gradient-only hero looks like a missing photograph.
 - Gallery storytelling set: `src/data/drNjoGallery.ts` plus dimensions in `src/data/galleryImages.ts`. Files live in `public/lovable-uploads/drnjo-2026/`. Several historical thumbs (`mayflower-trio`, `conference-room-meeting`, `dugoni-group-photo`, `dinner-duo`, `publication-spread`, `blue-print-for-success-flyer`, `black-tie-medal-portrait`) are native ~240–320px; keep `fit: "contain"` so they are not cover-cropped and upscaled. Do not invent higher-resolution replacements unless a true original is supplied.
-- Events: `src/data/events.ts` (date strings like "March 28, 2025"; optional `dateDisplay` for ranges).
+- Events: `src/data/practiceTransitionSeminar.ts` is the single source of truth for seminar dates; `src/data/events.ts` derives the event-hub records from it. Date utilities are strict and injectable for tests, expired seminars are archived automatically, and current event pages refresh hourly.
 - Testimonials: canonical reviews dataset in `src/data/reviews.ts` (see `docs/reviews-runbook.md`).
 - Amazon reviews: `src/data/amazonReviews.ts`.
 - Lead magnet: `/resources/practice-sale-readiness-checklist` (`src/views/PracticeSaleChecklist.tsx`, form in `src/components/resources/`).
 - Resources hub: `/resources` (`src/views/Resources.tsx`) links the calculator, checklist, DSO guide, and blog.
 - Valuation pillar + calculator: `/resources/how-much-is-my-dental-practice-worth` (`src/views/PracticeWorth.tsx`) embeds the client-side `src/components/resources/PracticeValueCalculator.tsx` (percent-of-collections + earnings-multiple estimate; emits the `calculate_practice_value` analytics event).
-- Location / service-area pages: content lives in `src/data/locations.ts` (one entry per state with distinct, accurate market context — never templated doorway copy). The shared renderer is `src/views/locations/LocationView.tsx`; the `/locations` hub is `src/views/Locations.tsx`. To add a state: add a `LOCATIONS` entry, create `src/app/(site)/locations/<slug>/page.tsx` (mirror an existing one, `includeLocalBusinessSchema: true`), and register it in `routeBreadcrumbs.ts` + `sitemap.ts` (+ test count).
+- Location / service-area pages: content lives in `src/data/locations.ts` (one entry per state with distinct, sourced market context — never templated doorway copy). The shared renderer is `src/views/locations/LocationView.tsx`; the `/locations` hub is `src/views/Locations.tsx`. These pages describe service areas, not verified PTI offices, so they must not emit `LocalBusiness` office schema. To add a state: add a `LOCATIONS` entry, create `src/app/(site)/locations/<slug>/page.tsx`, and register it in `routeBreadcrumbs.ts` + `sitemap.ts` (+ test count).
 - Business contact info: `src/lib/constants.ts` and `SITE_CONTACT_EMAIL` in `src/lib/siteMetadata.ts` — always use these constants, never hardcode emails or phone numbers.
 
 ## Blog system behavior
 - Listing page: `src/views/Blog.tsx` (client component receiving summaries as props). The route is statically generated; `?search=` deep links are applied after hydration from `window.location.search`.
-- Post page: `src/views/BlogPost.tsx` uses `marked` and `dangerouslySetInnerHTML`.
+- Post page: `src/views/BlogPost.tsx` renders Markdown through the allowlist sanitizer in `src/lib/markdown.ts` before `dangerouslySetInnerHTML`.
   - Content is split on blank lines, so avoid extra blank lines inside HTML blocks.
-  - Do not introduce untrusted HTML (no sanitization is applied).
+  - Raw HTML is allowlisted; iframes are limited to Instagram embeds. Do not broaden the allowlist without tests and a concrete publishing need.
+  - Editorial QA tests reject internal drafting language, body H1s, unsafe HTML, and overlong search metadata.
 - Series navigation uses `post.series` and `getSeriesPosts`.
 - Related posts are filtered by category and sorted most-recent first.
 - Use `formatLocalDate` for display to avoid timezone shifts.
@@ -59,7 +61,7 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 - Search schema targets `/blog` via `SITE_SEARCH_PATH`.
 
 ## Analytics
-- `GoogleAnalytics` and `HotjarAnalytics` (in `src/components/analytics/`) are mounted from the root layout and inject GA + Hotjar only in production on the canonical host (`shouldEnableAnalytics` in `src/lib/analytics.ts`).
+- `AnalyticsProviders` is mounted once from the root layout. Google Analytics, Hotjar, and Vercel Analytics load only after explicit consent on the canonical production host; privacy choices can be reset from the footer.
 - Custom events in `src/lib/analytics.ts` (lead generation, blog views, CTAs, series navigation).
 
 ## Styling and UI conventions
@@ -68,6 +70,8 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 - Common layout helpers: `Section`, `SectionTitle`, `SectionSubtitle`.
 - Fonts are loaded via `next/font` (Inter and Montserrat) in `src/app/layout.tsx`.
 - `Navbar` and `Footer` are `print:hidden`; keep printable pages (e.g., the checklist) working when adding chrome.
+- `Navbar` desktop submenus and the mobile drawer must remain keyboard-operable, Escape-dismissable, and absent from the accessibility tree while closed.
+- `ScrollReveal` is progressive enhancement: content must remain visible if observer or animation support fails, and reduced-motion users should not receive reveal motion.
 - Use the `@` alias for `src` imports.
 
 ## Assets
@@ -80,6 +84,8 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 ## Build and deployment notes
 - The build defines `NEXT_PUBLIC_BUILD_TIMESTAMP` in `next.config.mjs`.
 - Sitemap and robots are generated by `src/app/sitemap.ts` and `src/app/robots.ts`.
+- Security headers and the `www` → apex redirect are defined in `next.config.mjs` and `vercel.json`.
+- The linked Vercel project is `pti`; the canonical production host is `https://practicetransitionsinstitute.com`.
 
 ## Coding style and naming
 - TypeScript only; 2-space indentation; functional components.
@@ -94,3 +100,9 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 ## Commit and PR guidelines
 - Commit messages: short, imperative (e.g., "Fix blog post runtime error").
 - PRs should describe user-facing changes and list verification steps.
+
+## Current service architecture
+
+- `/services/buying` owns acquisition-advisory intent; keep it distinct from associate buy-ins.
+- Core service pages use `EngagementDetails` to explain deliverables, typical timing, roles, fees, representation/conflicts, and attorney/CPA coordination.
+- PTI owns detailed transition-service and transaction-proof search intent. Dr. Njo's personal site owns his full biography, education/speaking authority, and non-transactional Dental Strategies guidance.

@@ -8,13 +8,13 @@ export const serviceOfferings: ServiceOffering[] = [
   {
     title: "Opinion of Value",
     description:
-      "Comprehensive valuation services to determine the true market value of your dental practice.",
+      "A documented analysis of practice financials, operations, and market context to support planning and negotiations.",
     url: "/services/value",
   },
   {
     title: "Selling a Practice",
     description:
-      "Strategic guidance and support for selling your practice to achieve maximum value.",
+      "Confidential preparation, buyer screening, negotiation support, and closing coordination for practice owners.",
     url: "/services/selling",
   },
   {
@@ -24,7 +24,13 @@ export const serviceOfferings: ServiceOffering[] = [
     url: "/services/selling-to-a-dso",
   },
   {
-    title: "Associateships/Buy In",
+    title: "Buying a Practice",
+    description:
+      "Acquisition guidance for evaluating opportunities, testing value, preparing for due diligence, and planning the ownership transition.",
+    url: "/services/buying",
+  },
+  {
+    title: "Associateships and Buy-Ins",
     description:
       "Structured pathways for associates to buy in and transition into ownership roles.",
     url: "/services/associateships",
@@ -32,7 +38,7 @@ export const serviceOfferings: ServiceOffering[] = [
   {
     title: "Partnerships",
     description:
-      "Creating equitable partnership arrangements that benefit all parties involved.",
+      "Business-term, valuation, and implementation guidance for dentists considering shared ownership.",
     url: "/services/partnerships",
   },
 ];

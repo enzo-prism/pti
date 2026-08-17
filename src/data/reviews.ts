@@ -16,6 +16,7 @@ export interface ReviewRecord {
   quote: string;
   sourceAuthorName: string;
   displayAuthorName: string;
+  storyTitle?: string;
   role?: string;
   company?: string;
   sourceUrl?: string;
@@ -403,7 +404,7 @@ const googleReviews: ReviewRecord[] = [
     category: "seller",
     rating: 5,
     quote:
-      "I have known Dr. Michael Nio since 2016, and over the years he has played an important role in some of the biggest professional decisions of my career. When Michael sold our practice in 2020, he delivered exactly what he said he would. His valuation proved accurate, the process was smooth, and his guidance gave us confidence every step of the way. In an environment where uncertainty can be overwhelming, Michael brought clarity, honesty, and calm leadership. I've also watched him step in for colleagues during some of the most stressful moments of their careers - navigating difficult partnership disputes, unexpected health crises, and other situations that required not just expertise, but compassion. He never shrinks from the hard conversations, and he always leads with integrity. Michael has also helped me personally during a very contentious partnership situation. His advice steadied me when I could have easily made decisions I would have regretted. His perspective was invaluable, and his loyalty was unwavering. What makes Michael unique is that he doesn't just act as a broker - he becomes a trusted advisor. He engages deeply with each client's goals, fears, and priorities. He takes the time to truly understand the full picture before offering guidance. Beyond his professional skill, Michael is someone I consider a friend and like family. He has a steady, calm presence that reassures you in difficult moments, and a genuine passion for helping dentists succeed - not just in transactions, but in building meaningful careers. I recommend him without hesitation to any dentist facing a transition, partnership decision, or major career move. Few people combine experience, integrity, and genuine care for their clients the way Michael does.",
+      "I have known Dr. Michael Njo since 2016, and over the years he has played an important role in some of the biggest professional decisions of my career. When Michael sold our practice in 2020, he delivered exactly what he said he would. His valuation proved accurate, the process was smooth, and his guidance gave us confidence every step of the way. In an environment where uncertainty can be overwhelming, Michael brought clarity, honesty, and calm leadership. I've also watched him step in for colleagues during some of the most stressful moments of their careers - navigating difficult partnership disputes, unexpected health crises, and other situations that required not just expertise, but compassion. He never shrinks from the hard conversations, and he always leads with integrity. Michael has also helped me personally during a very contentious partnership situation. His advice steadied me when I could have easily made decisions I would have regretted. His perspective was invaluable, and his loyalty was unwavering. What makes Michael unique is that he doesn't just act as a broker - he becomes a trusted advisor. He engages deeply with each client's goals, fears, and priorities. He takes the time to truly understand the full picture before offering guidance. Beyond his professional skill, Michael is someone I consider a friend and like family. He has a steady, calm presence that reassures you in difficult moments, and a genuine passion for helping dentists succeed - not just in transactions, but in building meaningful careers. I recommend him without hesitation to any dentist facing a transition, partnership decision, or major career move. Few people combine experience, integrity, and genuine care for their clients the way Michael does.",
     sourceAuthorName: "Dr. Lee Boese",
     displayAuthorName: "Dr. Lee Boese",
     role: "Practice Seller",
@@ -561,6 +562,7 @@ const documentReviews: ReviewRecord[] = [
       "After your presentation, our spirits were high! Michael, you have a really nice way of getting down to business with such finesse. You made so many really good points in such an entertaining way. Thank you for coming and hanging out with us. I look forward to implementing your extra ideas into our SOPs next week. Your input will take us to the next level.",
     sourceAuthorName: "Christina",
     displayAuthorName: "Christina",
+    storyTitle: "Christina on Workshop Ideas and SOPs",
     role: "Workshop Attendee",
     sortOrder: 45,
   },
@@ -613,6 +615,7 @@ const documentReviews: ReviewRecord[] = [
       "First I would like to say thank you for taking the time to get the team together. I think the meeting went great. We all left with a positive mindset and felt heard. I was nervous coming into the office the next day hoping it would not jump back to the energy we had before, but it was one of the best days we have had. The energy was uplifting and positive, issues were being addressed, and everyone was having a fun time. Thank you Michael!",
     sourceAuthorName: "Michelle",
     displayAuthorName: "Michelle",
+    storyTitle: "Michelle on a Team Meeting and Office Culture",
     role: "Team Workshop Attendee",
     sortOrder: 49,
   },
@@ -652,6 +655,7 @@ const documentReviews: ReviewRecord[] = [
       "Thank you for taking time out of your busy schedule for me this morning. Really I have no complaints. I am happy with where I'm at. Michael, I just want to say that dentistry is a better place with you in it!",
     sourceAuthorName: "Christina",
     displayAuthorName: "Christina",
+    storyTitle: "Christina on Consulting Support",
     role: "Consulting Client",
     sortOrder: 52,
   },
@@ -756,6 +760,7 @@ const documentReviews: ReviewRecord[] = [
       "Thank you for guiding me through my moment. You truly are my dental angel. I think the realization of what just happened will sink in sometime next year! You have helped me realize my dreams come true and so much more. I appreciate all the time, patience and care that you have given during this entire process. I appreciate your guidance as a mentor and especially as a friend. You have a very special talent, gift, and integrity of character. I sincerely thank you for being you.",
     sourceAuthorName: "Michelle",
     displayAuthorName: "Michelle",
+    storyTitle: "Michelle on Practice-Transition Guidance",
     role: "Practice Transition Client",
     sortOrder: 60,
   },
@@ -782,6 +787,7 @@ const documentReviews: ReviewRecord[] = [
       "Michael, I truly do appreciate all that you have done in the office. Last year at this same time my staff was unhappy, rude to one another and I was extremely unhappy with them. I am seeing an improvement and the mood in the office is improving, and I know that this is the direct result of your participation in the practice. You have done a great job.",
     sourceAuthorName: "Lois",
     displayAuthorName: "Lois",
+    storyTitle: "Lois on Office Culture",
     role: "Practice Owner",
     sortOrder: 62,
   },
@@ -795,6 +801,7 @@ const documentReviews: ReviewRecord[] = [
       "I will definitely be in touch, because the residents this year really enjoyed hearing your presentation.",
     sourceAuthorName: "Michelle",
     displayAuthorName: "Michelle",
+    storyTitle: "Michelle on a Residency Presentation",
     role: "Residency Program Director",
     company: "UMC Residents, Fresno",
     sortOrder: 63,
@@ -875,6 +882,7 @@ const documentReviews: ReviewRecord[] = [
       "Wednesday's meeting was great. The staff is really coming together. It has been a journey, and one not possible without your patience and sincerity. Your ability to transmit your passion and belief in the profession and teaching people to walk that walk has made all the difference in the office. Thank you also for holding my hand as the Nino practice transferred and helping me work through the financial problems associated with that transfer. I know that the office has a long way to go and I can see the path and a time coming when I can just do dentistry.",
     sourceAuthorName: "Lois",
     displayAuthorName: "Lois",
+    storyTitle: "Lois on Practice-Transfer Support",
     role: "Practice Transition Client",
     sortOrder: 69,
   },

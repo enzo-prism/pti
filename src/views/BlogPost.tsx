@@ -45,35 +45,16 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
   const metaItems = [
     { icon: User, label: authorName, helper: "Author" },
     { icon: Calendar, label: formatLocalDate(post.date), helper: "Published" },
+    ...(post.dateModified && post.dateModified !== post.date
+      ? [{ icon: Calendar, label: formatLocalDate(post.dateModified), helper: "Updated" }]
+      : []),
     { icon: Clock, label: post.readTime, helper: "Read time" },
   ];
   const currentUrl = buildAbsoluteUrl(`/blog/${post.slug}`);
   const emailShareHref = `mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(
       `I thought you'd enjoy this PTI article: ${currentUrl}`
   )}`;
-  const articleSections = post.content
-    .split("\n\n")
-    .map((segment, index) => {
-      if (!segment.trim()) return null;
-      const hasHtmlTags = /<[^>]+>/.test(segment);
-      const key = `${post.slug}-${index}`;
-      if (hasHtmlTags) {
-        return (
-          <div
-            key={key}
-            dangerouslySetInnerHTML={{ __html: segment }}
-          />
-        );
-      }
-      const htmlContent = renderMarkdown(segment.trim());
-      return (
-        <div
-          key={key}
-          dangerouslySetInnerHTML={{ __html: htmlContent }}
-        />
-      );
-    })
-    .filter(Boolean);
+  const articleHtml = renderMarkdown(post.content);
 
   const QuickFactsCard = ({ className = "" }: { className?: string }) => (
     <div
@@ -186,7 +167,7 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                 Back to blog
               </Link>
             </Button>
-            <div className="hidden sm:flex items-center gap-4 text-sm text-muted-foreground">
+            <div className="hidden flex-wrap items-center justify-end gap-x-4 gap-y-2 text-sm text-muted-foreground sm:flex">
               {metaItems.map((item) => (
                 <div key={`inline-${item.helper}`} className="flex items-center gap-2">
                   <item.icon className="h-4 w-4 text-primary" />
@@ -260,9 +241,40 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 md:gap-12 lg:grid-cols-[minmax(0,1fr)_300px] xl:grid-cols-[minmax(0,1fr)_340px]">
             <article className="blog-prose min-w-0 px-1 py-0 sm:rounded-3xl sm:border sm:border-white/80 sm:bg-white sm:px-8 sm:py-10 sm:shadow-sm md:px-12 md:py-12">
-              <div className="space-y-8">
-                {articleSections}
-              </div>
+              <div dangerouslySetInnerHTML={{ __html: articleHtml }} />
+
+              {(post.sources?.length || post.disclaimer) && (
+                <section
+                  className="mt-12 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8"
+                  aria-labelledby={`editorial-notes-${post.slug}`}
+                >
+                  <h2 id={`editorial-notes-${post.slug}`} className="text-lg font-semibold text-slate-900">
+                    Sources and editorial note
+                  </h2>
+                  {post.sources?.length ? (
+                    <ul className="mt-4 space-y-2 text-sm leading-relaxed text-slate-600 sm:text-base">
+                      {post.sources.map((source) => (
+                        <li key={source.url}>
+                          <a
+                            href={source.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-medium text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary"
+                          >
+                            {source.name}
+                          </a>{" "}
+                          <span>({source.publisher})</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  {post.disclaimer ? (
+                    <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+                      {post.disclaimer}
+                    </p>
+                  ) : null}
+                </section>
+              )}
 
               {post.series && seriesPosts.length > 1 && (
                 <div className="mt-14">
@@ -292,11 +304,6 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                   </div>
                 </div>
               )}
-
-              <div className="mt-12 grid gap-6 lg:hidden">
-                <QuickFactsCard />
-                <ContinueLearningCard />
-              </div>
 
               <div className="mt-14 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
                 <h3 className="text-lg font-semibold text-slate-900">About the Author</h3>
@@ -365,8 +372,8 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
               </div>
             </article>
 
-            <aside className="hidden lg:block">
-              <div className="sticky top-28 flex flex-col gap-6 xl:top-32 xl:gap-7">
+            <aside aria-label="Article details and next steps">
+              <div className="flex flex-col gap-6 lg:sticky lg:top-28 xl:top-32 xl:gap-7">
                 <QuickFactsCard />
                 <ContinueLearningCard />
               </div>

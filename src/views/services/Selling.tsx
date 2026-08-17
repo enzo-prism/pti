@@ -12,28 +12,28 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { getFeaturedReviews } from "@/data/reviews";
+import { ServiceEngagementDetails } from "@/components/services/ServiceEngagementDetails";
 
 export const sellingFaqs = [
   {
-    question: "Why do I need a professional dental practice valuation?",
+    question: "When should I start planning a dental practice sale?",
     answer:
-      "A professional valuation provides an unbiased and accurate assessment of your practice's market value, crucial for fair negotiations whether you're buying or selling. It also helps with financial planning and understanding your most significant asset.",
+      "Start before you need to sell. More lead time gives you a chance to organize records, understand value, address operational issues, review the lease, and decide what you want for your team, patients, and post-sale role.",
   },
   {
-    question: "What factors significantly impact my dental practice's value?",
+    question: "How does PTI protect confidentiality during a sale?",
     answer:
-      "Key factors include your financial performance (revenue, profitability), patient demographics and retention, your location, and the expertise of your team.",
+      "The marketing and disclosure plan controls when identifying information and financial records are shared. Prospective buyers should be screened and use the appropriate confidentiality documents before receiving sensitive information.",
   },
   {
-    question:
-      "How is a dental practice valuation different from valuing a general business?",
+    question: "Who does PTI represent in a practice sale?",
     answer:
-      "Dental practices have unique elements like patient goodwill, the importance of the doctor-patient relationship, insurance complexities, and specialized equipment, which require specific expertise to assess accurately.",
+      "Representation depends on the engagement. PTI explains in writing who it represents, the scope of its role, compensation, and any potential conflicts before work begins. Each party should retain independent legal and tax advice.",
   },
   {
-    question: "What are the different types of valuations, and which one is right for me?",
+    question: "Which outside advisors are involved in a practice sale?",
     answer:
-      "We offer various levels of valuation, from an initial Opinion of Value for preliminary planning to a comprehensive Standard Valuation for most transactions and a Certified Valuation for complex situations or legal purposes. We can help you determine the best fit for your needs.",
+      "A typical team may include a dental attorney, CPA or tax advisor, buyer's lender, insurance professionals, and real-estate counsel. PTI coordinates transition workstreams, while those licensed professionals remain responsible for their advice.",
   },
 ];
 
@@ -47,14 +47,14 @@ const Selling = () => {
         <div className="container px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 animate-fade-in leading-tight">
-              We Help You Maximize Your Sale, and Minimize the Stress
+              Sell Your Dental Practice With a Clear, Confidential Plan
             </h1>
             <p className="text-lg md:text-xl text-gray-700 mb-8 animate-fade-in animate-delay-100 leading-relaxed">
-              Ready to move forward with confidence? Our structured approach is built to deliver optimal results with the least amount of disruption to you.
+              PTI helps you prepare the practice, understand value, screen buyers, negotiate business terms, and coordinate the path to closing.
             </p>
             <div className="flex justify-center">
               <Button asChild size="lg">
-                <Link href="/contact">Schedule a Consultation</Link>
+                <Link href="/contact">Discuss Your Practice Sale</Link>
               </Button>
             </div>
           </div>
@@ -69,7 +69,7 @@ const Selling = () => {
               Selling your dental practice requires more than just listing it. It demands a strategic approach guided by experienced professionals who understand the intricacies of the dental market.
             </p>
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-              Practice Transitions Institute offers the expertise and dedication you need to navigate this complex process with confidence, ensuring you achieve the optimal outcome.
+              Practice Transitions Institute coordinates the sale process while helping you compare price, terms, buyer fit, team continuity, and your post-sale role.
             </p>
           </div>
         </div>
@@ -77,7 +77,7 @@ const Selling = () => {
 
       {/* Process Section */}
       <Section background="light">
-        <SectionTitle centered>Our Proven Process for a Successful Sale</SectionTitle>
+        <SectionTitle centered>How PTI Guides a Practice Sale</SectionTitle>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in">
@@ -86,7 +86,7 @@ const Selling = () => {
             </div>
             <h3 className="text-xl font-semibold mb-3">In-Depth Valuation</h3>
             <p className="text-gray-600 leading-relaxed">
-              We meticulously assess your practice&apos;s value, providing a clear and accurate foundation for a successful sale.
+              We analyze the practice&apos;s financials, operations, and market context to establish a defensible planning range.
             </p>
           </div>
           
@@ -106,7 +106,7 @@ const Selling = () => {
             </div>
             <h3 className="text-xl font-semibold mb-3">Strategic Negotiation</h3>
             <p className="text-gray-600 leading-relaxed">
-              We advocate fiercely on your behalf to secure the best possible terms and price.
+              We help compare and negotiate price, structure, timing, contingencies, and the obligations that continue after closing.
             </p>
           </div>
           
@@ -116,7 +116,7 @@ const Selling = () => {
             </div>
             <h3 className="text-xl font-semibold mb-3">Dedicated Support</h3>
             <p className="text-gray-600 leading-relaxed">
-              We manage the details of the handover, ensuring a seamless experience for all involved.
+              We coordinate the transaction workstreams and help plan communication with the buyer, team, and patients.
             </p>
           </div>
         </div>
@@ -130,9 +130,9 @@ const Selling = () => {
           <div className="flex items-start space-x-4 animate-fade-in">
             <CheckCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
             <div>
-              <h3 className="text-xl font-semibold mb-2">Expert Guidance, Maximum Value</h3>
+              <h3 className="text-xl font-semibold mb-2">Value in Context</h3>
               <p className="text-gray-600 leading-relaxed">
-                Our deep understanding of the market ensures you receive the highest possible return on your investment.
+                Compare likely proceeds, deal terms, timing, and risk instead of relying on a headline price alone.
               </p>
             </div>
           </div>
@@ -142,7 +142,7 @@ const Selling = () => {
             <div>
               <h3 className="text-xl font-semibold mb-2">Confidentiality You Can Trust</h3>
               <p className="text-gray-600 leading-relaxed">
-                We handle every aspect of the sale with the strictest discretion.
+                Sensitive information is shared through a controlled process with screened buyers and the appropriate confidentiality steps.
               </p>
             </div>
           </div>
@@ -150,7 +150,7 @@ const Selling = () => {
           <div className="flex items-start space-x-4 animate-fade-in animate-delay-200">
             <TrendingUp className="h-6 w-6 text-orange-600 flex-shrink-0 mt-1" />
             <div>
-              <h3 className="text-xl font-semibold mb-2">Optimized Financial Results</h3>
+              <h3 className="text-xl font-semibold mb-2">Coordinated Deal Structure</h3>
               <p className="text-gray-600 leading-relaxed">
                 We work to structure the sale in a way that benefits both parties.
               </p>
@@ -160,7 +160,7 @@ const Selling = () => {
           <div className="flex items-start space-x-4 animate-fade-in animate-delay-300">
             <CheckCircle className="h-6 w-6 text-purple-600 flex-shrink-0 mt-1" />
             <div>
-              <h3 className="text-xl font-semibold mb-2">A Smooth and Worry-Free Experience</h3>
+              <h3 className="text-xl font-semibold mb-2">A Managed Handoff</h3>
               <p className="text-gray-600 leading-relaxed">
                 We manage the complexities, allowing you to focus on your next chapter.
               </p>
@@ -169,15 +169,14 @@ const Selling = () => {
         </div>
       </Section>
 
-      {/* CTA Section */}
-      <Section className="mb-8">
-        <Cta 
-          title="Ready to Explore Selling Your Practice?"
-          description="Schedule a confidential consultation with our team of dental transition experts."
-          buttonText="Book Your Free Consultation"
-          buttonUrl="/contact"
-        />
-      </Section>
+      <ServiceEngagementDetails
+        deliverables={[
+          "Practice readiness and valuation analysis",
+          "Confidential marketing and buyer-screening plan",
+          "Offer comparison, negotiation, diligence, and handoff support",
+        ]}
+        timeline="A practice sale often moves through preparation, marketing, negotiation, diligence, and closing. PTI confirms an estimated schedule after reviewing your goals, readiness, and market."
+      />
 
       {/* FAQ Section */}
       <Section background="light">
@@ -207,7 +206,7 @@ const Selling = () => {
       <Section>
         <SectionTitle centered>What Our Sellers Say</SectionTitle>
         <SectionSubtitle centered>
-          Hear from dentists who have successfully sold their practices with our guidance
+          Seller reviews presented as recorded in PTI&apos;s review library
         </SectionSubtitle>
         
         <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
@@ -233,9 +232,9 @@ const Selling = () => {
       {/* Final CTA Section */}
       <Section className="mb-8">
         <Cta 
-          title="Ready to Explore Selling Your Practice?"
-          description="Schedule a confidential consultation with our team of dental transition experts."
-          buttonText="Book Your Free Consultation"
+          title="Considering a Practice Sale?"
+          description="Start with a confidential 30-minute conversation about your goals, timeline, and readiness."
+          buttonText="Discuss Your Practice Sale"
           buttonUrl="/contact"
         />
       </Section>

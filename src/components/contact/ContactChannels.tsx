@@ -52,7 +52,9 @@ export const ContactChannels = () => {
           <ChevronRight className={chevronClasses} aria-hidden="true" />
         </div>
         <span className={valueClasses}>{SITE_CONTACT_EMAIL}</span>
-        <span className={helperClasses}>Tap to email, or copy the address</span>
+        <span className={helperClasses}>
+          PTI&apos;s established client inbox on PracticeTransitions.com
+        </span>
       </a>
     </div>
   );

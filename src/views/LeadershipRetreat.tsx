@@ -1,4 +1,4 @@
-import { Calendar, MapPin } from "lucide-react";
+import { Calendar, CheckCircle2, MapPin } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
@@ -12,14 +12,15 @@ const LeadershipRetreat = () => (
             <Link href="/events">Back to Events</Link>
           </Button>
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/80">
-            Leadership Retreat
+            Past Event Archive
           </p>
           <h1 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
-            Lead with clarity and confidence in Savannah.
+            2026 Leadership Retreat in Savannah
           </h1>
           <p className="mt-5 text-lg text-gray-700">
-            We are excited to be part of the Leadership Retreat in Savannah, June 4-6, 2026, an immersive,
-            high-impact experience for practice owners ready to lead with clarity and confidence.
+            PTI participated in the Leadership Retreat in Savannah, June 4-6,
+            2026, an immersive experience for practice owners focused on
+            leading with clarity and confidence.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row gap-4 text-sm text-gray-700">
             <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm">
@@ -30,6 +31,10 @@ const LeadershipRetreat = () => (
               <MapPin className="h-4 w-4 text-primary" />
               <span>Savannah, GA</span>
             </div>
+            <div className="flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2 font-medium text-gray-700 shadow-sm">
+              <CheckCircle2 className="h-4 w-4 text-primary" />
+              <span>Event completed</span>
+            </div>
           </div>
         </div>
       </div>
@@ -39,8 +44,9 @@ const LeadershipRetreat = () => (
       <div className="max-w-3xl">
         <SectionTitle>About the retreat</SectionTitle>
         <SectionSubtitle>
-          Now in its third year, this retreat is hosted by former Pride Institute colleagues MaryLynn
-          Wheaton and Liz Armato and is designed to challenge, inspire, and recharge practice leaders.
+          The retreat was hosted by former Pride Institute colleagues MaryLynn
+          Wheaton and Liz Armato and was designed to challenge, inspire, and
+          recharge practice leaders.
         </SectionSubtitle>
       </div>
       <div className="grid gap-6 md:grid-cols-3">
@@ -63,8 +69,8 @@ const LeadershipRetreat = () => (
           <p className="text-sm font-semibold text-primary">PTI Panel</p>
           <h3 className="mt-2 text-lg font-semibold text-gray-900">Saturday morning panel</h3>
           <p className="mt-3 text-sm text-gray-600">
-            Practice Transitions Institute will share perspectives on leadership, transition readiness, and long-term
-            practice success.
+            Practice Transitions Institute shared perspectives on leadership,
+            transition readiness, and long-term practice success.
           </p>
         </div>
       </div>
@@ -72,18 +78,19 @@ const LeadershipRetreat = () => (
 
     <Section background="light">
       <div className="max-w-3xl mx-auto text-center">
-        <SectionTitle centered>Interested in learning more?</SectionTitle>
+        <SectionTitle centered>Find an upcoming PTI event</SectionTitle>
         <SectionSubtitle centered>
-          Visit the retreat website for full details or contact Liz directly with questions.
+          Registration for this retreat has closed. Browse PTI&apos;s current
+          seminars and workshops or visit the organizer&apos;s archive.
         </SectionSubtitle>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Button asChild size="lg">
-            <a href="https://www.dentistretreat.com/" target="_blank" rel="noreferrer">
-              Visit Retreat Website
-            </a>
+            <Link href="/events">View Upcoming Events</Link>
           </Button>
           <Button asChild size="lg" variant="outline">
-            <a href="mailto:info@dentistretreat.com">Email Liz</a>
+            <a href="https://www.dentistretreat.com/" target="_blank" rel="noreferrer">
+              View Organizer Website
+            </a>
           </Button>
         </div>
       </div>

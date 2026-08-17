@@ -1,10 +1,11 @@
 import Events from "@/views/Events";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
-import { rawEvents } from "@/data/events";
+import { getUpcomingRawEvents, rawEvents } from "@/data/events";
 import { getFeaturedReviews } from "@/data/reviews";
 import { buildEventSchema } from "@/lib/structuredData";
-import { parseEventDate } from "@/lib/dateUtils";
+
+export const revalidate = 3600;
 
 const title = "Dental Practice Transition Events & Workshops";
 const description =
@@ -20,12 +21,8 @@ const formatEventDescription = (event: (typeof rawEvents)[number]) => {
   return `${event.description.intro}${points}`;
 };
 
-const upcomingEventSchemas = rawEvents
-  .filter((event) => {
-    const eventDate = parseEventDate(event.date);
-    return eventDate >= new Date();
-  })
-  .map((event) =>
+const getUpcomingEventSchemas = (referenceDate: Date) =>
+  getUpcomingRawEvents(referenceDate).map((event) =>
     buildEventSchema({
       id: event.id,
       title: event.title,
@@ -49,6 +46,8 @@ export const metadata = buildPageMetadata({
 });
 
 export default function Page() {
+  const upcomingEventSchemas = getUpcomingEventSchemas(new Date());
+
   return (
     <>
       <StructuredData

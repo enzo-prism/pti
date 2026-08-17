@@ -19,12 +19,13 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { getFeaturedReviews } from "@/data/reviews";
+import { ServiceEngagementDetails } from "@/components/services/ServiceEngagementDetails";
 
 export const dsoFaqs = [
   {
     question: "Is a DSO offer usually higher than a private buyer's offer?",
     answer:
-      "Often the headline number is higher, but the structure matters more than the number. DSO offers frequently include earnouts, equity rollovers, holdbacks, and multi-year work-back requirements, so the guaranteed cash at closing can be very different from the price on the letter of intent. A private buyer usually offers a simpler structure with more certainty at closing.",
+      "Some DSO offers present a higher headline number, but the structure matters as much as the price. Earnouts, equity rollovers, holdbacks, and multi-year work-back requirements can make the amount and timing of proceeds very different from the number on the letter of intent. Compare each offer on its actual terms.",
   },
   {
     question: "What should I look at before signing a DSO letter of intent?",
@@ -34,7 +35,7 @@ export const dsoFaqs = [
   {
     question: "Do I still need a valuation if a DSO has already made me an offer?",
     answer:
-      "Yes. An independent valuation gives you a baseline for what your practice is worth on the open market, which is the only reliable way to judge whether a DSO's offer and structure are actually competitive. Without it, you are negotiating against a professional acquisition team with no reference point of your own.",
+      "An independent valuation gives you a planning baseline for comparing the DSO offer with the practice's financial performance and market context. It cannot predict a final sale price, but it gives you a reference point beyond the buyer's own analysis.",
   },
   {
     question: "Will selling to a DSO change how my practice runs afterward?",
@@ -60,7 +61,7 @@ const SellingToADso = () => {
             </p>
             <div className="flex justify-center">
               <Button asChild size="lg">
-                <Link href="/contact">Schedule a Confidential Consultation</Link>
+                <Link href="/contact">Request a DSO Offer Review</Link>
               </Button>
             </div>
           </div>
@@ -72,7 +73,7 @@ const SellingToADso = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-              Dental Support Organizations are acquiring practices at a record pace, and unsolicited offers can look compelling on paper. But a DSO purchase price is rarely a single cash number — it is a structure of cash at closing, earnouts, equity rollovers, holdbacks, and work-back commitments that can shift the real value dramatically.
+              An unsolicited DSO offer can look compelling on paper. The purchase price may include cash at closing, earnouts, equity rollovers, holdbacks, and work-back commitments, so the value and timing can differ from the headline number.
             </p>
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
               Practice Transitions Institute helps you understand what you are actually being offered, whether a private buyer would serve you better, and how to negotiate from a position of knowledge instead of guesswork.
@@ -90,9 +91,9 @@ const SellingToADso = () => {
             <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
               <FileSearch className="h-6 w-6 text-blue-600" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Offer & LOI Review</h3>
+            <h3 className="text-xl font-semibold mb-3">Offer and LOI Review</h3>
             <p className="text-gray-600 leading-relaxed">
-              We break down the letter of intent line by line — cash at closing, earnouts, equity, holdbacks, and exclusivity terms — so you know exactly what you are agreeing to.
+              We organize the business terms for review, including cash at closing, earnouts, equity, holdbacks, exclusivity, and post-sale obligations. Your attorney reviews the legal effect.
             </p>
           </div>
 
@@ -102,7 +103,7 @@ const SellingToADso = () => {
             </div>
             <h3 className="text-xl font-semibold mb-3">Independent Valuation</h3>
             <p className="text-gray-600 leading-relaxed">
-              An objective opinion of your practice&apos;s market value gives you a baseline, so the DSO&apos;s number is measured against reality rather than accepted on faith.
+              A documented opinion of value gives you a planning baseline for comparing the offer with the practice&apos;s financial performance and market context.
             </p>
           </div>
 
@@ -138,7 +139,7 @@ const SellingToADso = () => {
             <div>
               <h3 className="text-xl font-semibold mb-2">Cash at Closing vs Contingent Value</h3>
               <p className="text-gray-600 leading-relaxed">
-                Earnouts and holdbacks depend on future performance and future events. We help you see how much of the offer is guaranteed and how much is a promise.
+                Earnouts and holdbacks depend on future performance or events. We separate the amount contractually payable at closing from proceeds that remain contingent.
               </p>
             </div>
           </div>
@@ -148,7 +149,7 @@ const SellingToADso = () => {
             <div>
               <h3 className="text-xl font-semibold mb-2">Equity Rollovers</h3>
               <p className="text-gray-600 leading-relaxed">
-                Rolling part of your proceeds into DSO equity can pay off — or not. The value depends on the DSO&apos;s health, structure, and eventual liquidity event.
+                Rolling part of your proceeds into DSO equity adds risk and potential upside. Its value depends on the company, security terms, and a future liquidity event that may not occur on your preferred timeline.
               </p>
             </div>
           </div>
@@ -168,22 +169,21 @@ const SellingToADso = () => {
             <div>
               <h3 className="text-xl font-semibold mb-2">Team & Legacy</h3>
               <p className="text-gray-600 leading-relaxed">
-                What happens to your staff, your patients, and your practice&apos;s identity is negotiable — but only if it is addressed before you sign.
+                Team roles, patient continuity, and the practice&apos;s identity should be discussed before you sign, with the final obligations documented by your attorney.
               </p>
             </div>
           </div>
         </div>
       </Section>
 
-      {/* CTA Section */}
-      <Section className="mb-8">
-        <Cta
-          title="Received a DSO Offer? Get a Second Opinion First"
-          description="Before you sign a letter of intent, have our team review the offer and show you what your practice is worth on the open market."
-          buttonText="Book Your Free Consultation"
-          buttonUrl="/contact"
-        />
-      </Section>
+      <ServiceEngagementDetails
+        deliverables={[
+          "Offer and business-term comparison",
+          "Independent valuation planning baseline",
+          "Negotiation, diligence, and closing coordination with your advisors",
+        ]}
+        timeline="An initial offer review can begin before a letter of intent is signed. A full engagement may continue through negotiation, diligence, and closing, with phases and timing defined in writing."
+      />
 
       {/* FAQ Section */}
       <Section background="light">
@@ -243,7 +243,7 @@ const SellingToADso = () => {
       <Section background="light">
         <SectionTitle centered>What Our Sellers Say</SectionTitle>
         <SectionSubtitle centered>
-          Hear from dentists who navigated their sale with our guidance
+          Seller reviews presented as recorded in PTI&apos;s review library
         </SectionSubtitle>
 
         <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
@@ -269,9 +269,9 @@ const SellingToADso = () => {
       {/* Final CTA Section */}
       <Section className="mb-8">
         <Cta
-          title="Make Your DSO Decision with Confidence"
-          description="Schedule a confidential consultation with our team of dental transition experts."
-          buttonText="Let's Talk"
+          title="Received a DSO Offer?"
+          description="Have the business terms and valuation context reviewed before you sign a letter of intent."
+          buttonText="Request a DSO Offer Review"
           buttonUrl="/contact"
         />
       </Section>

@@ -32,7 +32,7 @@ const sourceLabels: Record<ReviewSource, string> = {
   google: "Google",
   amazon: "Amazon",
   alignable: "Alignable",
-  internal: "Client",
+  internal: "Provided directly",
 };
 
 const categoryLabels: Record<ReviewCategory, string> = {
@@ -165,10 +165,9 @@ const Stars = ({
 
 interface TestimonialsProps {
   reviews: ReviewRecord[];
-  aggregate: { ratingValue: number; reviewCount: number };
 }
 
-const Testimonials = ({ reviews, aggregate }: TestimonialsProps) => {
+const Testimonials = ({ reviews }: TestimonialsProps) => {
   const [sourceFilter, setSourceFilter] = useState<SourceFilter>("all");
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -245,18 +244,24 @@ const Testimonials = ({ reviews, aggregate }: TestimonialsProps) => {
               navigated a major transition with our team.
             </p>
 
-            <div className="mt-7 flex flex-col items-center gap-2">
-              <div className="flex items-center gap-2.5">
-                <Stars rating={Math.round(aggregate.ratingValue)} size="h-6 w-6" />
-                <span className="text-2xl font-bold text-gray-900">
-                  {aggregate.ratingValue}
-                </span>
-                <span className="text-base text-gray-500">/ 5</span>
+              <div className="mx-auto mt-7 max-w-2xl rounded-2xl border border-blue-100 bg-white/80 p-5 text-left shadow-sm">
+                <p className="text-sm leading-relaxed text-gray-700">
+                  This library includes public Google, Alignable, and Amazon book
+                  reviews plus feedback provided directly to PTI. Source and
+                  context are labeled on each entry. We do not combine these
+                  different review types into one satisfaction score.
+                </p>
+                <dl className="mt-4 grid grid-cols-2 gap-3 text-center sm:grid-cols-4">
+                  {SOURCE_ORDER.map((source) => (
+                    <div key={source} className="rounded-lg bg-gray-50 px-2 py-3">
+                      <dt className="text-xs text-gray-500">{sourceLabels[source]}</dt>
+                      <dd className="mt-1 text-lg font-bold text-gray-900">
+                        {sourceCounts[source] ?? 0}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
-              <p className="text-sm text-gray-600">
-                Based on {aggregate.reviewCount} verified reviews
-              </p>
-            </div>
 
             <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <GoogleReviewButton
@@ -401,7 +406,7 @@ const Testimonials = ({ reviews, aggregate }: TestimonialsProps) => {
                         href={`/testimonials/${review.slug}`}
                         className="block truncate font-semibold text-gray-900 transition-colors hover:text-primary"
                       >
-                        {review.displayAuthorName}
+                        {review.storyTitle ?? review.displayAuthorName}
                       </Link>
                       {(review.role || review.company) && (
                         <p className="truncate text-sm text-gray-500">
@@ -455,7 +460,7 @@ const Testimonials = ({ reviews, aggregate }: TestimonialsProps) => {
             Ready to plan your transition?
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-white/90">
-            Talk with PTI about your goals and timeline — no pressure, just clear
+            Talk with PTI about your goals and timeline. No pressure, just clear
             guidance.
           </p>
           <Button

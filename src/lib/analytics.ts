@@ -1,4 +1,5 @@
 import { CANONICAL_SITE_URL } from "@/lib/siteMetadata";
+import { hasAnalyticsConsent } from "@/lib/consent";
 
 type GtagFunction = (
   command: "js" | "config" | "event",
@@ -119,6 +120,7 @@ export const shouldEnableAnalytics = (): boolean => {
   if (
     !isProduction ||
     typeof window === "undefined" ||
+    !hasAnalyticsConsent() ||
     !isValidGaMeasurementId(GA_MEASUREMENT_ID)
   ) {
     return false;

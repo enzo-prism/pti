@@ -24,6 +24,7 @@ const mockBrowser = (options?: {
   origin?: string;
   title?: string;
   referrer?: string;
+  analyticsConsent?: string | null;
 }) => {
   const hostname = options?.hostname ?? "practicetransitionsinstitute.com";
   const origin = options?.origin ?? `https://${hostname}`;
@@ -41,6 +42,14 @@ const mockBrowser = (options?: {
       },
       dataLayer,
       gtag,
+      localStorage: {
+        getItem: vi.fn(() => options?.analyticsConsent ?? "accepted"),
+        setItem: vi.fn(),
+        removeItem: vi.fn(),
+        clear: vi.fn(),
+        key: vi.fn(),
+        length: 1,
+      },
     } as unknown as Window
   );
 
@@ -96,6 +105,14 @@ describe("analytics gating", () => {
 
   it("disables analytics in non-production", async () => {
     process.env.NODE_ENV = "development";
+
+    const analytics = await loadAnalytics();
+    expect(analytics.shouldEnableAnalytics()).toBe(false);
+  });
+
+  it("keeps analytics off until the visitor accepts", async () => {
+    process.env.NODE_ENV = "production";
+    mockBrowser({ analyticsConsent: "declined" });
 
     const analytics = await loadAnalytics();
     expect(analytics.shouldEnableAnalytics()).toBe(false);

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogPostView } from "@/views/BlogPost";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPosts, getBlogMetaDescription, getBlogMetaTitle } from "@/data/blogPosts";
 import { communityImpactPosts } from "@/data/communityImpactPosts";
 import { getAuthorProfile } from "@/data/authors";
 import { StructuredData } from "@/components/StructuredData";
@@ -46,8 +46,8 @@ export function generateMetadata({
     : publishedTime;
 
   return buildPageMetadata({
-    title: post.metaTitle ?? post.title,
-    description: post.excerpt,
+    title: getBlogMetaTitle(post),
+    description: getBlogMetaDescription(post),
     path: `/blog/${post.slug}`,
     image: post.featuredImage ?? DEFAULT_OG_IMAGE,
     ogType: "article",
@@ -81,7 +81,7 @@ export default function Page({ params }: { params: BlogParams }) {
       <StructuredData
         data={buildPageJsonLd({
           title: post.title,
-          description: post.excerpt,
+          description: getBlogMetaDescription(post),
           path: `/blog/${post.slug}`,
           image: post.featuredImage ?? DEFAULT_OG_IMAGE,
           breadcrumbs,

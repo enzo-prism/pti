@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
-import { Handshake, FileText, Scale, CheckCircle, Users, Target, TrendingUp, Shield } from "lucide-react";
+import { Handshake, FileText, Scale, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -10,14 +10,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { serviceOfferings } from "@/data/services";
 import Image from "next/image";
+import { ServiceEngagementDetails } from "@/components/services/ServiceEngagementDetails";
 
 const Partnerships = () => {
-  const offering = serviceOfferings.find(
-    (service) => service.url === "/services/partnerships"
-  );
-
   return (
     <>
       {/* Hero Section */}
@@ -25,10 +21,10 @@ const Partnerships = () => {
         <div className="container px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 animate-fade-in leading-tight">
-              Multiply Your Success: Creating Thriving Dental Practice Partnerships
+              Structure a Dental Partnership With Clear Expectations
             </h1>
             <p className="text-lg md:text-xl text-gray-700 mb-8 animate-fade-in animate-delay-100 leading-relaxed">
-              Our expert guidance ensures the creation of equitable agreements built for long-term stability and mutual prosperity.
+              PTI helps dentists evaluate fit, value the ownership interests, define business terms, and prepare each party&apos;s attorney to document the arrangement.
             </p>
           </div>
         </div>
@@ -39,25 +35,25 @@ const Partnerships = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Building Successful Dental Partnerships
+              Plan the Relationship, Not Just the Ownership Percentage
             </h2>
             <p className="text-gray-600 mb-4 leading-relaxed">
-              A well-structured partnership can multiply the success of a dental practice while providing both personal and professional benefits to all partners involved.
+              A partnership changes compensation, control, risk, workload, and the path to a future exit. Those expectations should be discussed before ownership changes.
             </p>
             <p className="text-gray-600 mb-6 leading-relaxed">
-              At Practice Transitions Institute, we specialize in creating partnership arrangements that are balanced, equitable, and designed for long-term success.
+              PTI helps the prospective partners pressure-test the business arrangement, establish a valuation framework, and coordinate with independent legal and tax advisors.
             </p>
             <div className="flex justify-center sm:justify-start">
               <Button asChild size="lg">
-                <Link href="/contact">Schedule a Consultation</Link>
+                <Link href="/contact">Discuss a Practice Partnership</Link>
               </Button>
             </div>
           </div>
           <div className="animate-fade-in animate-delay-100">
             <div className="relative aspect-video overflow-hidden rounded-lg shadow-md">
               <Image
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3"
-                alt="Dental partners collaborating"
+                src="/lovable-uploads/drnjo-2026/conference-room-meeting.webp"
+                alt="Dental professionals discussing a partnership plan"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
@@ -81,7 +77,7 @@ const Partnerships = () => {
             </div>
             <h3 className="text-xl font-semibold mb-3">Initial Assessment</h3>
             <p className="text-gray-600 leading-relaxed">
-              We evaluate practice metrics, partner dynamics, and shared goals to ensure partnership viability.
+              We review practice metrics, each dentist&apos;s goals, proposed roles, and known points of tension to assess fit.
             </p>
           </div>
           
@@ -89,9 +85,9 @@ const Partnerships = () => {
             <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
               <Scale className="h-6 w-6 text-emerald-600" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Valuation & Structure</h3>
+            <h3 className="text-xl font-semibold mb-3">Valuation and Structure</h3>
             <p className="text-gray-600 leading-relaxed">
-              We determine fair market value and design an equitable ownership structure that works for all parties.
+              We develop a valuation planning range and compare ownership, compensation, governance, and future buy-sell options.
             </p>
           </div>
           
@@ -99,9 +95,9 @@ const Partnerships = () => {
             <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">
               <Handshake className="h-6 w-6 text-orange-600" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Legal Framework</h3>
+            <h3 className="text-xl font-semibold mb-3">Attorney Coordination</h3>
             <p className="text-gray-600 leading-relaxed">
-              We develop comprehensive partnership agreements that address governance, profit sharing, and exit strategies.
+              We organize the agreed business terms for each party&apos;s attorney to review and document. PTI does not draft legal agreements.
             </p>
           </div>
           
@@ -111,7 +107,7 @@ const Partnerships = () => {
             </div>
             <h3 className="text-xl font-semibold mb-3">Implementation</h3>
             <p className="text-gray-600 leading-relaxed">
-              We guide the execution and integration of the partnership to ensure a smooth transition and ongoing success.
+              We coordinate the transition workstreams and help the partners establish decision, communication, and review rhythms.
             </p>
           </div>
         </div>
@@ -119,7 +115,7 @@ const Partnerships = () => {
 
       {/* Benefits Section */}
       <Section>
-        <SectionTitle centered>Partnership Benefits</SectionTitle>
+        <SectionTitle centered>Potential Benefits to Plan For</SectionTitle>
         <div className="grid md:grid-cols-2 gap-8 mt-8">
           <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100 animate-fade-in">
             <h3 className="text-2xl font-bold mb-6 text-center">Financial Benefits</h3>
@@ -128,7 +124,7 @@ const Partnerships = () => {
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h4 className="font-semibold text-lg">Shared Overhead Costs</h4>
-                  <p className="text-gray-600 leading-relaxed">Reduce individual burden by sharing facility, equipment, and administrative costs.</p>
+                  <p className="text-gray-600 leading-relaxed">Partners may share facility, equipment, and administrative costs when the economics and usage are defined clearly.</p>
                 </div>
               </li>
               
@@ -136,7 +132,7 @@ const Partnerships = () => {
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h4 className="font-semibold text-lg">Increased Production Capacity</h4>
-                  <p className="text-gray-600 leading-relaxed">Multiple practitioners can maximize facility utilization and revenue potential.</p>
+                  <p className="text-gray-600 leading-relaxed">Multiple practitioners may increase facility use and clinical capacity when patient demand supports it.</p>
                 </div>
               </li>
               
@@ -144,7 +140,7 @@ const Partnerships = () => {
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h4 className="font-semibold text-lg">Economies of Scale</h4>
-                  <p className="text-gray-600 leading-relaxed">Greater purchasing power and efficiency in operations and marketing.</p>
+                  <p className="text-gray-600 leading-relaxed">Combined purchasing and shared operations can create efficiencies, depending on the practice and agreement.</p>
                 </div>
               </li>
               
@@ -152,7 +148,7 @@ const Partnerships = () => {
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h4 className="font-semibold text-lg">Risk Distribution</h4>
-                  <p className="text-gray-600 leading-relaxed">Shared financial responsibility during economic fluctuations or practice challenges.</p>
+                  <p className="text-gray-600 leading-relaxed">Financial responsibility may be distributed, but the agreement should state how risk and capital needs are allocated.</p>
                 </div>
               </li>
             </ul>
@@ -165,7 +161,7 @@ const Partnerships = () => {
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h4 className="font-semibold text-lg">Better Work-Life Balance</h4>
-                  <p className="text-gray-600 leading-relaxed">Shared clinical responsibilities and coverage allow for more personal time.</p>
+                  <p className="text-gray-600 leading-relaxed">Shared clinical responsibilities and coverage may create more scheduling flexibility.</p>
                 </div>
               </li>
               
@@ -181,7 +177,7 @@ const Partnerships = () => {
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h4 className="font-semibold text-lg">Professional Support</h4>
-                  <p className="text-gray-600 leading-relaxed">Built-in mentorship, collaboration, and shared clinical decision-making.</p>
+                  <p className="text-gray-600 leading-relaxed">A partnership can create regular opportunities for mentorship, collaboration, and shared decisions.</p>
                 </div>
               </li>
               
@@ -189,7 +185,7 @@ const Partnerships = () => {
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mr-3 mt-1" />
                 <div>
                   <h4 className="font-semibold text-lg">Succession Planning</h4>
-                  <p className="text-gray-600 leading-relaxed">Creates a natural pathway for gradual retirement and practice continuity.</p>
+                  <p className="text-gray-600 leading-relaxed">The ownership structure can document a phased retirement and continuity plan.</p>
                 </div>
               </li>
             </ul>
@@ -197,15 +193,14 @@ const Partnerships = () => {
         </div>
       </Section>
 
-      {/* CTA Section */}
-      <Section className="py-8 md:py-12">
-        <Cta 
-          title="Ready to Explore Partnership Options?"
-          description="Schedule a consultation with our team to discuss how a partnership structure could benefit your practice."
-          buttonText="Book Your Consultation"
-          buttonUrl="/contact"
-        />
-      </Section>
+      <ServiceEngagementDetails
+        deliverables={[
+          "Partner goals, roles, and fit assessment",
+          "Valuation, ownership, compensation, and governance framework",
+          "Business-term summary and implementation coordination for outside advisors",
+        ]}
+        timeline="Partnership planning depends on the parties' readiness, the valuation scope, and the legal and tax work required. PTI defines the phases, decision points, and estimated schedule in writing."
+      />
 
       {/* FAQ Section */}
       <Section background="light">
@@ -215,7 +210,7 @@ const Partnerships = () => {
           <Accordion type="single" collapsible className="space-y-4">
             <AccordionItem value="item-1" className="bg-white rounded-lg border border-gray-200">
               <AccordionTrigger className="px-4 sm:px-6 py-4 text-sm sm:text-base md:text-lg font-semibold">
-                What are the key elements of a successful dental partnership agreement?
+                What are the key elements of a durable dental partnership agreement?
               </AccordionTrigger>
               <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
                 A strong agreement clearly outlines ownership percentages, responsibilities, decision-making processes (governance), compensation models, buy-sell provisions, and dispute resolution mechanisms.
@@ -245,7 +240,7 @@ const Partnerships = () => {
                 What are the tax implications of forming a dental partnership?
               </AccordionTrigger>
               <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-                Partnerships typically file informational tax returns, and profits and losses are passed through to the individual partners. It&apos;s essential to consult with a tax advisor specializing in dental practices.
+                Tax treatment depends on the entities, ownership structure, compensation, state, and transaction. Each prospective partner should obtain advice from a qualified CPA or tax attorney before agreeing to the structure.
               </AccordionContent>
             </AccordionItem>
 
@@ -254,7 +249,7 @@ const Partnerships = () => {
                 How does a partnership impact practice valuation for future sale or transition?
               </AccordionTrigger>
               <AccordionContent className="px-4 sm:px-6 pb-4 text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-                A well-functioning partnership can increase the overall value of the practice. However, the partnership agreement should also address how a future sale or transition of the partnership itself would be handled.
+                The effect depends on profitability, governance, transfer restrictions, buyer appeal, and how an ownership interest can be valued and sold. The legal documents should define the future valuation and transfer process.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -264,9 +259,9 @@ const Partnerships = () => {
       {/* CTA Section */}
       <Section className="mb-8">
         <Cta 
-          title="Ready to Explore Partnership Options?"
-          description="Schedule a consultation with our team to discuss how a partnership structure could benefit your practice."
-          buttonText="Book Your Consultation"
+          title="Considering Shared Ownership?"
+          description="Start with a confidential conversation about the dentists, the practice, and the business terms that need to align."
+          buttonText="Discuss a Practice Partnership"
           buttonUrl="/contact"
         />
       </Section>

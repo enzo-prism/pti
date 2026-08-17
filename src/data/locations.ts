@@ -27,8 +27,13 @@ export interface LocationContent {
   heroTitle: string;
   heroIntro: string;
   introParagraphs: string[];
+  firstStep: {
+    title: string;
+    description: string;
+  };
   considerations: LocationConsideration[];
   regions: string[];
+  officialReferences: Array<{ label: string; url: string }>;
   summary: string; // used on the /locations hub card
 }
 
@@ -41,44 +46,59 @@ export const LOCATIONS: LocationContent[] = [
       "California dental practice transition experts. Bay Area based, serving the whole state with valuations, sales, buy-ins, and DSO offer reviews.",
     heroTitle: "Selling or Transitioning a Dental Practice in California",
     heroIntro:
-      "Based in the Bay Area and serving dentists across California, Practice Transitions Institute guides you through valuations, sales, buy-ins, and DSO decisions — with the local market knowledge these deals require.",
+      "Based in the Bay Area, PTI helps California dentists prepare for sales, acquisitions, buy-ins, valuations, and DSO decisions with attention to local practice economics and ownership requirements.",
     introParagraphs: [
-      "California is one of the most active — and most nuanced — dental transition markets in the country. Practice values, buyer demand, and deal structures here look different than they do elsewhere, and small mistakes can cost real money. Whether you are planning a sale years out, weighing an unsolicited DSO offer, or bringing on an associate who wants to buy in, the right guidance makes the difference between a good outcome and a great one.",
-      "Our office is in San Mateo, and our roots run deep in California dentistry — including years teaching the next generation of dentists at the University of the Pacific and UCSF. We know this market because we are part of it.",
+      "California transitions can involve high facility costs, address-specific permits, corporate-practice rules, and wide differences between local markets. Those details affect how a practice is valued, marketed, financed, and transferred.",
+      "PTI's San Mateo base makes California the firm's home market. We help owners and buyers build the business plan, then coordinate state-specific legal, tax, and licensing questions with the appropriate professionals.",
     ],
+    firstStep: {
+      title: "Start with the practice, lease, and ownership structure",
+      description:
+        "Gather three years of financial statements, the current lease and options, entity documents, permits used by the practice, and your target timeline. These records reveal the California-specific issues to address first.",
+    },
     considerations: [
       {
         iconKey: "rules",
         title: "Dentist-owned practice rules",
         description:
-          "California restricts practice ownership to licensed dentists, so DSOs operate through management-services arrangements. That shapes how offers are structured here — and why an independent read of the deal matters.",
+          "California rules address who owns and controls a dental practice and how a practice may operate under a fictitious name. Have a California dental attorney review the structure of any buyer or DSO proposal.",
       },
       {
         iconKey: "overhead",
         title: "High overhead markets",
         description:
-          "Bay Area and coastal rents, wages, and buildout costs run well above the national average. Overhead directly affects profitability — and therefore value — so a credible valuation has to account for your specific market.",
+          "Rent, wages, buildout obligations, and lease options can materially affect cash flow and buyer financing. A valuation should use the practice's actual local costs instead of a generic benchmark.",
       },
       {
         iconKey: "board",
         title: "Dental Board of California compliance",
         description:
-          "Licensing, corporate structure, and the change-of-ownership steps a transfer requires all have California-specific wrinkles that need to be handled correctly alongside your attorney and CPA.",
+          "Licensing, entity, permit, and change-of-practice details should be mapped early with your California attorney, CPA, and the relevant agencies.",
       },
       {
         iconKey: "buyers",
         title: "Competitive buyer pool",
         description:
-          "California's metros draw strong interest from associates, private buyers, and DSO groups alike. More demand can mean a better price — if your practice is positioned and marketed to the right buyers.",
+          "Buyer interest differs by metro, specialty, collections, profitability, facility, and financing. Compare buyer fit and deal certainty alongside price.",
       },
     ],
     regions: [
-      "San Francisco Bay Area & Peninsula",
-      "San Jose & Silicon Valley",
-      "Sacramento & the Central Valley",
-      "Los Angeles & Orange County",
+      "San Francisco Bay Area and Peninsula",
+      "San Jose and Silicon Valley",
+      "Sacramento and the Central Valley",
+      "Los Angeles and Orange County",
       "San Diego",
-      "Inland Empire & beyond",
+      "Inland Empire and other California communities",
+    ],
+    officialReferences: [
+      {
+        label: "Dental Board of California laws and regulations",
+        url: "https://www.dbc.ca.gov/about_us/lawsregs/laws.shtml",
+      },
+      {
+        label: "Dental Board of California fictitious-name permits",
+        url: "https://www.dbc.ca.gov/licensees/dds/permits/fictitious_name.shtml",
+      },
     ],
     summary:
       "Bay Area based, serving the whole state. Valuations, sales, buy-ins, and DSO offer reviews with California-specific market knowledge.",
@@ -88,47 +108,62 @@ export const LOCATIONS: LocationContent[] = [
     state: "Texas",
     seoTitle: "Sell a Dental Practice in Texas",
     seoDescription:
-      "Texas dental practice transition advisors. Valuations, sales, associate buy-ins, and DSO offer reviews across Dallas–Fort Worth, Houston, Austin, and San Antonio.",
+      "Texas dental practice transition advisors. Valuations, sales, associate buy-ins, and DSO offer reviews across Dallas-Fort Worth, Houston, Austin, and San Antonio.",
     heroTitle: "Selling or Transitioning a Dental Practice in Texas",
     heroIntro:
-      "From Dallas–Fort Worth to Houston, Austin, and San Antonio, Practice Transitions Institute helps Texas dentists value, sell, and transition their practices on their own terms.",
+      "PTI helps Texas dentists compare acquisition and sale options across the state's major metros, with focused review of practice economics, financing readiness, and deal structure.",
     introParagraphs: [
-      "Texas is one of the fastest-growing dental markets in the country. Population growth across its major metros keeps new-patient demand strong, and that growth draws private buyers, associates, and well-funded DSO groups looking to acquire. For a practice owner, a strong market is an opportunity — but only with the right preparation and representation.",
-      "We advise Texas dentists through every stage of a transition, from an honest valuation to a confidential sale, an associate buy-in, or a careful review of a DSO offer, working alongside your Texas attorney and CPA on the specifics.",
+      "Texas is not one dental market. A practice in Dallas-Fort Worth, Houston, Austin, San Antonio, El Paso, or the Rio Grande Valley can face different rent, staffing, competition, buyer, and lending conditions.",
+      "PTI helps clients compare those local economics, the certainty of financing, and the obligations inside private-buyer and DSO proposals. Texas legal and tax questions remain with the client's licensed advisors.",
     ],
+    firstStep: {
+      title: "Start with metro-level economics and buyer readiness",
+      description:
+        "Build a clean financial package, identify the metro and patient-demand assumptions behind the valuation, and confirm how a likely buyer would finance the practice before setting a price or signing an offer.",
+    },
     considerations: [
       {
         iconKey: "growth",
         title: "Fast-growing metros",
         description:
-          "DFW, Houston, Austin, and San Antonio keep adding residents, which supports patient demand and buyer interest. Well-positioned practices in growth corridors can command strong multiples.",
+          "Population and development patterns differ across DFW, Houston, Austin, and San Antonio. Test the practice's actual patient flow, competition, lease, and referral base instead of relying on statewide growth assumptions.",
       },
       {
         iconKey: "tax",
         title: "No state income tax",
         description:
-          "Texas has no personal state income tax, which affects how sellers model their after-tax proceeds and how buyers weigh the economics of a purchase. Deal structure and timing still matter — plan them with your CPA.",
+          "State and federal tax treatment, entity structure, asset allocation, and seller residence can affect proceeds. Model the specific transaction with a Texas-qualified CPA or tax attorney.",
       },
       {
         iconKey: "consolidation",
-        title: "Active DSO & investor demand",
+        title: "DSO and private-buyer comparison",
         description:
-          "Texas is a focus market for dental groups and private-equity-backed platforms. That competition can lift offers — but headline numbers often hide earnouts, holdbacks, and work-back terms worth scrutinizing.",
+          "A DSO and a private buyer may propose different cash timing, work-back duties, contingencies, and control. Compare the complete structure rather than assuming one buyer type is better.",
       },
       {
         iconKey: "board",
         title: "Texas State Board of Dental Examiners",
         description:
-          "Licensing, practice ownership, and the change-of-ownership steps a transfer requires follow Texas-specific rules that need to be handled correctly as part of the transaction.",
+          "Dentist licensing, records, entity, and practice-transfer questions should be assigned to the relevant Texas agencies and the client's attorney before closing.",
       },
     ],
     regions: [
-      "Dallas–Fort Worth Metroplex",
-      "Houston & the Gulf Coast",
-      "Austin & Central Texas",
+      "Dallas-Fort Worth Metroplex",
+      "Houston and the Gulf Coast",
+      "Austin and Central Texas",
       "San Antonio",
-      "El Paso & West Texas",
+      "El Paso and West Texas",
       "The Rio Grande Valley",
+    ],
+    officialReferences: [
+      {
+        label: "Texas State Board of Dental Examiners laws and rules",
+        url: "https://tsbde.texas.gov/laws-rules/",
+      },
+      {
+        label: "Texas State Board of Dental Examiners records guidance",
+        url: "https://tsbde.texas.gov/licensing/designation-of-records/",
+      },
     ],
     summary:
       "Advising dentists across DFW, Houston, Austin, and San Antonio through valuations, sales, buy-ins, and DSO offer reviews in one of the country's fastest-growing markets.",
@@ -141,44 +176,59 @@ export const LOCATIONS: LocationContent[] = [
       "Florida dental practice transition advisors. Valuations, sales, associate buy-ins, and DSO offer reviews across Miami, Tampa, Orlando, and Jacksonville.",
     heroTitle: "Selling or Transitioning a Dental Practice in Florida",
     heroIntro:
-      "Across Miami, Tampa, Orlando, Jacksonville, and Florida's coasts, Practice Transitions Institute helps dentists value, sell, and transition their practices with confidence.",
+      "PTI helps Florida dentists plan for ownership changes across the state's distinct metro, coastal, and retirement-driven communities, with attention to continuity, records, and transaction structure.",
     introParagraphs: [
-      "Florida is a uniquely active transition market. A large, growing, and retiree-heavy population supports steady patient demand, while a wave of dentists reaching retirement age keeps a healthy supply of practices coming to market. That combination — strong demand and steady turnover — makes preparation and positioning especially important for sellers.",
-      "We help Florida dentists move through a transition the right way: an honest valuation, a confidential sale to the right buyer, a structured associate buy-in, or a clear-eyed review of a DSO offer, coordinated with your Florida attorney and CPA.",
+      "Florida's dental markets vary widely between South Florida, Tampa Bay, Orlando, Jacksonville, Southwest Florida, and the Panhandle. Payer mix, seasonal patient patterns, facility exposure, storm planning, and buyer profile can all affect diligence and handoff planning.",
+      "PTI helps sellers and buyers organize those business questions and plan for team, patient, and records continuity. A Florida attorney and CPA should confirm the legal and tax details of the transaction.",
     ],
+    firstStep: {
+      title: "Start with continuity and operational risk",
+      description:
+        "Review insurance coverage, facility obligations, records custody, team continuity, seasonal cash flow, and the seller's intended handoff. These items help define diligence and transition priorities before price negotiations advance.",
+    },
     considerations: [
       {
         iconKey: "retirees",
-        title: "Retirement-driven turnover",
+        title: "Owner and patient continuity",
         description:
-          "Florida has a high concentration of dentists approaching retirement, which means more practices change hands here. Standing out to the right buyer takes a well-prepared, well-positioned practice.",
+          "When an owner is retiring or relocating, the plan should address patient communication, records, referral relationships, team retention, and the seller's clinical handoff.",
       },
       {
         iconKey: "tax",
         title: "No state income tax",
         description:
-          "Like Texas, Florida has no personal state income tax — a factor sellers weigh when modeling after-tax proceeds and one reason the state attracts both buyers and relocating dentists. Structure the deal with your CPA.",
+          "Entity, residency, federal tax, asset allocation, and real-estate questions can affect transaction economics. Model the actual structure with a Florida-qualified CPA or tax attorney.",
       },
       {
         iconKey: "consolidation",
-        title: "Heavy DSO consolidation",
+        title: "Corporate and private-buyer options",
         description:
-          "Florida is one of the most consolidated dental markets in the country, with active group and private-equity buyers. Strong competition can raise offers — but the structure behind the number deserves careful review.",
+          "Compare cash at closing, contingencies, employment terms, equity, control, team plans, and transition duties across buyer types before choosing a path.",
       },
       {
         iconKey: "board",
         title: "Florida Board of Dentistry",
         description:
-          "Licensing, ownership, and change-of-ownership requirements follow Florida-specific rules that need to be handled correctly and on time within the transaction.",
+          "Florida's dental laws address ownership, dentist-of-record, advertising, records, and other practice duties. Assign each requirement to the appropriate agency or attorney early in diligence.",
       },
     ],
     regions: [
-      "Miami–Fort Lauderdale & South Florida",
-      "Tampa Bay & St. Petersburg",
-      "Orlando & Central Florida",
-      "Jacksonville & Northeast Florida",
-      "Naples, Fort Myers & Southwest Florida",
-      "The Panhandle & Tallahassee",
+      "Miami-Fort Lauderdale and South Florida",
+      "Tampa Bay and St. Petersburg",
+      "Orlando and Central Florida",
+      "Jacksonville and Northeast Florida",
+      "Naples, Fort Myers, and Southwest Florida",
+      "The Panhandle and Tallahassee",
+    ],
+    officialReferences: [
+      {
+        label: "Florida Board of Dentistry laws and rules",
+        url: "https://floridasdentistry.gov/Forms/laws-and-rules-dentistry.pdf",
+      },
+      {
+        label: "Florida Board of Dentistry dentist-of-record guidance",
+        url: "https://floridasdentistry.gov/add-dentist-of-record/",
+      },
     ],
     summary:
       "Serving Miami, Tampa, Orlando, and Jacksonville. Valuations, sales, buy-ins, and DSO offer reviews in one of the nation's most active, consolidation-heavy markets.",

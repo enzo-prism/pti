@@ -13,10 +13,17 @@ export interface BlogPost {
   author: string;
   content: string;
   metaTitle?: string;
+  metaDescription?: string;
   featuredImage?: string;
   featuredImageAlt?: string;
   featuredImageCaption?: string;
   featuredImageFit?: "cover" | "contain";
+  sources?: {
+    name: string;
+    publisher: string;
+    url: string;
+  }[];
+  disclaimer?: string;
   series?: {
     id: string;
     title: string;
@@ -799,21 +806,35 @@ If you want a smoother transition, stronger buyer confidence, and a better chanc
     excerpt: "Learn the key terms every dental partnership agreement should cover, from ownership and compensation to exits and deadlock planning, before conflicts get expensive.",
     category: "Practice Transitions",
     date: "2026-04-05",
+    dateModified: "2026-08-17",
     readTime: "8 min read",
     gradient: "bg-gradient-to-br from-primary via-indigo-600 to-cyan-500",
     slug: "what-should-a-dental-partnership-agreement-include",
     author: "Practice Transitions Institute",
     metaTitle: "What Should a Dental Partnership Agreement Include?",
+    sources: [
+      {
+        name: "Publication 541: Partnerships",
+        publisher: "Internal Revenue Service",
+        url: "https://www.irs.gov/publications/p541",
+      },
+      {
+        name: "Choose a business structure",
+        publisher: "U.S. Small Business Administration",
+        url: "https://www.sba.gov/business-guide/launch-your-business/choose-business-structure",
+      },
+    ],
+    disclaimer: "This article provides general educational information, not legal or tax advice. Partnership terms and enforceability vary by jurisdiction and circumstances. Consult a dental-experienced attorney and tax professional before signing or changing an agreement.",
     content: `Dental partnerships can be brilliant. Shared overhead, better coverage, complementary skills, a clearer succession path, maybe even the radical luxury of taking a real vacation without the office catching fire.
 
 They can also go sideways fast if the agreement is vague.
 
 That is the core issue. Most partnership problems do not start because dentists hate each other. They start because expectations were fuzzy, authority was assumed instead of defined, and hard conversations got postponed until the money, workload, or exit timeline made everything more painful.
 
-This topic fits Practice Transitions Institute especially well. The live site emphasizes partnership structuring, equitable ownership design, valuation, legal framework, and long term stability. PTI is not positioned as a generic broker. It is positioned as a transition advisor that helps dentists create durable agreements and avoid predictable mistakes. That makes this a strong, commercial, high-intent blog topic right in the center of the brand.
+The strongest dental partnerships are built on a shared business plan and a written agreement that makes ownership, economics, authority, and exit rights explicit before conflict tests the relationship.
 
 ## The short answer
-A dental partnership agreement should clearly define ownership percentages, capital contributions, compensation, management authority, voting rules, buy in and buy out terms, dispute resolution, and exit procedures. Fresh web research this morning showed very strong alignment across current legal guidance: the highest priority items consistently include ownership structure, financial responsibilities, governance, admission of new partners, non-solicitation or non-compete provisions where applicable, and a clear exit framework.
+A dental partnership agreement should clearly define ownership percentages, capital contributions, compensation, management authority, voting rules, buy in and buy out terms, dispute resolution, and exit procedures. It should also address financial responsibilities, admission of new partners, restrictive covenants where lawful and appropriate, and a clear exit framework.
 
 In plain English, the agreement should answer who owns what, who decides what, who gets paid what, and what happens when somebody wants out.
 
@@ -861,7 +882,7 @@ The agreement should spell out:
 - what requires unanimous consent
 - who can approve debt, leases, major hires, acquisitions, or large equipment purchases
 
-Fresh legal guidance reviewed this morning repeatedly stressed governance and deadlock prevention for a reason. If two equal partners disagree and the agreement gives no escape hatch, the business can stall at exactly the wrong moment.
+Governance and deadlock prevention deserve particular care. If two equal partners disagree and the agreement gives no escape hatch, the business can stall at exactly the wrong moment.
 
 ### 4. Roles, responsibilities, and workload expectations
 Partnership conflict is often less about malice and more about mismatch.
@@ -991,21 +1012,30 @@ If you are exploring a dental partnership, buy in, or ownership restructure, con
     excerpt: "Learn when and how to announce a dental practice sale to patients, what to say in the letter, and how to protect trust, retention, and practice value.",
     category: "Practice Transitions",
     date: "2026-04-04",
+    dateModified: "2026-08-17",
     readTime: "6 min read",
     gradient: "bg-gradient-to-br from-primary via-blue-600 to-teal-500",
     slug: "how-should-you-tell-patients-you-are-selling-your-dental-practice",
     author: "Practice Transitions Institute",
     metaTitle: "How Should You Tell Patients You Are Selling Your Dental Practice?",
+    sources: [
+      {
+        name: "Summary of the HIPAA Privacy Rule",
+        publisher: "U.S. Department of Health and Human Services",
+        url: "https://www.hhs.gov/hipaa/for-professionals/privacy/laws-regulations/index.html",
+      },
+    ],
+    disclaimer: "This article provides general educational information, not legal or compliance advice. Patient-notice, record-transfer, privacy, and retention requirements vary by state and transaction. Confirm the plan with qualified legal and compliance advisors.",
     content: `Selling a dental practice is not just a financial event. It is a relationship event. For many owners, one of the hardest parts is not the valuation, the buyer search, or the closing documents. It is figuring out how to tell patients without causing unnecessary worry, confusion, or attrition.
 
 That concern is valid. Patients are not buying a practice, but they are deciding whether to trust what happens next. And trust can get shaky fast if the communication feels vague, late, overly self focused, or awkwardly corporate.
 
-Practice Transitions Institute is positioned around exactly the kind of transition support this moment requires: structured guidance, confidentiality, patient legacy protection, and a smoother handoff. Their live site emphasizes trusted advisory support, qualified buyer matching, and careful transition planning. Patient communication belongs squarely in that same lane.
+Patient communication should be treated as part of the transition plan, alongside confidentiality, staff coordination, record stewardship, and a thoughtful handoff to the incoming doctor.
 
 ## The short answer
 The best patient announcement is usually clear, warm, timed carefully, and centered on continuity of care. In most cases, patients should hear about the transition only after the deal is solid enough to communicate confidently, but early enough that the seller can personally frame the change, endorse the buyer, and reassure patients before rumors or confusion fill the gap.
 
-Fresh web research this morning showed strong consistency across transition guidance sources: the patient message works best when the selling doctor introduces the incoming doctor personally, keeps the tone positive, focuses on patient continuity rather than the seller's emotions, and explains what is changing and what is staying the same.
+The message works best when the selling doctor introduces the incoming doctor personally, keeps the tone positive, focuses on continuity of care, and explains what is changing and what is staying the same.
 
 ## What patients actually want to know
 Most patients are not asking for the purchase price or legal structure. They want practical reassurance.
@@ -1150,17 +1180,19 @@ If you want help structuring the timing, messaging, and handoff around a sale, c
     excerpt: "Learn when a seller should stay after closing, when a short transition is enough, and how buyers and sellers can structure a smoother dental practice handoff.",
     category: "Practice Transitions",
     date: "2026-04-03",
+    dateModified: "2026-08-17",
     readTime: "6 min read",
     gradient: "bg-gradient-to-br from-primary via-emerald-600 to-cyan-500",
     slug: "how-long-should-a-seller-stay-after-closing-a-dental-practice-sale",
     author: "Practice Transitions Institute",
     metaTitle: "How Long Should a Seller Stay After Closing a Dental Practice Sale?",
+    disclaimer: "This article provides general educational information, not legal, tax, employment, or financial advice. Post-closing duties should be documented in the transaction agreements and reviewed by the parties' qualified advisors.",
     content: `One of the most misunderstood parts of a dental practice sale happens after the ink dries. Buyers often assume the selling doctor should stay six months or a year. Sellers often assume they should leave immediately to avoid confusion. In reality, the right post closing transition period depends on patient flow, staff stability, operatories, referral dynamics, and the goals of both sides.
 
-That makes this a high intent question for Practice Transitions Institute. The live site and recent blog content are clearly built for practical transition decisions, not generic business advice. A post closing handoff article fits naturally alongside valuation, due diligence, financing, and staff communication content already on the site.
+A post-closing handoff is a practical transaction decision that should be coordinated with valuation, due diligence, financing, staff communication, and the needs of patients.
 
 ## The short answer
-There is no universal rule that a seller must stay for a fixed number of months after closing. In some transactions, a short handoff is enough. In others, a phased transition makes sense. Fresh web research this morning reinforced a useful point that experienced transition advisors repeat often: the seller's continued presence is only valuable when it serves a real operational or relationship purpose.
+There is no universal rule that a seller must stay for a fixed number of months after closing. In some transactions, a short handoff is enough. In others, a phased transition makes sense. The seller's continued presence is valuable only when it serves a defined operational or relationship purpose.
 
 In other words, the transition period should be designed, not assumed.
 
@@ -1200,7 +1232,7 @@ A shorter transition often works well when:
 - the buyer is prepared to step into leadership quickly
 - there is no major referral network that depends on the seller personally
 
-Outside research this morning supported another important point: in many deals, staff continuity and a well written patient announcement do more to stabilize the practice than keeping the seller around for months out of habit.
+In many deals, staff continuity and a well-written patient announcement can do more to stabilize the practice than keeping the seller around for months without a defined purpose.
 
 ## When a longer transition may make sense
 There are cases where a longer seller role is strategically smart.
@@ -1284,18 +1316,32 @@ The best post closing transitions do not happen by accident. They are designed a
     excerpt: "Learn the practical differences between an asset sale and a stock sale in a dental practice transition, including risk, tax, contracts, and why deal structure matters.",
     category: "Practice Transitions",
     date: "2026-04-02",
+    dateModified: "2026-08-17",
     readTime: "6 min read",
     gradient: "bg-gradient-to-br from-primary via-sky-600 to-cyan-500",
     slug: "asset-sale-vs-stock-sale-dental-practice",
     author: "Practice Transitions Institute",
     metaTitle: "Asset Sale vs Stock Sale in a Dental Practice Transition",
+    sources: [
+      {
+        name: "Form 8594: Asset Acquisition Statement Under Section 1060",
+        publisher: "Internal Revenue Service",
+        url: "https://www.irs.gov/forms-pubs/about-form-8594",
+      },
+      {
+        name: "Publication 544: Sales and Other Dispositions of Assets",
+        publisher: "Internal Revenue Service",
+        url: "https://www.irs.gov/publications/p544",
+      },
+    ],
+    disclaimer: "This article provides general educational information, not legal or tax advice. Deal structure and tax treatment depend on the entity, allocation, jurisdiction, and transaction documents. Buyers and sellers should obtain their own dental-experienced legal and tax advice.",
     content: `When dentists talk about selling or buying a practice, the conversation often starts with valuation and timing. Fair enough. But one of the most important deal decisions comes later, when the parties have to decide what is actually being sold.
 
 Is the buyer purchasing the practice assets, or buying the entity itself?
 
 That distinction shapes tax treatment, legal risk, assignability of contracts, due diligence, and post closing headaches. For both buyers and sellers, the structure of the transaction can change the real value of the deal even if the headline purchase price stays the same.
 
-At Practice Transitions Institute, the live site positions PTI as a step by step advisor for dentists navigating transitions with less stress and better outcomes. This topic fits that promise because it helps clients understand a core decision that directly affects implementation.
+Deal structure is a core transition decision because it affects implementation, risk allocation, tax treatment, required consents, and the documents needed to close.
 
 ## What is an asset sale in a dental practice transition?
 In an asset sale, the buyer purchases selected assets of the practice instead of purchasing ownership of the seller's entity.
@@ -1312,7 +1358,7 @@ Those assets often include:
 
 The legal entity itself usually stays with the seller. That means the buyer can avoid inheriting some liabilities tied to the entity, although this should never be assumed without legal review.
 
-For that reason, asset purchases are often preferred by buyers. Fresh research this morning from a California dental CPA source also noted that asset acquisitions remain the more common structure in dental transactions, in part because buyers often prefer acquiring specific assets while controlling how purchase price is allocated.
+For that reason, buyers often prefer asset purchases: they can identify the assets being acquired and negotiate how the purchase price is allocated. The parties must report certain applicable asset acquisitions consistently on IRS Form 8594.
 
 ## What is a stock sale?
 In a stock sale, the buyer purchases the ownership interests of the seller's entity, such as stock in a corporation or membership interests in an LLC.
@@ -1416,14 +1462,26 @@ If you want help evaluating the right path for your transition, contact Practice
     excerpt: "Comparing SBA and conventional financing for a dental practice purchase in 2026? Learn how down payment, approval speed, flexibility, and risk can shape the right loan choice.",
     category: "Practice Transitions",
     date: "2026-04-01",
+    dateModified: "2026-08-17",
     readTime: "7 min read",
     gradient: "bg-gradient-to-br from-primary via-violet-600 to-fuchsia-500",
     slug: "sba-vs-conventional-loan-buying-a-dental-practice-2026",
     author: "Practice Transitions Institute",
-    metaTitle: "SBA vs Conventional Loan for Buying a Dental Practice in 2026",
-    content: `# SBA vs Conventional Loan for Buying a Dental Practice in 2026: Which Fits Your Timeline?
-
-If you are buying a dental practice in 2026, financing is not just a banking detail. It shapes how competitive your offer looks, how much cash you need to keep in reserve, and how much stress follows you into year one.
+    metaTitle: "SBA vs Conventional Dental Practice Loans | PTI",
+    sources: [
+      {
+        name: "7(a) loans",
+        publisher: "U.S. Small Business Administration",
+        url: "https://www.sba.gov/funding-programs/loans/7a-loans",
+      },
+      {
+        name: "Types of 7(a) loans",
+        publisher: "U.S. Small Business Administration",
+        url: "https://www.sba.gov/partners/lenders/7a-loan-program/types-7a-loans",
+      },
+    ],
+    disclaimer: "This article provides general educational information, not a loan offer or legal, tax, or financial advice. Eligibility, underwriting, rates, fees, collateral, and timing vary by lender and borrower. Confirm current terms directly with participating lenders and qualified advisors.",
+    content: `If you are buying a dental practice in 2026, financing is not just a banking detail. It shapes how competitive your offer looks, how much cash you need to keep in reserve, and how much stress follows you into year one.
 
 For most buyers, the real financing question comes down to SBA versus conventional lending. Both can work. Both can fail you if the fit is wrong.
 
@@ -1537,11 +1595,9 @@ Ask your lender and your advisors:
 
 These are transition questions, not just finance questions. The buyer who asks them early usually avoids the ugliest surprises later.
 
-## Why this topic fits Practice Transitions Institute
+## Financing belongs in the transition plan
 
-The live site speaks directly to valuation clarity, partnership structure, and transition planning. Buyers searching for SBA versus conventional financing are already deep in decision mode. This is not top-of-funnel curiosity. It is a high-intent search tied closely to real acquisitions.
-
-A post like this helps PTI meet buyers exactly where the pressure lives. It also sets up natural next steps into valuation, due diligence, and advisory support before the wrong financing choice distorts the whole transaction.
+Financing should be evaluated alongside valuation, due diligence, working-capital needs, and the ownership timeline. A loan that reaches closing but leaves the buyer without adequate reserves can weaken an otherwise sound acquisition.
 
 ## FAQ
 
@@ -1573,14 +1629,28 @@ If you are weighing SBA versus conventional financing for a dental practice purc
     excerpt: "Buying a dental practice? Use this practical due diligence checklist to review finances, staff, systems, leases, and risk areas before you sign.",
     category: "Practice Transitions",
     date: "2026-03-31",
+    dateModified: "2026-08-17",
     readTime: "8 min read",
     gradient: "bg-gradient-to-br from-primary via-rose-600 to-orange-500",
     slug: "dental-practice-due-diligence-checklist",
     author: "Practice Transitions Institute",
-    metaTitle: "Dental Practice Due Diligence Checklist | Buyer Guide for 2026",
+    metaTitle: "Dental Practice Due Diligence Checklist | PTI",
+    sources: [
+      {
+        name: "Buy an existing business or franchise",
+        publisher: "U.S. Small Business Administration",
+        url: "https://www.sba.gov/business-guide/plan-your-business/buy-existing-business-or-franchise",
+      },
+      {
+        name: "Summary of the HIPAA Privacy Rule",
+        publisher: "U.S. Department of Health and Human Services",
+        url: "https://www.hhs.gov/hipaa/for-professionals/privacy/laws-regulations/index.html",
+      },
+    ],
+    disclaimer: "This checklist provides general educational information, not legal, tax, compliance, valuation, or financial advice. The required scope depends on the practice, jurisdiction, lender, and deal structure. Use qualified dental, legal, tax, and compliance advisors for transaction-specific diligence.",
     content: `Buying a dental practice can be one of the fastest ways to step into ownership, but it is also one of the easiest places to get burned by optimism. A polished office, a friendly seller, and a clean production summary can all look great at first glance. None of that replaces real due diligence.
 
-At Practice Transitions Institute, the message across the live site is clear: this process should be personal, strategic, and carefully guided. PTI positions itself as more than a broker. It is a transition partner built around education, customized planning, and protecting legacy on both sides of the deal. That makes due diligence a natural content gap to address, especially for buyers who are excited, pre-approved, and one enthusiastic site visit away from missing something expensive.
+Due diligence works best as a coordinated review of the practice's financial, operational, legal, clinical, and compliance picture. It is especially important for buyers who are excited, pre-approved, and one enthusiastic site visit away from missing something expensive.
 
 If you are preparing to buy a dental practice, here is a practical due diligence checklist to work through before you sign a purchase agreement or move too far down the road.
 
@@ -2084,11 +2154,25 @@ Practice Transitions Institute helps dental owners think through transition stru
     excerpt: "Planning an associate buy in? Learn how dental practice valuation works for partial ownership, what changes the price over time, and where dentists make costly mistakes.",
     category: "Practice Transitions",
     date: "2026-03-27",
+    dateModified: "2026-08-17",
     readTime: "7 min read",
     gradient: "bg-gradient-to-br from-primary via-emerald-600 to-cyan-500",
     slug: "associate-buy-in-dental-practice-valuation",
     author: "Practice Transitions Institute",
     metaTitle: "Associate Buy In Dental Practice Valuation | PTI",
+    sources: [
+      {
+        name: "Valuation of assets",
+        publisher: "Internal Revenue Service",
+        url: "https://www.irs.gov/businesses/valuation-of-assets",
+      },
+      {
+        name: "Publication 541: Partnerships",
+        publisher: "Internal Revenue Service",
+        url: "https://www.irs.gov/publications/p541",
+      },
+    ],
+    disclaimer: "This article provides general educational information, not a valuation conclusion or legal, tax, or financial advice. Buy-in value and structure depend on the practice, ownership rights, entity, timing, and transaction terms. Obtain an independent valuation and qualified professional advice.",
     content: `An associate buy in can sound simple on paper. One doctor knows the practice, the patients already know the associate, and both sides like the idea of a gradual transition. But when it comes time to set the price, things often get tense fast.
 
 That is because an associate buy in is not just a friendly handshake with a percentage attached. It is a real transaction that needs a fair valuation, a clear structure, and an understanding of how the practice may change between now and the final ownership transfer.
@@ -2196,9 +2280,9 @@ Usually, later is when the problems show up.
 
 PTI positions itself as a step-by-step advisor for dentists who are selling, buying, bringing on a partner, or simply trying to understand practice value before making a move. That is exactly the role that matters in a buy in. A strong advisor helps you separate emotion from structure, pressure-test the numbers, and build a transition plan both sides can live with.
 
-## Why this topic fits the PTI site right now
+## Why early structure matters
 
-The live PTI site speaks directly to dentists who want help selling, buying, partnering, or understanding practice value before a transition. An associate buy in article meets that audience at a very practical decision point. It also expands the current blog topic set beyond full exits and into one of the most common transition paths for owner-dentists who are not ready for an all-at-once sale.
+An associate buy in should connect the valuation to ownership rights, compensation, governance, future purchase steps, and exit terms. Addressing those points early gives both dentists a shared decision framework before money or expectations make the conversation harder.
 
 ## The bottom line
 
@@ -2526,18 +2610,27 @@ Practice Transitions Institute helps dentists evaluate both the numbers and the 
     excerpt: "Learn what a dental practice letter of intent should cover, which terms deserve careful review, and how a clear LOI can prevent expensive transition mistakes.",
     category: "Practice Transitions",
     date: "2026-03-17",
+    dateModified: "2026-08-17",
     readTime: "8 min read",
     gradient: "bg-gradient-to-br from-primary via-sky-600 to-cyan-500",
     slug: "dental-practice-letter-of-intent",
     author: "Practice Transitions Institute",
-    metaTitle: "Dental Practice Letter of Intent: What Buyers and Sellers Should Include",
+    metaTitle: "Dental Practice Letter of Intent Guide | PTI",
+    sources: [
+      {
+        name: "Buy an existing business or franchise",
+        publisher: "U.S. Small Business Administration",
+        url: "https://www.sba.gov/business-guide/plan-your-business/buy-existing-business-or-franchise",
+      },
+    ],
+    disclaimer: "This article provides general educational information, not legal, tax, or financial advice. Whether an LOI provision is binding depends on its language and applicable law. Each party should obtain independent advice from a dental-experienced attorney before signing.",
     content: `In a dental practice sale, the letter of intent is often treated like a simple first step. It is not.
 
 A well-structured LOI can bring clarity, align expectations, and make the rest of the transition smoother. A sloppy one can create confusion, bad leverage, or costly disputes before the purchase agreement is even drafted.
 
 For dentists buying, selling, or planning a partner transition, this is one of the most misunderstood documents in the entire process.
 
-That makes it a strong fit for Practice Transitions Institute. The live site emphasizes step-by-step support, valuation clarity, and transition strategy that protects a doctor's legacy rather than leaving major decisions to chance. An LOI topic sits right in that lane.
+The LOI deserves the same care as valuation and transition strategy because its business terms become the working assumptions for the documents and negotiations that follow.
 
 ## What is a dental practice letter of intent?
 
@@ -2640,7 +2733,7 @@ If a deposit is involved, the LOI or related deposit agreement should explain:
 - when it is refundable
 - what events make it non-refundable
 
-The outside legal guidance reviewed for this run highlights how deposit terms can create the most tension. That tracks with reality. Buyers want protection if diligence uncovers problems. Sellers want evidence the buyer is serious. Clear conditions matter more than hard posturing.
+Deposit terms can create tension because buyers want protection if diligence uncovers problems while sellers want evidence the buyer is serious. Clear conditions matter more than hard posturing.
 
 ## Common red flags in LOIs
 
@@ -2683,11 +2776,9 @@ That means seller-side LOI review should focus on:
 
 A seller should not use the LOI to bulldoze the buyer, but should absolutely use it to avoid being boxed into a weak process.
 
-## Why this topic fits PTI right now
+## Where the LOI fits in the transition
 
-Recent PTI drafts covered valuation timing, staff communication during a sale, and the documents needed before selling. This LOI topic moves the content sequence forward naturally. It meets the reader at the next practical decision point, after valuation and preparation but before final legal documents.
-
-It also fits the live site's positioning. PTI is selling clarity, expertise, reduced stress, and stronger outcomes. A detailed LOI article reinforces all four.
+The LOI usually follows early valuation, preparation, and buyer conversations but precedes the final transaction documents. It is the point where broad interest becomes a defined proposal and where both parties can identify gaps before legal drafting becomes more expensive.
 
 ## When to get guidance
 
@@ -3410,7 +3501,7 @@ Please email me at dentalstrategies@gmail.com for any questions or suggestions f
   },
   {
     id: 2,
-    title: "Work Staff Shortages in Dentistry... What can we do?",
+    title: "Work Staff Shortages in Dentistry: What Can We Do?",
     excerpt: "I get calls, texts, and questions almost every day complaining, asking questions and conveying concerns about work staff shortages in the dental profession. The dental assisting workforce has been shattered by the pandemic, and the situation isn't going to get better anytime soon.",
     category: "Practice Management",
     date: "2024-09-09",
@@ -4327,12 +4418,33 @@ export const categories = [
 // Listing surfaces (e.g. /blog) must never import `blogPosts` from a client
 // component: the full markdown bodies would ship in the JS bundle. Server
 // pages map posts through this helper and pass the summaries down as props.
-export type BlogPostSummary = Omit<BlogPost, "content">;
+export type BlogPostSummary = Omit<BlogPost, "content" | "sources" | "disclaimer" | "metaDescription">;
 
 export const toBlogPostSummary = (post: BlogPost): BlogPostSummary => {
-  const { content, ...summary } = post;
+  const { content, sources, disclaimer, metaDescription, ...summary } = post;
+  void sources;
+  void disclaimer;
+  void metaDescription;
   return summary;
 };
+
+const truncateSeoText = (value: string, maxLength: number): string => {
+  const normalized = value.replace(/\s+/g, " ").replace(/\.{3,}/g, ":").trim();
+  if (normalized.length <= maxLength) return normalized;
+
+  const candidate = normalized.slice(0, maxLength - 1);
+  const lastSpace = candidate.lastIndexOf(" ");
+  const trimmed = lastSpace > Math.floor(maxLength * 0.65)
+    ? candidate.slice(0, lastSpace)
+    : candidate;
+  return `${trimmed.replace(/[\s,;:.-]+$/g, "")}…`;
+};
+
+export const getBlogMetaTitle = (post: BlogPost): string =>
+  truncateSeoText(post.metaTitle ?? post.title, 60);
+
+export const getBlogMetaDescription = (post: BlogPost): string =>
+  truncateSeoText(post.metaDescription ?? post.excerpt, 160);
 
 export const getBlogPostBySlug = (slug: string): BlogPost | undefined => {
   return blogPosts.find(post => post.slug === slug);

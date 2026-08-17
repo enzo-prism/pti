@@ -28,7 +28,7 @@ export function TestimonialCard({
 }: TestimonialCardProps) {
   return (
     <div className={cn(
-      "bg-white p-5 rounded-lg shadow-sm border border-gray-100 flex flex-col h-full animate-fade-in",
+      "bg-white p-5 rounded-lg shadow-sm border border-gray-100 flex flex-col h-full",
       className
     )}
     style={style}>
@@ -51,7 +51,7 @@ export function TestimonialCard({
         <div>
           <p className="font-medium text-gray-900 text-sm md:text-base">{author}</p>
           {(role || company) && (
-            <p className="text-xs md:text-sm text-gray-500">
+            <p className="text-xs text-gray-700 md:text-sm">
               {role}{role && company && ", "}{company}
             </p>
           )}

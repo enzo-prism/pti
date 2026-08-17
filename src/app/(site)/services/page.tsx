@@ -5,7 +5,7 @@ import { buildServiceItemListSchema } from "@/lib/structuredData";
 
 const title = "Dental Practice Transition Services";
 const description =
-  "Explore PTI services for dental practice valuation, sales, partnerships, and associateships tailored to dentists at every career stage.";
+  "Explore PTI services for dental practice valuation, sales, acquisitions, DSO offer reviews, partnerships, and associate buy-ins.";
 
 export const metadata = buildPageMetadata({
   title,
