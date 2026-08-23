@@ -77,6 +77,13 @@ const Navbar = () => {
   }, [pathname]);
 
   useEffect(() => {
+    const panel = mobilePanelRef.current;
+    if (!panel) return;
+    if (isMenuOpen) panel.removeAttribute("inert");
+    else panel.setAttribute("inert", "");
+  }, [isMenuOpen]);
+
+  useEffect(() => {
     if (!isMenuOpen) return;
 
     const originalOverflow = document.body.style.overflow;
@@ -305,7 +312,6 @@ const Navbar = () => {
         aria-modal="true"
         aria-label="Navigation menu"
         aria-hidden={!isMenuOpen}
-        inert={!isMenuOpen}
         className={cn(
           "absolute inset-x-0 top-full z-50 h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-t border-slate-200 bg-white px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-4 shadow-2xl transition-[transform,visibility] duration-300 lg:hidden",
           isMenuOpen ? "visible translate-x-0" : "invisible translate-x-full pointer-events-none"

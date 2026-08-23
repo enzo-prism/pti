@@ -5,6 +5,11 @@ import {
   practiceTransitionSeminarEvents,
   practiceTransitionSeminarLearningPoints,
 } from "@/data/practiceTransitionSeminar";
+import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
+
+const ROSEVILLE_AVAILABILITY_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
+  "Roseville Dinner Availability"
+)}`;
 import { isEventPast, parseEventDate, sortEventDates } from "@/lib/dateUtils";
 
 // Event data with type definitions
@@ -19,7 +24,7 @@ export interface RawEvent {
     intro: string;
     learningPoints: string[];
   };
-  type: "webinar" | "seminar" | "workshop" | "conference";
+  type: "webinar" | "seminar" | "workshop" | "conference" | "dinner";
   registrationLink: string;
   detailPath?: string;
   offerPrice?: number;
@@ -54,6 +59,17 @@ const practiceTransitionEvents: RawEvent[] = practiceTransitionSeminarEvents.map
 );
 
 export const rawEvents: RawEvent[] = [
+  {
+    id: "practice-blueprint-dinner-roseville-2026",
+    title: "The Practice Blueprint Dinner",
+    date: "August 27, 2026",
+    time: "6:00 PM - 9:00 PM",
+    location: "Fats Asia Bistro, Roseville, CA",
+    description:
+      "Join dentists and industry partners for an evening of practical conversation about building, valuing, and transitioning a dental practice. Contact PTI to confirm current seat availability.",
+    type: "dinner",
+    registrationLink: ROSEVILLE_AVAILABILITY_MAILTO,
+  },
   {
     id: 3,
     title: "2025 & Beyond – Essential Financial & Practice-Transition Insights for Dentists",

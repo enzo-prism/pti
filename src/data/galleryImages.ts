@@ -45,6 +45,9 @@ const DRNJO_DIMENSIONS: Record<string, { width: number; height: number }> = {
   dinnerDuo: { width: 320, height: 240 },
   dinnerTableFour: { width: 1800, height: 1350 },
   birthdayCelebration: { width: 1800, height: 1350 },
+  panelDinnerGroup: { width: 1600, height: 2133 },
+  panelDinnerBookSigning: { width: 1600, height: 2133 },
+  panelDinnerTable: { width: 1600, height: 2133 },
 };
 
 const fromDrNjo = (image: DrNjoGalleryImage): GalleryPhoto => {

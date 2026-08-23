@@ -5,6 +5,8 @@ export const MICHAEL_NJO_WEBSITE_URL = "https://michaelnjodds.com";
 export const DENTIST_RETREAT_URL = "https://www.dentistretreat.com/";
 export const MICHAEL_NJO_CALENDLY_URL =
   "https://calendly.com/michael-dental-strategies/30min";
+export const DENTAL_TRANSITIONS_HANDBOOK_URL =
+  "https://www.amazon.com/Dental-Practice-Transitions-Handbook-Healthcare/dp/1627878718";
 
 export const PRACTICE_SALE_CHECKLIST_PATH =
   "/resources/practice-sale-readiness-checklist";

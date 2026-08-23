@@ -10,6 +10,34 @@ import {
 } from "@/data/practiceTransitionSeminar";
 
 describe("events dataset", () => {
+  it("lists the Roseville Practice Blueprint dinner without overstating availability", () => {
+    const dinner = rawEvents.find(
+      (event) => event.id === "practice-blueprint-dinner-roseville-2026"
+    );
+
+    expect(dinner).toMatchObject({
+      title: "The Practice Blueprint Dinner",
+      date: "August 27, 2026",
+      time: "6:00 PM - 9:00 PM",
+      location: "Fats Asia Bistro, Roseville, CA",
+      type: "dinner",
+      registrationLink:
+        "mailto:info@practicetransitions.com?subject=Roseville%20Dinner%20Availability",
+    });
+    expect(dinner?.description).toContain("confirm current seat availability");
+    expect(JSON.stringify(dinner)).not.toMatch(/registration is open|sold out/i);
+    expect(
+      getUpcomingRawEvents(new Date(2026, 7, 21)).some(
+        (event) => event.id === dinner?.id
+      )
+    ).toBe(true);
+    expect(
+      getUpcomingRawEvents(new Date(2026, 7, 28)).some(
+        (event) => event.id === dinner?.id
+      )
+    ).toBe(false);
+  });
+
   it("routes upcoming practice transition seminars to the native registration page", () => {
     const upcomingSeminars = getUpcomingRawEvents(new Date(2026, 7, 17)).filter(
       (event) =>

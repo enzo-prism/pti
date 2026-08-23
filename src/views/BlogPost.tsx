@@ -285,7 +285,7 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
               {post.cta && (
                 <div className="mt-14 overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-br from-primary to-primary/90 p-6 text-white shadow-md sm:p-8 md:p-10">
                   <p className="text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-white/70 sm:text-xs">
-                    Talk it through
+                    {post.cta.eyebrow ?? "Talk it through"}
                   </p>
                   <h3 className="mt-3 text-xl font-semibold leading-snug sm:text-2xl">
                     {post.cta.title}
@@ -297,6 +297,7 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                     <BookMeetingButton
                       href={post.cta.bookingUrl}
                       label={post.cta.bookingLabel}
+                      eventName={post.cta.eventName}
                       location={`blog_post_cta_${post.slug}`}
                       variant="secondary"
                       className="w-full sm:w-auto"

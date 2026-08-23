@@ -1,4 +1,5 @@
 import { blogPosts } from "../data/blogPosts";
+import { communityImpactPosts } from "../data/communityImpactPosts";
 import {
   SITE_NAME,
   BUSINESS_DESCRIPTION,
@@ -7,6 +8,8 @@ import {
 
 const RSS_DESCRIPTION =
   "Expert insights on dental practice valuation, sales, ownership transitions, and growth strategies from PTI.";
+
+const allPosts = [...communityImpactPosts, ...blogPosts];
 
 const escapeXml = (value: string) =>
   value
@@ -23,7 +26,7 @@ const resolvePostDate = (postDate: string) =>
   formatRssDate(`${postDate}T00:00:00Z`);
 
 const getLatestPostDate = () => {
-  const datedPosts = blogPosts
+  const datedPosts = allPosts
     .filter((post) => post.slug)
     .map((post) => new Date(`${post.date}T00:00:00Z`))
     .filter((date) => Number.isFinite(date.getTime()));
@@ -43,7 +46,7 @@ export const buildBlogRssXml = () => {
   const channelLink = buildAbsoluteUrl("/blog");
   const channelDescription = RSS_DESCRIPTION || BUSINESS_DESCRIPTION;
 
-  const items = blogPosts
+  const items = allPosts
     .filter((post) => post.slug)
     .map((post) => {
       const postUrl = buildAbsoluteUrl(`/blog/${post.slug}`);

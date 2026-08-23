@@ -15,6 +15,7 @@ import {
   isEventPast,
   createEventDateKey,
 } from "@/lib/dateUtils";
+import { trackEventRegistrationClick } from "@/lib/analytics";
 import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
 import { rawEvents, type RawEvent } from "@/data/events";
 import {
@@ -162,6 +163,8 @@ const Events = ({ workshopReview }: EventsProps) => {
         return "bg-green-100 text-green-700 border-green-200";
       case "workshop":
         return "bg-yellow-100 text-yellow-700 border-yellow-200";
+      case "dinner":
+        return "bg-amber-100 text-amber-800 border-amber-200";
       default:
         return "bg-purple-100 text-purple-700 border-purple-200";
     }
@@ -290,8 +293,12 @@ const Events = ({ workshopReview }: EventsProps) => {
                           Event Completed
                         </span>
                       ) : (
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700 border border-green-200 animate-pulse">
-                          Registration Open
+                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${
+                          event.type === "dinner"
+                            ? "bg-amber-100 text-amber-800 border-amber-200"
+                            : "bg-green-100 text-green-700 border-green-200 animate-pulse"
+                        }`}>
+                          {event.type === "dinner" ? "Confirm availability" : "Registration Open"}
                         </span>
                       )}
                     </div>
@@ -407,6 +414,64 @@ const Events = ({ workshopReview }: EventsProps) => {
                       <Button asChild size="sm" className="flex-1 sm:flex-none">
                         <Link href={event.detailPath}>View Details</Link>
                       </Button>
+                    ) : event.type === "dinner" ? (
+                      <>
+                        <Button asChild size="sm" className="flex-1 sm:flex-none">
+                          <a
+                            href={event.registrationLink}
+                            onClick={() =>
+                              trackEventRegistrationClick(
+                                event.title.replace(/\s+/g, "_").toLowerCase(),
+                                "email"
+                              )
+                            }
+                          >
+                            <Mail size={16} className="mr-2" />
+                            Confirm Availability
+                          </a>
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="flex-1 sm:flex-none"
+                          onClick={() => window.open("tel:+18337841121", "_self")}
+                        >
+                          <Phone size={16} className="mr-2" />
+                          Call PTI
+                        </Button>
+                      </>
+                    ) : event.registrationLink.startsWith("http") ? (
+                      <>
+                        <Button asChild size="sm" className="flex-1 sm:flex-none">
+                          <a
+                            href={event.registrationLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() =>
+                              trackEventRegistrationClick(
+                                event.title.replace(/\s+/g, "_").toLowerCase(),
+                                "external"
+                              )
+                            }
+                          >
+                            Register Now
+                          </a>
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="flex-1 sm:flex-none"
+                          onClick={() =>
+                            window.open(
+                              `mailto:${SITE_CONTACT_EMAIL}?subject=Event Registration Inquiry`,
+                              "_self"
+                            )
+                          }
+                        >
+                          <Mail size={16} className="mr-2" />
+                          Email Us to Register
+                        </Button>
+                      </>
                     ) : (
                       <>
                         <Button 

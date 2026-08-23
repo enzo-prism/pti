@@ -31,6 +31,8 @@ export interface BlogPost {
     total: number;
   };
   cta?: {
+    eyebrow?: string;
+    eventName?: string;
     title: string;
     description: string;
     bookingUrl: string;
@@ -3799,6 +3801,7 @@ I hope this series has been thoughtful and thought-provoking. When you are thoug
   {
     id: 9,
     title: "Debugging the Myths of Practice Transitions/Selling Your Practice Part I",
+    metaTitle: "Transition Myths Part 1: Timeline Planning",
     excerpt: "The internet is a wonderful thing. However, everyone should not believe everything on the internet. Practice sales, just like patient care is very personal and should be treated with a customized approach.",
     category: "Practice Transitions",
     date: "2023-04-25",
@@ -3910,6 +3913,7 @@ Michael Njo of the Practice Transition Institute will also be presenting a semin
   {
     id: 10,
     title: "Debugging the Myths of Practice Transitions/Selling Your Practice",
+    metaTitle: "Transition Myths Part 2: Choosing Advisors",
     excerpt: "Part 2: Navigating Dental Transitions: The Importance of Advisors to ensure a Seamless Process. Transitioning a dental practice can be a complex and daunting process. It is one of the most significant career moves a dentist will make.",
     category: "Practice Transitions",
     date: "2023-11-14",
@@ -4047,6 +4051,7 @@ We are available to answer your questions. Please feel free to reach out to us!`
     readTime: "12 min read",
     gradient: "bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-600",
     slug: "debugging-myths-practice-transitions-part-3-valuation",
+    metaTitle: "Transition Myths Part 3: Practice Valuation",
     author: "Michael Njo, DDS",
     content: `
       <div style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 24px; border-radius: 12px; border-left: 4px solid #3b82f6; margin: 24px 0;">

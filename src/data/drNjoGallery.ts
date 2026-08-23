@@ -166,6 +166,39 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
     aspect: "landscape",
     featuredOn: ["drnjo"],
   },
+  panelDinnerGroup: {
+    id: "panelDinnerGroup",
+    src: "/lovable-uploads/drnjo-2026/IMG_4918.webp",
+    alt: "Dr. Michael Njo with dentists and referral partners at the Panel of Experts dinner",
+    caption:
+      "Dentists and referral partners gathering for practical conversations about practice growth and transitions.",
+    category: "relationships",
+    fit: "contain",
+    aspect: "portrait",
+    featuredOn: ["home", "drnjo"],
+  },
+  panelDinnerBookSigning: {
+    id: "panelDinnerBookSigning",
+    src: "/lovable-uploads/drnjo-2026/IMG_4923.webp",
+    alt: "Dr. Michael Njo autographing Dental Practice Transitions Handbook at the Panel of Experts dinner",
+    caption:
+      "Dr. Njo autographing the Dental Practice Transitions Handbook at the Panel of Experts dinner.",
+    category: "speaking-authorship",
+    fit: "contain",
+    aspect: "portrait",
+    featuredOn: ["drnjo"],
+  },
+  panelDinnerTable: {
+    id: "panelDinnerTable",
+    src: "/lovable-uploads/drnjo-2026/IMG_3346.webp",
+    alt: "Panel of Experts dinner table with dentists and referral partners",
+    caption:
+      "A Panel of Experts dinner bringing dentists and trusted referral partners together.",
+    category: "relationships",
+    fit: "contain",
+    aspect: "portrait",
+    featuredOn: ["drnjo"],
+  },
 };
 
 const pickImages = (...ids: Array<keyof typeof drNjoGalleryIndex>) =>
@@ -184,7 +217,10 @@ export const drNjoGalleryImages = pickImages(
   "blackTieMedalPortrait",
   "dinnerDuo",
   "dinnerTableFour",
-  "birthdayCelebration"
+  "birthdayCelebration",
+  "panelDinnerGroup",
+  "panelDinnerBookSigning",
+  "panelDinnerTable"
 );
 
 export const homeGalleryImages = pickImages(
@@ -210,7 +246,8 @@ export const drNjoSpeakingAuthorshipImages = pickImages(
   "bluePrintFlyer",
   "publicationSpread",
   "handbookCoverSpread",
-  "backstageQuote"
+  "backstageQuote",
+  "panelDinnerBookSigning"
 );
 
 export const drNjoLeadershipCommunityImages = pickImages(
@@ -222,6 +259,8 @@ export const drNjoLeadershipCommunityImages = pickImages(
 );
 
 export const drNjoRelationshipImages = pickImages(
+  "panelDinnerGroup",
+  "panelDinnerTable",
   "dinnerDuo",
   "dinnerTableFour",
   "birthdayCelebration"

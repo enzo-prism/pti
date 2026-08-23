@@ -12,6 +12,7 @@ import {
 } from "@/data/drNjoGallery";
 import {
   MICHAEL_NJO_WEBSITE_URL,
+  DENTAL_TRANSITIONS_HANDBOOK_URL,
   PHONE_NUMBER,
   PHONE_NUMBER_TEL,
 } from "@/lib/constants";
@@ -22,6 +23,7 @@ const [
   publicationSpread,
   handbookCoverSpread,
   backstageQuote,
+  panelDinnerBookSigning,
 ] = drNjoSpeakingAuthorshipImages;
 
 const [
@@ -171,6 +173,17 @@ const DrNjo = () => {
                 className="sm:col-span-2"
                 sizes="(min-width: 1024px) 44vw, 100vw"
               />
+              <DrNjoPhotoCard
+                image={panelDinnerBookSigning}
+                className="sm:col-span-2"
+                sizes="(min-width: 1024px) 44vw, 100vw"
+              />
+              <Button asChild className="sm:col-span-2">
+                <a href={DENTAL_TRANSITIONS_HANDBOOK_URL} target="_blank" rel="noopener noreferrer">
+                  View the Handbook on Amazon
+                  <ExternalLink className="ml-2 h-4 w-4" aria-hidden="true" />
+                </a>
+              </Button>
             </div>
           </ScrollReveal>
         </div>

@@ -12,9 +12,19 @@ import {
   Calculator,
   ClipboardCheck,
   Newspaper,
+  BookOpen,
 } from "lucide-react";
+import { DENTAL_TRANSITIONS_HANDBOOK_URL } from "@/lib/constants";
 
 const resources = [
+  {
+    icon: <BookOpen className="h-6 w-6 text-amber-700" />,
+    title: "Dental Practice Transitions Handbook",
+    description:
+      "Dr. Michael Njo's practical guide to buying, selling, and transitioning a dental practice in a changing market.",
+    href: DENTAL_TRANSITIONS_HANDBOOK_URL,
+    cta: "View the handbook",
+  },
   {
     icon: <Calculator className="h-6 w-6 text-blue-600" />,
     title: "How Much Is My Dental Practice Worth?",
@@ -84,6 +94,8 @@ const Resources = () => {
             <Link
               key={resource.href}
               href={resource.href}
+              target={resource.href.startsWith("http") ? "_blank" : undefined}
+              rel={resource.href.startsWith("http") ? "noopener noreferrer" : undefined}
               className="group bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:border-primary/40 hover:shadow-md transition-all flex flex-col"
             >
               <div className="bg-accent rounded-full w-12 h-12 flex items-center justify-center mb-4">

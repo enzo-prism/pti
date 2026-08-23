@@ -25,7 +25,7 @@ interface MultiDateEventCardProps {
     intro: string;
     learningPoints: string[];
   };
-  type: "webinar" | "seminar" | "workshop" | "conference";
+  type: "webinar" | "seminar" | "workshop" | "conference" | "dinner";
   registrationLink: string;
   eventDates: EventDate[];
   isPast: boolean;
@@ -64,6 +64,7 @@ export const MultiDateEventCard = ({
     ? uniqueLocations[0] 
     : `${uniqueLocations.length} locations available`;
   const normalizedEventName = title.replace(/\s+/g, "_").toLowerCase();
+  const requiresAvailabilityConfirmation = type === "dinner";
   const isInternalRegistrationLink = registrationLink.startsWith("/");
   const registrationButtonLabel = registrationLink.includes(
     "/events/practice-transition-seminar"
@@ -98,8 +99,12 @@ export const MultiDateEventCard = ({
                   Event Completed
                 </span>
               ) : (
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700 border border-green-200 animate-pulse">
-                  Registration Open
+                <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${
+                  requiresAvailabilityConfirmation
+                    ? "bg-amber-100 text-amber-800 border-amber-200"
+                    : "bg-green-100 text-green-700 border-green-200 animate-pulse"
+                }`}>
+                  {requiresAvailabilityConfirmation ? "Confirm availability" : "Registration Open"}
                 </span>
               )}
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">

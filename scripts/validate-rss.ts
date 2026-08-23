@@ -1,4 +1,7 @@
 import { blogPosts } from "../src/data/blogPosts.ts";
+import { communityImpactPosts } from "../src/data/communityImpactPosts.ts";
+
+const allPosts = [...communityImpactPosts, ...blogPosts];
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_CANONICAL_SITE_URL ??
@@ -24,7 +27,7 @@ const resolvePostDate = (postDate: string) =>
   new Date(`${postDate}T00:00:00Z`).toUTCString();
 
 const getLatestPostDate = () => {
-  const datedPosts = blogPosts
+  const datedPosts = allPosts
     .filter((post) => post.slug)
     .map((post) => new Date(`${post.date}T00:00:00Z`))
     .filter((date) => Number.isFinite(date.getTime()));
@@ -43,7 +46,7 @@ const buildBlogRssXml = () => {
   const channelTitle = `${SITE_NAME} Blog`;
   const channelLink = buildAbsoluteUrl("/blog");
 
-  const items = blogPosts
+  const items = allPosts
     .filter((post) => post.slug)
     .map((post) => {
       const postUrl = buildAbsoluteUrl(`/blog/${post.slug}`);

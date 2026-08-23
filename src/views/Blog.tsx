@@ -220,14 +220,16 @@ const Blog = ({ posts }: BlogProps) => {
           <Card className="overflow-hidden hover-lift group">
             <Link href={`/blog/${featuredPost.slug}`}>
               <div className="md:flex lg:flex">
-                <div className="md:w-2/5 lg:w-2/5 aspect-video md:aspect-auto relative">
+                <div className={`md:w-2/5 lg:w-2/5 aspect-video md:aspect-auto relative ${
+                  featuredPost.featuredImageFit === "contain" ? "bg-slate-100" : ""
+                }`}>
                   {featuredPost.featuredImage ? (
                     <Image
                       src={featuredPost.featuredImage}
                       alt={featuredPost.featuredImageAlt ?? featuredPost.title}
                       fill
                       sizes="(min-width: 1024px) 40vw, 100vw"
-                      className="object-cover"
+                      className={featuredPost.featuredImageFit === "contain" ? "object-contain" : "object-cover"}
                       priority
                     />
                   ) : (
@@ -276,10 +278,10 @@ const Blog = ({ posts }: BlogProps) => {
                       </div>
                     </div>
                     
-                    <Button className="group-hover:translate-x-1 transition-transform w-full sm:w-auto">
+                    <span className="inline-flex min-h-10 w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform group-hover:translate-x-1 sm:w-auto">
                       Read Article
                       <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -301,14 +303,16 @@ const Blog = ({ posts }: BlogProps) => {
                   {regularPosts.map((post, index) => (
             <Card key={post.id} className="overflow-hidden hover-lift group" style={{ animationDelay: `${index * 100}ms` }}>
               <Link href={`/blog/${post.slug}`}>
-                <div className="aspect-video relative overflow-hidden">
+                <div className={`aspect-video relative overflow-hidden ${
+                  post.featuredImageFit === "contain" ? "bg-slate-100" : ""
+                }`}>
                   {post.featuredImage ? (
                     <Image
                       src={post.featuredImage}
                       alt={post.featuredImageAlt ?? post.title}
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover"
+                      className={post.featuredImageFit === "contain" ? "object-contain" : "object-cover"}
                     />
                   ) : (
                     <div className={`w-full h-full ${post.gradient}`} />
@@ -347,14 +351,10 @@ const Blog = ({ posts }: BlogProps) => {
                     </div>
                   </div>
                   
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="mt-4 p-0 h-auto text-primary hover:text-primary group-hover:translate-x-1 transition-all duration-200"
-                  >
+                  <span className="mt-4 inline-flex h-auto items-center p-0 text-sm font-medium text-primary transition-all duration-200 group-hover:translate-x-1">
                     Read More 
                     <ArrowRight className="ml-1 h-3 w-3" />
-                  </Button>
+                  </span>
                 </CardContent>
               </Link>
             </Card>

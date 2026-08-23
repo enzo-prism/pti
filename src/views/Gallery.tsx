@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
@@ -23,6 +23,8 @@ const TILE_SIZES =
 
 const Gallery = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
   const isOpen = activeIndex !== null;
   const activePhoto = isOpen ? orderedPhotos[activeIndex] : null;
 
@@ -52,15 +54,32 @@ const Gallery = () => {
       if (event.key === "Escape") close();
       if (event.key === "ArrowLeft") showPrev();
       if (event.key === "ArrowRight") showNext();
+      if (event.key === "Tab") {
+        const controls = dialogRef.current?.querySelectorAll<HTMLElement>(
+          'button, [href], [tabindex]:not([tabindex="-1"])'
+        );
+        if (!controls?.length) return;
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     };
 
     document.addEventListener("keydown", handleKey);
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    dialogRef.current?.querySelector<HTMLElement>("button")?.focus();
 
     return () => {
       document.removeEventListener("keydown", handleKey);
       document.body.style.overflow = previousOverflow;
+      triggerRef.current?.focus();
     };
   }, [isOpen, close, showPrev, showNext]);
 
@@ -110,7 +129,10 @@ const Gallery = () => {
                   <button
                     key={photo.id}
                     type="button"
-                    onClick={() => setActiveIndex(index)}
+                    onClick={(event) => {
+                      triggerRef.current = event.currentTarget;
+                      setActiveIndex(index);
+                    }}
                     aria-label={`View larger image: ${photo.alt}`}
                     className="group mb-4 block w-full break-inside-avoid overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                   >
@@ -165,6 +187,7 @@ const Gallery = () => {
 
       {isOpen && activePhoto && (
         <div
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label={activePhoto.alt}

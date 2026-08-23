@@ -21,13 +21,16 @@ export function LatestUpdateCard({ post, className }: LatestUpdateCardProps) {
     )}>
       <div className="grid md:grid-cols-2 gap-6 md:gap-8">
         {/* Image Section */}
-        <div className="relative h-64 md:h-full min-h-[16rem]">
+        <div className={cn(
+          "relative h-64 md:h-full min-h-[16rem]",
+          post.featuredImageFit === "contain" && "bg-slate-100"
+        )}>
           <Image
             src={featuredImage}
             alt={post.featuredImageAlt || post.title}
             fill
             sizes="(min-width: 768px) 50vw, 100vw"
-            className="object-cover"
+            className={post.featuredImageFit === "contain" ? "object-contain" : "object-cover"}
           />
           <div className="absolute top-4 left-4">
             <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">

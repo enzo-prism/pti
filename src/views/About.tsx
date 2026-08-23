@@ -8,6 +8,7 @@ import {
   MICHAEL_NJO_WEBSITE_URL,
   DENTIST_RETREAT_URL,
   MICHAEL_NJO_CALENDLY_URL,
+  DENTAL_TRANSITIONS_HANDBOOK_URL,
 } from "@/lib/constants";
 
 export const leaders = [
@@ -23,8 +24,7 @@ export const leaders = [
     videoUrl: "https://youtu.be/Jes6h2F3yhc?si=sVQZKyw1uB5Fi5_F",
     websiteUrl: MICHAEL_NJO_WEBSITE_URL,
     bookingUrl: MICHAEL_NJO_CALENDLY_URL,
-    bookUrl:
-      "https://www.amazon.com/Dental-Practice-Transitions-Handbook-Healthcare/dp/1627878718/ref=sr_1_2?dchild=1&keywords=Dental+Practice+Transitions+Handbook&qid=1632933680&s=books&sr=1-2",
+    bookUrl: DENTAL_TRANSITIONS_HANDBOOK_URL,
     bookImage: "/lovable-uploads/drnjo-2026/handbook-cover-spread.webp",
     bookTitle: "Dental Practice Transitions Handbook",
     bookDescription:

@@ -14,6 +14,7 @@ import { HeroContent } from "@/components/ui/hero-content";
 import { LatestUpdateCard } from "@/components/ui/latest-update-card";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { blogPosts } from "@/data/blogPosts";
+import { communityImpactPosts } from "@/data/communityImpactPosts";
 import { galleryPhotos, homeGalleryPreview } from "@/data/galleryImages";
 import { getFeaturedReviews, reviews } from "@/data/reviews";
 import { cn } from "@/lib/utils";
@@ -55,8 +56,8 @@ const transitionPaths = [
 
 const Home = () => {
   const latestPost =
-    blogPosts.length > 0
-      ? [...blogPosts].sort(
+    communityImpactPosts.length + blogPosts.length > 0
+      ? [...communityImpactPosts, ...blogPosts].sort(
           (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
         )[0]
       : null;
