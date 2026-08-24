@@ -10,6 +10,9 @@ import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
 const ROSEVILLE_AVAILABILITY_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
   "Roseville Dinner Availability"
 )}`;
+const BEYOND_THE_CHAIR_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
+  "Beyond the Chair Anaheim September 25"
+)}`;
 import { isEventPast, parseEventDate, sortEventDates } from "@/lib/dateUtils";
 
 // Event data with type definitions
@@ -29,6 +32,8 @@ export interface RawEvent {
   detailPath?: string;
   offerPrice?: number;
   offerPriceCurrency?: string;
+  flyerImage?: string;
+  flyerImageAlt?: string;
   speakers?: Array<{
     name: string;
     title: string;
@@ -59,6 +64,20 @@ const practiceTransitionEvents: RawEvent[] = practiceTransitionSeminarEvents.map
 );
 
 export const rawEvents: RawEvent[] = [
+  {
+    id: "beyond-the-chair-anaheim-2026",
+    title: "The Dental Practice Beyond the Chair",
+    date: "September 25, 2026",
+    time: "8:30 AM - 1:30 PM",
+    location: "The Phillips Group, 2300 E. Katella Ave, Suite 405, Anaheim, CA",
+    description:
+      "A 5-hour working session for dentists and practice owners who want more than a job—build a practice that gives you options, freedom, and lasting impact. Led by Michael A. Njo, DDS, Director, Dental Strategies. Contact PTI to confirm a seat.",
+    type: "workshop",
+    registrationLink: BEYOND_THE_CHAIR_MAILTO,
+    flyerImage: "/lovable-uploads/drnjo-2026/promotional-flyer-dental-strategies.webp",
+    flyerImageAlt:
+      "Promotional flyer for The Dental Practice Beyond the Chair, a September 25, 2026 five-hour working session in Anaheim led by Michael A. Njo, DDS",
+  },
   {
     id: "practice-blueprint-dinner-roseville-2026",
     title: "The Practice Blueprint Dinner",

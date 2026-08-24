@@ -64,7 +64,7 @@ export const MultiDateEventCard = ({
     ? uniqueLocations[0] 
     : `${uniqueLocations.length} locations available`;
   const normalizedEventName = title.replace(/\s+/g, "_").toLowerCase();
-  const requiresAvailabilityConfirmation = type === "dinner";
+  const requiresAvailabilityConfirmation = registrationLink.startsWith("mailto:");
   const isInternalRegistrationLink = registrationLink.startsWith("/");
   const registrationButtonLabel = registrationLink.includes(
     "/events/practice-transition-seminar"

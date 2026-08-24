@@ -253,6 +253,8 @@ const Events = ({ workshopReview }: EventsProps) => {
               );
             }
             const dateLabel = event.dateDisplay ?? event.date;
+            const requiresAvailabilityConfirmation =
+              event.registrationLink.startsWith("mailto:");
             
             // Render single event card for individual events
             return (
@@ -294,11 +296,11 @@ const Events = ({ workshopReview }: EventsProps) => {
                         </span>
                       ) : (
                         <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${
-                          event.type === "dinner"
+                          requiresAvailabilityConfirmation
                             ? "bg-amber-100 text-amber-800 border-amber-200"
                             : "bg-green-100 text-green-700 border-green-200 animate-pulse"
                         }`}>
-                          {event.type === "dinner" ? "Confirm availability" : "Registration Open"}
+                          {requiresAvailabilityConfirmation ? "Confirm availability" : "Registration Open"}
                         </span>
                       )}
                     </div>
@@ -308,6 +310,18 @@ const Events = ({ workshopReview }: EventsProps) => {
                       {event.title}
                     </h3>
                   </div>
+                  {event.flyerImage ? (
+                    <div className="mx-auto w-28 shrink-0 overflow-hidden rounded-lg bg-slate-100 ring-1 ring-black/5 sm:mx-0">
+                      <Image
+                        src={event.flyerImage}
+                        alt={event.flyerImageAlt ?? event.title}
+                        width={141}
+                        height={200}
+                        className="h-auto w-full object-contain"
+                        sizes="112px"
+                      />
+                    </div>
+                  ) : null}
                 </div>
                 
                 {/* Event Details */}
@@ -414,7 +428,7 @@ const Events = ({ workshopReview }: EventsProps) => {
                       <Button asChild size="sm" className="flex-1 sm:flex-none">
                         <Link href={event.detailPath}>View Details</Link>
                       </Button>
-                    ) : event.type === "dinner" ? (
+                    ) : requiresAvailabilityConfirmation ? (
                       <>
                         <Button asChild size="sm" className="flex-1 sm:flex-none">
                           <a
