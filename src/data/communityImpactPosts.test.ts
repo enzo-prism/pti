@@ -5,9 +5,43 @@ import { communityImpactPosts } from "./communityImpactPosts";
 import { getBlogMetaDescription, getBlogMetaTitle } from "./blogPosts";
 
 describe("community impact posts", () => {
-  it("lists the Beyond the Chair Anaheim flyer post without overstating availability", () => {
+  it("lists the Bill and Mikki practice-match post without registration language", () => {
     const post = communityImpactPosts[0];
 
+    expect(post).toMatchObject({
+      id: 45,
+      slug: "another-perfect-match",
+      date: "2026-08-25",
+      featuredImage: "/lovable-uploads/drnjo-2026/bill-mikki-porch.webp",
+      featuredImageFit: "contain",
+    });
+    expect(post.featuredImageAlt).toMatch(/brick house numbered 257/i);
+    expect(post.content).toContain("Bill and Mikki");
+    expect(post.content).toContain("Dugoni Business Club");
+    expect(post.content).toContain("/lovable-uploads/drnjo-2026/bill-mikki-porch.webp");
+    expect(post.content).toContain("/lovable-uploads/drnjo-2026/bill-mikki-trio.webp");
+    expect(post.content).toContain("object-fit:contain");
+    expect(post.content).not.toContain("object-fit:cover");
+    expect(post.content).not.toMatch(/sold out/i);
+    expect(post.content).not.toMatch(/registration is open/i);
+    expect(post.cta).toBeUndefined();
+    expect(JSON.stringify(post)).not.toMatch(/eventbrite|stripe|sold out|registration is open/i);
+    expect(
+      existsSync(resolve(process.cwd(), "public/lovable-uploads/drnjo-2026/bill-mikki-porch.webp"))
+    ).toBe(true);
+    expect(
+      existsSync(resolve(process.cwd(), "public/lovable-uploads/drnjo-2026/bill-mikki-trio.webp"))
+    ).toBe(true);
+    expect(getBlogMetaTitle(post).length).toBeLessThanOrEqual(60);
+    expect(getBlogMetaDescription(post).length).toBeLessThanOrEqual(160);
+  });
+
+  it("lists the Beyond the Chair Anaheim flyer post without overstating availability", () => {
+    const post = communityImpactPosts.find(
+      (candidate) => candidate.slug === "dental-practice-beyond-the-chair-anaheim"
+    );
+
+    expect(post).toBeDefined();
     expect(post).toMatchObject({
       id: 44,
       slug: "dental-practice-beyond-the-chair-anaheim",
