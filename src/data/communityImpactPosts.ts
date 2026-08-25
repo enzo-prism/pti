@@ -9,6 +9,34 @@ const BEYOND_THE_CHAIR_MAILTO =
 
 export const communityImpactPosts: BlogPost[] = [
   {
+    id: 45,
+    title: "Another perfect match",
+    excerpt:
+      "Dr. Njo matched both of his clients — a former Dugoni Business Club student with an accomplished practitioner.",
+    category: "Community Impact",
+    date: "2026-08-25",
+    readTime: "1 min read",
+    gradient: "bg-gradient-to-br from-primary via-sky-600 to-emerald-500",
+    slug: "another-perfect-match",
+    author: "Practice Transitions Institute",
+    metaTitle: "Another perfect match | PTI",
+    metaDescription:
+      "Dr. Njo matched both of his clients — a former Dugoni Business Club student with an accomplished practitioner.",
+    featuredImage: "/lovable-uploads/drnjo-2026/bill-mikki-porch.webp",
+    featuredImageAlt:
+      "A younger woman in a navy sleeveless top and trousers standing with an older man in a tropical-print shirt on a brick walkway in front of a brick house numbered 257",
+    featuredImageCaption:
+      "A porch portrait from the practice-match celebration.",
+    featuredImageFit: "contain",
+    content: `Another perfect match! So excited to have both of my clients matched- with my former Dugoni Business Club Student with an accomplished practitioner!
+
+Bill and Mikki, thank you for your incredibly thoughtful words and for trusting me to help guide such an important transition. It was truly an honor to support you in finding the right successor for the practice, patients, team, and legacy you worked so hard to build.
+
+<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/bill-mikki-porch.webp" alt="A younger woman in a navy sleeveless top and trousers standing with an older man in a tropical-print shirt on a brick walkway in front of a brick house numbered 257" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
+
+<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/bill-mikki-trio.webp" alt="Three people standing outdoors: a man in light blue scrubs holding a yellow folder, a woman in navy scrubs, and a man in a white shirt and blue tie, in front of a burgundy wall" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>`,
+  },
+  {
     id: 44,
     title: "The Dental Practice Beyond the Chair",
     excerpt:
