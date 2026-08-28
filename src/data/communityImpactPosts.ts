@@ -9,6 +9,30 @@ const BEYOND_THE_CHAIR_MAILTO =
 
 export const communityImpactPosts: BlogPost[] = [
   {
+    id: 46,
+    title: "The Practice Blueprint in Roseville",
+    excerpt:
+      "Great night with great Dentists and referral partners! Thank you Provide, Patterson, Kohan, and Carr for including me at this vibrant event.",
+    category: "Community Impact",
+    date: "2026-08-28",
+    readTime: "1 min read",
+    gradient: "bg-gradient-to-br from-primary via-sky-600 to-emerald-500",
+    slug: "practice-blueprint-roseville-aug-2026",
+    author: "Practice Transitions Institute",
+    metaTitle: "The Practice Blueprint in Roseville | PTI",
+    metaDescription:
+      "Great night with great Dentists and referral partners! Thank you Provide, Patterson, Kohan, and Carr for including me at this vibrant event.",
+    featuredImage: "/lovable-uploads/drnjo-2026/poe-roseville-aug-2026.webp",
+    featuredImageAlt:
+      "Vertical recap collage titled The Practice Blueprint, with a dinner-table group photo, a five-person portrait, and black-and-white welcome-sign, table-setting, stationery, and gift-bag details from the Roseville evening",
+    featuredImageCaption:
+      "The Practice Blueprint recap collage from the Roseville dinner.",
+    featuredImageFit: "contain",
+    content: `Great night with great Dentists and referral partners! Thank you Provide, Patterson, Kohan, and Carr for including me at this vibrant event. It is so fun to enjoy an evening with Dentists who have dreams and a team that can realize those dreams! Thank you to my dear friend, colleague, and long time client Dr. Diana Fat for welcoming us to her family restaurant.
+
+<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/poe-roseville-aug-2026.webp" alt="Vertical recap collage titled The Practice Blueprint, with a dinner-table group photo, a five-person portrait, and black-and-white welcome-sign, table-setting, stationery, and gift-bag details from the Roseville evening" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>`,
+  },
+  {
     id: 45,
     title: "Another perfect match",
     excerpt:

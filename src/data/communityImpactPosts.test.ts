@@ -5,9 +5,57 @@ import { communityImpactPosts } from "./communityImpactPosts";
 import { getBlogMetaDescription, getBlogMetaTitle } from "./blogPosts";
 
 describe("community impact posts", () => {
-  it("lists the Bill and Mikki practice-match post without registration language", () => {
+  it("lists the Practice Blueprint Roseville recap without an upcoming-event CTA", () => {
     const post = communityImpactPosts[0];
 
+    expect(post).toMatchObject({
+      id: 46,
+      slug: "practice-blueprint-roseville-aug-2026",
+      date: "2026-08-28",
+      category: "Community Impact",
+      featuredImage: "/lovable-uploads/drnjo-2026/poe-roseville-aug-2026.webp",
+      featuredImageFit: "contain",
+    });
+    expect(post.slug).not.toBe("panel-of-experts-dinner-roseville");
+    expect(post.featuredImageAlt).toMatch(/practice blueprint/i);
+    expect(post.content).toContain(
+      "Great night with great Dentists and referral partners! Thank you Provide, Patterson, Kohan, and Carr for including me at this vibrant event."
+    );
+    expect(post.content).toContain(
+      "It is so fun to enjoy an evening with Dentists who have dreams and a team that can realize those dreams!"
+    );
+    expect(post.content).toContain(
+      "Thank you to my dear friend, colleague, and long time client Dr. Diana Fat for welcoming us to her family restaurant."
+    );
+    expect(post.content).toContain("/lovable-uploads/drnjo-2026/poe-roseville-aug-2026.webp");
+    expect(post.content).toContain("object-fit:contain");
+    expect(post.content).not.toContain("object-fit:cover");
+    expect(post.content).not.toMatch(/sold out/i);
+    expect(post.content).not.toMatch(/registration is open/i);
+    expect(post.content).not.toMatch(/510D6834-AEC4-4FC4-B40C-4238A9859E99/i);
+    expect(post.cta).toBeUndefined();
+    expect(JSON.stringify(post)).not.toMatch(/eventbrite|stripe|sold out|registration is open/i);
+    expect(JSON.stringify(post)).not.toMatch(/upcoming Roseville event/i);
+    expect(
+      existsSync(
+        resolve(process.cwd(), "public/lovable-uploads/drnjo-2026/poe-roseville-aug-2026.webp")
+      )
+    ).toBe(true);
+    expect(
+      existsSync(
+        resolve(process.cwd(), "public/lovable-uploads/drnjo-2026/poe-roseville-aug-2026.png")
+      )
+    ).toBe(false);
+    expect(getBlogMetaTitle(post).length).toBeLessThanOrEqual(60);
+    expect(getBlogMetaDescription(post).length).toBeLessThanOrEqual(160);
+  });
+
+  it("lists the Bill and Mikki practice-match post without registration language", () => {
+    const post = communityImpactPosts.find(
+      (candidate) => candidate.slug === "another-perfect-match"
+    );
+
+    expect(post).toBeDefined();
     expect(post).toMatchObject({
       id: 45,
       slug: "another-perfect-match",
