@@ -28,6 +28,9 @@ interface BlogPostViewProps {
   post: BlogPost;
 }
 
+// Matches the Board of Regents IG graphic so contain fills the hero without letterbox bars.
+const PORTRAIT_HERO_INTRINSIC = { width: 1003, height: 1568 } as const;
+
 export const BlogPostView = ({ post }: BlogPostViewProps) => {
   const authorProfile = getAuthorProfile(post.author);
   const authorName = authorProfile?.name ?? post.author;
@@ -55,6 +58,7 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
       `I thought you'd enjoy this PTI article: ${currentUrl}`
   )}`;
   const articleHtml = renderMarkdown(post.content);
+  const isPortraitHero = post.featuredImageAspect === "portrait";
 
   const QuickFactsCard = ({ className = "" }: { className?: string }) => (
     <div
@@ -205,24 +209,41 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div
               className={cn(
-                "w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-black/5 sm:rounded-[2.25rem] md:rounded-[2.75rem]",
-                post.featuredImage
-                  ? "bg-white relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]"
-                  : "aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]"
+                "overflow-hidden rounded-2xl shadow-2xl ring-1 ring-black/5 sm:rounded-[2.25rem] md:rounded-[2.75rem]",
+                isPortraitHero
+                  ? "relative mx-auto w-full max-w-lg bg-white"
+                  : cn(
+                      "w-full",
+                      post.featuredImage
+                        ? "bg-white relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]"
+                        : "aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]"
+                    )
               )}
             >
               {post.featuredImage ? (
-                <Image
-                  src={post.featuredImage}
-                  alt={post.featuredImageAlt ?? post.title}
-                  fill
-                  className={cn(
-                    "object-contain",
-                    post.featuredImageFit === "cover" && "object-cover"
-                  )}
-                  sizes="(min-width: 1024px) 896px, 100vw"
-                  priority
-                />
+                isPortraitHero ? (
+                  <Image
+                    src={post.featuredImage}
+                    alt={post.featuredImageAlt ?? post.title}
+                    width={PORTRAIT_HERO_INTRINSIC.width}
+                    height={PORTRAIT_HERO_INTRINSIC.height}
+                    className="h-auto w-full object-contain"
+                    sizes="(min-width: 512px) 512px, 100vw"
+                    priority
+                  />
+                ) : (
+                  <Image
+                    src={post.featuredImage}
+                    alt={post.featuredImageAlt ?? post.title}
+                    fill
+                    className={cn(
+                      "object-contain",
+                      post.featuredImageFit === "cover" && "object-cover"
+                    )}
+                    sizes="(min-width: 1024px) 896px, 100vw"
+                    priority
+                  />
+                )
               ) : (
                 <div className={`h-full w-full ${post.gradient}`} />
               )}

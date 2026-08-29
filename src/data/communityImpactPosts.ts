@@ -28,13 +28,12 @@ export const communityImpactPosts: BlogPost[] = [
     featuredImageCaption:
       "Congratulations graphic for Dr. Diana Fat’s appointment to the University of the Pacific Board of Regents.",
     featuredImageFit: "contain",
+    featuredImageAspect: "portrait",
     content: `I am so proud to congratulate my longtime client of more than 20 years, Dr. Diana Fat, a distinguished Sacramento prosthodontist, on her appointment to the University of the Pacific Board of Regents.
 
 Diana continues to make a meaningful difference in dentistry, in her community, and now for our alma mater. Congratulations, Diana—this honor is so well deserved!
 
-#UniversityOfThePacific #BoardOfRegents #PacificProud #DentalLeadership
-
-<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/diana-fat-board-of-regents.webp" alt="Dr. Michael Njo and Dr. Diana Fat standing together in her Sacramento dental office, beside a navy overlay announcing her appointment to the University of the Pacific Board of Regents" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>`,
+#UniversityOfThePacific #BoardOfRegents #PacificProud #DentalLeadership`,
   },
   {
     id: 46,
