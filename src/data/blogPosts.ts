@@ -18,6 +18,8 @@ export interface BlogPost {
   featuredImageAlt?: string;
   featuredImageCaption?: string;
   featuredImageFit?: "cover" | "contain";
+  // Portrait IG graphics: skip the default 16:9 hero box so contain does not letterbox.
+  featuredImageAspect?: "portrait";
   sources?: {
     name: string;
     publisher: string;

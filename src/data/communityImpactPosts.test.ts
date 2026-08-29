@@ -15,6 +15,7 @@ describe("community impact posts", () => {
       category: "Community Impact",
       featuredImage: "/lovable-uploads/drnjo-2026/diana-fat-board-of-regents.webp",
       featuredImageFit: "contain",
+      featuredImageAspect: "portrait",
     });
     expect(post.slug).not.toBe("practice-blueprint-roseville-aug-2026");
     expect(post.featuredImageAlt).toMatch(/diana fat/i);
@@ -28,8 +29,9 @@ describe("community impact posts", () => {
     expect(post.content).toContain(
       "#UniversityOfThePacific #BoardOfRegents #PacificProud #DentalLeadership"
     );
-    expect(post.content).toContain("/lovable-uploads/drnjo-2026/diana-fat-board-of-regents.webp");
-    expect(post.content).toContain("object-fit:contain");
+    expect(post.content).not.toContain("/lovable-uploads/drnjo-2026/diana-fat-board-of-regents.webp");
+    expect(post.content).not.toContain("<img");
+    expect(post.content).not.toContain("object-fit:contain");
     expect(post.content).not.toContain("object-fit:cover");
     expect(post.content).not.toMatch(/sold out/i);
     expect(post.content).not.toMatch(/registration is open/i);
