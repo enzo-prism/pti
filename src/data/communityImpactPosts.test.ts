@@ -5,9 +5,58 @@ import { communityImpactPosts } from "./communityImpactPosts";
 import { getBlogMetaDescription, getBlogMetaTitle } from "./blogPosts";
 
 describe("community impact posts", () => {
-  it("lists the Practice Blueprint Roseville recap without an upcoming-event CTA", () => {
+  it("lists the Diana Fat Board of Regents congratulations without an event CTA", () => {
     const post = communityImpactPosts[0];
 
+    expect(post).toMatchObject({
+      id: 47,
+      slug: "diana-fat-board-of-regents",
+      date: "2026-08-28",
+      category: "Community Impact",
+      featuredImage: "/lovable-uploads/drnjo-2026/diana-fat-board-of-regents.webp",
+      featuredImageFit: "contain",
+    });
+    expect(post.slug).not.toBe("practice-blueprint-roseville-aug-2026");
+    expect(post.featuredImageAlt).toMatch(/diana fat/i);
+    expect(post.featuredImageAlt).toMatch(/board of regents/i);
+    expect(post.content).toContain(
+      "I am so proud to congratulate my longtime client of more than 20 years, Dr. Diana Fat, a distinguished Sacramento prosthodontist, on her appointment to the University of the Pacific Board of Regents."
+    );
+    expect(post.content).toContain(
+      "Diana continues to make a meaningful difference in dentistry, in her community, and now for our alma mater. Congratulations, Diana—this honor is so well deserved!"
+    );
+    expect(post.content).toContain(
+      "#UniversityOfThePacific #BoardOfRegents #PacificProud #DentalLeadership"
+    );
+    expect(post.content).toContain("/lovable-uploads/drnjo-2026/diana-fat-board-of-regents.webp");
+    expect(post.content).toContain("object-fit:contain");
+    expect(post.content).not.toContain("object-fit:cover");
+    expect(post.content).not.toMatch(/sold out/i);
+    expect(post.content).not.toMatch(/registration is open/i);
+    expect(post.content).not.toMatch(/510D6834-AEC4-4FC4-B40C-4238A9859E99/i);
+    expect(post.cta).toBeUndefined();
+    expect(JSON.stringify(post)).not.toMatch(/eventbrite|stripe|sold out|registration is open/i);
+    expect(JSON.stringify(post)).not.toMatch(/upcoming Roseville event/i);
+    expect(
+      existsSync(
+        resolve(process.cwd(), "public/lovable-uploads/drnjo-2026/diana-fat-board-of-regents.webp")
+      )
+    ).toBe(true);
+    expect(
+      existsSync(
+        resolve(process.cwd(), "public/lovable-uploads/drnjo-2026/diana-fat-board-of-regents.png")
+      )
+    ).toBe(false);
+    expect(getBlogMetaTitle(post).length).toBeLessThanOrEqual(60);
+    expect(getBlogMetaDescription(post).length).toBeLessThanOrEqual(160);
+  });
+
+  it("lists the Practice Blueprint Roseville recap without an upcoming-event CTA", () => {
+    const post = communityImpactPosts.find(
+      (candidate) => candidate.slug === "practice-blueprint-roseville-aug-2026"
+    );
+
+    expect(post).toBeDefined();
     expect(post).toMatchObject({
       id: 46,
       slug: "practice-blueprint-roseville-aug-2026",
