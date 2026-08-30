@@ -16,6 +16,8 @@ describe("community impact posts", () => {
       featuredImage: "/lovable-uploads/drnjo-2026/diana-fat-board-of-regents.webp",
       featuredImageFit: "contain",
       featuredImageAspect: "portrait",
+      featuredImageWidth: 1003,
+      featuredImageHeight: 1568,
     });
     expect(post.slug).not.toBe("practice-blueprint-roseville-aug-2026");
     expect(post.featuredImageAlt).toMatch(/diana fat/i);
@@ -66,6 +68,9 @@ describe("community impact posts", () => {
       category: "Community Impact",
       featuredImage: "/lovable-uploads/drnjo-2026/poe-roseville-aug-2026.webp",
       featuredImageFit: "contain",
+      featuredImageAspect: "portrait",
+      featuredImageWidth: 864,
+      featuredImageHeight: 1821,
     });
     expect(post.slug).not.toBe("panel-of-experts-dinner-roseville");
     expect(post.featuredImageAlt).toMatch(/practice blueprint/i);
@@ -113,6 +118,9 @@ describe("community impact posts", () => {
       date: "2026-08-25",
       featuredImage: "/lovable-uploads/drnjo-2026/bill-mikki-porch.webp",
       featuredImageFit: "contain",
+      featuredImageAspect: "portrait",
+      featuredImageWidth: 1199,
+      featuredImageHeight: 1600,
     });
     expect(post.featuredImageAlt).toMatch(/brick house numbered 257/i);
     expect(post.content).toContain("Bill and Mikki");
@@ -147,6 +155,9 @@ describe("community impact posts", () => {
       date: "2026-08-24",
       featuredImage: "/lovable-uploads/drnjo-2026/promotional-flyer-dental-strategies.webp",
       featuredImageFit: "contain",
+      featuredImageAspect: "portrait",
+      featuredImageWidth: 1414,
+      featuredImageHeight: 2000,
     });
     expect(post.featuredImageAlt).toMatch(/flyer/i);
     expect(post.content).toContain("September 25, 2026");
@@ -201,6 +212,9 @@ describe("community impact posts", () => {
     );
 
     expect(post?.featuredImageFit).toBe("contain");
+    expect(post?.featuredImageAspect).toBe("portrait");
+    expect(post?.featuredImageWidth).toBe(1600);
+    expect(post?.featuredImageHeight).toBe(2133);
     expect(post?.content).not.toContain("object-fit:cover");
     expect(post?.content.match(/object-fit:contain/g)).toHaveLength(3);
   });

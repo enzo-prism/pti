@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatLocalDate } from "@/lib/dateUtils";
+import { getPortraitFeaturedSize, isPortraitFeaturedImage } from "@/lib/featuredImage";
 import type { BlogPost } from "@/data/blogPosts";
 
 interface LatestUpdateCardProps {
@@ -11,13 +12,12 @@ interface LatestUpdateCardProps {
   className?: string;
 }
 
-const PORTRAIT_INTRINSIC = { width: 1003, height: 1568 } as const;
-
 export function LatestUpdateCard({ post, className }: LatestUpdateCardProps) {
   const targetHref = `/blog/${post.slug}`;
   const featuredImage = post.featuredImage || "/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png";
-  const isPortrait = post.featuredImageAspect === "portrait";
+  const isPortrait = isPortraitFeaturedImage(post);
   const isContained = post.featuredImageFit === "contain" || isPortrait;
+  const portraitSize = getPortraitFeaturedSize(post);
 
   return (
     <div className={cn(
@@ -37,8 +37,8 @@ export function LatestUpdateCard({ post, className }: LatestUpdateCardProps) {
             <Image
               src={featuredImage}
               alt={post.featuredImageAlt || post.title}
-              width={PORTRAIT_INTRINSIC.width}
-              height={PORTRAIT_INTRINSIC.height}
+              width={portraitSize.width}
+              height={portraitSize.height}
               sizes="(min-width: 768px) 40vw, 100vw"
               className="h-auto max-h-[28rem] w-full object-contain"
             />
