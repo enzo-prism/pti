@@ -220,28 +220,56 @@ const Blog = ({ posts }: BlogProps) => {
           <Card className="overflow-hidden hover-lift group">
             <Link href={`/blog/${featuredPost.slug}`}>
               <div className="md:flex lg:flex">
-                <div className={`md:w-2/5 lg:w-2/5 aspect-video md:aspect-auto relative ${
-                  featuredPost.featuredImageFit === "contain" ? "bg-slate-100" : ""
-                }`}>
+                {(() => {
+                  const isPortrait = featuredPost.featuredImageAspect === "portrait";
+                  const isContained = featuredPost.featuredImageFit === "contain" || isPortrait;
+                  return (
+                <div
+                  className={cn(
+                    "relative md:w-2/5 lg:w-2/5",
+                    isPortrait
+                      ? "flex min-h-[16rem] items-center justify-center bg-slate-100 p-4 md:min-h-[22rem]"
+                      : cn(
+                          "aspect-video md:aspect-auto md:min-h-[16rem]",
+                          isContained && "bg-slate-100"
+                        )
+                  )}
+                >
                   {featuredPost.featuredImage ? (
-                    <Image
-                      src={featuredPost.featuredImage}
-                      alt={featuredPost.featuredImageAlt ?? featuredPost.title}
-                      fill
-                      sizes="(min-width: 1024px) 40vw, 100vw"
-                      className={featuredPost.featuredImageFit === "contain" ? "object-contain" : "object-cover"}
-                      priority
-                    />
+                    isPortrait ? (
+                      <Image
+                        src={featuredPost.featuredImage}
+                        alt={featuredPost.featuredImageAlt ?? featuredPost.title}
+                        width={1003}
+                        height={1568}
+                        sizes="(min-width: 1024px) 40vw, 100vw"
+                        className="h-auto max-h-[28rem] w-full object-contain"
+                        priority
+                      />
+                    ) : (
+                      <Image
+                        src={featuredPost.featuredImage}
+                        alt={featuredPost.featuredImageAlt ?? featuredPost.title}
+                        fill
+                        sizes="(min-width: 1024px) 40vw, 100vw"
+                        className={isContained ? "object-contain" : "object-cover"}
+                        priority
+                      />
+                    )
                   ) : (
                     <div className={`w-full h-full ${featuredPost.gradient}`} />
                   )}
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
+                  {!isContained ? (
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
+                  ) : null}
                   <div className="absolute bottom-4 left-4">
                     <Badge className="bg-white/90 text-primary hover:bg-white">
                       {featuredPost.category}
                     </Badge>
                   </div>
                 </div>
+                  );
+                })()}
                 <div className="md:w-3/5 lg:w-3/5 p-4 md:p-6 lg:p-8">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-4 text-sm text-gray-500">
                     <div className="flex items-center">
@@ -300,31 +328,48 @@ const Blog = ({ posts }: BlogProps) => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                  {regularPosts.map((post, index) => (
+                  {regularPosts.map((post, index) => {
+                    const listingIsContained =
+                      post.featuredImageFit === "contain" || post.featuredImageAspect === "portrait";
+                    return (
             <Card key={post.id} className="overflow-hidden hover-lift group" style={{ animationDelay: `${index * 100}ms` }}>
               <Link href={`/blog/${post.slug}`}>
-                <div className={`aspect-video relative overflow-hidden ${
-                  post.featuredImageFit === "contain" ? "bg-slate-100" : ""
-                }`}>
+                <div
+                  className={cn(
+                    "relative overflow-hidden",
+                    listingIsContained
+                      ? "flex aspect-[3/4] items-center justify-center bg-slate-100"
+                      : "aspect-video"
+                  )}
+                >
                   {post.featuredImage ? (
                     <Image
                       src={post.featuredImage}
                       alt={post.featuredImageAlt ?? post.title}
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      className={post.featuredImageFit === "contain" ? "object-contain" : "object-cover"}
+                      className={listingIsContained ? "object-contain p-3" : "object-cover"}
                     />
                   ) : (
                     <div className={`w-full h-full ${post.gradient}`} />
                   )}
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors duration-300"></div>
+                  {!listingIsContained ? (
+                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors duration-300"></div>
+                  ) : null}
                   <div className="absolute top-4 left-4">
                     <Badge variant="secondary" className="bg-white/90 text-primary">
                       {post.category}
                     </Badge>
                   </div>
                   <div className="absolute bottom-4 right-4">
-                    <div className="flex items-center text-white bg-black/50 backdrop-blur-sm rounded-full px-3 py-1 text-sm">
+                    <div
+                      className={cn(
+                        "flex items-center rounded-full px-3 py-1 text-sm",
+                        listingIsContained
+                          ? "bg-white/95 text-slate-700 shadow-sm"
+                          : "bg-black/50 text-white backdrop-blur-sm"
+                      )}
+                    >
                       <Clock className="h-3 w-3 mr-1" />
                       {post.readTime}
                     </div>
@@ -358,7 +403,8 @@ const Blog = ({ posts }: BlogProps) => {
                 </CardContent>
               </Link>
             </Card>
-                  ))}
+                    );
+                  })}
                 </div>
               </>
             )}
