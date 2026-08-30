@@ -6,7 +6,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { getRelatedPosts, getSeriesPosts, type BlogPost } from "@/data/blogPosts";
 import { formatLocalDate } from "@/lib/dateUtils";
-import { getPortraitFeaturedSize, isPortraitFeaturedImage } from "@/lib/featuredImage";
+import {
+  getFeaturedImageShape,
+  getFeaturedListingFrameClass,
+  getFeaturedListingImageClass,
+  getIntrinsicFeaturedSize,
+  shouldContainFeaturedImage,
+} from "@/lib/featuredImage";
 import { SeriesNavigation } from "@/components/ui/series-navigation";
 import { renderMarkdown } from "@/lib/markdown";
 import { BookMeetingButton } from "@/components/BookMeetingButton";
@@ -56,8 +62,10 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
       `I thought you'd enjoy this PTI article: ${currentUrl}`
   )}`;
   const articleHtml = renderMarkdown(post.content);
-  const isPortraitHero = isPortraitFeaturedImage(post);
-  const portraitHeroSize = getPortraitFeaturedSize(post);
+  const heroShape = getFeaturedImageShape(post);
+  const isIntrinsicHero = heroShape !== "landscape";
+  const isContainHero = post.featuredImageFit === "contain";
+  const intrinsicHeroSize = getIntrinsicFeaturedSize(post);
 
   const QuickFactsCard = ({ className = "" }: { className?: string }) => (
     <div
@@ -209,23 +217,28 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
             <div
               className={cn(
                 "overflow-hidden rounded-2xl shadow-2xl ring-1 ring-black/5 sm:rounded-[2.25rem] md:rounded-[2.75rem]",
-                isPortraitHero
+                isIntrinsicHero
                   ? "relative mx-auto w-full max-w-lg bg-white"
                   : cn(
                       "w-full",
                       post.featuredImage
-                        ? "bg-white relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]"
+                        ? cn(
+                            "relative bg-white",
+                            isContainHero
+                              ? "aspect-[4/3]"
+                              : "aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]"
+                          )
                         : "aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]"
                     )
               )}
             >
               {post.featuredImage ? (
-                isPortraitHero ? (
+                isIntrinsicHero ? (
                   <Image
                     src={post.featuredImage}
                     alt={post.featuredImageAlt ?? post.title}
-                    width={portraitHeroSize.width}
-                    height={portraitHeroSize.height}
+                    width={intrinsicHeroSize.width}
+                    height={intrinsicHeroSize.height}
                     className="h-auto w-full object-contain"
                     sizes="(min-width: 512px) 512px, 100vw"
                     priority
@@ -235,10 +248,7 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                     src={post.featuredImage}
                     alt={post.featuredImageAlt ?? post.title}
                     fill
-                    className={cn(
-                      "object-contain",
-                      post.featuredImageFit === "cover" && "object-cover"
-                    )}
+                    className={isContainHero ? "object-contain" : "object-cover"}
                     sizes="(min-width: 1024px) 896px, 100vw"
                     priority
                   />
@@ -421,8 +431,8 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                     <div
                       className={cn(
                         "relative overflow-hidden",
-                        relatedPost.featuredImageFit === "contain" || isPortraitFeaturedImage(relatedPost)
-                          ? "flex aspect-[3/4] items-center justify-center bg-slate-100"
+                        shouldContainFeaturedImage(relatedPost)
+                          ? getFeaturedListingFrameClass(relatedPost)
                           : "aspect-[16/10]"
                       )}
                     >
@@ -433,15 +443,15 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                           fill
                           sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                           className={cn(
-                            relatedPost.featuredImageFit === "contain" || isPortraitFeaturedImage(relatedPost)
-                              ? "object-contain p-3"
-                              : "object-cover transition duration-500 group-hover:scale-105"
+                            getFeaturedListingImageClass(relatedPost),
+                            !shouldContainFeaturedImage(relatedPost) &&
+                              "transition duration-500 group-hover:scale-105"
                           )}
                         />
                       ) : (
                         <div className={`h-full w-full ${relatedPost.gradient}`} />
                       )}
-                      {relatedPost.featuredImageFit === "contain" || isPortraitFeaturedImage(relatedPost) ? null : (
+                      {shouldContainFeaturedImage(relatedPost) ? null : (
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/0" />
                       )}
                       <Badge className="absolute left-4 top-4 bg-white/90 text-primary">
