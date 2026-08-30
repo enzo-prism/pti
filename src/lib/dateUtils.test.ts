@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  formatLocalDate,
   isEventPast,
   isEventUpcoming,
   parseEventDate,
@@ -9,6 +10,13 @@ import {
 
 describe("event date utilities", () => {
   const august17 = new Date(2026, 7, 17, 23, 59);
+
+  it("formats ISO calendar dates for display without timezone shift", () => {
+    expect(formatLocalDate("2026-08-28")).toBe("August 28, 2026");
+    expect(
+      formatLocalDate("2026-08-28", { month: "long", day: "numeric", year: "numeric" })
+    ).toBe("August 28, 2026");
+  });
 
   it("treats an event as current for its entire local calendar day", () => {
     expect(isEventPast("August 17, 2026", august17)).toBe(false);

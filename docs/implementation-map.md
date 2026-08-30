@@ -37,6 +37,9 @@ This document records the current production architecture after the August 2026 
 - `src/lib/markdown.ts` sanitizes rendered HTML through a narrow allowlist; Instagram is the only allowed iframe host.
 - Article tests reject drafting-process language, body H1s, unsafe HTML, and metadata beyond the configured title/description limits.
 - Source cards and legal/tax/finance disclaimers describe the available evidence without inventing external review credentials.
+- Homepage Latest Update and blog listing/featured cards honor `featuredImageFit` and `featuredImageAspect`. Portrait and contain images keep a light frame and skip dark overlays so they are not letterboxed inside a landscape crop.
+- Display dates go through `formatLocalDate`. The homepage Latest Update must not render a raw ISO date.
+- Completed-event recaps must not keep upcoming-event CTAs. The August 14 Panel of Experts dinner post links to the August 27 Roseville recap instead of advertising a past dinner as upcoming.
 
 ## Locations and structured data
 
@@ -48,7 +51,7 @@ This document records the current production architecture after the August 2026 
 
 - The desktop Services menu and mobile drawer support keyboard interaction, Escape dismissal, focus management, and accurate expanded/hidden state.
 - `ScrollReveal` fails open and respects reduced motion; meaningful content must never depend on an observer firing.
-- Keep skip navigation, main targets, form status focus, footer contrast, and minimum touch targets intact.
+- Accessibility: cookie-preference controls, the events “View Past Events” toggle, and primary consent buttons stay at least 44px tall. The cookie banner adds temporary bottom padding so it does not cover footer CTAs.
 
 ## Verification
 
