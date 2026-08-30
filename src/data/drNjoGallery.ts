@@ -9,7 +9,8 @@ export type DrNjoGalleryAspect =
   | "landscape"
   | "portrait"
   | "wide"
-  | "tall";
+  | "tall"
+  | "story";
 
 export interface DrNjoGalleryImage {
   id: string;
@@ -64,7 +65,7 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
       "The published handbook that distills Dr. Njo's framework for buying, selling, and transitioning healthcare practices in changing markets.",
     category: "speaking-authorship",
     fit: "contain",
-    aspect: "wide",
+    aspect: "landscape",
     featuredOn: ["about", "drnjo"],
   },
   dugoniGroupPhoto: {
@@ -119,7 +120,7 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
       "Industry camaraderie and professional relationships that strengthen PTI's network and perspective.",
     category: "leadership-community",
     fit: "cover",
-    aspect: "portrait",
+    aspect: "tall",
     featuredOn: ["home", "drnjo"],
   },
   blackTieMedalPortrait: {
@@ -130,7 +131,7 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
       "A formal leadership moment that reinforces Dr. Njo's standing within the broader professional community.",
     category: "leadership-community",
     fit: "contain",
-    aspect: "tall",
+    aspect: "story",
     featuredOn: ["home", "drnjo"],
   },
   dinnerDuo: {
@@ -174,7 +175,7 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
       "Dentists and referral partners gathering for practical conversations about practice growth and transitions.",
     category: "relationships",
     fit: "contain",
-    aspect: "portrait",
+    aspect: "tall",
     featuredOn: ["home", "drnjo"],
   },
   panelDinnerBookSigning: {
@@ -185,7 +186,7 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
       "Dr. Njo autographing the Dental Practice Transitions Handbook at the Panel of Experts dinner.",
     category: "speaking-authorship",
     fit: "contain",
-    aspect: "portrait",
+    aspect: "tall",
     featuredOn: ["drnjo"],
   },
   panelDinnerTable: {
@@ -196,7 +197,7 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
       "A Panel of Experts dinner bringing dentists and trusted referral partners together.",
     category: "relationships",
     fit: "contain",
-    aspect: "portrait",
+    aspect: "tall",
     featuredOn: ["drnjo"],
   },
 };

@@ -5,9 +5,7 @@ import type { BlogPost } from "./blogPosts";
 const BEYOND_THE_CHAIR_MAILTO =
   "mailto:info@practicetransitions.com?subject=Beyond%20the%20Chair%20Anaheim%20September%2025";
 
-export const communityImpactPosts: Array<
-  BlogPost & { featuredImageWidth?: number; featuredImageHeight?: number }
-> = [
+export const communityImpactPosts: BlogPost[] = [
   {
     id: 47,
     title: "Congratulations, Dr. Diana Fat",
