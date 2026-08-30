@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import type { BlogPostSummary } from "@/data/blogPosts";
 import { PRACTICE_SALE_CHECKLIST_PATH } from "@/lib/constants";
 import { formatLocalDate } from "@/lib/dateUtils";
+import { getPortraitFeaturedSize, isPortraitFeaturedImage } from "@/lib/featuredImage";
 import { cn } from "@/lib/utils";
 
 interface BlogProps {
@@ -221,8 +222,9 @@ const Blog = ({ posts }: BlogProps) => {
             <Link href={`/blog/${featuredPost.slug}`}>
               <div className="md:flex lg:flex">
                 {(() => {
-                  const isPortrait = featuredPost.featuredImageAspect === "portrait";
+                  const isPortrait = isPortraitFeaturedImage(featuredPost);
                   const isContained = featuredPost.featuredImageFit === "contain" || isPortrait;
+                  const portraitSize = getPortraitFeaturedSize(featuredPost);
                   return (
                 <div
                   className={cn(
@@ -240,8 +242,8 @@ const Blog = ({ posts }: BlogProps) => {
                       <Image
                         src={featuredPost.featuredImage}
                         alt={featuredPost.featuredImageAlt ?? featuredPost.title}
-                        width={1003}
-                        height={1568}
+                        width={portraitSize.width}
+                        height={portraitSize.height}
                         sizes="(min-width: 1024px) 40vw, 100vw"
                         className="h-auto max-h-[28rem] w-full object-contain"
                         priority
@@ -330,7 +332,7 @@ const Blog = ({ posts }: BlogProps) => {
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                   {regularPosts.map((post, index) => {
                     const listingIsContained =
-                      post.featuredImageFit === "contain" || post.featuredImageAspect === "portrait";
+                      post.featuredImageFit === "contain" || isPortraitFeaturedImage(post);
                     return (
             <Card key={post.id} className="overflow-hidden hover-lift group" style={{ animationDelay: `${index * 100}ms` }}>
               <Link href={`/blog/${post.slug}`}>
