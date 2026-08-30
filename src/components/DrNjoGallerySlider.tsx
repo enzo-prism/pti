@@ -6,6 +6,7 @@ import {
   CarouselPrevious
 } from "@/components/ui/carousel";
 import { drNjoGalleryImages, type DrNjoGalleryImage } from "@/data/drNjoGallery";
+import { getDrNjoGalleryAspectClass } from "@/components/DrNjoPhotoCard";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
@@ -50,7 +51,8 @@ export function DrNjoGallerySlider({
             >
               <div
                 className={cn(
-                  "relative h-[280px] sm:h-[360px] md:h-[460px] lg:h-[560px]",
+                  "relative",
+                  getDrNjoGalleryAspectClass(image.aspect),
                   image.fit === "contain" && "bg-slate-50"
                 )}
               >

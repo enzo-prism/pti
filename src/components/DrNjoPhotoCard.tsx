@@ -14,6 +14,7 @@ const ASPECT_CLASS_MAP: Record<DrNjoGalleryAspect, string> = {
   portrait: "aspect-[4/5]",
   wide: "aspect-[16/10]",
   tall: "aspect-[3/4]",
+  story: "aspect-[148/320]",
 };
 
 export const getDrNjoGalleryAspectClass = (aspect: DrNjoGalleryAspect) =>

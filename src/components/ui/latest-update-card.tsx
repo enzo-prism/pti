@@ -4,7 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatLocalDate } from "@/lib/dateUtils";
-import { getPortraitFeaturedSize, isPortraitFeaturedImage } from "@/lib/featuredImage";
+import {
+  getFeaturedImageShape,
+  getIntrinsicFeaturedSize,
+  INTRINSIC_FEATURED_IMAGE_CLASS,
+  shouldContainFeaturedImage,
+} from "@/lib/featuredImage";
 import type { BlogPost } from "@/data/blogPosts";
 
 interface LatestUpdateCardProps {
@@ -15,9 +20,9 @@ interface LatestUpdateCardProps {
 export function LatestUpdateCard({ post, className }: LatestUpdateCardProps) {
   const targetHref = `/blog/${post.slug}`;
   const featuredImage = post.featuredImage || "/lovable-uploads/26ea1640-396f-4e68-b342-d7cc429029fa.png";
-  const isPortrait = isPortraitFeaturedImage(post);
-  const isContained = post.featuredImageFit === "contain" || isPortrait;
-  const portraitSize = getPortraitFeaturedSize(post);
+  const isIntrinsic = getFeaturedImageShape(post) !== "landscape";
+  const isContained = shouldContainFeaturedImage(post);
+  const intrinsicSize = getIntrinsicFeaturedSize(post);
 
   return (
     <div className={cn(
@@ -28,19 +33,19 @@ export function LatestUpdateCard({ post, className }: LatestUpdateCardProps) {
         <div
           className={cn(
             "relative",
-            isPortrait
+            isIntrinsic
               ? "flex min-h-[16rem] items-center justify-center bg-slate-100 p-4 sm:p-6 md:min-h-[22rem]"
               : cn("h-64 md:h-full min-h-[16rem]", isContained && "bg-slate-100")
           )}
         >
-          {isPortrait ? (
+          {isIntrinsic ? (
             <Image
               src={featuredImage}
               alt={post.featuredImageAlt || post.title}
-              width={portraitSize.width}
-              height={portraitSize.height}
+              width={intrinsicSize.width}
+              height={intrinsicSize.height}
               sizes="(min-width: 768px) 40vw, 100vw"
-              className="h-auto max-h-[28rem] w-full object-contain"
+              className={INTRINSIC_FEATURED_IMAGE_CLASS}
             />
           ) : (
             <Image
