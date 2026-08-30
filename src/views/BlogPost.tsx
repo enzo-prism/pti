@@ -421,8 +421,10 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                   <Link href={`/blog/${relatedPost.slug}`} className="block h-full">
                     <div
                       className={cn(
-                        "relative aspect-[16/10] overflow-hidden",
-                        relatedPost.featuredImageFit === "contain" && "flex items-center justify-center bg-slate-100"
+                        "relative overflow-hidden",
+                        relatedPost.featuredImageFit === "contain" || relatedPost.featuredImageAspect === "portrait"
+                          ? "flex aspect-[3/4] items-center justify-center bg-slate-100"
+                          : "aspect-[16/10]"
                       )}
                     >
                       {relatedPost.featuredImage ? (
@@ -432,14 +434,17 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                           fill
                           sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                           className={cn(
-                            "object-cover transition duration-500 group-hover:scale-105",
-                            relatedPost.featuredImageFit === "contain" && "object-contain group-hover:scale-100"
+                            relatedPost.featuredImageFit === "contain" || relatedPost.featuredImageAspect === "portrait"
+                              ? "object-contain p-3"
+                              : "object-cover transition duration-500 group-hover:scale-105"
                           )}
                         />
                       ) : (
                         <div className={`h-full w-full ${relatedPost.gradient}`} />
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/0" />
+                      {relatedPost.featuredImageFit === "contain" || relatedPost.featuredImageAspect === "portrait" ? null : (
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/0" />
+                      )}
                       <Badge className="absolute left-4 top-4 bg-white/90 text-primary">
                         {relatedPost.category}
                       </Badge>
