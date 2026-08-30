@@ -32,6 +32,17 @@ export function CookieConsent() {
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+    const previousPadding = document.body.style.paddingBottom;
+    document.body.style.paddingBottom = "12rem";
+    return () => {
+      document.body.style.paddingBottom = previousPadding;
+    };
+  }, [isOpen]);
+
   const chooseConsent = (choice: Exclude<AnalyticsConsent, "unset">) => {
     const isWithdrawingConsent = consent === "accepted" && choice === "declined";
     saveAnalyticsConsent(choice);
