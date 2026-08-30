@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { getRelatedPosts, getSeriesPosts, type BlogPost } from "@/data/blogPosts";
 import { formatLocalDate } from "@/lib/dateUtils";
+import { getPortraitFeaturedSize, isPortraitFeaturedImage } from "@/lib/featuredImage";
 import { SeriesNavigation } from "@/components/ui/series-navigation";
 import { renderMarkdown } from "@/lib/markdown";
 import { BookMeetingButton } from "@/components/BookMeetingButton";
@@ -27,9 +28,6 @@ import {
 interface BlogPostViewProps {
   post: BlogPost;
 }
-
-// Matches the Board of Regents IG graphic so contain fills the hero without letterbox bars.
-const PORTRAIT_HERO_INTRINSIC = { width: 1003, height: 1568 } as const;
 
 export const BlogPostView = ({ post }: BlogPostViewProps) => {
   const authorProfile = getAuthorProfile(post.author);
@@ -58,7 +56,8 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
       `I thought you'd enjoy this PTI article: ${currentUrl}`
   )}`;
   const articleHtml = renderMarkdown(post.content);
-  const isPortraitHero = post.featuredImageAspect === "portrait";
+  const isPortraitHero = isPortraitFeaturedImage(post);
+  const portraitHeroSize = getPortraitFeaturedSize(post);
 
   const QuickFactsCard = ({ className = "" }: { className?: string }) => (
     <div
@@ -225,8 +224,8 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                   <Image
                     src={post.featuredImage}
                     alt={post.featuredImageAlt ?? post.title}
-                    width={PORTRAIT_HERO_INTRINSIC.width}
-                    height={PORTRAIT_HERO_INTRINSIC.height}
+                    width={portraitHeroSize.width}
+                    height={portraitHeroSize.height}
                     className="h-auto w-full object-contain"
                     sizes="(min-width: 512px) 512px, 100vw"
                     priority
@@ -422,7 +421,7 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                     <div
                       className={cn(
                         "relative overflow-hidden",
-                        relatedPost.featuredImageFit === "contain" || relatedPost.featuredImageAspect === "portrait"
+                        relatedPost.featuredImageFit === "contain" || isPortraitFeaturedImage(relatedPost)
                           ? "flex aspect-[3/4] items-center justify-center bg-slate-100"
                           : "aspect-[16/10]"
                       )}
@@ -434,7 +433,7 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                           fill
                           sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                           className={cn(
-                            relatedPost.featuredImageFit === "contain" || relatedPost.featuredImageAspect === "portrait"
+                            relatedPost.featuredImageFit === "contain" || isPortraitFeaturedImage(relatedPost)
                               ? "object-contain p-3"
                               : "object-cover transition duration-500 group-hover:scale-105"
                           )}
@@ -442,7 +441,7 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                       ) : (
                         <div className={`h-full w-full ${relatedPost.gradient}`} />
                       )}
-                      {relatedPost.featuredImageFit === "contain" || relatedPost.featuredImageAspect === "portrait" ? null : (
+                      {relatedPost.featuredImageFit === "contain" || isPortraitFeaturedImage(relatedPost) ? null : (
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/0" />
                       )}
                       <Badge className="absolute left-4 top-4 bg-white/90 text-primary">
