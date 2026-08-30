@@ -12,7 +12,14 @@ import { useRouter } from "next/navigation";
 import type { BlogPostSummary } from "@/data/blogPosts";
 import { PRACTICE_SALE_CHECKLIST_PATH } from "@/lib/constants";
 import { formatLocalDate } from "@/lib/dateUtils";
-import { getPortraitFeaturedSize, isPortraitFeaturedImage } from "@/lib/featuredImage";
+import {
+  getFeaturedImageShape,
+  getFeaturedListingFrameClass,
+  getFeaturedListingImageClass,
+  getIntrinsicFeaturedSize,
+  INTRINSIC_FEATURED_IMAGE_CLASS,
+  shouldContainFeaturedImage,
+} from "@/lib/featuredImage";
 import { cn } from "@/lib/utils";
 
 interface BlogProps {
@@ -222,14 +229,15 @@ const Blog = ({ posts }: BlogProps) => {
             <Link href={`/blog/${featuredPost.slug}`}>
               <div className="md:flex lg:flex">
                 {(() => {
-                  const isPortrait = isPortraitFeaturedImage(featuredPost);
-                  const isContained = featuredPost.featuredImageFit === "contain" || isPortrait;
-                  const portraitSize = getPortraitFeaturedSize(featuredPost);
+                  const shape = getFeaturedImageShape(featuredPost);
+                  const isIntrinsic = shape !== "landscape";
+                  const isContained = shouldContainFeaturedImage(featuredPost);
+                  const intrinsicSize = getIntrinsicFeaturedSize(featuredPost);
                   return (
                 <div
                   className={cn(
                     "relative md:w-2/5 lg:w-2/5",
-                    isPortrait
+                    isIntrinsic
                       ? "flex min-h-[16rem] items-center justify-center bg-slate-100 p-4 md:min-h-[22rem]"
                       : cn(
                           "aspect-video md:aspect-auto md:min-h-[16rem]",
@@ -238,14 +246,14 @@ const Blog = ({ posts }: BlogProps) => {
                   )}
                 >
                   {featuredPost.featuredImage ? (
-                    isPortrait ? (
+                    isIntrinsic ? (
                       <Image
                         src={featuredPost.featuredImage}
                         alt={featuredPost.featuredImageAlt ?? featuredPost.title}
-                        width={portraitSize.width}
-                        height={portraitSize.height}
+                        width={intrinsicSize.width}
+                        height={intrinsicSize.height}
                         sizes="(min-width: 1024px) 40vw, 100vw"
-                        className="h-auto max-h-[28rem] w-full object-contain"
+                        className={INTRINSIC_FEATURED_IMAGE_CLASS}
                         priority
                       />
                     ) : (
@@ -331,17 +339,14 @@ const Blog = ({ posts }: BlogProps) => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                   {regularPosts.map((post, index) => {
-                    const listingIsContained =
-                      post.featuredImageFit === "contain" || isPortraitFeaturedImage(post);
+                    const listingIsContained = shouldContainFeaturedImage(post);
                     return (
             <Card key={post.id} className="overflow-hidden hover-lift group" style={{ animationDelay: `${index * 100}ms` }}>
               <Link href={`/blog/${post.slug}`}>
                 <div
                   className={cn(
                     "relative overflow-hidden",
-                    listingIsContained
-                      ? "flex aspect-[3/4] items-center justify-center bg-slate-100"
-                      : "aspect-video"
+                    getFeaturedListingFrameClass(post)
                   )}
                 >
                   {post.featuredImage ? (
@@ -350,7 +355,7 @@ const Blog = ({ posts }: BlogProps) => {
                       alt={post.featuredImageAlt ?? post.title}
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      className={listingIsContained ? "object-contain p-3" : "object-cover"}
+                      className={getFeaturedListingImageClass(post)}
                     />
                   ) : (
                     <div className={`w-full h-full ${post.gradient}`} />
