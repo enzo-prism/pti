@@ -80,7 +80,9 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 - Industry-leaders reel stays an Instagram embed; the blog hero uses a saved poster at `public/lovable-uploads/drnjo-2026/industry-leaders-reel-poster.webp`. Do not hotlink Instagram CDN URLs (they expire).
 - External image URLs are allowed; include meaningful `alt` text.
 - `featuredImageFit` supports `"cover"` or `"contain"` for blog posts.
-- Portrait community graphics set `featuredImageAspect: "portrait"` plus the file's `featuredImageWidth` / `featuredImageHeight` so listing cards, the homepage Latest Update, and post heroes use that intrinsic frame instead of a 16:9 box that letterboxes `object-contain` images. Vertical recaps that need this include the Board of Regents graphic, Roseville collage, Bill/Mikki porch, Beyond the Chair flyer, and Panel of Experts dinner photos.
+- Frame featured images from the file, not a default landscape box. `src/lib/featuredImage.ts` classifies `portrait`, `square`, or `landscape` from `featuredImageAspect` and pixel size (including a known-size map for the Dugoni flyer and the Attitude graphic). Portrait/square heroes use intrinsic width/height. Listing cards use 3:4 or 9:16 for portraits, `aspect-square` for squares, and `object-cover` for untagged landscapes. Do not default post heroes to `object-contain` inside a 16:9 box.
+- Portrait community graphics set `featuredImageAspect: "portrait"` plus the file's `featuredImageWidth` / `featuredImageHeight` so listing cards, the homepage Latest Update, and post heroes use that intrinsic frame. Vertical recaps that need this include the Board of Regents graphic, Roseville collage, Bill/Mikki porch, Beyond the Chair flyer, Panel of Experts dinner photos, and the Dugoni Lunch & Learn flyer.
+- Dr. Njo storytelling photos in `src/data/drNjoGallery.ts` must use an `aspect` that matches the file (`landscape` 4:3, `tall` 3:4, `story` 148:320 for the medal portrait). `DrNjoPhotoCard` maps those tokens to Tailwind aspect classes.
 - Always render post dates with `formatLocalDate`. Never print the raw `YYYY-MM-DD` string in UI.
 
 ## Build and deployment notes
