@@ -80,7 +80,7 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 - Industry-leaders reel stays an Instagram embed; the blog hero uses a saved poster at `public/lovable-uploads/drnjo-2026/industry-leaders-reel-poster.webp`. Do not hotlink Instagram CDN URLs (they expire).
 - External image URLs are allowed; include meaningful `alt` text.
 - `featuredImageFit` supports `"cover"` or `"contain"` for blog posts.
-- Portrait community graphics set `featuredImageAspect: "portrait"` so listing cards, the homepage Latest Update, and post heroes use an intrinsic portrait frame instead of a 16:9 box that letterboxes `object-contain` images.
+- Portrait community graphics set `featuredImageAspect: "portrait"` plus the file's `featuredImageWidth` / `featuredImageHeight` so listing cards, the homepage Latest Update, and post heroes use that intrinsic frame instead of a 16:9 box that letterboxes `object-contain` images. Vertical recaps that need this include the Board of Regents graphic, Roseville collage, Bill/Mikki porch, Beyond the Chair flyer, and Panel of Experts dinner photos.
 - Always render post dates with `formatLocalDate`. Never print the raw `YYYY-MM-DD` string in UI.
 
 ## Build and deployment notes

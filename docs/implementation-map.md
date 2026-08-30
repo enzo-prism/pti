@@ -37,7 +37,7 @@ This document records the current production architecture after the August 2026 
 - `src/lib/markdown.ts` sanitizes rendered HTML through a narrow allowlist; Instagram is the only allowed iframe host.
 - Article tests reject drafting-process language, body H1s, unsafe HTML, and metadata beyond the configured title/description limits.
 - Source cards and legal/tax/finance disclaimers describe the available evidence without inventing external review credentials.
-- Homepage Latest Update and blog listing/featured cards honor `featuredImageFit` and `featuredImageAspect`. Portrait and contain images keep a light frame and skip dark overlays so they are not letterboxed inside a landscape crop.
+- Homepage Latest Update and blog listing/featured cards honor `featuredImageFit` and `featuredImageAspect`. Portrait and contain images keep a light frame and skip dark overlays so they are not letterboxed inside a landscape crop. Vertical recaps also set `featuredImageWidth` / `featuredImageHeight` so post heroes match the file instead of the Board of Regents 1003×1568 fallback.
 - Display dates go through `formatLocalDate`. The homepage Latest Update must not render a raw ISO date.
 - Completed-event recaps must not keep upcoming-event CTAs. The August 14 Panel of Experts dinner post links to the August 27 Roseville recap instead of advertising a past dinner as upcoming.
 
