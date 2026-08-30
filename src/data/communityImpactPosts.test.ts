@@ -176,18 +176,21 @@ describe("community impact posts", () => {
     expect(getBlogMetaDescription(post).length).toBeLessThanOrEqual(160);
   });
 
-  it("separates the August 14 recap from the upcoming Roseville dinner", () => {
+  it("archives the August 14 recap without promoting the completed Roseville dinner as upcoming", () => {
     const post = communityImpactPosts.find(
       (candidate) => candidate.slug === "panel-of-experts-dinner-roseville"
     );
 
     expect(post).toBeDefined();
     expect(post?.date).toBe("2026-08-14");
-    expect(post?.dateModified).toBe("2026-08-21");
-    expect(post?.content).toContain("August 27, 2026");
-    expect(post?.content).toContain("6:00–9:00 PM");
+    expect(post?.dateModified).toBe("2026-08-30");
+    expect(post?.cta).toBeUndefined();
+    expect(post?.content).toContain("August 27");
     expect(post?.content).toContain("Fats Asia Bistro");
-    expect(post?.content).toContain("confirm current seat availability");
+    expect(post?.content).toContain("/blog/practice-blueprint-roseville-aug-2026");
+    expect(post?.content).not.toContain("confirm current seat availability");
+    expect(post?.content).not.toContain("Next event:");
+    expect(post?.excerpt).not.toMatch(/on August 27/i);
     expect(post?.content).not.toMatch(/sold out/i);
     expect(post?.content).not.toMatch(/registration is open/i);
   });
@@ -202,18 +205,13 @@ describe("community impact posts", () => {
     expect(post?.content.match(/object-fit:contain/g)).toHaveLength(3);
   });
 
-  it("uses a direct availability inquiry without publishing a volatile seat count", () => {
+  it("does not keep an availability CTA after the Roseville dinner has passed", () => {
     const post = communityImpactPosts.find(
       (candidate) => candidate.slug === "panel-of-experts-dinner-roseville"
     );
 
-    expect(post?.cta).toMatchObject({
-      eyebrow: "Upcoming Roseville event",
-      eventName: "the_practice_blueprint_dinner",
-      bookingLabel: "Confirm availability",
-      bookingUrl:
-        "mailto:info@practicetransitions.com?subject=Roseville%20Dinner%20Availability",
-    });
+    expect(post?.cta).toBeUndefined();
+    expect(JSON.stringify(post)).not.toMatch(/Upcoming Roseville event/i);
     expect(JSON.stringify(post)).not.toMatch(/9 confirmed|nine confirmed/i);
     expect(JSON.stringify(post)).not.toContain("docs.google.com/forms");
   });
