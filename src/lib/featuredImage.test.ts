@@ -20,6 +20,9 @@ describe("featured image helpers", () => {
       width: 864,
       height: 1821,
     });
-    expect(getPortraitFeaturedSize({})).toEqual({ width: 1003, height: 1568 });
+    expect(getPortraitFeaturedSize({ featuredImageAspect: "portrait" })).toEqual({
+      width: 1003,
+      height: 1568,
+    });
   });
 });
