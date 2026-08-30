@@ -212,8 +212,9 @@ const Events = ({ workshopReview }: EventsProps) => {
           </div>
           {pastEvents.length > 0 && (
             <button
+              type="button"
               onClick={() => setShowPastEvents(!showPastEvents)}
-              className="text-primary font-medium text-sm flex items-center hover:text-primary/80 transition-colors"
+              className="inline-flex min-h-11 items-center text-primary font-medium text-sm hover:text-primary/80 transition-colors"
             >
               {showPastEvents ? "Hide Past Events" : "View Past Events"}
               <ChevronRight size={16} className="ml-1" />
@@ -298,7 +299,7 @@ const Events = ({ workshopReview }: EventsProps) => {
                         <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${
                           requiresAvailabilityConfirmation
                             ? "bg-amber-100 text-amber-800 border-amber-200"
-                            : "bg-green-100 text-green-700 border-green-200 animate-pulse"
+                            : "bg-green-100 text-green-700 border-green-200"
                         }`}>
                           {requiresAvailabilityConfirmation ? "Confirm availability" : "Registration Open"}
                         </span>
