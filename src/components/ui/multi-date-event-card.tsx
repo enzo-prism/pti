@@ -90,16 +90,16 @@ export const MultiDateEventCard = ({
         {/* Event Header */}
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
           <div className="flex-1">
-            <div className="flex items-start gap-3 mb-2">
-              <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${getEventTypeColor(type)}`}>
+            <div className="mb-3 flex flex-wrap items-start gap-x-2 gap-y-2">
+              <span className={`inline-flex max-w-full items-center rounded-full border px-3 py-1 text-center text-xs font-semibold leading-tight ${getEventTypeColor(type)}`}>
                 {type}
               </span>
               {isPast ? (
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gray-200 text-gray-700 border border-gray-300">
+                <span className="inline-flex max-w-full items-center rounded-full border border-gray-300 bg-gray-200 px-3 py-1 text-center text-xs font-semibold leading-tight text-gray-700">
                   Event Completed
                 </span>
               ) : (
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${
+                <span className={`inline-flex max-w-full items-center rounded-full border px-3 py-1 text-center text-xs font-semibold leading-tight ${
                   requiresAvailabilityConfirmation
                     ? "bg-amber-100 text-amber-800 border-amber-200"
                     : "bg-green-100 text-green-700 border-green-200 animate-pulse"
@@ -107,7 +107,7 @@ export const MultiDateEventCard = ({
                   {requiresAvailabilityConfirmation ? "Confirm availability" : "Registration Open"}
                 </span>
               )}
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+              <span className="inline-flex max-w-full items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-center text-xs font-semibold leading-tight text-primary">
                 {upcomingDates.length > 0
                   ? `${upcomingDates.length} upcoming ${upcomingDates.length === 1 ? "date" : "dates"}`
                   : `${pastDates.length} completed ${pastDates.length === 1 ? "date" : "dates"}`}

@@ -215,64 +215,61 @@ const Home = () => {
       </Section>
 
       <Section background="white" className="py-12 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
-            <ScrollReveal direction="parallax" delay={100} intensity="normal">
-              <div className="order-2 md:order-1">
-                <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">
-                  The right partner makes all the difference.
-                </SectionTitle>
-                <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-6 md:mb-8">
-                  With decades of dental and consulting experience, we go beyond
-                  brokerage to guide you with expertise, strategy, and care, so
-                  you can move forward with confidence.
-                </p>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="w-full sm:w-auto"
-                >
-                  <Link href="/about" className="flex items-center justify-center">
-                    Learn About Our Expertise{" "}
-                    <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  </Link>
-                </Button>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal direction="magnetic" delay={200} intensity="subtle">
-              <div className="rounded-xl overflow-hidden shadow-lg order-1 md:order-2">
-                <Image
-                  src="/lovable-uploads/pti-team-with-dental-professionals.webp"
-                  alt="PTI team members with dental professionals"
-                  width={1920}
-                  height={1279}
-                  className="w-full h-auto object-cover"
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                />
-              </div>
-            </ScrollReveal>
-          </div>
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
+          <ScrollReveal direction="parallax" delay={100} intensity="normal">
+            <div className="order-2 md:order-1">
+              <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">
+                The right partner makes all the difference.
+              </SectionTitle>
+              <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-6 md:mb-8">
+                With decades of dental and consulting experience, we go beyond
+                brokerage to guide you with expertise, strategy, and care, so
+                you can move forward with confidence.
+              </p>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="w-full sm:w-auto"
+              >
+                <Link href="/about" className="flex items-center justify-center">
+                  Learn About Our Expertise{" "}
+                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                </Link>
+              </Button>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal direction="magnetic" delay={200} intensity="subtle">
+            <div className="rounded-xl overflow-hidden shadow-lg order-1 md:order-2">
+              <Image
+                src="/lovable-uploads/pti-team-with-dental-professionals.webp"
+                alt="PTI team members with dental professionals"
+                width={1920}
+                height={1279}
+                className="w-full h-auto object-cover"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
+            </div>
+          </ScrollReveal>
         </div>
       </Section>
 
       <Section background="light" className="py-12 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-8 md:mb-12">
-            <ScrollReveal direction="bounce" delay={100} intensity="normal">
-              <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-3 md:mb-4">
-                Our Proven Process
-              </SectionTitle>
-            </ScrollReveal>
-            <ScrollReveal direction="blur-in" delay={200} intensity="subtle">
-              <SectionSubtitle className="text-base sm:text-lg md:text-xl" centered>
-                We simplify your transition
-              </SectionSubtitle>
-            </ScrollReveal>
-          </div>
+        <div className="max-w-4xl mx-auto text-center mb-8 md:mb-12">
+          <ScrollReveal direction="bounce" delay={100} intensity="normal">
+            <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-3 md:mb-4">
+              Our Proven Process
+            </SectionTitle>
+          </ScrollReveal>
+          <ScrollReveal direction="blur-in" delay={200} intensity="subtle">
+            <SectionSubtitle className="text-base sm:text-lg md:text-xl" centered>
+              We simplify your transition
+            </SectionSubtitle>
+          </ScrollReveal>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-            {[
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+          {[
               {
                 number: 1,
                 title: "Discovery and Plan",
@@ -308,7 +305,7 @@ const Home = () => {
                 description:
                   "We help you plan confidently for life after the sale.",
               },
-            ].map((step, index) => (
+          ].map((step, index) => (
               <ScrollReveal
                 key={step.number}
                 direction="scale"
@@ -329,98 +326,91 @@ const Home = () => {
                   </p>
                 </div>
               </ScrollReveal>
-            ))}
-          </div>
+          ))}
         </div>
       </Section>
 
       <Section background="white" className="py-12 md:py-20 contain-layout">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <ScrollReveal direction="scale" delay={100} intensity="subtle">
-              <div className="bg-gray-50 border border-gray-100 p-8 sm:p-10 md:p-12 rounded-xl text-center hover-lift gpu-accelerated">
-                <div className="mb-8">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                    Protect the Value You Built
-                  </h3>
-                  <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                    A transition affects more than the purchase price. PTI helps
-                    you examine the complete terms, anticipate obligations, and
-                    make informed decisions about your financial future.
-                  </p>
-                </div>
-
-                <div className="border-t border-gray-200 pt-8">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                    Protect the People Behind the Practice
-                  </h3>
-                  <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                    Plan for continuity across your patients, team, reputation,
-                    and professional relationships while creating a practical
-                    path into your next chapter.
-                  </p>
-                </div>
+        <div className="max-w-4xl mx-auto">
+          <ScrollReveal direction="scale" delay={100} intensity="subtle">
+            <div className="bg-gray-50 border border-gray-100 p-8 sm:p-10 md:p-12 rounded-xl text-center hover-lift gpu-accelerated">
+              <div className="mb-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                  Protect the Value You Built
+                </h3>
+                <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  A transition affects more than the purchase price. PTI helps
+                  you examine the complete terms, anticipate obligations, and
+                  make informed decisions about your financial future.
+                </p>
               </div>
-            </ScrollReveal>
-          </div>
+
+              <div className="border-t border-gray-200 pt-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                  Protect the People Behind the Practice
+                </h3>
+                <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  Plan for continuity across your patients, team, reputation,
+                  and professional relationships while creating a practical
+                  path into your next chapter.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </Section>
 
       <Section background="white" className="py-12 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
-              {latestPost && <LatestUpdateCard post={latestPost} />}
-            </ScrollReveal>
-          </div>
+        <div className="max-w-6xl mx-auto">
+          <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
+            {latestPost && <LatestUpdateCard post={latestPost} />}
+          </ScrollReveal>
         </div>
       </Section>
 
       <Section background="light" className="py-12 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-10">
-              <ScrollReveal direction="up" delay={100} intensity="subtle">
-                <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4">
-                  Trusted by Dental Professionals
-                </SectionTitle>
-              </ScrollReveal>
-              <ScrollReveal direction="blur-in" delay={200} intensity="subtle">
-                <SectionSubtitle centered>
-                  Explore {reviews.length} published client experiences and the
-                  transition challenges behind them.
-                </SectionSubtitle>
-              </ScrollReveal>
-            </div>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <ScrollReveal direction="up" delay={100} intensity="subtle">
+              <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4">
+                Trusted by Dental Professionals
+              </SectionTitle>
+            </ScrollReveal>
+            <ScrollReveal direction="blur-in" delay={200} intensity="subtle">
+              <SectionSubtitle centered>
+                Explore {reviews.length} published client experiences and the
+                transition challenges behind them.
+              </SectionSubtitle>
+            </ScrollReveal>
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {featuredTestimonials.map((testimonial, index) => (
-                <ScrollReveal
-                  key={testimonial.id}
-                  direction="up"
-                  delay={100 + index * 100}
-                  intensity="subtle"
-                >
-                  <TestimonialCard
-                    quote={testimonial.quote}
-                    author={testimonial.displayAuthorName}
-                    role={testimonial.role}
-                    company={testimonial.company}
-                    reviewHref={`/testimonials/${testimonial.slug}`}
-                    className="h-full"
-                  />
-                </ScrollReveal>
-              ))}
-            </div>
-            <div className="mt-10 text-center">
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {featuredTestimonials.map((testimonial, index) => (
+              <ScrollReveal
+                key={testimonial.id}
+                direction="up"
+                delay={100 + index * 100}
+                intensity="subtle"
               >
-                <Link href="/testimonials">Read More Stories</Link>
-              </Button>
-            </div>
+                <TestimonialCard
+                  quote={testimonial.quote}
+                  author={testimonial.displayAuthorName}
+                  role={testimonial.role}
+                  company={testimonial.company}
+                  reviewHref={`/testimonials/${testimonial.slug}`}
+                  className="h-full"
+                />
+              </ScrollReveal>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+            >
+              <Link href="/testimonials">Read More Stories</Link>
+            </Button>
           </div>
         </div>
       </Section>

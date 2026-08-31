@@ -6,16 +6,15 @@ import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
 import { trackPhoneCallClick, trackSelectCta } from "@/lib/analytics";
 
 const channelClasses =
-  "group flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 sm:p-5";
+  "group flex min-w-0 flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 sm:p-5";
 const iconWrapClasses =
   "flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary transition group-hover:bg-primary group-hover:text-white sm:h-11 sm:w-11";
 const labelClasses =
   "flex-1 text-xs font-semibold uppercase tracking-[0.18em] text-gray-500";
-// Value sits on its own full-width row and never wraps; the size scales only
-// where the card is wide enough to keep the longest value (the email) on a
-// single line.
+// Values sit on their own row and can wrap safely when cards reflow into a
+// narrow container.
 const valueClasses =
-  "mt-3 block whitespace-nowrap text-sm font-bold text-gray-900 sm:text-base lg:text-lg";
+  "mt-3 block min-w-0 max-w-full whitespace-normal [overflow-wrap:anywhere] text-sm font-bold leading-snug text-gray-900 sm:text-base lg:text-lg";
 const helperClasses = "mt-1 block text-xs text-gray-500 sm:text-sm";
 const chevronClasses =
   "h-5 w-5 shrink-0 text-gray-300 transition group-hover:translate-x-0.5 group-hover:text-primary";

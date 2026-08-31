@@ -38,7 +38,7 @@ const Contact = () => {
 
             <div className="relative mt-8 flex items-center gap-4">
               <span className="h-px flex-1 bg-gray-200" />
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-gray-400">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-gray-500">
                 Or reach us directly
               </span>
               <span className="h-px flex-1 bg-gray-200" />

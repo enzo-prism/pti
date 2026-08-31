@@ -1,19 +1,17 @@
 
 "use client";
 
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
-import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
+import { Section } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { faqItems } from "@/data/faq";
 
 const Faq = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const toggleFaq = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
     <>
       <div className="pt-24 md:pt-32 bg-gradient-to-b from-accent to-white">
@@ -32,34 +30,23 @@ const Faq = () => {
 
       <Section>
         <div className="max-w-4xl mx-auto">
-          <div className="space-y-4">
+          <Accordion type="single" collapsible className="space-y-4">
             {faqItems.map((item, index) => (
-              <div 
-                key={index}
+              <AccordionItem
+                key={item.question}
+                value={`item-${index + 1}`}
                 className="border border-gray-200 rounded-lg overflow-hidden bg-white animate-fade-in"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <button
-                  className="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none"
-                  onClick={() => toggleFaq(index)}
-                >
-                  <span className="font-semibold text-lg">{item.question}</span>
-                  <ChevronDown 
-                    className={`h-5 w-5 text-primary transition-transform ${
-                      openIndex === index ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-                <div 
-                  className={`px-6 overflow-hidden transition-all ${
-                    openIndex === index ? "max-h-96 pb-6" : "max-h-0"
-                  }`}
-                >
+                <AccordionTrigger className="px-6 py-4 text-left text-lg font-semibold hover:no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary [&>svg]:h-5 [&>svg]:w-5 [&>svg]:text-primary">
+                  {item.question}
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-6 text-base">
                   <p className="text-gray-600">{item.answer}</p>
-                </div>
-              </div>
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </div>
       </Section>
 

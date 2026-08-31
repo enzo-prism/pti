@@ -151,7 +151,7 @@ const Footer = () => {
             &copy; {currentYear} Practice Transitions Institute. All rights
             reserved.
           </p>
-          <div className="order-1 flex items-center gap-5 sm:order-2">
+          <div className="order-1 flex min-w-0 w-full max-w-full flex-wrap items-center justify-center gap-x-5 gap-y-3 sm:order-2 sm:w-auto sm:justify-end">
             <Link
               href="/privacy-policy"
               className="text-xs text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#06243f]"

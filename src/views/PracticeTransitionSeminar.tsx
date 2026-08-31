@@ -823,7 +823,9 @@ const PracticeTransitionSeminar = ({
 
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="space-y-2">
-                      <Label>Number of Attendees</Label>
+                      <Label htmlFor="seminar-attendee-count">
+                        Number of Attendees
+                      </Label>
                       <Select
                         value={values.attendeeCount}
                         onValueChange={(value) =>
@@ -860,7 +862,9 @@ const PracticeTransitionSeminar = ({
                     </div>
 
                     <div className="space-y-2">
-                      <Label>How did you hear about us?</Label>
+                      <Label htmlFor="seminar-heard-about">
+                        How did you hear about us?
+                      </Label>
                       <Select
                         value={values.heardAbout}
                         onValueChange={(value) =>

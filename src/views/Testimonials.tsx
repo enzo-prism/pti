@@ -316,7 +316,7 @@ const Testimonials = ({ reviews }: TestimonialsProps) => {
 
             {availableSources.length > 1 && (
               <div className="mt-3 flex flex-wrap items-center gap-2">
-                <span className="mr-1 text-xs font-medium uppercase tracking-wide text-gray-400">
+                <span className="mr-1 text-xs font-medium uppercase tracking-wide text-gray-500">
                   Source
                 </span>
                 <FilterPill
@@ -416,7 +416,7 @@ const Testimonials = ({ reviews }: TestimonialsProps) => {
                         </p>
                       )}
                     </div>
-                    <span className="ml-auto shrink-0 self-start text-xs font-medium text-gray-400">
+                    <span className="ml-auto shrink-0 self-start text-xs font-medium text-gray-500">
                       {sourceLabels[review.source]}
                     </span>
                   </footer>
@@ -507,7 +507,7 @@ const FilterPill = ({
       <span
         className={cn(
           "ml-1.5 tabular-nums",
-          active ? "text-white/70" : "text-gray-400"
+          active ? "text-white/70" : "text-gray-500"
         )}
       >
         {count}

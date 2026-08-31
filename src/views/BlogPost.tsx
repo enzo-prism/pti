@@ -107,10 +107,11 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
         <Button
           asChild
           variant="secondary"
-          className="w-full justify-center rounded-full bg-white text-primary hover:bg-slate-100 sm:flex-1"
+          className="h-auto min-h-10 w-full justify-center whitespace-normal rounded-full bg-white px-4 py-2.5 text-center leading-snug text-primary hover:bg-slate-100 sm:flex-1"
         >
-          <Link href={PRACTICE_SALE_CHECKLIST_PATH} className="flex items-center justify-center gap-2 text-sm font-semibold md:text-base">
-            Get the Sale Readiness Checklist <ArrowRight className="h-4 w-4" />
+          <Link href={PRACTICE_SALE_CHECKLIST_PATH} className="flex min-w-0 items-center justify-center gap-2 text-sm font-semibold md:text-base">
+            <span className="min-w-0">Get the Sale Readiness Checklist</span>
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </Button>
         <Button

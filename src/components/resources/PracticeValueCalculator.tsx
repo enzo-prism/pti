@@ -259,6 +259,7 @@ export function PracticeValueCalculator() {
             <Button
               asChild
               size="lg"
+              className="h-auto min-h-11 w-full whitespace-normal px-4 py-3 text-center leading-snug sm:w-auto sm:px-8"
               onClick={() =>
                 trackSelectCta("request_opinion_of_value", "practice_value_calculator")
               }

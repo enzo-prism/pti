@@ -74,10 +74,6 @@
     @apply leading-relaxed;
   }
 
-  .container {
-    @apply px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl;
-  }
-
   .section {
     @apply py-10 md:py-16 lg:py-20;
   }
