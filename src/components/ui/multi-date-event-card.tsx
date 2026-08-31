@@ -1,8 +1,20 @@
 "use client";
 
-import { Calendar, Clock, MapPin, Phone, Mail, ChevronDown, ChevronUp } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  Phone,
+  Mail,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/collapsible";
 import { trackEventRegistrationClick } from "@/lib/analytics";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
 import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
@@ -21,10 +33,12 @@ interface EventDate {
 
 interface MultiDateEventCardProps {
   title: string;
-  description: string | {
-    intro: string;
-    learningPoints: string[];
-  };
+  description:
+    | string
+    | {
+        intro: string;
+        learningPoints: string[];
+      };
   type: "webinar" | "seminar" | "workshop" | "conference" | "dinner";
   registrationLink: string;
   eventDates: EventDate[];
@@ -45,53 +59,61 @@ export const MultiDateEventCard = ({
   eventDates,
   isPast,
   speakers,
-  getEventTypeColor
+  getEventTypeColor,
 }: MultiDateEventCardProps) => {
   const [showPastEvents, setShowPastEvents] = useState(false);
-  
+
   // Sort dates properly - upcoming first (chronologically), then past (reverse chronological)
   const upcomingDates = eventDates
-    .filter(date => !date.isPast)
+    .filter((date) => !date.isPast)
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-  
+
   const pastDates = eventDates
-    .filter(date => date.isPast)
+    .filter((date) => date.isPast)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  
+
   const currentDates = upcomingDates.length > 0 ? upcomingDates : pastDates;
-  const uniqueLocations = [...new Set(currentDates.map(date => date.location))];
-  const locationText = uniqueLocations.length === 1 
-    ? uniqueLocations[0] 
-    : `${uniqueLocations.length} locations available`;
+  const uniqueLocations = [
+    ...new Set(currentDates.map((date) => date.location)),
+  ];
+  const locationText =
+    uniqueLocations.length === 1
+      ? uniqueLocations[0]
+      : `${uniqueLocations.length} locations available`;
   const normalizedEventName = title.replace(/\s+/g, "_").toLowerCase();
-  const requiresAvailabilityConfirmation = registrationLink.startsWith("mailto:");
+  const requiresAvailabilityConfirmation =
+    registrationLink.startsWith("mailto:");
   const isInternalRegistrationLink = registrationLink.startsWith("/");
   const registrationButtonLabel = registrationLink.includes(
-    "/events/practice-transition-seminar"
+    "/events/practice-transition-seminar",
   )
     ? "Register for a Seminar"
     : "Register Now";
 
   return (
-    <div 
+    <div
       className={`relative rounded-xl transition-all duration-300 group z-10 ${
-        isPast 
-          ? "bg-gray-50 border-2 border-dashed border-gray-300 shadow-none hover:shadow-sm" 
+        isPast
+          ? "bg-gray-50 border-2 border-dashed border-gray-300 shadow-none hover:shadow-sm"
           : "bg-white border-2 border-gray-200 shadow-sm hover:shadow-lg hover:border-primary/30"
       }`}
     >
       {/* Status Banner */}
-      <div className={`absolute top-0 left-0 right-0 h-1 ${
-        isPast ? "bg-gray-400" : "bg-gradient-to-r from-primary to-primary/70"
-      }`}></div>
-      
+      <div
+        className={`absolute top-0 left-0 right-0 h-1 ${
+          isPast ? "bg-gray-400" : "bg-gradient-to-r from-primary to-primary/70"
+        }`}
+      ></div>
+
       {/* Content wrapper */}
       <div className="relative z-10 p-4 md:p-6">
         {/* Event Header */}
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
           <div className="flex-1">
             <div className="mb-3 flex flex-wrap items-start gap-x-2 gap-y-2">
-              <span className={`inline-flex max-w-full items-center rounded-full border px-3 py-1 text-center text-xs font-semibold leading-tight ${getEventTypeColor(type)}`}>
+              <span
+                className={`inline-flex max-w-full items-center rounded-full border px-3 py-1 text-center text-xs font-semibold leading-tight ${getEventTypeColor(type)}`}
+              >
                 {type}
               </span>
               {isPast ? (
@@ -99,12 +121,16 @@ export const MultiDateEventCard = ({
                   Event Completed
                 </span>
               ) : (
-                <span className={`inline-flex max-w-full items-center rounded-full border px-3 py-1 text-center text-xs font-semibold leading-tight ${
-                  requiresAvailabilityConfirmation
-                    ? "bg-amber-100 text-amber-800 border-amber-200"
-                    : "bg-green-100 text-green-700 border-green-200 animate-pulse"
-                }`}>
-                  {requiresAvailabilityConfirmation ? "Confirm availability" : "Registration Open"}
+                <span
+                  className={`inline-flex max-w-full items-center rounded-full border px-3 py-1 text-center text-xs font-semibold leading-tight ${
+                    requiresAvailabilityConfirmation
+                      ? "bg-amber-100 text-amber-800 border-amber-200"
+                      : "bg-green-100 text-green-700 border-green-200 animate-pulse"
+                  }`}
+                >
+                  {requiresAvailabilityConfirmation
+                    ? "Confirm availability"
+                    : "Registration Open"}
                 </span>
               )}
               <span className="inline-flex max-w-full items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-center text-xs font-semibold leading-tight text-primary">
@@ -113,59 +139,76 @@ export const MultiDateEventCard = ({
                   : `${pastDates.length} completed ${pastDates.length === 1 ? "date" : "dates"}`}
               </span>
             </div>
-            <h3 className={`text-lg md:text-xl font-semibold leading-tight ${
-              isPast ? "text-gray-600" : "text-gray-900"
-            }`}>
+            <h3
+              className={`text-lg md:text-xl font-semibold leading-tight ${
+                isPast ? "text-gray-600" : "text-gray-900"
+              }`}
+            >
               {title}
             </h3>
           </div>
         </div>
-        
+
         {/* Summary info for grouped events */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
-          <div className={`flex items-center text-sm ${
-            isPast ? "text-gray-500" : "text-gray-600"
-          }`}>
-            <Calendar size={16} className={`mr-2 flex-shrink-0 ${
-              isPast ? "text-gray-400" : "text-primary"
-            }`} />
+          <div
+            className={`flex items-center text-sm ${
+              isPast ? "text-gray-500" : "text-gray-600"
+            }`}
+          >
+            <Calendar
+              size={16}
+              className={`mr-2 flex-shrink-0 ${
+                isPast ? "text-gray-400" : "text-primary"
+              }`}
+            />
             <span className={isPast ? "" : "font-medium"}>
-              {upcomingDates.length > 0 ? `Next: ${upcomingDates[0].date}` : `Last: ${pastDates[0]?.date}`}
+              {upcomingDates.length > 0
+                ? `Next: ${upcomingDates[0].date}`
+                : `Last: ${pastDates[0]?.date}`}
             </span>
           </div>
-          <div className={`flex items-center text-sm ${
-            isPast ? "text-gray-500" : "text-gray-600"
-          }`}>
-            <Clock size={16} className={`mr-2 flex-shrink-0 ${
-              isPast ? "text-gray-400" : "text-primary"
-            }`} />
+          <div
+            className={`flex items-center text-sm ${
+              isPast ? "text-gray-500" : "text-gray-600"
+            }`}
+          >
+            <Clock
+              size={16}
+              className={`mr-2 flex-shrink-0 ${
+                isPast ? "text-gray-400" : "text-primary"
+              }`}
+            />
             <span>{currentDates[0]?.time}</span>
           </div>
-          <div className={`flex items-center text-sm ${
-            isPast ? "text-gray-500" : "text-gray-600"
-          }`}>
-            <MapPin size={16} className={`mr-2 flex-shrink-0 ${
-              isPast ? "text-gray-400" : "text-primary"
-            }`} />
+          <div
+            className={`flex items-center text-sm ${
+              isPast ? "text-gray-500" : "text-gray-600"
+            }`}
+          >
+            <MapPin
+              size={16}
+              className={`mr-2 flex-shrink-0 ${
+                isPast ? "text-gray-400" : "text-primary"
+              }`}
+            />
             <span className="line-clamp-2">{locationText}</span>
           </div>
         </div>
 
         {/* Event Description */}
-        <div className={`mb-4 ${
-          isPast ? "text-gray-500" : "text-gray-600"
-        }`}>
-          {typeof description === 'string' ? (
+        <div className={`mb-4 ${isPast ? "text-gray-500" : "text-gray-600"}`}>
+          {typeof description === "string" ? (
             <p className="text-sm leading-relaxed line-clamp-3">
               {description}
             </p>
           ) : (
             <div className="space-y-3">
-              <p className="text-sm leading-relaxed">
-                {description.intro}
-              </p>
+              <p className="text-sm leading-relaxed">{description.intro}</p>
               <div>
-                <p className="text-sm font-semibold mb-2">At this seminar, you&apos;ll discover how to:</p>
+                <p className="text-sm font-semibold mb-2">
+                  At this seminar, you&apos;ll discover how to:
+                </p>
                 <ul className="text-sm space-y-1">
                   {description.learningPoints.map((point, index) => (
                     <li key={index} className="flex items-start">
@@ -182,15 +225,17 @@ export const MultiDateEventCard = ({
         {/* Individual Event Dates */}
         <div className="mb-4">
           <div className="mb-3">
-            <h4 className={`text-sm font-semibold ${
-              isPast ? "text-gray-600" : "text-gray-900"
-            }`}>
+            <h4
+              className={`text-sm font-semibold ${
+                isPast ? "text-gray-600" : "text-gray-900"
+              }`}
+            >
               {upcomingDates.length > 0
                 ? "Upcoming Dates & Locations"
                 : "Completed Dates & Locations"}
             </h4>
           </div>
-          
+
           <div className="space-y-3">
             {/* Upcoming Events */}
             {upcomingDates.length > 0 && (
@@ -218,25 +263,39 @@ export const MultiDateEventCard = ({
                 ))}
               </div>
             )}
-            
+
             {/* Past Events - Collapsible */}
             {pastDates.length > 0 && (
-              <Collapsible open={showPastEvents} onOpenChange={setShowPastEvents}>
+              <Collapsible
+                open={showPastEvents}
+                onOpenChange={setShowPastEvents}
+              >
                 <CollapsibleTrigger asChild>
-                  <button className={`flex items-center justify-between w-full p-3 rounded-lg border text-left transition-colors ${
-                    isPast 
-                      ? "bg-gray-50 border-gray-200 hover:bg-gray-100" 
-                      : "bg-gray-50 border-gray-200 hover:bg-gray-100"
-                  }`}>
-                    <span className={`text-sm font-medium ${
-                      isPast ? "text-gray-600" : "text-gray-700"
-                    }`}>
-                      View {pastDates.length} completed event{pastDates.length > 1 ? 's' : ''}
+                  <button
+                    className={`flex items-center justify-between w-full p-3 rounded-lg border text-left transition-colors ${
+                      isPast
+                        ? "bg-gray-50 border-gray-200 hover:bg-gray-100"
+                        : "bg-gray-50 border-gray-200 hover:bg-gray-100"
+                    }`}
+                  >
+                    <span
+                      className={`text-sm font-medium ${
+                        isPast ? "text-gray-600" : "text-gray-700"
+                      }`}
+                    >
+                      View {pastDates.length} completed event
+                      {pastDates.length > 1 ? "s" : ""}
                     </span>
                     {showPastEvents ? (
-                      <ChevronUp size={16} className={isPast ? "text-gray-400" : "text-gray-500"} />
+                      <ChevronUp
+                        size={16}
+                        className={isPast ? "text-gray-400" : "text-gray-500"}
+                      />
                     ) : (
-                      <ChevronDown size={16} className={isPast ? "text-gray-400" : "text-gray-500"} />
+                      <ChevronDown
+                        size={16}
+                        className={isPast ? "text-gray-400" : "text-gray-500"}
+                      />
                     )}
                   </button>
                 </CollapsibleTrigger>
@@ -274,30 +333,41 @@ export const MultiDateEventCard = ({
         {/* Speakers Section for Webinars */}
         {type === "webinar" && speakers && speakers.length > 0 && (
           <div className="mb-6">
-            <h4 className={`text-sm font-semibold mb-3 ${
-              isPast ? "text-gray-600" : "text-gray-900"
-            }`}>Featured Speakers</h4>
+            <h4
+              className={`text-sm font-semibold mb-3 ${
+                isPast ? "text-gray-600" : "text-gray-900"
+              }`}
+            >
+              Featured Speakers
+            </h4>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {speakers.map((speaker, index) => (
-                <div key={index} className="flex flex-col items-center text-center">
+                <div
+                  key={index}
+                  className="flex flex-col items-center text-center"
+                >
                   <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden mb-2">
                     <Image
                       src={speaker.imageUrl}
                       alt={speaker.name}
                       width={64}
                       height={64}
-                      className="w-full h-full object-cover"
+                      className="h-full w-full bg-white object-contain"
                       sizes="(min-width: 768px) 64px, 48px"
                     />
                   </div>
-                  <h5 className={`text-xs font-medium leading-tight ${
-                    isPast ? "text-gray-600" : "text-gray-900"
-                  }`}>
+                  <h5
+                    className={`text-xs font-medium leading-tight ${
+                      isPast ? "text-gray-600" : "text-gray-900"
+                    }`}
+                  >
                     {speaker.name}
                   </h5>
-                  <p className={`text-xs leading-tight ${
-                    isPast ? "text-gray-500" : "text-gray-600"
-                  }`}>
+                  <p
+                    className={`text-xs leading-tight ${
+                      isPast ? "text-gray-500" : "text-gray-600"
+                    }`}
+                  >
                     {speaker.title}
                   </p>
                 </div>
@@ -305,30 +375,30 @@ export const MultiDateEventCard = ({
             </div>
           </div>
         )}
-        
+
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-3">
           {!isPast && (
             <>
-              {registrationLink.startsWith('tel:') ? (
+              {registrationLink.startsWith("tel:") ? (
                 <>
-                  <Button 
-                    size="sm" 
+                  <Button
+                    size="sm"
                     className="flex-1 sm:flex-none"
                     onClick={() => {
-                      window.open(registrationLink, '_self');
+                      window.open(registrationLink, "_self");
                       trackEventRegistrationClick(normalizedEventName, "phone");
                     }}
                   >
                     <Phone size={16} className="mr-2" />
                     Call or text to register
                   </Button>
-                  <Button 
-                    size="sm" 
+                  <Button
+                    size="sm"
                     variant="outline"
                     className="flex-1 sm:flex-none"
                     onClick={() => {
-                      window.open(EVENT_REGISTRATION_MAILTO, '_self');
+                      window.open(EVENT_REGISTRATION_MAILTO, "_self");
                       trackEventRegistrationClick(normalizedEventName, "email");
                     }}
                   >
@@ -336,10 +406,10 @@ export const MultiDateEventCard = ({
                     Email us to register
                   </Button>
                 </>
-              ) : registrationLink.startsWith('mailto:') ? (
+              ) : registrationLink.startsWith("mailto:") ? (
                 <>
-                  <Button 
-                    size="sm" 
+                  <Button
+                    size="sm"
                     className="flex-1 sm:flex-none"
                     onClick={() => {
                       window.open(registrationLink, "_self");
@@ -349,15 +419,15 @@ export const MultiDateEventCard = ({
                     <Mail size={16} className="mr-2" />
                     Email us to register
                   </Button>
-                  <Button 
-                    size="sm" 
+                  <Button
+                    size="sm"
                     variant="outline"
                     className="flex-1 sm:flex-none"
                     onClick={() => {
                       window.open(EVENT_REGISTRATION_MAILTO, "_self");
                       trackEventRegistrationClick(
                         normalizedEventName,
-                        "alternative_email"
+                        "alternative_email",
                       );
                     }}
                   >
@@ -371,7 +441,10 @@ export const MultiDateEventCard = ({
                     <Link
                       href={registrationLink}
                       onClick={() => {
-                        trackEventRegistrationClick(normalizedEventName, "form");
+                        trackEventRegistrationClick(
+                          normalizedEventName,
+                          "form",
+                        );
                       }}
                     >
                       {registrationButtonLabel}
@@ -386,7 +459,10 @@ export const MultiDateEventCard = ({
                     <a
                       href={`tel:${PHONE_NUMBER_TEL}`}
                       onClick={() => {
-                        trackEventRegistrationClick(normalizedEventName, "phone");
+                        trackEventRegistrationClick(
+                          normalizedEventName,
+                          "phone",
+                        );
                       }}
                     >
                       <Phone size={16} className="mr-2" />
@@ -396,18 +472,21 @@ export const MultiDateEventCard = ({
                 </>
               ) : (
                 <>
-                  <Button 
-                    size="sm" 
+                  <Button
+                    size="sm"
                     className="flex-1 sm:flex-none"
                     onClick={() => {
-                      window.open(registrationLink, '_blank');
-                      trackEventRegistrationClick(normalizedEventName, "external");
+                      window.open(registrationLink, "_blank");
+                      trackEventRegistrationClick(
+                        normalizedEventName,
+                        "external",
+                      );
                     }}
                   >
                     Register Now
                   </Button>
-                  <Button 
-                    size="sm" 
+                  <Button
+                    size="sm"
                     variant="outline"
                     className="flex-1 sm:flex-none"
                     onClick={() => {

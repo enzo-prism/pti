@@ -8,8 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest run",
+    "test": "npm run images:check && vitest run",
     "test:watch": "vitest",
+    "images:check": "node --experimental-strip-types scripts/check-image-framing.ts",
     "rss:check": "node --experimental-strip-types scripts/validate-rss.ts"
   },
   "dependencies": {
@@ -61,7 +62,7 @@
     "vitest": "^4.1.10"
   },
   "engines": {
-    "node": "22.x"
+    "node": "24.x"
   },
   "overrides": {
     "eslint": {

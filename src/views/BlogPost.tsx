@@ -1,10 +1,26 @@
 import Link from "next/link";
-import { ArrowLeft, Calendar, Clock, User, Share2, ArrowRight, ExternalLink } from "lucide-react";
+import {
+  ArrowLeft,
+  Calendar,
+  Clock,
+  User,
+  Share2,
+  ArrowRight,
+  ExternalLink,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
-import { getRelatedPosts, getSeriesPosts, type BlogPost } from "@/data/blogPosts";
+import {
+  Section,
+  SectionTitle,
+  SectionSubtitle,
+} from "@/components/ui/section";
+import {
+  getRelatedPosts,
+  getSeriesPosts,
+  type BlogPost,
+} from "@/data/blogPosts";
 import { formatLocalDate } from "@/lib/dateUtils";
 import {
   getFeaturedImageShape,
@@ -39,7 +55,8 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
   const authorProfile = getAuthorProfile(post.author);
   const authorName = authorProfile?.name ?? post.author;
   const authorRole = authorProfile?.role;
-  const authorBio = authorProfile?.bio ??
+  const authorBio =
+    authorProfile?.bio ??
     (authorProfile?.type === "Organization"
       ? `${authorName} shares guidance for dentists navigating valuations, transitions, and practice ownership decisions.`
       : `${authorName} is a dental practice transition expert with extensive experience helping dentists navigate career changes, practice sales, and business strategies.`);
@@ -53,37 +70,52 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
     { icon: User, label: authorName, helper: "Author" },
     { icon: Calendar, label: formatLocalDate(post.date), helper: "Published" },
     ...(post.dateModified && post.dateModified !== post.date
-      ? [{ icon: Calendar, label: formatLocalDate(post.dateModified), helper: "Updated" }]
+      ? [
+          {
+            icon: Calendar,
+            label: formatLocalDate(post.dateModified),
+            helper: "Updated",
+          },
+        ]
       : []),
     { icon: Clock, label: post.readTime, helper: "Read time" },
   ];
   const currentUrl = buildAbsoluteUrl(`/blog/${post.slug}`);
   const emailShareHref = `mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(
-      `I thought you'd enjoy this PTI article: ${currentUrl}`
+    `I thought you'd enjoy this PTI article: ${currentUrl}`,
   )}`;
   const articleHtml = renderMarkdown(post.content);
   const heroShape = getFeaturedImageShape(post);
   const isIntrinsicHero = heroShape !== "landscape";
-  const isContainHero = post.featuredImageFit === "contain";
+  const isContainHero = shouldContainFeaturedImage(post);
   const intrinsicHeroSize = getIntrinsicFeaturedSize(post);
 
   const QuickFactsCard = ({ className = "" }: { className?: string }) => (
     <div
       className={cn(
         "rounded-3xl border border-slate-200 bg-white px-5 py-6 shadow-sm sm:px-6 sm:py-7 md:px-7 md:py-8",
-        className
+        className,
       )}
     >
-      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-slate-500 sm:text-xs">At-a-glance</p>
+      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-slate-500 sm:text-xs">
+        At-a-glance
+      </p>
       <ul className="mt-5 space-y-4 md:mt-6 md:space-y-5">
         {metaItems.map((item) => (
-          <li key={`aside-${item.helper}`} className="flex items-start gap-3 md:gap-4">
+          <li
+            key={`aside-${item.helper}`}
+            className="flex items-start gap-3 md:gap-4"
+          >
             <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-primary/10 text-primary sm:h-10 sm:w-10">
               <item.icon className="h-4 w-4 sm:h-5 sm:w-5" />
             </span>
             <div className="space-y-1">
-              <p className="text-sm font-semibold leading-tight text-slate-900 md:text-base">{item.label}</p>
-              <p className="text-[0.65rem] uppercase tracking-[0.3em] text-slate-500 sm:text-xs">{item.helper}</p>
+              <p className="text-sm font-semibold leading-tight text-slate-900 md:text-base">
+                {item.label}
+              </p>
+              <p className="text-[0.65rem] uppercase tracking-[0.3em] text-slate-500 sm:text-xs">
+                {item.helper}
+              </p>
             </div>
           </li>
         ))}
@@ -95,13 +127,18 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
     <div
       className={cn(
         "rounded-3xl border border-primary/15 bg-gradient-to-br from-primary to-primary/90 px-5 py-6 text-white shadow-md sm:px-6 sm:py-7 md:px-7 md:py-8",
-        className
+        className,
       )}
     >
-      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-white/70 sm:text-xs">Continue learning</p>
-      <h3 className="mt-3 text-lg font-semibold leading-tight text-white sm:text-xl">Bring PTI to your journey</h3>
+      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-white/70 sm:text-xs">
+        Continue learning
+      </p>
+      <h3 className="mt-3 text-lg font-semibold leading-tight text-white sm:text-xl">
+        Bring PTI to your journey
+      </h3>
       <p className="mt-2 text-sm leading-relaxed text-white/85 md:text-base">
-        Join our upcoming workshops, explore transition services, or share this article with a colleague planning their next move.
+        Join our upcoming workshops, explore transition services, or share this
+        article with a colleague planning their next move.
       </p>
       <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-1">
         <Button
@@ -109,7 +146,10 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
           variant="secondary"
           className="h-auto min-h-10 w-full justify-center whitespace-normal rounded-full bg-white px-4 py-2.5 text-center leading-snug text-primary hover:bg-slate-100 sm:flex-1"
         >
-          <Link href={PRACTICE_SALE_CHECKLIST_PATH} className="flex min-w-0 items-center justify-center gap-2 text-sm font-semibold md:text-base">
+          <Link
+            href={PRACTICE_SALE_CHECKLIST_PATH}
+            className="flex min-w-0 items-center justify-center gap-2 text-sm font-semibold md:text-base"
+          >
             <span className="min-w-0">Get the Sale Readiness Checklist</span>
             <ArrowRight className="h-4 w-4" />
           </Link>
@@ -119,7 +159,10 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
           variant="secondary"
           className="w-full justify-center rounded-full bg-white text-primary hover:bg-slate-100 sm:flex-1"
         >
-          <Link href="/events" className="flex items-center justify-center gap-2 text-sm font-semibold md:text-base">
+          <Link
+            href="/events"
+            className="flex items-center justify-center gap-2 text-sm font-semibold md:text-base"
+          >
             Browse PTI Events <ArrowRight className="h-4 w-4" />
           </Link>
         </Button>
@@ -128,7 +171,10 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
           variant="secondary"
           className="w-full justify-center rounded-full bg-white text-primary hover:bg-slate-100 sm:flex-1"
         >
-          <Link href="/services" className="flex items-center justify-center gap-2 text-sm font-semibold md:text-base">
+          <Link
+            href="/services"
+            className="flex items-center justify-center gap-2 text-sm font-semibold md:text-base"
+          >
             Explore PTI Services <ArrowRight className="h-4 w-4" />
           </Link>
         </Button>
@@ -144,7 +190,11 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
 
   return (
     <>
-      <BlogPostAnalytics title={post.title} category={post.category} slug={post.slug} />
+      <BlogPostAnalytics
+        title={post.title}
+        category={post.category}
+        slug={post.slug}
+      />
       {/* Header Section */}
       <section className="bg-white pt-24 pb-8 md:pt-28 md:pb-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -152,13 +202,19 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
             <Breadcrumb className="w-full">
               <BreadcrumbList className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground sm:text-sm">
                 <BreadcrumbItem className="flex-shrink-0">
-                  <BreadcrumbLink asChild className="min-h-[32px] sm:min-h-[44px] flex items-center">
+                  <BreadcrumbLink
+                    asChild
+                    className="min-h-[32px] sm:min-h-[44px] flex items-center"
+                  >
                     <Link href="/">Home</Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="flex-shrink-0" />
                 <BreadcrumbItem className="flex-shrink-0">
-                  <BreadcrumbLink asChild className="min-h-[32px] sm:min-h-[44px] flex items-center">
+                  <BreadcrumbLink
+                    asChild
+                    className="min-h-[32px] sm:min-h-[44px] flex items-center"
+                  >
                     <Link href="/blog">Blog</Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
@@ -173,7 +229,11 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
           </div>
 
           <div className="flex items-center justify-between flex-wrap gap-3">
-            <Button variant="ghost" asChild className="inline-flex min-h-[44px] items-center gap-2 px-0 text-sm text-muted-foreground hover:text-primary">
+            <Button
+              variant="ghost"
+              asChild
+              className="inline-flex min-h-[44px] items-center gap-2 px-0 text-sm text-muted-foreground hover:text-primary"
+            >
               <Link href="/blog">
                 <ArrowLeft className="h-4 w-4" />
                 Back to blog
@@ -181,7 +241,10 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
             </Button>
             <div className="hidden flex-wrap items-center justify-end gap-x-4 gap-y-2 text-sm text-muted-foreground sm:flex">
               {metaItems.map((item) => (
-                <div key={`inline-${item.helper}`} className="flex items-center gap-2">
+                <div
+                  key={`inline-${item.helper}`}
+                  className="flex items-center gap-2"
+                >
                   <item.icon className="h-4 w-4 text-primary" />
                   <span>{item.label}</span>
                 </div>
@@ -201,7 +264,10 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
             </p>
             <div className="sm:hidden mt-5 grid gap-3 text-sm text-muted-foreground">
               {metaItems.map((item) => (
-                <div key={`mobile-${item.helper}`} className="flex items-center gap-2">
+                <div
+                  key={`mobile-${item.helper}`}
+                  className="flex items-center gap-2"
+                >
                   <item.icon className="h-4 w-4 text-primary" />
                   <span>{item.label}</span>
                 </div>
@@ -225,12 +291,10 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                       post.featuredImage
                         ? cn(
                             "relative bg-white",
-                            isContainHero
-                              ? "aspect-[4/3]"
-                              : "aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]"
+                            isContainHero ? "aspect-[4/3]" : "aspect-video",
                           )
-                        : "aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]"
-                    )
+                        : "aspect-video",
+                    ),
               )}
             >
               {post.featuredImage ? (
@@ -249,7 +313,9 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                     src={post.featuredImage}
                     alt={post.featuredImageAlt ?? post.title}
                     fill
-                    className={isContainHero ? "object-contain" : "object-cover"}
+                    className={
+                      isContainHero ? "object-contain" : "object-cover"
+                    }
                     sizes="(min-width: 1024px) 896px, 100vw"
                     priority
                   />
@@ -279,7 +345,10 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                   className="mt-12 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8"
                   aria-labelledby={`editorial-notes-${post.slug}`}
                 >
-                  <h2 id={`editorial-notes-${post.slug}`} className="text-lg font-semibold text-slate-900">
+                  <h2
+                    id={`editorial-notes-${post.slug}`}
+                    className="text-lg font-semibold text-slate-900"
+                  >
                     Sources and editorial note
                   </h2>
                   {post.sources?.length ? (
@@ -309,7 +378,10 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
 
               {post.series && seriesPosts.length > 1 && (
                 <div className="mt-14">
-                  <SeriesNavigation currentPost={post} seriesPosts={seriesPosts} />
+                  <SeriesNavigation
+                    currentPost={post}
+                    seriesPosts={seriesPosts}
+                  />
                 </div>
               )}
 
@@ -338,7 +410,9 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
               )}
 
               <div className="mt-14 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
-                <h3 className="text-lg font-semibold text-slate-900">About the Author</h3>
+                <h3 className="text-lg font-semibold text-slate-900">
+                  About the Author
+                </h3>
                 <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center">
                   {authorImage && (
                     <div className="h-16 w-16 overflow-hidden rounded-full ring-2 ring-white shadow-sm">
@@ -355,7 +429,10 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                   <div className="space-y-1">
                     {authorUrl ? (
                       authorUrl.startsWith("/") ? (
-                        <Link href={authorUrl} className="text-base font-semibold text-slate-900 hover:text-primary">
+                        <Link
+                          href={authorUrl}
+                          className="text-base font-semibold text-slate-900 hover:text-primary"
+                        >
                           {authorName}
                         </Link>
                       ) : (
@@ -369,10 +446,14 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                         </a>
                       )
                     ) : (
-                      <p className="text-base font-semibold text-slate-900">{authorName}</p>
+                      <p className="text-base font-semibold text-slate-900">
+                        {authorName}
+                      </p>
                     )}
                     {authorRole && (
-                      <p className="text-xs uppercase tracking-[0.2em] text-slate-500">{authorRole}</p>
+                      <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+                        {authorRole}
+                      </p>
                     )}
                   </div>
                 </div>
@@ -384,11 +465,21 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                     <User className="h-4 w-4 text-primary" />
                     Practice Transitions Institute
                   </span>
-                  <Button asChild variant="outline" className="rounded-full border-primary/40 text-primary hover:bg-primary/5">
-                    <a href={`mailto:${SITE_CONTACT_EMAIL}`}>Email the PTI team</a>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="rounded-full border-primary/40 text-primary hover:bg-primary/5"
+                  >
+                    <a href={`mailto:${SITE_CONTACT_EMAIL}`}>
+                      Email the PTI team
+                    </a>
                   </Button>
                   {authorWebsite && (
-                    <Button asChild variant="outline" className="rounded-full border-primary/40 text-primary hover:bg-primary/5">
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="rounded-full border-primary/40 text-primary hover:bg-primary/5"
+                    >
                       <a
                         href={authorWebsite}
                         target="_blank"
@@ -418,9 +509,15 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
       {relatedPosts.length > 0 && (
         <Section background="white" className="py-16">
           <div className="max-w-6xl mx-auto">
-            <SectionTitle centered className="mb-2">Related Articles</SectionTitle>
-            <SectionSubtitle centered className="text-base text-muted-foreground mb-8">
-              Explore more stories guiding dentists through career-defining transitions.
+            <SectionTitle centered className="mb-2">
+              Related Articles
+            </SectionTitle>
+            <SectionSubtitle
+              centered
+              className="text-base text-muted-foreground mb-8"
+            >
+              Explore more stories guiding dentists through career-defining
+              transitions.
             </SectionSubtitle>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
               {relatedPosts.map((relatedPost) => (
@@ -428,29 +525,34 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                   key={relatedPost.id}
                   className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
                 >
-                  <Link href={`/blog/${relatedPost.slug}`} className="block h-full">
+                  <Link
+                    href={`/blog/${relatedPost.slug}`}
+                    className="block h-full"
+                  >
                     <div
                       className={cn(
                         "relative overflow-hidden",
-                        shouldContainFeaturedImage(relatedPost)
-                          ? getFeaturedListingFrameClass(relatedPost)
-                          : "aspect-[16/10]"
+                        getFeaturedListingFrameClass(relatedPost),
                       )}
                     >
                       {relatedPost.featuredImage ? (
                         <Image
                           src={relatedPost.featuredImage}
-                          alt={relatedPost.featuredImageAlt ?? relatedPost.title}
+                          alt={
+                            relatedPost.featuredImageAlt ?? relatedPost.title
+                          }
                           fill
                           sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                           className={cn(
                             getFeaturedListingImageClass(relatedPost),
                             !shouldContainFeaturedImage(relatedPost) &&
-                              "transition duration-500 group-hover:scale-105"
+                              "transition duration-300",
                           )}
                         />
                       ) : (
-                        <div className={`h-full w-full ${relatedPost.gradient}`} />
+                        <div
+                          className={`h-full w-full ${relatedPost.gradient}`}
+                        />
                       )}
                       {shouldContainFeaturedImage(relatedPost) ? null : (
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/0" />
@@ -462,7 +564,13 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
 
                     <CardHeader className="space-y-3 px-5 py-5">
                       <div className="flex items-center justify-between text-xs text-slate-500">
-                        <span>{formatLocalDate(relatedPost.date, { month: "long", day: "numeric", year: "numeric" })}</span>
+                        <span>
+                          {formatLocalDate(relatedPost.date, {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </span>
                         <span className="inline-flex items-center gap-1">
                           <Clock className="h-3 w-3" />
                           {relatedPost.readTime}

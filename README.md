@@ -3,26 +3,29 @@
 PTI's marketing site is a Next.js App Router application that showcases services, success stories, events, and long-form resources for dentists preparing for major career transitions. The project is typed end-to-end with TypeScript, styled with Tailwind CSS and shadcn/ui primitives, and rendered server-first for SEO.
 
 ## Tech Stack
+
 - Next.js 14 App Router with React 18
 - TypeScript with strict configuration
 - Tailwind CSS design system (tokens in `tailwind.config.ts`) and custom globals in `src/app/globals.css`
 - shadcn/ui component primitives backed by Radix UI
 
 ## Getting Started
-1. Install Node.js 22.x (use `nvm` or a similar version manager).
+
+1. Install Node.js 24.x (use `nvm` or a similar version manager). This matches the linked Vercel project runtime.
 2. Install dependencies: `npm install`
 3. Launch the dev server: `npm run dev`
 
 Common scripts:
 
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start Next.js in development mode |
-| `npm run build` | Create production build in `.next/` |
-| `npm run start` | Serve the production build locally |
-| `npm run lint` | Run ESLint using the repo's TypeScript-aware config |
-| `npm run test` | Run the Vitest suite (`*.test.ts` colocated with source) |
-| `npm run rss:check` | Validate the generated blog RSS feed |
+| Command                | Description                                                 |
+| ---------------------- | ----------------------------------------------------------- |
+| `npm run dev`          | Start Next.js in development mode                           |
+| `npm run build`        | Create production build in `.next/`                         |
+| `npm run start`        | Serve the production build locally                          |
+| `npm run lint`         | Run ESLint using the repo's TypeScript-aware config         |
+| `npm run test`         | Run the Vitest suite (`*.test.ts` colocated with source)    |
+| `npm run images:check` | Verify source ratios and prevent unmanaged responsive crops |
+| `npm run rss:check`    | Validate the generated blog RSS feed                        |
 
 ## Project Structure
 
@@ -39,6 +42,7 @@ public/             # Static assets served as-is
 Routes live in `src/app` and are wrapped by `src/app/(site)/layout.tsx` or `src/app/(minimal)/layout.tsx`. SEO metadata and JSON-LD are set per route using `src/lib/seo.ts` and `src/components/StructuredData.tsx`.
 
 ## Managing Site Content
+
 - **Canonical reviews dataset**: Managed in `src/data/reviews.ts` and consumed by `/testimonials`, `/testimonials/[slug]`, homepage/service/event entry points, sitemap generation, and review JSON-LD.
   - Keep `id` and `slug` stable once published.
   - Keep `quote` source-exact.
@@ -57,7 +61,8 @@ Routes live in `src/app` and are wrapped by `src/app/(site)/layout.tsx` or `src/
 - **Lead magnet**: `/resources/practice-sale-readiness-checklist` (`src/views/PracticeSaleChecklist.tsx`) is a printable checklist with a Formspree email-capture form (`src/components/resources/ChecklistSignupForm.tsx`).
 - **Buying a practice**: `/services/buying` is the dedicated acquisition-advisory route. Associate buy-ins remain under `/services/associateships`.
 - **Services page media**: `/services` is rendered by `src/views/Services.tsx`. Its overview uses the authentic 1800×1200 workshop photo at `/lovable-uploads/drnjo-2026/san-mateo-symposium-workshop.jpg`; its “Our Process” section uses the 1672×941 illustrative planning photo at `/lovable-uploads/services-transition-planning-hd.webp`.
-  - Both images render inside `aspect-video` frames. Keep important subjects inside a centered 16:9 safe area and use landscape sources at least 1600px wide; portrait images will lose most of their height under `object-cover`.
+  - Each frame matches its source ratio and uses full-frame rendering, so faces, hands, and planning materials stay visible at every responsive width.
+- **Image framing policy**: editorial photos and untagged featured images preserve the complete source by default. `cover` is reserved for reviewed avatars, decorative backgrounds, and exact-ratio focal crops. Homepage gallery tiles render at intrinsic ratios, and hover effects must not zoom-crop faces.
   - Alt text must describe the visible activity accurately. The process image is illustrative and must not identify its subjects as PTI clients or team members.
 - **Resources hub & valuation calculator**: `/resources` (`src/views/Resources.tsx`) indexes the free tools. `/resources/how-much-is-my-dental-practice-worth` (`src/views/PracticeWorth.tsx`) is the valuation pillar page and embeds the interactive `PracticeValueCalculator` (`src/components/resources/`).
 - **Location pages**: State service-area content is data-driven in `src/data/locations.ts`, rendered by `src/views/locations/LocationView.tsx`, with a `/locations` hub (`src/views/Locations.tsx`). Keep each state's copy genuinely distinct — these are not templated doorway pages. Adding a state requires a `LOCATIONS` entry, a route under `src/app/(site)/locations/`, and registration in `routeBreadcrumbs.ts` + `sitemap.ts` (and the sitemap test count).
@@ -66,11 +71,13 @@ Routes live in `src/app` and are wrapped by `src/app/(site)/layout.tsx` or `src/
 When editing long-form strings (blog posts, testimonials), preserve existing formatting such as Markdown headers and paragraph breaks to keep rendering consistent.
 
 ## UI Conventions
+
 - Tailwind utility classes are preferred; extend design tokens in `tailwind.config.ts` when adding new colors or spacing.
 - shadcn/ui components are exported from `src/components/ui`; co-locate any custom variants or wrappers alongside them.
 - Animations rely on utility classes defined under `@layer components` in `src/app/globals.css`.
 
 ## SEO and Analytics
+
 - Per-page metadata is generated with `buildPageMetadata` in `src/lib/seo.ts`.
 - JSON-LD is rendered with `StructuredData` from `src/components/StructuredData.tsx`.
 - Review-specific JSON-LD builders live in `src/lib/structuredData.ts`:
@@ -85,6 +92,7 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 - FAQ rich results: pages/sections expose a `{ question, answer }[]` array and pass `buildFAQSchema(...)` through `buildPageJsonLd`. Business structured data includes `geo` coordinates (`BUSINESS_GEO`).
 
 ## Deployment
+
 The site deploys via Vercel using Next.js defaults.
 
 - **Build command**: `npm run build`
@@ -105,11 +113,13 @@ npm run rss:check
 See `docs/deployment-runbook.md` for release and live-smoke procedures.
 
 ## Coding Standards
+
 - TypeScript is required for production code, with 2-space indentation enforced by ESLint and the repo configuration.
 - Run `npm run lint` before opening a PR to catch style or typing issues.
 - Favor functional React components and descriptive, PascalCase file names for exported components (e.g., `HeroSection.tsx`).
 
 ## Additional Runbooks
+
 - `docs/ga4-runbook.md`: GA4 implementation and validation.
 - `docs/reviews-runbook.md`: canonical reviews dataset, routing, metadata, and QA workflow.
 - `docs/implementation-map.md`: current routing, events, analytics, editorial, service, and cross-site architecture.

@@ -8,7 +8,11 @@ import {
   Scale,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
+import {
+  Section,
+  SectionTitle,
+  SectionSubtitle,
+} from "@/components/ui/section";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { HeroContent } from "@/components/ui/hero-content";
 import { LatestUpdateCard } from "@/components/ui/latest-update-card";
@@ -58,33 +62,38 @@ const Home = () => {
   const latestPost =
     communityImpactPosts.length + blogPosts.length > 0
       ? [...communityImpactPosts, ...blogPosts].sort(
-          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
         )[0]
       : null;
   const featuredTestimonials = getFeaturedReviews("home");
   const remainingGalleryCount = Math.max(
     galleryPhotos.length - homeGalleryPreview.length,
-    0
+    0,
   );
 
   return (
     <>
-      <section
-        className="hero-gradient relative flex min-h-[calc(100svh-4.5rem)] items-center justify-center overflow-hidden py-12 sm:py-16 md:py-20"
-      >
+      <section className="hero-gradient relative flex min-h-[calc(100svh-4.5rem)] items-center justify-center overflow-hidden py-12 sm:py-16 md:py-20">
         <div className="absolute inset-0 hero-gradient-overlay" />
         <div className="relative z-10 w-full">
           <HeroContent className="text-white" />
         </div>
       </section>
 
-      <Section id="transition-goals" background="white" className="border-b border-slate-100 py-12 md:py-16">
+      <Section
+        id="transition-goals"
+        background="white"
+        className="border-b border-slate-100 py-12 md:py-16"
+      >
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-3xl text-center">
             <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-primary">
               Start With Your Goal
             </p>
-            <SectionTitle centered className="mb-4 text-balance text-2xl sm:text-3xl md:text-4xl">
+            <SectionTitle
+              centered
+              className="mb-4 text-balance text-2xl sm:text-3xl md:text-4xl"
+            >
               Guidance built around the transition you are actually making
             </SectionTitle>
             <SectionSubtitle centered className="mb-9 text-pretty">
@@ -95,7 +104,11 @@ const Home = () => {
 
           <div className="grid gap-5 md:grid-cols-2">
             {transitionPaths.map((path, index) => (
-              <ScrollReveal key={path.title} delay={index * 75} intensity="subtle">
+              <ScrollReveal
+                key={path.title}
+                delay={index * 75}
+                intensity="subtle"
+              >
                 <Link
                   href={path.href}
                   className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 motion-reduce:transform-none sm:p-7"
@@ -123,7 +136,10 @@ const Home = () => {
         </div>
       </Section>
 
-      <Section background="white" className="py-10 md:py-14 border-b border-gray-100">
+      <Section
+        background="white"
+        className="py-10 md:py-14 border-b border-gray-100"
+      >
         <div className="max-w-6xl mx-auto">
           <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
             <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
@@ -142,7 +158,10 @@ const Home = () => {
               size="lg"
               className="shrink-0 self-start sm:self-auto"
             >
-              <Link href="/gallery" className="flex items-center justify-center">
+              <Link
+                href="/gallery"
+                className="flex items-center justify-center"
+              >
                 View the gallery
                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Link>
@@ -150,8 +169,8 @@ const Home = () => {
           </div>
 
           <ScrollReveal direction="scale" delay={150} intensity="subtle">
-            <div className="grid auto-rows-[8.5rem] grid-cols-2 gap-2.5 sm:auto-rows-[10rem] sm:gap-3 md:grid-cols-4 md:gap-4 lg:auto-rows-[11.5rem]">
-              {homeGalleryPreview.map(({ photo, focus }, index) => {
+            <div className="grid grid-cols-2 items-start gap-2.5 sm:gap-3 md:grid-cols-4 md:gap-4">
+              {homeGalleryPreview.map(({ photo }, index) => {
                 const isFeature = index === 0;
                 const isLast = index === homeGalleryPreview.length - 1;
                 return (
@@ -160,20 +179,20 @@ const Home = () => {
                     href="/gallery"
                     className={cn(
                       "group relative overflow-hidden rounded-2xl border border-gray-200 bg-slate-100 shadow-sm transition-shadow duration-300 hover:shadow-lg",
-                      isFeature && "col-span-2 row-span-2"
+                      isFeature && "col-span-2",
                     )}
                   >
                     <Image
                       src={photo.src}
                       alt={photo.alt}
-                      fill
+                      width={photo.width}
+                      height={photo.height}
                       sizes={
                         isFeature
                           ? "(min-width: 768px) 580px, 100vw"
                           : "(min-width: 768px) 290px, 50vw"
                       }
-                      style={{ objectPosition: focus }}
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="h-auto w-full object-contain"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                     {isLast && remainingGalleryCount > 0 ? (
@@ -204,10 +223,10 @@ const Home = () => {
           <ScrollReveal direction="elastic" delay={200}>
             <div className="bg-white p-6 sm:p-8 md:p-12 rounded-xl shadow-sm border border-gray-100 hover-lift gpu-accelerated">
               <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
-                Selling or buying a practice can feel overwhelming. You&apos;re facing
-                complex decisions with your life&apos;s work at stake. How do you
-                ensure a smooth transition, get a fair value, and protect your
-                legacy?
+                Selling or buying a practice can feel overwhelming. You&apos;re
+                facing complex decisions with your life&apos;s work at stake.
+                How do you ensure a smooth transition, get a fair value, and
+                protect your legacy?
               </p>
             </div>
           </ScrollReveal>
@@ -232,7 +251,10 @@ const Home = () => {
                 size="lg"
                 className="w-full sm:w-auto"
               >
-                <Link href="/about" className="flex items-center justify-center">
+                <Link
+                  href="/about"
+                  className="flex items-center justify-center"
+                >
                   Learn About Our Expertise{" "}
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Link>
@@ -246,7 +268,7 @@ const Home = () => {
                 alt="PTI team members with dental professionals"
                 width={1920}
                 height={1279}
-                className="w-full h-auto object-cover"
+                className="h-auto w-full object-contain"
                 sizes="(min-width: 1024px) 50vw, 100vw"
               />
             </div>
@@ -262,7 +284,10 @@ const Home = () => {
             </SectionTitle>
           </ScrollReveal>
           <ScrollReveal direction="blur-in" delay={200} intensity="subtle">
-            <SectionSubtitle className="text-base sm:text-lg md:text-xl" centered>
+            <SectionSubtitle
+              className="text-base sm:text-lg md:text-xl"
+              centered
+            >
               We simplify your transition
             </SectionSubtitle>
           </ScrollReveal>
@@ -270,62 +295,62 @@ const Home = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
           {[
-              {
-                number: 1,
-                title: "Discovery and Plan",
-                description:
-                  "We align your goals with a clear, customized roadmap.",
-              },
-              {
-                number: 2,
-                title: "Know Your Value",
-                description: "Get a clear, data-backed valuation you can trust.",
-              },
-              {
-                number: 3,
-                title: "Navigate the Deal",
-                description:
-                  "We handle complex negotiations to maximize your return.",
-              },
-              {
-                number: 4,
-                title: "Transition Support",
-                description:
-                  "We ensure a smooth hand-off for your team and patients.",
-              },
-              {
-                number: 5,
-                title: "Protect What Matters",
-                description:
-                  "Safeguard your reputation and relationships for greater peace of mind.",
-              },
-              {
-                number: 6,
-                title: "Map Your Next Move",
-                description:
-                  "We help you plan confidently for life after the sale.",
-              },
+            {
+              number: 1,
+              title: "Discovery and Plan",
+              description:
+                "We align your goals with a clear, customized roadmap.",
+            },
+            {
+              number: 2,
+              title: "Know Your Value",
+              description: "Get a clear, data-backed valuation you can trust.",
+            },
+            {
+              number: 3,
+              title: "Navigate the Deal",
+              description:
+                "We handle complex negotiations to maximize your return.",
+            },
+            {
+              number: 4,
+              title: "Transition Support",
+              description:
+                "We ensure a smooth hand-off for your team and patients.",
+            },
+            {
+              number: 5,
+              title: "Protect What Matters",
+              description:
+                "Safeguard your reputation and relationships for greater peace of mind.",
+            },
+            {
+              number: 6,
+              title: "Map Your Next Move",
+              description:
+                "We help you plan confidently for life after the sale.",
+            },
           ].map((step, index) => (
-              <ScrollReveal
-                key={step.number}
-                direction="scale"
-                delay={index * 100}
-                intensity="subtle"
-              >
-                <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-[box-shadow,transform] hover-scale duration-300 h-full flex flex-col">
-                  <div className="flex items-start mb-4 md:mb-6">
-                    <div className="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center mr-4 text-lg font-bold flex-shrink-0 shadow-lg">
-                      {step.number}
-                    </div>
-                    <h3 className="font-bold text-lg md:text-xl text-gray-900">
-                      {step.title}
-                    </h3>
+            <ScrollReveal
+              key={step.number}
+              direction="scale"
+              delay={index * 100}
+              intensity="subtle"
+            >
+              <div className="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-[box-shadow,transform] hover-scale duration-300 h-full flex flex-col">
+                <div className="flex items-start mb-4 md:mb-6">
+                  <div className="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center mr-4 text-lg font-bold flex-shrink-0 shadow-lg">
+                    {step.number}
                   </div>
-                  <p className="ml-16 flex-grow text-base leading-relaxed text-gray-700">
-                    {step.description}
-                  </p>
+                  <h3 className="font-bold text-lg md:text-xl text-gray-900">
+                    {step.title}
+                  </h3>
                 </div>
-              </ScrollReveal>
+                <p className="ml-16 flex-grow text-base leading-relaxed text-gray-700">
+                  {step.description}
+                </p>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       </Section>
@@ -351,8 +376,8 @@ const Home = () => {
                 </h3>
                 <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
                   Plan for continuity across your patients, team, reputation,
-                  and professional relationships while creating a practical
-                  path into your next chapter.
+                  and professional relationships while creating a practical path
+                  into your next chapter.
                 </p>
               </div>
             </div>
@@ -404,11 +429,7 @@ const Home = () => {
             ))}
           </div>
           <div className="mt-10 text-center">
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-            >
+            <Button asChild variant="outline" size="lg">
               <Link href="/testimonials">Read More Stories</Link>
             </Button>
           </div>
@@ -428,8 +449,8 @@ const Home = () => {
           </ScrollReveal>
           <ScrollReveal direction="blur-in" delay={200} intensity="normal">
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white opacity-90 mb-4 sm:mb-6 md:mb-8 leading-relaxed">
-              Bring your goals, questions, and current options. We&apos;ll help you
-              identify the most useful next step.
+              Bring your goals, questions, and current options. We&apos;ll help
+              you identify the most useful next step.
             </p>
           </ScrollReveal>
           <ScrollReveal direction="magnetic" delay={300} intensity="strong">

@@ -56,16 +56,16 @@ const Events = ({ workshopReview }: EventsProps) => {
   // Optimized event grouping with proper deduplication
   const events: Event[] = useMemo(() => {
     // Step 1: Process all events with isPast status
-    const processedEvents: Event[] = rawEvents.map(event => ({
+    const processedEvents: Event[] = rawEvents.map((event) => ({
       ...event,
-      isPast: isEventPast(event.date)
+      isPast: isEventPast(event.date),
     }));
 
     // Step 2: Group events by title using Map for efficient lookup
     const titleGroups = new Map<string, Event[]>();
-    
+
     // Single pass through events to build groups
-    processedEvents.forEach(event => {
+    processedEvents.forEach((event) => {
       const group = titleGroups.get(event.title);
       if (group) {
         group.push(event);
@@ -76,7 +76,7 @@ const Events = ({ workshopReview }: EventsProps) => {
 
     // Step 3: Process groups and create final events array
     const finalEvents: Event[] = [];
-    
+
     titleGroups.forEach((groupEvents, title) => {
       if (groupEvents.length === 1) {
         // Single event - add as-is
@@ -93,34 +93,44 @@ const Events = ({ workshopReview }: EventsProps) => {
         // Use the upcoming detailed event when available so grouped CTAs stay current.
         const detailedEvent =
           groupEvents.find(
-            (e) => !e.isPast && e.detailPath && typeof e.description === "object"
+            (e) =>
+              !e.isPast && e.detailPath && typeof e.description === "object",
           ) ||
-          groupEvents.find((e) => !e.isPast && typeof e.description === "object") ||
+          groupEvents.find(
+            (e) => !e.isPast && typeof e.description === "object",
+          ) ||
           groupEvents.find((e) => typeof e.description === "object") ||
           groupEvents[0];
-        
+
         // Create unique event dates array with deduplication
         const eventDateMap = new Map<string, EventDate>();
-        groupEvents.forEach(event => {
-          const key = createEventDateKey(event.date, event.time, event.location);
+        groupEvents.forEach((event) => {
+          const key = createEventDateKey(
+            event.date,
+            event.time,
+            event.location,
+          );
           if (!eventDateMap.has(key)) {
             eventDateMap.set(key, {
               date: event.date,
               time: event.time,
               location: event.location,
-              isPast: event.isPast
+              isPast: event.isPast,
             });
           }
         });
-        
+
         const eventDates = Array.from(eventDateMap.values());
 
         // Determine if the entire group is past (all dates are past)
-        const isGroupPast = eventDates.every(date => date.isPast);
-        
+        const isGroupPast = eventDates.every((date) => date.isPast);
+
         // Use the earliest upcoming date, or the latest past date if all are past
-        const upcomingDates = eventDates.filter(date => !date.isPast);
-        const representativeDate = upcomingDates.length > 0 ? upcomingDates[0] : eventDates[eventDates.length - 1];
+        const upcomingDates = eventDates.filter((date) => !date.isPast);
+        const representativeDate =
+          upcomingDates.length > 0
+            ? upcomingDates[0]
+            : eventDates[eventDates.length - 1];
 
         finalEvents.push({
           ...detailedEvent,
@@ -130,7 +140,7 @@ const Events = ({ workshopReview }: EventsProps) => {
           location: representativeDate.location,
           isPast: isGroupPast,
           isEventGroup: true,
-          eventDates
+          eventDates,
         });
       }
     });
@@ -147,14 +157,14 @@ const Events = ({ workshopReview }: EventsProps) => {
       return dateA.getTime() - dateB.getTime();
     });
   }, []);
-  
-  const filteredEvents = showPastEvents 
-    ? events 
-    : events.filter(event => !event.isPast);
-  
-  const upcomingEvents = events.filter(event => !event.isPast);
-  const pastEvents = events.filter(event => event.isPast);
-  
+
+  const filteredEvents = showPastEvents
+    ? events
+    : events.filter((event) => !event.isPast);
+
+  const upcomingEvents = events.filter((event) => !event.isPast);
+  const pastEvents = events.filter((event) => event.isPast);
+
   const getEventTypeColor = (type: string) => {
     switch (type) {
       case "webinar":
@@ -169,484 +179,601 @@ const Events = ({ workshopReview }: EventsProps) => {
         return "bg-purple-100 text-purple-700 border-purple-200";
     }
   };
-  
+
   return (
     <>
       <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <Section background="primary" className="pt-24 md:pt-32 pb-12 md:pb-20 relative overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/90"></div>
-        <Image
-          src="/lovable-uploads/events-hero-office.webp"
-          alt=""
-          aria-hidden="true"
-          fill
-          priority
-          sizes="100vw"
-          className="absolute inset-0 object-cover opacity-20"
-        />
+        {/* Hero Section */}
+        <Section
+          background="primary"
+          className="pt-24 md:pt-32 pb-12 md:pb-20 relative overflow-hidden"
+        >
+          {/* Background Image with Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/90"></div>
+          <Image
+            src="/lovable-uploads/events-hero-office.webp"
+            alt=""
+            aria-hidden="true"
+            fill
+            priority
+            sizes="100vw"
+            className="absolute inset-0 object-cover opacity-20"
+          />
 
-        <div className="relative z-10 text-center text-white">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
-            Learn. Connect. Transition With Confidence.
-          </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-blue-100 leading-relaxed max-w-4xl mx-auto px-4 mb-6">
-            Educational events designed to empower your next move.
-          </p>
-          <div className="max-w-5xl mx-auto px-4">
-            <p className="text-base md:text-lg text-blue-50/95 leading-relaxed">
-              Thinking about buying or selling a practice? Our sessions walk you through every step — from understanding practice value and tax implications to exploring deal structures, increasing value, and planning your next move. You&apos;ll get straightforward guidance and expert insights to help you make informed decisions.
+          <div className="relative z-10 text-center text-white">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
+              Learn. Connect. Transition With Confidence.
+            </h1>
+            <p className="text-lg sm:text-xl md:text-2xl text-blue-100 leading-relaxed max-w-4xl mx-auto px-4 mb-6">
+              Educational events designed to empower your next move.
             </p>
-          </div>
-        </div>
-      </Section>
-
-      {/* Events Section */}
-      <Section className="py-12 md:py-16 lg:py-20">
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-          <div>
-            <SectionTitle>Upcoming Events</SectionTitle>
-            <SectionSubtitle>Don&apos;t miss our latest educational opportunities</SectionSubtitle>
-          </div>
-          {pastEvents.length > 0 && (
-            <button
-              type="button"
-              onClick={() => setShowPastEvents(!showPastEvents)}
-              className="inline-flex min-h-11 items-center text-primary font-medium text-sm hover:text-primary/80 transition-colors"
-            >
-              {showPastEvents ? "Hide Past Events" : "View Past Events"}
-              <ChevronRight size={16} className="ml-1" />
-            </button>
-          )}
-        </div>
-        
-        {/* No Events Message */}
-        {upcomingEvents.length === 0 && !showPastEvents && (
-          <div className="text-center py-12 bg-gray-50 rounded-xl">
-            <Calendar size={48} className="mx-auto text-gray-400 mb-4" />
-            <h3 className="text-xl font-semibold text-gray-700 mb-2">No Upcoming Events</h3>
-            <p className="text-gray-500 mb-6">Please check back soon or contact us for private consultation options.</p>
-            <Button asChild>
-              <Link href="/contact">Schedule a Consultation</Link>
-            </Button>
-          </div>
-        )}
-        
-        {/* Events List */}
-        <div className="space-y-4 relative">
-          {filteredEvents.map((event) => {
-            // Render multi-date event card for grouped events
-            if (event.isEventGroup && event.eventDates) {
-              return (
-                <MultiDateEventCard
-                  key={event.id}
-                  title={event.title}
-                  description={event.description}
-                  type={event.type}
-                  registrationLink={event.registrationLink}
-                  eventDates={event.eventDates}
-                  isPast={event.isPast}
-                  speakers={event.speakers}
-                  getEventTypeColor={getEventTypeColor}
-                />
-              );
-            }
-            const dateLabel = event.dateDisplay ?? event.date;
-            const requiresAvailabilityConfirmation =
-              event.registrationLink.startsWith("mailto:");
-            
-            // Render single event card for individual events
-            return (
-            <div 
-              key={event.id}
-              className={`relative rounded-xl transition-all duration-300 group z-10 ${
-                event.isPast 
-                  ? "bg-gray-50 border-2 border-dashed border-gray-300 shadow-none hover:shadow-sm" 
-                  : "bg-white border-2 border-gray-200 shadow-sm hover:shadow-lg hover:border-primary/30"
-              } ${event.type === "webinar" && !event.isPast ? "bg-cover bg-center" : ""}`}
-              style={event.type === "webinar" && !event.isPast ? {
-                backgroundImage: `url(/lovable-uploads/events-hero-office.webp)`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              } : {}}
-            >
-              {/* Status Banner */}
-              <div className={`absolute top-0 left-0 right-0 h-1 ${
-                event.isPast ? "bg-gray-400" : "bg-gradient-to-r from-primary to-primary/70"
-              }`}></div>
-              
-              {/* Overlay for webinar card to ensure text readability */}
-              {event.type === "webinar" && !event.isPast && (
-                <div className="absolute inset-0 bg-white/95 rounded-xl"></div>
-              )}
-              
-              {/* Content wrapper with relative positioning */}
-              <div className="relative z-10 p-4 md:p-6">
-                {/* Event Header */}
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
-                  <div className="flex-1">
-                    <div className="flex items-start gap-3 mb-2">
-                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${getEventTypeColor(event.type)}`}>
-                        {event.type}
-                      </span>
-                      {event.isPast ? (
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gray-200 text-gray-700 border border-gray-300">
-                          Event Completed
-                        </span>
-                      ) : (
-                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${
-                          requiresAvailabilityConfirmation
-                            ? "bg-amber-100 text-amber-800 border-amber-200"
-                            : "bg-green-100 text-green-700 border-green-200"
-                        }`}>
-                          {requiresAvailabilityConfirmation ? "Confirm availability" : "Registration Open"}
-                        </span>
-                      )}
-                    </div>
-                    <h3 className={`text-lg md:text-xl font-semibold leading-tight ${
-                      event.isPast ? "text-gray-600" : "text-gray-900"
-                    }`}>
-                      {event.title}
-                    </h3>
-                  </div>
-                  {event.flyerImage ? (
-                    <div className="mx-auto w-28 shrink-0 overflow-hidden rounded-lg bg-slate-100 ring-1 ring-black/5 sm:mx-0">
-                      <Image
-                        src={event.flyerImage}
-                        alt={event.flyerImageAlt ?? event.title}
-                        width={141}
-                        height={200}
-                        className="h-auto w-full object-contain"
-                        sizes="112px"
-                      />
-                    </div>
-                  ) : null}
-                </div>
-                
-                {/* Event Details */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
-                  <div className={`flex items-center text-sm ${
-                    event.isPast ? "text-gray-500" : "text-gray-600"
-                  }`}>
-                    <Calendar size={16} className={`mr-2 flex-shrink-0 ${
-                      event.isPast ? "text-gray-400" : "text-primary"
-                    }`} />
-                    <span className={event.isPast ? "" : "font-medium"}>{dateLabel}</span>
-                  </div>
-                  <div className={`flex items-center text-sm ${
-                    event.isPast ? "text-gray-500" : "text-gray-600"
-                  }`}>
-                    <Clock size={16} className={`mr-2 flex-shrink-0 ${
-                      event.isPast ? "text-gray-400" : "text-primary"
-                    }`} />
-                    <span>{event.time}</span>
-                  </div>
-                  <div className={`flex items-center text-sm ${
-                    event.isPast ? "text-gray-500" : "text-gray-600"
-                  }`}>
-                    <MapPin size={16} className={`mr-2 flex-shrink-0 ${
-                      event.isPast ? "text-gray-400" : "text-primary"
-                    }`} />
-                    <span className="line-clamp-2">{event.location}</span>
-                  </div>
-                </div>
-                
-                {/* Event Description */}
-                <div className={`mb-4 ${
-                  event.isPast ? "text-gray-500" : "text-gray-600"
-                }`}>
-                  {typeof event.description === "string" ? (
-                    <p className="text-sm leading-relaxed line-clamp-3">
-                      {event.description}
-                    </p>
-                  ) : (
-                    <div className="space-y-3">
-                      <p className="text-sm leading-relaxed">
-                        {event.description.intro}
-                      </p>
-                      <div>
-                        <p className="text-sm font-semibold mb-2">At this seminar, you&apos;ll discover how to:</p>
-                        <ul className="text-sm space-y-1">
-                          {event.description.learningPoints.map((point, index) => (
-                            <li key={index} className="flex items-start">
-                              <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                              {point}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  )}
-                </div>
-                
-                {/* Speakers Section for Webinars */}
-                {event.type === "webinar" && event.speakers && event.speakers.length > 0 && (
-                  <div className="mb-6">
-                    <h4 className={`text-sm font-semibold mb-3 ${
-                      event.isPast ? "text-gray-600" : "text-gray-900"
-                    }`}>Featured Speakers</h4>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                      {event.speakers.map((speaker, index) => (
-                        <div key={index} className="flex flex-col items-center text-center group">
-                          <div className="relative mb-2 w-12 sm:w-16">
-                            <AspectRatio ratio={4/5}>
-                              <Image
-                                src={speaker.imageUrl}
-                                alt={speaker.name}
-                                fill
-                                sizes="(min-width: 640px) 64px, 48px"
-                                className={`object-cover rounded-lg border-2 border-white shadow-md transition-all duration-200 ${
-                                  event.isPast 
-                                    ? "grayscale opacity-70" 
-                                    : "group-hover:scale-105"
-                                }`}
-                              />
-                            </AspectRatio>
-                            {!event.isPast && (
-                              <div className="absolute inset-0 rounded-lg bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
-                            )}
-                          </div>
-                          <div className="px-1">
-                            <p className={`text-xs font-medium leading-tight mb-1 ${
-                              event.isPast ? "text-gray-500" : "text-gray-900"
-                            }`}>{speaker.name}</p>
-                            <p className={`text-xs leading-tight ${
-                              event.isPast ? "text-gray-400" : "text-gray-600"
-                            }`}>{speaker.title}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3">
-                  {!event.isPast ? (
-                    event.detailPath ? (
-                      <Button asChild size="sm" className="flex-1 sm:flex-none">
-                        <Link href={event.detailPath}>View Details</Link>
-                      </Button>
-                    ) : requiresAvailabilityConfirmation ? (
-                      <>
-                        <Button asChild size="sm" className="flex-1 sm:flex-none">
-                          <a
-                            href={event.registrationLink}
-                            onClick={() =>
-                              trackEventRegistrationClick(
-                                event.title.replace(/\s+/g, "_").toLowerCase(),
-                                "email"
-                              )
-                            }
-                          >
-                            <Mail size={16} className="mr-2" />
-                            Confirm Availability
-                          </a>
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="flex-1 sm:flex-none"
-                          onClick={() => window.open("tel:+18337841121", "_self")}
-                        >
-                          <Phone size={16} className="mr-2" />
-                          Call PTI
-                        </Button>
-                      </>
-                    ) : event.registrationLink.startsWith("http") ? (
-                      <>
-                        <Button asChild size="sm" className="flex-1 sm:flex-none">
-                          <a
-                            href={event.registrationLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() =>
-                              trackEventRegistrationClick(
-                                event.title.replace(/\s+/g, "_").toLowerCase(),
-                                "external"
-                              )
-                            }
-                          >
-                            Register Now
-                          </a>
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="flex-1 sm:flex-none"
-                          onClick={() =>
-                            window.open(
-                              `mailto:${SITE_CONTACT_EMAIL}?subject=Event Registration Inquiry`,
-                              "_self"
-                            )
-                          }
-                        >
-                          <Mail size={16} className="mr-2" />
-                          Email Us to Register
-                        </Button>
-                      </>
-                    ) : (
-                      <>
-                        <Button 
-                          size="sm" 
-                          className="flex-1 sm:flex-none"
-                          onClick={() => window.open('tel:+18337841121', '_self')}
-                        >
-                          <Phone size={16} className="mr-2" />
-                          Call to Register
-                        </Button>
-                        <Button 
-                          size="sm" 
-                          variant="outline"
-                          className="flex-1 sm:flex-none"
-                          onClick={() => window.open(`mailto:${SITE_CONTACT_EMAIL}?subject=Event Registration Inquiry`, '_self')}
-                        >
-                          <Mail size={16} className="mr-2" />
-                          Email Us to Register
-                        </Button>
-                      </>
-                    )
-                  ) : (
-                    <Button className="w-full sm:w-auto" variant="outline" disabled>
-                      <span className="text-gray-500 cursor-not-allowed">
-                        Event Completed
-                      </span>
-                    </Button>
-                  )}
-                </div>
-              </div>
-            </div>
-            );
-          })}
-        </div>
-        
-        {/* Show Past Events Button */}
-        {!showPastEvents && pastEvents.length > 0 && (
-          <div className="mt-8 text-center">
-            <button
-              onClick={() => setShowPastEvents(true)}
-              className="inline-flex items-center text-primary hover:text-primary/80 font-medium text-sm transition-colors"
-            >
-              View {pastEvents.length} Past {pastEvents.length === 1 ? "Event" : "Events"}
-              <ChevronRight size={16} className="ml-1" />
-            </button>
-          </div>
-        )}
-      </Section>
-
-      <Section background="light" className="py-12 md:py-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="max-w-3xl mb-8">
-            <SectionTitle>Recent Speaking Highlights</SectionTitle>
-            <SectionSubtitle className="mb-0">
-              These supporting materials give visitors proof of the educational
-              and community work happening around PTI&apos;s speaking calendar,
-              without asking them to click into a blog post first.
-            </SectionSubtitle>
-          </div>
-
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,0.84fr)_minmax(0,1.16fr)] lg:items-center">
-            <DrNjoPhotoCard
-              image={bluePrintFlyer}
-              sizes="(min-width: 1280px) 24vw, (min-width: 1024px) 36vw, 100vw"
-              priority
-            />
-
-            <div className="grid gap-6 md:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] md:items-start">
-              <DrNjoPhotoCard
-                image={publicationSpread}
-                sizes="(min-width: 1280px) 18vw, (min-width: 768px) 24vw, 100vw"
-              />
-              <div className="rounded-[1.75rem] border border-gray-200 bg-white p-6 shadow-sm">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80">
-                  Educational Presence
-                </p>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-3">
-                  Practical transition guidance delivered in public.
-                </h3>
-                <p className="text-base leading-relaxed text-gray-600 mb-4">
-                  From seminars and society programs to published materials and
-                  in-person mentoring, Dr. Njo&apos;s event presence is built around
-                  practical guidance dentists can use immediately.
-                </p>
-                <p className="text-base leading-relaxed text-gray-600">
-                  That matters because the same clarity visitors see in these
-                  highlights is the same clarity PTI brings to private speaking
-                  engagements, transition workshops, and one-on-one consulting.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Testimonial Section */}
-      <Section className="py-12 md:py-16">
-        <div className="max-w-4xl mx-auto">
-          <SectionTitle centered>What Our Attendees Say</SectionTitle>
-          <div className="flex justify-center">
-            {workshopReview && (
-              <TestimonialCard
-                quote={workshopReview.quote}
-                author={workshopReview.displayAuthorName}
-                role={workshopReview.role}
-                company={workshopReview.company}
-                reviewHref={`/testimonials/${workshopReview.slug}`}
-                className="max-w-2xl"
-              />
-            )}
-          </div>
-        </div>
-      </Section>
-
-      {/* Private Events Section */}
-      <Section background="light" className="py-12 md:py-16 lg:py-20">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <SectionTitle>Host a Private Event</SectionTitle>
-            <SectionSubtitle>
-              Looking for customized education for your dental society, study club, or office?
-            </SectionSubtitle>
-          </div>
-          
-          <div className="bg-white rounded-xl p-6 md:p-8 shadow-sm border border-gray-200">
-            <h3 className="text-xl font-semibold mb-6 text-center md:text-left">Available Topics Include:</h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-              {[
-                "Practice Valuation Fundamentals",
-                "Buying Your First Practice",
-                "Preparing for Practice Sale",
-                "Partnership Formation & Dissolution",
-                "Associate Contracts & Buy-ins",
-                "DSO vs. Private Practice Transitions"
-              ].map((topic, index) => (
-                <div key={index} className="flex items-start">
-                  <div className="bg-primary/10 rounded-full p-1 mr-3 mt-1 flex-shrink-0">
-                    <div className="w-3 h-3 bg-primary rounded-full"></div>
-                  </div>
-                  <span className="text-gray-700">{topic}</span>
-                </div>
-              ))}
-            </div>
-            
-            <div className="bg-gray-50 rounded-lg p-4 mb-6">
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Our team of experts can deliver engaging, educational presentations tailored to your group&apos;s 
-                specific needs and interests. All presentations can be modified for length and format.
+            <div className="max-w-5xl mx-auto px-4">
+              <p className="text-base md:text-lg text-blue-50/95 leading-relaxed">
+                Thinking about buying or selling a practice? Our sessions walk
+                you through every step — from understanding practice value and
+                tax implications to exploring deal structures, increasing value,
+                and planning your next move. You&apos;ll get straightforward
+                guidance and expert insights to help you make informed
+                decisions.
               </p>
             </div>
-            
-            <div className="text-center">
-              <Button asChild size="lg" className="w-full sm:w-auto">
-                <a href={`mailto:${SITE_CONTACT_EMAIL}?subject=Speaking%20Engagement%20Request`}>Request a Speaking Engagement</a>
+          </div>
+        </Section>
+
+        {/* Events Section */}
+        <Section className="py-12 md:py-16 lg:py-20">
+          {/* Section Header */}
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+            <div>
+              <SectionTitle>Upcoming Events</SectionTitle>
+              <SectionSubtitle>
+                Don&apos;t miss our latest educational opportunities
+              </SectionSubtitle>
+            </div>
+            {pastEvents.length > 0 && (
+              <button
+                type="button"
+                onClick={() => setShowPastEvents(!showPastEvents)}
+                className="inline-flex min-h-11 items-center text-primary font-medium text-sm hover:text-primary/80 transition-colors"
+              >
+                {showPastEvents ? "Hide Past Events" : "View Past Events"}
+                <ChevronRight size={16} className="ml-1" />
+              </button>
+            )}
+          </div>
+
+          {/* No Events Message */}
+          {upcomingEvents.length === 0 && !showPastEvents && (
+            <div className="text-center py-12 bg-gray-50 rounded-xl">
+              <Calendar size={48} className="mx-auto text-gray-400 mb-4" />
+              <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                No Upcoming Events
+              </h3>
+              <p className="text-gray-500 mb-6">
+                Please check back soon or contact us for private consultation
+                options.
+              </p>
+              <Button asChild>
+                <Link href="/contact">Schedule a Consultation</Link>
               </Button>
             </div>
+          )}
+
+          {/* Events List */}
+          <div className="space-y-4 relative">
+            {filteredEvents.map((event) => {
+              // Render multi-date event card for grouped events
+              if (event.isEventGroup && event.eventDates) {
+                return (
+                  <MultiDateEventCard
+                    key={event.id}
+                    title={event.title}
+                    description={event.description}
+                    type={event.type}
+                    registrationLink={event.registrationLink}
+                    eventDates={event.eventDates}
+                    isPast={event.isPast}
+                    speakers={event.speakers}
+                    getEventTypeColor={getEventTypeColor}
+                  />
+                );
+              }
+              const dateLabel = event.dateDisplay ?? event.date;
+              const requiresAvailabilityConfirmation =
+                event.registrationLink.startsWith("mailto:");
+
+              // Render single event card for individual events
+              return (
+                <div
+                  key={event.id}
+                  className={`relative rounded-xl transition-all duration-300 group z-10 ${
+                    event.isPast
+                      ? "bg-gray-50 border-2 border-dashed border-gray-300 shadow-none hover:shadow-sm"
+                      : "bg-white border-2 border-gray-200 shadow-sm hover:shadow-lg hover:border-primary/30"
+                  } ${event.type === "webinar" && !event.isPast ? "bg-cover bg-center" : ""}`}
+                  style={
+                    event.type === "webinar" && !event.isPast
+                      ? {
+                          backgroundImage: `url(/lovable-uploads/events-hero-office.webp)`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                        }
+                      : {}
+                  }
+                >
+                  {/* Status Banner */}
+                  <div
+                    className={`absolute top-0 left-0 right-0 h-1 ${
+                      event.isPast
+                        ? "bg-gray-400"
+                        : "bg-gradient-to-r from-primary to-primary/70"
+                    }`}
+                  ></div>
+
+                  {/* Overlay for webinar card to ensure text readability */}
+                  {event.type === "webinar" && !event.isPast && (
+                    <div className="absolute inset-0 bg-white/95 rounded-xl"></div>
+                  )}
+
+                  {/* Content wrapper with relative positioning */}
+                  <div className="relative z-10 p-4 md:p-6">
+                    {/* Event Header */}
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
+                      <div className="flex-1">
+                        <div className="flex items-start gap-3 mb-2">
+                          <span
+                            className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${getEventTypeColor(event.type)}`}
+                          >
+                            {event.type}
+                          </span>
+                          {event.isPast ? (
+                            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gray-200 text-gray-700 border border-gray-300">
+                              Event Completed
+                            </span>
+                          ) : (
+                            <span
+                              className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${
+                                requiresAvailabilityConfirmation
+                                  ? "bg-amber-100 text-amber-800 border-amber-200"
+                                  : "bg-green-100 text-green-700 border-green-200"
+                              }`}
+                            >
+                              {requiresAvailabilityConfirmation
+                                ? "Confirm availability"
+                                : "Registration Open"}
+                            </span>
+                          )}
+                        </div>
+                        <h3
+                          className={`text-lg md:text-xl font-semibold leading-tight ${
+                            event.isPast ? "text-gray-600" : "text-gray-900"
+                          }`}
+                        >
+                          {event.title}
+                        </h3>
+                      </div>
+                      {event.flyerImage ? (
+                        <div className="mx-auto w-28 shrink-0 overflow-hidden rounded-lg bg-slate-100 ring-1 ring-black/5 sm:mx-0">
+                          <Image
+                            src={event.flyerImage}
+                            alt={event.flyerImageAlt ?? event.title}
+                            width={141}
+                            height={200}
+                            className="h-auto w-full object-contain"
+                            sizes="112px"
+                          />
+                        </div>
+                      ) : null}
+                    </div>
+
+                    {/* Event Details */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                      <div
+                        className={`flex items-center text-sm ${
+                          event.isPast ? "text-gray-500" : "text-gray-600"
+                        }`}
+                      >
+                        <Calendar
+                          size={16}
+                          className={`mr-2 flex-shrink-0 ${
+                            event.isPast ? "text-gray-400" : "text-primary"
+                          }`}
+                        />
+                        <span className={event.isPast ? "" : "font-medium"}>
+                          {dateLabel}
+                        </span>
+                      </div>
+                      <div
+                        className={`flex items-center text-sm ${
+                          event.isPast ? "text-gray-500" : "text-gray-600"
+                        }`}
+                      >
+                        <Clock
+                          size={16}
+                          className={`mr-2 flex-shrink-0 ${
+                            event.isPast ? "text-gray-400" : "text-primary"
+                          }`}
+                        />
+                        <span>{event.time}</span>
+                      </div>
+                      <div
+                        className={`flex items-center text-sm ${
+                          event.isPast ? "text-gray-500" : "text-gray-600"
+                        }`}
+                      >
+                        <MapPin
+                          size={16}
+                          className={`mr-2 flex-shrink-0 ${
+                            event.isPast ? "text-gray-400" : "text-primary"
+                          }`}
+                        />
+                        <span className="line-clamp-2">{event.location}</span>
+                      </div>
+                    </div>
+
+                    {/* Event Description */}
+                    <div
+                      className={`mb-4 ${
+                        event.isPast ? "text-gray-500" : "text-gray-600"
+                      }`}
+                    >
+                      {typeof event.description === "string" ? (
+                        <p className="text-sm leading-relaxed line-clamp-3">
+                          {event.description}
+                        </p>
+                      ) : (
+                        <div className="space-y-3">
+                          <p className="text-sm leading-relaxed">
+                            {event.description.intro}
+                          </p>
+                          <div>
+                            <p className="text-sm font-semibold mb-2">
+                              At this seminar, you&apos;ll discover how to:
+                            </p>
+                            <ul className="text-sm space-y-1">
+                              {event.description.learningPoints.map(
+                                (point, index) => (
+                                  <li key={index} className="flex items-start">
+                                    <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                                    {point}
+                                  </li>
+                                ),
+                              )}
+                            </ul>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Speakers Section for Webinars */}
+                    {event.type === "webinar" &&
+                      event.speakers &&
+                      event.speakers.length > 0 && (
+                        <div className="mb-6">
+                          <h4
+                            className={`text-sm font-semibold mb-3 ${
+                              event.isPast ? "text-gray-600" : "text-gray-900"
+                            }`}
+                          >
+                            Featured Speakers
+                          </h4>
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            {event.speakers.map((speaker, index) => (
+                              <div
+                                key={index}
+                                className="flex flex-col items-center text-center group"
+                              >
+                                <div className="relative mb-2 w-12 sm:w-16">
+                                  <AspectRatio ratio={4 / 5}>
+                                    <Image
+                                      src={speaker.imageUrl}
+                                      alt={speaker.name}
+                                      fill
+                                      sizes="(min-width: 640px) 64px, 48px"
+                                      className={`object-contain rounded-lg border-2 border-white bg-white shadow-md transition-opacity duration-200 ${
+                                        event.isPast
+                                          ? "grayscale opacity-70"
+                                          : "group-hover:opacity-90"
+                                      }`}
+                                    />
+                                  </AspectRatio>
+                                  {!event.isPast && (
+                                    <div className="absolute inset-0 rounded-lg bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                                  )}
+                                </div>
+                                <div className="px-1">
+                                  <p
+                                    className={`text-xs font-medium leading-tight mb-1 ${
+                                      event.isPast
+                                        ? "text-gray-500"
+                                        : "text-gray-900"
+                                    }`}
+                                  >
+                                    {speaker.name}
+                                  </p>
+                                  <p
+                                    className={`text-xs leading-tight ${
+                                      event.isPast
+                                        ? "text-gray-400"
+                                        : "text-gray-600"
+                                    }`}
+                                  >
+                                    {speaker.title}
+                                  </p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      {!event.isPast ? (
+                        event.detailPath ? (
+                          <Button
+                            asChild
+                            size="sm"
+                            className="flex-1 sm:flex-none"
+                          >
+                            <Link href={event.detailPath}>View Details</Link>
+                          </Button>
+                        ) : requiresAvailabilityConfirmation ? (
+                          <>
+                            <Button
+                              asChild
+                              size="sm"
+                              className="flex-1 sm:flex-none"
+                            >
+                              <a
+                                href={event.registrationLink}
+                                onClick={() =>
+                                  trackEventRegistrationClick(
+                                    event.title
+                                      .replace(/\s+/g, "_")
+                                      .toLowerCase(),
+                                    "email",
+                                  )
+                                }
+                              >
+                                <Mail size={16} className="mr-2" />
+                                Confirm Availability
+                              </a>
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="flex-1 sm:flex-none"
+                              onClick={() =>
+                                window.open("tel:+18337841121", "_self")
+                              }
+                            >
+                              <Phone size={16} className="mr-2" />
+                              Call PTI
+                            </Button>
+                          </>
+                        ) : event.registrationLink.startsWith("http") ? (
+                          <>
+                            <Button
+                              asChild
+                              size="sm"
+                              className="flex-1 sm:flex-none"
+                            >
+                              <a
+                                href={event.registrationLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() =>
+                                  trackEventRegistrationClick(
+                                    event.title
+                                      .replace(/\s+/g, "_")
+                                      .toLowerCase(),
+                                    "external",
+                                  )
+                                }
+                              >
+                                Register Now
+                              </a>
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="flex-1 sm:flex-none"
+                              onClick={() =>
+                                window.open(
+                                  `mailto:${SITE_CONTACT_EMAIL}?subject=Event Registration Inquiry`,
+                                  "_self",
+                                )
+                              }
+                            >
+                              <Mail size={16} className="mr-2" />
+                              Email Us to Register
+                            </Button>
+                          </>
+                        ) : (
+                          <>
+                            <Button
+                              size="sm"
+                              className="flex-1 sm:flex-none"
+                              onClick={() =>
+                                window.open("tel:+18337841121", "_self")
+                              }
+                            >
+                              <Phone size={16} className="mr-2" />
+                              Call to Register
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="flex-1 sm:flex-none"
+                              onClick={() =>
+                                window.open(
+                                  `mailto:${SITE_CONTACT_EMAIL}?subject=Event Registration Inquiry`,
+                                  "_self",
+                                )
+                              }
+                            >
+                              <Mail size={16} className="mr-2" />
+                              Email Us to Register
+                            </Button>
+                          </>
+                        )
+                      ) : (
+                        <Button
+                          className="w-full sm:w-auto"
+                          variant="outline"
+                          disabled
+                        >
+                          <span className="text-gray-500 cursor-not-allowed">
+                            Event Completed
+                          </span>
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        </div>
-      </Section>
+
+          {/* Show Past Events Button */}
+          {!showPastEvents && pastEvents.length > 0 && (
+            <div className="mt-8 text-center">
+              <button
+                onClick={() => setShowPastEvents(true)}
+                className="inline-flex items-center text-primary hover:text-primary/80 font-medium text-sm transition-colors"
+              >
+                View {pastEvents.length} Past{" "}
+                {pastEvents.length === 1 ? "Event" : "Events"}
+                <ChevronRight size={16} className="ml-1" />
+              </button>
+            </div>
+          )}
+        </Section>
+
+        <Section background="light" className="py-12 md:py-16">
+          <div className="max-w-6xl mx-auto">
+            <div className="max-w-3xl mb-8">
+              <SectionTitle>Recent Speaking Highlights</SectionTitle>
+              <SectionSubtitle className="mb-0">
+                These supporting materials give visitors proof of the
+                educational and community work happening around PTI&apos;s
+                speaking calendar, without asking them to click into a blog post
+                first.
+              </SectionSubtitle>
+            </div>
+
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,0.84fr)_minmax(0,1.16fr)] lg:items-center">
+              <DrNjoPhotoCard
+                image={bluePrintFlyer}
+                sizes="(min-width: 1280px) 24vw, (min-width: 1024px) 36vw, 100vw"
+                priority
+              />
+
+              <div className="grid gap-6 md:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] md:items-start">
+                <DrNjoPhotoCard
+                  image={publicationSpread}
+                  sizes="(min-width: 1280px) 18vw, (min-width: 768px) 24vw, 100vw"
+                />
+                <div className="rounded-[1.75rem] border border-gray-200 bg-white p-6 shadow-sm">
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80">
+                    Educational Presence
+                  </p>
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-3">
+                    Practical transition guidance delivered in public.
+                  </h3>
+                  <p className="text-base leading-relaxed text-gray-600 mb-4">
+                    From seminars and society programs to published materials
+                    and in-person mentoring, Dr. Njo&apos;s event presence is
+                    built around practical guidance dentists can use
+                    immediately.
+                  </p>
+                  <p className="text-base leading-relaxed text-gray-600">
+                    That matters because the same clarity visitors see in these
+                    highlights is the same clarity PTI brings to private
+                    speaking engagements, transition workshops, and one-on-one
+                    consulting.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        {/* Testimonial Section */}
+        <Section className="py-12 md:py-16">
+          <div className="max-w-4xl mx-auto">
+            <SectionTitle centered>What Our Attendees Say</SectionTitle>
+            <div className="flex justify-center">
+              {workshopReview && (
+                <TestimonialCard
+                  quote={workshopReview.quote}
+                  author={workshopReview.displayAuthorName}
+                  role={workshopReview.role}
+                  company={workshopReview.company}
+                  reviewHref={`/testimonials/${workshopReview.slug}`}
+                  className="max-w-2xl"
+                />
+              )}
+            </div>
+          </div>
+        </Section>
+
+        {/* Private Events Section */}
+        <Section background="light" className="py-12 md:py-16 lg:py-20">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-8">
+              <SectionTitle>Host a Private Event</SectionTitle>
+              <SectionSubtitle>
+                Looking for customized education for your dental society, study
+                club, or office?
+              </SectionSubtitle>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 md:p-8 shadow-sm border border-gray-200">
+              <h3 className="text-xl font-semibold mb-6 text-center md:text-left">
+                Available Topics Include:
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                {[
+                  "Practice Valuation Fundamentals",
+                  "Buying Your First Practice",
+                  "Preparing for Practice Sale",
+                  "Partnership Formation & Dissolution",
+                  "Associate Contracts & Buy-ins",
+                  "DSO vs. Private Practice Transitions",
+                ].map((topic, index) => (
+                  <div key={index} className="flex items-start">
+                    <div className="bg-primary/10 rounded-full p-1 mr-3 mt-1 flex-shrink-0">
+                      <div className="w-3 h-3 bg-primary rounded-full"></div>
+                    </div>
+                    <span className="text-gray-700">{topic}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bg-gray-50 rounded-lg p-4 mb-6">
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Our team of experts can deliver engaging, educational
+                  presentations tailored to your group&apos;s specific needs and
+                  interests. All presentations can be modified for length and
+                  format.
+                </p>
+              </div>
+
+              <div className="text-center">
+                <Button asChild size="lg" className="w-full sm:w-auto">
+                  <a
+                    href={`mailto:${SITE_CONTACT_EMAIL}?subject=Speaking%20Engagement%20Request`}
+                  >
+                    Request a Speaking Engagement
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Section>
       </div>
     </>
   );

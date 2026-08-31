@@ -2,7 +2,11 @@ import Image from "next/image";
 import { ExternalLink, Mail, Phone } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Section, SectionSubtitle, SectionTitle } from "@/components/ui/section";
+import {
+  Section,
+  SectionSubtitle,
+  SectionTitle,
+} from "@/components/ui/section";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { DrNjoPhotoCard } from "@/components/DrNjoPhotoCard";
 import {
@@ -61,19 +65,33 @@ const DrNjo = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center md:justify-start pt-4">
-                <Button asChild size="lg" className="font-medium px-8 text-base">
+                <Button
+                  asChild
+                  size="lg"
+                  className="font-medium px-8 text-base"
+                >
                   <a href={`tel:${PHONE_NUMBER_TEL}`}>
                     <Phone className="w-5 h-5 mr-3" />
                     Call Now
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="px-8 text-base">
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="px-8 text-base"
+                >
                   <a href={`mailto:${SITE_CONTACT_EMAIL}`}>
                     <Mail className="w-5 h-5 mr-3" />
                     Send Email
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="px-8 text-base">
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="px-8 text-base"
+                >
                   <a
                     href={MICHAEL_NJO_WEBSITE_URL}
                     target="_blank"
@@ -89,13 +107,13 @@ const DrNjo = () => {
             <div className="flex justify-center md:justify-end">
               <div className="relative w-72 sm:w-80 md:w-72 lg:w-80 xl:w-96">
                 <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-2xl opacity-75" />
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                <div className="relative aspect-[383/460] rounded-2xl overflow-hidden bg-slate-100 shadow-2xl border border-white/10">
                   <Image
                     src="/lovable-uploads/7f7f714e-f3e5-4943-a190-b0a9ed982709.png"
                     alt="Dr. Michael Njo - Dental Practice Transition Expert"
                     fill
                     sizes="(min-width: 1280px) 384px, (min-width: 1024px) 320px, (min-width: 640px) 288px, 256px"
-                    className="object-cover object-top"
+                    className="object-contain"
                     priority
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
@@ -114,7 +132,8 @@ const DrNjo = () => {
                 Speaking & Authorship
               </p>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight text-foreground">
-                A public body of work built around education, clarity, and trust.
+                A public body of work built around education, clarity, and
+                trust.
               </h2>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                 Dr. Njo&apos;s authority is grounded in practical education. He
@@ -124,28 +143,36 @@ const DrNjo = () => {
                 complex decisions easier to understand.
               </p>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                These materials and moments show a consistent pattern: he teaches
-                from lived experience, communicates clearly, and helps dentists
-                make high-stakes career decisions with more confidence.
+                These materials and moments show a consistent pattern: he
+                teaches from lived experience, communicates clearly, and helps
+                dentists make high-stakes career decisions with more confidence.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
                 <div className="rounded-xl border border-gray-200 bg-white p-4">
-                  <p className="text-sm font-semibold text-foreground">Published author</p>
+                  <p className="text-sm font-semibold text-foreground">
+                    Published author
+                  </p>
                   <p className="mt-1 text-sm text-muted-foreground">
                     Wrote the <em>Dental Practice Transitions Handbook</em>.
                   </p>
                 </div>
                 <div className="rounded-xl border border-gray-200 bg-white p-4">
-                  <p className="text-sm font-semibold text-foreground">Frequent educator</p>
+                  <p className="text-sm font-semibold text-foreground">
+                    Frequent educator
+                  </p>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    Speaks with residents, students, and doctors about ownership decisions.
+                    Speaks with residents, students, and doctors about ownership
+                    decisions.
                   </p>
                 </div>
                 <div className="rounded-xl border border-gray-200 bg-white p-4">
-                  <p className="text-sm font-semibold text-foreground">Trusted voice</p>
+                  <p className="text-sm font-semibold text-foreground">
+                    Trusted voice
+                  </p>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    Recognized publicly for pairing clinical credibility with practical guidance.
+                    Recognized publicly for pairing clinical credibility with
+                    practical guidance.
                   </p>
                 </div>
               </div>
@@ -179,7 +206,11 @@ const DrNjo = () => {
                 sizes="(min-width: 1024px) 44vw, 100vw"
               />
               <Button asChild className="sm:col-span-2">
-                <a href={DENTAL_TRANSITIONS_HANDBOOK_URL} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={DENTAL_TRANSITIONS_HANDBOOK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   View the Handbook on Amazon
                   <ExternalLink className="ml-2 h-4 w-4" aria-hidden="true" />
                 </a>
@@ -193,11 +224,13 @@ const DrNjo = () => {
         <div className="max-w-6xl mx-auto">
           <ScrollReveal direction="up" delay={0}>
             <div className="max-w-3xl mb-8 sm:mb-10">
-              <SectionTitle className="mb-4">Leadership & Community</SectionTitle>
+              <SectionTitle className="mb-4">
+                Leadership & Community
+              </SectionTitle>
               <SectionSubtitle className="mb-0">
-                Dr. Njo&apos;s work reaches beyond a single transaction. He teaches,
-                mentors, collaborates, and stays active in the relationships that
-                shape the profession.
+                Dr. Njo&apos;s work reaches beyond a single transaction. He
+                teaches, mentors, collaborates, and stays active in the
+                relationships that shape the profession.
               </SectionSubtitle>
             </div>
           </ScrollReveal>
@@ -212,21 +245,24 @@ const DrNjo = () => {
             </ScrollReveal>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              {[communityGroupPhoto, strategyMeetingPhoto, mayflowerTrio, blackTieMedalPortrait].map(
-                (image, index) => (
-                  <ScrollReveal
-                    key={image.id}
-                    direction="scale"
-                    delay={140 + index * 80}
-                    intensity="subtle"
-                  >
-                    <DrNjoPhotoCard
-                      image={image}
-                      sizes="(min-width: 1280px) 20vw, (min-width: 640px) 44vw, 100vw"
-                    />
-                  </ScrollReveal>
-                )
-              )}
+              {[
+                communityGroupPhoto,
+                strategyMeetingPhoto,
+                mayflowerTrio,
+                blackTieMedalPortrait,
+              ].map((image, index) => (
+                <ScrollReveal
+                  key={image.id}
+                  direction="scale"
+                  delay={140 + index * 80}
+                  intensity="subtle"
+                >
+                  <DrNjoPhotoCard
+                    image={image}
+                    sizes="(min-width: 1280px) 20vw, (min-width: 640px) 44vw, 100vw"
+                  />
+                </ScrollReveal>
+              ))}
             </div>
           </div>
         </div>
@@ -236,7 +272,9 @@ const DrNjo = () => {
         <div className="max-w-6xl mx-auto">
           <ScrollReveal direction="up" delay={0}>
             <div className="max-w-3xl mb-8 sm:mb-10">
-              <SectionTitle className="mb-4">Relationships Built Over Time</SectionTitle>
+              <SectionTitle className="mb-4">
+                Relationships Built Over Time
+              </SectionTitle>
               <SectionSubtitle className="mb-0">
                 These photos stay intentionally lower-emphasis. They are here to
                 show the human side of trust, friendship, and long-view
@@ -274,8 +312,8 @@ const DrNjo = () => {
                 Ready to Discuss Your Practice Transition?
               </h2>
               <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Schedule a confidential consultation to explore your options with
-                personalized guidance from an experienced practitioner.
+                Schedule a confidential consultation to explore your options
+                with personalized guidance from an experienced practitioner.
               </p>
             </div>
           </ScrollReveal>
@@ -288,11 +326,17 @@ const DrNjo = () => {
                     <Phone className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-lg sm:text-xl font-semibold mb-2">Direct Phone</h3>
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2">
+                      Direct Phone
+                    </h3>
                     <p className="text-muted-foreground mb-4 text-sm sm:text-base">
                       Speak directly with Dr. Njo for immediate consultation
                     </p>
-                    <Button asChild variant="outline" className="w-full min-h-[44px] text-sm sm:text-base">
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="w-full min-h-[44px] text-sm sm:text-base"
+                    >
                       <a href={`tel:${PHONE_NUMBER_TEL}`}>{PHONE_NUMBER}</a>
                     </Button>
                   </div>
@@ -307,11 +351,17 @@ const DrNjo = () => {
                     <Mail className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-lg sm:text-xl font-semibold mb-2">Email Consultation</h3>
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2">
+                      Email Consultation
+                    </h3>
                     <p className="text-muted-foreground mb-4 text-sm sm:text-base">
                       Send your questions for a detailed written response
                     </p>
-                    <Button asChild variant="outline" className="w-full min-h-[44px] text-sm sm:text-base">
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="w-full min-h-[44px] text-sm sm:text-base"
+                    >
                       <a href={`mailto:${SITE_CONTACT_EMAIL}`}>Send Email</a>
                     </Button>
                   </div>
@@ -330,19 +380,25 @@ const DrNjo = () => {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
               <div className="space-y-3 sm:space-y-4">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">30+</div>
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
+                  30+
+                </div>
                 <p className="text-muted-foreground text-sm sm:text-base">
                   Years in Clinical Dentistry
                 </p>
               </div>
               <div className="space-y-3 sm:space-y-4">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">1</div>
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
+                  1
+                </div>
                 <p className="text-muted-foreground text-sm sm:text-base">
                   Published Handbook Author
                 </p>
               </div>
               <div className="space-y-3 sm:space-y-4">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">100+</div>
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
+                  100+
+                </div>
                 <p className="text-muted-foreground text-sm sm:text-base">
                   Successful Transitions
                 </p>

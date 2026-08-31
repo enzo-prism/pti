@@ -1,9 +1,11 @@
 # Repository Guide for Codex CLI
 
 ## Project overview
+
 This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwind CSS, and shadcn/ui. Routes live in `src/app`, and view components are in `src/views`. Global styles load from `src/app/globals.css`. Layouts are defined in `src/app/(site)/layout.tsx` and `src/app/(minimal)/layout.tsx`.
 
 ## Key directories and source of truth
+
 - `src/app`: route-level pages, layouts, and metadata.
 - `src/views`: route-level view components consumed by app routes.
 - `src/components`: reusable UI and layout; `src/components/ui` is the shadcn/ui layer (only components actually in use are kept — add new shadcn components only when something imports them).
@@ -12,20 +14,24 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 - `public`: static assets, redirects, and `lovable-uploads` image folder.
 
 ## Local commands
+
 - `npm run dev`: Next.js dev server.
 - `npm run build`: production build.
 - `npm run start`: serve production build locally.
 - `npm run lint`: ESLint on the full repo.
 - `npm run test`: Vitest suite (`*.test.ts` colocated with source).
+- `npm run images:check`: validates oriented image ratios and shared framing policies.
 - `npm run rss:check`: validates the generated blog RSS document.
 
 ## Routing and layout
+
 - Routes live in `src/app`. `src/app/(site)/layout.tsx` adds `Navbar` and `Footer`.
 - `DrNjo` uses the `(minimal)` route group.
 - Legacy URL redirects live in `vercel.json` (Vercel host + www→apex + legacy path redirects). The old portable `public/_redirects` and `public/_headers` files were removed after the Vercel migration. There is no middleware.
 - Add new routes to `src/lib/routeBreadcrumbs.ts` for breadcrumb data and to `STATIC_ROUTES` in `src/app/sitemap.ts`, then bump the static-route count assertion in `src/app/sitemap.test.ts`.
 
 ## Content management
+
 - Blog posts: `src/data/blogPosts.ts` (Markdown-in-strings, optional embedded HTML).
   - Required fields: `id`, `title`, `excerpt`, `category`, `date` (YYYY-MM-DD), `readTime`, `slug`, `author`.
   - Optional fields: `dateModified`, `featuredImage`, `featuredImageAlt`, `featuredImageFit`, `series`, `cta`.
@@ -43,6 +49,7 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 - Business contact info: `src/lib/constants.ts` and `SITE_CONTACT_EMAIL` in `src/lib/siteMetadata.ts` — always use these constants, never hardcode emails or phone numbers.
 
 ## Blog system behavior
+
 - Listing page: `src/views/Blog.tsx` (client component receiving summaries as props). The route is statically generated; `?search=` deep links are applied after hydration from `window.location.search`.
 - Post page: `src/views/BlogPost.tsx` renders Markdown through the allowlist sanitizer in `src/lib/markdown.ts` before `dangerouslySetInnerHTML`.
   - Content is split on blank lines, so avoid extra blank lines inside HTML blocks.
@@ -53,6 +60,7 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 - Use `formatLocalDate` for display to avoid timezone shifts.
 
 ## SEO and structured data
+
 - `src/lib/seo.ts` builds metadata; `src/components/StructuredData.tsx` renders JSON-LD.
 - `src/lib/structuredData.ts` includes schemas for blog posts, events, contact, and FAQs (`buildFAQSchema`). The `ProfessionalService`/`LocalBusiness` schema carries `geo` (`BUSINESS_GEO` in `siteMetadata.ts`) and `sameAs`.
 - Canonical host is controlled by `NEXT_PUBLIC_CANONICAL_SITE_URL` in `src/lib/siteMetadata.ts`.
@@ -61,10 +69,12 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 - Search schema targets `/blog` via `SITE_SEARCH_PATH`.
 
 ## Analytics
+
 - `AnalyticsProviders` is mounted once from the root layout. Google Analytics, Hotjar, and Vercel Analytics load only after explicit consent on the canonical production host; privacy choices can be reset from the footer.
 - Custom events in `src/lib/analytics.ts` (lead generation, blog views, CTAs, series navigation).
 
 ## Styling and UI conventions
+
 - Tailwind is primary; extend tokens in `tailwind.config.ts` (primary is `#06437A`).
 - Global styles and utilities live in `src/app/globals.css` under Tailwind layers.
 - Common layout helpers: `Section`, `SectionTitle`, `SectionSubtitle`.
@@ -75,33 +85,41 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 - Use the `@` alias for `src` imports.
 
 ## Assets
+
 - Use `/lovable-uploads/...` for local assets in `public/lovable-uploads`.
 - Panel of Experts dinner photos: `public/lovable-uploads/drnjo-2026/IMG_4918.webp`, `IMG_4923.webp`, `IMG_3346.webp` (1600×2133 WebP from the original iPhone JPEGs).
 - Industry-leaders reel stays an Instagram embed; the blog hero uses a saved poster at `public/lovable-uploads/drnjo-2026/industry-leaders-reel-poster.webp`. Do not hotlink Instagram CDN URLs (they expire).
 - External image URLs are allowed; include meaningful `alt` text.
 - `featuredImageFit` supports `"cover"` or `"contain"` for blog posts.
-- Frame featured images from the file, not a default landscape box. `src/lib/featuredImage.ts` classifies `portrait`, `square`, or `landscape` from `featuredImageAspect` and pixel size (including a known-size map for the Dugoni flyer and the Attitude graphic). Portrait/square heroes use intrinsic width/height. Listing cards use 3:4 or 9:16 for portraits, `aspect-square` for squares, and `object-cover` for untagged landscapes. Do not default post heroes to `object-contain` inside a 16:9 box.
+- Frame featured images from the file, not from a generic crop. `src/lib/featuredImage.ts` classifies `portrait`, `square`, or `landscape` from `featuredImageAspect` and pixel size (including a known-size map for the Dugoni flyer and the Attitude graphic). Portrait and square heroes use intrinsic width/height. Untagged images fail safe to full-frame rendering; a landscape may use `cover` only when its crop is explicitly declared and reviewed.
 - Portrait community graphics set `featuredImageAspect: "portrait"` plus the file's `featuredImageWidth` / `featuredImageHeight` so listing cards, the homepage Latest Update, and post heroes use that intrinsic frame. Vertical recaps that need this include the Board of Regents graphic, Roseville collage, Bill/Mikki porch, Beyond the Chair flyer, Panel of Experts dinner photos, and the Dugoni Lunch & Learn flyer.
 - Dr. Njo storytelling photos in `src/data/drNjoGallery.ts` must use an `aspect` that matches the file (`landscape` 4:3, `tall` 3:4, `story` 148:320 for the medal portrait). `DrNjoPhotoCard` maps those tokens to Tailwind aspect classes.
+- Editorial and featured images default to full-frame rendering. Use `cover` only for a reviewed avatar, decorative background, or asset whose declared frame matches the displayed source ratio.
+- `npm run images:check` verifies oriented gallery ratios and prevents responsive or interaction-driven recropping.
 - Always render post dates with `formatLocalDate`. Never print the raw `YYYY-MM-DD` string in UI.
 
 ## Build and deployment notes
+
 - The build defines `NEXT_PUBLIC_BUILD_TIMESTAMP` in `next.config.mjs`.
 - Sitemap and robots are generated by `src/app/sitemap.ts` and `src/app/robots.ts`.
 - Security headers and the `www` → apex redirect are defined in `next.config.mjs` and `vercel.json`.
 - The linked Vercel project is `pti`; the canonical production host is `https://practicetransitionsinstitute.com`.
 
 ## Coding style and naming
+
 - TypeScript only; 2-space indentation; functional components.
 - PascalCase component filenames; hooks start with `use`.
 - Prefer `cn` for class merging and shadcn patterns for variants.
 
 ## Testing and verification
+
 - Vitest suite lives next to source files (`*.test.ts`); run with `npm run test`.
+- Image-framing guard: `npm run images:check`.
 - The sitemap test asserts the static-route count — update it when adding routes.
 - For UI changes, manually verify key routes: `/`, `/blog`, `/blog/:slug`, `/events`, `/contact`.
 
 ## Commit and PR guidelines
+
 - Commit messages: short, imperative (e.g., "Fix blog post runtime error").
 - PRs should describe user-facing changes and list verification steps.
 

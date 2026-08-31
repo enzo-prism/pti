@@ -1,4 +1,7 @@
-export const PORTRAIT_FEATURED_FALLBACK = { width: 1003, height: 1568 } as const;
+export const PORTRAIT_FEATURED_FALLBACK = {
+  width: 1003,
+  height: 1568,
+} as const;
 export const SQUARE_FEATURED_FALLBACK = { width: 1024, height: 1024 } as const;
 
 export const INTRINSIC_FEATURED_IMAGE_CLASS =
@@ -19,15 +22,19 @@ export type FeaturedImageShape = "portrait" | "square" | "landscape";
  * Pixel sizes for posts that need a non-landscape frame even when the data
  * file has not yet been tagged. Prefer setting width/height on the post.
  */
-const KNOWN_FEATURED_SIZES: Record<string, { width: number; height: number }> = {
-  "/lovable-uploads/flyer-photo.webp": { width: 1700, height: 2188 },
-  "https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761757553/Frame_1_psbk9m.png": {
-    width: 1024,
-    height: 1024,
-  },
-};
+const KNOWN_FEATURED_SIZES: Record<string, { width: number; height: number }> =
+  {
+    "/lovable-uploads/flyer-photo.webp": { width: 1700, height: 2188 },
+    "https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761757553/Frame_1_psbk9m.png":
+      {
+        width: 1024,
+        height: 1024,
+      },
+  };
 
-function resolveFeaturedSize(post: FeaturedImageLayout): { width: number; height: number } | null {
+function resolveFeaturedSize(
+  post: FeaturedImageLayout,
+): { width: number; height: number } | null {
   if (post.featuredImageWidth && post.featuredImageHeight) {
     return { width: post.featuredImageWidth, height: post.featuredImageHeight };
   }
@@ -37,7 +44,9 @@ function resolveFeaturedSize(post: FeaturedImageLayout): { width: number; height
   return null;
 }
 
-export function getFeaturedImageShape(post: FeaturedImageLayout): FeaturedImageShape {
+export function getFeaturedImageShape(
+  post: FeaturedImageLayout,
+): FeaturedImageShape {
   if (post.featuredImageAspect === "square") return "square";
   if (post.featuredImageAspect === "portrait") return "portrait";
 
@@ -56,7 +65,10 @@ export function isPortraitFeaturedImage(post: FeaturedImageLayout): boolean {
 }
 
 export function shouldContainFeaturedImage(post: FeaturedImageLayout): boolean {
-  return post.featuredImageFit === "contain" || getFeaturedImageShape(post) !== "landscape";
+  return (
+    post.featuredImageFit !== "cover" ||
+    getFeaturedImageShape(post) !== "landscape"
+  );
 }
 
 export function getIntrinsicFeaturedSize(post: FeaturedImageLayout): {
@@ -77,7 +89,9 @@ export function getPortraitFeaturedSize(post: FeaturedImageLayout): {
 }
 
 /** Frame class for blog listing cards and related-article thumbs. */
-export function getFeaturedListingFrameClass(post: FeaturedImageLayout): string {
+export function getFeaturedListingFrameClass(
+  post: FeaturedImageLayout,
+): string {
   if (!shouldContainFeaturedImage(post)) {
     return "aspect-video";
   }
@@ -96,6 +110,10 @@ export function getFeaturedListingFrameClass(post: FeaturedImageLayout): string 
   return "flex aspect-[4/3] items-center justify-center bg-slate-100";
 }
 
-export function getFeaturedListingImageClass(post: FeaturedImageLayout): string {
-  return shouldContainFeaturedImage(post) ? "object-contain p-3" : "object-cover";
+export function getFeaturedListingImageClass(
+  post: FeaturedImageLayout,
+): string {
+  return shouldContainFeaturedImage(post)
+    ? "object-contain p-3"
+    : "object-cover";
 }

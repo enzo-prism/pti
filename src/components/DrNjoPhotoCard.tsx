@@ -48,14 +48,14 @@ export function DrNjoPhotoCard({
       <div
         className={cn(
           "overflow-hidden rounded-[1.75rem] border border-gray-200 bg-white shadow-sm",
-          frameClassName
+          frameClassName,
         )}
       >
         <div
           className={cn(
             "relative",
             getDrNjoGalleryAspectClass(image.aspect),
-            isContained && "bg-slate-50"
+            isContained && "bg-slate-50",
           )}
         >
           <Image
@@ -65,9 +65,9 @@ export function DrNjoPhotoCard({
             priority={priority}
             sizes={sizes}
             className={cn(
-              "transition-transform duration-500 group-hover:scale-[1.02]",
+              "transition-opacity duration-300",
               isContained ? "object-contain p-4 sm:p-5" : "object-cover",
-              imageClassName
+              imageClassName,
             )}
           />
         </div>
@@ -76,7 +76,7 @@ export function DrNjoPhotoCard({
         <figcaption
           className={cn(
             "px-1 text-sm leading-relaxed text-gray-600",
-            captionClassName
+            captionClassName,
           )}
         >
           {image.caption}

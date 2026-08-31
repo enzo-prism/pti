@@ -37,7 +37,7 @@ This document records the current production architecture after the August 2026 
 - `src/lib/markdown.ts` sanitizes rendered HTML through a narrow allowlist; Instagram is the only allowed iframe host.
 - Article tests reject drafting-process language, body H1s, unsafe HTML, and metadata beyond the configured title/description limits.
 - Source cards and legal/tax/finance disclaimers describe the available evidence without inventing external review credentials.
-- Homepage Latest Update and blog listing/featured cards honor `featuredImageFit` and `featuredImageAspect`. `src/lib/featuredImage.ts` classifies portrait, square, and landscape from metadata or known file sizes so contain images are not letterboxed inside a 16:9 crop. Vertical recaps set `featuredImageWidth` / `featuredImageHeight`. Untagged landscape post heroes use `object-cover`. Square graphics (Attitude `Frame_1`) use an `aspect-square` listing frame.
+- Homepage Latest Update and blog listing/featured cards honor `featuredImageFit` and `featuredImageAspect`. `src/lib/featuredImage.ts` classifies portrait, square, and landscape from metadata or known file sizes. Vertical recaps set `featuredImageWidth` / `featuredImageHeight`; square graphics such as Attitude `Frame_1` use an `aspect-square` frame. Untagged images fail safe to full-frame rendering, while an explicit reviewed landscape crop may use `object-cover` in a stable frame.
 - Display dates go through `formatLocalDate`. The homepage Latest Update must not render a raw ISO date.
 - Completed-event recaps must not keep upcoming-event CTAs. The August 14 Panel of Experts dinner post links to the August 27 Roseville recap instead of advertising a past dinner as upcoming.
 
@@ -46,7 +46,8 @@ This document records the current production architecture after the August 2026 
 - `src/views/Services.tsx` owns the two `/services` overview images.
 - “Choose the Path That Fits Your Goals” uses `/lovable-uploads/drnjo-2026/san-mateo-symposium-workshop.jpg` (1800×1200) with an authentic description of Dr. Michael Njo advising dentists.
 - “Our Process” uses `/lovable-uploads/services-transition-planning-hd.webp` (1672×941). It is an illustrative planning scene, not a representation of PTI clients or staff, so its alt text must stay activity-based.
-- Both slots are fixed 16:9 `aspect-video` frames. Prefer sources at least 1600px wide with all faces, hands, and decision-making activity inside the centered safe area. Avoid portrait sources and do not compensate for a bad source with fragile breakpoint-specific object positioning.
+- The overview slot matches its 1800×1200 source at 3:2. The process slot matches its 1672×941 source. Both use full-frame rendering so their subjects remain visible at every responsive width.
+- Site-wide editorial imagery defaults to intrinsic-ratio or `object-contain` rendering. `cover` is limited to explicit, reviewed crops whose frame ratio matches the source or whose role is an avatar/decorative backdrop. `npm run images:check` enforces the shared policy.
 
 ## Locations and structured data
 

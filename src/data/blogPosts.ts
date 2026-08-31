@@ -137,14 +137,16 @@ Selling your practice is a process, not an event. The dentists who do best start
   {
     id: 40,
     title: "7 Questions to Ask Before Hiring a Dental Practice Transition Firm",
-    excerpt: "Before choosing representation for a dental practice sale, ask about experience, valuation, confidentiality, buyer network, fees, who handles the transaction, references, and who the firm represents.",
+    excerpt:
+      "Before choosing representation for a dental practice sale, ask about experience, valuation, confidentiality, buyer network, fees, who handles the transaction, references, and who the firm represents.",
     category: "Practice Transitions",
     date: "2026-06-09",
     readTime: "5 min read",
     gradient: "bg-gradient-to-br from-primary via-blue-600 to-cyan-500",
     slug: "questions-before-hiring-dental-practice-transition-firm",
     author: "Practice Transitions Institute",
-    metaTitle: "7 Questions Before Hiring a Dental Practice Transition Firm | PTI",
+    metaTitle:
+      "7 Questions Before Hiring a Dental Practice Transition Firm | PTI",
     cta: {
       title: "Thinking about selling your dental practice?",
       description:
@@ -218,12 +220,14 @@ As a former practice owner and clinician, Michael Njo understands the emotional 
 
 Trust. Experience. Results.
 
-**Thinking about selling your dental practice?** [Contact Practice Transitions Institute](/contact) for a confidential conversation before you choose representation.`
+**Thinking about selling your dental practice?** [Contact Practice Transitions Institute](/contact) for a confidential conversation before you choose representation.`,
   },
   {
     id: 39,
-    title: "Dr. Michael Njo Leads Associate Workshop at the SMCDS Peninsula Dental Compliance Symposium",
-    excerpt: "Dr. Michael Njo worked with future dental buyers and associates at the SMCDS Peninsula Dental Compliance Symposium, helping associate dentists prepare for job opportunities and long-term ownership decisions.",
+    title:
+      "Dr. Michael Njo Leads Associate Workshop at the SMCDS Peninsula Dental Compliance Symposium",
+    excerpt:
+      "Dr. Michael Njo worked with future dental buyers and associates at the SMCDS Peninsula Dental Compliance Symposium, helping associate dentists prepare for job opportunities and long-term ownership decisions.",
     category: "Community Impact",
     date: "2026-05-26",
     readTime: "2 min read",
@@ -231,10 +235,13 @@ Trust. Experience. Results.
     slug: "smcds-peninsula-dental-compliance-symposium-associate-workshop",
     author: "Practice Transitions Institute",
     metaTitle: "SMCDS Associate Workshop with Dr. Michael Njo | PTI",
-    featuredImage: "/lovable-uploads/drnjo-2026/san-mateo-symposium-workshop.jpg",
-    featuredImageAlt: "Dr. Michael Njo leading a workshop with associate dentists at the SMCDS Peninsula Dental Compliance Symposium",
-    featuredImageCaption: "Dr. Michael Njo working with future dental buyers and associates during the SMCDS Peninsula Dental Compliance Symposium.",
-    featuredImageFit: "cover",
+    featuredImage:
+      "/lovable-uploads/drnjo-2026/san-mateo-symposium-workshop.jpg",
+    featuredImageAlt:
+      "Dr. Michael Njo leading a workshop with associate dentists at the SMCDS Peninsula Dental Compliance Symposium",
+    featuredImageCaption:
+      "Dr. Michael Njo working with future dental buyers and associates during the SMCDS Peninsula Dental Compliance Symposium.",
+    featuredImageFit: "contain",
     content: `At the SMCDS Peninsula Dental Compliance Symposium, Dr. Michael Njo spent time with associate dentists preparing for one of the most important early-career steps: finding the right professional opportunity and understanding how today's job decisions can shape future ownership options.
 
 The workshop focused on preparing associate dentists to find jobs with more clarity. Dr. Njo worked with future dental buyers and associates on how to think beyond the first offer, ask better questions, and connect a job search to a longer-term practice transition strategy.
@@ -253,12 +260,14 @@ Practice transitions are not only about transactions. They are about people maki
 
 PTI is grateful for opportunities to support dental societies, students, residents, associates, and practice owners through practical conversations like this one.
 
-**Planning your next step?** [Contact the PTI team](/contact) to talk through associateship, partnership, ownership, or practice transition questions.`
+**Planning your next step?** [Contact the PTI team](/contact) to talk through associateship, partnership, ownership, or practice transition questions.`,
   },
   {
     id: 38,
-    title: "What Should a Dental Practice NDA Include Before You Share Financials?",
-    excerpt: "Learn what a dental practice NDA should cover before financials, staff details, and operational information are shared with a buyer, and why confidentiality discipline protects deal value.",
+    title:
+      "What Should a Dental Practice NDA Include Before You Share Financials?",
+    excerpt:
+      "Learn what a dental practice NDA should cover before financials, staff details, and operational information are shared with a buyer, and why confidentiality discipline protects deal value.",
     category: "Practice Transitions",
     date: "2026-04-06",
     readTime: "6 min read",
@@ -400,18 +409,20 @@ A dental practice sale can lose momentum fast if confidentiality slips. Staff ge
 That is why the NDA matters before financials are shared. It protects more than numbers. It protects timing, leverage, and the integrity of the entire transition.
 
 If you are getting ready to sell and want a disciplined process around buyer screening, confidentiality, valuation, and deal structure, Practice Transitions Institute can help you move forward with far less noise and far more control.`,
-  }
-,  {
+  },
+  {
     id: 37,
     title: "7 Practical Ways Dentists Can Improve Practice Value Before a Sale",
-    excerpt: "Simple, high impact steps dentists can take in the 12 to 24 months before selling to improve practice value, profitability, and buyer interest.",
+    excerpt:
+      "Simple, high impact steps dentists can take in the 12 to 24 months before selling to improve practice value, profitability, and buyer interest.",
     category: "Practice Transitions",
     date: "2026-03-24",
     readTime: "3 min read",
     gradient: "bg-gradient-to-br from-primary via-indigo-600 to-cyan-500",
     slug: "improve-practice-value-before-selling",
     author: "Practice Transitions Institute",
-    metaTitle: "Improve Dental Practice Value Before Selling | Practice Transitions Institute",
+    metaTitle:
+      "Improve Dental Practice Value Before Selling | Practice Transitions Institute",
     content: `Who this is for
 
 This piece is for dentists who plan to sell in the next 1 to 3 years and want practical steps that increase buyer interest and net proceeds. The recommendations are intentionally specific and measurable so you can track progress quarter to quarter.
@@ -472,8 +483,10 @@ Notes: practical, seller focused, and designed for dental owners preparing to se
   },
   {
     id: 36,
-    title: "What Happens to Accounts Receivable When You Sell a Dental Practice?",
-    excerpt: "Selling your dental practice and unsure what happens to accounts receivable? Learn the common options, tradeoffs, and planning questions that affect closing and post-sale collections.",
+    title:
+      "What Happens to Accounts Receivable When You Sell a Dental Practice?",
+    excerpt:
+      "Selling your dental practice and unsure what happens to accounts receivable? Learn the common options, tradeoffs, and planning questions that affect closing and post-sale collections.",
     category: "Practice Transitions",
     date: "2026-03-22",
     readTime: "6 min read",
@@ -582,15 +595,18 @@ At Practice Transitions Institute, we help sellers think through the details tha
   },
   {
     id: 35,
-    title: "Should You Get Pre Approved Before Shopping for a Dental Practice? Yes, and Here Is Why",
-    excerpt: "Thinking about buying a dental practice? Learn why financing pre approval should happen before your search, what lenders look for, and how prepared buyers move faster.",
+    title:
+      "Should You Get Pre Approved Before Shopping for a Dental Practice? Yes, and Here Is Why",
+    excerpt:
+      "Thinking about buying a dental practice? Learn why financing pre approval should happen before your search, what lenders look for, and how prepared buyers move faster.",
     category: "Practice Transitions",
     date: "2026-03-20",
     readTime: "6 min read",
     gradient: "bg-gradient-to-br from-primary via-emerald-600 to-cyan-500",
     slug: "dental-practice-pre-approval-before-shopping",
     author: "Practice Transitions Institute",
-    metaTitle: "Should You Get Pre Approved Before Buying a Dental Practice? | PTI",
+    metaTitle:
+      "Should You Get Pre Approved Before Buying a Dental Practice? | PTI",
     content: `A lot of dentists start the ownership journey by browsing listings. That feels natural, but it is often backward. If you are serious about buying a dental practice, one of the smartest first moves is getting financing clarity before you fall in love with a specific deal.
 
 In plain English, that means talking with lenders early and getting a realistic sense of what kind of practice you can actually buy. In many situations, that also means getting some level of pre approval or pre qualification in place before you shop aggressively.
@@ -694,8 +710,10 @@ Practice Transitions Institute helps dentists prepare for ownership with realist
   },
   {
     id: 34,
-    title: "How Long Does It Take to Sell a Dental Practice? A Realistic Timeline From Planning to Closing",
-    excerpt: "Selling a dental practice usually takes longer than most owners expect. Learn the typical timeline, what slows deals down, and how to prepare for a smoother transition.",
+    title:
+      "How Long Does It Take to Sell a Dental Practice? A Realistic Timeline From Planning to Closing",
+    excerpt:
+      "Selling a dental practice usually takes longer than most owners expect. Learn the typical timeline, what slows deals down, and how to prepare for a smoother transition.",
     category: "Practice Transitions",
     date: "2026-03-19",
     readTime: "6 min read",
@@ -803,11 +821,12 @@ Earlier than you think. A valuation or opinion of value helps set realistic expe
 If you are wondering how long it takes to sell a dental practice, the practical answer is this: the visible transaction may take 6 to 12 months, but the best exits are usually built well before that.
 
 If you want a smoother transition, stronger buyer confidence, and a better chance of protecting the value you spent years building, start planning now. Practice Transitions Institute can help you evaluate where you stand, understand your options, and map the right transition timeline for your goals.`,
-  }
-,  {
+  },
+  {
     id: 33,
     title: "What Should a Dental Partnership Agreement Include?",
-    excerpt: "Learn the key terms every dental partnership agreement should cover, from ownership and compensation to exits and deadlock planning, before conflicts get expensive.",
+    excerpt:
+      "Learn the key terms every dental partnership agreement should cover, from ownership and compensation to exits and deadlock planning, before conflicts get expensive.",
     category: "Practice Transitions",
     date: "2026-04-05",
     dateModified: "2026-08-17",
@@ -828,7 +847,8 @@ If you want a smoother transition, stronger buyer confidence, and a better chanc
         url: "https://www.sba.gov/business-guide/launch-your-business/choose-business-structure",
       },
     ],
-    disclaimer: "This article provides general educational information, not legal or tax advice. Partnership terms and enforceability vary by jurisdiction and circumstances. Consult a dental-experienced attorney and tax professional before signing or changing an agreement.",
+    disclaimer:
+      "This article provides general educational information, not legal or tax advice. Partnership terms and enforceability vary by jurisdiction and circumstances. Consult a dental-experienced attorney and tax professional before signing or changing an agreement.",
     content: `Dental partnerships can be brilliant. Shared overhead, better coverage, complementary skills, a clearer succession path, maybe even the radical luxury of taking a real vacation without the office catching fire.
 
 They can also go sideways fast if the agreement is vague.
@@ -1013,7 +1033,8 @@ If you are exploring a dental partnership, buy in, or ownership restructure, con
   {
     id: 32,
     title: "How Should You Tell Patients You Are Selling Your Dental Practice?",
-    excerpt: "Learn when and how to announce a dental practice sale to patients, what to say in the letter, and how to protect trust, retention, and practice value.",
+    excerpt:
+      "Learn when and how to announce a dental practice sale to patients, what to say in the letter, and how to protect trust, retention, and practice value.",
     category: "Practice Transitions",
     date: "2026-04-04",
     dateModified: "2026-08-17",
@@ -1021,7 +1042,8 @@ If you are exploring a dental partnership, buy in, or ownership restructure, con
     gradient: "bg-gradient-to-br from-primary via-blue-600 to-teal-500",
     slug: "how-should-you-tell-patients-you-are-selling-your-dental-practice",
     author: "Practice Transitions Institute",
-    metaTitle: "How Should You Tell Patients You Are Selling Your Dental Practice?",
+    metaTitle:
+      "How Should You Tell Patients You Are Selling Your Dental Practice?",
     sources: [
       {
         name: "Summary of the HIPAA Privacy Rule",
@@ -1029,7 +1051,8 @@ If you are exploring a dental partnership, buy in, or ownership restructure, con
         url: "https://www.hhs.gov/hipaa/for-professionals/privacy/laws-regulations/index.html",
       },
     ],
-    disclaimer: "This article provides general educational information, not legal or compliance advice. Patient-notice, record-transfer, privacy, and retention requirements vary by state and transaction. Confirm the plan with qualified legal and compliance advisors.",
+    disclaimer:
+      "This article provides general educational information, not legal or compliance advice. Patient-notice, record-transfer, privacy, and retention requirements vary by state and transaction. Confirm the plan with qualified legal and compliance advisors.",
     content: `Selling a dental practice is not just a financial event. It is a relationship event. For many owners, one of the hardest parts is not the valuation, the buyer search, or the closing documents. It is figuring out how to tell patients without causing unnecessary worry, confusion, or attrition.
 
 That concern is valid. Patients are not buying a practice, but they are deciding whether to trust what happens next. And trust can get shaky fast if the communication feels vague, late, overly self focused, or awkwardly corporate.
@@ -1180,8 +1203,10 @@ If you want help structuring the timing, messaging, and handoff around a sale, c
   },
   {
     id: 31,
-    title: "How Long Should a Seller Stay After Closing a Dental Practice Sale?",
-    excerpt: "Learn when a seller should stay after closing, when a short transition is enough, and how buyers and sellers can structure a smoother dental practice handoff.",
+    title:
+      "How Long Should a Seller Stay After Closing a Dental Practice Sale?",
+    excerpt:
+      "Learn when a seller should stay after closing, when a short transition is enough, and how buyers and sellers can structure a smoother dental practice handoff.",
     category: "Practice Transitions",
     date: "2026-04-03",
     dateModified: "2026-08-17",
@@ -1189,8 +1214,10 @@ If you want help structuring the timing, messaging, and handoff around a sale, c
     gradient: "bg-gradient-to-br from-primary via-emerald-600 to-cyan-500",
     slug: "how-long-should-a-seller-stay-after-closing-a-dental-practice-sale",
     author: "Practice Transitions Institute",
-    metaTitle: "How Long Should a Seller Stay After Closing a Dental Practice Sale?",
-    disclaimer: "This article provides general educational information, not legal, tax, employment, or financial advice. Post-closing duties should be documented in the transaction agreements and reviewed by the parties' qualified advisors.",
+    metaTitle:
+      "How Long Should a Seller Stay After Closing a Dental Practice Sale?",
+    disclaimer:
+      "This article provides general educational information, not legal, tax, employment, or financial advice. Post-closing duties should be documented in the transaction agreements and reviewed by the parties' qualified advisors.",
     content: `One of the most misunderstood parts of a dental practice sale happens after the ink dries. Buyers often assume the selling doctor should stay six months or a year. Sellers often assume they should leave immediately to avoid confusion. In reality, the right post closing transition period depends on patient flow, staff stability, operatories, referral dynamics, and the goals of both sides.
 
 A post-closing handoff is a practical transaction decision that should be coordinated with valuation, due diligence, financing, staff communication, and the needs of patients.
@@ -1316,8 +1343,10 @@ The best post closing transitions do not happen by accident. They are designed a
   },
   {
     id: 30,
-    title: "Asset Sale vs Stock Sale in a Dental Practice Transition: What Buyers and Sellers Should Know",
-    excerpt: "Learn the practical differences between an asset sale and a stock sale in a dental practice transition, including risk, tax, contracts, and why deal structure matters.",
+    title:
+      "Asset Sale vs Stock Sale in a Dental Practice Transition: What Buyers and Sellers Should Know",
+    excerpt:
+      "Learn the practical differences between an asset sale and a stock sale in a dental practice transition, including risk, tax, contracts, and why deal structure matters.",
     category: "Practice Transitions",
     date: "2026-04-02",
     dateModified: "2026-08-17",
@@ -1338,7 +1367,8 @@ The best post closing transitions do not happen by accident. They are designed a
         url: "https://www.irs.gov/publications/p544",
       },
     ],
-    disclaimer: "This article provides general educational information, not legal or tax advice. Deal structure and tax treatment depend on the entity, allocation, jurisdiction, and transaction documents. Buyers and sellers should obtain their own dental-experienced legal and tax advice.",
+    disclaimer:
+      "This article provides general educational information, not legal or tax advice. Deal structure and tax treatment depend on the entity, allocation, jurisdiction, and transaction documents. Buyers and sellers should obtain their own dental-experienced legal and tax advice.",
     content: `When dentists talk about selling or buying a practice, the conversation often starts with valuation and timing. Fair enough. But one of the most important deal decisions comes later, when the parties have to decide what is actually being sold.
 
 Is the buyer purchasing the practice assets, or buying the entity itself?
@@ -1462,8 +1492,10 @@ If you want help evaluating the right path for your transition, contact Practice
   },
   {
     id: 29,
-    title: "SBA vs Conventional Loan for Buying a Dental Practice in 2026: Which Fits Your Timeline?",
-    excerpt: "Comparing SBA and conventional financing for a dental practice purchase in 2026? Learn how down payment, approval speed, flexibility, and risk can shape the right loan choice.",
+    title:
+      "SBA vs Conventional Loan for Buying a Dental Practice in 2026: Which Fits Your Timeline?",
+    excerpt:
+      "Comparing SBA and conventional financing for a dental practice purchase in 2026? Learn how down payment, approval speed, flexibility, and risk can shape the right loan choice.",
     category: "Practice Transitions",
     date: "2026-04-01",
     dateModified: "2026-08-17",
@@ -1484,7 +1516,8 @@ If you want help evaluating the right path for your transition, contact Practice
         url: "https://www.sba.gov/partners/lenders/7a-loan-program/types-7a-loans",
       },
     ],
-    disclaimer: "This article provides general educational information, not a loan offer or legal, tax, or financial advice. Eligibility, underwriting, rates, fees, collateral, and timing vary by lender and borrower. Confirm current terms directly with participating lenders and qualified advisors.",
+    disclaimer:
+      "This article provides general educational information, not a loan offer or legal, tax, or financial advice. Eligibility, underwriting, rates, fees, collateral, and timing vary by lender and borrower. Confirm current terms directly with participating lenders and qualified advisors.",
     content: `If you are buying a dental practice in 2026, financing is not just a banking detail. It shapes how competitive your offer looks, how much cash you need to keep in reserve, and how much stress follows you into year one.
 
 For most buyers, the real financing question comes down to SBA versus conventional lending. Both can work. Both can fail you if the fit is wrong.
@@ -1629,8 +1662,10 @@ If you are weighing SBA versus conventional financing for a dental practice purc
   },
   {
     id: 28,
-    title: "Dental Practice Due Diligence Checklist: What Buyers Should Review Before Signing",
-    excerpt: "Buying a dental practice? Use this practical due diligence checklist to review finances, staff, systems, leases, and risk areas before you sign.",
+    title:
+      "Dental Practice Due Diligence Checklist: What Buyers Should Review Before Signing",
+    excerpt:
+      "Buying a dental practice? Use this practical due diligence checklist to review finances, staff, systems, leases, and risk areas before you sign.",
     category: "Practice Transitions",
     date: "2026-03-31",
     dateModified: "2026-08-17",
@@ -1651,7 +1686,8 @@ If you are weighing SBA versus conventional financing for a dental practice purc
         url: "https://www.hhs.gov/hipaa/for-professionals/privacy/laws-regulations/index.html",
       },
     ],
-    disclaimer: "This checklist provides general educational information, not legal, tax, compliance, valuation, or financial advice. The required scope depends on the practice, jurisdiction, lender, and deal structure. Use qualified dental, legal, tax, and compliance advisors for transaction-specific diligence.",
+    disclaimer:
+      "This checklist provides general educational information, not legal, tax, compliance, valuation, or financial advice. The required scope depends on the practice, jurisdiction, lender, and deal structure. Use qualified dental, legal, tax, and compliance advisors for transaction-specific diligence.",
     content: `Buying a dental practice can be one of the fastest ways to step into ownership, but it is also one of the easiest places to get burned by optimism. A polished office, a friendly seller, and a clean production summary can all look great at first glance. None of that replaces real due diligence.
 
 Due diligence works best as a coordinated review of the practice's financial, operational, legal, clinical, and compliance picture. It is especially important for buyers who are excited, pre-approved, and one enthusiastic site visit away from missing something expensive.
@@ -1853,15 +1889,18 @@ In many cases, yes. A transition advisor can connect the business, operational, 
   },
   {
     id: 27,
-    title: "Can a Lease Problem Kill a Dental Practice Sale? A Practical Checklist for Sellers and Buyers",
-    excerpt: "Learn how lease term, assignment language, landlord consent, and personal guarantees can affect a dental practice sale and what to review before going to market.",
+    title:
+      "Can a Lease Problem Kill a Dental Practice Sale? A Practical Checklist for Sellers and Buyers",
+    excerpt:
+      "Learn how lease term, assignment language, landlord consent, and personal guarantees can affect a dental practice sale and what to review before going to market.",
     category: "Practice Transitions",
     date: "2026-03-30",
     readTime: "7 min read",
     gradient: "bg-gradient-to-br from-primary via-indigo-600 to-cyan-500",
     slug: "dental-practice-lease-assignment-checklist",
     author: "Practice Transitions Institute",
-    metaTitle: "Dental Practice Lease Assignment Checklist for Sellers and Buyers",
+    metaTitle:
+      "Dental Practice Lease Assignment Checklist for Sellers and Buyers",
     content: `A dental practice sale can look solid on paper and still hit a wall because of the lease.
 
 That surprises a lot of dentists. They focus on valuation, buyers, timelines, and tax planning, but the lease is what often determines whether a lender is comfortable, whether a buyer can stay in the location, and whether the landlord can slow the whole process down. In many transitions, the lease is not background paperwork. It is a core deal document.
@@ -1984,14 +2023,16 @@ PTI helps dentists think through these details before they become closing table 
   {
     id: 26,
     title: "Should You Offer Seller Financing When Selling a Dental Practice?",
-    excerpt: "Seller financing can help close a dental practice sale, but it is not right for every transition. Learn when it makes sense, where it goes wrong, and how sellers should evaluate the tradeoffs.",
+    excerpt:
+      "Seller financing can help close a dental practice sale, but it is not right for every transition. Learn when it makes sense, where it goes wrong, and how sellers should evaluate the tradeoffs.",
     category: "Practice Transitions",
     date: "2026-03-29",
     readTime: "6 min read",
     gradient: "bg-gradient-to-br from-primary via-blue-600 to-teal-500",
     slug: "seller-financing-dental-practice-sale",
     author: "Practice Transitions Institute",
-    metaTitle: "Seller Financing for a Dental Practice Sale: Pros, Risks, and Structure",
+    metaTitle:
+      "Seller Financing for a Dental Practice Sale: Pros, Risks, and Structure",
     content: `When a dental practice sale starts to feel stuck, financing is often the reason.
 
 Maybe the buyer is qualified but not quite strong enough for full bank financing. Maybe interest rates changed the math. Maybe the practice is solid, but the lender wants more borrower liquidity, more collateral, or more proof that the transition risk is low.
@@ -2154,8 +2195,10 @@ Practice Transitions Institute helps dental owners think through transition stru
   },
   {
     id: 25,
-    title: "How Do You Value a Dental Practice for an Associate Buy In? A Practical 2026 Guide",
-    excerpt: "Planning an associate buy in? Learn how dental practice valuation works for partial ownership, what changes the price over time, and where dentists make costly mistakes.",
+    title:
+      "How Do You Value a Dental Practice for an Associate Buy In? A Practical 2026 Guide",
+    excerpt:
+      "Planning an associate buy in? Learn how dental practice valuation works for partial ownership, what changes the price over time, and where dentists make costly mistakes.",
     category: "Practice Transitions",
     date: "2026-03-27",
     dateModified: "2026-08-17",
@@ -2176,7 +2219,8 @@ Practice Transitions Institute helps dental owners think through transition stru
         url: "https://www.irs.gov/publications/p541",
       },
     ],
-    disclaimer: "This article provides general educational information, not a valuation conclusion or legal, tax, or financial advice. Buy-in value and structure depend on the practice, ownership rights, entity, timing, and transaction terms. Obtain an independent valuation and qualified professional advice.",
+    disclaimer:
+      "This article provides general educational information, not a valuation conclusion or legal, tax, or financial advice. Buy-in value and structure depend on the practice, ownership rights, entity, timing, and transaction terms. Obtain an independent valuation and qualified professional advice.",
     content: `An associate buy in can sound simple on paper. One doctor knows the practice, the patients already know the associate, and both sides like the idea of a gradual transition. But when it comes time to set the price, things often get tense fast.
 
 That is because an associate buy in is not just a friendly handshake with a percentage attached. It is a real transaction that needs a fair valuation, a clear structure, and an understanding of how the practice may change between now and the final ownership transfer.
@@ -2312,8 +2356,10 @@ Most problems come from unclear expectations, weak valuation methods, vague gove
   },
   {
     id: 24,
-    title: "Should You Sell Your Dental Practice to a DSO or a Private Buyer? A Practical 2026 Decision Guide",
-    excerpt: "Comparing a DSO sale with a private buyer sale? Learn how deal structure, timeline, legacy, work-back expectations, and valuation differ for dental practice owners in 2026.",
+    title:
+      "Should You Sell Your Dental Practice to a DSO or a Private Buyer? A Practical 2026 Decision Guide",
+    excerpt:
+      "Comparing a DSO sale with a private buyer sale? Learn how deal structure, timeline, legacy, work-back expectations, and valuation differ for dental practice owners in 2026.",
     category: "Practice Transitions",
     date: "2026-03-26",
     readTime: "8 min read",
@@ -2479,15 +2525,18 @@ Not usually. A valuation and transition strategy help you understand your option
   },
   {
     id: 21,
-    title: "What Makes a Buyer Qualified for Your Dental Practice? 7 Things Sellers Should Look For",
-    excerpt: "Learn how to evaluate whether a buyer is truly qualified for your dental practice, from financing and experience to cultural fit, confidentiality, and long term transition success.",
+    title:
+      "What Makes a Buyer Qualified for Your Dental Practice? 7 Things Sellers Should Look For",
+    excerpt:
+      "Learn how to evaluate whether a buyer is truly qualified for your dental practice, from financing and experience to cultural fit, confidentiality, and long term transition success.",
     category: "Practice Transitions",
     date: "2026-03-21",
     readTime: "6 min read",
     gradient: "bg-gradient-to-br from-primary via-indigo-600 to-cyan-500",
     slug: "what-makes-a-buyer-qualified-for-your-dental-practice",
     author: "Practice Transitions Institute",
-    metaTitle: "Qualified Buyer for a Dental Practice? What Sellers Should Look For | PTI",
+    metaTitle:
+      "Qualified Buyer for a Dental Practice? What Sellers Should Look For | PTI",
     content: `When dentists think about selling a practice, they often focus on valuation, timing, and tax strategy first. All of that matters. But another question can make or break the outcome: is the buyer actually qualified?
 
 A buyer can sound enthusiastic, ask smart questions, and even make a strong offer on paper. That does not automatically mean they are the right fit for your practice, your team, or your long term legacy. At Practice Transitions Institute, this is one of the biggest reasons seller guidance matters. A successful transition is not just about finding a buyer. It is about finding a qualified buyer.
@@ -2611,7 +2660,8 @@ Practice Transitions Institute helps dentists evaluate both the numbers and the 
   {
     id: 18,
     title: "What Should a Dental Practice Letter of Intent Actually Include?",
-    excerpt: "Learn what a dental practice letter of intent should cover, which terms deserve careful review, and how a clear LOI can prevent expensive transition mistakes.",
+    excerpt:
+      "Learn what a dental practice letter of intent should cover, which terms deserve careful review, and how a clear LOI can prevent expensive transition mistakes.",
     category: "Practice Transitions",
     date: "2026-03-17",
     dateModified: "2026-08-17",
@@ -2627,7 +2677,8 @@ Practice Transitions Institute helps dentists evaluate both the numbers and the 
         url: "https://www.sba.gov/business-guide/plan-your-business/buy-existing-business-or-franchise",
       },
     ],
-    disclaimer: "This article provides general educational information, not legal, tax, or financial advice. Whether an LOI provision is binding depends on its language and applicable law. Each party should obtain independent advice from a dental-experienced attorney before signing.",
+    disclaimer:
+      "This article provides general educational information, not legal, tax, or financial advice. Whether an LOI provision is binding depends on its language and applicable law. Each party should obtain independent advice from a dental-experienced attorney before signing.",
     content: `In a dental practice sale, the letter of intent is often treated like a simple first step. It is not.
 
 A well-structured LOI can bring clarity, align expectations, and make the rest of the transition smoother. A sloppy one can create confusion, bad leverage, or costly disputes before the purchase agreement is even drafted.
@@ -2805,11 +2856,13 @@ Not in every case, but if there is one, the refund conditions and milestones sho
 
 ### Why not skip straight to the purchase agreement?
 Because the LOI helps surface major deal terms early. Done well, it saves time and prevents misunderstandings before legal drafting becomes more expensive.`,
-  }
-,  {
+  },
+  {
     id: 17,
-    title: "What Documents Should You Gather Before Selling Your Dental Practice?",
-    excerpt: "Preparing to sell your dental practice? Learn which financial, legal, operational, and transition documents to gather early so your sale moves faster and with less stress.",
+    title:
+      "What Documents Should You Gather Before Selling Your Dental Practice?",
+    excerpt:
+      "Preparing to sell your dental practice? Learn which financial, legal, operational, and transition documents to gather early so your sale moves faster and with less stress.",
     category: "Practice Transitions",
     date: "2026-03-19",
     readTime: "7 min read",
@@ -3005,7 +3058,8 @@ If you are thinking about selling your dental practice, [contact Practice Transi
   {
     id: 16,
     title: "When Should You Tell Staff You Are Selling Your Dental Practice?",
-    excerpt: "Learn the right time to tell staff about a dental practice sale, how to balance confidentiality with trust, and how smoother communication supports a successful transition.",
+    excerpt:
+      "Learn the right time to tell staff about a dental practice sale, how to balance confidentiality with trust, and how smoother communication supports a successful transition.",
     category: "Practice Transitions",
     date: "2026-03-15",
     readTime: "7 min read",
@@ -3171,8 +3225,10 @@ If you are preparing to sell and want a transition plan that protects confidenti
   },
   {
     id: 15,
-    title: "When Should You Get a Dental Practice Valuation? 5 Moments Dentists Should Not Wait",
-    excerpt: "Not sure when to value your dental practice? Learn the key moments to get a professional valuation before a sale, partnership, associate buy-in, or long-term transition plan.",
+    title:
+      "When Should You Get a Dental Practice Valuation? 5 Moments Dentists Should Not Wait",
+    excerpt:
+      "Not sure when to value your dental practice? Learn the key moments to get a professional valuation before a sale, partnership, associate buy-in, or long-term transition plan.",
     category: "Practice Transitions",
     date: "2026-03-14",
     readTime: "7 min read",
@@ -3315,16 +3371,20 @@ If you are wondering when to get a dental practice valuation, this is a good sig
   {
     id: 14,
     title: "Attitude: The Hidden Key to Shaping Dentistry's Future",
-    excerpt: "A resilient mindset helps dentists rewrite the insurance narrative, educate patients, and reclaim advocacy for oral health.",
+    excerpt:
+      "A resilient mindset helps dentists rewrite the insurance narrative, educate patients, and reclaim advocacy for oral health.",
     category: "Practice Management",
     date: "2025-10-29",
     readTime: "8 min read",
     gradient: "bg-gradient-to-br from-sky-500 via-indigo-500 to-purple-600",
     slug: "attitude-hidden-key-shaping-dentistry-future",
     author: "Michael Njo, DDS",
-    featuredImage: "https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761757553/Frame_1_psbk9m.png",
-    featuredImageAlt: "Dentist reviewing insurance documents alongside uplifting messaging",
-    featuredImageCaption: "As a man thinketh in his heart, so is he. — Proverbs 23:7",
+    featuredImage:
+      "https://res.cloudinary.com/dhqpqfw6w/image/upload/v1761757553/Frame_1_psbk9m.png",
+    featuredImageAlt:
+      "Dentist reviewing insurance documents alongside uplifting messaging",
+    featuredImageCaption:
+      "As a man thinketh in his heart, so is he. — Proverbs 23:7",
     featuredImageFit: "contain",
     content: `Over the past several months, I have noticed that attitude has become a recurring topic in books, articles, and professional conversations. In my last newsletter, I recommended reading *As a Man Thinketh* by James Allen—and the feedback from many of you was overwhelmingly positive.
 
@@ -3404,8 +3464,10 @@ Please email me at dentalstrategies@gmail.com for any questions or suggestions f
   },
   {
     id: 13,
-    title: "Empowering the Next Generation: Dr. Michael Njo Speaks at Dugoni School's \"Lunch & Learn\"",
-    excerpt: "Dr. Michael Njo returned to the Dugoni School of Dentistry to guide students through the business of dentistry—from contracts and career paths to confident practice ownership.",
+    title:
+      'Empowering the Next Generation: Dr. Michael Njo Speaks at Dugoni School\'s "Lunch & Learn"',
+    excerpt:
+      "Dr. Michael Njo returned to the Dugoni School of Dentistry to guide students through the business of dentistry—from contracts and career paths to confident practice ownership.",
     category: "Community Impact",
     date: "2025-10-17",
     readTime: "5 min read",
@@ -3413,7 +3475,8 @@ Please email me at dentalstrategies@gmail.com for any questions or suggestions f
     slug: "empowering-next-generation-dugoni-lunch-learn",
     author: "Practice Transitions Institute",
     featuredImage: "/lovable-uploads/flyer-photo.webp",
-    featuredImageAlt: "Lunch & Learn flyer for Dr. Michael Njo's presentation at the Dugoni School of Dentistry",
+    featuredImageAlt:
+      "Lunch & Learn flyer for Dr. Michael Njo's presentation at the Dugoni School of Dentistry",
     featuredImageFit: "contain",
     content: `On October 8th, Dr. Michael Njo, founder of the Practice Transitions Institute (PTI), spoke at a Lunch & Learn hosted by the Dugoni Business Club. The event, titled "During and Beyond Dental School," brought together a packed room of dental students eager to learn about life after graduation—covering everything from navigating contracts and exploring career options to building a solid foundation for long-term success.
 
@@ -3431,20 +3494,23 @@ Dr. Njo's presentation perfectly reflected PTI's mission: to equip dentists with
 
 As the session concluded, students stayed behind to ask thoughtful questions about practice transitions, associate opportunities, and ownership readiness—evidence of the growing interest in understanding the why behind their professional decisions. Through events like this, PTI continues its mission to bridge the gap between clinical training and real-world practice success, helping dentists navigate the business side of their careers with confidence and clarity.
 
-**Interested in learning more?** Explore upcoming workshops and events on our [Events page](/events).`
+**Interested in learning more?** Explore upcoming workshops and events on our [Events page](/events).`,
   },
   {
     id: 0,
     title: "Dugoni Business Club Donates $1,000 to Support Students in Need",
-    excerpt: "The Dugoni Business Club (DBC) proudly donated $1,000 to the Arthur A. Dugoni Annual Fund, supporting students facing financial need. Discover how business-minded dental students are giving back to their community.",
+    excerpt:
+      "The Dugoni Business Club (DBC) proudly donated $1,000 to the Arthur A. Dugoni Annual Fund, supporting students facing financial need. Discover how business-minded dental students are giving back to their community.",
     category: "Community Impact",
     date: "2025-09-22",
     readTime: "4 min read",
     gradient: "bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600",
     slug: "dugoni-business-club-donation",
     author: "Michael Njo, DDS",
-    featuredImage: "/lovable-uploads/dugoni-business-club-donation-ceremony.webp",
-    featuredImageAlt: "Dugoni Business Club members presenting a donation check to the Arthur A. Dugoni School of Dentistry",
+    featuredImage:
+      "/lovable-uploads/dugoni-business-club-donation-ceremony.webp",
+    featuredImageAlt:
+      "Dugoni Business Club members presenting a donation check to the Arthur A. Dugoni School of Dentistry",
     content: `**September 3, 2025 — San Francisco, CA**
 
 The Dugoni Business Club (DBC) proudly donated $1,000 to the Arthur A. Dugoni Annual Fund, a fund that supports students at the Dugoni School of Dentistry — particularly those facing financial need. This generous contribution reflects the club's commitment to both business excellence and community support.
@@ -3475,12 +3541,13 @@ Dean Chavez personally received the donation from the club and shared a heartfel
 
 This generous donation demonstrates the values that we instill in our students — the importance of giving back to their community and supporting future generations of dental professionals. It's inspiring to see these future leaders already making a meaningful impact while still in school.
 
-**Learn more about the Dugoni Business Club and how we're preparing the next generation of dental entrepreneurs by [contacting us today](/contact).**`
+**Learn more about the Dugoni Business Club and how we're preparing the next generation of dental entrepreneurs by [contacting us today](/contact).**`,
   },
   {
     id: 1,
     title: "So Much to be Thankful For",
-    excerpt: "As we enter the holiday season, I love this time of year because it always gives me an opportunity to pause and reflect. It provides me an opportunity to be thankful for all the blessings I have. A heartfelt reflection on gratitude, loss, fear, and giving back to our profession.",
+    excerpt:
+      "As we enter the holiday season, I love this time of year because it always gives me an opportunity to pause and reflect. It provides me an opportunity to be thankful for all the blessings I have. A heartfelt reflection on gratitude, loss, fear, and giving back to our profession.",
     category: "Personal Reflections",
     date: "2024-12-26",
     readTime: "8 min read",
@@ -3488,7 +3555,8 @@ This generous donation demonstrates the values that we instill in our students �
     slug: "so-much-to-be-thankful-for",
     author: "Michael Njo, DDS",
     featuredImage: "/lovable-uploads/f8f5c36c-facc-42dd-86bb-3bb4ca79dc26.png",
-    featuredImageAlt: "Festive dentist wearing a Santa hat smiling beside holiday dental tools",
+    featuredImageAlt:
+      "Festive dentist wearing a Santa hat smiling beside holiday dental tools",
     content: `As we enter the holiday season, did I just say that? Where did this year go? I love this time of year, although I do miss the summer months. The reason I love this time of year is it always gives me an opportunity to pause and reflect. It provides me an opportunity to be thankful for all the blessings I have.
 
 I wanted to share that I lost a dear friend this year at the young age of 51 who battled cancer for several years, leaving a wonderful wife and two loving children, a freshman and junior in college. Unfortunately, my story is not too uncommon. If you speak to enough people, one would come across a similarly tragic story, and some have come close to losing a loved one. In reflecting on this year, I came across this inscription, that I sent a book to him - "The Boy, the mole, the fox and the horse"
@@ -3501,12 +3569,13 @@ Recently I had the opportunity to be one of the speakers in an Annual Leadership
 
 I also had the honor to speak to the dental students at the Dugoni School of Dentistry at the start of the school year. The topic was advice on navigating dental school and career paths after dental school. I truly enjoy interacting and presenting to these groups. It was wonderful to see the number of Freshman students, as well as each class being well represented. The group was engaging, asked very thoughtful questions and their curiosity and zest for knowledge was off the charts. They have their whole career ahead of them. Their energy, excitement, and fear of what their future holds was palpable. I highlighted my former Dean, Dr. Art Dugoni's, message of be involved, be a leader, and give back to our profession. As organized dentistry is facing a variety of challenges it is now more important than ever to be part of a movement to be involved. As we reflect on our own blessings in life, we can show our gratitude now by paying forward. There are so many opportunities to be involved. Many hands make light work! I know the individuals reading this article echo my sentiment and charge. It is us that need to get the word out! I am thankful to my profession, to the San Mateo County Dental Society and its awesome team and constituents, and to all who have touched my life! Wishing you all a very joyous holiday season!
 
-Please email me at dentalstrategies@gmail.com for any questions or suggestions for future article topics.`
+Please email me at dentalstrategies@gmail.com for any questions or suggestions for future article topics.`,
   },
   {
     id: 2,
     title: "Work Staff Shortages in Dentistry: What Can We Do?",
-    excerpt: "I get calls, texts, and questions almost every day complaining, asking questions and conveying concerns about work staff shortages in the dental profession. The dental assisting workforce has been shattered by the pandemic, and the situation isn't going to get better anytime soon.",
+    excerpt:
+      "I get calls, texts, and questions almost every day complaining, asking questions and conveying concerns about work staff shortages in the dental profession. The dental assisting workforce has been shattered by the pandemic, and the situation isn't going to get better anytime soon.",
     category: "Practice Management",
     date: "2024-09-09",
     readTime: "6 min read",
@@ -3514,7 +3583,8 @@ Please email me at dentalstrategies@gmail.com for any questions or suggestions f
     slug: "work-staff-shortages-dentistry",
     author: "Michael Njo, DDS",
     featuredImage: "/lovable-uploads/cd55db20-adc0-4a27-a6e9-2ca8635b58d1.png",
-    featuredImageAlt: "Professional dental team of three healthcare workers in scrubs standing together in a modern dental office",
+    featuredImageAlt:
+      "Professional dental team of three healthcare workers in scrubs standing together in a modern dental office",
     content: `I get calls, texts, and questions almost every day complaining, asking questions and conveying concerns about work staff shortages in the dental profession. Questions such as "Do you know any dental assistants looking for work?" "It is so hard to get great candidates for our position" "Where are all the quality team members?"
 
 The answer is, I don't know anyone, and this is the state of the profession. They simply aren't out there as much, so you can stop expecting a quick fix. Specifically, the dental assisting workforce has been shattered by the pandemic, and the situation isn't going to get better anytime soon. It will be years before dental practices recuperate and can find dental team members to round out their teams.
@@ -3541,12 +3611,13 @@ Your protocols should be clear and concise, not too fancy or full of garbage, ju
 
 Finally, value your team! If they're good, hang on to them. Show appreciation, and by all means, be kind. Sounds simple, unfortunately it is not common. Team members want to work where they're valued and respected. Show your team and coworkers how much you appreciate them, and they will stay! By following these suggestions, hopefully the dental staffing shortage will not have a huge impact on you.
 
-Remember, knowledge is power. Please email me at dentalstrategies@gmail.com for any questions. I would be happy to schedule a call.`
+Remember, knowledge is power. Please email me at dentalstrategies@gmail.com for any questions. I would be happy to schedule a call.`,
   },
   {
     id: 4,
     title: "Creating Culture In Today's Dental Offices",
-    excerpt: "We as an industry have had a very tumultuous ride. The practices that weathered and thrived through the storm had a particular practice culture. This article will be the 1st in a 4-part series addressing culture.",
+    excerpt:
+      "We as an industry have had a very tumultuous ride. The practices that weathered and thrived through the storm had a particular practice culture. This article will be the 1st in a 4-part series addressing culture.",
     category: "Practice Management",
     date: "2022-12-23",
     readTime: "7 min read",
@@ -3557,7 +3628,7 @@ Remember, knowledge is power. Please email me at dentalstrategies@gmail.com for 
       id: "creating-culture-series",
       title: "Creating Culture In Today's Dental Offices",
       part: 1,
-      total: 4
+      total: 4,
     },
     content: `Creating Culture In Today's Dental Offices
 
@@ -3597,12 +3668,13 @@ Let us first start there. Take some time, anything worth its salt takes time, to
 <div style="background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #f59e0b; margin: 2rem 0;">
 <h4 style="color: #0f172a; margin: 0 0 0.5rem 0; font-weight: 600;">👉 Coming Next</h4>
 <p style="color: #475569; margin: 0; font-size: 0.875rem;">In <a href="/blog/creating-culture-dental-offices-part-ii" style="color: #f59e0b; text-decoration: none; font-weight: 600;">Part 2</a>, we'll explore the power of <strong>Gratitude</strong> in creating a positive practice culture and how appreciation can transform your team dynamics.</p>
-</div>`
+</div>`,
   },
   {
     id: 5,
     title: "With Every Crisis Comes Opportunities!",
-    excerpt: "Seize your Opportunity, even when you're Transitioning your Practice. After speaking with so many dentists over the last few weeks, I've heard several different attitudes and opinions. The majority of input I have received has been concern, fear, and some negativity.",
+    excerpt:
+      "Seize your Opportunity, even when you're Transitioning your Practice. After speaking with so many dentists over the last few weeks, I've heard several different attitudes and opinions. The majority of input I have received has been concern, fear, and some negativity.",
     category: "Practice Transitions",
     date: "2022-12-26",
     readTime: "8 min read",
@@ -3640,12 +3712,13 @@ BIO:
 
 Fred Heppner, CEO of Arizona Transitions and partner in Practice Transitions Institute, is a transition and practice management expert who has successfully transitioned hundreds of dental practices, representing dentists who want to sell, purchase, or secure a partnership.
 
-Dr. Michael Njo, from Practice Transitions Institute, has decades of experience in dental transitions, from associateship to partnership to acquisition. He is also a practice management expert. Formerly, Transition specialist with the Pride Institute. He is a lecturer, Author, and the recipient of the Distinguished Service award from his dental society.`
+Dr. Michael Njo, from Practice Transitions Institute, has decades of experience in dental transitions, from associateship to partnership to acquisition. He is also a practice management expert. Formerly, Transition specialist with the Pride Institute. He is a lecturer, Author, and the recipient of the Distinguished Service award from his dental society.`,
   },
   {
     id: 6,
     title: "Creating Culture In Today's Dental Offices Part II",
-    excerpt: "Did you survive January? How about last quarter? Statistics have shown that our work force took a substantial amount of time off in the month of January. This is where your leadership and positive mindset are essential.",
+    excerpt:
+      "Did you survive January? How about last quarter? Statistics have shown that our work force took a substantial amount of time off in the month of January. This is where your leadership and positive mindset are essential.",
     category: "Practice Management",
     date: "2022-12-29",
     readTime: "6 min read",
@@ -3656,7 +3729,7 @@ Dr. Michael Njo, from Practice Transitions Institute, has decades of experience 
       id: "creating-culture-series",
       title: "Creating Culture In Today's Dental Offices",
       part: 2,
-      total: 4
+      total: 4,
     },
     content: `Creating Culture In Today's Dental Offices Part II
 
@@ -3688,12 +3761,13 @@ Speaking of grateful, do you know staff appreciation day was March 4th? How did 
 <p style="color: #475569; margin: 0; font-size: 0.875rem;">In <a href="/blog/creating-culture-dental-offices-part-iii" style="color: #f59e0b; text-decoration: none; font-weight: 600;">Part 3</a>, we'll dive deep into building and sustaining great <strong>Teams</strong> - the cornerstone of any successful dental practice culture.</p>
 </div>
 
-Part III of this series will be focusing on teams. We will also have a wonderful opportunity to celebrate your team during our September 15th General Membership meeting. So please save that date and bring your team! We have a lot to celebrate!!! The positive working environment you as a leader create will give your dental team a great place to work as well as a place for your patients to receive the excellent care you and your team provide. If you would like to discuss this topic or any related topics, I would be happy to schedule a call with you. Please email me at dentalstrategies@gmail.com`
+Part III of this series will be focusing on teams. We will also have a wonderful opportunity to celebrate your team during our September 15th General Membership meeting. So please save that date and bring your team! We have a lot to celebrate!!! The positive working environment you as a leader create will give your dental team a great place to work as well as a place for your patients to receive the excellent care you and your team provide. If you would like to discuss this topic or any related topics, I would be happy to schedule a call with you. Please email me at dentalstrategies@gmail.com`,
   },
   {
     id: 7,
     title: "Creating Culture In Today's Dental Offices Part III",
-    excerpt: "I love this topic - TEAM. This next article, part 3 of a 4-part series on Culture, stems from the importance of creating and sustaining great teams. When an office has a great team, spirits and productivity are high.",
+    excerpt:
+      "I love this topic - TEAM. This next article, part 3 of a 4-part series on Culture, stems from the importance of creating and sustaining great teams. When an office has a great team, spirits and productivity are high.",
     category: "Practice Management",
     date: "2023-01-03",
     readTime: "7 min read",
@@ -3704,7 +3778,7 @@ Part III of this series will be focusing on teams. We will also have a wonderful
       id: "creating-culture-series",
       title: "Creating Culture In Today's Dental Offices",
       part: 3,
-      total: 4
+      total: 4,
     },
     content: `Creating Culture In Today's Dental Offices Part III
 
@@ -3730,12 +3804,13 @@ Here are some sayings and mantras that can build a better team culture. Three wo
 <p style="color: #475569; margin: 0; font-size: 0.875rem;">In <a href="/blog/creating-culture-dental-offices-part-iv" style="color: #f59e0b; text-decoration: none; font-weight: 600;">Part 4</a>, we'll complete our culture framework by exploring <strong>Attitude & Mindset</strong> - the final ingredients that tie everything together.</p>
 </div>
 
-If you would like to discuss this topic or any related topics. I would be happy to schedule a call. Please email me at dentalstrategies@gmail.com`
+If you would like to discuss this topic or any related topics. I would be happy to schedule a call. Please email me at dentalstrategies@gmail.com`,
   },
   {
     id: 8,
     title: "Creating Culture In Today's Dental Offices Part IV",
-    excerpt: "Happy New Year! In the past 3 articles we covered Leadership, Gratitude, and Team. In today's article we will cover Attitude and Mindset. When I think of attitude and mindset, I reflect on my time serving on the Board of Bellarmine College Prep.",
+    excerpt:
+      "Happy New Year! In the past 3 articles we covered Leadership, Gratitude, and Team. In today's article we will cover Attitude and Mindset. When I think of attitude and mindset, I reflect on my time serving on the Board of Bellarmine College Prep.",
     category: "Practice Management",
     date: "2023-04-05",
     readTime: "8 min read",
@@ -3746,10 +3821,11 @@ If you would like to discuss this topic or any related topics. I would be happy 
       id: "creating-culture-series",
       title: "Creating Culture In Today's Dental Offices",
       part: 4,
-      total: 4
+      total: 4,
     },
     featuredImage: "/lovable-uploads/ed89ce68-dc38-4260-ac9f-e5519305a693.png",
-    featuredImageAlt: "Chart comparing growth mindset and fixed mindset in a dental practice context",
+    featuredImageAlt:
+      "Chart comparing growth mindset and fixed mindset in a dental practice context",
     content: `Creating Culture In Today's Dental Offices Part IV
 
 <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #0ea5e9; margin: 0 0 2rem 0;">
@@ -3798,13 +3874,15 @@ What do you do to nourish and maintain your attitude and mindsets. When you are 
 <p style="color: #475569; margin: 0; font-size: 0.875rem;">Start with <a href="/blog/creating-culture-todays-dental-offices" style="color: #22c55e; text-decoration: none; font-weight: 600;">Part 1</a> if you want to revisit the foundation, or share this series with colleagues who could benefit from these insights.</p>
 </div>
 
-I hope this series has been thoughtful and thought-provoking. When you are thoughtful with your culture you are being thoughtful with your patients. Please email me at dentalstrategies@gmail.com if you would like to discuss this topic or any related topics.`
+I hope this series has been thoughtful and thought-provoking. When you are thoughtful with your culture you are being thoughtful with your patients. Please email me at dentalstrategies@gmail.com if you would like to discuss this topic or any related topics.`,
   },
   {
     id: 9,
-    title: "Debugging the Myths of Practice Transitions/Selling Your Practice Part I",
+    title:
+      "Debugging the Myths of Practice Transitions/Selling Your Practice Part I",
     metaTitle: "Transition Myths Part 1: Timeline Planning",
-    excerpt: "The internet is a wonderful thing. However, everyone should not believe everything on the internet. Practice sales, just like patient care is very personal and should be treated with a customized approach.",
+    excerpt:
+      "The internet is a wonderful thing. However, everyone should not believe everything on the internet. Practice sales, just like patient care is very personal and should be treated with a customized approach.",
     category: "Practice Transitions",
     date: "2023-04-25",
     readTime: "9 min read",
@@ -3815,10 +3893,11 @@ I hope this series has been thoughtful and thought-provoking. When you are thoug
       id: "debugging-myths",
       title: "Debugging the Myths of Practice Transitions",
       part: 1,
-      total: 4
+      total: 4,
     },
     featuredImage: "/lovable-uploads/a5b1b69b-d299-42f1-a481-ba0da951bfa1.png",
-    featuredImageAlt: "Experienced dentist smiling confidently in a modern dental office",
+    featuredImageAlt:
+      "Experienced dentist smiling confidently in a modern dental office",
     content: `
 <div style="background: #e3f2fd; border-left: 4px solid #2196f3; padding: 20px; margin: 24px 0;">
   <h4 style="margin: 0 0 12px 0; color: #1565c0;">📚 Series Introduction</h4>
@@ -3910,13 +3989,14 @@ Don't navigate this alone—the right team makes all the difference. Ready to le
 
 Please let me know if you need assistance with the above exercise. I would also be happy to schedule a call.
 
-Michael Njo of the Practice Transition Institute will also be presenting a seminar at UOP on July 21st, 2023 - "Treatment Plan for Your Transition Into and Out of Practice". Please email me at dentalstrategies@gmail.com`
+Michael Njo of the Practice Transition Institute will also be presenting a seminar at UOP on July 21st, 2023 - "Treatment Plan for Your Transition Into and Out of Practice". Please email me at dentalstrategies@gmail.com`,
   },
   {
     id: 10,
     title: "Debugging the Myths of Practice Transitions/Selling Your Practice",
     metaTitle: "Transition Myths Part 2: Choosing Advisors",
-    excerpt: "Part 2: Navigating Dental Transitions: The Importance of Advisors to ensure a Seamless Process. Transitioning a dental practice can be a complex and daunting process. It is one of the most significant career moves a dentist will make.",
+    excerpt:
+      "Part 2: Navigating Dental Transitions: The Importance of Advisors to ensure a Seamless Process. Transitioning a dental practice can be a complex and daunting process. It is one of the most significant career moves a dentist will make.",
     category: "Practice Transitions",
     date: "2023-11-14",
     readTime: "10 min read",
@@ -3927,10 +4007,11 @@ Michael Njo of the Practice Transition Institute will also be presenting a semin
       id: "debugging-myths",
       title: "Debugging the Myths of Practice Transitions",
       part: 2,
-      total: 4
+      total: 4,
     },
     featuredImage: "/lovable-uploads/79faafd7-5f7c-4fe3-b9fb-ad3a1f391cfc.png",
-    featuredImageAlt: "Modern dental operatory with contemporary equipment and chair",
+    featuredImageAlt:
+      "Modern dental operatory with contemporary equipment and chair",
     content: `
 <div style="background: #e3f2fd; border-left: 4px solid #2196f3; padding: 20px; margin: 24px 0;">
   <h4 style="margin: 0 0 12px 0; color: #1565c0;">📖 Series Recap</h4>
@@ -4042,12 +4123,14 @@ Now that you understand the importance of the right advisory team, Part 3 will t
   <p style="color: #475569; margin: 0; font-size: 14px;">In <strong>Part 3: Valuation Myths</strong>, we'll dive deep into the science of practice valuation and debunk the dangerous myths that lead to poor financial outcomes. Ready to learn what your practice is really worth?</p>
 </div>
 
-We are available to answer your questions. Please feel free to reach out to us!`
+We are available to answer your questions. Please feel free to reach out to us!`,
   },
   {
     id: 11,
-    title: "Debugging the Myths of Practice Transitions/Selling Your Practice - Part 3: Valuation Myth",
-    excerpt: "Uncover the truth about dental practice valuations - from understanding the difference between asking price, offering price, and appraised value, to learning the two universally accepted valuation methods that ensure your practice transition is based on facts, not feelings.",
+    title:
+      "Debugging the Myths of Practice Transitions/Selling Your Practice - Part 3: Valuation Myth",
+    excerpt:
+      "Uncover the truth about dental practice valuations - from understanding the difference between asking price, offering price, and appraised value, to learning the two universally accepted valuation methods that ensure your practice transition is based on facts, not feelings.",
     category: "Practice Transitions",
     date: "2023-11-15",
     readTime: "12 min read",
@@ -4210,14 +4293,16 @@ We are available to answer your questions. Please feel free to reach out to us!`
       id: "debugging-myths",
       title: "Debugging the Myths of Practice Transitions",
       part: 3,
-      total: 4
-    }
+      total: 4,
+    },
   },
   {
     id: 12,
-    title: "Debugging The Myths of Practice Transitions/Selling Your Practice Part 4 - Transition Planning Requirements",
+    title:
+      "Debugging The Myths of Practice Transitions/Selling Your Practice Part 4 - Transition Planning Requirements",
     slug: "debugging-myths-practice-transitions-part-4-requirements",
-    excerpt: "A comprehensive guide to the complete process of buying or selling a dental practice - from timeline expectations and documentation requirements to advisor selection and dissolution provisions. Everything you need to know for a successful transition.",
+    excerpt:
+      "A comprehensive guide to the complete process of buying or selling a dental practice - from timeline expectations and documentation requirements to advisor selection and dissolution provisions. Everything you need to know for a successful transition.",
     category: "Practice Transitions",
     date: "2024-03-04",
     readTime: "15 min read",
@@ -4227,7 +4312,7 @@ We are available to answer your questions. Please feel free to reach out to us!`
       id: "debugging-myths",
       title: "Debugging the Myths of Practice Transitions",
       part: 4,
-      total: 4
+      total: 4,
     },
     content: `
       <div style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 24px; border-radius: 12px; border-left: 4px solid #3b82f6; margin: 24px 0;">
@@ -4414,7 +4499,7 @@ We are available to answer your questions. Please feel free to reach out to us!`
 
       <p><em>The above outlines are general broad strokes from beginning to end and are not designed as a complete blueprint on how to transact a transition. This is one of the biggest events in your life and can have severe consequences if not done well.</em></p>
     `,
-  }
+  },
 ];
 
 export const categories = [
@@ -4425,7 +4510,10 @@ export const categories = [
 // Listing surfaces (e.g. /blog) must never import `blogPosts` from a client
 // component: the full markdown bodies would ship in the JS bundle. Server
 // pages map posts through this helper and pass the summaries down as props.
-export type BlogPostSummary = Omit<BlogPost, "content" | "sources" | "disclaimer" | "metaDescription">;
+export type BlogPostSummary = Omit<
+  BlogPost,
+  "content" | "sources" | "disclaimer" | "metaDescription"
+>;
 
 export const toBlogPostSummary = (post: BlogPost): BlogPostSummary => {
   const { content, sources, disclaimer, metaDescription, ...summary } = post;
@@ -4436,14 +4524,18 @@ export const toBlogPostSummary = (post: BlogPost): BlogPostSummary => {
 };
 
 const truncateSeoText = (value: string, maxLength: number): string => {
-  const normalized = value.replace(/\s+/g, " ").replace(/\.{3,}/g, ":").trim();
+  const normalized = value
+    .replace(/\s+/g, " ")
+    .replace(/\.{3,}/g, ":")
+    .trim();
   if (normalized.length <= maxLength) return normalized;
 
   const candidate = normalized.slice(0, maxLength - 1);
   const lastSpace = candidate.lastIndexOf(" ");
-  const trimmed = lastSpace > Math.floor(maxLength * 0.65)
-    ? candidate.slice(0, lastSpace)
-    : candidate;
+  const trimmed =
+    lastSpace > Math.floor(maxLength * 0.65)
+      ? candidate.slice(0, lastSpace)
+      : candidate;
   return `${trimmed.replace(/[\s,;:.-]+$/g, "")}…`;
 };
 
@@ -4454,19 +4546,27 @@ export const getBlogMetaDescription = (post: BlogPost): string =>
   truncateSeoText(post.metaDescription ?? post.excerpt, 160);
 
 export const getBlogPostBySlug = (slug: string): BlogPost | undefined => {
-  return blogPosts.find(post => post.slug === slug);
+  return blogPosts.find((post) => post.slug === slug);
 };
 
-export const getRelatedPosts = (currentPostId: number, category: string, limit: number = 3): BlogPost[] => {
+export const getRelatedPosts = (
+  currentPostId: number,
+  category: string,
+  limit: number = 3,
+): BlogPost[] => {
   return blogPosts
-    .filter(post => post.id !== currentPostId && (post.category === category || category === "All"))
+    .filter(
+      (post) =>
+        post.id !== currentPostId &&
+        (post.category === category || category === "All"),
+    )
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, limit);
 };
 
 export const getSeriesPosts = (seriesId: string): BlogPost[] => {
   return blogPosts
-    .filter(post => post.series?.id === seriesId)
+    .filter((post) => post.series?.id === seriesId)
     .sort((a, b) => (a.series?.part || 0) - (b.series?.part || 0));
 };
 
@@ -4474,11 +4574,11 @@ export const getSeriesPosts = (seriesId: string): BlogPost[] => {
 // server now (client surfaces receive summaries as props), so the check runs
 // during dev-server rendering rather than in the browser.
 if (typeof window === "undefined" && process.env.NODE_ENV === "development") {
-  import('../lib/linkValidation')
+  import("../lib/linkValidation")
     .then(({ validateInternalBlogLinks }) => {
       validateInternalBlogLinks();
     })
     .catch((error) => {
-      console.warn('[blogPosts] Failed to run link validation:', error);
+      console.warn("[blogPosts] Failed to run link validation:", error);
     });
 }

@@ -5,21 +5,21 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
+import {
+  Section,
+  SectionTitle,
+  SectionSubtitle,
+} from "@/components/ui/section";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { cn } from "@/lib/utils";
-import {
-  galleryCategoryGroups,
-  type GalleryPhoto,
-} from "@/data/galleryImages";
+import { galleryCategoryGroups, type GalleryPhoto } from "@/data/galleryImages";
 
 // Flatten in display (grouped) order so lightbox prev/next matches the page.
 const orderedPhotos: GalleryPhoto[] = galleryCategoryGroups.flatMap(
-  (group) => group.photos
+  (group) => group.photos,
 );
 
-const TILE_SIZES =
-  "(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw";
+const TILE_SIZES = "(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw";
 
 const Gallery = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -34,16 +34,16 @@ const Gallery = () => {
       setActiveIndex((current) =>
         current === null
           ? current
-          : (current - 1 + orderedPhotos.length) % orderedPhotos.length
+          : (current - 1 + orderedPhotos.length) % orderedPhotos.length,
       ),
-    []
+    [],
   );
   const showNext = useCallback(
     () =>
       setActiveIndex((current) =>
-        current === null ? current : (current + 1) % orderedPhotos.length
+        current === null ? current : (current + 1) % orderedPhotos.length,
       ),
-    []
+    [],
   );
 
   // Keyboard controls + scroll lock while the lightbox is open.
@@ -56,7 +56,7 @@ const Gallery = () => {
       if (event.key === "ArrowRight") showNext();
       if (event.key === "Tab") {
         const controls = dialogRef.current?.querySelectorAll<HTMLElement>(
-          'button, [href], [tabindex]:not([tabindex="-1"])'
+          'button, [href], [tabindex]:not([tabindex="-1"])',
         );
         if (!controls?.length) return;
         const first = controls[0];
@@ -144,8 +144,9 @@ const Gallery = () => {
                         height={photo.height}
                         sizes={TILE_SIZES}
                         className={cn(
-                          "h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]",
-                          photo.fit === "contain" && "bg-slate-50 object-contain"
+                          "h-auto w-full",
+                          photo.fit === "contain" &&
+                            "bg-slate-50 object-contain",
                         )}
                       />
                       <span className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-3 bg-gradient-to-t from-black/75 via-black/30 to-transparent p-4 text-left text-sm leading-snug text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
@@ -170,7 +171,12 @@ const Gallery = () => {
             conversation with our team.
           </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild variant="secondary" size="lg" className="w-full sm:w-auto">
+            <Button
+              asChild
+              variant="secondary"
+              size="lg"
+              className="w-full sm:w-auto"
+            >
               <Link href="/contact">Let&apos;s Talk</Link>
             </Button>
             <Button
