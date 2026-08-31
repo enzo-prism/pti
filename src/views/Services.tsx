@@ -96,8 +96,8 @@ const Services = () => {
           <div className="animate-fade-in animate-delay-100">
             <div className="relative aspect-video overflow-hidden rounded-lg shadow-md">
               <Image
-                src="/lovable-uploads/drnjo-2026/conference-room-meeting.webp"
-                alt="Dental professionals reviewing a practice transition plan"
+                src="/lovable-uploads/drnjo-2026/san-mateo-symposium-workshop.jpg"
+                alt="Dr. Michael Njo advising dentists during a practice ownership workshop"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
