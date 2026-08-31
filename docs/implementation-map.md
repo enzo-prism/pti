@@ -41,6 +41,13 @@ This document records the current production architecture after the August 2026 
 - Display dates go through `formatLocalDate`. The homepage Latest Update must not render a raw ISO date.
 - Completed-event recaps must not keep upcoming-event CTAs. The August 14 Panel of Experts dinner post links to the August 27 Roseville recap instead of advertising a past dinner as upcoming.
 
+## Service-page media and framing
+
+- `src/views/Services.tsx` owns the two `/services` overview images.
+- “Choose the Path That Fits Your Goals” uses `/lovable-uploads/drnjo-2026/san-mateo-symposium-workshop.jpg` (1800×1200) with an authentic description of Dr. Michael Njo advising dentists.
+- “Our Process” uses `/lovable-uploads/services-transition-planning-hd.webp` (1672×941). It is an illustrative planning scene, not a representation of PTI clients or staff, so its alt text must stay activity-based.
+- Both slots are fixed 16:9 `aspect-video` frames. Prefer sources at least 1600px wide with all faces, hands, and decision-making activity inside the centered safe area. Avoid portrait sources and do not compensate for a bad source with fragile breakpoint-specific object positioning.
+
 ## Locations and structured data
 
 - State content lives in `src/data/locations.ts` and must remain materially distinct and sourced.
@@ -65,4 +72,4 @@ npm run rss:check
 git diff --check
 ```
 
-For production-sensitive changes, also verify `/`, `/events`, `/events/practice-transition-seminar`, `/services/buying`, `/blog`, `/contact`, `sitemap.xml`, and `robots.txt` on the stable public domain.
+For production-sensitive changes, also verify `/`, `/events`, `/events/practice-transition-seminar`, `/services`, `/services/buying`, `/blog`, `/contact`, `sitemap.xml`, and `robots.txt` on the stable public domain.

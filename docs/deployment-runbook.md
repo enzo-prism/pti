@@ -49,6 +49,7 @@ Verify the stable public domain, not only an ephemeral Vercel URL:
 - `/events` lists only current seminars.
 - `/events/practice-transition-seminar` excludes expired registration choices and schema.
 - `/events/leadership-retreat` is a completed-event archive.
+- `/services` renders both 16:9 overview images sharply, with complete faces and no meaningful subject cropped at mobile or desktop widths.
 - `/services/buying` renders acquisition-advisory content.
 - `/blog` exposes current topic filters and recent content.
 - `/contact`, `/privacy-policy`, and `/terms-of-service` render successfully.
