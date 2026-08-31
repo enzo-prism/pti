@@ -211,11 +211,11 @@ const Services = () => {
           <div className="order-1 md:order-2 animate-fade-in animate-delay-100">
             <div className="relative aspect-video overflow-hidden rounded-lg shadow-md">
               <Image
-                src="/lovable-uploads/drnjo-2026/standing-trio.webp"
-                alt="Practice Transitions Institute team members"
+                src="/lovable-uploads/services-transition-planning-hd.webp"
+                alt="Dental practice owner and advisors reviewing a transition plan together"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
+                className="object-cover object-center"
               />
             </div>
           </div>
