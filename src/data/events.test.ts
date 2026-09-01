@@ -1,5 +1,9 @@
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { getUpcomingRawEvents, rawEvents } from "@/data/events";
+import { communityImpactPosts } from "@/data/communityImpactPosts";
+import { blogPosts } from "@/data/blogPosts";
 import {
   getPastPracticeTransitionSeminarEvents,
   getSeminarRegistrationPrice,
@@ -7,6 +11,7 @@ import {
   PRACTICE_TRANSITION_SEMINAR_PATH,
   PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
   practiceTransitionSeminarEvents,
+  practiceTransitionSeminarLearningPoints,
 } from "@/data/practiceTransitionSeminar";
 
 describe("events dataset", () => {
@@ -146,5 +151,92 @@ describe("events dataset", () => {
 
     expect(anaheim?.location).toContain("The Phillips Group");
     expect(anaheim?.location).toContain("2300 E Katella Ave #405");
+  });
+
+  it("attaches the Sacramento flyer and flyer copy only to the October 2 2026 date", () => {
+    const octoberDates = rawEvents.filter((event) => event.date === "October 2, 2026");
+    const sacramento = octoberDates[0];
+    const anaheim = rawEvents.find((event) => event.date === "March 12, 2027");
+    const sanFrancisco = rawEvents.find((event) => event.date === "July 17, 2026");
+    const beyondTheChair = rawEvents.find(
+      (event) => event.id === "beyond-the-chair-anaheim-2026"
+    );
+
+    expect(octoberDates).toHaveLength(1);
+    expect(sacramento).toMatchObject({
+      id: "pti-seminar-sacramento-2026",
+      title: "Mastering Your Dental Transition Into and Out of Practice",
+      subtitle: "BEFORE YOU BUY, EXPAND, PARTNER, OR SELL / KNOW YOUR OPTIONS",
+      standalone: true,
+      time: "8:00 AM - 3:00 PM",
+      location: "TDIC Headquarters, 1201 K St, 14th Floor, Sacramento, CA",
+      registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
+      detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
+      flyerImage:
+        "/lovable-uploads/drnjo-2026/pti-sacramento-seminar-2026-flyer.webp",
+      flyerImageAlt:
+        "Practice Transitions Institute Sacramento seminar flyer, October 2 2026 at TDIC Headquarters.",
+    });
+    expect(typeof sacramento?.description).toBe("object");
+    if (typeof sacramento?.description === "object") {
+      expect(sacramento.description.intro).toContain(
+        "evaluate today's transition landscape"
+      );
+      expect(sacramento.description.intro).toContain("Special Sacramento guest: TDIC");
+      expect(sacramento.description.intro).toContain(
+        "from buying and expanding to transitioning and selling"
+      );
+      expect(sacramento.description.learningPoints).toEqual([
+        "Which transition path may be right for you: start-up, associate buy-in, partnership, private sale, or DSO",
+        "When to begin preparing—and why timing can dramatically affect your options",
+        "How to evaluate a practice or opportunity beyond the asking price",
+        "What buyers are looking for in today's market",
+        "How to build the right advisory team and create a transition timeline that protects your future",
+      ]);
+    }
+    expect(sacramento?.speakers).toEqual([
+      {
+        name: "Liz Armato",
+        title: "COO",
+        imageUrl: "/lovable-uploads/dfcf139a-4116-4e53-ac55-479fd8d2bbb8.png",
+      },
+      {
+        name: "Dr. Michael Njo",
+        title: "Founder & Lead Transition Consultant",
+        imageUrl: "/lovable-uploads/fccc20e2-c4f3-4b29-8473-f24585fbc306.png",
+      },
+    ]);
+
+    expect(anaheim?.flyerImage).toBeUndefined();
+    expect(anaheim?.standalone).toBeUndefined();
+    expect(anaheim?.speakers).toBeUndefined();
+    expect(JSON.stringify(anaheim)).not.toMatch(/TDIC/);
+    expect(typeof anaheim?.description).toBe("object");
+    if (typeof anaheim?.description === "object") {
+      expect(anaheim.description.learningPoints).toEqual(
+        practiceTransitionSeminarLearningPoints
+      );
+    }
+
+    expect(sanFrancisco?.flyerImage).toBeUndefined();
+    expect(JSON.stringify(sanFrancisco)).not.toMatch(/TDIC/);
+
+    expect(beyondTheChair?.date).toBe("September 25, 2026");
+    expect(beyondTheChair?.flyerImage).toBe(
+      "/lovable-uploads/drnjo-2026/promotional-flyer-dental-strategies.webp"
+    );
+    expect(
+      existsSync(
+        resolve(
+          process.cwd(),
+          "public/lovable-uploads/drnjo-2026/pti-sacramento-seminar-2026-flyer.webp"
+        )
+      )
+    ).toBe(true);
+    expect(
+      [...communityImpactPosts, ...blogPosts].some((post) =>
+        JSON.stringify(post).includes("pti-sacramento-seminar-2026-flyer")
+      )
+    ).toBe(false);
   });
 });

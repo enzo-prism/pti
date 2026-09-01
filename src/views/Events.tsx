@@ -65,8 +65,12 @@ const Events = ({ workshopReview }: EventsProps) => {
     // Step 2: Group events by title using Map for efficient lookup
     const titleGroups = new Map<string, Event[]>();
 
-    // Single pass through events to build groups
+    // Single pass through events to build groups. Standalone cards keep their
+    // own flyer and copy instead of merging into a same-title series group.
     processedEvents.forEach((event) => {
+      if (event.standalone) {
+        return;
+      }
       const group = titleGroups.get(event.title);
       if (group) {
         group.push(event);
@@ -143,6 +147,12 @@ const Events = ({ workshopReview }: EventsProps) => {
           isEventGroup: true,
           eventDates,
         });
+      }
+    });
+
+    processedEvents.forEach((event) => {
+      if (event.standalone) {
+        finalEvents.push(event);
       }
     });
 
@@ -352,6 +362,15 @@ const Events = ({ workshopReview }: EventsProps) => {
                         >
                           {event.title}
                         </h3>
+                        {event.subtitle ? (
+                          <p
+                            className={`mt-1 text-sm font-medium leading-snug ${
+                              event.isPast ? "text-gray-500" : "text-primary"
+                            }`}
+                          >
+                            {event.subtitle}
+                          </p>
+                        ) : null}
                       </div>
                       {event.flyerImage ? (
                         <div className="mx-auto w-28 shrink-0 overflow-hidden rounded-lg bg-slate-100 ring-1 ring-black/5 sm:mx-0">
@@ -429,7 +448,8 @@ const Events = ({ workshopReview }: EventsProps) => {
                           </p>
                           <div>
                             <p className="text-sm font-semibold mb-2">
-                              At this seminar, you&apos;ll discover how to:
+                              {event.description.learningPointsHeading ??
+                                "At this seminar, you'll discover how to:"}
                             </p>
                             <ul className="text-sm space-y-1">
                               {event.description.learningPoints.map(
@@ -446,17 +466,16 @@ const Events = ({ workshopReview }: EventsProps) => {
                       )}
                     </div>
 
-                    {/* Speakers Section for Webinars */}
-                    {event.type === "webinar" &&
-                      event.speakers &&
-                      event.speakers.length > 0 && (
+                    {event.speakers && event.speakers.length > 0 && (
                         <div className="mb-6">
                           <h4
                             className={`text-sm font-semibold mb-3 ${
                               event.isPast ? "text-gray-600" : "text-gray-900"
                             }`}
                           >
-                            Featured Speakers
+                            {event.type === "webinar"
+                              ? "Featured Speakers"
+                              : "Meet Your Experts"}
                           </h4>
                           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                             {event.speakers.map((speaker, index) => (
