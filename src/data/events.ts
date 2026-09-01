@@ -26,6 +26,7 @@ export interface RawEvent {
   description: string | {
     intro: string;
     learningPoints: string[];
+    learningPointsHeading?: string;
   };
   type: "webinar" | "seminar" | "workshop" | "conference" | "dinner";
   registrationLink: string;
@@ -34,6 +35,8 @@ export interface RawEvent {
   offerPriceCurrency?: string;
   flyerImage?: string;
   flyerImageAlt?: string;
+  subtitle?: string;
+  standalone?: boolean;
   speakers?: Array<{
     name: string;
     title: string;
@@ -41,26 +44,70 @@ export interface RawEvent {
   }>;
 }
 
+const SACRAMENTO_SEMINAR_EVENT_ID = "pti-seminar-sacramento-2026";
+
 const practiceTransitionSeminarDescription = {
   intro:
     "Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day seminar gives you practical guidance for making your next move with clarity and confidence.",
   learningPoints: practiceTransitionSeminarLearningPoints,
 };
 
+const sacramentoSeminarDescription = {
+  intro:
+    "Join Practice Transitions Institute for a practical seminar designed to help you evaluate today's transition landscape and make confident decisions about what comes next. Special Sacramento guest: TDIC. TDIC exclusively protects dentists, offering expert guidance as your practice and career evolve from buying and expanding to transitioning and selling.",
+  learningPointsHeading: "What you'll learn:",
+  learningPoints: [
+    "Which transition path may be right for you: start-up, associate buy-in, partnership, private sale, or DSO",
+    "When to begin preparing—and why timing can dramatically affect your options",
+    "How to evaluate a practice or opportunity beyond the asking price",
+    "What buyers are looking for in today's market",
+    "How to build the right advisory team and create a transition timeline that protects your future",
+  ],
+};
+
 const practiceTransitionEvents: RawEvent[] = practiceTransitionSeminarEvents.map(
-  (event) => ({
-    id: event.id,
-    title: "Mastering Your Dental Transition Into and Out of Practice",
-    date: event.date,
-    time: event.time,
-    location: `${event.venueName}, ${event.addressLines.join(", ")}`,
-    description: practiceTransitionSeminarDescription,
-    type: "seminar",
-    registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
-    detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
-    offerPrice: event.earlyBirdPrice,
-    offerPriceCurrency: "USD",
-  })
+  (event) => {
+    const mapped: RawEvent = {
+      id: event.id,
+      title: "Mastering Your Dental Transition Into and Out of Practice",
+      date: event.date,
+      time: event.time,
+      location: `${event.venueName}, ${event.addressLines.join(", ")}`,
+      description: practiceTransitionSeminarDescription,
+      type: "seminar",
+      registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
+      detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
+      offerPrice: event.earlyBirdPrice,
+      offerPriceCurrency: "USD",
+    };
+
+    if (event.id !== SACRAMENTO_SEMINAR_EVENT_ID) {
+      return mapped;
+    }
+
+    return {
+      ...mapped,
+      standalone: true,
+      subtitle: "BEFORE YOU BUY, EXPAND, PARTNER, OR SELL / KNOW YOUR OPTIONS",
+      flyerImage:
+        "/lovable-uploads/drnjo-2026/pti-sacramento-seminar-2026-flyer.webp",
+      flyerImageAlt:
+        "Practice Transitions Institute Sacramento seminar flyer, October 2 2026 at TDIC Headquarters.",
+      description: sacramentoSeminarDescription,
+      speakers: [
+        {
+          name: "Liz Armato",
+          title: "COO",
+          imageUrl: "/lovable-uploads/dfcf139a-4116-4e53-ac55-479fd8d2bbb8.png",
+        },
+        {
+          name: "Dr. Michael Njo",
+          title: "Founder & Lead Transition Consultant",
+          imageUrl: "/lovable-uploads/fccc20e2-c4f3-4b29-8473-f24585fbc306.png",
+        },
+      ],
+    };
+  }
 );
 
 export const rawEvents: RawEvent[] = [
