@@ -150,13 +150,11 @@ const Gallery = () => {
                             "bg-slate-50 object-contain",
                         )}
                       />
-                      {photo.names?.length ? (
-                        <PhotoNameOverlay names={photo.names} />
-                      ) : null}
                       <span className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-3 bg-gradient-to-t from-black/75 via-black/30 to-transparent p-4 text-left text-sm leading-snug text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                         {photo.caption}
                       </span>
                     </div>
+                    <PhotoNameOverlay names={photo.names} />
                   </button>
                 );
               })}

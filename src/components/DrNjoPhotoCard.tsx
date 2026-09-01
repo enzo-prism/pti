@@ -22,12 +22,12 @@ export function PhotoNameOverlay({ names }: { names?: string[] }) {
   if (!names?.length) return null;
 
   return (
-    <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-3 pb-3 pt-10 sm:px-4">
+    <div className="border-t border-white/10 bg-slate-950 px-3 py-2.5 sm:px-4">
       <ul className="space-y-0.5">
         {names.map((name) => (
           <li
             key={name}
-            className="text-xs font-semibold leading-snug text-white drop-shadow-sm sm:text-sm"
+            className="text-xs font-semibold leading-snug text-white sm:text-sm"
           >
             {name}
           </li>
@@ -90,8 +90,8 @@ export function DrNjoPhotoCard({
               imageClassName,
             )}
           />
-          <PhotoNameOverlay names={image.names} />
         </div>
+        <PhotoNameOverlay names={image.names} />
       </div>
       {showCaption ? (
         <figcaption

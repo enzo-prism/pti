@@ -69,8 +69,8 @@ export function DrNjoGallerySlider({
                   )}
                   priority={index === 0}
                 />
-                <PhotoNameOverlay names={image.names} />
               </div>
+              <PhotoNameOverlay names={image.names} />
             </div>
           </CarouselItem>
         ))}
