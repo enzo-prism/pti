@@ -137,24 +137,25 @@ const Gallery = () => {
                     aria-label={`View larger image: ${photo.alt}`}
                     className="group mb-4 block w-full break-inside-avoid overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                   >
-                    <div className="relative">
+                    <div
+                      className={cn(
+                        "relative",
+                        photo.fit === "contain" && "bg-slate-50",
+                      )}
+                    >
                       <Image
                         src={photo.src}
                         alt={photo.alt}
                         width={photo.width}
                         height={photo.height}
                         sizes={TILE_SIZES}
-                        className={cn(
-                          "h-auto w-full",
-                          photo.fit === "contain" &&
-                            "bg-slate-50 object-contain",
-                        )}
+                        className="h-auto w-full object-contain"
                       />
-                      <span className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-3 bg-gradient-to-t from-black/75 via-black/30 to-transparent p-4 text-left text-sm leading-snug text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                        {photo.caption}
-                      </span>
                     </div>
                     <PhotoNameOverlay names={photo.names} />
+                    <span className="block border-t border-slate-100 bg-white px-4 py-3 text-left text-sm leading-snug text-slate-700">
+                      {photo.caption}
+                    </span>
                   </button>
                 );
               })}

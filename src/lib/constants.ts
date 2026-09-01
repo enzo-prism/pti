@@ -9,6 +9,8 @@ export const DENTAL_TRANSITIONS_HANDBOOK_URL =
   "https://www.amazon.com/Dental-Practice-Transitions-Handbook-Healthcare/dp/1627878718";
 export const HANDBOOK_PATH = "/resources/dental-practice-transitions-handbook";
 export const SECOND_BOOK_PATH = "/resources/second-book";
+export const PODCAST_INTERVIEW_PATH =
+  "/resources/navigating-dental-insurance-podcast";
 
 export const PRACTICE_SALE_CHECKLIST_PATH =
   "/resources/practice-sale-readiness-checklist";

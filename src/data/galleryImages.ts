@@ -81,7 +81,7 @@ const additionalPhotos: GalleryPhoto[] = [
     category: "team",
     width: 383,
     height: 460,
-    fit: "cover",
+    fit: "contain",
     names: ["Dr. Michael Njo"],
   },
   {
@@ -93,7 +93,7 @@ const additionalPhotos: GalleryPhoto[] = [
     category: "team",
     width: 497,
     height: 750,
-    fit: "cover",
+    fit: "contain",
     names: ["Liz Armato"],
   },
   {
@@ -105,7 +105,7 @@ const additionalPhotos: GalleryPhoto[] = [
     category: "speaking-education",
     width: 1600,
     height: 2134,
-    fit: "cover",
+    fit: "contain",
   },
   {
     id: "dugoni-lunch-learn-flyer",
@@ -127,7 +127,7 @@ const additionalPhotos: GalleryPhoto[] = [
     category: "speaking-education",
     width: 1800,
     height: 1200,
-    fit: "cover",
+    fit: "contain",
   },
   {
     id: "smcds-associate-workshop",
@@ -138,7 +138,7 @@ const additionalPhotos: GalleryPhoto[] = [
     category: "speaking-education",
     width: 1800,
     height: 1012,
-    fit: "cover",
+    fit: "contain",
   },
   {
     id: "dugoni-donation-ceremony",
@@ -149,7 +149,7 @@ const additionalPhotos: GalleryPhoto[] = [
     category: "leadership-community",
     width: 1600,
     height: 1066,
-    fit: "cover",
+    fit: "contain",
   },
   {
     id: "diana-fat-board-of-regents",
@@ -197,25 +197,22 @@ const photoById = (id: string): GalleryPhoto | undefined =>
 
 export interface HomeGalleryTile {
   photo: GalleryPhoto;
-  /** CSS object-position so the cover-crop keeps the subjects framed. */
-  focus: string;
 }
 
-// Compact, image-led selection for the homepage gallery teaser. Every tile is
-// a landscape cover-crop, so each entry carries a focal point tuned to keep the
-// faces in frame. The first entry renders as the large feature tile.
-const HOME_PREVIEW: Array<{ id: string; focus: string }> = [
-  { id: "panelDinnerGroup", focus: "center 42%" },
-  { id: "poeRosevilleCollage", focus: "center 30%" },
-  { id: "officeSelfieGroup", focus: "center 38%" },
-  { id: "panelDinnerTable", focus: "center 40%" },
-  { id: "smcds-symposium-workshop", focus: "55% center" },
-];
+// Compact, image-led selection for the homepage gallery teaser. Tiles keep
+// the source frame (no cover-crop) so faces and overlay text stay intact.
+const HOME_PREVIEW_IDS = [
+  "panelDinnerGroup",
+  "poeRosevilleCollage",
+  "officeSelfieGroup",
+  "panelDinnerTable",
+  "smcds-symposium-workshop",
+] as const;
 
-export const homeGalleryPreview: HomeGalleryTile[] = HOME_PREVIEW.map(
-  ({ id, focus }) => {
+export const homeGalleryPreview: HomeGalleryTile[] = HOME_PREVIEW_IDS.map(
+  (id) => {
     const photo = photoById(id);
-    return photo ? { photo, focus } : null;
+    return photo ? { photo } : null;
   }
 ).filter((tile): tile is HomeGalleryTile => Boolean(tile));
 

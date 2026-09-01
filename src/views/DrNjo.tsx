@@ -17,6 +17,7 @@ import {
 import {
   MICHAEL_NJO_WEBSITE_URL,
   HANDBOOK_PATH,
+  PODCAST_INTERVIEW_PATH,
   SECOND_BOOK_PATH,
   PHONE_NUMBER,
   PHONE_NUMBER_TEL,
@@ -206,6 +207,11 @@ const DrNjo = () => {
                 </Button>
                 <Button asChild variant="outline">
                   <a href={SECOND_BOOK_PATH}>Second book (coming)</a>
+                </Button>
+                <Button asChild variant="outline" className="sm:col-span-2">
+                  <a href={PODCAST_INTERVIEW_PATH}>
+                    Listen to the podcast interview
+                  </a>
                 </Button>
               </div>
             </div>

@@ -20,7 +20,8 @@ import {
   buildPostalAddress,
   buildGoogleMapsUrl,
 } from "@/lib/siteMetadata";
-import { PHONE_NUMBER_TEL } from "@/lib/constants";
+import { PHONE_NUMBER_TEL, PODCAST_INTERVIEW_PATH } from "@/lib/constants";
+import { PODCAST_INTERVIEW } from "@/data/podcastInterview";
 import { parseEventDate } from "@/lib/dateUtils";
 import { serviceOfferings, type ServiceOffering } from "@/data/services";
 
@@ -573,5 +574,34 @@ export const buildImageGallerySchema = (
       ...(image.width ? { width: image.width } : {}),
       ...(image.height ? { height: image.height } : {}),
     })),
+  };
+};
+
+export const buildPodcastEpisodeSchema = (): JsonLdShape => {
+  const pageUrl = buildAbsoluteUrl(PODCAST_INTERVIEW_PATH);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "PodcastEpisode",
+    "@id": `${pageUrl}#episode`,
+    name: PODCAST_INTERVIEW.title,
+    description:
+      "Dr. Michael Njo joins Ben Tuinei and Jordon Comstock on The Navigating Dental Insurance Podcast.",
+    datePublished: `${PODCAST_INTERVIEW.datePublished}T00:00:00Z`,
+    duration: PODCAST_INTERVIEW.durationIso,
+    url: PODCAST_INTERVIEW.appleEpisodeUrl,
+    timeRequired: PODCAST_INTERVIEW.durationIso,
+    partOfSeries: {
+      "@type": "PodcastSeries",
+      name: PODCAST_INTERVIEW.showName,
+    },
+    actor: [
+      { "@type": "Person", name: "Dr. Michael Njo" },
+      { "@type": "Person", name: "Ben Tuinei" },
+      { "@type": "Person", name: "Jordon Comstock" },
+    ],
+    isPartOf: { "@id": WEBSITE_ID },
+    inLanguage: DEFAULT_LOCALE,
+    mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
   };
 };

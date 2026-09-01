@@ -97,6 +97,17 @@ async function checkSharedPolicies() {
     errors.push("Editorial gallery images must not be zoom-cropped on hover.");
   }
   if (
+    gallery.includes("from-black/75") ||
+    gallery.includes("group-hover:opacity-100")
+  ) {
+    errors.push(
+      "Gallery captions must sit under photos, not as overlays on faces.",
+    );
+  }
+  if (!gallery.includes('className="h-auto w-full object-contain"')) {
+    errors.push("Gallery tiles must preserve complete source images.");
+  }
+  if (
     blogPost.includes("sm:aspect-[16/10]") ||
     blogPost.includes("md:aspect-[16/9]")
   ) {

@@ -11,10 +11,15 @@ import {
   Building2,
   Calculator,
   ClipboardCheck,
+  Headphones,
   Newspaper,
   BookOpen,
 } from "lucide-react";
-import { HANDBOOK_PATH, SECOND_BOOK_PATH } from "@/lib/constants";
+import {
+  HANDBOOK_PATH,
+  PODCAST_INTERVIEW_PATH,
+  SECOND_BOOK_PATH,
+} from "@/lib/constants";
 
 const resources = [
   {
@@ -32,6 +37,14 @@ const resources = [
       "A forthcoming second book from Dr. Njo. The title has not been announced yet.",
     href: SECOND_BOOK_PATH,
     cta: "See the forthcoming book page",
+  },
+  {
+    icon: <Headphones className="h-6 w-6 text-sky-700" />,
+    title: "The Right Way to Go Out of Network",
+    description:
+      "Dr. Njo as a guest on The Navigating Dental Insurance Podcast with Ben Tuinei and Jordon Comstock.",
+    href: PODCAST_INTERVIEW_PATH,
+    cta: "Listen to the interview",
   },
   {
     icon: <Calculator className="h-6 w-6 text-blue-600" />,
