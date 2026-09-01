@@ -19,6 +19,8 @@ const exploreLinks = [
   { name: "FAQ", path: "/faq" },
   { name: "Resources", path: "/resources" },
   { name: "What's My Practice Worth?", path: "/resources/how-much-is-my-dental-practice-worth" },
+  { name: "Transitions Handbook", path: "/resources/dental-practice-transitions-handbook" },
+  { name: "Second Book (Coming)", path: "/resources/second-book" },
   { name: "Sale Readiness Checklist", path: PRACTICE_SALE_CHECKLIST_PATH },
   { name: "Locations", path: "/locations" },
 ];

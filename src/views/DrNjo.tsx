@@ -16,18 +16,18 @@ import {
 } from "@/data/drNjoGallery";
 import {
   MICHAEL_NJO_WEBSITE_URL,
-  DENTAL_TRANSITIONS_HANDBOOK_URL,
+  HANDBOOK_PATH,
+  SECOND_BOOK_PATH,
   PHONE_NUMBER,
   PHONE_NUMBER_TEL,
 } from "@/lib/constants";
 import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
 
 const [
-  bluePrintFlyer,
-  publicationSpread,
   handbookCoverSpread,
-  backstageQuote,
   panelDinnerBookSigning,
+  poeRosevilleCollage,
+  backstageQuote,
 ] = drNjoSpeakingAuthorshipImages;
 
 const [
@@ -188,11 +188,11 @@ const DrNjo = () => {
                 sizes="(min-width: 1024px) 44vw, 100vw"
               />
               <DrNjoPhotoCard
-                image={publicationSpread}
+                image={panelDinnerBookSigning}
                 sizes="(min-width: 1024px) 20vw, 100vw"
               />
               <DrNjoPhotoCard
-                image={bluePrintFlyer}
+                image={poeRosevilleCollage}
                 sizes="(min-width: 1024px) 20vw, 100vw"
               />
               <DrNjoPhotoCard
@@ -200,21 +200,14 @@ const DrNjo = () => {
                 className="sm:col-span-2"
                 sizes="(min-width: 1024px) 44vw, 100vw"
               />
-              <DrNjoPhotoCard
-                image={panelDinnerBookSigning}
-                className="sm:col-span-2"
-                sizes="(min-width: 1024px) 44vw, 100vw"
-              />
-              <Button asChild className="sm:col-span-2">
-                <a
-                  href={DENTAL_TRANSITIONS_HANDBOOK_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View the Handbook on Amazon
-                  <ExternalLink className="ml-2 h-4 w-4" aria-hidden="true" />
-                </a>
-              </Button>
+              <div className="grid gap-3 sm:col-span-2 sm:grid-cols-2">
+                <Button asChild>
+                  <a href={HANDBOOK_PATH}>View the Handbook</a>
+                </Button>
+                <Button asChild variant="outline">
+                  <a href={SECOND_BOOK_PATH}>Second book (coming)</a>
+                </Button>
+              </div>
             </div>
           </ScrollReveal>
         </div>

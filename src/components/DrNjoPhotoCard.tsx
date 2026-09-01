@@ -15,7 +15,27 @@ const ASPECT_CLASS_MAP: Record<DrNjoGalleryAspect, string> = {
   wide: "aspect-[16/10]",
   tall: "aspect-[3/4]",
   story: "aspect-[148/320]",
+  poster: "aspect-[864/1821]",
 };
+
+export function PhotoNameOverlay({ names }: { names?: string[] }) {
+  if (!names?.length) return null;
+
+  return (
+    <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-3 pb-3 pt-10 sm:px-4">
+      <ul className="space-y-0.5">
+        {names.map((name) => (
+          <li
+            key={name}
+            className="text-xs font-semibold leading-snug text-white drop-shadow-sm sm:text-sm"
+          >
+            {name}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export const getDrNjoGalleryAspectClass = (aspect: DrNjoGalleryAspect) =>
   ASPECT_CLASS_MAP[aspect];
@@ -70,6 +90,7 @@ export function DrNjoPhotoCard({
               imageClassName,
             )}
           />
+          <PhotoNameOverlay names={image.names} />
         </div>
       </div>
       {showCaption ? (

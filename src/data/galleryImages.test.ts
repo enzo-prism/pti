@@ -34,4 +34,23 @@ describe("gallery image registry", () => {
     const grouped = galleryCategoryGroups.flatMap((group) => group.photos);
     expect(grouped.length).toBe(galleryPhotos.length);
   });
+
+  it("includes recent dinner photos and shipped community photos", () => {
+    const ids = galleryPhotos.map((photo) => photo.id);
+
+    expect(ids).toContain("panelDinnerGroup");
+    expect(ids).toContain("panelDinnerTable");
+    expect(ids).toContain("poeRosevilleCollage");
+    expect(ids).toContain("diana-fat-board-of-regents");
+    expect(ids).toContain("bill-mikki-porch");
+    expect(ids).toContain("bill-mikki-trio");
+  });
+
+  it("only labels faces already named in the repo", () => {
+    const medal = galleryPhotos.find((photo) => photo.id === "blackTieMedalPortrait");
+    const selfie = galleryPhotos.find((photo) => photo.id === "officeSelfieGroup");
+
+    expect(medal?.names).toEqual(["Dr. Michael Njo", "Dr. Allen Budenz"]);
+    expect(selfie?.names?.[0]).toMatch(/Nader Shahi/);
+  });
 });

@@ -6,7 +6,7 @@ import {
   CarouselPrevious
 } from "@/components/ui/carousel";
 import { drNjoGalleryImages, type DrNjoGalleryImage } from "@/data/drNjoGallery";
-import { getDrNjoGalleryAspectClass } from "@/components/DrNjoPhotoCard";
+import { getDrNjoGalleryAspectClass, PhotoNameOverlay } from "@/components/DrNjoPhotoCard";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
@@ -69,6 +69,7 @@ export function DrNjoGallerySlider({
                   )}
                   priority={index === 0}
                 />
+                <PhotoNameOverlay names={image.names} />
               </div>
             </div>
           </CarouselItem>

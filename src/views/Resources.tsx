@@ -14,7 +14,7 @@ import {
   Newspaper,
   BookOpen,
 } from "lucide-react";
-import { DENTAL_TRANSITIONS_HANDBOOK_URL } from "@/lib/constants";
+import { HANDBOOK_PATH, SECOND_BOOK_PATH } from "@/lib/constants";
 
 const resources = [
   {
@@ -22,8 +22,16 @@ const resources = [
     title: "Dental Practice Transitions Handbook",
     description:
       "Dr. Michael Njo's practical guide to buying, selling, and transitioning a dental practice in a changing market.",
-    href: DENTAL_TRANSITIONS_HANDBOOK_URL,
+    href: HANDBOOK_PATH,
     cta: "View the handbook",
+  },
+  {
+    icon: <BookOpen className="h-6 w-6 text-slate-600" />,
+    title: "Second Book (Coming)",
+    description:
+      "A forthcoming second book from Dr. Njo. The title has not been announced yet.",
+    href: SECOND_BOOK_PATH,
+    cta: "See the forthcoming book page",
   },
   {
     icon: <Calculator className="h-6 w-6 text-blue-600" />,
