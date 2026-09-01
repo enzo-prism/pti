@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import {
   PHONE_NUMBER,
   PHONE_NUMBER_TEL,
+  PODCAST_INTERVIEW_PATH,
   PRACTICE_SALE_CHECKLIST_PATH,
 } from "@/lib/constants";
 import { SITE_CONTACT_EMAIL, BUSINESS_ADDRESS } from "@/lib/siteMetadata";
@@ -21,6 +22,7 @@ const exploreLinks = [
   { name: "What's My Practice Worth?", path: "/resources/how-much-is-my-dental-practice-worth" },
   { name: "Transitions Handbook", path: "/resources/dental-practice-transitions-handbook" },
   { name: "Second Book (Coming)", path: "/resources/second-book" },
+  { name: "Podcast Interview", path: PODCAST_INTERVIEW_PATH },
   { name: "Sale Readiness Checklist", path: PRACTICE_SALE_CHECKLIST_PATH },
   { name: "Locations", path: "/locations" },
 ];

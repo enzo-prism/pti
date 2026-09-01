@@ -111,7 +111,7 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
     caption:
       "With an AI startup founder and board of directors, notably our former Dean of University of the Pacific School of Dentistry, Nader Shahi.",
     category: "leadership-community",
-    fit: "cover",
+    fit: "contain",
     aspect: "landscape",
     featuredOn: ["home", "drnjo"],
     names: ["Nader Shahi, former Dean, University of the Pacific School of Dentistry"],
@@ -123,7 +123,7 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
     caption:
       "Industry camaraderie and professional relationships that strengthen PTI's network and perspective.",
     category: "leadership-community",
-    fit: "cover",
+    fit: "contain",
     aspect: "tall",
     featuredOn: ["home", "drnjo"],
   },
@@ -157,7 +157,7 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
     caption:
       "A quieter look at the trust and friendship inside Dr. Njo's professional circle.",
     category: "relationships",
-    fit: "cover",
+    fit: "contain",
     aspect: "landscape",
     featuredOn: ["drnjo"],
   },
@@ -168,7 +168,7 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
     caption:
       "A humanizing celebration moment included as a quiet relationship detail rather than a front-and-center proof point.",
     category: "relationships",
-    fit: "cover",
+    fit: "contain",
     aspect: "landscape",
     featuredOn: ["drnjo"],
   },

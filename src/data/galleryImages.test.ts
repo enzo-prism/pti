@@ -46,6 +46,27 @@ describe("gallery image registry", () => {
     expect(ids).toContain("bill-mikki-trio");
   });
 
+  it("does not cover-crop people photos", () => {
+    const peoplePhotoIds = [
+      "officeSelfieGroup",
+      "standingTrio",
+      "dinnerTableFour",
+      "birthdayCelebration",
+      "team-michael-njo",
+      "team-liz-armato",
+      "dugoni-lunch-learn-presentation",
+      "smcds-symposium-workshop",
+      "smcds-associate-workshop",
+      "dugoni-donation-ceremony",
+    ];
+
+    for (const id of peoplePhotoIds) {
+      expect(galleryPhotos.find((photo) => photo.id === id)?.fit).toBe(
+        "contain",
+      );
+    }
+  });
+
   it("only labels faces already named in the repo", () => {
     const medal = galleryPhotos.find((photo) => photo.id === "blackTieMedalPortrait");
     const selfie = galleryPhotos.find((photo) => photo.id === "officeSelfieGroup");

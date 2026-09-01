@@ -30,6 +30,7 @@ const STATIC_ROUTES: StaticRoute[] = [
   { path: "/resources/how-much-is-my-dental-practice-worth", changeFrequency: "monthly", priority: 0.8, lastModified: "2026-07-02" },
   { path: "/resources/dental-practice-transitions-handbook", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-09-01" },
   { path: "/resources/second-book", changeFrequency: "monthly", priority: 0.5, lastModified: "2026-09-01" },
+  { path: "/resources/navigating-dental-insurance-podcast", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-09-01" },
   { path: "/about", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-05-28" },
   { path: "/drnjo", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-09-01" },
   { path: "/events", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-09-01" },
