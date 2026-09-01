@@ -82,6 +82,7 @@ const additionalPhotos: GalleryPhoto[] = [
     width: 383,
     height: 460,
     fit: "cover",
+    names: ["Dr. Michael Njo"],
   },
   {
     id: "team-liz-armato",
@@ -93,6 +94,7 @@ const additionalPhotos: GalleryPhoto[] = [
     width: 497,
     height: 750,
     fit: "cover",
+    names: ["Liz Armato"],
   },
   {
     id: "dugoni-lunch-learn-presentation",
