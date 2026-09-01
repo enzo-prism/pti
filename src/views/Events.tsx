@@ -51,7 +51,8 @@ interface EventsProps {
 
 const Events = ({ workshopReview }: EventsProps) => {
   const [showPastEvents, setShowPastEvents] = useState(false);
-  const [bluePrintFlyer, publicationSpread] = eventsSpeakingHighlightImages;
+  const [laDinnerPhoto, rosevilleDinnerPhoto, bookSigningPhoto] =
+    eventsSpeakingHighlightImages;
 
   // Optimized event grouping with proper deduplication
   const events: Event[] = useMemo(() => {
@@ -656,46 +657,47 @@ const Events = ({ workshopReview }: EventsProps) => {
             <div className="max-w-3xl mb-8">
               <SectionTitle>Recent Speaking Highlights</SectionTitle>
               <SectionSubtitle className="mb-0">
-                These supporting materials give visitors proof of the
-                educational and community work happening around PTI&apos;s
-                speaking calendar, without asking them to click into a blog post
-                first.
+                Recent Panel of Experts dinners in Los Angeles and Roseville
+                (August 2026), plus the July 2026 San Francisco seminar on the
+                events calendar. Photos here are from the dinners we already
+                published.
               </SectionSubtitle>
             </div>
 
-            <div className="grid gap-6 lg:grid-cols-[minmax(0,0.84fr)_minmax(0,1.16fr)] lg:items-center">
+            <div className="grid gap-6 lg:grid-cols-3 lg:items-start">
               <DrNjoPhotoCard
-                image={bluePrintFlyer}
-                sizes="(min-width: 1280px) 24vw, (min-width: 1024px) 36vw, 100vw"
+                image={laDinnerPhoto}
+                sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, 100vw"
                 priority
               />
+              <DrNjoPhotoCard
+                image={rosevilleDinnerPhoto}
+                sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, 100vw"
+              />
+              <DrNjoPhotoCard
+                image={bookSigningPhoto}
+                sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, 100vw"
+              />
+            </div>
 
-              <div className="grid gap-6 md:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] md:items-start">
-                <DrNjoPhotoCard
-                  image={publicationSpread}
-                  sizes="(min-width: 1280px) 18vw, (min-width: 768px) 24vw, 100vw"
-                />
-                <div className="rounded-[1.75rem] border border-gray-200 bg-white p-6 shadow-sm">
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80">
-                    Educational Presence
-                  </p>
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-3">
-                    Practical transition guidance delivered in public.
-                  </h3>
-                  <p className="text-base leading-relaxed text-gray-600 mb-4">
-                    From seminars and society programs to published materials
-                    and in-person mentoring, Dr. Njo&apos;s event presence is
-                    built around practical guidance dentists can use
-                    immediately.
-                  </p>
-                  <p className="text-base leading-relaxed text-gray-600">
-                    That matters because the same clarity visitors see in these
-                    highlights is the same clarity PTI brings to private
-                    speaking engagements, transition workshops, and one-on-one
-                    consulting.
-                  </p>
-                </div>
-              </div>
+            <div className="mt-8 rounded-[1.75rem] border border-gray-200 bg-white p-6 shadow-sm">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80">
+                Educational Presence
+              </p>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-3">
+                Practical transition guidance delivered in public.
+              </h3>
+              <p className="text-base leading-relaxed text-gray-600 mb-4">
+                The Los Angeles Panel of Experts dinner and the August 2026
+                Roseville Practice Blueprint dinner brought dentists and
+                referral partners together around ownership, growth, and
+                transition decisions.
+              </p>
+              <p className="text-base leading-relaxed text-gray-600">
+                PTI also hosted the July 17, 2026 San Francisco seminar at Kohan
+                Group. That same public teaching is what PTI brings to private
+                workshops and one-on-one consulting.
+              </p>
             </div>
           </div>
         </Section>

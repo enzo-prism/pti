@@ -15,6 +15,7 @@ const aspectRatios: Record<DrNjoGalleryAspect, number> = {
   wide: 16 / 10,
   tall: 3 / 4,
   story: 148 / 320,
+  poster: 864 / 1821,
 };
 
 async function source(relativePath: string) {

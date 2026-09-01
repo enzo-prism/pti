@@ -10,7 +10,8 @@ export type DrNjoGalleryAspect =
   | "portrait"
   | "wide"
   | "tall"
-  | "story";
+  | "story"
+  | "poster";
 
 export interface DrNjoGalleryImage {
   id: string;
@@ -21,6 +22,8 @@ export interface DrNjoGalleryImage {
   fit: DrNjoGalleryFit;
   aspect: DrNjoGalleryAspect;
   featuredOn: DrNjoGalleryPlacement[];
+  /** Known names only. Leave unidentified faces unlabeled. */
+  names?: string[];
 }
 
 const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
@@ -104,13 +107,14 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
   officeSelfieGroup: {
     id: "officeSelfieGroup",
     src: "/lovable-uploads/drnjo-2026/office-selfie-group.webp",
-    alt: "Office group selfie featuring Dr. Michael Njo with dental industry colleagues around a conference table",
+    alt: "Candid office photo with an AI startup founder and board of directors, including Nader Shahi, former Dean of the University of the Pacific School of Dentistry",
     caption:
-      "A candid leadership-team moment that shows the people and partnerships behind PTI's work.",
+      "With an AI startup founder and board of directors, notably our former Dean of University of the Pacific School of Dentistry, Nader Shahi.",
     category: "leadership-community",
     fit: "cover",
     aspect: "landscape",
     featuredOn: ["home", "drnjo"],
+    names: ["Nader Shahi, former Dean, University of the Pacific School of Dentistry"],
   },
   standingTrio: {
     id: "standingTrio",
@@ -126,13 +130,14 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
   blackTieMedalPortrait: {
     id: "blackTieMedalPortrait",
     src: "/lovable-uploads/drnjo-2026/black-tie-medal-portrait.png",
-    alt: "Dr. Michael Njo posing at a formal event beside a medal recipient",
+    alt: "Dr. Michael Njo standing with Dr. Allen Budenz, who is wearing a tuxedo and medallion, at a formal event",
     caption:
-      "A formal leadership moment that reinforces Dr. Njo's standing within the broader professional community.",
+      "Dr. Michael Njo with Dr. Allen Budenz.",
     category: "leadership-community",
     fit: "contain",
     aspect: "story",
     featuredOn: ["home", "drnjo"],
+    names: ["Dr. Michael Njo", "Dr. Allen Budenz"],
   },
   dinnerDuo: {
     id: "dinnerDuo",
@@ -170,35 +175,48 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
   panelDinnerGroup: {
     id: "panelDinnerGroup",
     src: "/lovable-uploads/drnjo-2026/IMG_4918.webp",
-    alt: "Dr. Michael Njo with dentists and referral partners at the Panel of Experts dinner",
+    alt: "Dr. Michael Njo with dentists and referral partners at the Los Angeles Panel of Experts dinner",
     caption:
-      "Dentists and referral partners gathering for practical conversations about practice growth and transitions.",
+      "Los Angeles Panel of Experts dinner with dentists and referral partners.",
     category: "relationships",
     fit: "contain",
     aspect: "tall",
-    featuredOn: ["home", "drnjo"],
+    featuredOn: ["home", "drnjo", "events"],
+    names: ["Dr. Michael Njo"],
   },
   panelDinnerBookSigning: {
     id: "panelDinnerBookSigning",
     src: "/lovable-uploads/drnjo-2026/IMG_4923.webp",
-    alt: "Dr. Michael Njo autographing Dental Practice Transitions Handbook at the Panel of Experts dinner",
+    alt: "Dr. Michael Njo autographing Dental Practice Transitions Handbook at the Los Angeles Panel of Experts dinner",
     caption:
-      "Dr. Njo autographing the Dental Practice Transitions Handbook at the Panel of Experts dinner.",
+      "Dr. Michael Njo autographing the Dental Practice Transitions Handbook at the Los Angeles Panel of Experts dinner.",
     category: "speaking-authorship",
     fit: "contain",
     aspect: "tall",
-    featuredOn: ["drnjo"],
+    featuredOn: ["drnjo", "events"],
+    names: ["Dr. Michael Njo"],
   },
   panelDinnerTable: {
     id: "panelDinnerTable",
     src: "/lovable-uploads/drnjo-2026/IMG_3346.webp",
-    alt: "Panel of Experts dinner table with dentists and referral partners",
+    alt: "Los Angeles Panel of Experts dinner table with dentists and referral partners",
     caption:
-      "A Panel of Experts dinner bringing dentists and trusted referral partners together.",
+      "The Los Angeles Panel of Experts dinner table.",
     category: "relationships",
     fit: "contain",
     aspect: "tall",
-    featuredOn: ["drnjo"],
+    featuredOn: ["drnjo", "events"],
+  },
+  poeRosevilleCollage: {
+    id: "poeRosevilleCollage",
+    src: "/lovable-uploads/drnjo-2026/poe-roseville-aug-2026.webp",
+    alt: "The Practice Blueprint recap collage from the August 2026 Roseville dinner, including a dinner-table group photo and a five-person portrait",
+    caption:
+      "The Practice Blueprint dinner in Roseville, August 2026.",
+    category: "speaking-authorship",
+    fit: "contain",
+    aspect: "poster",
+    featuredOn: ["drnjo", "events"],
   },
 };
 
@@ -221,7 +239,8 @@ export const drNjoGalleryImages = pickImages(
   "birthdayCelebration",
   "panelDinnerGroup",
   "panelDinnerBookSigning",
-  "panelDinnerTable"
+  "panelDinnerTable",
+  "poeRosevilleCollage"
 );
 
 export const homeGalleryImages = pickImages(
@@ -244,11 +263,10 @@ export const aboutGalleryImages = pickImages(
 );
 
 export const drNjoSpeakingAuthorshipImages = pickImages(
-  "bluePrintFlyer",
-  "publicationSpread",
   "handbookCoverSpread",
-  "backstageQuote",
-  "panelDinnerBookSigning"
+  "panelDinnerBookSigning",
+  "poeRosevilleCollage",
+  "backstageQuote"
 );
 
 export const drNjoLeadershipCommunityImages = pickImages(
@@ -268,8 +286,9 @@ export const drNjoRelationshipImages = pickImages(
 );
 
 export const eventsSpeakingHighlightImages = pickImages(
-  "bluePrintFlyer",
-  "publicationSpread"
+  "panelDinnerGroup",
+  "poeRosevilleCollage",
+  "panelDinnerBookSigning"
 );
 
 export const getGalleryImagesForPlacement = (

@@ -19,6 +19,7 @@ export interface GalleryPhoto {
   width: number;
   height: number;
   fit: "cover" | "contain";
+  names?: string[];
 }
 
 const CATEGORY_FROM_DRNJO: Record<
@@ -48,6 +49,7 @@ const DRNJO_DIMENSIONS: Record<string, { width: number; height: number }> = {
   panelDinnerGroup: { width: 1600, height: 2133 },
   panelDinnerBookSigning: { width: 1600, height: 2133 },
   panelDinnerTable: { width: 1600, height: 2133 },
+  poeRosevilleCollage: { width: 864, height: 1821 },
 };
 
 const fromDrNjo = (image: DrNjoGalleryImage): GalleryPhoto => {
@@ -61,6 +63,7 @@ const fromDrNjo = (image: DrNjoGalleryImage): GalleryPhoto => {
     width: dims.width,
     height: dims.height,
     fit: image.fit,
+    names: image.names,
   };
 };
 
@@ -79,6 +82,7 @@ const additionalPhotos: GalleryPhoto[] = [
     width: 383,
     height: 460,
     fit: "cover",
+    names: ["Dr. Michael Njo"],
   },
   {
     id: "team-liz-armato",
@@ -90,6 +94,7 @@ const additionalPhotos: GalleryPhoto[] = [
     width: 497,
     height: 750,
     fit: "cover",
+    names: ["Liz Armato"],
   },
   {
     id: "dugoni-lunch-learn-presentation",
@@ -146,6 +151,40 @@ const additionalPhotos: GalleryPhoto[] = [
     height: 1066,
     fit: "cover",
   },
+  {
+    id: "diana-fat-board-of-regents",
+    src: "/lovable-uploads/drnjo-2026/diana-fat-board-of-regents.webp",
+    alt: "Dr. Michael Njo and Dr. Diana Fat standing together in her Sacramento dental office, beside a navy overlay announcing her appointment to the University of the Pacific Board of Regents",
+    caption:
+      "Dr. Michael Njo with Dr. Diana Fat on her appointment to the University of the Pacific Board of Regents.",
+    category: "leadership-community",
+    width: 1003,
+    height: 1568,
+    fit: "contain",
+    names: ["Dr. Michael Njo", "Dr. Diana Fat"],
+  },
+  {
+    id: "bill-mikki-porch",
+    src: "/lovable-uploads/drnjo-2026/bill-mikki-porch.webp",
+    alt: "Bill and Mikki standing together on a brick walkway in front of a house numbered 257",
+    caption: "Bill and Mikki, from a practice-match celebration.",
+    category: "relationships",
+    width: 1199,
+    height: 1600,
+    fit: "contain",
+    names: ["Bill", "Mikki"],
+  },
+  {
+    id: "bill-mikki-trio",
+    src: "/lovable-uploads/drnjo-2026/bill-mikki-trio.webp",
+    alt: "Three people standing outdoors: a man in light blue scrubs holding a yellow folder, a woman in navy scrubs, and a man in a white shirt and blue tie",
+    caption: "Bill, Mikki, and Dr. Michael Njo at the practice-match celebration.",
+    category: "relationships",
+    width: 1200,
+    height: 1600,
+    fit: "contain",
+    names: ["Bill", "Mikki", "Dr. Michael Njo"],
+  },
 ];
 
 export const galleryPhotos: GalleryPhoto[] = [
@@ -166,11 +205,11 @@ export interface HomeGalleryTile {
 // a landscape cover-crop, so each entry carries a focal point tuned to keep the
 // faces in frame. The first entry renders as the large feature tile.
 const HOME_PREVIEW: Array<{ id: string; focus: string }> = [
+  { id: "panelDinnerGroup", focus: "center 42%" },
+  { id: "poeRosevilleCollage", focus: "center 30%" },
   { id: "officeSelfieGroup", focus: "center 38%" },
+  { id: "panelDinnerTable", focus: "center 40%" },
   { id: "smcds-symposium-workshop", focus: "55% center" },
-  { id: "dugoni-donation-ceremony", focus: "center 40%" },
-  { id: "dinnerTableFour", focus: "center 35%" },
-  { id: "smcds-associate-workshop", focus: "center 45%" },
 ];
 
 export const homeGalleryPreview: HomeGalleryTile[] = HOME_PREVIEW.map(

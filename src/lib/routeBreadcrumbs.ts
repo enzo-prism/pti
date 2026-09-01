@@ -96,6 +96,19 @@ const ROUTE_BREADCRUMBS: Record<string, BreadcrumbNode[]> = {
       path: "/resources/how-much-is-my-dental-practice-worth",
     },
   ],
+  "/resources/dental-practice-transitions-handbook": [
+    HOME_CRUMB,
+    { name: "Resources", path: "/resources" },
+    {
+      name: "Dental Practice Transitions Handbook",
+      path: "/resources/dental-practice-transitions-handbook",
+    },
+  ],
+  "/resources/second-book": [
+    HOME_CRUMB,
+    { name: "Resources", path: "/resources" },
+    { name: "Second Book (Coming)", path: "/resources/second-book" },
+  ],
   "/locations": [
     HOME_CRUMB,
     { name: "Locations", path: "/locations" },
