@@ -13,7 +13,7 @@ const expectations = [
 const Contact = () => {
   return (
     <>
-      <div className="pt-24 md:pt-32 bg-gradient-to-b from-accent to-white">
+      <div className="pt-10 md:pt-16 bg-gradient-to-b from-accent to-white">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center pb-10 sm:pb-12">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 animate-fade-in leading-tight">

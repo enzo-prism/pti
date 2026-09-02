@@ -5,7 +5,7 @@ import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section"
 
 const LeadershipRetreat = () => (
   <>
-    <section className="pt-28 pb-16 md:pt-32 md:pb-20 bg-gradient-to-b from-primary/10 to-white">
+    <section className="pt-10 pb-12 md:pt-16 md:pb-20 bg-gradient-to-b from-primary/10 to-white">
       <div className="container">
         <div className="max-w-3xl">
           <Button variant="ghost" asChild className="mb-4 px-0 text-primary">

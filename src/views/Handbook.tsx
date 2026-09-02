@@ -17,7 +17,7 @@ import {
 const Handbook = () => {
   return (
     <>
-      <section className="bg-gradient-to-b from-accent to-white px-4 pt-20 pb-12 md:pt-28 md:pb-16">
+      <section className="bg-gradient-to-b from-accent to-white px-4 pt-10 pb-12 md:pt-16 md:pb-16">
         <div className="container mx-auto max-w-4xl text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80 sm:text-sm">
             Published resource
