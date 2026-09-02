@@ -4,7 +4,6 @@ import { googleSiteVerificationBody } from "@/lib/googleSiteVerification";
 const verificationHeaders = {
   "Content-Type": "text/html; charset=utf-8",
   "Cache-Control": "no-store",
-  "X-Robots-Tag": "noindex",
 } as const;
 
 function verificationResponse(request: Request, includeBody: boolean) {
