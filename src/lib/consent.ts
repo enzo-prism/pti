@@ -55,3 +55,16 @@ export const openCookiePreferences = () => {
     window.dispatchEvent(new Event(OPEN_COOKIE_PREFERENCES_EVENT));
   }
 };
+
+export const COOKIE_BANNER_SPACE_PROPERTY = "--cookie-banner-space";
+
+export function cookieBannerSpacePx(height: number, gap = 16): string {
+  return `${Math.max(0, Math.ceil(height + gap))}px`;
+}
+
+/** First-visit banners must not steal focus or jump the page. */
+export function shouldFocusCookieBanner(
+  openedBy: "first-visit" | "preferences",
+): boolean {
+  return openedBy === "preferences";
+}
