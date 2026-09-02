@@ -129,7 +129,7 @@ export function PracticeValueCalculator() {
                   id="annual-collections"
                   inputMode="numeric"
                   placeholder="1,200,000"
-                  className="pl-7"
+                  className="h-11 pl-7 text-base md:text-sm"
                   value={collectionsInput}
                   onChange={(event) => handleCollectionsChange(event.target.value)}
                   aria-describedby="collections-help"
@@ -146,7 +146,7 @@ export function PracticeValueCalculator() {
                 <Input
                   id="profit-margin"
                   inputMode="numeric"
-                  className="pr-8"
+                  className="h-11 pr-8 text-base md:text-sm"
                   value={marginInput}
                   onChange={(event) => setMarginInput(event.target.value)}
                   aria-describedby="margin-help"

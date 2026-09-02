@@ -219,7 +219,7 @@ export const ContactForm = () => {
         <button
           type="button"
           onClick={() => setSubmitState("idle")}
-          className="mt-7 text-sm font-medium text-primary underline-offset-4 hover:underline"
+          className="mt-7 inline-flex min-h-11 items-center text-sm font-medium text-primary underline-offset-4 hover:underline"
         >
           Send another message
         </button>
