@@ -4,42 +4,73 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
+  COOKIE_BANNER_SPACE_PROPERTY,
+  cookieBannerSpacePx,
   getAnalyticsConsent,
   OPEN_COOKIE_PREFERENCES_EVENT,
   saveAnalyticsConsent,
+  shouldFocusCookieBanner,
   type AnalyticsConsent,
 } from "@/lib/consent";
 
 export function CookieConsent() {
   const [isOpen, setIsOpen] = useState(false);
   const [consent, setConsent] = useState<AnalyticsConsent>("unset");
+  const [openedBy, setOpenedBy] = useState<"first-visit" | "preferences">(
+    "first-visit",
+  );
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const bannerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const storedConsent = getAnalyticsConsent();
     setConsent(storedConsent);
     setIsOpen(storedConsent === "unset");
+    setOpenedBy("first-visit");
 
-    const openPreferences = () => setIsOpen(true);
+    const openPreferences = () => {
+      setOpenedBy("preferences");
+      setIsOpen(true);
+    };
     window.addEventListener(OPEN_COOKIE_PREFERENCES_EVENT, openPreferences);
     return () =>
       window.removeEventListener(OPEN_COOKIE_PREFERENCES_EVENT, openPreferences);
   }, []);
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && shouldFocusCookieBanner(openedBy)) {
       headingRef.current?.focus();
     }
-  }, [isOpen]);
+  }, [isOpen, openedBy]);
 
   useEffect(() => {
     if (!isOpen) {
+      document.documentElement.style.removeProperty(
+        COOKIE_BANNER_SPACE_PROPERTY,
+      );
       return;
     }
-    const previousPadding = document.body.style.paddingBottom;
-    document.body.style.paddingBottom = "12rem";
+
+    const banner = bannerRef.current;
+    if (!banner) return;
+
+    const syncSpace = () => {
+      document.documentElement.style.setProperty(
+        COOKIE_BANNER_SPACE_PROPERTY,
+        cookieBannerSpacePx(banner.getBoundingClientRect().height),
+      );
+    };
+
+    syncSpace();
+    const observer = new ResizeObserver(syncSpace);
+    observer.observe(banner);
+    window.addEventListener("resize", syncSpace);
     return () => {
-      document.body.style.paddingBottom = previousPadding;
+      observer.disconnect();
+      window.removeEventListener("resize", syncSpace);
+      document.documentElement.style.removeProperty(
+        COOKIE_BANNER_SPACE_PROPERTY,
+      );
     };
   }, [isOpen]);
 
@@ -59,6 +90,8 @@ export function CookieConsent() {
 
   return (
     <aside
+      ref={bannerRef}
+      data-cookie-banner=""
       aria-label="Cookie preferences"
       className="fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-[70] mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl sm:inset-x-6 sm:p-6"
     >
@@ -89,19 +122,19 @@ export function CookieConsent() {
             </p>
           ) : null}
         </div>
-        <div className="flex shrink-0 flex-col-reverse gap-2 sm:flex-row">
+        <div className="flex w-full shrink-0 flex-col-reverse gap-2 sm:w-auto sm:flex-row">
           <Button
             type="button"
             variant="outline"
             onClick={() => chooseConsent("declined")}
-            className="min-h-11"
+            className="min-h-11 w-full sm:w-auto"
           >
             Decline Analytics
           </Button>
           <Button
             type="button"
             onClick={() => chooseConsent("accepted")}
-            className="min-h-11"
+            className="min-h-11 w-full sm:w-auto"
           >
             Accept Analytics
           </Button>

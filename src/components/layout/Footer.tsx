@@ -38,7 +38,7 @@ const serviceLinks = [
 ];
 
 const linkClass =
-  "rounded-sm text-sm text-white/80 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#06243f]";
+  "inline-flex min-h-11 items-center rounded-sm text-sm text-white/80 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#06243f]";
 const headingClass =
   "mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-white/75";
 
@@ -87,7 +87,7 @@ const Footer = () => {
           {/* Explore */}
           <nav aria-label="Footer">
             <h2 className={headingClass}>Explore</h2>
-            <ul className="space-y-2.5">
+            <ul className="space-y-1">
               {exploreLinks.map((link) => (
                 <li key={link.path}>
                   <Link href={link.path} className={linkClass}>
@@ -101,7 +101,7 @@ const Footer = () => {
           {/* Services */}
           <nav aria-label="Services">
             <h2 className={headingClass}>Our Services</h2>
-            <ul className="space-y-2.5">
+            <ul className="space-y-1">
               {serviceLinks.map((link) => (
                 <li key={link.path}>
                   <Link href={link.path} className={linkClass}>
@@ -158,13 +158,13 @@ const Footer = () => {
           <div className="order-1 flex min-w-0 w-full max-w-full flex-wrap items-center justify-center gap-x-5 gap-y-3 sm:order-2 sm:w-auto sm:justify-end">
             <Link
               href="/privacy-policy"
-              className="text-xs text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#06243f]"
+              className="inline-flex min-h-11 items-center text-sm text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#06243f]"
             >
               Privacy Policy
             </Link>
             <Link
               href="/terms-of-service"
-              className="text-xs text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#06243f]"
+              className="inline-flex min-h-11 items-center text-sm text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#06243f]"
             >
               Terms of Service
             </Link>
