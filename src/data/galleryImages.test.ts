@@ -72,7 +72,17 @@ describe("gallery image registry", () => {
     const selfie = galleryPhotos.find((photo) => photo.id === "officeSelfieGroup");
 
     expect(medal?.names).toEqual(["Dr. Michael Njo", "Dr. Allen Budenz"]);
-    expect(selfie?.names?.join(" ")).toMatch(/Nader Nadershahi/);
-    expect(selfie?.names?.join(" ")).toMatch(/Dr\. Chavez, Interim Dean/);
+    expect(selfie?.names).toEqual([
+      "Dr. Michael Njo",
+      "Nader Nadershahi, former Dean, University of the Pacific School of Dentistry",
+    ]);
+    expect(selfie?.names?.join(" ")).not.toMatch(/Chavez/);
+
+    const dugoni = galleryPhotos.find((photo) => photo.id === "dugoniCollaboration");
+    expect(dugoni?.names).toEqual([
+      "Dr. Michael Njo",
+      "Dean Nadershahi",
+      "Interim Dean Chavez",
+    ]);
   });
 });
