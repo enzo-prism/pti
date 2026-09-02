@@ -34,7 +34,7 @@ const LocationView = ({ location }: { location: LocationContent }) => {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-20 pb-12 md:pt-28 md:pb-16 bg-gradient-to-b from-accent to-white">
+      <section className="pt-10 pb-12 md:pt-16 md:pb-16 bg-gradient-to-b from-accent to-white">
         <div className="container px-4">
           <div className="max-w-4xl mx-auto text-center">
             <p className="inline-flex items-center gap-1.5 text-primary font-semibold mb-3">
