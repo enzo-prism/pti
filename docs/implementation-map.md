@@ -49,6 +49,14 @@ This document records the current production architecture after the August 2026 
 - The overview slot matches its 1800×1200 source at 3:2. The process slot matches its 1672×941 source. Both use full-frame rendering so their subjects remain visible at every responsive width.
 - Site-wide editorial imagery defaults to intrinsic-ratio or `object-contain` rendering. `cover` is limited to explicit, reviewed crops whose frame ratio matches the source or whose role is an avatar/decorative backdrop. `npm run images:check` enforces the shared policy.
 
+## Photo captions
+
+Photos stand alone. Visible captions, figcaptions, and name bars are not rendered on gallery tiles, the lightbox, `DrNjoPhotoCard` (`/drnjo`, `/about`, `/events`, homepage highlights), or blog/community featured images. ImageGallery JSON-LD uses `alt` as `name` and does not emit `caption`.
+
+Caption strings may still exist on records in `src/data/drNjoGallery.ts`, `src/data/galleryImages.ts`, and as `featuredImageCaption` on blog/community posts. Those fields are unused inventory. Do not show them — some labels have not matched the photos. Keep accurate `alt` text. `npm run images:check` fails if captions or `PhotoNameOverlay` name bars are reintroduced in the UI.
+
+Testimonial author names and sr-only table captions are unrelated and stay.
+
 ## Locations and structured data
 
 - State content lives in `src/data/locations.ts` and must remain materially distinct and sourced.

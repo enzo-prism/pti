@@ -40,7 +40,7 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 - Recent photo/video community posts: `src/data/communityImpactPosts.ts` (merged ahead of `blogPosts` in the blog listing, post route, and sitemap). Photo stories need a real `featuredImage` — a gradient-only hero looks like a missing photograph.
 - Gallery storytelling set: `src/data/drNjoGallery.ts` plus dimensions in `src/data/galleryImages.ts` (`DRNJO_DIMENSIONS` must have an entry for every gallery id). Files live in `public/lovable-uploads/drnjo-2026/`. Several historical thumbs (`mayflower-trio`, `conference-room-meeting`, `dinner-duo`, `publication-spread`, `blue-print-for-success-flyer`, `black-tie-medal-portrait`) are native ~240–320px; keep `fit: "contain"` so they are not cover-cropped and upscaled. Do not invent higher-resolution replacements unless a true original is supplied. `dugoniGroupPhoto`, `dugoniCollaboration`, `gprResidencyPresentation`, and `uopBoardDinner` point at the same Cloudinary originals the michaelnjodds.com site uses.
   - `drNjoSpeakingAuthorshipImages` and `drNjoLeadershipCommunityImages` are destructured positionally in `src/views/DrNjo.tsx`; append new ids at the end or update the destructure.
-  - Photo captions and name bars are not shown on images. Some labels have not matched the photos, so the image stands on its own. Keep accurate `alt` text. Do not reintroduce visible captions, figcaptions, or `PhotoNameOverlay` name bars.
+  - Photo captions and name bars are not shown on images. Some labels have not matched the photos, so the image stands on its own. Keep accurate `alt` text. Do not reintroduce visible captions, figcaptions, or `PhotoNameOverlay` name bars. `caption` on gallery records and `featuredImageCaption` on blog/community posts are unused inventory — `BlogPostView` and `Gallery` must not render them. ImageGallery JSON-LD must not emit `caption`. `npm run images:check` fails if those UI surfaces show caption text.
   - Both sites (PTI and michaelnjodds.com) carry the same photo set and the same testimonials; when adding a photo or review to one, mirror it to the other.
 - Events: `src/data/practiceTransitionSeminar.ts` is the single source of truth for seminar dates; `src/data/events.ts` derives the event-hub records from it. Date utilities are strict and injectable for tests, expired seminars are archived automatically, and current event pages refresh hourly.
 - Testimonials: canonical reviews dataset in `src/data/reviews.ts` (see `docs/reviews-runbook.md`).
@@ -121,7 +121,7 @@ This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwin
 - Vitest suite lives next to source files (`*.test.ts`); run with `npm run test`.
 - Image-framing guard: `npm run images:check`.
 - The sitemap test asserts the static-route count — update it when adding routes.
-- For UI changes, manually verify key routes: `/`, `/blog`, `/blog/:slug`, `/events`, `/contact`.
+- For UI changes, manually verify key routes: `/`, `/blog`, `/blog/:slug`, `/gallery`, `/drnjo`, `/events`, `/contact`. Confirm photos have no caption or name-bar text under the image.
 
 ## Commit and PR guidelines
 

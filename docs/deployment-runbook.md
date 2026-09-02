@@ -51,7 +51,8 @@ Verify the stable public domain, not only an ephemeral Vercel URL:
 - `/events/leadership-retreat` is a completed-event archive.
 - `/services` renders the 3:2 workshop photo and the 1672:941 process photo sharply, with complete faces and no meaningful subject cropped at mobile or desktop widths.
 - `/services/buying` renders acquisition-advisory content.
-- `/blog` exposes current topic filters and recent content.
+- `/gallery` and `/drnjo` show photos without captions or name bars under the image (alt text only).
+- `/blog` exposes current topic filters and recent content. A community photo post such as `/blog/another-perfect-match` has no italic caption under the hero.
 - `/contact`, `/privacy-policy`, and `/terms-of-service` render successfully.
 - `/robots.txt`, `/sitemap.xml`, and `/blog/rss.xml` return valid public documents.
 - `www.practicetransitionsinstitute.com` permanently redirects to the apex host.
