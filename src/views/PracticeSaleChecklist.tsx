@@ -121,7 +121,7 @@ const checklistGroups: ChecklistGroup[] = [
 const PracticeSaleChecklist = () => {
   return (
     <>
-      <section className="hero-gradient relative overflow-hidden pt-24 pb-14 md:pt-32 md:pb-16 print:hidden">
+      <section className="hero-gradient relative overflow-hidden pt-10 pb-12 md:pt-16 md:pb-16 print:hidden">
         <div className="hero-gradient-overlay absolute inset-0" />
         <div className="container relative z-10 mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
