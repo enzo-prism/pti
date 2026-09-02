@@ -112,7 +112,7 @@ const Blog = ({ posts }: BlogProps) => {
   return (
     <>
       {/* Enhanced Hero Section */}
-      <section className="relative pt-24 pb-16 md:pt-32 md:pb-20 hero-gradient overflow-hidden">
+      <section className="relative pt-10 pb-12 md:pt-16 md:pb-20 hero-gradient overflow-hidden">
         <div className="hero-gradient-overlay absolute inset-0"></div>
         <div className="container relative z-10">
           <div className="max-w-5xl mx-auto">
