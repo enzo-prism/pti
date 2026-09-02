@@ -324,11 +324,6 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                 <div className={`h-full w-full ${post.gradient}`} />
               )}
             </div>
-            {post.featuredImageCaption ? (
-              <p className="mt-6 text-center text-sm italic text-slate-600 sm:text-base">
-                {post.featuredImageCaption}
-              </p>
-            ) : null}
           </div>
         </Section>
       )}
