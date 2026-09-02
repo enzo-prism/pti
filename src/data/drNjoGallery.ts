@@ -107,14 +107,14 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
   officeSelfieGroup: {
     id: "officeSelfieGroup",
     src: "/lovable-uploads/drnjo-2026/office-selfie-group.webp",
-    alt: "Candid office photo with an AI startup founder and board of directors, including Nader Shahi, former Dean of the University of the Pacific School of Dentistry",
+    alt: "Candid office photo with an AI startup founder and board of directors, including Nader Nadershahi, former Dean of the University of the Pacific School of Dentistry",
     caption:
-      "With an AI startup founder and board of directors, notably our former Dean of University of the Pacific School of Dentistry, Nader Shahi.",
+      "With an AI startup founder and board of directors, notably our former Dean of University of the Pacific School of Dentistry, Nader Nadershahi.",
     category: "leadership-community",
     fit: "contain",
     aspect: "landscape",
     featuredOn: ["home", "drnjo"],
-    names: ["Nader Shahi, former Dean, University of the Pacific School of Dentistry"],
+    names: ["Nader Nadershahi, former Dean, University of the Pacific School of Dentistry"],
   },
   standingTrio: {
     id: "standingTrio",
