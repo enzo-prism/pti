@@ -50,9 +50,9 @@ const [
 const DrNjo = () => {
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-background via-accent/5 to-primary/5">
+      <div className="bg-gradient-to-br from-background via-accent/5 to-primary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center py-12 md:py-16">
+          <div className="grid grid-cols-1 items-center gap-8 py-12 md:min-h-[calc(100svh-4.5rem)] md:grid-cols-2 md:gap-12 md:py-16 lg:gap-16">
             <div className="text-center md:text-left space-y-6 md:space-y-8">
               <div className="space-y-4">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground">
@@ -107,7 +107,7 @@ const DrNjo = () => {
                     rel="noopener noreferrer"
                   >
                     <ExternalLink className="w-5 h-5 mr-3" />
-                    Visit Website
+                    Visit michaelnjodds.com
                   </a>
                 </Button>
               </div>
