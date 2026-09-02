@@ -449,7 +449,7 @@ const PracticeTransitionSeminar = ({
 
   return (
     <div className="min-h-screen bg-background">
-      <section className="relative overflow-hidden bg-primary pt-28 text-primary-foreground md:pt-32">
+      <section className="relative overflow-hidden bg-primary pt-10 text-primary-foreground md:pt-16">
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/85" />
         <div
           className="absolute inset-0 opacity-20"
