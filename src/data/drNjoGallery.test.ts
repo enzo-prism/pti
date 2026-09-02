@@ -21,10 +21,10 @@ describe("Dr. Njo gallery leadership copy", () => {
     const photo = byId("officeSelfieGroup");
 
     expect(photo?.caption).toBe(
-      "With an AI startup founder and board of directors, notably our former Dean of University of the Pacific School of Dentistry, Nader Shahi.",
+      "With an AI startup founder and board of directors, notably our former Dean of University of the Pacific School of Dentistry, Nader Nadershahi.",
     );
     expect(photo?.names).toEqual([
-      "Nader Shahi, former Dean, University of the Pacific School of Dentistry",
+      "Nader Nadershahi, former Dean, University of the Pacific School of Dentistry",
     ]);
     expect(photo?.caption.toLowerCase()).not.toContain("openai");
     expect(photo?.caption).not.toMatch(/\b[A-Z][a-zA-Z]+(?:AI|Labs|Ventures)\b/);
