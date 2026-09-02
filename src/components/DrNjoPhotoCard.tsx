@@ -19,22 +19,10 @@ const ASPECT_CLASS_MAP: Record<DrNjoGalleryAspect, string> = {
 };
 
 export function PhotoNameOverlay({ names }: { names?: string[] }) {
-  if (!names?.length) return null;
-
-  return (
-    <div className="border-t border-white/10 bg-slate-950 px-3 py-2.5 sm:px-4">
-      <ul className="space-y-0.5">
-        {names.map((name) => (
-          <li
-            key={name}
-            className="text-xs font-semibold leading-snug text-white sm:text-sm"
-          >
-            {name}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  // Name bars and captions are intentionally not rendered. Some labels
+  // do not match the photos, so the image stands on its own.
+  void names;
+  return null;
 }
 
 export const getDrNjoGalleryAspectClass = (aspect: DrNjoGalleryAspect) =>
@@ -45,10 +33,8 @@ interface DrNjoPhotoCardProps {
   className?: string;
   frameClassName?: string;
   imageClassName?: string;
-  captionClassName?: string;
   sizes?: string;
   priority?: boolean;
-  showCaption?: boolean;
 }
 
 export function DrNjoPhotoCard({
@@ -56,15 +42,13 @@ export function DrNjoPhotoCard({
   className,
   frameClassName,
   imageClassName,
-  captionClassName,
   sizes = DEFAULT_SIZES,
   priority = false,
-  showCaption = true,
 }: DrNjoPhotoCardProps) {
   const isContained = image.fit === "contain";
 
   return (
-    <figure className={cn("group space-y-3", className)}>
+    <figure className={cn("group", className)}>
       <div
         className={cn(
           "overflow-hidden rounded-[1.75rem] border border-gray-200 bg-white shadow-sm",
@@ -91,18 +75,7 @@ export function DrNjoPhotoCard({
             )}
           />
         </div>
-        <PhotoNameOverlay names={image.names} />
       </div>
-      {showCaption ? (
-        <figcaption
-          className={cn(
-            "px-1 text-sm leading-relaxed text-gray-600",
-            captionClassName,
-          )}
-        >
-          {image.caption}
-        </figcaption>
-      ) : null}
     </figure>
   );
 }

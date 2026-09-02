@@ -14,7 +14,6 @@ const gallerySchema = buildImageGallerySchema(
   galleryPhotos.map((photo) => ({
     src: photo.src,
     alt: photo.alt,
-    caption: photo.caption,
     width: photo.width,
     height: photo.height,
   })),

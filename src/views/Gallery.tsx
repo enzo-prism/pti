@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/section";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { cn } from "@/lib/utils";
-import { PhotoNameOverlay } from "@/components/DrNjoPhotoCard";
 import { galleryCategoryGroups, type GalleryPhoto } from "@/data/galleryImages";
 
 // Flatten in display (grouped) order so lightbox prev/next matches the page.
@@ -152,10 +151,6 @@ const Gallery = () => {
                         className="h-auto w-full object-contain"
                       />
                     </div>
-                    <PhotoNameOverlay names={photo.names} />
-                    <span className="block border-t border-slate-100 bg-white px-4 py-3 text-left text-sm leading-snug text-slate-700">
-                      {photo.caption}
-                    </span>
                   </button>
                 );
               })}
@@ -238,14 +233,6 @@ const Gallery = () => {
                   priority
                 />
               </div>
-              <figcaption className="mx-auto mt-4 max-w-2xl text-center text-sm leading-relaxed text-white/85">
-                {activePhoto.names?.length ? (
-                  <span className="mb-2 block font-semibold text-white">
-                    {activePhoto.names.join(" · ")}
-                  </span>
-                ) : null}
-                {activePhoto.caption}
-              </figcaption>
             </figure>
 
             <button

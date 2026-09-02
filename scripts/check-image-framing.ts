@@ -101,8 +101,25 @@ async function checkSharedPolicies() {
     gallery.includes("group-hover:opacity-100")
   ) {
     errors.push(
-      "Gallery captions must sit under photos, not as overlays on faces.",
+      "Gallery images must not overlay caption text on faces.",
     );
+  }
+  if (
+    gallery.includes("{photo.caption}") ||
+    gallery.includes("{activePhoto.caption}") ||
+    gallery.includes("PhotoNameOverlay")
+  ) {
+    errors.push("Gallery tiles and lightbox must not show caption or name-bar text.");
+  }
+  if (
+    photoCard.includes("{image.caption}") ||
+    photoCard.includes("<figcaption") ||
+    photoCard.includes("<PhotoNameOverlay")
+  ) {
+    errors.push("DrNjoPhotoCard must not render captions or name bars under photos.");
+  }
+  if (blogPost.includes("featuredImageCaption")) {
+    errors.push("Blog heroes must not show featuredImageCaption under the photo.");
   }
   if (!gallery.includes('className="h-auto w-full object-contain"')) {
     errors.push("Gallery tiles must preserve complete source images.");

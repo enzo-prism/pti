@@ -545,7 +545,6 @@ export const buildContactPageSchema = (
 export interface GalleryImageInput {
   src: string;
   alt: string;
-  caption: string;
   width?: number;
   height?: number;
 }
@@ -570,7 +569,6 @@ export const buildImageGallerySchema = (
       "@type": "ImageObject",
       contentUrl: resolveAbsoluteUrl(image.src),
       name: image.alt,
-      caption: image.caption,
       ...(image.width ? { width: image.width } : {}),
       ...(image.height ? { height: image.height } : {}),
     })),
