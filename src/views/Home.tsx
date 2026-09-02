@@ -73,7 +73,7 @@ const Home = () => {
 
   return (
     <>
-      <section className="hero-gradient relative flex min-h-0 items-center justify-center overflow-hidden py-12 sm:py-16 md:min-h-[calc(100svh-4.5rem-var(--cookie-banner-space,0px))] md:py-20">
+      <section className="hero-gradient relative flex min-h-0 items-center justify-center overflow-hidden py-16 sm:py-20 md:min-h-[calc(100svh-4.5rem-var(--cookie-banner-space,0px))] md:py-20">
         <div className="absolute inset-0 hero-gradient-overlay" />
         <div className="relative z-10 w-full">
           <HeroContent className="text-white" />
