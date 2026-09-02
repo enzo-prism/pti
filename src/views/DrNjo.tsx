@@ -348,7 +348,6 @@ const DrNjo = () => {
                   image={image}
                   sizes="(min-width: 1024px) 28vw, 100vw"
                   frameClassName="bg-white/90"
-                  captionClassName="text-gray-500"
                 />
               </ScrollReveal>
             ))}
