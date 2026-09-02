@@ -216,7 +216,7 @@ const Testimonials = ({ reviews }: TestimonialsProps) => {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-b from-accent to-white pt-24 pb-12 md:pt-32 md:pb-16">
+      <section className="bg-gradient-to-b from-accent to-white pt-10 pb-12 md:pt-16 md:pb-16">
         <div className="container max-w-5xl">
           <Breadcrumb className="mb-8">
             <BreadcrumbList>
