@@ -87,7 +87,7 @@ const Gallery = () => {
 
   return (
     <>
-      <section className="bg-gradient-to-b from-accent to-white px-4 pt-24 pb-12 md:pt-32 md:pb-16">
+      <section className="bg-gradient-to-b from-accent to-white px-4 pt-10 pb-12 md:pt-16 md:pb-16">
         <div className="container mx-auto max-w-4xl text-center">
           <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80 sm:text-sm">
@@ -198,32 +198,32 @@ const Gallery = () => {
           className="fixed inset-0 z-[100] flex flex-col bg-black/90 backdrop-blur-sm"
           onClick={close}
         >
-          <div className="flex items-center justify-end p-4">
+          <div className="flex items-center justify-end gap-3 p-4 pb-[max(1rem,env(safe-area-inset-top))]">
             <button
               type="button"
               onClick={close}
               aria-label="Close"
-              className="rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
               <X className="h-6 w-6" />
             </button>
           </div>
 
           <div
-            className="relative flex flex-1 items-center justify-center px-4 pb-4"
+            className="relative flex flex-1 items-center justify-center px-14 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-20"
             onClick={(event) => event.stopPropagation()}
           >
             <button
               type="button"
               onClick={showPrev}
               aria-label="Previous image"
-              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white sm:left-6"
+              className="absolute left-2 top-1/2 inline-flex min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white sm:left-6"
             >
               <ChevronLeft className="h-7 w-7" />
             </button>
 
             <figure className="flex max-h-full max-w-5xl flex-col items-center">
-              <div className="relative h-[70vh] w-[88vw] max-w-5xl">
+              <div className="relative h-[70vh] w-[min(88vw,100%)] max-w-5xl">
                 <Image
                   src={activePhoto.src}
                   alt={activePhoto.alt}
@@ -239,7 +239,7 @@ const Gallery = () => {
               type="button"
               onClick={showNext}
               aria-label="Next image"
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white sm:right-6"
+              className="absolute right-2 top-1/2 inline-flex min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white sm:right-6"
             >
               <ChevronRight className="h-7 w-7" />
             </button>
