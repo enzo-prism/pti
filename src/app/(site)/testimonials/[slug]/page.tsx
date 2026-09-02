@@ -99,7 +99,7 @@ export default function Page({ params }: { params: Params }) {
         })}
       />
 
-      <section className="pt-24 md:pt-32 pb-8 bg-gradient-to-b from-accent to-white">
+      <section className="pt-10 md:pt-16 pb-8 bg-gradient-to-b from-accent to-white">
         <div className="container max-w-5xl">
           <Breadcrumb className="mb-6">
             <BreadcrumbList>

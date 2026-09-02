@@ -1,6 +1,6 @@
 # PTI Deployment Runbook
 
-This runbook covers releases from `main` to the linked Vercel project `pti` and live verification on `https://practicetransitionsinstitute.com`.
+This runbook covers releases from GitHub `enzo-prism/pti` `main` to the linked Vercel project `pti` and live verification on `https://practicetransitionsinstitute.com`.
 
 ## Pre-release
 
@@ -12,7 +12,9 @@ cat .vercel/project.json
 vercel project inspect pti
 ```
 
-2. Use the repository Node runtime and install from the lockfile.
+The production Git remote is `https://github.com/enzo-prism/pti.git`. Do not force-push a rewritten history from a scratch copy over `main`. Apply chrome/UX changes on top of current `main` so Search Console verification (`next.config.mjs` rewrites + `src/app/api/google-site-verification/` + `src/lib/googleSiteVerification.ts`) stays in place.
+
+2. Use the repository Node runtime (24.x) and install from the lockfile.
 3. Run the full local gate:
 
 ```bash
@@ -27,7 +29,7 @@ git diff --check
 
 ## Release
 
-The Git-connected production path is a push to `main`. If the production alias does not update from that push, deploy the same committed tree explicitly:
+The Git-connected production path is a push to `main` on `enzo-prism/pti`. If the production alias does not update from that push, deploy the same committed tree explicitly:
 
 ```bash
 vercel deploy --prod --yes
@@ -46,6 +48,8 @@ vercel inspect https://practicetransitionsinstitute.com
 Verify the stable public domain, not only an ephemeral Vercel URL:
 
 - `/` renders the acquisition-to-legacy homepage and no meaningful section remains hidden.
+- Header: at ~390px, Book and the hamburger are visible and tappable; at ~1024px the hamburger is used (no clipped desktop links); at ≥1280px the full nav, Services dropdown, phone number, and Book Consultation are visible. `/drnjo` uses the same Navbar.
+- Open the mobile menu with the cookie banner visible and confirm Book/Call are not covered. Skip-to-content appears above the header, including on notched iPhones.
 - `/events` lists only current seminars.
 - `/events/practice-transition-seminar` excludes expired registration choices and schema.
 - `/events/leadership-retreat` is a completed-event archive.
@@ -56,6 +60,7 @@ Verify the stable public domain, not only an ephemeral Vercel URL:
 - `/contact`, `/privacy-policy`, and `/terms-of-service` render successfully.
 - `/robots.txt`, `/sitemap.xml`, and `/blog/rss.xml` return valid public documents.
 - `www.practicetransitionsinstitute.com` permanently redirects to the apex host.
+- A Google Search Console HTML verification path still resolves (do not remove the `google*.html` rewrite).
 
 ## Analytics and privacy smoke
 

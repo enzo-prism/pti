@@ -65,9 +65,13 @@ Testimonial author names and sr-only table captions are unrelated and stay.
 
 ## Accessibility and progressive enhancement
 
-- The desktop Services menu and mobile drawer support keyboard interaction, Escape dismissal, focus management, and accurate expanded/hidden state.
+- Both `(site)` and `(minimal)` layouts mount `SkipToContent`, `Navbar`, and `Footer`. `/drnjo` must not regress to a one-off slim header.
+- The sticky header is `z-[80]`; the cookie banner is `z-[70]`. An open mobile drawer therefore covers the banner instead of leaving Book/Call trapped underneath it.
+- Desktop primary links wait until `xl` (1280px). Below that, the hamburger is the overflow pattern. Book stays in the header on extra-small screens. The header phone number is visible from `xl`.
+- The desktop Services menu opens on hover and on the 44px chevron, supports keyboard interaction, Escape dismissal, click-outside close, and is unmounted while closed so it is absent from the accessibility tree. Do not clip header overflow — that hides the dropdown.
+- The mobile drawer is `hidden` while closed (not translated off-screen), sized with `--pti-header-height`, Escape-dismissable, and Tab-trapped including the header close control.
 - `ScrollReveal` fails open and respects reduced motion; meaningful content must never depend on an observer firing.
-- Accessibility: cookie-preference controls, the events “View Past Events” toggle, and primary consent buttons stay at least 44px tall. The cookie banner adds temporary bottom padding so it does not cover footer CTAs.
+- Accessibility: cookie-preference controls, the events “View Past Events” toggle, and primary consent buttons stay at least 44px tall. The cookie banner adds `--cookie-banner-space` bottom padding so it does not cover footer CTAs, and it must not move keyboard focus on first visit.
 
 ## Verification
 
@@ -81,4 +85,4 @@ npm run rss:check
 git diff --check
 ```
 
-For production-sensitive changes, also verify `/`, `/events`, `/events/practice-transition-seminar`, `/services`, `/services/buying`, `/blog`, `/contact`, `sitemap.xml`, and `robots.txt` on the stable public domain.
+For production-sensitive changes, also verify `/`, `/events`, `/events/practice-transition-seminar`, `/services`, `/services/buying`, `/blog`, `/contact`, `sitemap.xml`, and `robots.txt` on the stable public domain. For chrome changes, check the header at 390px, 1024px, and 1280px, plus `/drnjo`.
