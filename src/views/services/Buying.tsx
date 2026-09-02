@@ -69,7 +69,7 @@ const buyingSteps = [
 
 const Buying = () => (
   <>
-    <section className="bg-gradient-to-b from-accent to-white pb-12 pt-20 md:pb-16 md:pt-28">
+    <section className="bg-gradient-to-b from-accent to-white pb-12 pt-10 md:pb-16 md:pt-16">
       <div className="container px-4">
         <div className="mx-auto max-w-4xl text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-primary/80">

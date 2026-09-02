@@ -4,7 +4,7 @@ import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
 const PrivacyPolicy = () => {
   return (
     <>
-      <Section className="pt-24">
+      <Section className="pt-10 md:pt-16">
         <div className="mx-auto max-w-3xl space-y-6 text-gray-700">
           <h1 className="mb-2 text-center text-3xl md:text-4xl font-bold">
             Privacy Policy
