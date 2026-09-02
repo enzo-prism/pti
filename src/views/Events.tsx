@@ -17,6 +17,7 @@ import {
 } from "@/lib/dateUtils";
 import { trackEventRegistrationClick } from "@/lib/analytics";
 import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
+import { PHONE_NUMBER_TEL } from "@/lib/constants";
 import { rawEvents, type RawEvent } from "@/data/events";
 import {
   Section,
@@ -197,7 +198,7 @@ const Events = ({ workshopReview }: EventsProps) => {
         {/* Hero Section */}
         <Section
           background="primary"
-          className="pt-24 md:pt-32 pb-12 md:pb-20 relative overflow-hidden"
+          className="pt-10 md:pt-16 pb-12 md:pb-20 relative overflow-hidden"
         >
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/90"></div>
@@ -561,15 +562,15 @@ const Events = ({ workshopReview }: EventsProps) => {
                               </a>
                             </Button>
                             <Button
+                              asChild
                               size="sm"
                               variant="outline"
                               className="flex-1 sm:flex-none"
-                              onClick={() =>
-                                window.open("tel:+18337841121", "_self")
-                              }
                             >
-                              <Phone size={16} className="mr-2" />
-                              Call PTI
+                              <a href={`tel:${PHONE_NUMBER_TEL}`}>
+                                <Phone size={16} className="mr-2" />
+                                Call PTI
+                              </a>
                             </Button>
                           </>
                         ) : event.registrationLink.startsWith("http") ? (
@@ -596,45 +597,43 @@ const Events = ({ workshopReview }: EventsProps) => {
                               </a>
                             </Button>
                             <Button
+                              asChild
                               size="sm"
                               variant="outline"
                               className="flex-1 sm:flex-none"
-                              onClick={() =>
-                                window.open(
-                                  `mailto:${SITE_CONTACT_EMAIL}?subject=Event Registration Inquiry`,
-                                  "_self",
-                                )
-                              }
                             >
-                              <Mail size={16} className="mr-2" />
-                              Email Us to Register
+                              <a
+                                href={`mailto:${SITE_CONTACT_EMAIL}?subject=Event Registration Inquiry`}
+                              >
+                                <Mail size={16} className="mr-2" />
+                                Email Us to Register
+                              </a>
                             </Button>
                           </>
                         ) : (
                           <>
                             <Button
+                              asChild
                               size="sm"
                               className="flex-1 sm:flex-none"
-                              onClick={() =>
-                                window.open("tel:+18337841121", "_self")
-                              }
                             >
-                              <Phone size={16} className="mr-2" />
-                              Call to Register
+                              <a href={`tel:${PHONE_NUMBER_TEL}`}>
+                                <Phone size={16} className="mr-2" />
+                                Call to Register
+                              </a>
                             </Button>
                             <Button
+                              asChild
                               size="sm"
                               variant="outline"
                               className="flex-1 sm:flex-none"
-                              onClick={() =>
-                                window.open(
-                                  `mailto:${SITE_CONTACT_EMAIL}?subject=Event Registration Inquiry`,
-                                  "_self",
-                                )
-                              }
                             >
-                              <Mail size={16} className="mr-2" />
-                              Email Us to Register
+                              <a
+                                href={`mailto:${SITE_CONTACT_EMAIL}?subject=Event Registration Inquiry`}
+                              >
+                                <Mail size={16} className="mr-2" />
+                                Email Us to Register
+                              </a>
                             </Button>
                           </>
                         )
