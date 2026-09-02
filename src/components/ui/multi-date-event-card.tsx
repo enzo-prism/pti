@@ -382,57 +382,65 @@ export const MultiDateEventCard = ({
             <>
               {registrationLink.startsWith("tel:") ? (
                 <>
-                  <Button
-                    size="sm"
-                    className="flex-1 sm:flex-none"
-                    onClick={() => {
-                      window.open(registrationLink, "_self");
-                      trackEventRegistrationClick(normalizedEventName, "phone");
-                    }}
-                  >
-                    <Phone size={16} className="mr-2" />
-                    Call or text to register
+                  <Button size="sm" className="flex-1 sm:flex-none" asChild>
+                    <a
+                      href={registrationLink}
+                      onClick={() =>
+                        trackEventRegistrationClick(normalizedEventName, "phone")
+                      }
+                    >
+                      <Phone size={16} className="mr-2" />
+                      Call or text to register
+                    </a>
                   </Button>
                   <Button
                     size="sm"
                     variant="outline"
                     className="flex-1 sm:flex-none"
-                    onClick={() => {
-                      window.open(EVENT_REGISTRATION_MAILTO, "_self");
-                      trackEventRegistrationClick(normalizedEventName, "email");
-                    }}
+                    asChild
                   >
-                    <Mail size={16} className="mr-2" />
-                    Email us to register
+                    <a
+                      href={EVENT_REGISTRATION_MAILTO}
+                      onClick={() =>
+                        trackEventRegistrationClick(normalizedEventName, "email")
+                      }
+                    >
+                      <Mail size={16} className="mr-2" />
+                      Email us to register
+                    </a>
                   </Button>
                 </>
               ) : registrationLink.startsWith("mailto:") ? (
                 <>
-                  <Button
-                    size="sm"
-                    className="flex-1 sm:flex-none"
-                    onClick={() => {
-                      window.open(registrationLink, "_self");
-                      trackEventRegistrationClick(normalizedEventName, "email");
-                    }}
-                  >
-                    <Mail size={16} className="mr-2" />
-                    Email us to register
+                  <Button size="sm" className="flex-1 sm:flex-none" asChild>
+                    <a
+                      href={registrationLink}
+                      onClick={() =>
+                        trackEventRegistrationClick(normalizedEventName, "email")
+                      }
+                    >
+                      <Mail size={16} className="mr-2" />
+                      Email us to register
+                    </a>
                   </Button>
                   <Button
                     size="sm"
                     variant="outline"
                     className="flex-1 sm:flex-none"
-                    onClick={() => {
-                      window.open(EVENT_REGISTRATION_MAILTO, "_self");
-                      trackEventRegistrationClick(
-                        normalizedEventName,
-                        "alternative_email",
-                      );
-                    }}
+                    asChild
                   >
-                    <Mail size={16} className="mr-2" />
-                    Alternative Email
+                    <a
+                      href={EVENT_REGISTRATION_MAILTO}
+                      onClick={() =>
+                        trackEventRegistrationClick(
+                          normalizedEventName,
+                          "alternative_email",
+                        )
+                      }
+                    >
+                      <Mail size={16} className="mr-2" />
+                      Alternative Email
+                    </a>
                   </Button>
                 </>
               ) : isInternalRegistrationLink ? (
@@ -472,30 +480,36 @@ export const MultiDateEventCard = ({
                 </>
               ) : (
                 <>
-                  <Button
-                    size="sm"
-                    className="flex-1 sm:flex-none"
-                    onClick={() => {
-                      window.open(registrationLink, "_blank");
-                      trackEventRegistrationClick(
-                        normalizedEventName,
-                        "external",
-                      );
-                    }}
-                  >
-                    Register Now
+                  <Button size="sm" className="flex-1 sm:flex-none" asChild>
+                    <a
+                      href={registrationLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() =>
+                        trackEventRegistrationClick(
+                          normalizedEventName,
+                          "external",
+                        )
+                      }
+                    >
+                      Register Now
+                    </a>
                   </Button>
                   <Button
                     size="sm"
                     variant="outline"
                     className="flex-1 sm:flex-none"
-                    onClick={() => {
-                      window.open(EVENT_REGISTRATION_MAILTO, "_self");
-                      trackEventRegistrationClick(normalizedEventName, "email");
-                    }}
+                    asChild
                   >
-                    <Mail size={16} className="mr-2" />
-                    Email us to register
+                    <a
+                      href={EVENT_REGISTRATION_MAILTO}
+                      onClick={() =>
+                        trackEventRegistrationClick(normalizedEventName, "email")
+                      }
+                    >
+                      <Mail size={16} className="mr-2" />
+                      Email us to register
+                    </a>
                   </Button>
                 </>
               )}
