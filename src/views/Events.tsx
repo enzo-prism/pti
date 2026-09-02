@@ -677,9 +677,8 @@ const Events = ({ workshopReview }: EventsProps) => {
               <SectionTitle>Recent Speaking Highlights</SectionTitle>
               <SectionSubtitle className="mb-0">
                 Recent Panel of Experts dinners in Los Angeles and Roseville
-                (August 2026), plus the July 2026 San Francisco seminar on the
-                events calendar. Photos here are from the dinners we already
-                published.
+                (August 2026), plus the July 2026 San Francisco Practice
+                Transitions seminar.
               </SectionSubtitle>
             </div>
 

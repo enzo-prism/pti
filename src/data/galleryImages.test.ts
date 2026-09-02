@@ -72,6 +72,7 @@ describe("gallery image registry", () => {
     const selfie = galleryPhotos.find((photo) => photo.id === "officeSelfieGroup");
 
     expect(medal?.names).toEqual(["Dr. Michael Njo", "Dr. Allen Budenz"]);
-    expect(selfie?.names?.[0]).toMatch(/Nader Nadershahi/);
+    expect(selfie?.names?.join(" ")).toMatch(/Nader Nadershahi/);
+    expect(selfie?.names?.join(" ")).toMatch(/Dr\. Chavez, Interim Dean/);
   });
 });

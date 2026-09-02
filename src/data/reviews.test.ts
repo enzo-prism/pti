@@ -28,7 +28,7 @@ describe("reviews dataset", () => {
     const aggregate = getReviewAggregate(reviews);
     expect(aggregate).toEqual({
       ratingValue: 4.99,
-      reviewCount: 82,
+      reviewCount: 101,
     });
   });
 

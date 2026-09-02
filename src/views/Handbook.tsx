@@ -72,7 +72,7 @@ const Handbook = () => {
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <Link href={SECOND_BOOK_PATH}>Second book (coming)</Link>
+                <Link href={SECOND_BOOK_PATH}>Second edition (coming soon)</Link>
               </Button>
             </div>
           </div>

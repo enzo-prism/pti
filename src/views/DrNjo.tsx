@@ -26,8 +26,15 @@ import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
 
 const [
   handbookCoverSpread,
+  handbookSecondEditionComingSoon,
+  dentalLifestylesFeature,
   panelDinnerBookSigning,
   poeRosevilleCollage,
+  dugoniCollaboration,
+  gprResidencyPresentation,
+  dugoniSymposiumKeynote,
+  sfSeminarPresenting,
+  backstageRetreatBookSigning,
   backstageQuote,
 ] = drNjoSpeakingAuthorshipImages;
 
@@ -37,6 +44,7 @@ const [
   mayflowerTrio,
   officeSelfieGroup,
   blackTieMedalPortrait,
+  ...additionalLeadershipPhotos
 ] = drNjoLeadershipCommunityImages;
 
 const DrNjo = () => {
@@ -189,11 +197,40 @@ const DrNjo = () => {
                 sizes="(min-width: 1024px) 44vw, 100vw"
               />
               <DrNjoPhotoCard
+                image={handbookSecondEditionComingSoon}
+                sizes="(min-width: 1024px) 20vw, 100vw"
+              />
+              <DrNjoPhotoCard
+                image={dentalLifestylesFeature}
+                sizes="(min-width: 1024px) 20vw, 100vw"
+              />
+              <DrNjoPhotoCard
+                image={dugoniCollaboration}
+                sizes="(min-width: 1024px) 20vw, 100vw"
+              />
+              <DrNjoPhotoCard
+                image={dugoniSymposiumKeynote}
+                sizes="(min-width: 1024px) 20vw, 100vw"
+              />
+              <DrNjoPhotoCard
+                image={gprResidencyPresentation}
+                className="sm:col-span-2"
+                sizes="(min-width: 1024px) 44vw, 100vw"
+              />
+              <DrNjoPhotoCard
+                image={sfSeminarPresenting}
+                sizes="(min-width: 1024px) 20vw, 100vw"
+              />
+              <DrNjoPhotoCard
                 image={panelDinnerBookSigning}
                 sizes="(min-width: 1024px) 20vw, 100vw"
               />
               <DrNjoPhotoCard
                 image={poeRosevilleCollage}
+                sizes="(min-width: 1024px) 20vw, 100vw"
+              />
+              <DrNjoPhotoCard
+                image={backstageRetreatBookSigning}
                 sizes="(min-width: 1024px) 20vw, 100vw"
               />
               <DrNjoPhotoCard
@@ -206,7 +243,7 @@ const DrNjo = () => {
                   <a href={HANDBOOK_PATH}>View the Handbook</a>
                 </Button>
                 <Button asChild variant="outline">
-                  <a href={SECOND_BOOK_PATH}>Second book (coming)</a>
+                  <a href={SECOND_BOOK_PATH}>Second edition (coming soon)</a>
                 </Button>
                 <Button asChild variant="outline" className="sm:col-span-2">
                   <a href={PODCAST_INTERVIEW_PATH}>
@@ -263,6 +300,22 @@ const DrNjo = () => {
                 </ScrollReveal>
               ))}
             </div>
+          </div>
+
+          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {additionalLeadershipPhotos.map((image, index) => (
+              <ScrollReveal
+                key={image.id}
+                direction="scale"
+                delay={120 + index * 60}
+                intensity="subtle"
+              >
+                <DrNjoPhotoCard
+                  image={image}
+                  sizes="(min-width: 1024px) 30vw, (min-width: 640px) 44vw, 100vw"
+                />
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </Section>

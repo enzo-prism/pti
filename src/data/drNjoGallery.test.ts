@@ -21,10 +21,12 @@ describe("Dr. Njo gallery leadership copy", () => {
     const photo = byId("officeSelfieGroup");
 
     expect(photo?.caption).toBe(
-      "With an AI startup founder and board of directors, notably our former Dean of University of the Pacific School of Dentistry, Nader Nadershahi.",
+      "On the board of an AI startup (in stealth mode): with the founder and board of directors, notably our former Dean of University of the Pacific School of Dentistry, Nader Nadershahi, and Interim Dean Dr. Chavez.",
     );
     expect(photo?.names).toEqual([
+      "Dr. Michael Njo",
       "Nader Nadershahi, former Dean, University of the Pacific School of Dentistry",
+      "Dr. Chavez, Interim Dean",
     ]);
     expect(photo?.caption.toLowerCase()).not.toContain("openai");
     expect(photo?.caption).not.toMatch(/\b[A-Z][a-zA-Z]+(?:AI|Labs|Ventures)\b/);
@@ -36,12 +38,13 @@ describe("Dr. Njo gallery leadership copy", () => {
     expect(ids).toEqual([
       "panelDinnerGroup",
       "poeRosevilleCollage",
-      "panelDinnerBookSigning",
+      "sfSeminarPresenting",
     ]);
     expect(ids).not.toContain("bluePrintFlyer");
     expect(ids).not.toContain("publicationSpread");
     expect(eventsSpeakingHighlightImages[0]?.caption).toMatch(/Los Angeles/i);
     expect(eventsSpeakingHighlightImages[1]?.caption).toMatch(/Roseville/i);
+    expect(eventsSpeakingHighlightImages[2]?.caption).toMatch(/San Francisco/i);
   });
 
   it("leaves unidentified faces unlabeled", () => {

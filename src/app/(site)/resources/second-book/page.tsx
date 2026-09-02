@@ -3,9 +3,9 @@ import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 import { SECOND_BOOK_PATH } from "@/lib/constants";
 
-const title = "Second Book (Coming)";
+const title = "Dental Practice Transitions Handbook, Second Edition (Coming Soon)";
 const description =
-  "Dr. Michael Njo is working on a second book. The title has not been announced. See the published Dental Practice Transitions Handbook in the meantime.";
+  "Coming soon: the expanded second edition of Dr. Michael Njo's Dental Practice Transitions Handbook, with a foreword by Dr. Glenn Vo, new advisor material, and new appendices.";
 const path = SECOND_BOOK_PATH;
 
 export const metadata = buildPageMetadata({

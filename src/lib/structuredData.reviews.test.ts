@@ -59,7 +59,7 @@ describe("review structured data builders", () => {
     if (!schema) return;
 
     expect(schema["@type"]).toBe("AggregateRating");
-    expect(schema.reviewCount).toBe(82);
+    expect(schema.reviewCount).toBe(101);
     expect(schema.ratingValue).toBe(4.99);
   });
 });
