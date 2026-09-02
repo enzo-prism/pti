@@ -15,7 +15,7 @@ const Associateships = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-12 pb-8 md:pt-20 md:pb-16 lg:pt-32 lg:pb-24 bg-gradient-to-br from-white to-accent relative overflow-hidden">
+      <section className="pt-10 pb-8 md:pt-16 md:pb-16 lg:pt-20 lg:pb-24 bg-gradient-to-br from-white to-accent relative overflow-hidden">
         <div className="container relative z-10 px-3 sm:px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 animate-fade-in leading-tight">
