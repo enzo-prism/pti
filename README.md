@@ -2,6 +2,20 @@
 
 PTI's marketing site is a Next.js App Router application that showcases services, success stories, events, and long-form resources for dentists preparing for major career transitions. The project is typed end-to-end with TypeScript, styled with Tailwind CSS and shadcn/ui primitives, and rendered server-first for SEO.
 
+## Device UX
+
+The public site is built to stay usable on phone, tablet, and desktop without clipped chrome or covered CTAs.
+
+- Cookie banner does not steal focus or jump first-time visitors to the bottom of the page. Page padding tracks `--cookie-banner-space` from the live banner height so it cannot cover CTAs or footer links.
+- Sticky header respects iPhone safe areas (`env(safe-area-inset-top)`). Full desktop nav waits until 1280px (`xl`) so 1024–1279 layouts get a hamburger instead of clipped links. **Book** stays in the header on the smallest phones. The header phone number appears from 1280px. The wordmark hides on the tight `xl` row so links, phone, and Book fit, then returns at `2xl`.
+- The Services menu opens on hover and keyboard, closes on Escape or pointer-down outside, and is not clipped by the header. The mobile drawer is `hidden` while closed, sized with `--pti-header-height`, traps Tab (including the close control), and sits above the cookie banner (`header z-[80]`, banner `z-[70]`).
+- `/drnjo` uses the same `Navbar` as the rest of the site. Skip-to-content is a layout sibling of the header (`src/components/layout/SkipToContent.tsx`) so it is not trapped by the header’s backdrop blur.
+- Buttons, inputs, checkboxes, footer links, gallery lightbox controls, and breadcrumbs meet a 44px tap target. Long labels wrap on small screens instead of overflowing.
+- Interior pages no longer keep leftover `pt-24`/`pt-32` spacing from an older fixed header, so content starts closer to the nav on phones.
+- The homepage hero is content-sized on mobile instead of a full-screen band that hid CTAs under the cookie banner.
+- Event call and email actions use real `tel:` / `mailto:` links instead of `window.open`, which fails on many phones.
+- Gallery lightbox controls stay 44px and sit outside the photo so arrows no longer cover faces.
+
 ## Tech Stack
 
 - Next.js 14 App Router with React 18
@@ -39,7 +53,7 @@ src/
 public/             # Static assets served as-is
 ```
 
-Routes live in `src/app` and are wrapped by `src/app/(site)/layout.tsx` or `src/app/(minimal)/layout.tsx`. SEO metadata and JSON-LD are set per route using `src/lib/seo.ts` and `src/components/StructuredData.tsx`.
+Routes live in `src/app` and are wrapped by `src/app/(site)/layout.tsx` or `src/app/(minimal)/layout.tsx`. Both layouts mount `SkipToContent`, `Navbar`, and `Footer`. SEO metadata and JSON-LD are set per route using `src/lib/seo.ts` and `src/components/StructuredData.tsx`.
 
 ## Managing Site Content
 
@@ -77,6 +91,7 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 - Tailwind utility classes are preferred; extend design tokens in `tailwind.config.ts` when adding new colors or spacing.
 - shadcn/ui components are exported from `src/components/ui`; co-locate any custom variants or wrappers alongside them.
 - Animations rely on utility classes defined under `@layer components` in `src/app/globals.css`.
+- Site chrome: `Navbar` (`src/components/layout/Navbar.tsx`) plus helpers in `nav.ts`. Do not add `overflow-x: clip` on the sticky header — it clips the Services dropdown. Desktop nav starts at `xl`; keep Book visible on phones.
 
 ## SEO and Analytics
 
@@ -95,12 +110,13 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 
 ## Deployment
 
-The site deploys via Vercel using Next.js defaults.
+The canonical production source is GitHub [`enzo-prism/pti`](https://github.com/enzo-prism/pti). A push to `main` deploys the linked Vercel project `pti` to `https://practicetransitionsinstitute.com`.
 
 - **Build command**: `npm run build`
 - **Output directory**: `.next/`
 - **Redirects**: All redirects (www→apex host normalization and legacy path redirects) are defined in `vercel.json`. The former Cloudflare/Vite `public/_redirects` and `public/_headers` files were removed after the Vercel migration.
 - **Security**: HSTS, content-type, framing, referrer, permissions, and opener policies are defined in `next.config.mjs`.
+- **Search Console**: HTML verification files are rewritten in `next.config.mjs` to `src/app/api/google-site-verification/`. Do not drop that rewrite during chrome or UX work.
 - **Production host**: `https://practicetransitionsinstitute.com` (`www` permanently redirects to apex).
 
 Before production, run:
