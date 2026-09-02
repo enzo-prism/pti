@@ -77,7 +77,7 @@ const Home = () => {
               </h1>
               
               <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 leading-relaxed">
-                Whether you're selling, buying, or forming a partnership, we provide confidential, 
+                Whether you&apos;re selling, buying, or forming a partnership, we provide confidential, 
                 expert guidance to maximize value and ensure a smooth transition.
               </p>
               
@@ -179,7 +179,7 @@ const Home = () => {
                 Ready to Get Started?
               </h2>
               <p className="text-lg text-primary-foreground/90 mb-8">
-                Contact us today for a confidential consultation. We're here to help you navigate 
+                Contact us today for a confidential consultation. We&apos;re here to help you navigate 
                 your practice transition with confidence.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
