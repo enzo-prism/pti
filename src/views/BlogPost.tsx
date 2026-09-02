@@ -196,7 +196,7 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
         slug={post.slug}
       />
       {/* Header Section */}
-      <section className="bg-white pt-24 pb-8 md:pt-28 md:pb-10">
+      <section className="bg-white pt-10 pb-8 md:pt-14 md:pb-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-4 sm:mb-6">
             <Breadcrumb className="w-full">
@@ -204,7 +204,7 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                 <BreadcrumbItem className="flex-shrink-0">
                   <BreadcrumbLink
                     asChild
-                    className="min-h-[32px] sm:min-h-[44px] flex items-center"
+                    className="min-h-11 sm:min-h-11 flex items-center"
                   >
                     <Link href="/">Home</Link>
                   </BreadcrumbLink>
@@ -213,7 +213,7 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
                 <BreadcrumbItem className="flex-shrink-0">
                   <BreadcrumbLink
                     asChild
-                    className="min-h-[32px] sm:min-h-[44px] flex items-center"
+                    className="min-h-11 sm:min-h-11 flex items-center"
                   >
                     <Link href="/blog">Blog</Link>
                   </BreadcrumbLink>
