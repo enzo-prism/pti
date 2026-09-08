@@ -82,6 +82,8 @@ describe("events dataset", () => {
     expect(upcomingSeminars.map((event) => event.date)).toEqual([
       "October 2, 2026",
       "March 12, 2027",
+      "July 30, 2027",
+      "October 15, 2027",
     ]);
 
     for (const event of upcomingSeminars) {
@@ -110,7 +112,12 @@ describe("events dataset", () => {
       getUpcomingPracticeTransitionSeminarEvents(referenceDate).map(
         (event) => event.value
       )
-    ).toEqual(["october-2-2026-sacramento", "march-12-2027-anaheim"]);
+    ).toEqual([
+      "october-2-2026-sacramento",
+      "march-12-2027-anaheim",
+      "july-30-2027-san-francisco",
+      "october-15-2027-sacramento",
+    ]);
     expect(
       getPastPracticeTransitionSeminarEvents(referenceDate).map(
         (event) => event.value
@@ -120,7 +127,7 @@ describe("events dataset", () => {
 
   it("switches from early-bird to standard pricing after the deadline", () => {
     const sacramento = practiceTransitionSeminarEvents.find(
-      (event) => event.city === "Sacramento"
+      (event) => event.date === "October 2, 2026"
     );
     expect(sacramento).toBeDefined();
     expect(
@@ -153,11 +160,23 @@ describe("events dataset", () => {
     expect(anaheim?.location).toContain("2300 E Katella Ave #405");
   });
 
+  it("uses confirmed venues for the 2027 San Francisco and Sacramento seminars", () => {
+    const sanFrancisco = rawEvents.find((event) => event.date === "July 30, 2027");
+    const sacramento = rawEvents.find((event) => event.date === "October 15, 2027");
+
+    expect(sanFrancisco?.location).toContain("Kohan Group");
+    expect(sanFrancisco?.location).toContain("490 Post St.");
+    expect(sacramento?.location).toContain("TDIC Headquarters");
+    expect(sacramento?.location).toContain("1201 K St");
+  });
+
   it("attaches the Sacramento flyer and flyer copy only to the October 2 2026 date", () => {
     const octoberDates = rawEvents.filter((event) => event.date === "October 2, 2026");
     const sacramento = octoberDates[0];
     const anaheim = rawEvents.find((event) => event.date === "March 12, 2027");
     const sanFrancisco = rawEvents.find((event) => event.date === "July 17, 2026");
+    const sacramento2027 = rawEvents.find((event) => event.date === "October 15, 2027");
+    const sanFrancisco2027 = rawEvents.find((event) => event.date === "July 30, 2027");
     const beyondTheChair = rawEvents.find(
       (event) => event.id === "beyond-the-chair-anaheim-2026"
     );
@@ -220,6 +239,20 @@ describe("events dataset", () => {
 
     expect(sanFrancisco?.flyerImage).toBeUndefined();
     expect(JSON.stringify(sanFrancisco)).not.toMatch(/TDIC/);
+
+    expect(sacramento2027?.flyerImage).toBeUndefined();
+    expect(sacramento2027?.standalone).toBeUndefined();
+    expect(sacramento2027?.speakers).toBeUndefined();
+    expect(JSON.stringify(sacramento2027)).not.toMatch(/Special Sacramento guest/);
+    expect(typeof sacramento2027?.description).toBe("object");
+    if (typeof sacramento2027?.description === "object") {
+      expect(sacramento2027.description.learningPoints).toEqual(
+        practiceTransitionSeminarLearningPoints
+      );
+    }
+
+    expect(sanFrancisco2027?.flyerImage).toBeUndefined();
+    expect(JSON.stringify(sanFrancisco2027)).not.toMatch(/TDIC/);
 
     expect(beyondTheChair?.date).toBe("September 25, 2026");
     expect(beyondTheChair?.flyerImage).toBe(
