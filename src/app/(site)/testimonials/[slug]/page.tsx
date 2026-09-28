@@ -18,12 +18,12 @@ import {
   getAdjacentReviewsBySlug,
   getAllReviewSlugs,
   getReviewBySlug,
+  REVIEW_DETAIL_PAGES_INDEXED,
   type ReviewCategory,
   type ReviewSource,
 } from "@/data/reviews";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 import { HOME_CRUMB } from "@/lib/breadcrumbs";
-import { buildReviewSchema } from "@/lib/structuredData";
 
 type Params = {
   slug: string;
@@ -71,6 +71,7 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
     title: review.storyTitle ?? `${review.displayAuthorName} Review`,
     description: toDescription(review.quote),
     path: `/testimonials/${review.slug}`,
+    noindex: !REVIEW_DETAIL_PAGES_INDEXED,
   });
 }
 
@@ -79,7 +80,6 @@ export default function Page({ params }: { params: Params }) {
   if (!review) notFound();
 
   const path = `/testimonials/${review.slug}`;
-  const reviewSchema = buildReviewSchema(review, path);
   const adjacent = getAdjacentReviewsBySlug(review.slug);
   const breadcrumbs = [
     HOME_CRUMB,
@@ -95,7 +95,6 @@ export default function Page({ params }: { params: Params }) {
           description: toDescription(review.quote),
           path,
           breadcrumbs,
-          structuredData: reviewSchema,
         })}
       />
 

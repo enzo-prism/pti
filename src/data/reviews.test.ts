@@ -2,7 +2,6 @@ import { describe, expect, it } from "vitest";
 import {
   getAllReviewSlugs,
   getFeaturedReviews,
-  getReviewAggregate,
   getReviewBySlug,
   reviews,
 } from "./reviews";
@@ -22,14 +21,6 @@ describe("reviews dataset", () => {
     for (const slug of getAllReviewSlugs()) {
       expect(getReviewBySlug(slug)?.slug).toBe(slug);
     }
-  });
-
-  it("computes aggregate rating and count from unified records", () => {
-    const aggregate = getReviewAggregate(reviews);
-    expect(aggregate).toEqual({
-      ratingValue: 4.99,
-      reviewCount: 101,
-    });
   });
 
   it("returns featured slots in deterministic order", () => {

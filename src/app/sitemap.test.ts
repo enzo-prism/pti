@@ -10,7 +10,7 @@ describe("sitemap metadata", () => {
     const urls = entries.map((entry) => entry.url);
     const uniqueUrls = new Set(urls);
     const allBlogPosts = [...communityImpactPosts, ...blogPosts];
-    const expectedCount = 30 + allBlogPosts.filter((post) => post.slug).length + reviews.length;
+    const expectedCount = 30 + allBlogPosts.filter((post) => post.slug).length;
 
     expect(entries).toHaveLength(expectedCount);
     expect(uniqueUrls.size).toBe(entries.length);
@@ -65,9 +65,13 @@ describe("sitemap metadata", () => {
     expect(urls).toContain(
       `https://practicetransitionsinstitute.com/blog/${allBlogPosts.find((post) => post.slug)?.slug}`
     );
-    expect(urls).toContain(
-      `https://practicetransitionsinstitute.com/testimonials/${reviews[0]?.slug}`
-    );
+    // Review detail pages are noindexed, so they stay out of the sitemap.
+    expect(urls).toContain("https://practicetransitionsinstitute.com/testimonials");
+    for (const review of reviews) {
+      expect(urls).not.toContain(
+        `https://practicetransitionsinstitute.com/testimonials/${review.slug}`
+      );
+    }
   });
 
   it("uses maintained content dates for static pages so crawlers get a real freshness signal", () => {

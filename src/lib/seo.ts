@@ -76,13 +76,15 @@ const buildRobotsMetadata = (noindex?: boolean): Metadata["robots"] => {
     ? deploymentEnv === "production"
     : process.env.NODE_ENV === "production";
   const shouldIndex = isProduction && !noindex;
+  // A noindexed production page still passes its links on; previews do not.
+  const shouldFollow = isProduction;
 
   return {
     index: shouldIndex,
-    follow: shouldIndex,
+    follow: shouldFollow,
     googleBot: {
       index: shouldIndex,
-      follow: shouldIndex,
+      follow: shouldFollow,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,

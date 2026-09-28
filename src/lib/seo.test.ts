@@ -45,6 +45,22 @@ describe("SEO helpers", () => {
     });
   });
 
+  it("keeps links followable on noindexed production pages", () => {
+    process.env.NODE_ENV = "production";
+
+    const metadata = buildPageMetadata({
+      title: "Review",
+      description: "A review",
+      path: "/testimonials/example",
+      noindex: true,
+    });
+
+    expect(metadata.robots).toMatchObject({
+      index: false,
+      follow: true,
+    });
+  });
+
   it("builds canonical JSON-LD URLs on the apex host", () => {
     const jsonLd = buildPageJsonLd({
       title: "Contact PTI",

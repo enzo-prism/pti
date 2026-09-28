@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { blogPosts } from "@/data/blogPosts";
 import { communityImpactPosts } from "@/data/communityImpactPosts";
-import { reviews } from "@/data/reviews";
+import { REVIEW_DETAIL_PAGES_INDEXED, reviews } from "@/data/reviews";
 import { buildAbsoluteUrl } from "@/lib/siteMetadata";
 
 interface StaticRoute {
@@ -11,34 +11,37 @@ interface StaticRoute {
   lastModified?: string;
 }
 
+// lastModified is the date of the page's last significant content change
+// (copy, data, or what crawlers can read), not styling or refactors. Bump it
+// in the same commit as the content edit.
 const STATIC_ROUTES: StaticRoute[] = [
   { path: "/", changeFrequency: "weekly", priority: 1.0, lastModified: "2026-08-17" },
   { path: "/services", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-07-02" },
-  { path: "/services/value", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-02-02" },
-  { path: "/services/selling", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-03-02" },
-  { path: "/services/selling-to-a-dso", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-07-02" },
-  { path: "/services/buying", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-08-17" },
-  { path: "/services/associateships", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-05-26" },
-  { path: "/services/partnerships", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-02-02" },
+  { path: "/services/value", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-09-27" },
+  { path: "/services/selling", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-09-27" },
+  { path: "/services/selling-to-a-dso", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-09-27" },
+  { path: "/services/buying", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-09-27" },
+  { path: "/services/associateships", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-09-27" },
+  { path: "/services/partnerships", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-09-27" },
   { path: "/blog", changeFrequency: "daily", priority: 0.8 },
-  { path: "/locations", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-07-12" },
-  { path: "/locations/california", changeFrequency: "monthly", priority: 0.8, lastModified: "2026-07-12" },
-  { path: "/locations/texas", changeFrequency: "monthly", priority: 0.8, lastModified: "2026-07-12" },
-  { path: "/locations/florida", changeFrequency: "monthly", priority: 0.8, lastModified: "2026-07-12" },
+  { path: "/locations", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-08-17" },
+  { path: "/locations/california", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-08-17" },
+  { path: "/locations/texas", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-08-17" },
+  { path: "/locations/florida", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-08-17" },
   { path: "/resources", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-09-02" },
   { path: "/resources/practice-sale-readiness-checklist", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-06-11" },
-  { path: "/resources/how-much-is-my-dental-practice-worth", changeFrequency: "monthly", priority: 0.8, lastModified: "2026-07-02" },
+  { path: "/resources/how-much-is-my-dental-practice-worth", changeFrequency: "monthly", priority: 0.8, lastModified: "2026-09-27" },
   { path: "/resources/dental-practice-transitions-handbook", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-09-01" },
   { path: "/resources/second-book", changeFrequency: "monthly", priority: 0.5, lastModified: "2026-09-02" },
   { path: "/resources/navigating-dental-insurance-podcast", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-09-01" },
   { path: "/about", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-09-02" },
   { path: "/drnjo", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-09-02" },
-  { path: "/events", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-09-02" },
-  { path: "/events/practice-transition-seminar", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-05-26" },
-  { path: "/events/leadership-retreat", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-01-27" },
+  { path: "/events", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-09-08" },
+  { path: "/events/practice-transition-seminar", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-09-08" },
+  { path: "/events/leadership-retreat", changeFrequency: "monthly", priority: 0.4, lastModified: "2026-08-17" },
   { path: "/testimonials", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-09-02" },
   { path: "/gallery", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-09-02" },
-  { path: "/faq", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-01-27" },
+  { path: "/faq", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-09-27" },
   { path: "/contact", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-05-28" },
   { path: "/privacy-policy", changeFrequency: "yearly", priority: 0.3, lastModified: "2026-08-17" },
   { path: "/terms-of-service", changeFrequency: "yearly", priority: 0.3, lastModified: "2026-02-02" },
@@ -73,7 +76,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     }));
 
-  const reviewEntries: MetadataRoute.Sitemap = reviews.map((review) => ({
+  const reviewEntries: MetadataRoute.Sitemap = (
+    REVIEW_DETAIL_PAGES_INDEXED ? reviews : []
+  ).map((review) => ({
     url: buildAbsoluteUrl(`/testimonials/${review.slug}`),
     ...(review.sourceDateISO
       ? { lastModified: toUtcDate(review.sourceDateISO) }

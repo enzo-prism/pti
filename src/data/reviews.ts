@@ -1393,6 +1393,13 @@ const amazonReviews: ReviewRecord[] = [
   },
 ];
 
+/**
+ * Review detail pages repeat quotes already shown in full on /testimonials
+ * (and mirrored on michaelnjodds.com), so they stay reachable and followable
+ * but out of search results and the sitemap. Flip this to index them again.
+ */
+export const REVIEW_DETAIL_PAGES_INDEXED = false;
+
 export const reviews: ReviewRecord[] = [
   ...googleReviews,
   ...documentReviews,
@@ -1411,20 +1418,6 @@ export const getFeaturedReviews = (slot: string): ReviewRecord[] => {
   return reviews
     .filter((review) => review.featuredSlots?.includes(slot))
     .sort((a, b) => a.sortOrder - b.sortOrder);
-};
-
-export const getReviewAggregate = (
-  records: ReviewRecord[]
-): { ratingValue: number; reviewCount: number } => {
-  if (!records.length) {
-    return { ratingValue: 0, reviewCount: 0 };
-  }
-
-  const totalRating = records.reduce((sum, review) => sum + review.rating, 0);
-  return {
-    ratingValue: Number((totalRating / records.length).toFixed(2)),
-    reviewCount: records.length,
-  };
 };
 
 export const getAdjacentReviewsBySlug = (
