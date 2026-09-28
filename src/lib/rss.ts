@@ -9,7 +9,12 @@ import {
 const RSS_DESCRIPTION =
   "Expert insights on dental practice valuation, sales, ownership transitions, and growth strategies from PTI.";
 
-const allPosts = [...communityImpactPosts, ...blogPosts];
+export const RSS_PATH = "/blog/rss.xml";
+
+// Newest first, as feed readers expect; ties keep the newer id first.
+const feedPosts = [...communityImpactPosts, ...blogPosts]
+  .filter((post) => post.slug)
+  .sort((a, b) => b.date.localeCompare(a.date) || b.id - a.id);
 
 const escapeXml = (value: string) =>
   value
@@ -19,26 +24,16 @@ const escapeXml = (value: string) =>
     .replace(/\"/g, "&quot;")
     .replace(/'/g, "&apos;");
 
-const formatRssDate = (dateString: string) =>
-  new Date(dateString).toUTCString();
+const toRssDate = (isoDate: string) =>
+  new Date(`${isoDate}T00:00:00Z`).toUTCString();
 
-const resolvePostDate = (postDate: string) =>
-  formatRssDate(`${postDate}T00:00:00Z`);
-
-const getLatestPostDate = () => {
-  const datedPosts = allPosts
-    .filter((post) => post.slug)
-    .map((post) => new Date(`${post.date}T00:00:00Z`))
-    .filter((date) => Number.isFinite(date.getTime()));
-
-  if (!datedPosts.length) {
-    return new Date().toUTCString();
-  }
-
-  const latest = datedPosts.reduce((max, current) =>
-    current > max ? current : max
-  );
-  return latest.toUTCString();
+/** The most recent publish or update date across the feed. */
+const getLastBuildDate = () => {
+  const latest = feedPosts
+    .map((post) => post.dateModified ?? post.date)
+    .sort()
+    .at(-1);
+  return latest ? toRssDate(latest) : new Date().toUTCString();
 };
 
 export const buildBlogRssXml = () => {
@@ -46,8 +41,7 @@ export const buildBlogRssXml = () => {
   const channelLink = buildAbsoluteUrl("/blog");
   const channelDescription = RSS_DESCRIPTION || BUSINESS_DESCRIPTION;
 
-  const items = allPosts
-    .filter((post) => post.slug)
+  const items = feedPosts
     .map((post) => {
       const postUrl = buildAbsoluteUrl(`/blog/${post.slug}`);
       return `
@@ -55,20 +49,23 @@ export const buildBlogRssXml = () => {
       <title>${escapeXml(post.title)}</title>
       <link>${postUrl}</link>
       <guid isPermaLink="true">${postUrl}</guid>
-      <pubDate>${resolvePostDate(post.date)}</pubDate>
+      <pubDate>${toRssDate(post.date)}</pubDate>
+      <dc:creator>${escapeXml(post.author)}</dc:creator>
+      <category>${escapeXml(post.category)}</category>
       <description>${escapeXml(post.excerpt)}</description>
     </item>`;
     })
     .join("");
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>${escapeXml(channelTitle)}</title>
     <link>${channelLink}</link>
+    <atom:link href="${buildAbsoluteUrl(RSS_PATH)}" rel="self" type="application/rss+xml" />
     <description>${escapeXml(channelDescription)}</description>
     <language>en-us</language>
-    <lastBuildDate>${getLatestPostDate()}</lastBuildDate>${items}
+    <lastBuildDate>${getLastBuildDate()}</lastBuildDate>${items}
   </channel>
 </rss>`;
 };

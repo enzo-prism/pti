@@ -127,9 +127,6 @@ export default function RootLayout({
       className={`${inter.variable} ${montserrat.variable}`}
     >
       <body className="min-h-screen bg-background text-foreground antialiased">
-        {/* Resource hints for public image origins used across the site. */}
-        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
         {children}
         <AnalyticsProviders />
         <CookieConsent />

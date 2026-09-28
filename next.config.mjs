@@ -2,21 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  async redirects() {
-    return [
-      {
-        source: "/:path*",
-        has: [
-          {
-            type: "host",
-            value: "www.practicetransitionsinstitute.com",
-          },
-        ],
-        destination: "https://practicetransitionsinstitute.com/:path*",
-        permanent: true,
-      },
-    ];
-  },
+  // Redirects (www → apex and legacy paths) live in vercel.json, which Vercel
+  // applies before requests reach Next.js.
   async rewrites() {
     return [
       {
@@ -60,20 +47,11 @@ const nextConfig = {
     minimumCacheTTL: 2678400,
     remotePatterns: [
       {
+        // PTI's Cloudinary account only, so the optimizer cannot be used to
+        // proxy arbitrary Cloudinary images.
         protocol: "https",
         hostname: "res.cloudinary.com",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-      {
-        protocol: "https",
-        hostname: "www.theforage.com",
-      },
-      {
-        protocol: "https",
-        hostname: "www.huntersure.com",
+        pathname: "/dhqpqfw6w/**",
       },
     ],
   },

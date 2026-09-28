@@ -11,7 +11,7 @@
     "test": "npm run images:check && vitest run",
     "test:watch": "vitest",
     "images:check": "node --experimental-strip-types scripts/check-image-framing.ts",
-    "rss:check": "node --experimental-strip-types scripts/validate-rss.ts"
+    "rss:check": "vitest run src/lib/rss.test.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

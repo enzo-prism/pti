@@ -19,21 +19,37 @@ Content guidance:
 ## Key pages
 - [Home](https://practicetransitionsinstitute.com/): Main marketing site and overview.
 - [About](https://practicetransitionsinstitute.com/about): Mission, team, and approach.
-- [Dr. Njo consultation](https://practicetransitionsinstitute.com/drnjo): Direct consultation details.
+- [Contact](https://practicetransitionsinstitute.com/contact): Consultation requests, phone, and email.
+- [Michael Njo, DDS](https://practicetransitionsinstitute.com/drnjo): Founder profile, background, and consultation booking.
+- [Gallery](https://practicetransitionsinstitute.com/gallery): Photos from speaking engagements, dental-society leadership, and the team.
 
 ## Services
 - [Services overview](https://practicetransitionsinstitute.com/services): All transition services.
 - [Opinion of Value](https://practicetransitionsinstitute.com/services/value): Practice valuation.
 - [Selling a Practice](https://practicetransitionsinstitute.com/services/selling): Seller guidance and support.
+- [Selling to a DSO](https://practicetransitionsinstitute.com/services/selling-to-a-dso): DSO offer review, valuation baseline, and negotiation support.
+- [Buying a Practice](https://practicetransitionsinstitute.com/services/buying): Acquisition advisory for dentists buying a practice.
 - [Associateships / Buy-In](https://practicetransitionsinstitute.com/services/associateships): Associate and buy-in planning.
 - [Partnerships](https://practicetransitionsinstitute.com/services/partnerships): Partnership structuring.
 
 ## Resources
-- [Blog](https://practicetransitionsinstitute.com/blog): Long-form articles and series.
+- [Resources hub](https://practicetransitionsinstitute.com/resources): Free tools, guides, and books.
+- [How Much Is My Dental Practice Worth?](https://practicetransitionsinstitute.com/resources/how-much-is-my-dental-practice-worth): Valuation guide with a rule-of-thumb value calculator.
+- [Blog](https://practicetransitionsinstitute.com/blog): Long-form articles and series ([RSS](https://practicetransitionsinstitute.com/blog/rss.xml)).
 - [Practice Sale Readiness Checklist](https://practicetransitionsinstitute.com/resources/practice-sale-readiness-checklist): Free seller-preparation checklist.
-- [Events](https://practicetransitionsinstitute.com/events): Workshops and webinars.
+- [Dental Practice Transitions Handbook](https://practicetransitionsinstitute.com/resources/dental-practice-transitions-handbook): Dr. Njo's book on practice transitions.
+- [Handbook, Second Edition](https://practicetransitionsinstitute.com/resources/second-book): The forthcoming expanded second edition.
+- [Navigating Dental Insurance podcast](https://practicetransitionsinstitute.com/resources/navigating-dental-insurance-podcast): Dr. Njo's podcast interview.
+- [Events](https://practicetransitionsinstitute.com/events): Seminars, workshops, and webinars.
+- [Practice Transitions Seminar](https://practicetransitionsinstitute.com/events/practice-transition-seminar): Current seminar dates, pricing, and registration.
 - [Testimonials](https://practicetransitionsinstitute.com/testimonials): Client feedback.
 - [FAQ](https://practicetransitionsinstitute.com/faq): Frequently asked questions.
+
+## Service areas
+- [Locations](https://practicetransitionsinstitute.com/locations): Where PTI advises dentists. These are service areas, not office locations.
+- [California](https://practicetransitionsinstitute.com/locations/california)
+- [Texas](https://practicetransitionsinstitute.com/locations/texas)
+- [Florida](https://practicetransitionsinstitute.com/locations/florida)
 
 ## Policies
 - [Privacy Policy](https://practicetransitionsinstitute.com/privacy-policy): Data collection and usage.
