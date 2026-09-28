@@ -12,13 +12,14 @@ cat .vercel/project.json
 vercel project inspect pti
 ```
 
-The production Git remote is `https://github.com/enzo-prism/pti.git`. Do not force-push a rewritten history from a scratch copy over `main`. Apply chrome/UX changes on top of current `main` so Search Console verification (`next.config.mjs` rewrites + `src/app/api/google-site-verification/` + `src/lib/googleSiteVerification.ts`) stays in place.
+The production Git remote is `https://github.com/enzo-prism/pti.git`. Do not force-push a rewritten history from a scratch copy over `main`. Apply chrome/UX changes on top of current `main` so Search Console verification (`next.config.mjs` rewrites + `src/app/api/google-site-verification/` + the issued-token allowlist in `src/lib/googleSiteVerification.ts`) stays in place.
 
 2. Use the repository Node runtime (24.x) and install from the lockfile.
 3. Run the full local gate:
 
 ```bash
 npm run lint
+npm run typecheck
 npm run test
 npm run build
 npm run rss:check
@@ -51,7 +52,8 @@ Verify the stable public domain, not only an ephemeral Vercel URL:
 - Header: at ~390px, Book and the hamburger are visible and tappable; at ~1024px the hamburger is used (no clipped desktop links); at ≥1280px the full nav, Services dropdown, phone number, and Book Consultation are visible. `/drnjo` uses the same Navbar.
 - Open the mobile menu with the cookie banner visible and confirm Book/Call are not covered. Skip-to-content appears above the header, including on notched iPhones.
 - `/events` lists only current seminars.
-- `/events/practice-transition-seminar` excludes expired registration choices and schema.
+- `/events/practice-transition-seminar` excludes expired registration choices and schema, and its Event JSON-LD `startDate` carries a Pacific offset (e.g. `T08:00:00-07:00`), not `Z`.
+- `/faq` and a service page such as `/services/selling` include the FAQ answer text in the page HTML, not only in JSON-LD.
 - `/events/leadership-retreat` is a completed-event archive.
 - `/services` renders the 3:2 workshop photo and the 1672:941 process photo sharply, with complete faces and no meaningful subject cropped at mobile or desktop widths.
 - `/services/buying` renders acquisition-advisory content.
@@ -59,8 +61,9 @@ Verify the stable public domain, not only an ephemeral Vercel URL:
 - `/blog` exposes current topic filters and recent content. A community photo post such as `/blog/another-perfect-match` has no italic caption under the hero.
 - `/contact`, `/privacy-policy`, and `/terms-of-service` render successfully.
 - `/robots.txt`, `/sitemap.xml`, and `/blog/rss.xml` return valid public documents.
-- `www.practicetransitionsinstitute.com` permanently redirects to the apex host.
-- A Google Search Console HTML verification path still resolves (do not remove the `google*.html` rewrite).
+- `www.practicetransitionsinstitute.com` permanently redirects to the apex host, and a legacy path such as `www…/seminar` reaches its page in one hop.
+- An issued Search Console token such as `/google078b551f409128a8.html` still resolves, and a made-up one such as `/googleabc123.html` returns 404.
+- A testimonial detail page serves `noindex, follow` and is absent from `sitemap.xml`.
 
 ## Analytics and privacy smoke
 
@@ -80,4 +83,4 @@ Confirm the live response includes the configured HSTS, content-type, framing, r
 
 ## Dependency note
 
-The repository remains on its specified Next.js 14 baseline. The current production audit retains advisories in Next.js and its bundled PostCSS that npm only resolves through a Next.js 16 major upgrade. Treat that migration as a separate compatibility and release project; do not silently force it during routine content releases.
+This branch of the repository is on Next.js 14. npm audit reports advisories in Next.js and its bundled PostCSS that are resolved only by a Next.js 16 major upgrade. Treat that migration as a separate compatibility and release project; do not silently force it during routine content releases.

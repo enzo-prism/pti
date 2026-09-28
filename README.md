@@ -37,9 +37,10 @@ Common scripts:
 | `npm run build`        | Create production build in `.next/`                         |
 | `npm run start`        | Serve the production build locally                          |
 | `npm run lint`         | Run ESLint using the repo's TypeScript-aware config         |
+| `npm run typecheck`    | Run `tsc --noEmit` over the app and tests                   |
 | `npm run test`         | Run the Vitest suite (`*.test.ts` colocated with source)    |
 | `npm run images:check` | Verify source ratios and prevent unmanaged responsive crops |
-| `npm run rss:check`    | Validate the generated blog RSS feed                        |
+| `npm run rss:check`    | Test the real blog RSS builder                              |
 
 ## Project Structure
 
@@ -53,11 +54,11 @@ src/
 public/             # Static assets served as-is
 ```
 
-Routes live in `src/app` and are wrapped by `src/app/(site)/layout.tsx` or `src/app/(minimal)/layout.tsx`. Both layouts mount `SkipToContent`, `Navbar`, and `Footer`. SEO metadata and JSON-LD are set per route using `src/lib/seo.ts` and `src/components/StructuredData.tsx`.
+Routes live in `src/app/(site)`, whose layout mounts `SkipToContent`, `Navbar`, and `Footer` for every page. SEO metadata and JSON-LD are set per route using `src/lib/seo.ts` and `src/components/StructuredData.tsx`.
 
 ## Managing Site Content
 
-- **Canonical reviews dataset**: Managed in `src/data/reviews.ts` and consumed by `/testimonials`, `/testimonials/[slug]`, homepage/service/event entry points, sitemap generation, and review JSON-LD.
+- **Canonical reviews dataset**: Managed in `src/data/reviews.ts` and consumed by `/testimonials`, `/testimonials/[slug]`, and homepage/service/event entry points. Detail pages are `noindex,follow` and stay out of the sitemap because their quotes already appear in full on `/testimonials` and on michaelnjodds.com. No review JSON-LD is emitted: Google does not show stars for self-serving or republished reviews.
   - Keep `id` and `slug` stable once published.
   - Keep `quote` source-exact.
   - Use `displayAuthorName` for UI presentation and `sourceAuthorName` for metadata fidelity.
@@ -68,8 +69,8 @@ Routes live in `src/app` and are wrapped by `src/app/(site)/layout.tsx` or `src/
   - The UI intentionally does not render review-time labels.
 - **Amazon source records**: Raw Amazon review data remains in `src/data/amazonReviews.ts` for recommendation surfaces that still use `BookReviewCard`.
 - **Events hub**: `src/data/events.ts` contains non-seminar event records and derives seminar entries from the canonical schedule.
-- **Seminar schedule**: Update `src/data/practiceTransitionSeminar.ts`; it is the single source of truth used by the events hub, seminar detail/registration form, pricing state, and Event JSON-LD. Expired dates are removed from current registration automatically.
-- **Blog posts**: Authored as Markdown-in-strings inside `src/data/blogPosts.ts`. Each post includes metadata for slugs, gradients, and series links, plus an optional `dateModified` for substantive updates. The homepage displays the most recent blog post automatically.
+- **Seminar schedule**: Update `src/data/practiceTransitionSeminar.ts`; it is the single source of truth used by the events hub, seminar detail/registration form, pricing state, and Event JSON-LD. Expired dates are removed from current registration automatically. Dates, the early-bird deadline, and Event times are evaluated in Pacific time regardless of where the server or visitor is.
+- **Blog posts**: Authored as Markdown-in-strings inside `src/data/blogPosts.ts`. Each post includes metadata for slugs, gradients, and series links, plus an optional `dateModified` for substantive updates. The homepage displays the most recent blog post automatically. Long titles or excerpts need a hand-written `metaTitle` (≤60) / `metaDescription` (≤160); nothing is truncated in code. Event CTAs set `cta.validThrough` so they expire the day after the event.
 - **Community impact posts**: Recent photo/video updates live in `src/data/communityImpactPosts.ts` and are merged ahead of `blogPosts`. Photo posts should include a `featuredImage` so the hero is not a CSS gradient. Vertical graphics set `featuredImageAspect: "portrait"` (or `"square"`) and the real pixel size so the homepage Latest Update, blog cards, and post heroes do not letterbox them inside a landscape crop. `src/lib/featuredImage.ts` also maps known files such as `/lovable-uploads/flyer-photo.webp`. Dates render through `formatLocalDate` — never the raw ISO string.
   - Client components must never import `blogPosts` directly (the full markdown bodies would ship in the JS bundle). Listing surfaces receive `BlogPostSummary[]` props mapped via `toBlogPostSummary` in a server page — see `src/app/(site)/blog/page.tsx`.
 - **Lead magnet**: `/resources/practice-sale-readiness-checklist` (`src/views/PracticeSaleChecklist.tsx`) is a printable checklist with a Formspree email-capture form (`src/components/resources/ChecklistSignupForm.tsx`).
@@ -95,12 +96,9 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 
 ## SEO and Analytics
 
-- Per-page metadata is generated with `buildPageMetadata` in `src/lib/seo.ts`.
+- Per-page metadata is generated with `buildPageMetadata` in `src/lib/seo.ts`. Titles get a brand suffix only when it fits and are never cut; `src/app/metadata.test.ts` checks every route and post.
 - JSON-LD is rendered with `StructuredData` from `src/components/StructuredData.tsx`.
-- Review-specific JSON-LD builders live in `src/lib/structuredData.ts`:
-  - `buildReviewSchema`
-  - `buildReviewItemListSchema`
-  - `buildAggregateRatingSchema`
+- The business node is `ProfessionalService` on every page. Routes declare their own page type (`ContactPage`, `ImageGallery`, `ProfilePage`, …) through `buildPageJsonLd({ pageType })`.
 - Google Analytics 4 helpers live in `src/lib/analytics.ts`. Configure `NEXT_PUBLIC_GA_MEASUREMENT_ID` for the GA4 stream (legacy fallback ID remains during migration), and `NEXT_PUBLIC_HOTJAR_ID` optionally for Hotjar.
 - Google Analytics, Hotjar, and Vercel Analytics are consent-gated by the single root `AnalyticsProviders` mount and load only on the canonical production host. Visitors can reset the saved choice from the footer.
 - Lead-focused key events emitted by the app include `generate_lead`, `book_consultation_click`, and `phone_call_click`.
@@ -114,15 +112,16 @@ The canonical production source is GitHub [`enzo-prism/pti`](https://github.com/
 
 - **Build command**: `npm run build`
 - **Output directory**: `.next/`
-- **Redirects**: All redirects (www→apex host normalization and legacy path redirects) are defined in `vercel.json`. The former Cloudflare/Vite `public/_redirects` and `public/_headers` files were removed after the Vercel migration.
+- **Redirects**: All redirects are defined in `vercel.json`. Legacy paths come first and point at absolute apex URLs (both plain and trailing-slash sources), and the www→apex host rule is last, so every redirect is a single hop.
 - **Security**: HSTS, content-type, framing, referrer, permissions, and opener policies are defined in `next.config.mjs`.
-- **Search Console**: HTML verification files are rewritten in `next.config.mjs` to `src/app/api/google-site-verification/`. Do not drop that rewrite during chrome or UX work.
+- **Search Console**: HTML verification files are rewritten in `next.config.mjs` to `src/app/api/google-site-verification/`, which answers only for the tokens listed in `src/lib/googleSiteVerification.ts`. Do not drop that rewrite during chrome or UX work, and add a new owner's token there rather than loosening the match.
 - **Production host**: `https://practicetransitionsinstitute.com` (`www` permanently redirects to apex).
 
 Before production, run:
 
 ```bash
 npm run lint
+npm run typecheck
 npm run test
 npm run build
 npm run rss:check

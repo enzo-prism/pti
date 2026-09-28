@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Section,
   SectionTitle,
@@ -16,8 +17,10 @@ import {
   Smile,
   ArrowUpRight,
   SearchCheck,
+  MapPin,
 } from "lucide-react";
 import { serviceOfferings } from "@/data/services";
+import { LOCATIONS } from "@/data/locations";
 import Image from "next/image";
 
 const serviceIconMap: Record<string, JSX.Element> = {
@@ -243,6 +246,36 @@ const Services = () => {
             </div>
           </div>
         </div>
+      </Section>
+
+      {/* Service Areas Section */}
+      <Section>
+        <SectionTitle centered>Where PTI Works</SectionTitle>
+        <SectionSubtitle centered>
+          PTI is based in the San Francisco Bay Area and works with dentists
+          nationwide, with market-specific guidance for these states.
+        </SectionSubtitle>
+        <ul className="flex flex-wrap justify-center gap-3">
+          {LOCATIONS.map((location) => (
+            <li key={location.slug}>
+              <Link
+                href={`/locations/${location.slug}`}
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-gray-200 bg-white px-5 text-sm font-medium text-gray-800 shadow-sm transition-colors hover:border-primary/40 hover:text-primary"
+              >
+                <MapPin className="h-4 w-4 text-primary" aria-hidden="true" />
+                {location.state}
+              </Link>
+            </li>
+          ))}
+          <li>
+            <Link
+              href="/locations"
+              className="inline-flex min-h-11 items-center rounded-full px-5 text-sm font-medium text-primary underline-offset-4 hover:underline"
+            >
+              All service areas
+            </Link>
+          </li>
+        </ul>
       </Section>
 
       {/* CTA Section */}

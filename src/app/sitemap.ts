@@ -16,7 +16,7 @@ interface StaticRoute {
 // in the same commit as the content edit.
 const STATIC_ROUTES: StaticRoute[] = [
   { path: "/", changeFrequency: "weekly", priority: 1.0, lastModified: "2026-08-17" },
-  { path: "/services", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-07-02" },
+  { path: "/services", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-09-27" },
   { path: "/services/value", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-09-27" },
   { path: "/services/selling", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-09-27" },
   { path: "/services/selling-to-a-dso", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-09-27" },
