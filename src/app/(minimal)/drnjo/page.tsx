@@ -4,9 +4,9 @@ import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 import { buildPersonSchema } from "@/lib/structuredData";
 import { MICHAEL_NJO_WEBSITE_URL } from "@/lib/constants";
 
-const title = "Michael Njo, DDS | Author, Lecturer & Dental Practice Transition Expert";
+const title = "Michael Njo, DDS: Author & Practice Transition Expert";
 const description =
-  "Learn how Michael Njo, DDS guides dentists through practice valuations, ownership transitions, and GPR resident education as the author of Dental Practice Transitions Handbook.";
+  "How Michael Njo, DDS, author of Dental Practice Transitions Handbook, guides dentists through practice valuations, ownership transitions, and GPR education.";
 
 const personSchema = buildPersonSchema({
   name: "Michael Njo, DDS",

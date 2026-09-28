@@ -108,7 +108,7 @@ export const LOCATIONS: LocationContent[] = [
     state: "Texas",
     seoTitle: "Sell a Dental Practice in Texas",
     seoDescription:
-      "Texas dental practice transition advisors. Valuations, sales, associate buy-ins, and DSO offer reviews across Dallas-Fort Worth, Houston, Austin, and San Antonio.",
+      "Texas dental practice transition advisors: valuations, sales, associate buy-ins, and DSO offer reviews in Dallas-Fort Worth, Houston, Austin, San Antonio.",
     heroTitle: "Selling or Transitioning a Dental Practice in Texas",
     heroIntro:
       "PTI helps Texas dentists compare acquisition and sale options across the state's major metros, with focused review of practice economics, financing readiness, and deal structure.",

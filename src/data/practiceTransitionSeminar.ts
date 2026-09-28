@@ -25,7 +25,7 @@ export const PRACTICE_TRANSITION_SEMINAR_FORM_PROVIDER = "formspree";
 export const PRACTICE_TRANSITION_SEMINAR_PAGE_TITLE =
   "Dental Practice Transition Seminar | PTI";
 export const PRACTICE_TRANSITION_SEMINAR_META_DESCRIPTION =
-  "Join Practice Transitions Institute for a one-day seminar on buying, selling, and transitioning a dental practice. See current dates, locations, pricing, and registration details.";
+  "A one-day PTI seminar on buying, selling, and transitioning a dental practice. See current dates, locations, pricing, and how to register.";
 export const PRACTICE_TRANSITION_SEMINAR_EYEBROW =
   "Practice Transitions Seminar";
 export const PRACTICE_TRANSITION_SEMINAR_HEADLINE =

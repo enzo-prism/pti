@@ -6,7 +6,7 @@ import { galleryPhotos } from "@/data/galleryImages";
 
 const title = "PTI Photo Gallery";
 const description =
-  "Photos from Practice Transitions Institute: speaking engagements, dental-society leadership, published work, the PTI team, and the relationships behind every dental practice transition.";
+  "Photos of PTI speaking engagements, dental-society leadership, published work, the team, and the relationships behind every dental practice transition.";
 
 const galleryImage = galleryPhotos[0]?.src;
 

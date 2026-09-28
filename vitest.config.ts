@@ -11,6 +11,9 @@ export default defineConfig({
     // Vercel and CI run in UTC; match them so date logic is tested as deployed.
     env: { TZ: "UTC" },
   },
+  // Page modules are imported by metadata tests; compile their JSX the way
+  // Next.js does.
+  esbuild: { jsx: "automatic" },
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),

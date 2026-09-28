@@ -38,113 +38,31 @@ const normalizePathname = (value: string): string => {
   return withoutHtmlEntrypoint.replace(/\/+$/, "");
 };
 
-const truncateAtWord = (value: string, maxLength: number): string => {
-  if (value.length <= maxLength) return value;
-  const truncated = value.slice(0, maxLength - 1);
-  const lastSpace = truncated.lastIndexOf(" ");
-  const safeCut =
-    lastSpace > maxLength * 0.6 ? truncated.slice(0, lastSpace) : truncated;
-  return `${safeCut}...`;
-};
-
-const truncateAtWordWithoutEllipsis = (
-  value: string,
-  maxLength: number
-): string => {
-  if (value.length <= maxLength) return value;
-  const truncated = value.slice(0, maxLength);
-  const lastSpace = truncated.lastIndexOf(" ");
-  const safeCut =
-    lastSpace > maxLength * 0.6 ? truncated.slice(0, lastSpace) : truncated;
-  return safeCut.trimEnd();
-};
-
-const getImportantTail = (value: string): string | null => {
-  const normalized = normalizeTitleWhitespace(value);
-  const pattern = /\b(part|episode|chapter)\s+(?:\d+|[ivx]{1,8})\b/gi;
-  let lastMatchIndex: number | null = null;
-  for (const match of normalized.matchAll(pattern)) {
-    if (typeof match.index === "number") {
-      lastMatchIndex = match.index;
-    }
-  }
-
-  if (lastMatchIndex === null) return null;
-  return normalized.slice(lastMatchIndex).trim();
-};
-
-const truncateForTitle = (value: string, maxLength: number): string => {
-  const normalized = normalizeTitleWhitespace(value);
-  if (normalized.length <= maxLength) return normalized;
-  if (maxLength <= 1) return "...";
-
-  const ellipsis = "...";
-  const maxTailLength = Math.min(
-    Math.max(12, Math.floor(maxLength * 0.45)),
-    maxLength - 8
-  );
-
-  const partTail = getImportantTail(normalized);
-  const tailCandidate = partTail && partTail.length <= maxTailLength
-    ? partTail
-    : null;
-  const tailFromWords = (() => {
-    const words = normalized.split(" ");
-    const collected: string[] = [];
-    let total = 0;
-    for (let i = words.length - 1; i >= 0; i -= 1) {
-      const word = words[i];
-      const added = word.length + (collected.length ? 1 : 0);
-      if (total + added > maxTailLength) break;
-      collected.unshift(word);
-      total += added;
-      if (collected.length >= 5) break;
-    }
-    const tail = collected.join(" ").trim();
-    return tail.length ? tail : null;
-  })();
-
-  const tail = tailCandidate ?? tailFromWords;
-  if (!tail) return truncateAtWord(normalized, maxLength);
-
-  const needsSpace = /^[A-Za-z0-9]/.test(tail);
-  const startLength =
-    maxLength - tail.length - ellipsis.length - (needsSpace ? 1 : 0);
-  if (startLength < 8) return truncateAtWord(normalized, maxLength);
-
-  const start = truncateAtWordWithoutEllipsis(normalized, startLength);
-  if (!start.length) return truncateAtWord(normalized, maxLength);
-
-  return `${start}${ellipsis}${needsSpace ? " " : ""}${tail}`;
-};
-
+/**
+ * Append the brand when it fits within TITLE_MAX_LENGTH, preferring the full
+ * name, then "PTI". Titles are never cut mid-phrase: a title too long for any
+ * suffix is used as written, and route/post tests keep authored titles short.
+ */
 export const buildTitleTag = (rawTitle: string): string => {
   const baseTitle = normalizeTitleWhitespace(rawTitle);
   if (!baseTitle) return SITE_NAME;
-  const brandSuffix = ` | ${SITE_NAME}`;
-  const shortBrandSuffix = ` | ${SHORT_SITE_NAME}`;
   const baseLower = baseTitle.toLowerCase();
   const hasBrand =
     baseLower.includes(SITE_NAME.toLowerCase()) ||
-    baseLower.includes(SHORT_SITE_NAME.toLowerCase());
+    /\bpti\b/.test(baseLower);
 
   if (hasBrand) {
-    return truncateForTitle(baseTitle, TITLE_MAX_LENGTH);
+    return baseTitle;
   }
 
-  const fullWithBrand = `${baseTitle}${brandSuffix}`;
-  if (fullWithBrand.length <= TITLE_MAX_LENGTH) {
-    return fullWithBrand;
+  for (const brand of [SITE_NAME, SHORT_SITE_NAME]) {
+    const withBrand = `${baseTitle} | ${brand}`;
+    if (withBrand.length <= TITLE_MAX_LENGTH) {
+      return withBrand;
+    }
   }
 
-  const fullWithShortBrand = `${baseTitle}${shortBrandSuffix}`;
-  if (fullWithShortBrand.length <= TITLE_MAX_LENGTH) {
-    return fullWithShortBrand;
-  }
-
-  const availableBaseLength = TITLE_MAX_LENGTH - shortBrandSuffix.length;
-  const truncatedBase = truncateForTitle(baseTitle, availableBaseLength);
-  return `${truncatedBase}${shortBrandSuffix}`;
+  return baseTitle;
 };
 
 const resolveAbsoluteUrl = (value: string): string =>

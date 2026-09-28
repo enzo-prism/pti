@@ -16,7 +16,7 @@ export const communityImpactPosts: Array<
     author: "Practice Transitions Institute",
     metaTitle: "Congratulations, Dr. Diana Fat | PTI",
     metaDescription:
-      "I am so proud to congratulate my longtime client of more than 20 years, Dr. Diana Fat, a distinguished Sacramento prosthodontist, on her appointment to the University of the Pacific Board of Regents.",
+      "Dr. Michael Njo congratulates longtime client Dr. Diana Fat, a Sacramento prosthodontist, on joining the University of the Pacific Board of Regents.",
     featuredImage: "/lovable-uploads/drnjo-2026/diana-fat-board-of-regents.webp",
     featuredImageAlt:
       "Dr. Michael Njo and Dr. Diana Fat standing together in her Sacramento dental office, beside a navy overlay announcing her appointment to the University of the Pacific Board of Regents",
@@ -172,7 +172,8 @@ The Practice Blueprint dinner followed on August 27 at Fats Asia Bistro in Rosev
     gradient: "bg-gradient-to-br from-primary via-sky-600 to-emerald-500",
     slug: "amazing-4-days-with-industry-leaders",
     author: "Practice Transitions Institute",
-    metaTitle: "An Amazing 4 days with Industry leaders | Practice Transitions Institute",
+    metaTitle:
+      "An Amazing 4 Days With Industry Leaders | PTI",
     featuredImage: "/lovable-uploads/drnjo-2026/industry-leaders-reel-poster.webp",
     featuredImageAlt: "Still from the Backstage Dentistry reel covering four days with industry leaders",
     featuredImageCaption: "Video still from @backstagedentistry on Instagram.",

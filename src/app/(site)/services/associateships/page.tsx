@@ -6,7 +6,7 @@ import { serviceOfferings } from "@/data/services";
 
 const title = "Dental Associateships & Buy-In Planning";
 const description =
-  "Plan a dental associateship or buy-in with guidance on fit, responsibilities, compensation, valuation, milestones, financing coordination, and ownership transition.";
+  "Plan a dental associateship or buy-in with guidance on fit, compensation, valuation, milestones, financing coordination, and the ownership transition.";
 
 export const metadata = buildPageMetadata({
   title,

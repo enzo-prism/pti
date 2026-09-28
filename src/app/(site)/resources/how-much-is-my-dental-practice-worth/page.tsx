@@ -5,7 +5,7 @@ import { buildFAQSchema } from "@/lib/structuredData";
 
 const title = "How Much Is My Dental Practice Worth?";
 const description =
-  "What actually determines dental practice value — cash flow, patient base, location, team — and how to get a defensible number before you sell or sign a DSO offer.";
+  "What determines dental practice value (cash flow, patient base, location, team) and how to get a defensible number before you sell or sign a DSO offer.";
 const path = "/resources/how-much-is-my-dental-practice-worth";
 
 export const metadata = buildPageMetadata({
