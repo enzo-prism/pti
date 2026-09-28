@@ -57,7 +57,7 @@ Diana continues to make a meaningful difference in dentistry, in her community, 
     featuredImageHeight: 1821,
     content: `Great night with great Dentists and referral partners! Thank you Provide, Patterson, Kohan, and Carr for including me at this vibrant event. It is so fun to enjoy an evening with Dentists who have dreams and a team that can realize those dreams! Thank you to my dear friend, colleague, and long time client Dr. Diana Fat for welcoming us to her family restaurant.
 
-<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/poe-roseville-aug-2026.webp" alt="Vertical recap collage titled The Practice Blueprint, with a dinner-table group photo, a five-person portrait, and black-and-white welcome-sign, table-setting, stationery, and gift-bag details from the Roseville evening" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>`,
+<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/poe-roseville-aug-2026.webp" width="864" height="1821" alt="Vertical recap collage titled The Practice Blueprint, with a dinner-table group photo, a five-person portrait, and black-and-white welcome-sign, table-setting, stationery, and gift-bag details from the Roseville evening" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>`,
   },
   {
     id: 45,
@@ -86,9 +86,9 @@ Diana continues to make a meaningful difference in dentistry, in her community, 
 
 Bill and Mikki, thank you for your incredibly thoughtful words and for trusting me to help guide such an important transition. It was truly an honor to support you in finding the right successor for the practice, patients, team, and legacy you worked so hard to build.
 
-<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/bill-mikki-porch.webp" alt="A younger woman in a navy sleeveless top and trousers standing with an older man in a tropical-print shirt on a brick walkway in front of a brick house numbered 257" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
+<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/bill-mikki-porch.webp" width="1199" height="1600" alt="A younger woman in a navy sleeveless top and trousers standing with an older man in a tropical-print shirt on a brick walkway in front of a brick house numbered 257" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
 
-<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/bill-mikki-trio.webp" alt="Three people standing outdoors: a man in light blue scrubs holding a yellow folder, a woman in navy scrubs, and a man in a white shirt and blue tie, in front of a burgundy wall" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>`,
+<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/bill-mikki-trio.webp" width="1200" height="1600" alt="Three people standing outdoors: a man in light blue scrubs holding a yellow folder, a woman in navy scrubs, and a man in a white shirt and blue tie, in front of a burgundy wall" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>`,
   },
   {
     id: 44,
@@ -120,7 +120,7 @@ Bill and Mikki, thank you for your incredibly thoughtful words and for trusting 
 
 This session has taken place. See upcoming seminar dates on the [events page](/events), or [contact PTI](/contact) to ask about future sessions.
 
-<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/promotional-flyer-dental-strategies.webp" alt="Promotional flyer for The Dental Practice Beyond the Chair, a September 25, 2026 five-hour working session in Anaheim led by Michael A. Njo, DDS" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
+<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/promotional-flyer-dental-strategies.webp" width="1414" height="2000" alt="Promotional flyer for The Dental Practice Beyond the Chair, a September 25, 2026 five-hour working session in Anaheim led by Michael A. Njo, DDS" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
 
 ## Session blocks
 
@@ -159,7 +159,7 @@ Dr. Michael Njo was honored to autograph his book, *Dental Practice Transitions 
 
 The Practice Blueprint dinner followed on August 27 at Fats Asia Bistro in Roseville. [Read the Roseville recap](/blog/practice-blueprint-roseville-aug-2026).
 
-<div class="dinner-photos" style="display:grid;gap:1rem;margin:1.5rem 0;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));align-items:start;"><img src="/lovable-uploads/drnjo-2026/IMG_4918.webp" alt="Dr. Michael Njo with dentists and referral partners at the Panel of Experts dinner" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/IMG_4923.webp" alt="Dr. Michael Njo autographing Dental Practice Transitions Handbook at the Panel of Experts dinner" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/IMG_3346.webp" alt="Panel of Experts dinner table with dentists and referral partners" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>`,
+<div class="dinner-photos" style="display:grid;gap:1rem;margin:1.5rem 0;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));align-items:start;"><img src="/lovable-uploads/drnjo-2026/IMG_4918.webp" width="1600" height="2133" alt="Dr. Michael Njo with dentists and referral partners at the Panel of Experts dinner" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/IMG_4923.webp" width="1600" height="2133" alt="Dr. Michael Njo autographing Dental Practice Transitions Handbook at the Panel of Experts dinner" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/IMG_3346.webp" width="1600" height="2133" alt="Panel of Experts dinner table with dentists and referral partners" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>`,
   },
   {
     id: 42,
@@ -213,7 +213,7 @@ It's about how AI is quietly choosing which practices get recommended to patient
 
 Go grab it today: [digitalfloss.com/found](http://www.digitalfloss.com/found)
 
-<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/found-book-launch-anissa-broussard.webp" alt="Dr. Michael Njo and Dr. Anissa Broussard holding a copy of her book FOUND on a staircase" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>`,
+<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/found-book-launch-anissa-broussard.webp" width="1068" height="1600" alt="Dr. Michael Njo and Dr. Anissa Broussard holding a copy of her book FOUND on a staircase" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>`,
   },
   {
     id: 48,
@@ -242,11 +242,11 @@ Go grab it today: [digitalfloss.com/found](http://www.digitalfloss.com/found)
 
 How exciting to have all 29 authors and Key Opinion Leaders under one roof for a book signing. What great energy and great talent in one room. Dr. Njo is a contributing author to *The Dental Exit Blueprint*, with two chapters in the book: "Know Your Exit Options" and "Plan What Comes Next."
 
-<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/backstage-retreat-2026-book-signing.webp" alt="Backstage Retreat 2026 book signing in Orlando on July 30, 2026, with contributing authors holding copies of The Dental Exit Blueprint" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
+<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/backstage-retreat-2026-book-signing.webp" width="1600" height="854" alt="Backstage Retreat 2026 book signing in Orlando on July 30, 2026, with contributing authors holding copies of The Dental Exit Blueprint" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
 
 Experiencing one of the three core values of the Backstage Mastermind: abundance, kindness, and fun. Fun at Disney World with fellow members.
 
-<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/backstage-disney-world-2026.webp" alt="Dr. Michael Njo with three fellow Backstage Mastermind members holding tickets outside at Disney World" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>`,
+<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/backstage-disney-world-2026.webp" width="1200" height="1600" alt="Dr. Michael Njo with three fellow Backstage Mastermind members holding tickets outside at Disney World" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>`,
   },
   {
     id: 50,
@@ -275,7 +275,7 @@ Experiencing one of the three core values of the Backstage Mastermind: abundance
 
 The article covers why Dr. Njo's work goes "beyond brokerage": the difference between a sale and a transition, the advisors and great teams he learned about from his father, and why he keeps showing up for the next generation of dentists.
 
-<div class="magazine-pages" style="display:grid;gap:1rem;margin:1.5rem 0;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:start;"><img src="/lovable-uploads/drnjo-2026/dental-lifestyles-summer-2026-cover.webp" alt="Cover of Dental Lifestyles Magazine, Summer 2026, listing the feature on Dr. Michael Njo's whole-person approach to dental practice transitions" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/dental-lifestyles-summer-2026-feature-p25.webp" alt="Page 25 of Dental Lifestyles Magazine: Beyond Brokerage, by Dr. Glenn Vo" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/dental-lifestyles-summer-2026-feature-p26.webp" alt="Page 26 of Dental Lifestyles Magazine: the continuation of Beyond Brokerage" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
+<div class="magazine-pages" style="display:grid;gap:1rem;margin:1.5rem 0;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:start;"><img src="/lovable-uploads/drnjo-2026/dental-lifestyles-summer-2026-cover.webp" width="748" height="920" alt="Cover of Dental Lifestyles Magazine, Summer 2026, listing the feature on Dr. Michael Njo's whole-person approach to dental practice transitions" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/dental-lifestyles-summer-2026-feature-p25.webp" width="1082" height="1400" alt="Page 25 of Dental Lifestyles Magazine: Beyond Brokerage, by Dr. Glenn Vo" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/dental-lifestyles-summer-2026-feature-p26.webp" width="1074" height="1400" alt="Page 26 of Dental Lifestyles Magazine: the continuation of Beyond Brokerage" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
 
 Thank you to Dr. Glenn Vo and Dental Lifestyles Magazine for the feature.`,
   },
@@ -310,7 +310,7 @@ Thank you to Dr. Glenn Vo and Dental Lifestyles Magazine for the feature.`,
 
 > "As a buyer there was so much information I had no clue about. Six hours went by fast. I will schedule a call to discuss my future and options with you."
 
-<div class="seminar-photos" style="display:grid;gap:1rem;margin:1.5rem 0;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));align-items:start;"><img src="/lovable-uploads/drnjo-2026/sf-seminar-jul-2026-presenting.webp" alt="Dr. Michael Njo presenting Mastering Your Dental Transition at the July 2026 San Francisco seminar" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/sf-seminar-jul-2026-attendees.webp" alt="Group photo of dentists attending the July 2026 San Francisco seminar, shown on the conference room display" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/sf-seminar-jul-2026-duo.webp" alt="Dr. Michael Njo standing with a colleague holding seminar materials at the San Francisco seminar venue" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
+<div class="seminar-photos" style="display:grid;gap:1rem;margin:1.5rem 0;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));align-items:start;"><img src="/lovable-uploads/drnjo-2026/sf-seminar-jul-2026-presenting.webp" width="1200" height="1600" alt="Dr. Michael Njo presenting Mastering Your Dental Transition at the July 2026 San Francisco seminar" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/sf-seminar-jul-2026-attendees.webp" width="1200" height="1600" alt="Group photo of dentists attending the July 2026 San Francisco seminar, shown on the conference room display" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/sf-seminar-jul-2026-duo.webp" width="1200" height="1600" alt="Dr. Michael Njo standing with a colleague holding seminar materials at the San Francisco seminar venue" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
 
 See upcoming seminar dates on the [events page](/events).`,
   },
@@ -342,7 +342,7 @@ To be honest, I didn't know exactly what to expect. What unfolded over the weeke
 
 What struck me most was the intentionality behind this community. The way this group has been carefully cultivated is both artful and powerful. From the moment I arrived, it was clear that everyone shared a common set of values, values that were not merely spoken, but genuinely lived. Over the course of several days, we learned together, collaborated together, and supported one another in ways that were deeply meaningful.
 
-<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/backstage-launch-pod-dallas-2026.webp" alt="Dr. Michael Njo with fellow Backstage Mastermind members in matching Launch Pod shirts at the Dallas retreat" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
+<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/backstage-launch-pod-dallas-2026.webp" width="1600" height="1136" alt="Dr. Michael Njo with fellow Backstage Mastermind members in matching Launch Pod shirts at the Dallas retreat" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
 
 Thank you to the Backstage community for an unforgettable pod session.`,
   },
@@ -371,18 +371,18 @@ Thank you to the Backstage community for an unforgettable pod session.`,
     featuredImageHeight: 1600,
     content: `Dugoni Business Club Symposium. Thank you to our industry sponsors!
 
-<div class="dugoni-photos" style="display:grid;gap:1rem;margin:1.5rem 0;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));align-items:start;"><img src="/lovable-uploads/drnjo-2026/dugoni-symposium-2023-keynote.webp" alt="Dr. Michael Njo speaking at the podium during the Dugoni Business Club Symposium" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/dugoni-symposium-2023-sponsors.webp" alt="Dr. Michael Njo with two industry sponsor representatives at the Dugoni Business Club Symposium vendor fair" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/dugoni-symposium-2023-sponsor-team.webp" alt="Industry sponsor representatives gathered at the Dugoni Business Club Symposium vendor fair" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
+<div class="dugoni-photos" style="display:grid;gap:1rem;margin:1.5rem 0;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));align-items:start;"><img src="/lovable-uploads/drnjo-2026/dugoni-symposium-2023-keynote.webp" width="1200" height="1600" alt="Dr. Michael Njo speaking at the podium during the Dugoni Business Club Symposium" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/dugoni-symposium-2023-sponsors.webp" width="1284" height="924" alt="Dr. Michael Njo with two industry sponsor representatives at the Dugoni Business Club Symposium vendor fair" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/dugoni-symposium-2023-sponsor-team.webp" width="1101" height="732" alt="Industry sponsor representatives gathered at the Dugoni Business Club Symposium vendor fair" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
 
 Great evening at the Dugoni Alumni meeting with Business Club members.
 
-<div class="dugoni-photos" style="display:grid;gap:1rem;margin:1.5rem 0;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));align-items:start;"><img src="/lovable-uploads/drnjo-2026/dugoni-business-club-dinner.webp" alt="Dr. Michael Njo at a long restaurant table with Dugoni Business Club members during an alumni evening" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/dugoni-business-club-members.webp" alt="Dr. Michael Njo standing with three Dugoni Business Club student members inside the Arthur A. Dugoni School of Dentistry" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
+<div class="dugoni-photos" style="display:grid;gap:1rem;margin:1.5rem 0;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));align-items:start;"><img src="/lovable-uploads/drnjo-2026/dugoni-business-club-dinner.webp" width="1200" height="1600" alt="Dr. Michael Njo at a long restaurant table with Dugoni Business Club members during an alumni evening" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/dugoni-business-club-members.webp" width="1600" height="1200" alt="Dr. Michael Njo standing with three Dugoni Business Club student members inside the Arthur A. Dugoni School of Dentistry" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
 
 Alumni Reunion! Great seeing, and now working with, my colleagues and classmates. What a privilege to help them with their transitions and their businesses!
 
-<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/dugoni-alumni-gala-table.webp" alt="Dr. Michael Njo with Pacific Dugoni alumni colleagues and classmates in formal attire gathered around a table at an Alumni Association evening" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
+<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/dugoni-alumni-gala-table.webp" width="1600" height="1058" alt="Dr. Michael Njo with Pacific Dugoni alumni colleagues and classmates in formal attire gathered around a table at an Alumni Association evening" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
 
 Celebration lunch for another great year. Proud to be your advisor and consultant! And supporting the leadership at the Dugoni Business Club with a nice round of golf and down time before finals.
 
-<div class="dugoni-photos" style="display:grid;gap:1rem;margin:1.5rem 0;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:start;"><img src="/lovable-uploads/drnjo-2026/dugoni-business-club-celebration-lunch.webp" alt="Dr. Michael Njo with a large group of Dugoni Business Club members at a celebration lunch" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/dugoni-business-club-golf.webp" alt="Dr. Michael Njo seated at a clubhouse table with four Dugoni Business Club leaders after a round of golf" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>`,
+<div class="dugoni-photos" style="display:grid;gap:1rem;margin:1.5rem 0;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:start;"><img src="/lovable-uploads/drnjo-2026/dugoni-business-club-celebration-lunch.webp" width="1600" height="1200" alt="Dr. Michael Njo with a large group of Dugoni Business Club members at a celebration lunch" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /><img src="/lovable-uploads/drnjo-2026/dugoni-business-club-golf.webp" width="1600" height="1200" alt="Dr. Michael Njo seated at a clubhouse table with four Dugoni Business Club leaders after a round of golf" style="display:block;width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>`,
   },
 ];

@@ -71,6 +71,18 @@ export const sanitizeArticleHtml = (html: string): string =>
       iframe: ["src", "width", "height", "frameborder", "scrolling", "allow", "allowtransparency", "title", "loading"],
       th: ["scope"],
     },
+    // Raw <img> tags written into post bodies get the same lazy, async
+    // loading as Markdown images unless they set their own.
+    transformTags: {
+      img: (tagName, attribs) => ({
+        tagName,
+        attribs: {
+          ...attribs,
+          loading: attribs.loading ?? "lazy",
+          decoding: attribs.decoding ?? "async",
+        },
+      }),
+    },
     allowedSchemes: ["http", "https", "mailto"],
     allowProtocolRelative: false,
     allowedIframeHostnames: ["www.instagram.com"],
