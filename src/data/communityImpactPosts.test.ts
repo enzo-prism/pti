@@ -143,7 +143,7 @@ describe("community impact posts", () => {
     expect(getBlogMetaDescription(post).length).toBeLessThanOrEqual(160);
   });
 
-  it("lists the Beyond the Chair Anaheim flyer post without overstating availability", () => {
+  it("keeps the Beyond the Chair Anaheim flyer post as a completed-event record", () => {
     const post = communityImpactPosts.find(
       (candidate) => candidate.slug === "dental-practice-beyond-the-chair-anaheim"
     );
@@ -166,14 +166,13 @@ describe("community impact posts", () => {
     expect(post.content).toContain("2300 E. Katella Ave, Suite 405");
     expect(post.content).toContain("object-fit:contain");
     expect(post.content).not.toContain("object-fit:cover");
-    expect(post.content).toContain("confirm a seat");
+    // The session was September 25, 2026; the post must not keep selling it.
+    expect(post.cta).toBeUndefined();
+    expect(post.content).not.toMatch(/confirm a seat/i);
+    expect(post.content).toContain("This session has taken place.");
+    expect(post.content).toContain("[events page](/events)");
     expect(post.content).not.toMatch(/sold out/i);
     expect(post.content).not.toMatch(/registration is open/i);
-    expect(post.cta).toMatchObject({
-      bookingLabel: "Confirm a seat",
-      bookingUrl:
-        "mailto:info@practicetransitions.com?subject=Beyond%20the%20Chair%20Anaheim%20September%2025",
-    });
     expect(JSON.stringify(post)).not.toMatch(/eventbrite|stripe|sold out|registration is open/i);
     expect(
       existsSync(

@@ -5,6 +5,8 @@ import {
   getBlogMetaTitle,
   toBlogPostSummary,
 } from "./blogPosts";
+import { communityImpactPosts } from "./communityImpactPosts";
+import { isLocalDatePast } from "@/lib/dateUtils";
 
 const EDITORIALLY_REVISED_POST_IDS = new Set([18, 25, 28, 29, 30, 31, 32, 33]);
 const INTERNAL_DRAFTING_PATTERNS = [
@@ -67,5 +69,31 @@ describe("blog editorial quality", () => {
     expect(summary).not.toHaveProperty("sources");
     expect(summary).not.toHaveProperty("disclaimer");
     expect(summary).not.toHaveProperty("metaDescription");
+  });
+});
+
+describe("post calls to action", () => {
+  const allPosts = [...communityImpactPosts, ...blogPosts];
+
+  it("gives every event CTA an expiry date so it cannot outlive the event", () => {
+    for (const post of allPosts) {
+      if (!post.cta?.eventName) continue;
+      expect(post.cta.validThrough, post.slug).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    }
+  });
+
+  it("does not describe an event as upcoming without an expiry date", () => {
+    for (const post of allPosts) {
+      if (!post.cta || post.cta.validThrough) continue;
+      expect(
+        `${post.cta.eyebrow ?? ""} ${post.cta.title} ${post.cta.description}`,
+        post.slug
+      ).not.toMatch(/upcoming|confirm (?:a|your) seat/i);
+    }
+  });
+
+  it("expires a CTA the Pacific day after validThrough", () => {
+    expect(isLocalDatePast("2026-09-25", new Date("2026-09-25T23:30:00-07:00"))).toBe(false);
+    expect(isLocalDatePast("2026-09-25", new Date("2026-09-26T00:01:00-07:00"))).toBe(true);
   });
 });

@@ -9,6 +9,7 @@ import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 import { buildBlogPostingSchema } from "@/lib/structuredData";
 import { HOME_CRUMB } from "@/lib/breadcrumbs";
 import { DEFAULT_OG_IMAGE } from "@/lib/siteMetadata";
+import { isLocalDatePast } from "@/lib/dateUtils";
 
 type BlogParams = {
   slug: string;
@@ -19,6 +20,9 @@ const allBlogPosts = [...communityImpactPosts, ...blogPosts];
 const getPost = (slug: string) => allBlogPosts.find((post) => post.slug === slug);
 
 export const dynamicParams = false;
+
+// Re-render daily so dated CTAs (`cta.validThrough`) expire on their own.
+export const revalidate = 86400;
 
 export const generateStaticParams = (): BlogParams[] =>
   allBlogPosts
@@ -75,6 +79,9 @@ export default function Page({ params }: { params: BlogParams }) {
     category: post.category,
     authorProfile,
   });
+  const ctaExpired =
+    post.cta?.validThrough !== undefined &&
+    isLocalDatePast(post.cta.validThrough);
 
   return (
     <>
@@ -88,7 +95,7 @@ export default function Page({ params }: { params: BlogParams }) {
           structuredData: blogSchema,
         })}
       />
-      <BlogPostView post={post} />
+      <BlogPostView post={ctaExpired ? { ...post, cta: undefined } : post} />
     </>
   );
 }

@@ -110,6 +110,18 @@ export const isEventPast = (
 ): boolean =>
   eventDayKey(dateString) < calendarDayKeyInTimeZone(referenceDate);
 
+/** True once the Pacific calendar day after `isoDate` (YYYY-MM-DD) has begun. */
+export const isLocalDatePast = (
+  isoDate: string,
+  referenceDate: Date = new Date()
+): boolean => {
+  const date = parseLocalDate(isoDate);
+  return (
+    dayKey(date.getFullYear(), date.getMonth() + 1, date.getDate()) <
+    calendarDayKeyInTimeZone(referenceDate)
+  );
+};
+
 /** An event remains current for the full Pacific calendar day on which it occurs. */
 export const isEventUpcoming = (
   dateString: string,

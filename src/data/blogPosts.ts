@@ -34,11 +34,17 @@ export interface BlogPost {
   };
   cta?: {
     eyebrow?: string;
+    /** Set for event CTAs; such CTAs must also set `validThrough`. */
     eventName?: string;
     title: string;
     description: string;
     bookingUrl: string;
     bookingLabel: string;
+    /**
+     * Last Pacific calendar day (YYYY-MM-DD) the CTA is shown. Post pages
+     * refresh daily, so an event CTA disappears the day after its event.
+     */
+    validThrough?: string;
   };
 }
 

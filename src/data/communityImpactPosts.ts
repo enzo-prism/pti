@@ -1,10 +1,5 @@
 import type { BlogPost } from "./blogPosts";
 
-// Keep the event CTA self-contained so the RSS validator can load this data
-// with Node's type stripping as well as through Next.js.
-const BEYOND_THE_CHAIR_MAILTO =
-  "mailto:info@practicetransitions.com?subject=Beyond%20the%20Chair%20Anaheim%20September%2025";
-
 export const communityImpactPosts: Array<
   BlogPost & { featuredImageWidth?: number; featuredImageHeight?: number }
 > = [
@@ -102,6 +97,7 @@ Bill and Mikki, thank you for your incredibly thoughtful words and for trusting 
       "A 5-hour working session on September 25, 2026 in Anaheim for dentists and practice owners building enterprise value, intellectual property, wealth, and legacy.",
     category: "Community Impact",
     date: "2026-08-24",
+    dateModified: "2026-09-27",
     readTime: "2 min read",
     gradient: "bg-gradient-to-br from-primary via-sky-600 to-emerald-500",
     slug: "dental-practice-beyond-the-chair-anaheim",
@@ -118,20 +114,11 @@ Bill and Mikki, thank you for your incredibly thoughtful words and for trusting 
     featuredImageAspect: "portrait",
     featuredImageWidth: 1414,
     featuredImageHeight: 2000,
-    cta: {
-      eyebrow: "Upcoming Anaheim workshop",
-      eventName: "beyond_the_chair_anaheim",
-      title: "The Dental Practice Beyond the Chair",
-      description:
-        "September 25, 2026, from 8:30 AM–1:30 PM at The Phillips Group in Anaheim. Contact PTI to confirm a seat.",
-      bookingUrl: BEYOND_THE_CHAIR_MAILTO,
-      bookingLabel: "Confirm a seat",
-    },
-    content: `The Dental Practice Beyond the Chair is a 5-hour working session for dentists and practice owners who want more than a job—build a practice that gives you options, freedom, and lasting impact.
+    content: `The Dental Practice Beyond the Chair was a 5-hour working session for dentists and practice owners who want more than a job—a practice that gives them options, freedom, and lasting impact.
 
 **September 25, 2026, 8:30 AM – 1:30 PM** at The Phillips Group, 2300 E. Katella Ave, Suite 405, Anaheim, CA. Led by Michael A. Njo, DDS, Director, Dental Strategies.
 
-[Contact PTI to confirm a seat](${BEYOND_THE_CHAIR_MAILTO}).
+This session has taken place. See upcoming seminar dates on the [events page](/events), or [contact PTI](/contact) to ask about future sessions.
 
 <div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/promotional-flyer-dental-strategies.webp" alt="Promotional flyer for The Dental Practice Beyond the Chair, a September 25, 2026 five-hour working session in Anaheim led by Michael A. Njo, DDS" style="width:100%;height:auto;object-fit:contain;border-radius:1rem;" /></div>
 
