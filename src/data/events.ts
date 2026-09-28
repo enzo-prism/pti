@@ -5,6 +5,13 @@ import {
   practiceTransitionSeminarEvents,
   practiceTransitionSeminarLearningPoints,
 } from "@/data/practiceTransitionSeminar";
+import { PHONE_NUMBER_TEL } from "@/lib/constants";
+import {
+  createEventDateKey,
+  isEventPast,
+  parseEventDate,
+  sortEventDates,
+} from "@/lib/dateUtils";
 import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
 
 const ROSEVILLE_AVAILABILITY_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
@@ -13,15 +20,19 @@ const ROSEVILLE_AVAILABILITY_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${en
 const BEYOND_THE_CHAIR_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
   "Beyond the Chair Anaheim September 25"
 )}`;
-import { isEventPast, parseEventDate, sortEventDates } from "@/lib/dateUtils";
+const CALL_TO_REGISTER = `tel:${PHONE_NUMBER_TEL}`;
 
 // Event data with type definitions
 export interface RawEvent {
   id: string | number;
   title: string;
   date: string;
+  /** Last day of a multi-day event, in the same "Month D, YYYY" format. */
+  endDate?: string;
   dateDisplay?: string;
   time: string;
+  /** IANA zone of the venue when it is outside Pacific time. */
+  timeZone?: string;
   location: string;
   description: string | {
     intro: string;
@@ -176,7 +187,7 @@ export const rawEvents: RawEvent[] = [
     location: "Crown Plaza, Costa Mesa CA",
     description: "A comprehensive full-day seminar perfect for doctors pursuing a start-up or purchase, seeking partners/associates, planning ownership, or preparing to exit dentistry. Join us in Orange County for expert guidance on dental practice transitions.",
     type: "seminar",
-    registrationLink: "tel:+18337841121"
+    registrationLink: CALL_TO_REGISTER
   },
   {
     id: 2,
@@ -186,7 +197,7 @@ export const rawEvents: RawEvent[] = [
     location: "Arthur A. Dugoni School of Dentistry (UOP Dental School), San Francisco, CA",
     description: "A comprehensive full-day seminar perfect for doctors pursuing a start-up or purchase, seeking partners/associates, planning ownership, or preparing to exit dentistry. Join us at the prestigious University of the Pacific dental school.",
     type: "seminar",
-    registrationLink: "tel:+18337841121"
+    registrationLink: CALL_TO_REGISTER
   },
   // 2026 Events
   {
@@ -207,14 +218,16 @@ export const rawEvents: RawEvent[] = [
       ]
     },
     type: "seminar",
-    registrationLink: "tel:+18337841121"
+    registrationLink: CALL_TO_REGISTER
   },
   {
     id: 7,
     title: "Leadership Retreat",
     date: "June 4, 2026",
+    endDate: "June 6, 2026",
     dateDisplay: "June 4-6, 2026",
     time: "Multi-day",
+    timeZone: "America/New_York",
     location: "Savannah, GA",
     description: "An immersive leadership retreat for practice owners ready to lead with clarity and confidence, hosted by MaryLynn Wheaton and Liz Armato with featured speaker Brian Parsley and a PTI panel on transition readiness.",
     type: "conference",
@@ -231,19 +244,115 @@ export const getUpcomingRawEvents = (
     rawEvents.filter((event) => !isEventPast(event.date, referenceDate))
   ).map((event) => {
     const seminar = practiceTransitionSeminarEvents.find(
-      (candidate) => candidate.date === event.date
+      (candidate) => candidate.id === event.id
     );
     return seminar
       ? { ...event, offerPrice: getSeminarRegistrationPrice(seminar, referenceDate) }
       : event;
   });
 
-export const getPastRawEvents = (
+export interface ListedEventDate {
+  date: string;
+  time: string;
+  location: string;
+  isPast: boolean;
+}
+
+export interface ListedEvent extends RawEvent {
+  isPast: boolean;
+  isEventGroup?: boolean;
+  eventDates?: ListedEventDate[];
+}
+
+/**
+ * Build the /events listing: same-title series collapse into one card with
+ * every date, standalone events keep their own card, and upcoming events sort
+ * ahead of past ones. Past/upcoming is decided on the server in Pacific time
+ * so the browser renders exactly what the server did.
+ */
+export const buildEventListing = (
   referenceDate: Date = new Date()
-): RawEvent[] =>
-  [...rawEvents]
-    .filter((event) => isEventPast(event.date, referenceDate))
-    .sort(
-      (a, b) =>
-        parseEventDate(b.date).getTime() - parseEventDate(a.date).getTime()
-    );
+): ListedEvent[] => {
+  const processedEvents: ListedEvent[] = rawEvents.map((event) => ({
+    ...event,
+    isPast: isEventPast(event.date, referenceDate),
+  }));
+
+  // Standalone cards keep their own flyer and copy instead of merging into a
+  // same-title series group.
+  const titleGroups = new Map<string, ListedEvent[]>();
+  for (const event of processedEvents) {
+    if (event.standalone) continue;
+    const group = titleGroups.get(event.title);
+    if (group) {
+      group.push(event);
+    } else {
+      titleGroups.set(event.title, [event]);
+    }
+  }
+
+  const listing: ListedEvent[] = [];
+
+  titleGroups.forEach((groupEvents) => {
+    if (groupEvents.length === 1) {
+      listing.push(groupEvents[0]);
+      return;
+    }
+
+    const sortedGroup = sortEventDates(groupEvents);
+
+    // Use the upcoming detailed event when available so grouped CTAs stay current.
+    const detailedEvent =
+      sortedGroup.find(
+        (event) =>
+          !event.isPast && event.detailPath && typeof event.description === "object"
+      ) ||
+      sortedGroup.find(
+        (event) => !event.isPast && typeof event.description === "object"
+      ) ||
+      sortedGroup.find((event) => typeof event.description === "object") ||
+      sortedGroup[0];
+
+    const eventDateMap = new Map<string, ListedEventDate>();
+    for (const event of sortedGroup) {
+      const key = createEventDateKey(event.date, event.time, event.location);
+      if (!eventDateMap.has(key)) {
+        eventDateMap.set(key, {
+          date: event.date,
+          time: event.time,
+          location: event.location,
+          isPast: event.isPast,
+        });
+      }
+    }
+
+    const eventDates = Array.from(eventDateMap.values());
+    const upcomingDates = eventDates.filter((date) => !date.isPast);
+    // The earliest upcoming date, or the latest past date if all are past.
+    const representativeDate =
+      upcomingDates[0] ?? eventDates[eventDates.length - 1];
+
+    listing.push({
+      ...detailedEvent,
+      id: sortedGroup[0].id,
+      date: representativeDate.date,
+      time: representativeDate.time,
+      location: representativeDate.location,
+      isPast: upcomingDates.length === 0,
+      isEventGroup: true,
+      eventDates,
+    });
+  });
+
+  for (const event of processedEvents) {
+    if (event.standalone) listing.push(event);
+  }
+
+  return listing.sort((a, b) => {
+    if (a.isPast !== b.isPast) {
+      return a.isPast ? 1 : -1;
+    }
+    return parseEventDate(a.date).getTime() - parseEventDate(b.date).getTime();
+  });
+};
+

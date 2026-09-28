@@ -22,7 +22,11 @@ import {
 } from "@/lib/siteMetadata";
 import { PHONE_NUMBER_TEL, PODCAST_INTERVIEW_PATH } from "@/lib/constants";
 import { PODCAST_INTERVIEW } from "@/data/podcastInterview";
-import { parseEventDate } from "@/lib/dateUtils";
+import {
+  BUSINESS_TIME_ZONE,
+  formatEventDateTime,
+  parseEventTimeRange,
+} from "@/lib/dateUtils";
 import { serviceOfferings, type ServiceOffering } from "@/data/services";
 
 export type JsonLdShape = Record<string, unknown>;
@@ -422,65 +426,90 @@ export interface StructuredEventInput {
   date: string;
   endDate?: string;
   time?: string;
+  /** IANA zone of the venue; defaults to Pacific, where PTI runs its events. */
+  timeZone?: string;
   location: string;
   description: string;
   registrationLink: string;
   type: string;
   isVirtual?: boolean;
   detailPath?: string;
+  image?: string;
+  /** Omit when there is no published price; 0 marks a free event. */
   offerPrice?: number;
   offerPriceCurrency?: string;
-  eventStatus?: "scheduled" | "completed" | "cancelled";
+  /**
+   * schema.org has no "completed" status: an event that took place as planned
+   * stays EventScheduled.
+   */
+  eventStatus?: "scheduled" | "cancelled";
   registrationOpen?: boolean;
 }
 
 const EVENT_STATUS_URLS = {
   scheduled: "https://schema.org/EventScheduled",
-  completed: "https://schema.org/EventCompleted",
   cancelled: "https://schema.org/EventCancelled",
 } as const;
 
-const buildEventStartDate = (date: string, time?: string): string => {
-  const baseDate = parseEventDate(date);
-  if (!time) return baseDate.toISOString();
+const US_STATE_CODE = /^[A-Z]{2}$/;
 
-  const timeMatch = time.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?/i);
-  if (!timeMatch) return baseDate.toISOString();
+/**
+ * Turn a "Venue, street, City, ST" label into a Place with a PostalAddress.
+ * Labels that do not end in a city and state stay as free text.
+ */
+const buildEventPlace = (location: string): JsonLdShape => {
+  const parts = location
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean);
+  const region = parts[parts.length - 1];
 
-  let hours = Number.parseInt(timeMatch[1], 10);
-  const minutes = timeMatch[2] ? Number.parseInt(timeMatch[2], 10) : 0;
-  const meridiem = timeMatch[3]?.toUpperCase();
+  if (parts.length < 2 || !US_STATE_CODE.test(region)) {
+    return { "@type": "Place", name: location, address: location };
+  }
 
-  if (meridiem === "PM" && hours < 12) hours += 12;
-  if (meridiem === "AM" && hours === 12) hours = 0;
+  const locality = parts[parts.length - 2];
+  const venueParts = parts.slice(0, -2);
+  const streetAddress = venueParts.slice(1).join(", ");
 
-  const withTime = new Date(baseDate);
-  withTime.setHours(hours, minutes, 0, 0);
-  return withTime.toISOString();
+  return {
+    "@type": "Place",
+    name: venueParts[0] ?? `${locality}, ${region}`,
+    address: {
+      "@type": "PostalAddress",
+      ...(streetAddress ? { streetAddress } : {}),
+      addressLocality: locality,
+      addressRegion: region,
+      addressCountry: "US",
+    },
+  };
 };
 
 export const buildEventSchema = (
   event: StructuredEventInput
 ): JsonLdShape => {
-  const startDate = buildEventStartDate(event.date, event.time);
+  const timeZone = event.timeZone ?? BUSINESS_TIME_ZONE;
+  const { start, end } = parseEventTimeRange(event.time);
+  const startDate = formatEventDateTime(event.date, start, timeZone);
   const endDate = event.endDate
-    ? parseEventDate(event.endDate).toISOString()
-    : undefined;
+    ? formatEventDateTime(event.endDate, end, timeZone)
+    : end
+      ? formatEventDateTime(event.date, end, timeZone)
+      : undefined;
   const isVirtual =
     event.isVirtual ||
     /online|virtual/i.test(event.location) ||
     event.type === "webinar";
-  const registrationUrl =
-    event.registrationLink.startsWith("http") ||
-    event.registrationLink.startsWith("tel:") ||
-    event.registrationLink.startsWith("mailto:")
-      ? event.registrationLink
-      : buildAbsoluteUrl(event.registrationLink);
   const eventUrl = event.detailPath
     ? `${buildAbsoluteUrl(event.detailPath)}#event-${event.id}`
     : buildAbsoluteUrl(`/events#event-${event.id}`);
-  const offerPrice = event.offerPrice ?? 0;
-  const offerPriceCurrency = event.offerPriceCurrency ?? "USD";
+  // Offer and VirtualLocation URLs must be web pages; a mailto: or tel:
+  // registration link falls back to the event's own page.
+  const registrationUrl = event.registrationLink.startsWith("http")
+    ? event.registrationLink
+    : event.registrationLink.startsWith("/")
+      ? buildAbsoluteUrl(event.registrationLink)
+      : eventUrl;
   const registrationOpen = event.registrationOpen ?? true;
 
   return {
@@ -500,18 +529,15 @@ export const buildEventSchema = (
           "@type": "VirtualLocation",
           url: registrationUrl,
         }
-      : {
-          "@type": "Place",
-          name: event.location,
-          address: event.location,
-        },
-    ...(registrationOpen
+      : buildEventPlace(event.location),
+    image: resolveAbsoluteUrl(event.image ?? DEFAULT_OG_IMAGE),
+    ...(registrationOpen && event.offerPrice !== undefined
       ? {
           offers: {
             "@type": "Offer",
             url: registrationUrl,
-            price: offerPrice,
-            priceCurrency: offerPriceCurrency,
+            price: event.offerPrice,
+            priceCurrency: event.offerPriceCurrency ?? "USD",
             availability: "https://schema.org/InStock",
           },
         }

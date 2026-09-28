@@ -8,6 +8,8 @@ export default defineConfig({
   test: {
     environment: "node",
     include: ["src/**/*.test.ts"],
+    // Vercel and CI run in UTC; match them so date logic is tested as deployed.
+    env: { TZ: "UTC" },
   },
   resolve: {
     alias: {

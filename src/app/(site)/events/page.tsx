@@ -1,7 +1,15 @@
 import Events from "@/views/Events";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
-import { getUpcomingRawEvents, rawEvents } from "@/data/events";
+import {
+  buildEventListing,
+  getUpcomingRawEvents,
+  type RawEvent,
+} from "@/data/events";
+import {
+  buildSeminarStructuredEvent,
+  practiceTransitionSeminarEvents,
+} from "@/data/practiceTransitionSeminar";
 import { getFeaturedReviews } from "@/data/reviews";
 import { buildEventSchema } from "@/lib/structuredData";
 
@@ -11,7 +19,7 @@ const title = "Dental Practice Transition Events & Workshops";
 const description =
   "Upcoming webinars, seminars, and workshops for dentists planning practice transitions.";
 
-const formatEventDescription = (event: (typeof rawEvents)[number]) => {
+const formatEventDescription = (event: RawEvent) => {
   if (typeof event.description === "string") {
     return event.description;
   }
@@ -22,22 +30,32 @@ const formatEventDescription = (event: (typeof rawEvents)[number]) => {
 };
 
 const getUpcomingEventSchemas = (referenceDate: Date) =>
-  getUpcomingRawEvents(referenceDate).map((event) =>
-    buildEventSchema({
+  getUpcomingRawEvents(referenceDate).map((event) => {
+    const seminar = practiceTransitionSeminarEvents.find(
+      (candidate) => candidate.id === event.id
+    );
+    if (seminar) {
+      return buildEventSchema(buildSeminarStructuredEvent(seminar, referenceDate));
+    }
+
+    return buildEventSchema({
       id: event.id,
       title: event.title,
       date: event.date,
+      endDate: event.endDate,
       time: event.time,
+      timeZone: event.timeZone,
       location: event.location,
       description: formatEventDescription(event),
       registrationLink: event.registrationLink,
       type: event.type,
       isVirtual: event.type === "webinar",
       detailPath: event.detailPath,
+      image: event.flyerImage,
       offerPrice: event.offerPrice,
       offerPriceCurrency: event.offerPriceCurrency,
-    })
-  );
+    });
+  });
 
 export const metadata = buildPageMetadata({
   title,
@@ -46,7 +64,7 @@ export const metadata = buildPageMetadata({
 });
 
 export default function Page() {
-  const upcomingEventSchemas = getUpcomingEventSchemas(new Date());
+  const referenceDate = new Date();
 
   return (
     <>
@@ -55,10 +73,13 @@ export default function Page() {
           title,
           description,
           path: "/events",
-          structuredData: upcomingEventSchemas,
+          structuredData: getUpcomingEventSchemas(referenceDate),
         })}
       />
-      <Events workshopReview={getFeaturedReviews("events")[0]} />
+      <Events
+        events={buildEventListing(referenceDate)}
+        workshopReview={getFeaturedReviews("events")[0]}
+      />
     </>
   );
 }

@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import {
   Calendar,
   Clock,
@@ -17,12 +20,12 @@ import {
 } from "@/components/ui/collapsible";
 import { trackEventRegistrationClick } from "@/lib/analytics";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
+import { parseEventDate } from "@/lib/dateUtils";
 import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
 
 const EVENT_REGISTRATION_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=Event Registration Inquiry`;
-import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+
+const eventTime = (date: string) => parseEventDate(date).getTime();
 
 interface EventDate {
   date: string;
@@ -66,11 +69,11 @@ export const MultiDateEventCard = ({
   // Sort dates properly - upcoming first (chronologically), then past (reverse chronological)
   const upcomingDates = eventDates
     .filter((date) => !date.isPast)
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    .sort((a, b) => eventTime(a.date) - eventTime(b.date));
 
   const pastDates = eventDates
     .filter((date) => date.isPast)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    .sort((a, b) => eventTime(b.date) - eventTime(a.date));
 
   const currentDates = upcomingDates.length > 0 ? upcomingDates : pastDates;
   const uniqueLocations = [

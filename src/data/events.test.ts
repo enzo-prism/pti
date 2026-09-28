@@ -1,7 +1,11 @@
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { getUpcomingRawEvents, rawEvents } from "@/data/events";
+import {
+  buildEventListing,
+  getUpcomingRawEvents,
+  rawEvents,
+} from "@/data/events";
 import { communityImpactPosts } from "@/data/communityImpactPosts";
 import { blogPosts } from "@/data/blogPosts";
 import {
@@ -34,12 +38,12 @@ describe("events dataset", () => {
     expect(workshop?.description).toContain("Michael A. Njo, DDS");
     expect(JSON.stringify(workshop)).not.toMatch(/registration is open|sold out/i);
     expect(
-      getUpcomingRawEvents(new Date(2026, 7, 24)).some(
+      getUpcomingRawEvents(new Date("2026-08-24T12:00:00-07:00")).some(
         (event) => event.id === workshop?.id
       )
     ).toBe(true);
     expect(
-      getUpcomingRawEvents(new Date(2026, 8, 26)).some(
+      getUpcomingRawEvents(new Date("2026-09-26T12:00:00-07:00")).some(
         (event) => event.id === workshop?.id
       )
     ).toBe(false);
@@ -62,19 +66,19 @@ describe("events dataset", () => {
     expect(dinner?.description).toContain("confirm current seat availability");
     expect(JSON.stringify(dinner)).not.toMatch(/registration is open|sold out/i);
     expect(
-      getUpcomingRawEvents(new Date(2026, 7, 21)).some(
+      getUpcomingRawEvents(new Date("2026-08-21T12:00:00-07:00")).some(
         (event) => event.id === dinner?.id
       )
     ).toBe(true);
     expect(
-      getUpcomingRawEvents(new Date(2026, 7, 28)).some(
+      getUpcomingRawEvents(new Date("2026-08-28T12:00:00-07:00")).some(
         (event) => event.id === dinner?.id
       )
     ).toBe(false);
   });
 
   it("routes upcoming practice transition seminars to the native registration page", () => {
-    const upcomingSeminars = getUpcomingRawEvents(new Date(2026, 7, 17)).filter(
+    const upcomingSeminars = getUpcomingRawEvents(new Date("2026-08-17T12:00:00-07:00")).filter(
       (event) =>
         event.title === "Mastering Your Dental Transition Into and Out of Practice"
     );
@@ -106,7 +110,7 @@ describe("events dataset", () => {
   });
 
   it("archives expired seminar dates and never returns them as registrable", () => {
-    const referenceDate = new Date(2026, 7, 17);
+    const referenceDate = new Date("2026-08-17T12:00:00-07:00");
 
     expect(
       getUpcomingPracticeTransitionSeminarEvents(referenceDate).map(
@@ -131,12 +135,16 @@ describe("events dataset", () => {
     );
     expect(sacramento).toBeDefined();
     expect(
-      getSeminarRegistrationPrice(sacramento!, new Date(2026, 8, 2, 23, 59))
+      getSeminarRegistrationPrice(sacramento!, new Date("2026-09-02T23:59:00-07:00"))
     ).toBe(297);
     expect(
-      getSeminarRegistrationPrice(sacramento!, new Date(2026, 8, 3, 0, 1))
+      getSeminarRegistrationPrice(sacramento!, new Date("2026-09-03T00:01:00-07:00"))
     ).toBe(397);
-    const eventsAfterDeadline = getUpcomingRawEvents(new Date(2026, 8, 3));
+    // 8 PM PDT on the deadline is already September 3 in UTC; still early-bird.
+    expect(
+      getSeminarRegistrationPrice(sacramento!, new Date("2026-09-02T20:00:00-07:00"))
+    ).toBe(297);
+    const eventsAfterDeadline = getUpcomingRawEvents(new Date("2026-09-03T12:00:00-07:00"));
     expect(
       eventsAfterDeadline.find((event) => event.date === "October 2, 2026")
         ?.offerPrice
@@ -271,5 +279,44 @@ describe("events dataset", () => {
         JSON.stringify(post).includes("pti-sacramento-seminar-2026-flyer")
       )
     ).toBe(false);
+  });
+
+  it("decides past events in Pacific time when building the listing", () => {
+    // 8 PM PDT on October 2 is already October 3 in UTC.
+    const eventEvening = new Date("2026-10-02T20:00:00-07:00");
+    const sacramento = buildEventListing(eventEvening).find(
+      (event) => event.id === "pti-seminar-sacramento-2026"
+    );
+    expect(sacramento?.isPast).toBe(false);
+
+    const nextMorning = new Date("2026-10-03T08:00:00-07:00");
+    expect(
+      buildEventListing(nextMorning).find(
+        (event) => event.id === "pti-seminar-sacramento-2026"
+      )?.isPast
+    ).toBe(true);
+  });
+
+  it("groups a same-title seminar series into one card with every date", () => {
+    const listing = buildEventListing(new Date("2026-09-27T12:00:00-07:00"));
+    const series = listing.find(
+      (event) =>
+        event.isEventGroup &&
+        event.title === "Mastering Your Dental Transition Into and Out of Practice"
+    );
+
+    expect(series?.isPast).toBe(false);
+    expect(series?.date).toBe("March 12, 2027");
+    expect(series?.eventDates?.map((date) => date.date)).toContain("July 11, 2025");
+    expect(
+      series?.eventDates?.filter((date) => !date.isPast).map((date) => date.date)
+    ).toEqual(["March 12, 2027", "July 30, 2027", "October 15, 2027"]);
+    // Standalone Sacramento keeps its own card, ahead of every past event.
+    const firstPastIndex = listing.findIndex((event) => event.isPast);
+    const sacramentoIndex = listing.findIndex(
+      (event) => event.id === "pti-seminar-sacramento-2026"
+    );
+    expect(sacramentoIndex).toBeGreaterThanOrEqual(0);
+    expect(sacramentoIndex).toBeLessThan(firstPastIndex);
   });
 });

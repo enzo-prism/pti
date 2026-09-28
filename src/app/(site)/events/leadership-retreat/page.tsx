@@ -14,31 +14,35 @@ export const revalidate = 3600;
 const retreatEvent = rawEvents.find(
   (event) => event.detailPath === "/events/leadership-retreat"
 );
-const retreatEndDate = retreatEvent?.dateDisplay
-  ? "June 6, 2026"
-  : undefined;
-const retreatIsPast = retreatEvent ? isEventPast(retreatEvent.date) : true;
 
-const retreatSchema = retreatEvent
-  ? buildEventSchema({
-      id: retreatEvent.id,
-      title: retreatEvent.title,
-      date: retreatEvent.date,
-      endDate: retreatEndDate,
-      time: retreatEvent.time,
-      location: retreatEvent.location,
-      description:
-        typeof retreatEvent.description === "string"
-          ? retreatEvent.description
-          : retreatEvent.description.intro,
-      registrationLink: retreatEvent.registrationLink,
-      type: retreatEvent.type,
-      isVirtual: retreatEvent.type === "webinar",
-      detailPath: retreatEvent.detailPath,
-      eventStatus: retreatIsPast ? "completed" : "scheduled",
-      registrationOpen: !retreatIsPast,
-    })
-  : null;
+const buildRetreatSchema = (referenceDate: Date) => {
+  if (!retreatEvent) return null;
+
+  // Registration closes once the final day of the retreat has passed.
+  const retreatIsPast = isEventPast(
+    retreatEvent.endDate ?? retreatEvent.date,
+    referenceDate
+  );
+
+  return buildEventSchema({
+    id: retreatEvent.id,
+    title: retreatEvent.title,
+    date: retreatEvent.date,
+    endDate: retreatEvent.endDate,
+    time: retreatEvent.time,
+    timeZone: retreatEvent.timeZone,
+    location: retreatEvent.location,
+    description:
+      typeof retreatEvent.description === "string"
+        ? retreatEvent.description
+        : retreatEvent.description.intro,
+    registrationLink: retreatEvent.registrationLink,
+    type: retreatEvent.type,
+    isVirtual: retreatEvent.type === "webinar",
+    detailPath: retreatEvent.detailPath,
+    registrationOpen: !retreatIsPast,
+  });
+};
 
 export const metadata = buildPageMetadata({
   title,
@@ -54,7 +58,7 @@ export default function Page() {
           title,
           description,
           path: "/events/leadership-retreat",
-          structuredData: retreatSchema,
+          structuredData: buildRetreatSchema(new Date()),
         })}
       />
       <LeadershipRetreat />

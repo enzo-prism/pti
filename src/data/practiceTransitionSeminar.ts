@@ -1,3 +1,12 @@
+import { PHONE_NUMBER } from "@/lib/constants";
+import {
+  isEventPast,
+  isEventUpcoming,
+  parseEventDate,
+  sortEventDates,
+} from "@/lib/dateUtils";
+import type { StructuredEventInput } from "@/lib/structuredData";
+
 export const PRACTICE_TRANSITION_SEMINAR_PATH =
   "/events/practice-transition-seminar";
 export const PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH =
@@ -187,12 +196,34 @@ export const practiceTransitionSeminarFaqs = [
   {
     question: "What if I'm not sure which date to attend?",
     answer:
-      "Choose the date that is most convenient, or call PTI at (833) 784-1121 with questions.",
+      `Choose the date that is most convenient, or call PTI at ${PHONE_NUMBER} with questions.`,
   },
 ];
-import {
-  isEventPast,
-  isEventUpcoming,
-  parseEventDate,
-  sortEventDates,
-} from "@/lib/dateUtils";
+
+const seminarEventDescription = [
+  "A one-day seminar for dentists preparing to buy, sell, partner, bring on an associate, or better understand practice value.",
+  ...practiceTransitionSeminarLearningPoints,
+].join(" ");
+
+/**
+ * The single Event description for a seminar date. Both /events and the
+ * seminar page emit it under the same @id, so they must describe it the same
+ * way.
+ */
+export const buildSeminarStructuredEvent = (
+  event: PracticeTransitionSeminarEvent,
+  referenceDate: Date = new Date()
+): StructuredEventInput => ({
+  id: event.id,
+  title: `Practice Transitions Seminar - ${event.city}`,
+  date: event.date,
+  time: event.time,
+  location: `${event.venueName}, ${event.addressLines.join(", ")}`,
+  description: seminarEventDescription,
+  registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
+  type: "seminar",
+  detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
+  offerPrice: getSeminarRegistrationPrice(event, referenceDate),
+  offerPriceCurrency: "USD",
+  registrationOpen: true,
+});

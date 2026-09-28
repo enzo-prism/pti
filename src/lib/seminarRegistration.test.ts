@@ -4,9 +4,10 @@ import {
   type PracticeTransitionSeminarEvent,
 } from "@/data/practiceTransitionSeminar";
 import {
+  buildSeminarFormPayload,
   type SeminarFormValues,
   validateSeminarRegistration,
-} from "./PracticeTransitionSeminar";
+} from "./seminarRegistration";
 
 const validValues: SeminarFormValues = {
   selectedEvent: "october-2-2026-sacramento",
@@ -64,5 +65,55 @@ describe("seminar registration validation", () => {
       additionalAttendees: expect.any(String),
       paymentConsent: expect.any(String),
     });
+  });
+});
+
+describe("seminar registration payload", () => {
+  const context = (submittedAt: string) => ({
+    submittedAt: new Date(submittedAt),
+    environment: "test",
+    attribution: { page_path: "/events/practice-transition-seminar" },
+  });
+
+  it("records the early-bird price the registrant saw", () => {
+    // Sacramento's early-bird deadline is September 2, 2026 (Pacific).
+    const payload = buildSeminarFormPayload(
+      validValues,
+      availableEvents,
+      context("2026-09-02T22:00:00-07:00")
+    );
+
+    expect(payload).toMatchObject({
+      selected_event_id: "pti-seminar-sacramento-2026",
+      quoted_price: "$297",
+      early_bird_applied: "yes",
+      submitted_at: "2026-09-03T05:00:00.000Z",
+      environment: "test",
+      page_path: "/events/practice-transition-seminar",
+    });
+    expect(payload.message).toContain(
+      "Price shown at registration: $297 (early-bird)"
+    );
+  });
+
+  it("records the standard price after the Pacific deadline", () => {
+    const payload = buildSeminarFormPayload(
+      validValues,
+      availableEvents,
+      context("2026-09-03T00:05:00-07:00")
+    );
+
+    expect(payload.quoted_price).toBe("$397");
+    expect(payload.early_bird_applied).toBe("no");
+  });
+
+  it("passes the honeypot through so Formspree can flag spam", () => {
+    const payload = buildSeminarFormPayload(
+      { ...validValues, gotcha: "bot text" },
+      availableEvents,
+      context("2026-09-01T12:00:00-07:00")
+    );
+
+    expect(payload._gotcha).toBe("bot text");
   });
 });
