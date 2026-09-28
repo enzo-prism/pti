@@ -1,6 +1,6 @@
 "use client";
 
-import type { BlogPost } from "@/data/blogPosts";
+import type { SeriesPostLink } from "@/data/blogPosts";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -9,8 +9,8 @@ import Link from "next/link";
 import { trackSeriesNavigation } from "@/lib/analytics";
 
 interface SeriesNavigationProps {
-  currentPost: BlogPost;
-  seriesPosts: BlogPost[];
+  currentPost: SeriesPostLink;
+  seriesPosts: SeriesPostLink[];
 }
 
 export function SeriesNavigation({ currentPost, seriesPosts }: SeriesNavigationProps) {

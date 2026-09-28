@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -26,6 +26,8 @@ const MODEL: Record<
     earnings: { low: 3.0, high: 5.5 },
   },
 };
+
+const CALCULATION_SETTLE_MS = 1200;
 
 const DEFAULT_MARGIN = 40; // % of collections left as adjusted earnings (≈60% overhead)
 
@@ -54,6 +56,9 @@ export function PracticeValueCalculator() {
   const [practiceType, setPracticeType] = useState<PracticeType>("general");
   const [marginInput, setMarginInput] = useState(String(DEFAULT_MARGIN));
   const hasTrackedRef = useRef(false);
+  const trackTimerRef = useRef<number | undefined>(undefined);
+
+  useEffect(() => () => window.clearTimeout(trackTimerRef.current), []);
 
   const collections = parseNumber(collectionsInput);
   const marginPct = (() => {
@@ -88,16 +93,21 @@ export function PracticeValueCalculator() {
     };
   }, [collections, practiceType, marginPct]);
 
+  // Record one calculation once the visitor stops typing. Tracking the first
+  // keystroke would bucket almost every entry by its first digit.
   const handleCollectionsChange = (value: string) => {
     setCollectionsInput(value);
+    if (hasTrackedRef.current) return;
+    window.clearTimeout(trackTimerRef.current);
     const parsed = parseNumber(value);
-    if (parsed && !hasTrackedRef.current) {
+    if (!parsed) return;
+    trackTimerRef.current = window.setTimeout(() => {
       hasTrackedRef.current = true;
       trackEvent("calculate_practice_value", {
         practice_type: practiceType,
         collections_bucket: collectionsBucket(parsed),
       });
-    }
+    }, CALCULATION_SETTLE_MS);
   };
 
   return (

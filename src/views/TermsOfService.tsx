@@ -1,4 +1,5 @@
 import { Section } from "@/components/ui/section";
+import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
 
 const TermsOfService = () => {
   return (
@@ -76,10 +77,10 @@ const TermsOfService = () => {
           <p>
             Questions about these Terms can be sent to{" "}
             <a
-              href="mailto:info@practicetransitions.com"
+              href={`mailto:${SITE_CONTACT_EMAIL}`}
               className="text-primary underline"
             >
-              info@practicetransitions.com
+              {SITE_CONTACT_EMAIL}
             </a>
             .
           </p>

@@ -16,8 +16,10 @@ import {
   trackContactFormSubmit,
 } from "@/lib/analytics";
 
+// Shares the contact form's Formspree inbox (the subject and form_name mark
+// checklist requests) but reports its own form_id to analytics.
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mdajbelv";
-const FORM_ID = "mdajbelv";
+const FORM_ID = "practice_sale_checklist";
 const FORM_PROVIDER = "formspree";
 const FORM_NAME = "practice-sale-readiness-checklist";
 
@@ -47,11 +49,9 @@ export const ChecklistSignupForm = () => {
     const formElement = event.currentTarget;
     const payload = new FormData(formElement);
 
-    // Honeypot tripped: accept silently so the bot believes it succeeded.
-    if ((payload.get("_gotcha") as string)?.length > 0) {
-      setSubmitState("success");
-      return;
-    }
+    // A filled honeypot still goes to Formspree, which files it as spam, so a
+    // real visitor whose browser autofilled it is not silently dropped.
+    const honeypotFilled = Boolean(payload.get("_gotcha"));
 
     payload.set("form_name", FORM_NAME);
     payload.set(
@@ -75,7 +75,9 @@ export const ChecklistSignupForm = () => {
       });
 
       if (response.ok) {
-        trackContactFormSubmit("checklist_download", FORM_ID, FORM_PROVIDER);
+        if (!honeypotFilled) {
+          trackContactFormSubmit("checklist_download", FORM_ID, FORM_PROVIDER);
+        }
         setSubmitState("success");
       } else {
         setSubmitState("error");
@@ -200,9 +202,10 @@ export const ChecklistSignupForm = () => {
         aria-hidden="true"
         className="pointer-events-none absolute -left-[9999px] h-0 w-0 overflow-hidden"
       >
-        <label htmlFor="checklist-company">Company</label>
+        {/* Neutral id and label so browser autofill never targets it. */}
+        <label htmlFor="checklist-hp-field">Leave this field blank</label>
         <input
-          id="checklist-company"
+          id="checklist-hp-field"
           name="_gotcha"
           type="text"
           tabIndex={-1}

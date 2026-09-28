@@ -132,12 +132,9 @@ export const ContactForm = () => {
   const onSubmit = async (values: ContactFormValues) => {
     setSubmitState("idle");
 
-    // Honeypot tripped: accept silently so the bot believes it succeeded.
-    if (values._gotcha && values._gotcha.length > 0) {
-      form.reset();
-      setSubmitState("success");
-      return;
-    }
+    // A filled honeypot still goes to Formspree, which files it as spam, so a
+    // real visitor whose browser autofilled it is not silently dropped.
+    const honeypotFilled = Boolean(values._gotcha);
 
     const payload = new FormData();
     payload.append("name", values.name);
@@ -157,6 +154,9 @@ export const ContactForm = () => {
       "Yes — consents to be contacted by email, text, and phone"
     );
     payload.append("_subject", `New website inquiry from ${values.name}`);
+    if (honeypotFilled) {
+      payload.append("_gotcha", values._gotcha ?? "");
+    }
 
     try {
       const response = await fetch(FORMSPREE_ENDPOINT, {
@@ -166,7 +166,9 @@ export const ContactForm = () => {
       });
 
       if (response.ok) {
-        trackContactFormSubmit("contact", FORM_ID, FORM_PROVIDER);
+        if (!honeypotFilled) {
+          trackContactFormSubmit("contact", FORM_ID, FORM_PROVIDER);
+        }
         form.reset();
         setSubmitState("success");
       } else {
@@ -418,9 +420,10 @@ export const ContactForm = () => {
             aria-hidden="true"
             className="pointer-events-none absolute -left-[9999px] h-0 w-0 overflow-hidden"
           >
-            <label htmlFor="contact-company">Company</label>
+            {/* Neutral id and label so browser autofill never targets it. */}
+            <label htmlFor="contact-hp-field">Leave this field blank</label>
             <input
-              id="contact-company"
+              id="contact-hp-field"
               type="text"
               tabIndex={-1}
               autoComplete="off"

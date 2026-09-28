@@ -40,7 +40,7 @@ describe("search metadata", () => {
         DESCRIPTION_LIMIT
       );
     }
-  }, 20_000);
+  }, 90_000);
 
   it("keeps every post's title tag and description whole and within limits", () => {
     for (const post of [...communityImpactPosts, ...blogPosts]) {

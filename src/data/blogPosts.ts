@@ -3680,7 +3680,7 @@ Remember, knowledge is power. Please email me at dentalstrategies@gmail.com for 
     gradient: "bg-gradient-to-br from-violet-400 via-purple-500 to-indigo-600",
     slug: "creating-culture-todays-dental-offices",
     metaDescription:
-      "The practices that weathered a tumultuous stretch for dentistry shared a strong culture. Part 1 of a 4-part series on culture in today's dental offices.",
+      "Practices that weathered a tumultuous stretch for dentistry shared a strong culture. Part 1 of a 4-part series on dental office culture: leadership.",
     author: "Michael Njo, DDS",
     series: {
       id: "creating-culture-series",
@@ -3785,7 +3785,7 @@ Dr. Michael Njo, from Practice Transitions Institute, has decades of experience 
     gradient: "bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600",
     slug: "creating-culture-dental-offices-part-ii",
     metaDescription:
-      "Part 2 of a 4-part series on dental office culture: after a January of heavy time off across the workforce, why leadership and mindset matter.",
+      "Part 2 of a 4-part series on dental office culture: gratitude as a leadership habit, and why appreciating your team matters in times of strife.",
     author: "Michael Njo, DDS",
     series: {
       id: "creating-culture-series",
@@ -4598,6 +4598,19 @@ export const toBlogPostSummary = (post: BlogPost): BlogPostSummary => {
   void metaDescription;
   return summary;
 };
+
+/**
+ * What series navigation renders. Client components get this instead of whole
+ * posts so no article body is serialized into the page payload.
+ */
+export type SeriesPostLink = Pick<BlogPost, "id" | "slug" | "readTime" | "series">;
+
+export const toSeriesPostLink = ({
+  id,
+  slug,
+  readTime,
+  series,
+}: BlogPost): SeriesPostLink => ({ id, slug, readTime, series });
 
 const normalizeSeoText = (value: string): string =>
   value.replace(/\s+/g, " ").trim();

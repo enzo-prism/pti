@@ -1,6 +1,6 @@
 "use client";
 
-import { startTransition, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,7 +8,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight, ClipboardCheck, Search, X } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import type { BlogPostSummary } from "@/data/blogPosts";
 import { PRACTICE_SALE_CHECKLIST_PATH } from "@/lib/constants";
 import { formatLocalDate } from "@/lib/dateUtils";
@@ -26,6 +25,22 @@ interface BlogProps {
   posts: BlogPostSummary[];
 }
 
+// Typing waits this long before the URL catches up, so a search produces one
+// history entry (and one analytics page view) instead of one per keystroke.
+const SEARCH_URL_SYNC_DELAY_MS = 400;
+
+const writeFiltersToLocation = ({ search, topic }: { search: string; topic: string }) => {
+  const params = new URLSearchParams();
+  if (search) params.set("search", search);
+  if (topic !== "All") params.set("topic", topic);
+  const query = params.toString();
+  const next = query ? `/blog?${query}` : "/blog";
+  if (`${window.location.pathname}${window.location.search}` === next) return;
+  // Next.js keeps its router in sync with history.replaceState, and unlike
+  // router.replace this does not request a new page payload.
+  window.history.replaceState(null, "", next);
+};
+
 const readFiltersFromLocation = () => {
   if (typeof window === "undefined") return { search: "", topic: "All" };
   const params = new URLSearchParams(window.location.search);
@@ -36,9 +51,11 @@ const readFiltersFromLocation = () => {
 };
 
 const Blog = ({ posts }: BlogProps) => {
-  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTopic, setSelectedTopic] = useState("All");
+  const urlSyncTimerRef = useRef<number | undefined>(undefined);
+
+  useEffect(() => () => window.clearTimeout(urlSyncTimerRef.current), []);
 
   // The route is statically generated, so ?search= deep links are applied
   // after hydration (and on history navigation) instead of via searchParams.
@@ -53,23 +70,28 @@ const Blog = ({ posts }: BlogProps) => {
     return () => window.removeEventListener("popstate", syncFromLocation);
   }, []);
 
-  const updateFilters = ({ search, topic }: { search: string; topic: string }) => {
-    setSearchQuery(search);
-    setSelectedTopic(topic);
-    const params = new URLSearchParams();
-    if (search) params.set("search", search);
-    if (topic !== "All") params.set("topic", topic);
-    const query = params.toString();
-    startTransition(() => {
-      router.replace(query ? `/blog?${query}` : "/blog", { scroll: false });
-    });
+  const updateFilters = (
+    filters: { search: string; topic: string },
+    { immediate }: { immediate: boolean }
+  ) => {
+    setSearchQuery(filters.search);
+    setSelectedTopic(filters.topic);
+    window.clearTimeout(urlSyncTimerRef.current);
+    if (immediate) {
+      writeFiltersToLocation(filters);
+      return;
+    }
+    urlSyncTimerRef.current = window.setTimeout(
+      () => writeFiltersToLocation(filters),
+      SEARCH_URL_SYNC_DELAY_MS
+    );
   };
 
   const updateSearchQuery = (value: string) =>
-    updateFilters({ search: value, topic: selectedTopic });
+    updateFilters({ search: value, topic: selectedTopic }, { immediate: false });
 
   const updateTopic = (topic: string) =>
-    updateFilters({ search: searchQuery, topic });
+    updateFilters({ search: searchQuery, topic }, { immediate: true });
 
   // Sort posts by date (most recent first)
   const sortedPosts = useMemo(
@@ -103,7 +125,7 @@ const Blog = ({ posts }: BlogProps) => {
   const regularPosts = filteredPosts.slice(1); // Rest of the filtered posts
 
   const handleClearSearch = () => {
-    updateSearchQuery('');
+    updateFilters({ search: "", topic: selectedTopic }, { immediate: true });
   };
 
   const topicLabel = (category: string) =>

@@ -116,6 +116,15 @@ const ensureGtagBridge = (): AnalyticsWindow => {
   return win;
 };
 
+/**
+ * True only for production builds served from the canonical host, so preview
+ * deployments and local builds never report traffic to any provider.
+ */
+export const isCanonicalProductionHost = (): boolean =>
+  isProduction &&
+  typeof window !== "undefined" &&
+  isCanonicalHostname(window.location.hostname);
+
 export const shouldEnableAnalytics = (): boolean => {
   if (
     !isProduction ||

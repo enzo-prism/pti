@@ -19,6 +19,7 @@ import {
 import {
   getRelatedPosts,
   getSeriesPosts,
+  toSeriesPostLink,
   type BlogPost,
 } from "@/data/blogPosts";
 import { formatLocalDate } from "@/lib/dateUtils";
@@ -374,8 +375,8 @@ export const BlogPostView = ({ post }: BlogPostViewProps) => {
               {post.series && seriesPosts.length > 1 && (
                 <div className="mt-14">
                   <SeriesNavigation
-                    currentPost={post}
-                    seriesPosts={seriesPosts}
+                    currentPost={toSeriesPostLink(post)}
+                    seriesPosts={seriesPosts.map(toSeriesPostLink)}
                   />
                 </div>
               )}
