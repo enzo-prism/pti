@@ -6,9 +6,15 @@ const verificationHeaders = {
   "Cache-Control": "no-store",
 } as const;
 
+// Vercel hands the rewritten `?file=` to the handler; `next start` passes the
+// original /google….html URL instead, so fall back to the last path segment.
+const requestedFile = (request: Request): string => {
+  const url = new URL(request.url);
+  return url.searchParams.get("file") ?? url.pathname.split("/").pop() ?? "";
+};
+
 function verificationResponse(request: Request, includeBody: boolean) {
-  const file = new URL(request.url).searchParams.get("file") ?? "";
-  const body = googleSiteVerificationBody(file);
+  const body = googleSiteVerificationBody(requestedFile(request));
 
   if (!body) {
     return new NextResponse("Not found", { status: 404 });
