@@ -6,7 +6,11 @@ const SRC = join(process.cwd(), "src");
 
 // Modules whose runtime exports carry full article or review bodies. Client
 // components must receive trimmed props from a server component instead.
-const SERVER_ONLY_DATA = ["@/data/blogPosts", "@/data/communityImpactPosts"];
+const SERVER_ONLY_DATA = [
+  "@/data/blogPosts",
+  "@/data/communityImpactPosts",
+  "@/data/reviews",
+];
 
 const sourceFiles = (dir: string): string[] =>
   readdirSync(dir).flatMap((entry) => {

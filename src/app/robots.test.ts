@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import robots from "./robots";
 
 const ORIGINAL_ENV = { ...process.env };
@@ -15,7 +15,7 @@ afterEach(() => {
 
 describe("robots metadata", () => {
   it("allows crawling and advertises the canonical sitemap on production", () => {
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
 
     expect(robots()).toEqual({
       rules: [
@@ -30,7 +30,7 @@ describe("robots metadata", () => {
   });
 
   it("keeps non-production deployments blocked from indexing", () => {
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
     process.env.NEXT_PUBLIC_VERCEL_ENV = "preview";
 
     expect(robots()).toEqual({
@@ -44,7 +44,7 @@ describe("robots metadata", () => {
   });
 
   it("treats production environment values case-insensitively", () => {
-    process.env.NODE_ENV = "development";
+    vi.stubEnv("NODE_ENV", "development");
     process.env.VERCEL_ENV = " Production ";
 
     expect(robots().host).toBe("https://practicetransitionsinstitute.com");

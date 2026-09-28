@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 
 const ORIGINAL_ENV = { ...process.env };
@@ -15,7 +15,7 @@ afterEach(() => {
 
 describe("SEO helpers", () => {
   it("indexes production builds even outside Vercel", () => {
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
 
     const metadata = buildPageMetadata({
       title: "FAQ",
@@ -30,7 +30,7 @@ describe("SEO helpers", () => {
   });
 
   it("keeps preview environments noindexed", () => {
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
     process.env.NEXT_PUBLIC_VERCEL_ENV = "preview";
 
     const metadata = buildPageMetadata({
@@ -46,7 +46,7 @@ describe("SEO helpers", () => {
   });
 
   it("keeps links followable on noindexed production pages", () => {
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
 
     const metadata = buildPageMetadata({
       title: "Review",

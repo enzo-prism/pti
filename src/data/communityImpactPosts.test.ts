@@ -4,6 +4,12 @@ import { describe, expect, it } from "vitest";
 import { communityImpactPosts } from "./communityImpactPosts";
 import { getBlogMetaDescription, getBlogMetaTitle } from "./blogPosts";
 
+const getPost = (slug: string) => {
+  const post = communityImpactPosts.find((candidate) => candidate.slug === slug);
+  if (!post) throw new Error(`Missing community post: ${slug}`);
+  return post;
+};
+
 describe("community impact posts", () => {
   it("lists the Diana Fat Board of Regents congratulations without an event CTA", () => {
     const post = communityImpactPosts[0];
@@ -56,9 +62,7 @@ describe("community impact posts", () => {
   });
 
   it("lists the Practice Blueprint Roseville recap without an upcoming-event CTA", () => {
-    const post = communityImpactPosts.find(
-      (candidate) => candidate.slug === "practice-blueprint-roseville-aug-2026"
-    );
+    const post = getPost("practice-blueprint-roseville-aug-2026");
 
     expect(post).toBeDefined();
     expect(post).toMatchObject({
@@ -107,9 +111,7 @@ describe("community impact posts", () => {
   });
 
   it("lists the Bill and Mikki practice-match post without registration language", () => {
-    const post = communityImpactPosts.find(
-      (candidate) => candidate.slug === "another-perfect-match"
-    );
+    const post = getPost("another-perfect-match");
 
     expect(post).toBeDefined();
     expect(post).toMatchObject({
@@ -144,9 +146,7 @@ describe("community impact posts", () => {
   });
 
   it("keeps the Beyond the Chair Anaheim flyer post as a completed-event record", () => {
-    const post = communityImpactPosts.find(
-      (candidate) => candidate.slug === "dental-practice-beyond-the-chair-anaheim"
-    );
+    const post = getPost("dental-practice-beyond-the-chair-anaheim");
 
     expect(post).toBeDefined();
     expect(post).toMatchObject({
@@ -187,9 +187,7 @@ describe("community impact posts", () => {
   });
 
   it("archives the August 14 recap without promoting the completed Roseville dinner as upcoming", () => {
-    const post = communityImpactPosts.find(
-      (candidate) => candidate.slug === "panel-of-experts-dinner-roseville"
-    );
+    const post = getPost("panel-of-experts-dinner-roseville");
 
     expect(post).toBeDefined();
     expect(post?.date).toBe("2026-08-14");
@@ -206,9 +204,7 @@ describe("community impact posts", () => {
   });
 
   it("keeps the portrait dinner photos uncropped", () => {
-    const post = communityImpactPosts.find(
-      (candidate) => candidate.slug === "panel-of-experts-dinner-roseville"
-    );
+    const post = getPost("panel-of-experts-dinner-roseville");
 
     expect(post?.featuredImageFit).toBe("contain");
     expect(post?.featuredImageAspect).toBe("portrait");
@@ -219,9 +215,7 @@ describe("community impact posts", () => {
   });
 
   it("does not keep an availability CTA after the Roseville dinner has passed", () => {
-    const post = communityImpactPosts.find(
-      (candidate) => candidate.slug === "panel-of-experts-dinner-roseville"
-    );
+    const post = getPost("panel-of-experts-dinner-roseville");
 
     expect(post?.cta).toBeUndefined();
     expect(JSON.stringify(post)).not.toMatch(/Upcoming Roseville event/i);

@@ -96,7 +96,7 @@ afterEach(() => {
 
 describe("analytics gating", () => {
   it("enables analytics on canonical production host", async () => {
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
 
     const analytics = await loadAnalytics();
     expect(analytics.shouldEnableAnalytics()).toBe(true);
@@ -104,14 +104,14 @@ describe("analytics gating", () => {
   });
 
   it("disables analytics in non-production", async () => {
-    process.env.NODE_ENV = "development";
+    vi.stubEnv("NODE_ENV", "development");
 
     const analytics = await loadAnalytics();
     expect(analytics.shouldEnableAnalytics()).toBe(false);
   });
 
   it("keeps analytics off until the visitor accepts", async () => {
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
     mockBrowser({ analyticsConsent: "declined" });
 
     const analytics = await loadAnalytics();
@@ -119,7 +119,7 @@ describe("analytics gating", () => {
   });
 
   it("uses NEXT_PUBLIC_VERCEL_ENV when provided", async () => {
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
     process.env.NEXT_PUBLIC_VERCEL_ENV = "preview";
 
     const previewAnalytics = await loadAnalytics();
@@ -131,7 +131,7 @@ describe("analytics gating", () => {
   });
 
   it("disables analytics on non-canonical hosts", async () => {
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
     mockBrowser({ hostname: "example.com", origin: "https://example.com" });
 
     const analytics = await loadAnalytics();
@@ -139,7 +139,7 @@ describe("analytics gating", () => {
   });
 
   it("disables analytics when GA ID is invalid", async () => {
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
     process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID = "invalid-id";
 
     const analytics = await loadAnalytics();
@@ -150,7 +150,7 @@ describe("analytics gating", () => {
 
 describe("analytics events", () => {
   it("initializes GA only once", async () => {
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
     const { gtag } = mockBrowser();
     const analytics = await loadAnalytics();
 
@@ -164,7 +164,7 @@ describe("analytics events", () => {
   });
 
   it("tracks page view with expected payload and dedupes duplicate paths", async () => {
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
     const { gtag } = mockBrowser({
       title: "PTI Blog",
       referrer: "https://google.com",
@@ -194,7 +194,7 @@ describe("analytics events", () => {
   });
 
   it("sends lead-focused event wrappers with GA4-friendly names", async () => {
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
     const { gtag } = mockBrowser();
     const analytics = await loadAnalytics();
 
@@ -231,7 +231,7 @@ describe("analytics events", () => {
   });
 
   it("blocks reserved custom event names", async () => {
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
     const { gtag } = mockBrowser();
     const analytics = await loadAnalytics();
 

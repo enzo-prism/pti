@@ -295,12 +295,3 @@ export const trackContactFormSubmit = (
     form_provider: formProvider,
   });
 };
-
-export const trackServiceView = (serviceName: string) => {
-  trackEvent("view_service", {
-    service_name: serviceName,
-  });
-};
-
-// Backward-compatible alias while components migrate.
-export const trackCTAClick = trackSelectCta;

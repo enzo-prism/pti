@@ -19,9 +19,11 @@ import {
   getAllReviewSlugs,
   getReviewBySlug,
   REVIEW_DETAIL_PAGES_INDEXED,
-  type ReviewCategory,
-  type ReviewSource,
 } from "@/data/reviews";
+import {
+  REVIEW_CATEGORY_LABELS,
+  REVIEW_SOURCE_LABELS,
+} from "@/data/reviewLabels";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 import { HOME_CRUMB } from "@/lib/breadcrumbs";
 
@@ -29,21 +31,6 @@ type Params = {
   slug: string;
 };
 
-const sourceLabels: Record<ReviewSource, string> = {
-  google: "Google",
-  amazon: "Amazon",
-  alignable: "Alignable",
-  internal: "Provided directly",
-};
-
-const categoryLabels: Record<ReviewCategory, string> = {
-  buyer: "Buyer",
-  seller: "Seller",
-  workshop: "Workshop",
-  valuation: "Valuation",
-  consulting: "Consulting",
-  book: "Book Review",
-};
 
 const toDescription = (value: string): string => {
   const normalized = value.replace(/\s+/g, " ").trim();
@@ -134,8 +121,8 @@ export default function Page({ params }: { params: Params }) {
         <div className="max-w-5xl mx-auto space-y-8">
           <header className="space-y-4">
             <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="secondary">{sourceLabels[review.source]}</Badge>
-              <Badge variant="outline">{categoryLabels[review.category]}</Badge>
+              <Badge variant="secondary">{REVIEW_SOURCE_LABELS[review.source]}</Badge>
+              <Badge variant="outline">{REVIEW_CATEGORY_LABELS[review.category]}</Badge>
             </div>
 
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900">

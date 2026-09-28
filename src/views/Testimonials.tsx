@@ -20,6 +20,10 @@ import type {
   ReviewRecord,
   ReviewSource,
 } from "@/data/reviews";
+import {
+  REVIEW_CATEGORY_LABELS,
+  REVIEW_SOURCE_LABELS,
+} from "@/data/reviewLabels";
 import { trackSelectCta } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -28,21 +32,6 @@ type CategoryFilter = "all" | ReviewCategory;
 
 const GOOGLE_REVIEW_URL = "https://g.page/r/CedyctFdKTRNEAE/review";
 
-const sourceLabels: Record<ReviewSource, string> = {
-  google: "Google",
-  amazon: "Amazon",
-  alignable: "Alignable",
-  internal: "Provided directly",
-};
-
-const categoryLabels: Record<ReviewCategory, string> = {
-  buyer: "Buyer",
-  seller: "Seller",
-  workshop: "Workshop",
-  valuation: "Valuation",
-  consulting: "Consulting",
-  book: "Book Review",
-};
 
 const CATEGORY_ORDER: ReviewCategory[] = [
   "buyer",
@@ -63,8 +52,8 @@ const matchesSearch = (review: ReviewRecord, query: string): boolean => {
     review.displayAuthorName,
     review.role,
     review.company,
-    sourceLabels[review.source],
-    categoryLabels[review.category],
+    REVIEW_SOURCE_LABELS[review.source],
+    REVIEW_CATEGORY_LABELS[review.category],
   ]
     .filter(Boolean)
     .join(" ")
@@ -254,7 +243,7 @@ const Testimonials = ({ reviews }: TestimonialsProps) => {
                 <dl className="mt-4 grid grid-cols-2 gap-3 text-center sm:grid-cols-4">
                   {SOURCE_ORDER.map((source) => (
                     <div key={source} className="rounded-lg bg-gray-50 px-2 py-3">
-                      <dt className="text-xs text-gray-500">{sourceLabels[source]}</dt>
+                      <dt className="text-xs text-gray-500">{REVIEW_SOURCE_LABELS[source]}</dt>
                       <dd className="mt-1 text-lg font-bold text-gray-900">
                         {sourceCounts[source] ?? 0}
                       </dd>
@@ -308,7 +297,7 @@ const Testimonials = ({ reviews }: TestimonialsProps) => {
                   key={category}
                   active={categoryFilter === category}
                   onClick={() => setCategoryFilter(category)}
-                  label={categoryLabels[category]}
+                  label={REVIEW_CATEGORY_LABELS[category]}
                   count={categoryCounts[category]}
                 />
               ))}
@@ -330,7 +319,7 @@ const Testimonials = ({ reviews }: TestimonialsProps) => {
                     key={source}
                     active={sourceFilter === source}
                     onClick={() => setSourceFilter(source)}
-                    label={sourceLabels[source]}
+                    label={REVIEW_SOURCE_LABELS[source]}
                     count={sourceCounts[source]}
                     size="sm"
                   />
@@ -375,7 +364,7 @@ const Testimonials = ({ reviews }: TestimonialsProps) => {
                       variant="secondary"
                       className="rounded-full font-medium"
                     >
-                      {categoryLabels[review.category]}
+                      {REVIEW_CATEGORY_LABELS[review.category]}
                     </Badge>
                   </div>
 
@@ -417,7 +406,7 @@ const Testimonials = ({ reviews }: TestimonialsProps) => {
                       )}
                     </div>
                     <span className="ml-auto shrink-0 self-start text-xs font-medium text-gray-500">
-                      {sourceLabels[review.source]}
+                      {REVIEW_SOURCE_LABELS[review.source]}
                     </span>
                   </footer>
                 </article>
