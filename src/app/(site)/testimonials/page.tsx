@@ -20,6 +20,7 @@ export default function Page() {
       <StructuredData
         data={buildPageJsonLd({
           title,
+          pageType: "CollectionPage",
           description,
           path,
         })}

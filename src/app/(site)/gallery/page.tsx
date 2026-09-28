@@ -1,7 +1,7 @@
 import Gallery from "@/views/Gallery";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
-import { buildImageGallerySchema } from "@/lib/structuredData";
+import { buildImageGalleryProperties } from "@/lib/structuredData";
 import { galleryPhotos } from "@/data/galleryImages";
 
 const title = "PTI Photo Gallery";
@@ -10,14 +10,13 @@ const description =
 
 const galleryImage = galleryPhotos[0]?.src;
 
-const gallerySchema = buildImageGallerySchema(
+const galleryProperties = buildImageGalleryProperties(
   galleryPhotos.map((photo) => ({
     src: photo.src,
     alt: photo.alt,
     width: photo.width,
     height: photo.height,
-  })),
-  { name: title, description }
+  }))
 );
 
 export const metadata = buildPageMetadata({
@@ -36,7 +35,8 @@ export default function Page() {
           description,
           path: "/gallery",
           image: galleryImage,
-          structuredData: gallerySchema,
+          pageType: "ImageGallery",
+          pageProperties: galleryProperties,
         })}
       />
       <Gallery />

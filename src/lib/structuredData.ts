@@ -14,7 +14,6 @@ import {
   DEFAULT_OG_IMAGE,
   SITE_CONTACT_EMAIL,
   SOCIAL_PROFILES,
-  SITE_SEARCH_PATH,
   buildAbsoluteUrl,
   buildPostalAddress,
   buildGoogleMapsUrl,
@@ -35,6 +34,16 @@ export const WEBSITE_ID = `${buildAbsoluteUrl()}#website`;
 export const LOGO_ID = `${buildAbsoluteUrl()}#logo`;
 const AREA_SERVED = "United States";
 
+const LOGO = {
+  path: "/lovable-uploads/pti-logo.webp",
+  width: 480,
+  height: 466,
+} as const;
+
+/** Stable @id for a Person described on the page at `path` (e.g. /drnjo). */
+export const buildPersonId = (path: string) =>
+  `${buildAbsoluteUrl(path)}#person`;
+
 const resolveAbsoluteUrl = (value: string): string =>
   value.startsWith("http") ? value : buildAbsoluteUrl(value);
 
@@ -44,21 +53,27 @@ const buildImageObject = (url: string, id?: string): JsonLdShape => ({
   url,
 });
 
-const buildBusinessSchema = (input: {
-  type: "Organization" | "ProfessionalService";
+/**
+ * The business node. Every page types it ProfessionalService so the shared
+ * @id never changes type between pages; only the homepage and /contact add
+ * hours, coordinates, and the map link.
+ */
+export const buildBusinessSchema = (options?: {
   includeLocalBusinessFields?: boolean;
 }): JsonLdShape => {
-  const logoUrl = resolveAbsoluteUrl(DEFAULT_OG_IMAGE);
-
   const base: JsonLdShape = {
     "@context": "https://schema.org",
     "@id": BUSINESS_ID,
-    "@type": input.type,
+    "@type": "ProfessionalService",
     name: SITE_NAME,
     description: BUSINESS_DESCRIPTION,
     url: buildAbsoluteUrl(),
-    logo: buildImageObject(logoUrl, LOGO_ID),
-    image: logoUrl,
+    logo: {
+      ...buildImageObject(resolveAbsoluteUrl(LOGO.path), LOGO_ID),
+      width: LOGO.width,
+      height: LOGO.height,
+    },
+    image: resolveAbsoluteUrl(DEFAULT_OG_IMAGE),
     address: buildPostalAddress(),
     telephone: PHONE_NUMBER_TEL,
     areaServed: AREA_SERVED,
@@ -78,7 +93,7 @@ const buildBusinessSchema = (input: {
     base.sameAs = SOCIAL_PROFILES;
   }
 
-  if (input.includeLocalBusinessFields) {
+  if (options?.includeLocalBusinessFields) {
     const mapUrl = buildGoogleMapsUrl();
     base.openingHoursSpecification = BUSINESS_OPENING_HOURS_SPECIFICATION;
     base.priceRange = BUSINESS_PRICE_RANGE;
@@ -95,52 +110,39 @@ const buildBusinessSchema = (input: {
   return base;
 };
 
-export const buildOrganizationSchema = (): JsonLdShape => {
-  return buildBusinessSchema({ type: "Organization" });
-};
+export const buildWebSiteSchema = (): JsonLdShape => ({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": WEBSITE_ID,
+  name: SITE_NAME,
+  url: buildAbsoluteUrl(),
+  publisher: {
+    "@id": BUSINESS_ID,
+  },
+  inLanguage: DEFAULT_LOCALE,
+});
 
-export const buildProfessionalServiceSchema = (): JsonLdShape => {
-  return buildBusinessSchema({
-    type: "ProfessionalService",
-    includeLocalBusinessFields: true,
-  });
-};
-
-export const buildWebSiteSchema = (options?: {
-  enableSearch?: boolean;
-}): JsonLdShape => {
-  const schema: JsonLdShape = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": WEBSITE_ID,
-    name: SITE_NAME,
-    url: buildAbsoluteUrl(),
-    publisher: {
-      "@id": BUSINESS_ID,
-    },
-    inLanguage: DEFAULT_LOCALE,
-  };
-
-  if (options?.enableSearch) {
-    schema.potentialAction = {
-      "@type": "SearchAction",
-      target: `${buildAbsoluteUrl(SITE_SEARCH_PATH)}?search={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    };
-  }
-
-  return schema;
-};
+/** schema.org WebPage subtypes a route can declare for its page node. */
+export type WebPageType =
+  | "WebPage"
+  | "AboutPage"
+  | "CollectionPage"
+  | "ContactPage"
+  | "ImageGallery"
+  | "ProfilePage";
 
 export const buildWebPageSchema = (input: {
   url: string;
   name: string;
   description?: string;
   image?: string;
+  type?: WebPageType;
+  /** Extra properties for the page node, e.g. ImageGallery media. */
+  properties?: JsonLdShape;
 }): JsonLdShape => {
   const page: JsonLdShape = {
     "@context": "https://schema.org",
-    "@type": "WebPage",
+    "@type": input.type ?? "WebPage",
     "@id": `${input.url}#webpage`,
     url: input.url,
     name: input.name,
@@ -152,6 +154,7 @@ export const buildWebPageSchema = (input: {
       "@id": BUSINESS_ID,
     },
     inLanguage: DEFAULT_LOCALE,
+    ...input.properties,
   };
 
   if (input.image) {
@@ -166,31 +169,29 @@ export const buildWebPageSchema = (input: {
 };
 
 export const buildPersonSchema = (input: {
+  /** Page that describes the person; also anchors the Person @id. */
+  url: string;
   name: string;
   jobTitle?: string;
   description?: string;
   image?: string;
-  url?: string;
   sameAs?: string[];
-}): JsonLdShape => {
-  const person: JsonLdShape = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: input.name,
-    ...(input.jobTitle ? { jobTitle: input.jobTitle } : {}),
-    ...(input.description ? { description: input.description } : {}),
-    ...(input.url ? { url: resolveAbsoluteUrl(input.url) } : {}),
-    ...(input.image ? { image: resolveAbsoluteUrl(input.image) } : {}),
-    ...(input.sameAs?.length
-      ? { sameAs: input.sameAs.map(resolveAbsoluteUrl) }
-      : {}),
-    worksFor: {
-      "@id": BUSINESS_ID,
-    },
-  };
-
-  return person;
-};
+}): JsonLdShape => ({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": buildPersonId(input.url),
+  name: input.name,
+  ...(input.jobTitle ? { jobTitle: input.jobTitle } : {}),
+  ...(input.description ? { description: input.description } : {}),
+  url: resolveAbsoluteUrl(input.url),
+  ...(input.image ? { image: resolveAbsoluteUrl(input.image) } : {}),
+  ...(input.sameAs?.length
+    ? { sameAs: input.sameAs.map(resolveAbsoluteUrl) }
+    : {}),
+  worksFor: {
+    "@id": BUSINESS_ID,
+  },
+});
 
 export const buildServiceSchema = (
   service: ServiceOffering,
@@ -267,6 +268,9 @@ export const buildBlogPostingSchema = (
   const authorSchema = authorProfile
     ? {
         "@type": authorProfile.type,
+        ...(authorProfile.type === "Person" && authorProfile.url
+          ? { "@id": buildPersonId(authorProfile.url) }
+          : {}),
         name: authorProfile.name,
         ...(authorProfile.url
           ? { url: resolveAbsoluteUrl(authorProfile.url) }
@@ -461,25 +465,6 @@ export const buildEventSchema = (
   };
 };
 
-export const buildContactPageSchema = (
-  url: string = buildAbsoluteUrl("/contact")
-): JsonLdShape => ({
-  "@context": "https://schema.org",
-  "@type": "ContactPage",
-  "@id": `${url}#contactpage`,
-  url,
-  about: {
-    "@id": BUSINESS_ID,
-  },
-  mainEntity: {
-    "@id": BUSINESS_ID,
-  },
-  isPartOf: {
-    "@id": WEBSITE_ID,
-  },
-  inLanguage: DEFAULT_LOCALE,
-});
-
 export interface GalleryImageInput {
   src: string;
   alt: string;
@@ -487,31 +472,18 @@ export interface GalleryImageInput {
   height?: number;
 }
 
-export const buildImageGallerySchema = (
-  images: GalleryImageInput[],
-  options?: { url?: string; name?: string; description?: string }
-): JsonLdShape | null => {
-  if (!images.length) return null;
-
-  const url = options?.url ?? buildAbsoluteUrl("/gallery");
-  return {
-    "@context": "https://schema.org",
-    "@type": "ImageGallery",
-    "@id": `${url}#gallery`,
-    url,
-    name: options?.name ?? `${SITE_NAME} Photo Gallery`,
-    ...(options?.description ? { description: options.description } : {}),
-    isPartOf: { "@id": WEBSITE_ID },
-    inLanguage: DEFAULT_LOCALE,
-    associatedMedia: images.map((image) => ({
-      "@type": "ImageObject",
-      contentUrl: resolveAbsoluteUrl(image.src),
-      name: image.alt,
-      ...(image.width ? { width: image.width } : {}),
-      ...(image.height ? { height: image.height } : {}),
-    })),
-  };
-};
+/** ImageGallery page properties for the route's own page node. */
+export const buildImageGalleryProperties = (
+  images: GalleryImageInput[]
+): JsonLdShape => ({
+  associatedMedia: images.map((image) => ({
+    "@type": "ImageObject",
+    contentUrl: resolveAbsoluteUrl(image.src),
+    name: image.alt,
+    ...(image.width ? { width: image.width } : {}),
+    ...(image.height ? { height: image.height } : {}),
+  })),
+});
 
 export const buildPodcastEpisodeSchema = (): JsonLdShape => {
   const pageUrl = buildAbsoluteUrl(PODCAST_INTERVIEW_PATH);

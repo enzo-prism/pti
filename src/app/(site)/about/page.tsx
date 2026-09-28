@@ -15,7 +15,14 @@ export const metadata = buildPageMetadata({
 export default function Page() {
   return (
     <>
-      <StructuredData data={buildPageJsonLd({ title, description, path: "/about" })} />
+      <StructuredData
+        data={buildPageJsonLd({
+          title,
+          description,
+          path: "/about",
+          pageType: "AboutPage",
+        })}
+      />
       <About />
     </>
   );

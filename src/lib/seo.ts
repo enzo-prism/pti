@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import type { BreadcrumbNode } from "@/lib/breadcrumbs";
 import { buildBreadcrumbSchema } from "@/lib/breadcrumbs";
 import { getBreadcrumbsForPath } from "@/lib/routeBreadcrumbs";
-import type { JsonLdShape } from "@/lib/structuredData";
+import type { JsonLdShape, WebPageType } from "@/lib/structuredData";
 import {
-  buildOrganizationSchema,
-  buildProfessionalServiceSchema,
+  buildBusinessSchema,
   buildWebPageSchema,
   buildWebSiteSchema,
 } from "@/lib/structuredData";
@@ -196,8 +195,12 @@ interface PageJsonLdInput {
   image?: string;
   breadcrumbs?: BreadcrumbNode[] | null;
   structuredData?: JsonLdShape | JsonLdShape[] | null;
+  /** Adds hours, coordinates, and the map link to the business node. */
   includeLocalBusinessSchema?: boolean;
-  enableSiteSearch?: boolean;
+  /** schema.org type of the page node (defaults to WebPage). */
+  pageType?: WebPageType;
+  /** Extra properties merged into the page node. */
+  pageProperties?: JsonLdShape;
 }
 
 export const buildPageJsonLd = ({
@@ -208,7 +211,8 @@ export const buildPageJsonLd = ({
   breadcrumbs,
   structuredData,
   includeLocalBusinessSchema = false,
-  enableSiteSearch = true,
+  pageType,
+  pageProperties,
 }: PageJsonLdInput): JsonLdShape => {
   const normalizedPath = normalizePathname(path);
   const url = buildAbsoluteUrl(normalizedPath);
@@ -220,17 +224,18 @@ export const buildPageJsonLd = ({
     ? buildBreadcrumbSchema(resolvedBreadcrumbs)
     : null;
 
-  const businessSchema = includeLocalBusinessSchema
-    ? buildProfessionalServiceSchema()
-    : buildOrganizationSchema();
   const baseSchemas: JsonLdShape[] = [
-    businessSchema,
-    buildWebSiteSchema({ enableSearch: enableSiteSearch }),
+    buildBusinessSchema({
+      includeLocalBusinessFields: includeLocalBusinessSchema,
+    }),
+    buildWebSiteSchema(),
     buildWebPageSchema({
       url,
       name: pageTitle,
       description,
       image: imageUrl,
+      type: pageType,
+      properties: pageProperties,
     }),
     ...(breadcrumbSchema ? [breadcrumbSchema] : []),
   ];

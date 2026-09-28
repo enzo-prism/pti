@@ -1,13 +1,11 @@
 import Contact from "@/views/Contact";
 import { StructuredData } from "@/components/StructuredData";
-import { buildContactPageSchema } from "@/lib/structuredData";
+import { BUSINESS_ID } from "@/lib/structuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 
 const title = "Contact PTI for Dental Practice Transitions";
 const description =
   "Schedule a consultation with PTI to discuss practice valuation, sales, partnerships, or associateships.";
-
-const contactSchema = buildContactPageSchema();
 
 export const metadata = buildPageMetadata({
   title,
@@ -23,7 +21,8 @@ export default function Page() {
           title,
           description,
           path: "/contact",
-          structuredData: contactSchema,
+          pageType: "ContactPage",
+          pageProperties: { mainEntity: { "@id": BUSINESS_ID } },
           includeLocalBusinessSchema: true,
         })}
       />

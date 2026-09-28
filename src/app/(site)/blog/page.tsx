@@ -18,14 +18,16 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function Page() {
-  const blogListSchema = buildBlogItemListSchema();
-  const summaries = [...communityImpactPosts, ...blogPosts].map(toBlogPostSummary);
+  const allPosts = [...communityImpactPosts, ...blogPosts];
+  const blogListSchema = buildBlogItemListSchema(allPosts);
+  const summaries = allPosts.map(toBlogPostSummary);
 
   return (
     <>
       <StructuredData
         data={buildPageJsonLd({
           title,
+          pageType: "CollectionPage",
           description,
           path: "/blog",
           structuredData: blogListSchema,

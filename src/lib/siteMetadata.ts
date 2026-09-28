@@ -92,7 +92,6 @@ const parseSocialProfiles = (raw: string | undefined): string[] => {
 export const SOCIAL_PROFILES: string[] = parseSocialProfiles(
   process.env.NEXT_PUBLIC_SOCIAL_PROFILES
 );
-export const SITE_SEARCH_PATH = "/blog";
 
 export const getSiteUrl = (): string => CANONICAL_SITE_URL;
 

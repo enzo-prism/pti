@@ -5,6 +5,11 @@ interface StructuredDataProps {
   id?: string;
 }
 
+// Escape "<" so text such as "</script>" inside a quote cannot end the script
+// element early.
+export const serializeJsonLd = (data: JsonLdShape): string =>
+  JSON.stringify(data).replace(/</g, "\\u003c");
+
 export const StructuredData = ({ data, id }: StructuredDataProps) => {
   if (!data) return null;
 
@@ -12,7 +17,7 @@ export const StructuredData = ({ data, id }: StructuredDataProps) => {
     <script
       id={id}
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(data) }}
     />
   );
 };
