@@ -1,6 +1,4 @@
 
-"use client";
-
 import { Section } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
 import {
