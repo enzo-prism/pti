@@ -83,4 +83,4 @@ Confirm the live response includes the configured HSTS, content-type, framing, r
 
 ## Dependency note
 
-This branch of the repository is on Next.js 14. npm audit reports advisories in Next.js and its bundled PostCSS that are resolved only by a Next.js 16 major upgrade. Treat that migration as a separate compatibility and release project; do not silently force it during routine content releases.
+The repository uses Next.js 15.5.26 with React 18 and Sharp 0.35.5. Dynamic blog and review routes await their parameters. A scoped override keeps Next.js's bundled PostCSS on the patched root version. Run `npm audit` when preparing a release; the September 29, 2026 verification reported zero vulnerabilities.

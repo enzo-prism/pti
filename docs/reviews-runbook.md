@@ -11,7 +11,7 @@ This runbook documents the canonical review architecture used across PTI pages.
 - File: `src/data/reviews.ts`
 - Main type: `ReviewRecord`
 - Supported sources: `google`, `internal`, `amazon`, `alignable`
-- Supported categories: `buyer`, `seller`, `workshop`, `valuation`, `consulting`, `book`
+- Supported categories: `buyer`, `seller`, `associateship`, `workshop`, `valuation`, `consulting`, `book`
 - Display labels: `src/data/reviewLabels.ts` (safe to import from client components; `reviews.ts` is not)
 
 Key rules:

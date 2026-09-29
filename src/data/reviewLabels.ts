@@ -12,6 +12,7 @@ export const REVIEW_SOURCE_LABELS: Record<ReviewSource, string> = {
 export const REVIEW_CATEGORY_LABELS: Record<ReviewCategory, string> = {
   buyer: "Buyer",
   seller: "Seller",
+  associateship: "Associateship",
   workshop: "Workshop",
   valuation: "Valuation",
   consulting: "Consulting",

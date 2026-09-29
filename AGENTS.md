@@ -2,7 +2,7 @@
 
 ## Project overview
 
-This is a Next.js 14 App Router site with React 18, TypeScript (strict), Tailwind CSS, and shadcn/ui. Routes live in `src/app`, and view components are in `src/views`. Global styles load from `src/app/globals.css`. Every public route lives in the `src/app/(site)` group and its `layout.tsx`.
+This is a Next.js 15 App Router site with React 18, TypeScript (strict), Tailwind CSS, and shadcn/ui. Routes live in `src/app`, and view components are in `src/views`. Global styles load from `src/app/globals.css`. Every public route lives in the `src/app/(site)` group and its `layout.tsx`. Dynamic route `params` are promises and must be awaited in pages and metadata functions.
 
 ## Key directories and source of truth
 

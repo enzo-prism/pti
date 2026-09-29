@@ -43,8 +43,9 @@ export const dynamicParams = false;
 export const generateStaticParams = (): Params[] =>
   getAllReviewSlugs().map((slug) => ({ slug }));
 
-export function generateMetadata({ params }: { params: Params }): Metadata {
-  const review = getReviewBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+  const { slug } = await params;
+  const review = getReviewBySlug(slug);
   if (!review) {
     return buildPageMetadata({
       title: "Review Not Found",
@@ -62,8 +63,9 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   });
 }
 
-export default function Page({ params }: { params: Params }) {
-  const review = getReviewBySlug(params.slug);
+export default async function Page({ params }: { params: Promise<Params> }) {
+  const { slug } = await params;
+  const review = getReviewBySlug(slug);
   if (!review) notFound();
 
   const path = `/testimonials/${review.slug}`;

@@ -29,12 +29,13 @@ export const generateStaticParams = (): BlogParams[] =>
     .filter((post) => post.slug)
     .map((post) => ({ slug: post.slug }));
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: BlogParams;
-}): Metadata {
-  const post = getPost(params.slug);
+  params: Promise<BlogParams>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPost(slug);
   if (!post) {
     return buildPageMetadata({
       title: "Blog Post Not Found",
@@ -65,8 +66,9 @@ export function generateMetadata({
   });
 }
 
-export default function Page({ params }: { params: BlogParams }) {
-  const post = getPost(params.slug);
+export default async function Page({ params }: { params: Promise<BlogParams> }) {
+  const { slug } = await params;
+  const post = getPost(slug);
   if (!post) notFound();
 
   const authorProfile = getAuthorProfile(post.author);

@@ -2,6 +2,7 @@ export type ReviewSource = "google" | "internal" | "amazon" | "alignable";
 export type ReviewCategory =
   | "buyer"
   | "seller"
+  | "associateship"
   | "workshop"
   | "valuation"
   | "consulting"
@@ -26,6 +27,20 @@ export interface ReviewRecord {
 }
 
 const googleReviews: ReviewRecord[] = [
+  {
+    id: "google-tanya-harris",
+    slug: "tanya-harris-owner-to-associate-transition",
+    source: "google",
+    category: "associateship",
+    rating: 5,
+    quote:
+      "Michael is professional, knowledgeable and responsive but most importantly he listened to what told him I was looking for in this transition from a practice owner to an associate. He was able to find an opportunity for me that is a great fit. The whole process was smooth and stress was kept to a minimum. Highly recommend.",
+    sourceAuthorName: "Tanya Harris",
+    displayAuthorName: "Tanya Harris",
+    role: "Practice Owner to Associate",
+    // The source only supplies a relative edited date, not a publication date.
+    sortOrder: -1,
+  },
   {
     id: "google-john-yun",
     slug: "john-yun-startup-guidance",

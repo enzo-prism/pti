@@ -18,7 +18,7 @@ The public site is built to stay usable on phone, tablet, and desktop without cl
 
 ## Tech Stack
 
-- Next.js 14 App Router with React 18
+- Next.js 15 App Router with React 18
 - TypeScript with strict configuration
 - Tailwind CSS design system (tokens in `tailwind.config.ts`) and custom globals in `src/app/globals.css`
 - shadcn/ui component primitives backed by Radix UI

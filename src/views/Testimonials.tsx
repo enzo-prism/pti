@@ -26,6 +26,7 @@ import {
 } from "@/data/reviewLabels";
 import { trackSelectCta } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
+import { matchesReviewSearch, normalizeReviewSearch } from "@/lib/reviewSearch";
 
 type SourceFilter = "all" | ReviewSource;
 type CategoryFilter = "all" | ReviewCategory;
@@ -36,31 +37,13 @@ const GOOGLE_REVIEW_URL = "https://g.page/r/CedyctFdKTRNEAE/review";
 const CATEGORY_ORDER: ReviewCategory[] = [
   "buyer",
   "seller",
+  "associateship",
   "workshop",
   "valuation",
   "consulting",
   "book",
 ];
 const SOURCE_ORDER: ReviewSource[] = ["google", "alignable", "amazon", "internal"];
-
-const matchesSearch = (review: ReviewRecord, query: string): boolean => {
-  if (!query) return true;
-
-  const haystack = [
-    review.quote,
-    review.sourceAuthorName,
-    review.displayAuthorName,
-    review.role,
-    review.company,
-    REVIEW_SOURCE_LABELS[review.source],
-    REVIEW_CATEGORY_LABELS[review.category],
-  ]
-    .filter(Boolean)
-    .join(" ")
-    .toLowerCase();
-
-  return haystack.includes(query.toLowerCase());
-};
 
 const getInitials = (name: string): string =>
   name
@@ -160,6 +143,7 @@ const Testimonials = ({ reviews }: TestimonialsProps) => {
   const [sourceFilter, setSourceFilter] = useState<SourceFilter>("all");
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const normalizedSearch = normalizeReviewSearch(searchQuery);
 
   const { categoryCounts, sourceCounts } = useMemo(() => {
     const categoryCounts = {} as Record<ReviewCategory, number>;
@@ -187,12 +171,12 @@ const Testimonials = ({ reviews }: TestimonialsProps) => {
       if (categoryFilter !== "all" && review.category !== categoryFilter) {
         return false;
       }
-      return matchesSearch(review, searchQuery);
+      return matchesReviewSearch(review, normalizedSearch);
     });
-  }, [reviews, categoryFilter, searchQuery, sourceFilter]);
+  }, [reviews, categoryFilter, normalizedSearch, sourceFilter]);
 
   const hasActiveFilters =
-    searchQuery.trim().length > 0 ||
+    normalizedSearch.length > 0 ||
     sourceFilter !== "all" ||
     categoryFilter !== "all";
 
@@ -341,7 +325,7 @@ const Testimonials = ({ reviews }: TestimonialsProps) => {
                   variant="ghost"
                   size="sm"
                   onClick={clearFilters}
-                  className="h-8 gap-1.5 px-2.5 text-sm text-gray-600 hover:text-primary"
+                  className="h-11 gap-1.5 px-2.5 text-sm text-gray-600 hover:text-primary"
                 >
                   <X className="h-3.5 w-3.5" />
                   Clear
@@ -375,12 +359,12 @@ const Testimonials = ({ reviews }: TestimonialsProps) => {
                     >
                       &ldquo;
                     </span>
-                    <span className="line-clamp-[10]">{review.quote}</span>
+                    <span>{review.quote}</span>
                   </blockquote>
 
                   <Link
                     href={`/testimonials/${review.slug}`}
-                    className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+                    className="mt-3 inline-flex min-h-11 items-center gap-1 text-sm font-medium text-primary hover:underline"
                   >
                     Read full review
                     <ArrowRight className="h-3.5 w-3.5" />
@@ -484,7 +468,7 @@ const FilterPill = ({
     onClick={onClick}
     aria-pressed={active}
     className={cn(
-      "inline-flex items-center rounded-full border font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-1",
+      "inline-flex min-h-11 items-center rounded-full border font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-1",
       size === "sm" ? "px-3 py-1 text-xs" : "px-3.5 py-1.5 text-sm",
       active
         ? "border-primary bg-primary text-white shadow-sm"
