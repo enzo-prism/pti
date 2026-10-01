@@ -34,8 +34,8 @@ const PracticeTransitionSeminar = ({
   return (
     <div className="min-h-screen bg-background">
       <div className="container py-8 md:py-10">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,3fr)_minmax(20rem,2fr)] lg:items-start">
-          <div className="order-1 space-y-6">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 lg:items-start">
+          <div className="order-1 space-y-6 lg:col-span-3 lg:row-start-1">
             <header>
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">
                 {PRACTICE_TRANSITION_SEMINAR_EYEBROW}
@@ -55,7 +55,7 @@ const PracticeTransitionSeminar = ({
 
           <div
             id="register"
-            className="order-2 scroll-mt-24 lg:sticky lg:top-[calc(var(--pti-header-height)+1rem)]"
+            className="order-2 scroll-mt-24 lg:col-span-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--pti-header-height)+1rem)]"
           >
             <SeminarRegistration
               events={events}
@@ -63,7 +63,7 @@ const PracticeTransitionSeminar = ({
             />
           </div>
 
-          <div className="order-3 space-y-8 lg:col-start-1">
+          <div className="order-3 space-y-8 lg:col-span-3 lg:row-start-2">
             <ul className="grid gap-3 sm:grid-cols-3">
               {PRACTICE_TRANSITION_SEMINAR_FACTS.map((fact) => (
                 <li

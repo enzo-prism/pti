@@ -392,7 +392,7 @@ export const SeminarRegistration = ({
           onFocusCapture={trackFormStartOnce}
           onSubmit={handleSubmit}
           noValidate
-          className="mt-6 space-y-4"
+          className="relative mt-6 space-y-4"
         >
           <noscript>
             <p className="rounded-lg border border-destructive/30 p-4 text-base">

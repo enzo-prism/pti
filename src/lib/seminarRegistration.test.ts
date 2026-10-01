@@ -140,9 +140,9 @@ describe("seminar registration payload", () => {
 
   it("records the standard price after the pending early-registration deadline", () => {
     const payload = buildSeminarFormPayload(
-      validValues,
+      { ...validValues, selectedEvent: "march-12-2027-anaheim" },
       availableEvents,
-      context("2027-01-01T00:05:00-07:00")
+      context("2027-01-01T12:00:00-08:00")
     );
 
     expect(payload.quoted_price).toBe("$397");
@@ -183,10 +183,10 @@ describe("campaign selection and stale registrations", () => {
     expect(refreshed.openEvents.some((event) => event.value === validValues.selectedEvent)).toBe(false);
   });
   it("requires a fresh review after the displayed early-bird price changes", () => {
-    const early = new Date("2026-12-31T23:59:00-07:00");
-    const standard = new Date("2027-01-01T00:01:00-07:00");
-    expect(refreshSeminarRegistration(availableEvents, validValues.selectedEvent, early, standard).change).toBe("price_changed");
-    expect(refreshSeminarRegistration(availableEvents, validValues.selectedEvent, standard, standard).change).toBeUndefined();
+    const early = new Date("2026-12-31T12:00:00-08:00");
+    const standard = new Date("2027-01-01T12:00:00-08:00");
+    expect(refreshSeminarRegistration(availableEvents, "march-12-2027-anaheim", early, standard).change).toBe("price_changed");
+    expect(refreshSeminarRegistration(availableEvents, "march-12-2027-anaheim", standard, standard).change).toBeUndefined();
   });
 
   it("does not treat the retired per-event early-bird flip as a displayed price change", () => {
