@@ -21,6 +21,7 @@ import {
   PODCAST_INTERVIEW_PATH,
   SECOND_BOOK_PATH,
 } from "@/lib/constants";
+import { SECOND_BOOK_ANNOUNCEMENT } from "@/data/secondBook";
 
 const resources = [
   {
@@ -33,9 +34,9 @@ const resources = [
   },
   {
     icon: <BookOpen className="h-6 w-6 text-slate-600" />,
-    title: "Handbook, Second Edition (Coming Soon)",
+    title: "Handbook, Second Edition",
     description:
-      "The expanded second edition of the Dental Practice Transitions Handbook, with a foreword by Dr. Glenn Vo, new advisor material, and new appendices.",
+      `${SECOND_BOOK_ANNOUNCEMENT.timing}, with a foreword by Dr. Glenn Vo, new advisor material, and new appendices. Exact release date and ordering details to come.`,
     href: SECOND_BOOK_PATH,
     cta: "Preview the second edition",
   },
@@ -111,16 +112,14 @@ const Resources = () => {
           className="group mx-auto grid max-w-5xl items-center gap-6 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-all hover:border-primary/40 hover:shadow-md md:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] md:p-8"
         >
           <Image
-            src="/lovable-uploads/drnjo-2026/handbook-second-edition-coming-soon.webp"
-            alt="Coming soon: Dental Practice Transitions Handbook, second edition, by Michael A. Njo, DDS, with a foreword by Dr. Glenn Vo"
-            width={1120}
-            height={1400}
+            {...SECOND_BOOK_ANNOUNCEMENT.image}
+            alt={SECOND_BOOK_ANNOUNCEMENT.image.alt}
             className="h-auto w-full rounded-xl object-contain"
             sizes="(min-width: 768px) 360px, 100vw"
           />
           <div>
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80">
-              Upcoming book
+              {SECOND_BOOK_ANNOUNCEMENT.timing}
             </p>
             <h2 className="text-2xl font-bold leading-tight md:text-3xl">
               Dental Practice Transitions Handbook, Second Edition
@@ -128,7 +127,8 @@ const Resources = () => {
             <p className="mt-3 text-gray-600 leading-relaxed">
               Dr. Michael Njo&apos;s next book is an expanded second edition of
               the handbook: a new foreword by Dr. Glenn Vo, new advisor
-              material, and new appendices. Coming soon.
+              material, and new appendices. Exact release date and ordering
+              details will be shared when confirmed.
             </p>
             <span className="mt-4 inline-flex items-center gap-1 font-semibold text-primary">
               Preview the second edition
@@ -142,7 +142,7 @@ const Resources = () => {
       <Section>
         <SectionTitle centered>Tools &amp; Guides</SectionTitle>
         <SectionSubtitle centered>
-          Everything below is free to use — start wherever you are in your journey
+          Explore free tools, articles, and book previews wherever you are in your journey
         </SectionSubtitle>
 
         <div className="grid md:grid-cols-2 gap-6 mt-8 max-w-5xl mx-auto">

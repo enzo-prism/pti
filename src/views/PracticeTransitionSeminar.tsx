@@ -1,11 +1,9 @@
 import Link from "next/link";
-import { CheckCircle2, Clock, MapPin, Phone, Users } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { CheckCircle2, Phone, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -19,6 +17,7 @@ import {
   SeminarRegisterButton,
 } from "@/components/events/SeminarCtaButtons";
 import { SeminarRegistration } from "@/components/events/SeminarRegistration";
+import { SeminarEventPreview } from "@/components/events/SeminarEventPreview";
 import {
   PRACTICE_TRANSITION_SEMINAR_EYEBROW,
   PRACTICE_TRANSITION_SEMINAR_HEADLINE,
@@ -61,71 +60,37 @@ const PracticeTransitionSeminar = ({
           <Link href="/events">Back to Events</Link>
         </Button>
 
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.48fr)] lg:items-end">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.48fr)] lg:gap-x-10">
           <div className="max-w-4xl">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-100">
               {PRACTICE_TRANSITION_SEMINAR_EYEBROW}
             </p>
-            <h1 className="mt-4 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+            <h1 className="mt-4 text-3xl font-bold leading-tight sm:text-5xl lg:text-6xl">
               {PRACTICE_TRANSITION_SEMINAR_HEADLINE}
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-blue-50 md:text-xl">
-              Your practice transition is not just a transaction. It is the
-              culmination of your life&apos;s work. Join Practice Transitions
-              Institute for a focused one-day seminar designed to help
-              dentists understand their options, protect practice value, and
-              approach their next move with confidence.
+              A one-day seminar for dentists buying, selling, partnering, or
+              planning their next move.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              {events.length > 0 && (
-                <SeminarRegisterButton size="lg" variant="secondary">
-                  Request a Seminar Seat
-                </SeminarRegisterButton>
-              )}
-              <SeminarPhoneButton
-                location="seminar_hero"
-                size="lg"
-                variant="outline"
-                className="border-white bg-transparent text-white hover:bg-white hover:text-primary"
-              >
-                <Phone className="h-4 w-4" />
-                Call {PHONE_NUMBER}
-              </SeminarPhoneButton>
-            </div>
           </div>
-
-          <div className="grid gap-3">
-            {events.map((event) => (
-              <Card
-                key={event.id}
-                className="border-white/20 bg-white/95 text-foreground shadow-lg"
-              >
-                <CardHeader className="p-5 pb-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <Badge className="bg-primary/10 text-primary hover:bg-primary/10">
-                      Registration Open
-                    </Badge>
-                    <span className="text-sm font-semibold text-primary">
-                      {event.city}
-                    </span>
-                  </div>
-                  <CardTitle className="text-xl">{event.date}</CardTitle>
-                  <CardDescription className="text-muted-foreground">
-                    {event.venueName}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="grid gap-3 p-5 pt-0 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-primary" />
-                    <span>{event.time}</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <MapPin className="mt-0.5 h-4 w-4 text-primary" />
-                    <span>{event.addressLines.join(", ")}</span>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
+            <SeminarEventPreview events={events} referenceDateIso={referenceDateIso} />
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row lg:col-start-1 lg:self-end">
+            {events.length > 0 && (
+              <SeminarRegisterButton size="lg" variant="secondary">
+                Register for the Seminar
+              </SeminarRegisterButton>
+            )}
+            <SeminarPhoneButton
+              location="seminar_hero"
+              size="lg"
+              variant="outline"
+              className="border-white bg-transparent text-white hover:bg-white hover:text-primary"
+            >
+              <Phone className="h-4 w-4" />
+              Call {PHONE_NUMBER}
+            </SeminarPhoneButton>
           </div>
         </div>
       </div>
@@ -161,6 +126,19 @@ const PracticeTransitionSeminar = ({
         events={events}
         referenceDateIso={referenceDateIso}
       />
+      {events.length > 1 && (
+        <div className="mx-auto mt-8 max-w-3xl border-t border-border pt-6">
+          <h2 className="text-lg font-semibold">Upcoming seminar dates</h2>
+          <p className="mt-2 text-sm text-muted-foreground">Choose a date to view its details and register.</p>
+          <div className="mt-3 grid gap-2 sm:grid-cols-2">
+            {events.map((event) => (
+              <a key={event.id} href={`?event=${event.value}#register`} className="flex min-h-11 items-center rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium text-primary hover:bg-primary/5">
+                {event.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
       {archivedEvents.length > 0 && (
         <p className="mt-8 text-center text-sm text-muted-foreground">
           {archivedEvents.length} completed seminar
@@ -239,16 +217,18 @@ const PracticeTransitionSeminar = ({
       <div className="mx-auto max-w-4xl text-center">
         <Users className="mx-auto mb-4 h-10 w-10 text-blue-100" />
         <SectionTitle centered className="text-white">
-          Ready to reserve your seat?
+          Ready to register?
         </SectionTitle>
         <SectionSubtitle centered className="text-blue-50">
-          Choose the seminar date that fits your schedule, submit the form,
-          and PTI will follow up to confirm the details.
+          Choose your date and complete the short form. PTI will contact you
+          to finalize payment by phone and confirm your seat.
         </SectionSubtitle>
         <div className="flex flex-col justify-center gap-3 sm:flex-row">
-          <SeminarRegisterButton size="lg" variant="secondary">
-            Register for a Seminar
-          </SeminarRegisterButton>
+          {events.length > 0 && (
+            <SeminarRegisterButton size="lg" variant="secondary">
+              Register Now
+            </SeminarRegisterButton>
+          )}
           <SeminarPhoneButton
             location="seminar_footer"
             size="lg"

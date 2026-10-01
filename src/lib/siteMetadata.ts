@@ -34,6 +34,8 @@ export const BUSINESS_DESCRIPTION =
   "Practice Transitions Institute guides dentists through valuations, sales, partnerships, and associateships with personalized, end-to-end transition support.";
 
 export const SITE_CONTACT_EMAIL = "info@practicetransitions.com";
+// Confirmed postal contact address, not a customer-facing office.
+export const BUSINESS_ADDRESS_LABEL = "Mailing address";
 export const BUSINESS_ADDRESS = {
   streetAddress: "3182 Campus Drive #274",
   addressLocality: "San Mateo",
@@ -41,39 +43,7 @@ export const BUSINESS_ADDRESS = {
   postalCode: "94403",
   addressCountry: "US",
 };
-export const BUSINESS_LOCATION = `${BUSINESS_ADDRESS.streetAddress}, ${BUSINESS_ADDRESS.addressLocality}, ${BUSINESS_ADDRESS.addressRegion} ${BUSINESS_ADDRESS.postalCode}`;
-
-// Approximate coordinates for the San Mateo (Campus Drive) office. Used for the
-// `geo` field on the LocalBusiness/ProfessionalService schema so search engines
-// can place the business; Google reconciles the precise pin from the address.
-export const BUSINESS_GEO = {
-  latitude: 37.5386,
-  longitude: -122.2967,
-};
-
-export const BUSINESS_PRICE_RANGE = "$$";
 export const DEFAULT_LOCALE = "en-US";
-
-export const BUSINESS_OPENING_HOURS_SPECIFICATION = [
-  {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: [
-      "https://schema.org/Monday",
-      "https://schema.org/Tuesday",
-      "https://schema.org/Wednesday",
-      "https://schema.org/Thursday",
-      "https://schema.org/Friday",
-    ],
-    opens: "09:00",
-    closes: "17:00",
-  },
-  {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: "https://schema.org/Saturday",
-    opens: "09:00",
-    closes: "12:00",
-  },
-] as const;
 
 // `sameAs` targets that consolidate the brand's identity for search engines.
 // Configure via NEXT_PUBLIC_SOCIAL_PROFILES (comma-separated URLs) to add the
@@ -106,16 +76,12 @@ export const buildAbsoluteUrl = (path = "/"): string => {
 
 export const buildPostalAddress = () => ({
   "@type": "PostalAddress",
+  name: BUSINESS_ADDRESS_LABEL,
   streetAddress: BUSINESS_ADDRESS.streetAddress,
   addressLocality: BUSINESS_ADDRESS.addressLocality,
   addressRegion: BUSINESS_ADDRESS.addressRegion,
   postalCode: BUSINESS_ADDRESS.postalCode,
   addressCountry: BUSINESS_ADDRESS.addressCountry,
 });
-
-export const buildGoogleMapsUrl = () =>
-  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    BUSINESS_LOCATION
-  )}`;
 
 export const getPhoneNumber = () => PHONE_NUMBER;

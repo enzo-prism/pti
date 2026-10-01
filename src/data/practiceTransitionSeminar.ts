@@ -29,7 +29,7 @@ export const PRACTICE_TRANSITION_SEMINAR_META_DESCRIPTION =
 export const PRACTICE_TRANSITION_SEMINAR_EYEBROW =
   "Practice Transitions Seminar";
 export const PRACTICE_TRANSITION_SEMINAR_HEADLINE =
-  "Build a High-Value Practice Transition With Confidence";
+  "Plan Your Dental Practice Transition";
 
 export interface PracticeTransitionSeminarEvent {
   id: string;

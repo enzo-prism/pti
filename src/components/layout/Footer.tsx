@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+import { Phone, Mail, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   PHONE_NUMBER,
@@ -8,7 +8,7 @@ import {
   PODCAST_INTERVIEW_PATH,
   PRACTICE_SALE_CHECKLIST_PATH,
 } from "@/lib/constants";
-import { SITE_CONTACT_EMAIL, BUSINESS_ADDRESS } from "@/lib/siteMetadata";
+import { SITE_CONTACT_EMAIL, BUSINESS_ADDRESS, BUSINESS_ADDRESS_LABEL } from "@/lib/siteMetadata";
 import { CookiePreferencesButton } from "@/components/privacy/CookiePreferencesButton";
 
 const exploreLinks = [
@@ -21,7 +21,7 @@ const exploreLinks = [
   { name: "Resources", path: "/resources" },
   { name: "What's My Practice Worth?", path: "/resources/how-much-is-my-dental-practice-worth" },
   { name: "Transitions Handbook", path: "/resources/dental-practice-transitions-handbook" },
-  { name: "Handbook, 2nd Edition (Coming Soon)", path: "/resources/second-book" },
+  { name: "Handbook, 2nd Edition", path: "/resources/second-book" },
   { name: "Podcast Interview", path: PODCAST_INTERVIEW_PATH },
   { name: "Sale Readiness Checklist", path: PRACTICE_SALE_CHECKLIST_PATH },
   { name: "Locations", path: "/locations" },
@@ -137,8 +137,9 @@ const Footer = () => {
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-sky-300" aria-hidden="true" />
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-sky-300" aria-hidden="true" />
                 <span className="text-sm not-italic leading-relaxed text-white/80">
+                  <span className="mb-1 block font-semibold text-white">{BUSINESS_ADDRESS_LABEL}</span>
                   {BUSINESS_ADDRESS.streetAddress}
                   <br />
                   {BUSINESS_ADDRESS.addressLocality},{" "}
