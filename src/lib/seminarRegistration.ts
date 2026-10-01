@@ -3,9 +3,9 @@ import {
   PRACTICE_TRANSITION_SEMINAR_FORM_NAME,
   PRACTICE_TRANSITION_SEMINAR_FORM_QA_FIELD,
   PRACTICE_TRANSITION_SEMINAR_FORM_SITE,
+  getDisplayedSeminarPrice,
   getPracticeTransitionSeminarEvent,
-  getSeminarRegistrationPrice,
-  isSeminarEarlyBirdPriceAvailable,
+  isDisplayedEarlyBird,
   type PracticeTransitionSeminarEvent,
 } from "@/data/practiceTransitionSeminar";
 import { isEventUpcoming } from "@/lib/dateUtils";
@@ -19,9 +19,15 @@ export const heardAboutOptions = [
   "Postcard",
   "Other",
 ] as const;
+export const bestTimeToCallOptions = [
+  "Morning",
+  "Afternoon",
+  "Evening",
+] as const;
 
 export type AttendeeCount = (typeof attendeeOptions)[number] | "";
 export type HeardAbout = (typeof heardAboutOptions)[number] | "";
+export type BestTimeToCall = (typeof bestTimeToCallOptions)[number] | "";
 
 export interface SeminarFormValues {
   selectedEvent: string;
@@ -34,6 +40,7 @@ export interface SeminarFormValues {
   additionalAttendees: string;
   heardAbout: HeardAbout;
   heardAboutOther: string;
+  bestTimeToCall: BestTimeToCall;
   paymentConsent: boolean;
   smsConsent: boolean;
   gotcha: string;
@@ -54,6 +61,7 @@ export const buildDefaultFormValues = (
   additionalAttendees: "",
   heardAbout: "",
   heardAboutOther: "",
+  bestTimeToCall: "",
   paymentConsent: false,
   smsConsent: false,
   gotcha: "",
@@ -98,7 +106,7 @@ export const refreshSeminarRegistration = (
   const selectedEvent = current ?? openEvents[0];
   const change = !current
     ? "event_unavailable"
-    : previous && getSeminarRegistrationPrice(previous, displayedAt) !== getSeminarRegistrationPrice(current, now)
+    : previous && getDisplayedSeminarPrice(previous, displayedAt) !== getDisplayedSeminarPrice(current, now)
       ? "price_changed"
       : undefined;
   return { openEvents, selectedEvent, change };
@@ -130,6 +138,9 @@ export const validateSeminarRegistration = (
   if (!(attendeeOptions as readonly string[]).includes(values.attendeeCount)) {
     errors.attendeeCount = "Choose the number of attendees.";
   }
+  if (!(bestTimeToCallOptions as readonly string[]).includes(values.bestTimeToCall)) {
+    errors.bestTimeToCall = "Choose the best time to call.";
+  }
   if (values.heardAbout !== "" && !(heardAboutOptions as readonly string[]).includes(values.heardAbout)) {
     errors.heardAbout = "Choose a listed source or leave this optional field blank.";
   }
@@ -159,8 +170,8 @@ const quotePrice = (
 ): QuotedPrice | undefined =>
   event
     ? {
-        price: getSeminarRegistrationPrice(event, referenceDate),
-        earlyBird: isSeminarEarlyBirdPriceAvailable(event, referenceDate),
+        price: getDisplayedSeminarPrice(event, referenceDate),
+        earlyBird: isDisplayedEarlyBird(event, referenceDate),
       }
     : undefined;
 
@@ -198,6 +209,9 @@ const buildMessage = (
     "",
     "How they heard about PTI:",
     source || "Not provided",
+    "",
+    "Best time to call:",
+    values.bestTimeToCall || "Not provided",
     "",
     "Consent:",
     values.paymentConsent
@@ -253,6 +267,7 @@ export const buildSeminarFormPayload = (
     additional_attendee_names: isMoreThanOneAttendee(values.attendeeCount) ? values.additionalAttendees.trim() : "",
     heard_about: values.heardAbout,
     heard_about_detail: source,
+    best_time_to_call: values.bestTimeToCall,
     payment_confirmation: values.paymentConsent ? "yes" : "no",
     sms_consent: values.smsConsent ? "yes" : "no",
     subject: `New PTI Seminar Registration - ${selectedEventLabel}`,

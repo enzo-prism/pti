@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
+  getApprovedSeminarOfferPrice,
+  getSeminarSeriesCardEvents,
+  PENDING_LIZ_TERMS,
   practiceTransitionSeminarEvents,
   type PracticeTransitionSeminarEvent,
 } from "@/data/practiceTransitionSeminar";
@@ -22,6 +25,7 @@ const validValues: SeminarFormValues = {
   additionalAttendees: "",
   heardAbout: "Website",
   heardAboutOther: "",
+  bestTimeToCall: "Morning",
   paymentConsent: true,
   smsConsent: false,
   gotcha: "",
@@ -46,6 +50,14 @@ describe("seminar registration validation", () => {
     );
 
     expect(errors.selectedEvent).toContain("available seminar date");
+  });
+
+  it("requires a best time to call", () => {
+    const errors = validateSeminarRegistration(
+      { ...validValues, bestTimeToCall: "" },
+      availableEvents
+    );
+    expect(errors.bestTimeToCall).toContain("best time");
   });
 
   it("requires valid contact details and payment acknowledgement", () => {
@@ -81,10 +93,11 @@ describe("seminar registration validation", () => {
       additionalAttendees: "g".repeat(501), heardAboutOther: "s".repeat(201),
       attendeeCount: "999" as SeminarFormValues["attendeeCount"],
       heardAbout: "invalid" as SeminarFormValues["heardAbout"],
+      bestTimeToCall: "Midnight" as SeminarFormValues["bestTimeToCall"],
     }, availableEvents);
     expect(Object.keys(errors).sort()).toEqual([
       "name", "email", "phone", "practiceName", "cityState", "additionalAttendees",
-      "heardAboutOther", "attendeeCount", "heardAbout",
+      "heardAboutOther", "attendeeCount", "heardAbout", "bestTimeToCall",
     ].sort());
   });
 
@@ -102,32 +115,34 @@ describe("seminar registration payload", () => {
     attribution: { page_path: "/events/practice-transition-seminar" },
   });
 
-  it("records the early-bird price the registrant saw", () => {
-    // Sacramento's early-bird deadline is September 2, 2026 (Pacific).
+  it("records the displayed early-bird price the registrant saw", () => {
     const payload = buildSeminarFormPayload(
       validValues,
       availableEvents,
-      context("2026-09-02T22:00:00-07:00")
+      context("2026-10-01T12:00:00-07:00")
     );
 
     expect(payload).toMatchObject({
       selected_event_id: "pti-seminar-sacramento-2026",
-      quoted_price: "$297",
+      quoted_price: "$247",
       early_bird_applied: "yes",
-      submitted_at: "2026-09-03T05:00:00.000Z",
+      best_time_to_call: "Morning",
+      submitted_at: "2026-10-01T19:00:00.000Z",
       environment: "test",
       page_path: "/events/practice-transition-seminar",
     });
     expect(payload.message).toContain(
-      "Price shown at registration: $297 (early-bird)"
+      "Price shown at registration: $247 (early-bird)"
     );
+    expect(payload.message).toContain("Best time to call:");
+    expect(payload.message).toContain("Morning");
   });
 
-  it("records the standard price after the Pacific deadline", () => {
+  it("records the standard price after the pending early-registration deadline", () => {
     const payload = buildSeminarFormPayload(
       validValues,
       availableEvents,
-      context("2026-09-03T00:05:00-07:00")
+      context("2027-01-01T00:05:00-07:00")
     );
 
     expect(payload.quoted_price).toBe("$397");
@@ -167,10 +182,35 @@ describe("campaign selection and stale registrations", () => {
     expect(refreshed.selectedEvent?.city).toBe("Anaheim");
     expect(refreshed.openEvents.some((event) => event.value === validValues.selectedEvent)).toBe(false);
   });
-  it("requires a fresh review after an early-bird price changes", () => {
-    const early = new Date("2026-09-02T23:59:00-07:00");
-    const standard = new Date("2026-09-03T00:01:00-07:00");
+  it("requires a fresh review after the displayed early-bird price changes", () => {
+    const early = new Date("2026-12-31T23:59:00-07:00");
+    const standard = new Date("2027-01-01T00:01:00-07:00");
     expect(refreshSeminarRegistration(availableEvents, validValues.selectedEvent, early, standard).change).toBe("price_changed");
     expect(refreshSeminarRegistration(availableEvents, validValues.selectedEvent, standard, standard).change).toBeUndefined();
+  });
+
+  it("does not treat the retired per-event early-bird flip as a displayed price change", () => {
+    const early = new Date("2026-09-02T23:59:00-07:00");
+    const standard = new Date("2026-09-03T00:01:00-07:00");
+    expect(refreshSeminarRegistration(availableEvents, validValues.selectedEvent, early, standard).change).toBeUndefined();
+  });
+});
+
+describe("pending Liz seminar terms", () => {
+  it("keeps Event JSON-LD offers on the approved standard price", () => {
+    for (const event of practiceTransitionSeminarEvents) {
+      expect(getApprovedSeminarOfferPrice(event)).toBe(397);
+      expect(event.standardPrice).toBe(397);
+    }
+  });
+
+  it("uses the 2027 series dates for the one-screen cards", () => {
+    const cards = getSeminarSeriesCardEvents(availableEvents);
+    expect(PENDING_LIZ_TERMS.enabled).toBe(true);
+    expect(cards.map((event) => event.date)).toEqual([
+      "March 12, 2027",
+      "July 30, 2027",
+      "October 15, 2027",
+    ]);
   });
 });

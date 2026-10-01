@@ -66,16 +66,20 @@ describe("event structured data", () => {
     expect(schema.image).toBe("https://practicetransitionsinstitute.com/opengraph.png");
   });
 
-  it("prices the seminar offer from the Pacific early-bird deadline", () => {
+  it("keeps Event JSON-LD at the approved $397 until pending Liz terms are confirmed", () => {
     const beforeDeadline = buildEventSchema(
       buildSeminarStructuredEvent(sacramento2026, new Date("2026-09-02T20:00:00-07:00"))
     );
     const afterDeadline = buildEventSchema(
       buildSeminarStructuredEvent(sacramento2026, new Date("2026-09-03T00:01:00-07:00"))
     );
+    const duringPendingEarlyBird = buildEventSchema(
+      buildSeminarStructuredEvent(sacramento2026, new Date("2026-10-01T12:00:00-07:00"))
+    );
 
-    expect(beforeDeadline.offers).toMatchObject({ price: 297 });
+    expect(beforeDeadline.offers).toMatchObject({ price: 397 });
     expect(afterDeadline.offers).toMatchObject({ price: 397 });
+    expect(duringPendingEarlyBird.offers).toMatchObject({ price: 397 });
   });
 
   it("omits the offer when no price is published", () => {
