@@ -6,9 +6,6 @@ import {
 import type { AuthorProfile } from "@/data/authors";
 import {
   BUSINESS_DESCRIPTION,
-  BUSINESS_GEO,
-  BUSINESS_OPENING_HOURS_SPECIFICATION,
-  BUSINESS_PRICE_RANGE,
   DEFAULT_LOCALE,
   SITE_NAME,
   DEFAULT_OG_IMAGE,
@@ -16,7 +13,6 @@ import {
   SOCIAL_PROFILES,
   buildAbsoluteUrl,
   buildPostalAddress,
-  buildGoogleMapsUrl,
 } from "@/lib/siteMetadata";
 import { PHONE_NUMBER_TEL, PODCAST_INTERVIEW_PATH } from "@/lib/constants";
 import { PODCAST_INTERVIEW } from "@/data/podcastInterview";
@@ -55,12 +51,10 @@ const buildImageObject = (url: string, id?: string): JsonLdShape => ({
 
 /**
  * The business node. Every page types it ProfessionalService so the shared
- * @id never changes type between pages; only the homepage and /contact add
- * hours, coordinates, and the map link.
+ * @id never changes type between pages. The confirmed mailing address does not
+ * establish an office, customer-facing hours, coordinates, or a map location.
  */
-export const buildBusinessSchema = (options?: {
-  includeLocalBusinessFields?: boolean;
-}): JsonLdShape => {
+export const buildBusinessSchema = (): JsonLdShape => {
   const base: JsonLdShape = {
     "@context": "https://schema.org",
     "@id": BUSINESS_ID,
@@ -91,20 +85,6 @@ export const buildBusinessSchema = (options?: {
 
   if (SOCIAL_PROFILES.length) {
     base.sameAs = SOCIAL_PROFILES;
-  }
-
-  if (options?.includeLocalBusinessFields) {
-    const mapUrl = buildGoogleMapsUrl();
-    base.openingHoursSpecification = BUSINESS_OPENING_HOURS_SPECIFICATION;
-    base.priceRange = BUSINESS_PRICE_RANGE;
-    base.geo = {
-      "@type": "GeoCoordinates",
-      latitude: BUSINESS_GEO.latitude,
-      longitude: BUSINESS_GEO.longitude,
-    };
-    if (mapUrl) {
-      base.hasMap = mapUrl;
-    }
   }
 
   return base;

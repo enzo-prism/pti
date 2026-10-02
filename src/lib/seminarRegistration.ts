@@ -3,11 +3,12 @@ import {
   PRACTICE_TRANSITION_SEMINAR_FORM_NAME,
   PRACTICE_TRANSITION_SEMINAR_FORM_QA_FIELD,
   PRACTICE_TRANSITION_SEMINAR_FORM_SITE,
+  getDisplayedSeminarPrice,
   getPracticeTransitionSeminarEvent,
-  getSeminarRegistrationPrice,
-  isSeminarEarlyBirdPriceAvailable,
+  isDisplayedEarlyBird,
   type PracticeTransitionSeminarEvent,
 } from "@/data/practiceTransitionSeminar";
+import { isEventUpcoming } from "@/lib/dateUtils";
 
 export const attendeeOptions = ["1", "2", "3", "4", "5+"] as const;
 export const heardAboutOptions = [
@@ -18,9 +19,15 @@ export const heardAboutOptions = [
   "Postcard",
   "Other",
 ] as const;
+export const bestTimeToCallOptions = [
+  "Morning",
+  "Afternoon",
+  "Evening",
+] as const;
 
 export type AttendeeCount = (typeof attendeeOptions)[number] | "";
 export type HeardAbout = (typeof heardAboutOptions)[number] | "";
+export type BestTimeToCall = (typeof bestTimeToCallOptions)[number] | "";
 
 export interface SeminarFormValues {
   selectedEvent: string;
@@ -33,6 +40,7 @@ export interface SeminarFormValues {
   additionalAttendees: string;
   heardAbout: HeardAbout;
   heardAboutOther: string;
+  bestTimeToCall: BestTimeToCall;
   paymentConsent: boolean;
   smsConsent: boolean;
   gotcha: string;
@@ -41,9 +49,9 @@ export interface SeminarFormValues {
 export type SeminarFormErrors = Partial<Record<keyof SeminarFormValues, string>>;
 
 export const buildDefaultFormValues = (
-  events: PracticeTransitionSeminarEvent[]
+  _events: PracticeTransitionSeminarEvent[]
 ): SeminarFormValues => ({
-  selectedEvent: events[0]?.value ?? "",
+  selectedEvent: "",
   name: "",
   email: "",
   phone: "",
@@ -53,6 +61,7 @@ export const buildDefaultFormValues = (
   additionalAttendees: "",
   heardAbout: "",
   heardAboutOther: "",
+  bestTimeToCall: "",
   paymentConsent: false,
   smsConsent: false,
   gotcha: "",
@@ -64,7 +73,47 @@ export const isMoreThanOneAttendee = (value: AttendeeCount) =>
 const isEmailLike = (value: string) =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 
-const isPhoneLike = (value: string) => value.replace(/\D/g, "").length >= 10;
+const isPhoneLike = (value: string) => {
+  const digits = value.replace(/\D/g, "");
+  return /^[+\d\s().-]+$/.test(value) && digits.length >= 10 && digits.length <= 15;
+};
+
+export const SEMINAR_FIELD_LIMITS = {
+  name: 100, email: 254, phone: 30, practiceName: 200,
+  cityState: 120, additionalAttendees: 500, heardAboutOther: 200,
+} as const;
+
+/** Resolve campaign links only against dates still open in Pacific time. */
+export const resolveSeminarSelection = (
+  events: PracticeTransitionSeminarEvent[],
+  requestedValue: string | null | undefined,
+  referenceDate: Date
+) => {
+  const openEvents = events.filter((event) => isEventUpcoming(event.date, referenceDate));
+  return getPracticeTransitionSeminarEvent(requestedValue ?? "", openEvents) ?? openEvents[0];
+};
+
+/** Compare the visible quote with current eligibility before any POST. */
+export const refreshSeminarRegistration = (
+  events: PracticeTransitionSeminarEvent[],
+  selectedValue: string,
+  displayedAt: Date,
+  now: Date
+) => {
+  const openEvents = events.filter((event) => isEventUpcoming(event.date, now));
+  if (!selectedValue) {
+    return { openEvents, selectedEvent: undefined, change: undefined };
+  }
+  const current = getPracticeTransitionSeminarEvent(selectedValue, openEvents);
+  const previous = getPracticeTransitionSeminarEvent(selectedValue, events);
+  const selectedEvent = current ?? openEvents[0];
+  const change = !current
+    ? "event_unavailable"
+    : previous && getDisplayedSeminarPrice(previous, displayedAt) !== getDisplayedSeminarPrice(current, now)
+      ? "price_changed"
+      : undefined;
+  return { openEvents, selectedEvent, change };
+};
 
 export const formatCurrency = (value: number) => `$${value}`;
 
@@ -80,7 +129,7 @@ export const validateSeminarRegistration = (
   ) {
     errors.selectedEvent = "Choose an available seminar date.";
   }
-  if (!values.name.trim()) {
+  if (values.name.trim().length < 2) {
     errors.name = "Enter your full name.";
   }
   if (!isEmailLike(values.email)) {
@@ -89,27 +138,25 @@ export const validateSeminarRegistration = (
   if (!isPhoneLike(values.phone)) {
     errors.phone = "Enter a valid phone number with an area code.";
   }
-  if (!values.cityState.trim()) {
-    errors.cityState = "Enter your city and state.";
-  }
-  if (!values.attendeeCount) {
+  if (!(attendeeOptions as readonly string[]).includes(values.attendeeCount)) {
     errors.attendeeCount = "Choose the number of attendees.";
   }
-  if (
-    isMoreThanOneAttendee(values.attendeeCount) &&
-    !values.additionalAttendees.trim()
-  ) {
-    errors.additionalAttendees = "Add the names of additional attendees.";
+  if (!(bestTimeToCallOptions as readonly string[]).includes(values.bestTimeToCall)) {
+    errors.bestTimeToCall = "Choose the best time to call.";
   }
-  if (!values.heardAbout) {
-    errors.heardAbout = "Tell us how you heard about PTI.";
+  if (values.heardAbout !== "" && !(heardAboutOptions as readonly string[]).includes(values.heardAbout)) {
+    errors.heardAbout = "Choose a listed source or leave this optional field blank.";
   }
-  if (values.heardAbout === "Other" && !values.heardAboutOther.trim()) {
-    errors.heardAboutOther = "Tell us where you heard about PTI.";
+  for (const [field, limit] of Object.entries(SEMINAR_FIELD_LIMITS)) {
+    const key = field as keyof typeof SEMINAR_FIELD_LIMITS;
+    if (values[key].length > limit) errors[key] = `Use ${limit} characters or fewer.`;
   }
-  if (!values.paymentConsent) {
+  if (values.paymentConsent !== true) {
     errors.paymentConsent =
       "Confirm that PTI may contact you to finalize registration and payment.";
+  }
+  if (typeof values.smsConsent !== "boolean") {
+    errors.smsConsent = "Choose whether to receive registration text messages.";
   }
 
   return errors;
@@ -126,8 +173,8 @@ const quotePrice = (
 ): QuotedPrice | undefined =>
   event
     ? {
-        price: getSeminarRegistrationPrice(event, referenceDate),
-        earlyBird: isSeminarEarlyBirdPriceAvailable(event, referenceDate),
+        price: getDisplayedSeminarPrice(event, referenceDate),
+        earlyBird: isDisplayedEarlyBird(event, referenceDate),
       }
     : undefined;
 
@@ -157,14 +204,17 @@ const buildMessage = (
     values.email.trim(),
     values.phone.trim(),
     values.practiceName.trim() || "Practice name not provided",
-    values.cityState.trim(),
+    values.cityState.trim() || "City and state not provided",
     "",
     "Attendees:",
     values.attendeeCount,
-    values.additionalAttendees.trim() || "No additional attendees listed",
+    (isMoreThanOneAttendee(values.attendeeCount) ? values.additionalAttendees.trim() : "") || "Additional names can be confirmed by phone",
     "",
     "How they heard about PTI:",
-    source,
+    source || "Not provided",
+    "",
+    "Best time to call:",
+    values.bestTimeToCall || "Not provided",
     "",
     "Consent:",
     values.paymentConsent
@@ -175,12 +225,12 @@ const buildMessage = (
       : "Did not opt into registration-related text messages.",
     "",
     "Follow-up:",
-    "Call within one business day to confirm registration and take payment.",
+    "Contact the registrant to finalize registration and take payment by phone.",
   ].join("\n");
 };
 
 export interface SeminarPayloadContext {
-  /** When the registrant saw the price; decides early-bird vs standard. */
+  /** The checked submission instant; the displayed quote must match it. */
   submittedAt: Date;
   environment: string;
   /** Page URL, referrer, and campaign parameters captured in the browser. */
@@ -217,10 +267,12 @@ export const buildSeminarFormPayload = (
     quoted_price: quote ? formatCurrency(quote.price) : "",
     early_bird_applied: quote ? (quote.earlyBird ? "yes" : "no") : "",
     attendee_count: values.attendeeCount,
-    additional_attendee_names: values.additionalAttendees.trim(),
+    additional_attendee_names: isMoreThanOneAttendee(values.attendeeCount) ? values.additionalAttendees.trim() : "",
     heard_about: values.heardAbout,
     heard_about_detail: source,
+    best_time_to_call: values.bestTimeToCall,
     payment_confirmation: values.paymentConsent ? "yes" : "no",
+    payment_consent: values.paymentConsent ? "yes" : "no",
     sms_consent: values.smsConsent ? "yes" : "no",
     subject: `New PTI Seminar Registration - ${selectedEventLabel}`,
     tags: "event-registration,practice-transition-seminar",

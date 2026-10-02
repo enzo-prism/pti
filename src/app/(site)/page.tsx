@@ -1,7 +1,6 @@
 import Home from "@/views/Home";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
-import { BUSINESS_DESCRIPTION } from "@/lib/siteMetadata";
 
 const title = "Dental Practice Transition Consulting & Valuation";
 const description =
@@ -22,7 +21,6 @@ export default function Page() {
           title,
           description,
           path: "/",
-          includeLocalBusinessSchema: true,
         })}
       />
       <Home />

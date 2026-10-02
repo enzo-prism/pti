@@ -1,12 +1,12 @@
 # PTI Implementation Map
 
-This document records the current production architecture after the August 2026 site audit. Read it with the repository `AGENTS.md` before changing routes, events, analytics, long-form content, or service positioning.
+This document records the site architecture, including the October 2026 email-driven updates. Read it with the repository `AGENTS.md` before changing routes, events, analytics, long-form content, or service positioning.
 
 ## Route and service ownership
 
 - PTI owns dental-practice transaction intent: valuation, selling, DSO offer review, acquisition advisory, associate buy-ins, and partnerships.
 - `/services/buying` is the acquisition-advisory route. `/services/associateships` covers associate ownership and buy-ins.
-- Core service routes use `src/components/services/EngagementDetails.tsx` for deliverables, timing, team roles, fees, representation/conflicts, and outside-advisor coordination.
+- Core service routes use `src/components/services/ServiceEngagementDetails.tsx` for deliverables, timing, team roles, fees, representation/conflicts, and outside-advisor coordination.
 - Dr. Njo's personal site owns his full biography, speaking/education authority, and non-transactional Dental Strategies advisory. PTI's `/drnjo` remains a concise team profile.
 
 ## Events and date state
@@ -17,7 +17,7 @@ This document records the current production architecture after the August 2026 
 - Every calendar decision uses Pacific time (`BUSINESS_TIME_ZONE`). Vercel and CI run in UTC and visitors' browsers run anywhere, so "today", early-bird cutoffs, and past/upcoming status are never read from the process or browser zone. The Vitest suite runs in UTC to match production.
 - Event JSON-LD emits wall-clock start/end times with the venue's offset (e.g. `2026-10-02T08:00:00-07:00`), a `Place` with a `PostalAddress`, and an `Offer` only when there is a real price and web URL. Past events stay `EventScheduled`; schema.org has no "completed" status.
 - `/events` builds its listing on the server (`buildEventListing`) and ships only the past-events toggle to the client, so server and browser never disagree about which events are past.
-- The seminar page is a server view. `SeminarRegistration` is the client form: it renders exactly what the server rendered, then re-checks open dates and pricing after hydration, since the page may be cached for up to an hour.
+- The seminar page is a server view. `SeminarRegistration` is the client form: it starts with server values, then rechecks campaign selections, open dates, and pricing after hydration, on focus, and before submission, since the page may be cached for up to an hour. The hero and form show the same selected event.
 - Current-event UI, registration choices, pricing, and Event schema exclude expired dates. Event routes refresh hourly.
 - The completed June 2026 Leadership Retreat is an archive, not an active registration funnel.
 
@@ -69,6 +69,8 @@ Testimonial author names and sr-only table captions are unrelated and stay.
 
 ## Locations and structured data
 
+- Campus Drive is a confirmed mailing address, not a verified customer-facing office. The shared ProfessionalService schema retains a labeled PostalAddress and contact information, without office geo, maps, hours, or price range.
+
 - State content lives in `src/data/locations.ts` and must remain materially distinct and sourced.
 - California, Texas, and Florida are service-area pages, not verified office locations. Do not emit `LocalBusiness` office schema for them.
 - Register new public routes in `src/lib/routeBreadcrumbs.ts`, `src/app/sitemap.ts`, `public/llms.txt`, and the sitemap test.
@@ -78,7 +80,7 @@ Testimonial author names and sr-only table captions are unrelated and stay.
 
 - The single `(site)` layout mounts `SkipToContent`, `Navbar`, and `Footer` for every route, `/drnjo` included. `/drnjo` must not regress to a one-off slim header.
 - The sticky header is `z-[80]`; the cookie banner is `z-[70]`. An open mobile drawer therefore covers the banner instead of leaving Book/Call trapped underneath it.
-- Desktop primary links wait until `xl` (1280px). Below that, the hamburger is the overflow pattern. Book stays in the header on extra-small screens. The header phone number is visible from `xl`.
+- Desktop primary links wait until `xl` (1280px). Below that, the hamburger is the overflow pattern. Book stays in the header on extra-small screens; the seminar route uses Register and links to its form. The header phone number is visible from `xl`.
 - The desktop Services menu opens on hover and on the 44px chevron, supports keyboard interaction, Escape dismissal, click-outside close, and is unmounted while closed so it is absent from the accessibility tree. Do not clip header overflow — that hides the dropdown.
 - The mobile drawer is `hidden` while closed (not translated off-screen), sized with `--pti-header-height`, Escape-dismissable, and Tab-trapped including the header close control.
 - `ScrollReveal` fails open and respects reduced motion; meaningful content must never depend on an observer firing.

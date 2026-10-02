@@ -1,77 +1,51 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import {
-  AlertCircle,
-  Calendar,
-  CheckCircle2,
-  Clock,
-  DollarSign,
-  MapPin,
-  ShieldCheck,
-} from "lucide-react";
+import { AlertCircle, CheckCircle2 } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { SectionSubtitle, SectionTitle } from "@/components/ui/section";
-import { Separator } from "@/components/ui/separator";
-import { Textarea } from "@/components/ui/textarea";
 import {
   PRACTICE_TRANSITION_SEMINAR_FORM_ENDPOINT,
   PRACTICE_TRANSITION_SEMINAR_FORM_ID,
   PRACTICE_TRANSITION_SEMINAR_FORM_NAME,
   PRACTICE_TRANSITION_SEMINAR_FORM_PROVIDER,
   getPracticeTransitionSeminarEvent,
-  getSeminarRegistrationPrice,
+  getSeminarCancellationPolicy,
+  getSeminarFormEvents,
   type PracticeTransitionSeminarEvent,
 } from "@/data/practiceTransitionSeminar";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
-import { isEventUpcoming } from "@/lib/dateUtils";
-import {
-  trackContactFormStart,
-  trackContactFormSubmit,
-} from "@/lib/analytics";
+import { trackContactFormStart, trackContactFormSubmit, trackEvent } from "@/lib/analytics";
 import {
   attendeeOptions,
+  bestTimeToCallOptions,
   buildDefaultFormValues,
   buildSeminarFormPayload,
-  formatCurrency,
-  heardAboutOptions,
-  isMoreThanOneAttendee,
+  refreshSeminarRegistration,
+  SEMINAR_FIELD_LIMITS,
   validateSeminarRegistration,
   type AttendeeCount,
-  type HeardAbout,
+  type BestTimeToCall,
   type SeminarFormErrors,
   type SeminarFormValues,
 } from "@/lib/seminarRegistration";
+import { cn } from "@/lib/utils";
 
-const getFieldErrorId = (field: keyof SeminarFormValues) =>
-  `seminar-form-${field}-error`;
+const getFieldId = (field: keyof SeminarFormValues) =>
+  `seminar-${field.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)}`;
+const getFieldErrorId = (field: keyof SeminarFormValues) => `${getFieldId(field)}-error`;
+const selectClass =
+  "flex min-h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+const labelClass = "text-base font-medium";
 
 const buildAttribution = (): Record<string, string> => {
   const params = new URLSearchParams(window.location.search);
   const utmSource = params.get("utm_source") ?? "";
   const utmMedium = params.get("utm_medium") ?? "";
   const utmCampaign = params.get("utm_campaign") ?? "";
-
   return {
     page_url: window.location.href,
     page_path: window.location.pathname,
@@ -87,10 +61,83 @@ const buildAttribution = (): Record<string, string> => {
   };
 };
 
+const FieldError = ({
+  field,
+  errors,
+}: {
+  field: keyof SeminarFormValues;
+  errors: SeminarFormErrors;
+}) =>
+  errors[field] ? (
+    <p id={getFieldErrorId(field)} className="text-sm font-medium text-destructive">
+      {errors[field]}
+    </p>
+  ) : null;
+
+const TextField = ({
+  field,
+  label,
+  value,
+  error,
+  onChange,
+  type = "text",
+  autoComplete,
+  required = false,
+}: {
+  field: keyof typeof SEMINAR_FIELD_LIMITS;
+  label: string;
+  value: string;
+  error?: string;
+  onChange: (value: string) => void;
+  type?: string;
+  autoComplete?: string;
+  required?: boolean;
+}) => (
+  <div className="space-y-2">
+    <Label htmlFor={getFieldId(field)} className={labelClass}>
+      {label}
+    </Label>
+    <Input
+      id={getFieldId(field)}
+      name={field}
+      type={type}
+      autoComplete={autoComplete}
+      inputMode={type === "tel" ? "tel" : type === "email" ? "email" : undefined}
+      required={required}
+      maxLength={SEMINAR_FIELD_LIMITS[field]}
+      value={value}
+      className="text-base md:text-base"
+      onChange={(event) => onChange(event.target.value)}
+      aria-invalid={Boolean(error)}
+      aria-describedby={error ? getFieldErrorId(field) : undefined}
+    />
+    {error && (
+      <p id={getFieldErrorId(field)} className="text-sm font-medium text-destructive">
+        {error}
+      </p>
+    )}
+  </div>
+);
+
+export const SeminarCancellationPolicy = ({
+  className,
+}: {
+  className?: string;
+}) => {
+  const [beforePhone, afterPhone = ""] =
+    getSeminarCancellationPolicy().split(PHONE_NUMBER);
+  return (
+    <p className={cn("text-base leading-relaxed text-muted-foreground", className)}>
+      <span className="font-semibold text-foreground">Cancellation policy: </span>
+      {beforePhone}
+      <span className="whitespace-nowrap">{PHONE_NUMBER}</span>
+      {afterPhone}
+    </p>
+  );
+};
+
 interface SeminarRegistrationProps {
-  /** Seminar dates the server considered open when it rendered the page. */
   events: PracticeTransitionSeminarEvent[];
-  /** When the server rendered the page; pricing starts from this instant. */
   referenceDateIso: string;
 }
 
@@ -98,13 +145,7 @@ export const SeminarRegistration = ({
   events,
   referenceDateIso,
 }: SeminarRegistrationProps) => {
-  // Render exactly what the server rendered, then re-check against the
-  // current Pacific day once hydrated: the page is cached for up to an hour,
-  // so a date can close or an early-bird deadline can pass in between.
   const [availableEvents, setAvailableEvents] = useState(events);
-  const [referenceDate, setReferenceDate] = useState(
-    () => new Date(referenceDateIso)
-  );
   const [values, setValues] = useState<SeminarFormValues>(() =>
     buildDefaultFormValues(events)
   );
@@ -113,34 +154,76 @@ export const SeminarRegistration = ({
     "idle" | "submitting" | "success" | "error"
   >("idle");
   const [submitMessage, setSubmitMessage] = useState("");
+  const [scheduleMessage, setScheduleMessage] = useState("");
   const [isHydrated, setIsHydrated] = useState(false);
   const formStartedRef = useRef(false);
   const submittingRef = useRef(false);
   const statusRef = useRef<HTMLDivElement>(null);
+  const displayedAtRef = useRef(new Date(referenceDateIso));
+  const formEvents = getSeminarFormEvents(availableEvents);
 
-  const selectedEvent = useMemo(
-    () =>
-      getPracticeTransitionSeminarEvent(values.selectedEvent, availableEvents),
-    [availableEvents, values.selectedEvent]
+  const applyRefresh = useCallback(
+    (now: Date, requestedValue?: string | null) => {
+      const refreshed = refreshSeminarRegistration(
+        events,
+        values.selectedEvent,
+        displayedAtRef.current,
+        now
+      );
+      const formEvents = getSeminarFormEvents(refreshed.openEvents);
+      const selection =
+        requestedValue !== undefined
+          ? getPracticeTransitionSeminarEvent(requestedValue ?? "", formEvents)
+          : getPracticeTransitionSeminarEvent(values.selectedEvent, formEvents);
+      displayedAtRef.current = now;
+      setAvailableEvents(refreshed.openEvents);
+      setValues((current) => ({
+        ...current,
+        selectedEvent: selection?.value ?? "",
+      }));
+      if (requestedValue === undefined && values.selectedEvent && refreshed.change) {
+        setScheduleMessage(
+          refreshed.change === "price_changed"
+            ? "The registration price has changed. Please review the updated price before submitting."
+            : "The previous seminar date is no longer open. Please review the current date before submitting."
+        );
+      }
+      return { ...refreshed, formEvents };
+    },
+    [events, values.selectedEvent]
   );
 
   useEffect(() => {
     const now = new Date();
-    setReferenceDate(now);
-    setAvailableEvents((current) => {
-      const open = events.filter((event) => isEventUpcoming(event.date, now));
-      return open.length === current.length ? current : open;
-    });
+    const requestedValue = new URLSearchParams(window.location.search).get("event");
+    const refreshed = refreshSeminarRegistration(events, requestedValue ?? "", now, now);
+    const formEvents = getSeminarFormEvents(refreshed.openEvents);
+    const selected = getPracticeTransitionSeminarEvent(requestedValue ?? "", formEvents);
+    if (requestedValue && !selected) {
+      setScheduleMessage(
+        "The linked seminar date is unavailable. Please review the current date below."
+      );
+    }
+    displayedAtRef.current = now;
+    setAvailableEvents(refreshed.openEvents);
+    setValues((current) => ({ ...current, selectedEvent: selected?.value ?? "" }));
     setIsHydrated(true);
   }, [events]);
 
   useEffect(() => {
-    if (availableEvents.length === 0 || selectedEvent) return;
-    setValues((current) => ({
-      ...current,
-      selectedEvent: availableEvents[0].value,
-    }));
-  }, [availableEvents, selectedEvent]);
+    const refresh = () => {
+      if (!submittingRef.current) applyRefresh(new Date());
+    };
+    const onVisibility = () => {
+      if (document.visibilityState === "visible") refresh();
+    };
+    window.addEventListener("focus", refresh);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      window.removeEventListener("focus", refresh);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, [applyRefresh]);
 
   useEffect(() => {
     if (submitStatus === "success" || (submitStatus === "error" && submitMessage)) {
@@ -154,7 +237,6 @@ export const SeminarRegistration = ({
   ) => {
     setValues((current) => ({ ...current, [field]: value }));
     setErrors((current) => {
-      if (!current[field]) return current;
       const next = { ...current };
       delete next[field];
       return next;
@@ -173,30 +255,50 @@ export const SeminarRegistration = ({
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (submittingRef.current) return;
-
     trackFormStartOnce();
-
-    const nextErrors = validateSeminarRegistration(values, availableEvents);
-    setErrors(nextErrors);
-
-    if (Object.keys(nextErrors).length > 0) {
+    const submittedAt = new Date();
+    const fresh = applyRefresh(submittedAt);
+    if (fresh.change) {
+      if (!values.gotcha) {
+        trackEvent("seminar_form_error", {
+          error_kind: fresh.change,
+          fields: "selectedEvent",
+        });
+      }
       setSubmitStatus("error");
-      setSubmitMessage("Please complete the highlighted fields and try again.");
+      setSubmitMessage(
+        fresh.change === "price_changed"
+          ? "Please review the updated registration price, then submit again."
+          : "That date is no longer available. Review the current seminar selection, then submit again."
+      );
+      return;
+    }
+
+    const nextErrors = validateSeminarRegistration(
+      values,
+      fresh.formEvents
+    );
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) {
+      if (!values.gotcha) {
+        trackEvent("seminar_form_error", {
+          error_kind: "validation",
+          fields: Object.keys(nextErrors).join(","),
+        });
+      }
+      setSubmitStatus("error");
+      setSubmitMessage("Please check the highlighted fields and try again.");
       const firstInvalidField = Object.keys(nextErrors)[0] as keyof SeminarFormValues;
-      const focusId =
-        firstInvalidField === "selectedEvent"
-          ? `seminar-option-${availableEvents[0]?.value ?? "none"}`
-          : `seminar-${firstInvalidField.replace(/[A-Z]/g, (letter) =>
-              `-${letter.toLowerCase()}`
-            )}`;
-      window.requestAnimationFrame(() => document.getElementById(focusId)?.focus());
+      window.requestAnimationFrame(() =>
+        document.getElementById(getFieldId(firstInvalidField))?.focus()
+      );
       return;
     }
 
     submittingRef.current = true;
     setSubmitStatus("submitting");
     setSubmitMessage("");
-
+    setScheduleMessage("");
     try {
       const response = await fetch(PRACTICE_TRANSITION_SEMINAR_FORM_ENDPOINT, {
         method: "POST",
@@ -205,34 +307,38 @@ export const SeminarRegistration = ({
           "Content-Type": "application/json",
         },
         body: JSON.stringify(
-          buildSeminarFormPayload(values, availableEvents, {
-            submittedAt: new Date(),
+          buildSeminarFormPayload(values, fresh.formEvents, {
+            submittedAt,
             environment:
-              process.env.NEXT_PUBLIC_VERCEL_ENV ?? process.env.NODE_ENV ?? "production",
+              process.env.NEXT_PUBLIC_VERCEL_ENV ??
+              process.env.NODE_ENV ??
+              "production",
             attribution: buildAttribution(),
           })
         ),
       });
-
-      if (!response.ok) {
-        throw new Error(`Formspree returned ${response.status}`);
-      }
-
+      if (!response.ok) throw new Error(`Formspree returned ${response.status}`);
       setSubmitStatus("success");
       setSubmitMessage(
-        "Your request is in. A PTI team member will contact you within one business day. Your seat is confirmed after PTI reaches you and completes payment by phone."
+        "Thank you. PTI will call you to complete registration and payment. Your seat is confirmed after payment."
       );
-      setValues(buildDefaultFormValues(availableEvents));
+      setValues({
+        ...buildDefaultFormValues(fresh.formEvents),
+        selectedEvent: values.selectedEvent,
+      });
       setErrors({});
-      trackContactFormSubmit(
-        "event_registration",
-        PRACTICE_TRANSITION_SEMINAR_FORM_ID,
-        PRACTICE_TRANSITION_SEMINAR_FORM_PROVIDER
-      );
+      if (!values.gotcha) {
+        trackContactFormSubmit(
+          "event_registration",
+          PRACTICE_TRANSITION_SEMINAR_FORM_ID,
+          PRACTICE_TRANSITION_SEMINAR_FORM_PROVIDER
+        );
+      }
     } catch {
+      if (!values.gotcha) trackEvent("seminar_form_error", { error_kind: "submission" });
       setSubmitStatus("error");
       setSubmitMessage(
-        `We could not send the form just now. Please try again, or call ${PHONE_NUMBER} so we can help reserve your seat.`
+        `We could not send the form. Please try again, or call ${PHONE_NUMBER} for help registering.`
       );
     } finally {
       submittingRef.current = false;
@@ -240,411 +346,226 @@ export const SeminarRegistration = ({
   };
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,0.66fr)_minmax(320px,0.34fr)] lg:items-start">
-      <div>
-        <div className="mb-6">
-          <SectionTitle>
-            {availableEvents.length > 0
-              ? "Request Your Seat"
-              : "Join the Next Seminar"}
-          </SectionTitle>
-          <SectionSubtitle className="mb-0">
-            {availableEvents.length > 0
-              ? "Submit a seat request below. PTI will call within one business day to answer questions, take payment, and confirm your registration. A form submission alone does not reserve a seat."
-              : "There are no seminar dates open for registration right now. Contact PTI and we will let you know when the next date is announced."}
-          </SectionSubtitle>
-        </div>
+    <div className="rounded-xl border border-border bg-card p-5 shadow-md md:p-6">
+      <h2 className="text-2xl font-bold text-foreground">
+        {formEvents.length > 0
+          ? "Request your registration call"
+          : "Join the Next Seminar"}
+      </h2>
+      <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+        {formEvents.length > 0
+          ? "Registration is completed by phone. Tell us a little about you and we will call you at a time that works."
+          : "There are no seminar dates open right now. Contact PTI to ask about future dates."}
+      </p>
 
-        <Card className="border-border">
-          <CardContent className="p-5 md:p-6">
-            {submitStatus === "success" && (
-              <Alert
-                ref={statusRef}
-                tabIndex={-1}
-                className="mb-6 border-green-200 bg-green-50 text-green-900 focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                <CheckCircle2 className="h-4 w-4 text-green-700" />
-                <AlertTitle>Registration request received</AlertTitle>
-                <AlertDescription>{submitMessage}</AlertDescription>
-              </Alert>
-            )}
+      {scheduleMessage && (
+        <p role="status" className="mt-4 rounded-lg border border-primary/20 bg-primary/5 p-4 text-base">
+          {scheduleMessage}
+        </p>
+      )}
 
-            {submitStatus === "error" && submitMessage && (
-              <Alert
-                ref={statusRef}
-                tabIndex={-1}
-                variant="destructive"
-                className="mb-6 focus:outline-none focus:ring-2 focus:ring-destructive"
-              >
-                <AlertCircle className="h-4 w-4" />
-                <AlertTitle>Check the form</AlertTitle>
-                <AlertDescription>{submitMessage}</AlertDescription>
-              </Alert>
-            )}
+      {(submitStatus === "success" ||
+        (submitStatus === "error" && submitMessage)) && (
+        <Alert
+          ref={statusRef}
+          tabIndex={-1}
+          variant={submitStatus === "error" ? "destructive" : "default"}
+          role={submitStatus === "error" ? "alert" : "status"}
+          className="mt-4 focus:outline-none focus:ring-2 focus:ring-primary"
+        >
+          {submitStatus === "success" ? (
+            <CheckCircle2 className="h-4 w-4" />
+          ) : (
+            <AlertCircle className="h-4 w-4" />
+          )}
+          <AlertTitle>
+            {submitStatus === "success"
+              ? "Registration call requested"
+              : "Check your registration"}
+          </AlertTitle>
+          <AlertDescription>{submitMessage}</AlertDescription>
+        </Alert>
+      )}
 
-            {availableEvents.length > 0 ? (
-            <form
-              id="seminar-register-form"
-              onFocusCapture={trackFormStartOnce}
-              onSubmit={handleSubmit}
-              noValidate
-              className="space-y-6"
+      {formEvents.length > 0 ? (
+        <form
+          id="seminar-register-form"
+          onFocusCapture={trackFormStartOnce}
+          onSubmit={handleSubmit}
+          noValidate
+          className="relative mt-6 space-y-4"
+        >
+          <noscript>
+            <p className="rounded-lg border border-destructive/30 p-4 text-base">
+              Enable JavaScript to submit, or call {PHONE_NUMBER} to register.
+            </p>
+          </noscript>
+          <input
+            type="hidden"
+            name="form_name"
+            value={PRACTICE_TRANSITION_SEMINAR_FORM_NAME}
+          />
+          <div
+            aria-hidden="true"
+            className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
+          >
+            <Label htmlFor="seminar-hp-field">Leave this field blank</Label>
+            <Input
+              id="seminar-hp-field"
+              name="_gotcha"
+              tabIndex={-1}
+              autoComplete="off"
+              value={values.gotcha}
+              onChange={(event) => updateValue("gotcha", event.target.value)}
+            />
+          </div>
+
+          <TextField
+            field="name"
+            label="Full name"
+            autoComplete="name"
+            required
+            value={values.name}
+            error={errors.name}
+            onChange={(value) => updateValue("name", value)}
+          />
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <TextField
+              field="phone"
+              label="Phone"
+              type="tel"
+              autoComplete="tel"
+              required
+              value={values.phone}
+              error={errors.phone}
+              onChange={(value) => updateValue("phone", value)}
+            />
+            <TextField
+              field="email"
+              label="Email"
+              type="email"
+              autoComplete="email"
+              required
+              value={values.email}
+              error={errors.email}
+              onChange={(value) => updateValue("email", value)}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="seminar-selected-event" className={labelClass}>
+              Which seminar?
+            </Label>
+            <select
+              id="seminar-selected-event"
+              name="selected_event"
+              required
+              className={selectClass}
+              value={values.selectedEvent}
+              onChange={(event) => {
+                const now = new Date();
+                applyRefresh(now, event.target.value);
+                setScheduleMessage("");
+                setErrors((current) => {
+                  const next = { ...current };
+                  delete next.selectedEvent;
+                  return next;
+                });
+              }}
+              aria-invalid={Boolean(errors.selectedEvent)}
+              aria-describedby={
+                errors.selectedEvent ? getFieldErrorId("selectedEvent") : undefined
+              }
             >
-              <noscript>
-                <p className="rounded-lg border border-destructive/30 bg-destructive/5 p-4 text-sm font-medium text-destructive">
-                  Please enable JavaScript to submit this registration form,
-                  or call {PHONE_NUMBER} so we can reserve your seat.
-                </p>
-              </noscript>
-              <input
-                type="hidden"
-                name="form_name"
-                value={PRACTICE_TRANSITION_SEMINAR_FORM_NAME}
-              />
-              <div
-                aria-hidden="true"
-                className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
+              <option value="">Choose a seminar</option>
+              {formEvents.map((event) => (
+                <option key={event.id} value={event.value}>
+                  {event.label}
+                </option>
+              ))}
+            </select>
+            <FieldError field="selectedEvent" errors={errors} />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="seminar-best-time-to-call" className={labelClass}>
+              Best time to call
+            </Label>
+            <select
+              id="seminar-best-time-to-call"
+              name="best_time_to_call"
+              required
+              className={selectClass}
+              value={values.bestTimeToCall}
+              onChange={(event) =>
+                updateValue("bestTimeToCall", event.target.value as BestTimeToCall)
+              }
+              aria-invalid={Boolean(errors.bestTimeToCall)}
+              aria-describedby={
+                errors.bestTimeToCall
+                  ? getFieldErrorId("bestTimeToCall")
+                  : undefined
+              }
+            >
+              <option value="">Choose a time</option>
+              {bestTimeToCallOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <FieldError field="bestTimeToCall" errors={errors} />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="seminar-attendee-count" className={labelClass}>
+              Attendees
+            </Label>
+            <select
+              id="seminar-attendee-count"
+              name="attendee_count"
+              required
+              className={selectClass}
+              value={values.attendeeCount}
+              onChange={(event) =>
+                updateValue("attendeeCount", event.target.value as AttendeeCount)
+              }
+              aria-invalid={Boolean(errors.attendeeCount)}
+              aria-describedby={
+                errors.attendeeCount
+                  ? getFieldErrorId("attendeeCount")
+                  : undefined
+              }
+            >
+              {attendeeOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <FieldError field="attendeeCount" errors={errors} />
+          </div>
+
+          <div className="space-y-3">
+            <div>
+              <label
+                htmlFor="seminar-payment-consent"
+                className="flex min-h-11 cursor-pointer items-start gap-3"
               >
-                <Label htmlFor="seminar-hp-field">
-                  Leave this field blank
-                </Label>
-                <Input
-                  id="seminar-hp-field"
-                  name="_gotcha"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  value={values.gotcha}
-                  onChange={(event) =>
-                    updateValue("gotcha", event.target.value)
-                  }
-                />
-              </div>
-
-              <div className="space-y-3">
-                <Label className="text-base font-semibold">
-                  Which seminar would you like to attend?
-                </Label>
-                <RadioGroup
-                  value={values.selectedEvent}
-                  onValueChange={(value) =>
-                    updateValue("selectedEvent", value)
-                  }
-                  className="grid gap-3 md:grid-cols-2"
-                  aria-invalid={Boolean(errors.selectedEvent)}
-                  aria-describedby={
-                    errors.selectedEvent
-                      ? getFieldErrorId("selectedEvent")
-                      : undefined
-                  }
-                >
-                  {availableEvents.map((event) => (
-                    <Label
-                      key={event.value}
-                      htmlFor={`seminar-option-${event.value}`}
-                      className="flex cursor-pointer items-start gap-3 rounded-lg border border-border bg-background p-4 transition-colors hover:border-primary/50 has-[[data-state=checked]]:border-primary has-[[data-state=checked]]:bg-primary/5"
-                    >
-                      <RadioGroupItem
-                        id={`seminar-option-${event.value}`}
-                        value={event.value}
-                        className="mt-1"
-                      />
-                      <span>
-                        <span className="block font-semibold text-foreground">
-                          {event.label}
-                        </span>
-                        <span className="mt-1 block text-sm text-muted-foreground">
-                          {event.venueName}, {event.addressLines.join(", ")}
-                        </span>
-                      </span>
-                    </Label>
-                  ))}
-                </RadioGroup>
-                {errors.selectedEvent && (
-                  <p
-                    id={getFieldErrorId("selectedEvent")}
-                    className="text-sm font-medium text-destructive"
-                  >
-                    {errors.selectedEvent}
-                  </p>
-                )}
-              </div>
-
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="space-y-2">
-                  <Label htmlFor="seminar-name">Full Name</Label>
-                  <Input
-                    id="seminar-name"
-                    name="name"
-                    autoComplete="name"
-                    required
-                    value={values.name}
-                    onChange={(event) =>
-                      updateValue("name", event.target.value)
-                    }
-                    aria-invalid={Boolean(errors.name)}
-                    aria-describedby={
-                      errors.name ? getFieldErrorId("name") : undefined
-                    }
-                  />
-                  {errors.name && (
-                    <p
-                      id={getFieldErrorId("name")}
-                      className="text-sm font-medium text-destructive"
-                    >
-                      {errors.name}
-                    </p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="seminar-email">Email</Label>
-                  <Input
-                    id="seminar-email"
-                    name="email"
-                    type="email"
-                    inputMode="email"
-                    autoComplete="email"
-                    required
-                    value={values.email}
-                    onChange={(event) =>
-                      updateValue("email", event.target.value)
-                    }
-                    aria-invalid={Boolean(errors.email)}
-                    aria-describedby={
-                      errors.email ? getFieldErrorId("email") : undefined
-                    }
-                  />
-                  {errors.email && (
-                    <p
-                      id={getFieldErrorId("email")}
-                      className="text-sm font-medium text-destructive"
-                    >
-                      {errors.email}
-                    </p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="seminar-phone">Mobile Phone</Label>
-                  <Input
-                    id="seminar-phone"
-                    name="phone"
-                    type="tel"
-                    inputMode="tel"
-                    autoComplete="tel"
-                    required
-                    value={values.phone}
-                    onChange={(event) =>
-                      updateValue("phone", event.target.value)
-                    }
-                    aria-invalid={Boolean(errors.phone)}
-                    aria-describedby={
-                      errors.phone ? getFieldErrorId("phone") : undefined
-                    }
-                  />
-                  {errors.phone && (
-                    <p
-                      id={getFieldErrorId("phone")}
-                      className="text-sm font-medium text-destructive"
-                    >
-                      {errors.phone}
-                    </p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="seminar-practice-name">
-                    Practice Name
-                  </Label>
-                  <Input
-                    id="seminar-practice-name"
-                    name="practice_name"
-                    value={values.practiceName}
-                    onChange={(event) =>
-                      updateValue("practiceName", event.target.value)
-                    }
-                  />
-                </div>
-
-                <div className="space-y-2 md:col-span-2">
-                  <Label htmlFor="seminar-city-state">City, State</Label>
-                  <Input
-                    id="seminar-city-state"
-                    name="city_state"
-                    autoComplete="address-level2"
-                    required
-                    value={values.cityState}
-                    onChange={(event) =>
-                      updateValue("cityState", event.target.value)
-                    }
-                    aria-invalid={Boolean(errors.cityState)}
-                    aria-describedby={
-                      errors.cityState
-                        ? getFieldErrorId("cityState")
-                        : undefined
-                    }
-                  />
-                  {errors.cityState && (
-                    <p
-                      id={getFieldErrorId("cityState")}
-                      className="text-sm font-medium text-destructive"
-                    >
-                      {errors.cityState}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              <Separator />
-
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="space-y-2">
-                  <Label htmlFor="seminar-attendee-count">
-                    Number of Attendees
-                  </Label>
-                  <Select
-                    value={values.attendeeCount}
-                    onValueChange={(value) =>
-                      updateValue("attendeeCount", value as AttendeeCount)
-                    }
-                  >
-                    <SelectTrigger
-                      id="seminar-attendee-count"
-                      aria-invalid={Boolean(errors.attendeeCount)}
-                      aria-describedby={
-                        errors.attendeeCount
-                          ? getFieldErrorId("attendeeCount")
-                          : undefined
-                      }
-                    >
-                      <SelectValue placeholder="Choose attendee count" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {attendeeOptions.map((option) => (
-                        <SelectItem key={option} value={option}>
-                          {option}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {errors.attendeeCount && (
-                    <p
-                      id={getFieldErrorId("attendeeCount")}
-                      className="text-sm font-medium text-destructive"
-                    >
-                      {errors.attendeeCount}
-                    </p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="seminar-heard-about">
-                    How did you hear about us?
-                  </Label>
-                  <Select
-                    value={values.heardAbout}
-                    onValueChange={(value) =>
-                      updateValue("heardAbout", value as HeardAbout)
-                    }
-                  >
-                    <SelectTrigger
-                      id="seminar-heard-about"
-                      aria-invalid={Boolean(errors.heardAbout)}
-                      aria-describedby={
-                        errors.heardAbout
-                          ? getFieldErrorId("heardAbout")
-                          : undefined
-                      }
-                    >
-                      <SelectValue placeholder="Choose source" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {heardAboutOptions.map((option) => (
-                        <SelectItem key={option} value={option}>
-                          {option}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {errors.heardAbout && (
-                    <p
-                      id={getFieldErrorId("heardAbout")}
-                      className="text-sm font-medium text-destructive"
-                    >
-                      {errors.heardAbout}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              {isMoreThanOneAttendee(values.attendeeCount) && (
-                <div className="space-y-2">
-                  <Label htmlFor="seminar-additional-attendees">
-                    Names of Additional Attendees
-                  </Label>
-                  <Textarea
-                    id="seminar-additional-attendees"
-                    name="additional_attendee_names"
-                    value={values.additionalAttendees}
-                    onChange={(event) =>
-                      updateValue("additionalAttendees", event.target.value)
-                    }
-                    aria-invalid={Boolean(errors.additionalAttendees)}
-                    aria-describedby={
-                      errors.additionalAttendees
-                        ? getFieldErrorId("additionalAttendees")
-                        : undefined
-                    }
-                  />
-                  {errors.additionalAttendees && (
-                    <p
-                      id={getFieldErrorId("additionalAttendees")}
-                      className="text-sm font-medium text-destructive"
-                    >
-                      {errors.additionalAttendees}
-                    </p>
-                  )}
-                </div>
-              )}
-
-              {values.heardAbout === "Other" && (
-                <div className="space-y-2">
-                  <Label htmlFor="seminar-heard-about-other">
-                    If Other, please specify
-                  </Label>
-                  <Input
-                    id="seminar-heard-about-other"
-                    name="heard_about_other"
-                    value={values.heardAboutOther}
-                    onChange={(event) =>
-                      updateValue("heardAboutOther", event.target.value)
-                    }
-                    aria-invalid={Boolean(errors.heardAboutOther)}
-                    aria-describedby={
-                      errors.heardAboutOther
-                        ? getFieldErrorId("heardAboutOther")
-                        : undefined
-                    }
-                  />
-                  {errors.heardAboutOther && (
-                    <p
-                      id={getFieldErrorId("heardAboutOther")}
-                      className="text-sm font-medium text-destructive"
-                    >
-                      {errors.heardAboutOther}
-                    </p>
-                  )}
-                </div>
-              )}
-
-              <div className="space-y-4">
-                <div className="flex items-start gap-3 rounded-lg border border-border bg-background p-4">
-                  <Checkbox
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center">
+                  <input
                     id="seminar-payment-consent"
+                    type="checkbox"
+                    name="payment_consent"
+                    value="yes"
+                    required
+                    aria-required="true"
                     checked={values.paymentConsent}
-                    onCheckedChange={(checked) =>
-                      updateValue("paymentConsent", checked === true)
+                    onChange={(event) =>
+                      updateValue("paymentConsent", event.target.checked)
                     }
+                    className="h-5 w-5 rounded-sm border border-primary accent-primary"
                     aria-invalid={Boolean(errors.paymentConsent)}
                     aria-describedby={
                       errors.paymentConsent
@@ -652,183 +573,83 @@ export const SeminarRegistration = ({
                         : undefined
                     }
                   />
-                  <div className="space-y-1">
-                    <Label
-                      htmlFor="seminar-payment-consent"
-                      className="leading-relaxed"
-                    >
-                      I understand PTI will contact me to confirm my
-                      registration and take payment by phone. My seat is not
-                      confirmed until payment is completed.
-                    </Label>
-                    {errors.paymentConsent && (
-                      <p
-                        id={getFieldErrorId("paymentConsent")}
-                        className="text-sm font-medium text-destructive"
-                      >
-                        {errors.paymentConsent}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3 rounded-lg border border-border bg-background p-4">
-                  <Checkbox
-                    id="seminar-sms-consent"
-                    checked={values.smsConsent}
-                    onCheckedChange={(checked) =>
-                      updateValue("smsConsent", checked === true)
-                    }
-                  />
-                  <Label
-                    htmlFor="seminar-sms-consent"
-                    className="text-sm leading-relaxed text-muted-foreground"
-                  >
-                    I agree to receive text messages from Practice
-                    Transitions Institute related to my registration.
-                    Message and data rates may apply. Reply STOP at any time
-                    to opt out. This optional consent is not a condition of
-                    registration.
-                  </Label>
-                </div>
-                <p className="text-xs leading-relaxed text-muted-foreground">
-                  PTI uses your information to process this request and
-                  follow up about the selected event. Review our{" "}
-                  <Link
-                    href="/privacy-policy"
-                    className="font-medium text-primary underline underline-offset-4"
-                  >
-                    privacy policy
-                  </Link>
-                  . Do not enter payment-card information in this form.
-                </p>
-              </div>
-
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full sm:w-auto"
-                disabled={!isHydrated || submitStatus === "submitting"}
-              >
-                {submitStatus === "submitting"
-                  ? "Submitting..."
-                  : "Request My Seat"}
-              </Button>
-            </form>
-            ) : (
-              <div className="space-y-4 text-center">
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  Call or email PTI to ask about future dates or private
-                  transition education for your group.
-                </p>
-                <div className="flex flex-col justify-center gap-3 sm:flex-row">
-                  <Button asChild>
-                    <a href={`tel:${PHONE_NUMBER_TEL}`}>Call {PHONE_NUMBER}</a>
-                  </Button>
-                  <Button asChild variant="outline">
-                    <Link href="/contact">Contact PTI</Link>
-                  </Button>
-                </div>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
-
-      <aside className="space-y-5">
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-xl">
-              <DollarSign className="h-5 w-5 text-primary" />
-              Registration and Pricing
-            </CardTitle>
-            <CardDescription>
-              The first participant&apos;s price is based on the selected
-              seminar&apos;s early-bird deadline.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid gap-3 text-sm">
-              {selectedEvent ? (
-                <>
-                  <div className="flex items-center justify-between rounded-lg bg-primary/5 p-3">
-                    <span className="font-medium">Current Price</span>
-                    <span className="font-semibold text-primary">
-                      {formatCurrency(
-                        getSeminarRegistrationPrice(
-                          selectedEvent,
-                          referenceDate
-                        )
-                      )}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between rounded-lg bg-background p-3">
-                    <span className="font-medium">Standard</span>
-                    <span className="font-semibold">
-                      {formatCurrency(selectedEvent.standardPrice)}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between rounded-lg bg-background p-3">
-                    <span className="font-medium">Additional Guests</span>
-                    <span className="font-semibold">
-                      {formatCurrency(selectedEvent.guestPrice)} each
-                    </span>
-                  </div>
-                </>
-              ) : (
-                <p className="rounded-lg bg-background p-3 text-muted-foreground">
-                  Pricing will be published with the next seminar date.
-                </p>
-              )}
-            </div>
-            <Separator />
-            <div className="space-y-3 text-sm text-muted-foreground">
-              {availableEvents.map((event) => (
-                <div key={event.id} className="flex items-start gap-2">
-                  <Calendar className="mt-0.5 h-4 w-4 text-primary" />
-                  <p>
-                    <span className="font-medium text-foreground">
-                      {event.city} early-bird deadline:
-                    </span>{" "}
-                    {event.earlyBirdDeadline}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Alert className="border-primary/20 bg-primary/5">
-          <ShieldCheck className="h-4 w-4 text-primary" />
-          <AlertTitle>No credit card fields</AlertTitle>
-          <AlertDescription>
-            Payment is handled by phone after registration. Please do not
-            submit credit card information through this form.
-          </AlertDescription>
-        </Alert>
-
-        {selectedEvent && (
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-xl">Selected Seminar</CardTitle>
-              <CardDescription>{selectedEvent.label}</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3 text-sm text-muted-foreground">
-              <div className="flex gap-2">
-                <Clock className="mt-0.5 h-4 w-4 text-primary" />
-                <span>{selectedEvent.time}</span>
-              </div>
-              <div className="flex gap-2">
-                <MapPin className="mt-0.5 h-4 w-4 text-primary" />
-                <span>
-                  {selectedEvent.venueName},{" "}
-                  {selectedEvent.addressLines.join(", ")}
                 </span>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-      </aside>
+                <span className="text-base leading-relaxed">
+                  PTI may contact me to finalize registration and payment by
+                  phone. I understand my seat is confirmed after payment.{" "}
+                  <span className="font-semibold text-foreground">Required</span>
+                </span>
+              </label>
+              <FieldError field="paymentConsent" errors={errors} />
+            </div>
+            <label
+              htmlFor="seminar-sms-consent"
+              className="flex min-h-11 cursor-pointer items-start gap-3"
+            >
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center">
+                <input
+                  id="seminar-sms-consent"
+                  type="checkbox"
+                  name="sms_consent"
+                  value="yes"
+                  checked={values.smsConsent}
+                  onChange={(event) =>
+                    updateValue("smsConsent", event.target.checked)
+                  }
+                  className="h-5 w-5 rounded-sm border border-primary accent-primary"
+                />
+              </span>
+              <span className="text-base leading-relaxed text-muted-foreground">
+                Send me registration-related texts (optional). Message and data
+                rates may apply. Reply STOP to opt out. Consent is not required
+                to register.
+              </span>
+            </label>
+          </div>
+
+          <p className="text-base leading-relaxed text-muted-foreground">
+            We use these details to process your registration and follow up about
+            this event. Read our{" "}
+            <Link
+              href="/privacy-policy"
+              className="font-medium text-primary underline underline-offset-4"
+            >
+              privacy policy
+            </Link>
+            . Do not enter payment-card information.
+          </p>
+
+          <Button
+            type="submit"
+            size="lg"
+            className="w-full text-base"
+            disabled={!isHydrated || submitStatus === "submitting"}
+          >
+            {submitStatus === "submitting" ? "Submitting..." : "Call me to register"}
+          </Button>
+
+          <p className="text-base leading-relaxed">
+            Prefer to register now?{" "}
+            <a
+              href={`tel:${PHONE_NUMBER_TEL}`}
+              className="whitespace-nowrap font-semibold text-primary underline underline-offset-4"
+            >
+              Call {PHONE_NUMBER}
+            </a>
+          </p>
+
+          <SeminarCancellationPolicy />
+        </form>
+      ) : (
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <Button asChild>
+            <a href={`tel:${PHONE_NUMBER_TEL}`}>Call {PHONE_NUMBER}</a>
+          </Button>
+          <Button asChild variant="outline">
+            <Link href="/contact">Contact PTI</Link>
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

@@ -195,8 +195,6 @@ interface PageJsonLdInput {
   image?: string;
   breadcrumbs?: BreadcrumbNode[] | null;
   structuredData?: JsonLdShape | JsonLdShape[] | null;
-  /** Adds hours, coordinates, and the map link to the business node. */
-  includeLocalBusinessSchema?: boolean;
   /** schema.org type of the page node (defaults to WebPage). */
   pageType?: WebPageType;
   /** Extra properties merged into the page node. */
@@ -210,7 +208,6 @@ export const buildPageJsonLd = ({
   image,
   breadcrumbs,
   structuredData,
-  includeLocalBusinessSchema = false,
   pageType,
   pageProperties,
 }: PageJsonLdInput): JsonLdShape => {
@@ -225,9 +222,7 @@ export const buildPageJsonLd = ({
     : null;
 
   const baseSchemas: JsonLdShape[] = [
-    buildBusinessSchema({
-      includeLocalBusinessFields: includeLocalBusinessSchema,
-    }),
+    buildBusinessSchema(),
     buildWebSiteSchema(),
     buildWebPageSchema({
       url,
