@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AlertCircle, CheckCircle2 } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -12,7 +13,9 @@ import {
   PRACTICE_TRANSITION_SEMINAR_FORM_ID,
   PRACTICE_TRANSITION_SEMINAR_FORM_NAME,
   PRACTICE_TRANSITION_SEMINAR_FORM_PROVIDER,
+  getPracticeTransitionSeminarEvent,
   getSeminarCancellationPolicy,
+  getSeminarFormEvents,
   type PracticeTransitionSeminarEvent,
 } from "@/data/practiceTransitionSeminar";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
@@ -23,7 +26,6 @@ import {
   buildDefaultFormValues,
   buildSeminarFormPayload,
   refreshSeminarRegistration,
-  resolveSeminarSelection,
   SEMINAR_FIELD_LIMITS,
   validateSeminarRegistration,
   type AttendeeCount,
@@ -153,6 +155,7 @@ export const SeminarRegistration = ({
   const submittingRef = useRef(false);
   const statusRef = useRef<HTMLDivElement>(null);
   const displayedAtRef = useRef(new Date(referenceDateIso));
+  const formEvents = getSeminarFormEvents(availableEvents);
 
   const applyRefresh = useCallback(
     (now: Date, requestedValue?: string | null) => {
@@ -162,24 +165,25 @@ export const SeminarRegistration = ({
         displayedAtRef.current,
         now
       );
+      const formEvents = getSeminarFormEvents(refreshed.openEvents);
       const selection =
         requestedValue !== undefined
-          ? resolveSeminarSelection(events, requestedValue, now)
-          : refreshed.selectedEvent;
+          ? getPracticeTransitionSeminarEvent(requestedValue ?? "", formEvents)
+          : getPracticeTransitionSeminarEvent(values.selectedEvent, formEvents);
       displayedAtRef.current = now;
       setAvailableEvents(refreshed.openEvents);
       setValues((current) => ({
         ...current,
         selectedEvent: selection?.value ?? "",
       }));
-      if (requestedValue === undefined && refreshed.change) {
+      if (requestedValue === undefined && values.selectedEvent && refreshed.change) {
         setScheduleMessage(
           refreshed.change === "price_changed"
             ? "The registration price has changed. Please review the updated price before submitting."
             : "The previous seminar date is no longer open. Please review the current date before submitting."
         );
       }
-      return refreshed;
+      return { ...refreshed, formEvents };
     },
     [events, values.selectedEvent]
   );
@@ -187,18 +191,14 @@ export const SeminarRegistration = ({
   useEffect(() => {
     const now = new Date();
     const requestedValue = new URLSearchParams(window.location.search).get("event");
-    const selected = resolveSeminarSelection(events, requestedValue, now);
-    if (requestedValue && selected?.value !== requestedValue) {
+    const refreshed = refreshSeminarRegistration(events, requestedValue ?? "", now, now);
+    const formEvents = getSeminarFormEvents(refreshed.openEvents);
+    const selected = getPracticeTransitionSeminarEvent(requestedValue ?? "", formEvents);
+    if (requestedValue && !selected) {
       setScheduleMessage(
         "The linked seminar date is unavailable. Please review the current date below."
       );
     }
-    const refreshed = refreshSeminarRegistration(
-      events,
-      selected?.value ?? "",
-      now,
-      now
-    );
     displayedAtRef.current = now;
     setAvailableEvents(refreshed.openEvents);
     setValues((current) => ({ ...current, selectedEvent: selected?.value ?? "" }));
@@ -269,13 +269,9 @@ export const SeminarRegistration = ({
       return;
     }
 
-    const submissionValues: SeminarFormValues = {
-      ...values,
-      paymentConsent: true,
-    };
     const nextErrors = validateSeminarRegistration(
-      submissionValues,
-      fresh.openEvents
+      values,
+      fresh.formEvents
     );
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
@@ -306,7 +302,7 @@ export const SeminarRegistration = ({
           "Content-Type": "application/json",
         },
         body: JSON.stringify(
-          buildSeminarFormPayload(submissionValues, fresh.openEvents, {
+          buildSeminarFormPayload(values, fresh.formEvents, {
             submittedAt,
             environment:
               process.env.NEXT_PUBLIC_VERCEL_ENV ??
@@ -322,7 +318,7 @@ export const SeminarRegistration = ({
         "Thank you. PTI will call you to complete registration and payment. Your seat is confirmed after payment."
       );
       setValues({
-        ...buildDefaultFormValues(fresh.openEvents),
+        ...buildDefaultFormValues(fresh.formEvents),
         selectedEvent: values.selectedEvent,
       });
       setErrors({});
@@ -347,12 +343,12 @@ export const SeminarRegistration = ({
   return (
     <div className="rounded-xl border border-border bg-card p-5 shadow-md md:p-6">
       <h2 className="text-2xl font-bold text-foreground">
-        {availableEvents.length > 0
+        {formEvents.length > 0
           ? "Request your registration call"
           : "Join the Next Seminar"}
       </h2>
       <p className="mt-2 text-base leading-relaxed text-muted-foreground">
-        {availableEvents.length > 0
+        {formEvents.length > 0
           ? "Registration is completed by phone. Tell us a little about you and we will call you at a time that works."
           : "There are no seminar dates open right now. Contact PTI to ask about future dates."}
       </p>
@@ -386,7 +382,7 @@ export const SeminarRegistration = ({
         </Alert>
       )}
 
-      {availableEvents.length > 0 ? (
+      {formEvents.length > 0 ? (
         <form
           id="seminar-register-form"
           onFocusCapture={trackFormStartOnce}
@@ -464,12 +460,7 @@ export const SeminarRegistration = ({
               value={values.selectedEvent}
               onChange={(event) => {
                 const now = new Date();
-                const selection = resolveSeminarSelection(
-                  events,
-                  event.target.value,
-                  now
-                );
-                applyRefresh(now, selection?.value ?? "");
+                applyRefresh(now, event.target.value);
                 setScheduleMessage("");
                 setErrors((current) => {
                   const next = { ...current };
@@ -482,7 +473,8 @@ export const SeminarRegistration = ({
                 errors.selectedEvent ? getFieldErrorId("selectedEvent") : undefined
               }
             >
-              {availableEvents.map((event) => (
+              <option value="">Choose a seminar</option>
+              {formEvents.map((event) => (
                 <option key={event.id} value={event.value}>
                   {event.label}
                 </option>
@@ -550,6 +542,54 @@ export const SeminarRegistration = ({
             <FieldError field="attendeeCount" errors={errors} />
           </div>
 
+          <div className="space-y-3">
+            <div className="flex items-start gap-3">
+              <Checkbox
+                className="h-11 w-11"
+                id="seminar-payment-consent"
+                checked={values.paymentConsent}
+                onCheckedChange={(checked) =>
+                  updateValue("paymentConsent", checked === true)
+                }
+                aria-required="true"
+                aria-invalid={Boolean(errors.paymentConsent)}
+                aria-describedby={
+                  errors.paymentConsent
+                    ? getFieldErrorId("paymentConsent")
+                    : undefined
+                }
+              />
+              <div className="space-y-1">
+                <Label
+                  htmlFor="seminar-payment-consent"
+                  className="flex min-h-11 items-center text-base leading-relaxed"
+                >
+                  PTI may contact me to finalize registration and payment by
+                  phone. I understand my seat is confirmed after payment.
+                </Label>
+                <FieldError field="paymentConsent" errors={errors} />
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <Checkbox
+                className="h-11 w-11"
+                id="seminar-sms-consent"
+                checked={values.smsConsent}
+                onCheckedChange={(checked) =>
+                  updateValue("smsConsent", checked === true)
+                }
+              />
+              <Label
+                htmlFor="seminar-sms-consent"
+                className="flex min-h-11 items-center text-base leading-relaxed text-muted-foreground"
+              >
+                Send me registration-related texts (optional). Message and data
+                rates may apply. Reply STOP to opt out. Consent is not required
+                to register.
+              </Label>
+            </div>
+          </div>
+
           <p className="text-base leading-relaxed text-muted-foreground">
             We use these details to process your registration and follow up about
             this event. Read our{" "}
@@ -565,7 +605,7 @@ export const SeminarRegistration = ({
           <Button
             type="submit"
             size="lg"
-            className="w-full"
+            className="w-full text-base"
             disabled={!isHydrated || submitStatus === "submitting"}
           >
             {submitStatus === "submitting" ? "Submitting..." : "Call me to register"}
@@ -575,13 +615,13 @@ export const SeminarRegistration = ({
             Prefer to register now?{" "}
             <a
               href={`tel:${PHONE_NUMBER_TEL}`}
-              className="font-semibold text-primary underline underline-offset-4"
+              className="whitespace-nowrap font-semibold text-primary underline underline-offset-4"
             >
               Call {PHONE_NUMBER}
             </a>
           </p>
 
-          <SeminarCancellationPolicy className="hidden lg:block" />
+          <SeminarCancellationPolicy />
         </form>
       ) : (
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">

@@ -49,9 +49,9 @@ export interface SeminarFormValues {
 export type SeminarFormErrors = Partial<Record<keyof SeminarFormValues, string>>;
 
 export const buildDefaultFormValues = (
-  events: PracticeTransitionSeminarEvent[]
+  _events: PracticeTransitionSeminarEvent[]
 ): SeminarFormValues => ({
-  selectedEvent: events[0]?.value ?? "",
+  selectedEvent: "",
   name: "",
   email: "",
   phone: "",
@@ -101,6 +101,9 @@ export const refreshSeminarRegistration = (
   now: Date
 ) => {
   const openEvents = events.filter((event) => isEventUpcoming(event.date, now));
+  if (!selectedValue) {
+    return { openEvents, selectedEvent: undefined, change: undefined };
+  }
   const current = getPracticeTransitionSeminarEvent(selectedValue, openEvents);
   const previous = getPracticeTransitionSeminarEvent(selectedValue, events);
   const selectedEvent = current ?? openEvents[0];

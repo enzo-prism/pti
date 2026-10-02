@@ -233,6 +233,11 @@ export const getSeminarSeriesCardEvents = (
   return series.length > 0 ? series : events;
 };
 
+/** Form options match the 2027 cards; leftover 2026 dates stay off the select. */
+export const getSeminarFormEvents = (
+  events: PracticeTransitionSeminarEvent[]
+) => getSeminarSeriesCardEvents(events);
+
 export const getSeminarCancellationPolicy = () => {
   const { cancellationMinimumDays, lateCancellationFee } = PENDING_LIZ_TERMS;
   return `Cancel at least ${cancellationMinimumDays} days before your seminar for a full 100% refund. Cancellations made within ${cancellationMinimumDays} days are subject to a $${lateCancellationFee} fee, which covers the cost of reserving your space. If we reschedule a seminar and you are unable to attend the new date, you will receive a 100% refund. To cancel, call ${PHONE_NUMBER} or email ${SITE_CONTACT_EMAIL}.`;

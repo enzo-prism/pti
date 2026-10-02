@@ -1,12 +1,14 @@
 import { describe, expect, it } from "vitest";
 import {
   getApprovedSeminarOfferPrice,
+  getSeminarFormEvents,
   getSeminarSeriesCardEvents,
   PENDING_LIZ_TERMS,
   practiceTransitionSeminarEvents,
   type PracticeTransitionSeminarEvent,
 } from "@/data/practiceTransitionSeminar";
 import {
+  buildDefaultFormValues,
   buildSeminarFormPayload,
   resolveSeminarSelection,
   refreshSeminarRegistration,
@@ -41,6 +43,14 @@ describe("seminar registration validation", () => {
     expect(
       validateSeminarRegistration(validValues, availableEvents)
     ).toEqual({});
+  });
+
+  it("requires an explicit seminar choice and starts with none selected", () => {
+    expect(
+      validateSeminarRegistration({ ...validValues, selectedEvent: "" }, availableEvents)
+        .selectedEvent
+    ).toContain("available seminar date");
+    expect(buildDefaultFormValues(availableEvents).selectedEvent).toBe("");
   });
 
   it("rejects an expired or otherwise unavailable event selection", () => {
@@ -211,6 +221,14 @@ describe("pending Liz seminar terms", () => {
       "March 12, 2027",
       "July 30, 2027",
       "October 15, 2027",
+    ]);
+  });
+
+  it("keeps October 2 2026 out of the registration select", () => {
+    expect(getSeminarFormEvents(availableEvents).map((event) => event.value)).toEqual([
+      "march-12-2027-anaheim",
+      "july-30-2027-san-francisco",
+      "october-15-2027-sacramento",
     ]);
   });
 });

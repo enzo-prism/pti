@@ -1,8 +1,5 @@
 import Link from "next/link";
-import {
-  SeminarCancellationPolicy,
-  SeminarRegistration,
-} from "@/components/events/SeminarRegistration";
+import { SeminarRegistration } from "@/components/events/SeminarRegistration";
 import { SeminarEventPreview } from "@/components/events/SeminarEventPreview";
 import {
   PENDING_LIZ_TERMS,
@@ -131,8 +128,6 @@ const PracticeTransitionSeminar = ({
                 </div>
               ))}
             </section>
-
-            <SeminarCancellationPolicy className="lg:hidden" />
           </div>
         </div>
 
