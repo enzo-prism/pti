@@ -89,6 +89,33 @@ describe("seminar registration validation", () => {
       paymentConsent: expect.any(String),
     });
   });
+
+  it("blocks a submit that omits payment consent and records payment_consent on a valid payload", () => {
+    expect(
+      validateSeminarRegistration(
+        { ...validValues, paymentConsent: false },
+        availableEvents
+      ).paymentConsent
+    ).toBeDefined();
+    expect(
+      buildSeminarFormPayload(validValues, availableEvents, {
+        submittedAt: new Date("2026-10-01T12:00:00-07:00"),
+        environment: "test",
+        attribution: {},
+      }).payment_consent
+    ).toBe("yes");
+    expect(
+      buildSeminarFormPayload(
+        { ...validValues, paymentConsent: false },
+        availableEvents,
+        {
+          submittedAt: new Date("2026-10-01T12:00:00-07:00"),
+          environment: "test",
+          attribution: {},
+        }
+      ).payment_consent
+    ).toBe("no");
+  });
   it("accepts only core fields and consent, even for multiple attendees", () => {
     expect(validateSeminarRegistration({
       ...validValues, practiceName: "", cityState: "", heardAbout: "",
@@ -137,6 +164,8 @@ describe("seminar registration payload", () => {
       quoted_price: "$247",
       early_bird_applied: "yes",
       best_time_to_call: "Morning",
+      payment_consent: "yes",
+      sms_consent: "no",
       submitted_at: "2026-10-01T19:00:00.000Z",
       environment: "test",
       page_path: "/events/practice-transition-seminar",

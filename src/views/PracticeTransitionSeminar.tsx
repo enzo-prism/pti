@@ -31,7 +31,7 @@ const PracticeTransitionSeminar = ({
   return (
     <div className="min-h-screen bg-background">
       <div className="container py-8 md:py-10">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 lg:items-start">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 lg:grid-rows-[auto_1fr] lg:items-start">
           <div className="order-1 space-y-6 lg:col-span-3 lg:row-start-1">
             <header>
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">

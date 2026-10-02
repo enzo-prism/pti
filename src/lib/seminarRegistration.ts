@@ -272,6 +272,7 @@ export const buildSeminarFormPayload = (
     heard_about_detail: source,
     best_time_to_call: values.bestTimeToCall,
     payment_confirmation: values.paymentConsent ? "yes" : "no",
+    payment_consent: values.paymentConsent ? "yes" : "no",
     sms_consent: values.smsConsent ? "yes" : "no",
     subject: `New PTI Seminar Registration - ${selectedEventLabel}`,
     tags: "event-registration,practice-transition-seminar",

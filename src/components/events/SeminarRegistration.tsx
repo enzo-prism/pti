@@ -5,7 +5,6 @@ import Link from "next/link";
 import { AlertCircle, CheckCircle2 } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -124,12 +123,18 @@ export const SeminarCancellationPolicy = ({
   className,
 }: {
   className?: string;
-}) => (
-  <p className={cn("text-base leading-relaxed text-muted-foreground", className)}>
-    <span className="font-semibold text-foreground">Cancellation policy: </span>
-    {getSeminarCancellationPolicy()}
-  </p>
-);
+}) => {
+  const [beforePhone, afterPhone = ""] =
+    getSeminarCancellationPolicy().split(PHONE_NUMBER);
+  return (
+    <p className={cn("text-base leading-relaxed text-muted-foreground", className)}>
+      <span className="font-semibold text-foreground">Cancellation policy: </span>
+      {beforePhone}
+      <span className="whitespace-nowrap">{PHONE_NUMBER}</span>
+      {afterPhone}
+    </p>
+  );
+};
 
 interface SeminarRegistrationProps {
   events: PracticeTransitionSeminarEvent[];
@@ -543,51 +548,63 @@ export const SeminarRegistration = ({
           </div>
 
           <div className="space-y-3">
-            <div className="flex items-start gap-3">
-              <Checkbox
-                className="h-11 w-11"
-                id="seminar-payment-consent"
-                checked={values.paymentConsent}
-                onCheckedChange={(checked) =>
-                  updateValue("paymentConsent", checked === true)
-                }
-                aria-required="true"
-                aria-invalid={Boolean(errors.paymentConsent)}
-                aria-describedby={
-                  errors.paymentConsent
-                    ? getFieldErrorId("paymentConsent")
-                    : undefined
-                }
-              />
-              <div className="space-y-1">
-                <Label
-                  htmlFor="seminar-payment-consent"
-                  className="flex min-h-11 items-center text-base leading-relaxed"
-                >
-                  PTI may contact me to finalize registration and payment by
-                  phone. I understand my seat is confirmed after payment.
-                </Label>
-                <FieldError field="paymentConsent" errors={errors} />
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <Checkbox
-                className="h-11 w-11"
-                id="seminar-sms-consent"
-                checked={values.smsConsent}
-                onCheckedChange={(checked) =>
-                  updateValue("smsConsent", checked === true)
-                }
-              />
-              <Label
-                htmlFor="seminar-sms-consent"
-                className="flex min-h-11 items-center text-base leading-relaxed text-muted-foreground"
+            <div>
+              <label
+                htmlFor="seminar-payment-consent"
+                className="flex min-h-11 cursor-pointer items-start gap-3"
               >
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center">
+                  <input
+                    id="seminar-payment-consent"
+                    type="checkbox"
+                    name="payment_consent"
+                    value="yes"
+                    required
+                    aria-required="true"
+                    checked={values.paymentConsent}
+                    onChange={(event) =>
+                      updateValue("paymentConsent", event.target.checked)
+                    }
+                    className="h-5 w-5 rounded-sm border border-primary accent-primary"
+                    aria-invalid={Boolean(errors.paymentConsent)}
+                    aria-describedby={
+                      errors.paymentConsent
+                        ? getFieldErrorId("paymentConsent")
+                        : undefined
+                    }
+                  />
+                </span>
+                <span className="text-base leading-relaxed">
+                  PTI may contact me to finalize registration and payment by
+                  phone. I understand my seat is confirmed after payment.{" "}
+                  <span className="font-semibold text-foreground">Required</span>
+                </span>
+              </label>
+              <FieldError field="paymentConsent" errors={errors} />
+            </div>
+            <label
+              htmlFor="seminar-sms-consent"
+              className="flex min-h-11 cursor-pointer items-start gap-3"
+            >
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center">
+                <input
+                  id="seminar-sms-consent"
+                  type="checkbox"
+                  name="sms_consent"
+                  value="yes"
+                  checked={values.smsConsent}
+                  onChange={(event) =>
+                    updateValue("smsConsent", event.target.checked)
+                  }
+                  className="h-5 w-5 rounded-sm border border-primary accent-primary"
+                />
+              </span>
+              <span className="text-base leading-relaxed text-muted-foreground">
                 Send me registration-related texts (optional). Message and data
                 rates may apply. Reply STOP to opt out. Consent is not required
                 to register.
-              </Label>
-            </div>
+              </span>
+            </label>
           </div>
 
           <p className="text-base leading-relaxed text-muted-foreground">

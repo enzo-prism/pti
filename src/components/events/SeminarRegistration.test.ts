@@ -39,16 +39,25 @@ describe("seminar registration rendered content", () => {
     ]) {
       expect(html.match(new RegExp(`<[^>]+id="${id}"[^>]*>`))?.[0]).toContain('required=""');
     }
-    expect(html.match(/<[^>]+id="seminar-payment-consent"[^>]*>/)?.[0]).toContain(
-      'aria-required="true"'
-    );
-    expect(html.match(/<[^>]+id="seminar-sms-consent"[^>]*>/)?.[0]).not.toContain(
-      'aria-required="true"'
-    );
+    const paymentBox = html.match(/<[^>]+id="seminar-payment-consent"[^>]*>/)?.[0];
+    const smsBox = html.match(/<[^>]+id="seminar-sms-consent"[^>]*>/)?.[0];
+    expect(paymentBox).toContain('aria-required="true"');
+    expect(paymentBox).toContain('required=""');
+    expect(paymentBox).toContain('name="payment_consent"');
+    expect(paymentBox).toContain('value="yes"');
+    expect(smsBox).toContain('name="sms_consent"');
+    expect(smsBox).toContain('value="yes"');
+    expect(smsBox).not.toContain('required=""');
+    expect(smsBox).not.toContain('aria-required="true"');
+    expect(html).toContain("Required");
+    expect(html).toContain("cursor-pointer");
     expect(html).toContain(
       "PTI may contact me to finalize registration and payment by phone"
     );
     expect(html).toContain("Send me registration-related texts (optional)");
+    expect(html).toContain(
+      '<span class="whitespace-nowrap">(833) 784-1121</span>'
+    );
     expect(html).not.toContain("seminar-practice-name");
     expect(html).not.toContain("seminar-city-state");
     expect(html).not.toContain("seminar-heard-about");
@@ -105,6 +114,7 @@ describe("seminar page one-screen layout", () => {
     expect(back).toBeGreaterThan(bio);
     expect((html.match(/Cancellation policy/g) ?? []).length).toBe(1);
     expect((html.match(/<h1\b/g) ?? []).length).toBe(1);
+    expect(html).toContain("lg:grid-rows-[auto_1fr]");
   });
 
   it("shows the 2027 series cards from data and pending Liz terms", () => {
