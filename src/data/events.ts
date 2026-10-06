@@ -20,6 +20,9 @@ const ROSEVILLE_AVAILABILITY_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${en
 const BEYOND_THE_CHAIR_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
   "Beyond the Chair Anaheim September 25"
 )}`;
+const GARGLE_SUMMIT_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
+  "Growth Summit Interest List"
+)}`;
 const CALL_TO_REGISTER = `tel:${PHONE_NUMBER_TEL}`;
 
 // Event data with type definitions
@@ -233,6 +236,31 @@ export const rawEvents: RawEvent[] = [
     type: "conference",
     registrationLink: "https://www.dentistretreat.com/",
     detailPath: "/events/leadership-retreat"
+  },
+  {
+    id: "gargle-growth-summit-2027",
+    title: "GARGLE: The Growth Summit",
+    subtitle: "Build a Better Life Beyond the Chair",
+    date: "September 23, 2027",
+    endDate: "September 25, 2027",
+    dateDisplay: "September 23-25, 2027",
+    time: "Multi-day",
+    timeZone: "America/Cancun",
+    location: "Cancun, Mexico",
+    description: {
+      intro:
+        "An exclusive gathering of dental practice owners focused on leadership, growth, wealth, and life beyond the practice. Through inspiring keynote sessions, strategic business insights, meaningful peer connections, and a world-class destination, The Growth Summit will challenge you to think bigger about what is possible, for your business, your family, and your future. Seats are limited.",
+      learningPointsHeading: "Topics include:",
+      learningPoints: [
+        "Leadership & Personal Growth",
+        "Building a High-Performing Team",
+        "Practice Growth & Marketing",
+        "Financial Freedom & Wealth Strategy",
+        "Creating a Life Beyond the Chair",
+      ],
+    },
+    type: "conference",
+    registrationLink: GARGLE_SUMMIT_MAILTO,
   },
   ...practiceTransitionEvents,
 ];
