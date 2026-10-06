@@ -12,7 +12,9 @@
     "test": "npm run images:check && vitest run",
     "test:watch": "vitest",
     "images:check": "node --experimental-strip-types scripts/check-image-framing.ts",
-    "rss:check": "vitest run src/lib/rss.test.ts"
+    "rss:check": "vitest run src/lib/rss.test.ts",
+    "prebuild": "node --experimental-strip-types --import ./scripts/register-alias.mjs scripts/build-search-index.ts",
+    "search:index": "node --experimental-strip-types --import ./scripts/register-alias.mjs scripts/build-search-index.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
