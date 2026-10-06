@@ -1,0 +1,518 @@
+[
+  {
+    "title": "Practice Transitions Institute",
+    "excerpt": "Advisors for buying, selling, valuing, and transitioning dental practices, led by Dr. Michael Njo.",
+    "url": "/",
+    "type": "page"
+  },
+  {
+    "title": "About Practice Transitions Institute",
+    "excerpt": "How PTI guides dentists through practice transitions with valuation, brokerage, and advisory services.",
+    "url": "/about",
+    "type": "page"
+  },
+  {
+    "title": "Michael Njo, DDS: Author & Practice Transition Expert",
+    "excerpt": "Dr. Michael Njo's background, speaking, authorship, and leadership in dental practice transitions.",
+    "url": "/drnjo",
+    "type": "page"
+  },
+  {
+    "title": "Dental Practice Transition Services",
+    "excerpt": "Valuations, practice sales, acquisitions, partnerships, associateships, and DSO offer reviews.",
+    "url": "/services",
+    "type": "page"
+  },
+  {
+    "title": "Dental Practice Transition Blog & Insights",
+    "excerpt": "Articles on valuations, selling, buying, partnerships, and the business of dentistry.",
+    "url": "/blog",
+    "type": "page"
+  },
+  {
+    "title": "Dental Practice Transition Events & Workshops",
+    "excerpt": "Upcoming seminars, workshops, webinars, and dinners for dentists planning a transition.",
+    "url": "/events",
+    "type": "page"
+  },
+  {
+    "title": "Dental Practice Transition Seminar | PTI",
+    "excerpt": "A one-day PTI seminar on buying, selling, and transitioning a dental practice. See current dates, locations, pricing, and how to register.",
+    "url": "/events/practice-transition-seminar",
+    "type": "event"
+  },
+  {
+    "title": "Dental Practice Transition FAQ",
+    "excerpt": "Answers to common questions about practice valuation, selling, partnerships, and associateships.",
+    "url": "/faq",
+    "type": "page"
+  },
+  {
+    "title": "Dental Practice Transition Testimonials",
+    "excerpt": "What dentists say about working with PTI on sales, purchases, and valuations.",
+    "url": "/testimonials",
+    "type": "page"
+  },
+  {
+    "title": "PTI Photo Gallery",
+    "excerpt": "Photos from PTI seminars, community events, and Dr. Njo's work with dentists.",
+    "url": "/gallery",
+    "type": "page"
+  },
+  {
+    "title": "Dental Practice Transition Locations",
+    "excerpt": "Where PTI serves dentists, with state-by-state market context for transitions.",
+    "url": "/locations",
+    "type": "page"
+  },
+  {
+    "title": "Dental Practice Transition Resources",
+    "excerpt": "Calculators, checklists, guides, and books for planning a practice transition.",
+    "url": "/resources",
+    "type": "page"
+  },
+  {
+    "title": "How Much Is My Dental Practice Worth?",
+    "excerpt": "Estimate your practice value with the percent-of-collections and earnings-multiple methods.",
+    "url": "/resources/how-much-is-my-dental-practice-worth",
+    "type": "resource"
+  },
+  {
+    "title": "Practice Sale Readiness Checklist for Dentists",
+    "excerpt": "A step-by-step checklist to prepare your practice for a successful sale.",
+    "url": "/resources/practice-sale-readiness-checklist",
+    "type": "resource"
+  },
+  {
+    "title": "Dental Practice Transitions Handbook",
+    "excerpt": "Dr. Michael Njo's handbook: a blueprint for buying and selling dental practices.",
+    "url": "/resources/dental-practice-transitions-handbook",
+    "type": "resource"
+  },
+  {
+    "title": "Dental Practice Transitions Handbook, Second Edition",
+    "excerpt": "The expanded second edition of Dr. Njo's handbook, with new advisor material and appendices.",
+    "url": "/resources/second-book",
+    "type": "resource"
+  },
+  {
+    "title": "The Right Way to Go Out of Network",
+    "excerpt": "A podcast interview on navigating dental insurance and going out of network.",
+    "url": "/resources/navigating-dental-insurance-podcast",
+    "type": "resource"
+  },
+  {
+    "title": "Contact PTI for Dental Practice Transitions",
+    "excerpt": "Book a confidential consultation with the Practice Transitions Institute team.",
+    "url": "/contact",
+    "type": "page"
+  },
+  {
+    "title": "Opinion of Value",
+    "excerpt": "A documented analysis of practice financials, operations, and market context to support planning and negotiations.",
+    "url": "/services/value",
+    "type": "page"
+  },
+  {
+    "title": "Selling a Practice",
+    "excerpt": "Confidential preparation, buyer screening, negotiation support, and closing coordination for practice owners.",
+    "url": "/services/selling",
+    "type": "page"
+  },
+  {
+    "title": "Selling to a DSO",
+    "excerpt": "Independent DSO offer evaluation, valuation baselines, and negotiation support before you sign a letter of intent.",
+    "url": "/services/selling-to-a-dso",
+    "type": "page"
+  },
+  {
+    "title": "Buying a Practice",
+    "excerpt": "Acquisition guidance for evaluating opportunities, testing value, preparing for due diligence, and planning the ownership transition.",
+    "url": "/services/buying",
+    "type": "page"
+  },
+  {
+    "title": "Associateships and Buy-Ins",
+    "excerpt": "Structured pathways for associates to buy in and transition into ownership roles.",
+    "url": "/services/associateships",
+    "type": "page"
+  },
+  {
+    "title": "Partnerships",
+    "excerpt": "Business-term, valuation, and implementation guidance for dentists considering shared ownership.",
+    "url": "/services/partnerships",
+    "type": "page"
+  },
+  {
+    "title": "Selling or Transitioning a Dental Practice in California",
+    "excerpt": "Bay Area based, serving the whole state. Valuations, sales, buy-ins, and DSO offer reviews with California-specific market knowledge.",
+    "url": "/locations/california",
+    "type": "location"
+  },
+  {
+    "title": "Selling or Transitioning a Dental Practice in Texas",
+    "excerpt": "Advising dentists across DFW, Houston, Austin, and San Antonio through valuations, sales, buy-ins, and DSO offer reviews in one of the country's fastest-growing markets.",
+    "url": "/locations/texas",
+    "type": "location"
+  },
+  {
+    "title": "Selling or Transitioning a Dental Practice in Florida",
+    "excerpt": "Serving Miami, Tampa, Orlando, and Jacksonville. Valuations, sales, buy-ins, and DSO offer reviews in one of the nation's most active, consolidation-heavy markets.",
+    "url": "/locations/florida",
+    "type": "location"
+  },
+  {
+    "title": "Mastering Your Dental Transition Into and Out of Practice",
+    "excerpt": "March 12, 2027 in The Phillips Group, 2300 E Katella Ave #405, Anaheim, CA. Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day...",
+    "url": "/events/practice-transition-seminar",
+    "type": "event"
+  },
+  {
+    "title": "Mastering Your Dental Transition Into and Out of Practice",
+    "excerpt": "July 30, 2027 in Kohan Group, 490 Post St., Ste 1135, San Francisco, CA. Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day seminar...",
+    "url": "/events/practice-transition-seminar",
+    "type": "event"
+  },
+  {
+    "title": "Mastering Your Dental Transition Into and Out of Practice",
+    "excerpt": "October 15, 2027 in TDIC Headquarters, 1201 K St, 14th Floor, Sacramento, CA. Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day...",
+    "url": "/events/practice-transition-seminar",
+    "type": "event"
+  },
+  {
+    "title": "How much is my dental practice worth?",
+    "excerpt": "The value of a dental practice depends on numerous factors including revenue history, profitability, patient base, location, equipment, lease terms, and market conditions. At PTI, we provide a...",
+    "url": "/faq",
+    "type": "faq"
+  },
+  {
+    "title": "How long does the practice transition process take?",
+    "excerpt": "The timeline for a practice transition varies depending on several factors, including the complexity of the practice, the type of transition, and the readiness of both parties. Typically, the process...",
+    "url": "/faq",
+    "type": "faq"
+  },
+  {
+    "title": "What's the difference between an appraisal and an opinion of value?",
+    "excerpt": "An appraisal is typically a formal, comprehensive document prepared by a certified appraiser that may be used for legal proceedings, financing, or other official purposes. An opinion of value, which...",
+    "url": "/faq",
+    "type": "faq"
+  },
+  {
+    "title": "Should I tell my staff that I'm planning to sell my practice?",
+    "excerpt": "The timing of when to inform your staff about a practice sale is a delicate matter. Generally, we advise maintaining confidentiality during the initial stages of the sale process to prevent...",
+    "url": "/faq",
+    "type": "faq"
+  },
+  {
+    "title": "What are the tax implications of selling my dental practice?",
+    "excerpt": "Selling a dental practice can have significant tax implications, including potential capital gains taxes and allocation of the purchase price among different asset classes. Each situation is unique...",
+    "url": "/faq",
+    "type": "faq"
+  },
+  {
+    "title": "How can I prepare my practice for sale to maximize its value?",
+    "excerpt": "Preparing your practice for sale typically involves strategies such as ensuring solid financial records, maintaining or increasing production, upgrading essential equipment, addressing facility...",
+    "url": "/faq",
+    "type": "faq"
+  },
+  {
+    "title": "What should I look for when buying a dental practice?",
+    "excerpt": "When buying a dental practice, key considerations include the practice's financial health, patient demographics and retention, location and facility condition, staff quality and retention, equipment...",
+    "url": "/faq",
+    "type": "faq"
+  },
+  {
+    "title": "Congratulations, Dr. Diana Fat",
+    "excerpt": "I am so proud to congratulate my longtime client of more than 20 years, Dr. Diana Fat, a distinguished Sacramento prosthodontist, on her appointment to the University of the Pacific Board of Regents.",
+    "url": "/blog/diana-fat-board-of-regents",
+    "type": "post"
+  },
+  {
+    "title": "The Practice Blueprint in Roseville",
+    "excerpt": "Great night with great Dentists and referral partners! Thank you Provide, Patterson, Kohan, and Carr for including me at this vibrant event.",
+    "url": "/blog/practice-blueprint-roseville-aug-2026",
+    "type": "post"
+  },
+  {
+    "title": "Another perfect match",
+    "excerpt": "Dr. Njo matched both of his clients — a former Dugoni Business Club student with an accomplished practitioner.",
+    "url": "/blog/another-perfect-match",
+    "type": "post"
+  },
+  {
+    "title": "The Dental Practice Beyond the Chair",
+    "excerpt": "A 5-hour working session on September 25, 2026 in Anaheim for dentists and practice owners building enterprise value, intellectual property, wealth, and legacy.",
+    "url": "/blog/dental-practice-beyond-the-chair-anaheim",
+    "type": "post"
+  },
+  {
+    "title": "Panel of Experts Dinner With Dentists and Referral Partners",
+    "excerpt": "A recap of the August 14 Panel of Experts dinner with dentists and referral partners, including photos from the evening.",
+    "url": "/blog/panel-of-experts-dinner-roseville",
+    "type": "post"
+  },
+  {
+    "title": "An Amazing 4 days with Industry leaders!!!",
+    "excerpt": "An Amazing 4 days with Industry leaders!!! Watch the reel from Backstage Dentistry.",
+    "url": "/blog/amazing-4-days-with-industry-leaders",
+    "type": "post"
+  },
+  {
+    "title": "FOUND: Dr. Anissa Broussard's New Book",
+    "excerpt": "My friend Dr. Anissa Broussard just launched her book FOUND, and if you're in dental or healthcare, you need this.",
+    "url": "/blog/found-anissa-broussard-book-launch",
+    "type": "post"
+  },
+  {
+    "title": "Backstage Retreat 2026 in Orlando",
+    "excerpt": "An amazing time in Florida with fellow Key Opinion Leaders working on making our industry great, including a book signing with all 29 authors under one roof.",
+    "url": "/blog/backstage-retreat-2026-orlando",
+    "type": "post"
+  },
+  {
+    "title": "Featured in Dental Lifestyles Magazine",
+    "excerpt": "Beyond Brokerage: Dr. Michael Njo's Whole-Person Approach to Dental Practice Transitions, by Dr. Glenn Vo in the Summer 2026 issue of Dental Lifestyles Magazine.",
+    "url": "/blog/dental-lifestyles-magazine-beyond-brokerage",
+    "type": "post"
+  },
+  {
+    "title": "Another Great Seminar in San Francisco",
+    "excerpt": "Another great seminar with dentists who care about their legacy: Mastering Your Dental Transition, July 2026 in San Francisco.",
+    "url": "/blog/san-francisco-seminar-july-2026",
+    "type": "post"
+  },
+  {
+    "title": "My First Backstage Mastermind Retreat in Dallas",
+    "excerpt": "I just attended my first Backstage Mastermind Retreat in Dallas, and I am still processing what an incredible experience it was.",
+    "url": "/blog/backstage-mastermind-dallas-retreat",
+    "type": "post"
+  },
+  {
+    "title": "Dugoni Business Club: Symposium, Alumni Evening, and Celebration Lunch",
+    "excerpt": "Highlights from the Dugoni Business Club: the symposium and its industry sponsors, an alumni evening, a celebration lunch, and a round of golf before finals.",
+    "url": "/blog/dugoni-business-club-highlights",
+    "type": "post"
+  },
+  {
+    "title": "How to Sell a Dental Practice: A Step-by-Step Guide",
+    "excerpt": "A complete, step-by-step walkthrough of selling a dental practice — from valuation and preparation to choosing a buyer, the letter of intent, due diligence, financing, and closing.",
+    "url": "/blog/how-to-sell-a-dental-practice-step-by-step",
+    "type": "post"
+  },
+  {
+    "title": "7 Questions to Ask Before Hiring a Dental Practice Transition Firm",
+    "excerpt": "Before choosing representation for a dental practice sale, ask about experience, valuation, confidentiality, buyer network, fees, who handles the transaction, references, and who the firm represents.",
+    "url": "/blog/questions-before-hiring-dental-practice-transition-firm",
+    "type": "post"
+  },
+  {
+    "title": "Dr. Michael Njo Leads Associate Workshop at the SMCDS Peninsula Dental Compliance Symposium",
+    "excerpt": "Dr. Michael Njo worked with future dental buyers and associates at the SMCDS Peninsula Dental Compliance Symposium, helping associate dentists prepare for job opportunities and long-term ownership...",
+    "url": "/blog/smcds-peninsula-dental-compliance-symposium-associate-workshop",
+    "type": "post"
+  },
+  {
+    "title": "What Should a Dental Practice NDA Include Before You Share Financials?",
+    "excerpt": "Learn what a dental practice NDA should cover before financials, staff details, and operational information are shared with a buyer, and why confidentiality discipline protects deal value.",
+    "url": "/blog/what-should-a-dental-practice-nda-include-before-sharing-financials",
+    "type": "post"
+  },
+  {
+    "title": "7 Practical Ways Dentists Can Improve Practice Value Before a Sale",
+    "excerpt": "Simple, high impact steps dentists can take in the 12 to 24 months before selling to improve practice value, profitability, and buyer interest.",
+    "url": "/blog/improve-practice-value-before-selling",
+    "type": "post"
+  },
+  {
+    "title": "What Happens to Accounts Receivable When You Sell a Dental Practice?",
+    "excerpt": "Selling your dental practice and unsure what happens to accounts receivable? Learn the common options, tradeoffs, and planning questions that affect closing and post-sale collections.",
+    "url": "/blog/accounts-receivable-when-selling-a-dental-practice",
+    "type": "post"
+  },
+  {
+    "title": "Should You Get Pre Approved Before Shopping for a Dental Practice? Yes, and Here Is Why",
+    "excerpt": "Thinking about buying a dental practice? Learn why financing pre approval should happen before your search, what lenders look for, and how prepared buyers move faster.",
+    "url": "/blog/dental-practice-pre-approval-before-shopping",
+    "type": "post"
+  },
+  {
+    "title": "How Long Does It Take to Sell a Dental Practice? A Realistic Timeline From Planning to Closing",
+    "excerpt": "Selling a dental practice usually takes longer than most owners expect. Learn the typical timeline, what slows deals down, and how to prepare for a smoother transition.",
+    "url": "/blog/how-long-to-sell-a-dental-practice",
+    "type": "post"
+  },
+  {
+    "title": "What Should a Dental Partnership Agreement Include?",
+    "excerpt": "Learn the key terms every dental partnership agreement should cover, from ownership and compensation to exits and deadlock planning, before conflicts get expensive.",
+    "url": "/blog/what-should-a-dental-partnership-agreement-include",
+    "type": "post"
+  },
+  {
+    "title": "How Should You Tell Patients You Are Selling Your Dental Practice?",
+    "excerpt": "Learn when and how to announce a dental practice sale to patients, what to say in the letter, and how to protect trust, retention, and practice value.",
+    "url": "/blog/how-should-you-tell-patients-you-are-selling-your-dental-practice",
+    "type": "post"
+  },
+  {
+    "title": "How Long Should a Seller Stay After Closing a Dental Practice Sale?",
+    "excerpt": "Learn when a seller should stay after closing, when a short transition is enough, and how buyers and sellers can structure a smoother dental practice handoff.",
+    "url": "/blog/how-long-should-a-seller-stay-after-closing-a-dental-practice-sale",
+    "type": "post"
+  },
+  {
+    "title": "Asset Sale vs Stock Sale in a Dental Practice Transition: What Buyers and Sellers Should Know",
+    "excerpt": "Learn the practical differences between an asset sale and a stock sale in a dental practice transition, including risk, tax, contracts, and why deal structure matters.",
+    "url": "/blog/asset-sale-vs-stock-sale-dental-practice",
+    "type": "post"
+  },
+  {
+    "title": "SBA vs Conventional Loan for Buying a Dental Practice in 2026: Which Fits Your Timeline?",
+    "excerpt": "Comparing SBA and conventional financing for a dental practice purchase in 2026? Learn how down payment, approval speed, flexibility, and risk can shape the right loan choice.",
+    "url": "/blog/sba-vs-conventional-loan-buying-a-dental-practice-2026",
+    "type": "post"
+  },
+  {
+    "title": "Dental Practice Due Diligence Checklist: What Buyers Should Review Before Signing",
+    "excerpt": "Buying a dental practice? Use this practical due diligence checklist to review finances, staff, systems, leases, and risk areas before you sign.",
+    "url": "/blog/dental-practice-due-diligence-checklist",
+    "type": "post"
+  },
+  {
+    "title": "Can a Lease Problem Kill a Dental Practice Sale? A Practical Checklist for Sellers and Buyers",
+    "excerpt": "Learn how lease term, assignment language, landlord consent, and personal guarantees can affect a dental practice sale and what to review before going to market.",
+    "url": "/blog/dental-practice-lease-assignment-checklist",
+    "type": "post"
+  },
+  {
+    "title": "Should You Offer Seller Financing When Selling a Dental Practice?",
+    "excerpt": "Seller financing can help close a dental practice sale, but it is not right for every transition. Learn when it makes sense, where it goes wrong, and how sellers should evaluate the tradeoffs.",
+    "url": "/blog/seller-financing-dental-practice-sale",
+    "type": "post"
+  },
+  {
+    "title": "How Do You Value a Dental Practice for an Associate Buy In? A Practical 2026 Guide",
+    "excerpt": "Planning an associate buy in? Learn how dental practice valuation works for partial ownership, what changes the price over time, and where dentists make costly mistakes.",
+    "url": "/blog/associate-buy-in-dental-practice-valuation",
+    "type": "post"
+  },
+  {
+    "title": "Should You Sell Your Dental Practice to a DSO or a Private Buyer? A Practical 2026 Decision Guide",
+    "excerpt": "Comparing a DSO sale with a private buyer sale? Learn how deal structure, timeline, legacy, work-back expectations, and valuation differ for dental practice owners in 2026.",
+    "url": "/blog/dso-vs-private-buyer-dental-practice",
+    "type": "post"
+  },
+  {
+    "title": "What Makes a Buyer Qualified for Your Dental Practice? 7 Things Sellers Should Look For",
+    "excerpt": "Learn how to evaluate whether a buyer is truly qualified for your dental practice, from financing and experience to cultural fit, confidentiality, and long term transition success.",
+    "url": "/blog/what-makes-a-buyer-qualified-for-your-dental-practice",
+    "type": "post"
+  },
+  {
+    "title": "What Should a Dental Practice Letter of Intent Actually Include?",
+    "excerpt": "Learn what a dental practice letter of intent should cover, which terms deserve careful review, and how a clear LOI can prevent expensive transition mistakes.",
+    "url": "/blog/dental-practice-letter-of-intent",
+    "type": "post"
+  },
+  {
+    "title": "What Documents Should You Gather Before Selling Your Dental Practice?",
+    "excerpt": "Preparing to sell your dental practice? Learn which financial, legal, operational, and transition documents to gather early so your sale moves faster and with less stress.",
+    "url": "/blog/documents-before-selling-your-dental-practice",
+    "type": "post"
+  },
+  {
+    "title": "When Should You Tell Staff You Are Selling Your Dental Practice?",
+    "excerpt": "Learn the right time to tell staff about a dental practice sale, how to balance confidentiality with trust, and how smoother communication supports a successful transition.",
+    "url": "/blog/when-to-tell-staff-youre-selling-your-dental-practice",
+    "type": "post"
+  },
+  {
+    "title": "When Should You Get a Dental Practice Valuation? 5 Moments Dentists Should Not Wait",
+    "excerpt": "Not sure when to value your dental practice? Learn the key moments to get a professional valuation before a sale, partnership, associate buy-in, or long-term transition plan.",
+    "url": "/blog/when-should-you-get-a-dental-practice-valuation",
+    "type": "post"
+  },
+  {
+    "title": "Attitude: The Hidden Key to Shaping Dentistry's Future",
+    "excerpt": "A resilient mindset helps dentists rewrite the insurance narrative, educate patients, and reclaim advocacy for oral health.",
+    "url": "/blog/attitude-hidden-key-shaping-dentistry-future",
+    "type": "post"
+  },
+  {
+    "title": "Empowering the Next Generation: Dr. Michael Njo Speaks at Dugoni School's \"Lunch & Learn\"",
+    "excerpt": "Dr. Michael Njo returned to the Dugoni School of Dentistry to guide students through the business of dentistry—from contracts and career paths to confident practice ownership.",
+    "url": "/blog/empowering-next-generation-dugoni-lunch-learn",
+    "type": "post"
+  },
+  {
+    "title": "Dugoni Business Club Donates $1,000 to Support Students in Need",
+    "excerpt": "The Dugoni Business Club (DBC) proudly donated $1,000 to the Arthur A. Dugoni Annual Fund, supporting students facing financial need. Discover how business-minded dental students are giving back to...",
+    "url": "/blog/dugoni-business-club-donation",
+    "type": "post"
+  },
+  {
+    "title": "So Much to be Thankful For",
+    "excerpt": "As we enter the holiday season, I love this time of year because it always gives me an opportunity to pause and reflect. It provides me an opportunity to be thankful for all the blessings I have. A...",
+    "url": "/blog/so-much-to-be-thankful-for",
+    "type": "post"
+  },
+  {
+    "title": "Work Staff Shortages in Dentistry: What Can We Do?",
+    "excerpt": "I get calls, texts, and questions almost every day complaining, asking questions and conveying concerns about work staff shortages in the dental profession. The dental assisting workforce has been...",
+    "url": "/blog/work-staff-shortages-dentistry",
+    "type": "post"
+  },
+  {
+    "title": "Creating Culture In Today's Dental Offices",
+    "excerpt": "We as an industry have had a very tumultuous ride. The practices that weathered and thrived through the storm had a particular practice culture. This article will be the 1st in a 4-part series...",
+    "url": "/blog/creating-culture-todays-dental-offices",
+    "type": "post"
+  },
+  {
+    "title": "With Every Crisis Comes Opportunities!",
+    "excerpt": "Seize your Opportunity, even when you're Transitioning your Practice. After speaking with so many dentists over the last few weeks, I've heard several different attitudes and opinions. The majority...",
+    "url": "/blog/with-every-crisis-comes-opportunities",
+    "type": "post"
+  },
+  {
+    "title": "Creating Culture In Today's Dental Offices Part II",
+    "excerpt": "Did you survive January? How about last quarter? Statistics have shown that our work force took a substantial amount of time off in the month of January. This is where your leadership and positive...",
+    "url": "/blog/creating-culture-dental-offices-part-ii",
+    "type": "post"
+  },
+  {
+    "title": "Creating Culture In Today's Dental Offices Part III",
+    "excerpt": "I love this topic - TEAM. This next article, part 3 of a 4-part series on Culture, stems from the importance of creating and sustaining great teams. When an office has a great team, spirits and...",
+    "url": "/blog/creating-culture-dental-offices-part-iii",
+    "type": "post"
+  },
+  {
+    "title": "Creating Culture In Today's Dental Offices Part IV",
+    "excerpt": "Happy New Year! In the past 3 articles we covered Leadership, Gratitude, and Team. In today's article we will cover Attitude and Mindset. When I think of attitude and mindset, I reflect on my time...",
+    "url": "/blog/creating-culture-dental-offices-part-iv",
+    "type": "post"
+  },
+  {
+    "title": "Debugging the Myths of Practice Transitions/Selling Your Practice Part I",
+    "excerpt": "The internet is a wonderful thing. However, everyone should not believe everything on the internet. Practice sales, just like patient care is very personal and should be treated with a customized...",
+    "url": "/blog/debugging-myths-practice-transitions-part-1-timeline",
+    "type": "post"
+  },
+  {
+    "title": "Debugging the Myths of Practice Transitions/Selling Your Practice",
+    "excerpt": "Part 2: Navigating Dental Transitions: The Importance of Advisors to ensure a Seamless Process. Transitioning a dental practice can be a complex and daunting process. It is one of the most...",
+    "url": "/blog/debugging-myths-practice-transitions-part-2-advisory-team",
+    "type": "post"
+  },
+  {
+    "title": "Debugging the Myths of Practice Transitions/Selling Your Practice - Part 3: Valuation Myth",
+    "excerpt": "Uncover the truth about dental practice valuations - from understanding the difference between asking price, offering price, and appraised value, to learning the two universally accepted valuation...",
+    "url": "/blog/debugging-myths-practice-transitions-part-3-valuation",
+    "type": "post"
+  },
+  {
+    "title": "Debugging The Myths of Practice Transitions/Selling Your Practice Part 4 - Transition Planning Requirements",
+    "excerpt": "A comprehensive guide to the complete process of buying or selling a dental practice - from timeline expectations and documentation requirements to advisor selection and dissolution provisions....",
+    "url": "/blog/debugging-myths-practice-transitions-part-4-requirements",
+    "type": "post"
+  }
+]
