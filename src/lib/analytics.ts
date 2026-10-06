@@ -233,6 +233,18 @@ export const trackPhoneCallClick = (location: string) => {
   });
 };
 
+export const trackSiteSearch = (
+  query: string,
+  resultCount: number,
+  selectedPath?: string,
+) => {
+  trackEvent("site_search", {
+    search_term: query.slice(0, 80),
+    result_count: resultCount,
+    selected_path: selectedPath,
+  });
+};
+
 export const trackSelectCta = (ctaName: string, ctaLocation: string) => {
   trackEvent("select_cta", {
     cta_name: ctaName,

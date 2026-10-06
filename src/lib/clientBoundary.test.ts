@@ -10,6 +10,7 @@ const SERVER_ONLY_DATA = [
   "@/data/blogPosts",
   "@/data/communityImpactPosts",
   "@/data/reviews",
+  "@/data/searchIndex",
 ];
 
 const sourceFiles = (dir: string): string[] =>

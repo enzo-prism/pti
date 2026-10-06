@@ -18,8 +18,10 @@ import {
   Users,
   X,
 } from "lucide-react";
+import SiteSearch from "@/components/layout/SiteSearch";
 import { Button } from "@/components/ui/button";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
+import type { SearchRecord } from "@/lib/siteSearch";
 import {
   trackBookConsultationClick,
   trackPhoneCallClick,
@@ -69,7 +71,7 @@ const focusClass =
 const focusableSelector =
   'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-const Navbar = () => {
+const Navbar = ({ searchRecords }: { searchRecords: SearchRecord[] }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
@@ -388,6 +390,14 @@ const Navbar = () => {
             <Phone className="h-4 w-4" aria-hidden="true" />
             {PHONE_NUMBER}
           </a>
+
+          <SiteSearch
+            records={searchRecords}
+            suppressOpen={isMenuOpen}
+            onOpenChange={(open) => {
+              if (open) closeMenu();
+            }}
+          />
 
           <Button asChild className="h-11 min-h-11 shrink-0 px-3 sm:px-4">
             <Link
