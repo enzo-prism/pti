@@ -19,6 +19,7 @@ import {
   X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SiteSearch from "@/components/search/SiteSearch";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
 import {
   trackBookConsultationClick,
@@ -388,6 +389,8 @@ const Navbar = () => {
             <Phone className="h-4 w-4" aria-hidden="true" />
             {PHONE_NUMBER}
           </a>
+
+          <SiteSearch />
 
           <Button asChild className="h-11 min-h-11 shrink-0 px-3 sm:px-4">
             <Link
