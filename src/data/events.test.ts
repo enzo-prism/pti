@@ -77,6 +77,37 @@ describe("events dataset", () => {
     ).toBe(false);
   });
 
+  it("lists the Gargle Growth Summit with the interest list call to action", () => {
+    const summit = rawEvents.find(
+      (event) => event.id === "gargle-growth-summit-2027"
+    );
+
+    expect(summit).toMatchObject({
+      title: "GARGLE: The Growth Summit",
+      date: "September 23, 2027",
+      endDate: "September 25, 2027",
+      location: "Cancun, Mexico",
+      type: "conference",
+      registrationLink:
+        "mailto:info@practicetransitions.com?subject=Growth%20Summit%20Interest%20List",
+    });
+    expect(JSON.stringify(summit?.description)).toContain("Seats are limited");
+    expect(JSON.stringify(summit?.description)).toContain(
+      "Financial Freedom & Wealth Strategy"
+    );
+    expect(JSON.stringify(summit)).not.toMatch(/registration is open|sold out/i);
+    expect(
+      getUpcomingRawEvents(new Date("2027-09-01T12:00:00-07:00")).some(
+        (event) => event.id === summit?.id
+      )
+    ).toBe(true);
+    expect(
+      getUpcomingRawEvents(new Date("2027-09-26T12:00:00-07:00")).some(
+        (event) => event.id === summit?.id
+      )
+    ).toBe(false);
+  });
+
   it("routes upcoming practice transition seminars to the native registration page", () => {
     const upcomingSeminars = getUpcomingRawEvents(new Date("2026-08-17T12:00:00-07:00")).filter(
       (event) =>
