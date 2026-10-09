@@ -107,7 +107,7 @@ const ROUTE_BREADCRUMBS: Record<string, BreadcrumbNode[]> = {
   "/resources/second-book": [
     HOME_CRUMB,
     { name: "Resources", path: "/resources" },
-    { name: "Handbook, Second Edition (Coming Soon)", path: "/resources/second-book" },
+    { name: "Handbook, Second Edition", path: "/resources/second-book" },
   ],
   "/resources/navigating-dental-insurance-podcast": [
     HOME_CRUMB,

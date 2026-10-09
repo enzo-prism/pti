@@ -32,6 +32,8 @@ Create event-scoped dimensions for:
 - `form_provider`
 - `event_name`
 - `channel`
+- `error_kind`
+- `fields`
 
 ## 5. Configure Internal Traffic Filtering
 1. Open **Admin** > **Data collection and modification** > **Data filters**.
@@ -48,7 +50,7 @@ Create event-scoped dimensions for:
 - Home -> Blog -> Blog post -> Events -> Contact page navigation.
 - Click navbar phone link.
 - Click navbar consultation CTA.
-- Submit Typeform contact form.
+- Submit an authorized test through the Formspree contact or seminar form. Use local intercepted responses for routine UI testing to avoid creating real leads.
 
 Expected validation:
 - Realtime shows `page_view` plus custom events.
@@ -65,3 +67,13 @@ Capture screenshots for:
 6. Internal traffic filter settings.
 7. Realtime report with active event traffic.
 8. DebugView trace showing `generate_lead` and CTA clicks.
+
+## Seminar registration experiment
+
+After analytics consent, compare campaign page views, `event_registration_click`,
+`form_start`, `seminar_form_error`, and `generate_lead` filtered to
+`form_id=practice_transition_seminar`. Validation events contain only field keys
+and an error kind, never submitted values. A lead event means an accepted form
+submission, not payment or a confirmed seat. Reconcile accepted submissions with
+Formspree delivery, Liz’s follow-up, payment, and attendance in the staff workflow.
+Keep those operational stages separate from the browser metrics.

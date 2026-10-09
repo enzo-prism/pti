@@ -23,6 +23,7 @@ import SiteSearch from "@/components/search/SiteSearch";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
 import {
   trackBookConsultationClick,
+  trackEventRegistrationClick,
   trackPhoneCallClick,
 } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
@@ -76,6 +77,16 @@ const Navbar = () => {
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const pathname = usePathname();
   const currentPath = pathname ?? "/";
+  const isSeminarPage = currentPath === "/events/practice-transition-seminar";
+  const primaryCtaHref = isSeminarPage ? "#register" : "/contact";
+  const trackPrimaryCta = (location: string) => {
+    closeMenu();
+    if (isSeminarPage) {
+      trackEventRegistrationClick("practice_transition_seminar", "form");
+    } else {
+      trackBookConsultationClick(location);
+    }
+  };
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobilePanelRef = useRef<HTMLDivElement>(null);
@@ -330,7 +341,7 @@ const Navbar = () => {
                       aria-label={`${isServicesOpen ? "Close" : "Open"} Services menu`}
                       aria-expanded={isServicesOpen}
                       aria-haspopup="true"
-                      aria-controls={SERVICES_MENU_ID}
+                      aria-controls={isServicesOpen ? SERVICES_MENU_ID : undefined}
                       onClick={() => setIsServicesOpen((open) => !open)}
                       className={cn(
                         "flex min-h-11 min-w-11 items-center justify-center rounded-r-md",
@@ -394,16 +405,15 @@ const Navbar = () => {
 
           <Button asChild className="h-11 min-h-11 shrink-0 px-3 sm:px-4">
             <Link
-              href="/contact"
-              aria-label="Book Consultation"
+              href={primaryCtaHref}
+              aria-label={isSeminarPage ? "Register for the Seminar" : "Book Consultation"}
               aria-current={currentPath === "/contact" ? "page" : undefined}
               onClick={() => {
-                closeMenu();
-                trackBookConsultationClick("navbar_desktop");
+                trackPrimaryCta("navbar_desktop");
               }}
             >
-              <span className="sm:hidden">Book</span>
-              <span className="hidden sm:inline">Book Consultation</span>
+              <span className="sm:hidden">{isSeminarPage ? "Register" : "Book"}</span>
+              <span className="hidden sm:inline">{isSeminarPage ? "Register Now" : "Book Consultation"}</span>
             </Link>
           </Button>
 
@@ -474,7 +484,7 @@ const Navbar = () => {
                     onClick={() => setIsMobileServicesOpen((open) => !open)}
                     aria-label={`${isMobileServicesOpen ? "Close" : "Open"} Services submenu`}
                     aria-expanded={isMobileServicesOpen}
-                    aria-controls={MOBILE_SERVICES_MENU_ID}
+                    aria-controls={isMobileServicesOpen ? MOBILE_SERVICES_MENU_ID : undefined}
                     className={cn(
                       "flex min-h-12 min-w-12 items-center justify-center rounded-xl text-slate-700 hover:bg-slate-100 hover:text-primary",
                       focusClass,
@@ -547,13 +557,12 @@ const Navbar = () => {
             </a>
             <Button className="mt-3 min-h-12 w-full" asChild>
               <Link
-                href="/contact"
+                href={primaryCtaHref}
                 onClick={() => {
-                  closeMenu();
-                  trackBookConsultationClick("navbar_mobile");
+                  trackPrimaryCta("navbar_mobile");
                 }}
               >
-                Book a Confidential Consultation
+                {isSeminarPage ? "Register for the Seminar" : "Book a Confidential Consultation"}
               </Link>
             </Button>
           </div>

@@ -1,266 +1,182 @@
 import Link from "next/link";
-import { CheckCircle2, Clock, MapPin, Phone, Users } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Section,
-  SectionSubtitle,
-  SectionTitle,
-} from "@/components/ui/section";
-import {
-  SeminarPhoneButton,
-  SeminarRegisterButton,
-} from "@/components/events/SeminarCtaButtons";
 import { SeminarRegistration } from "@/components/events/SeminarRegistration";
+import { SeminarEventPreview } from "@/components/events/SeminarEventPreview";
 import {
+  PENDING_LIZ_TERMS,
+  PRACTICE_TRANSITION_SEMINAR_BIOS,
   PRACTICE_TRANSITION_SEMINAR_EYEBROW,
+  PRACTICE_TRANSITION_SEMINAR_FACTS,
   PRACTICE_TRANSITION_SEMINAR_HEADLINE,
-  practiceTransitionSeminarFaqs,
-  practiceTransitionSeminarLearningPoints,
-  practiceTransitionSeminarValuePoints,
+  PRACTICE_TRANSITION_SEMINAR_INTRO,
+  PRACTICE_TRANSITION_SEMINAR_SUBHEAD,
+  SEMINAR_CANT_ATTEND_EMPHASIS,
+  SEMINAR_CANT_ATTEND_HEADING,
+  SEMINAR_CANT_ATTEND_LEAD,
+  SEMINAR_CANT_ATTEND_MID,
+  SEMINAR_CANT_ATTEND_TAIL,
+  getSeminarSeriesCardEvents,
+  isPendingLizEarlyBirdOpen,
   type PracticeTransitionSeminarEvent,
 } from "@/data/practiceTransitionSeminar";
-import type { ReviewRecord } from "@/data/reviews";
-import { PHONE_NUMBER } from "@/lib/constants";
+import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
+import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
+import { formatCurrency } from "@/lib/seminarRegistration";
+
+const cantAttendContactClass =
+  "inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4";
 
 interface PracticeTransitionSeminarProps {
-  testimonial?: ReviewRecord;
-  /** Seminar dates open for registration, decided on the server. */
   events: PracticeTransitionSeminarEvent[];
-  archivedEvents?: PracticeTransitionSeminarEvent[];
   referenceDateIso: string;
 }
 
 const PracticeTransitionSeminar = ({
-  testimonial,
   events,
-  archivedEvents = [],
   referenceDateIso,
-}: PracticeTransitionSeminarProps) => (
-  <div className="min-h-screen bg-background">
-    <section className="relative overflow-hidden bg-primary pt-10 text-primary-foreground md:pt-16">
-      <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/85" />
-      <div
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage:
-            "url(/lovable-uploads/events-hero-office.webp)",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
-      />
-      <div className="container relative z-10 pb-12 md:pb-16">
-        <Button variant="secondary" asChild className="mb-8">
-          <Link href="/events">Back to Events</Link>
-        </Button>
+}: PracticeTransitionSeminarProps) => {
+  const seriesEvents = getSeminarSeriesCardEvents(events);
+  const referenceDate = new Date(referenceDateIso);
+  const earlyBirdOpen = isPendingLizEarlyBirdOpen(referenceDate);
 
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.48fr)] lg:items-end">
-          <div className="max-w-4xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-100">
-              {PRACTICE_TRANSITION_SEMINAR_EYEBROW}
-            </p>
-            <h1 className="mt-4 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
-              {PRACTICE_TRANSITION_SEMINAR_HEADLINE}
-            </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-blue-50 md:text-xl">
-              Your practice transition is not just a transaction. It is the
-              culmination of your life&apos;s work. Join Practice Transitions
-              Institute for a focused one-day seminar designed to help
-              dentists understand their options, protect practice value, and
-              approach their next move with confidence.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              {events.length > 0 && (
-                <SeminarRegisterButton size="lg" variant="secondary">
-                  Request a Seminar Seat
-                </SeminarRegisterButton>
-              )}
-              <SeminarPhoneButton
-                location="seminar_hero"
-                size="lg"
-                variant="outline"
-                className="border-white bg-transparent text-white hover:bg-white hover:text-primary"
-              >
-                <Phone className="h-4 w-4" />
-                Call {PHONE_NUMBER}
-              </SeminarPhoneButton>
-            </div>
+  return (
+    <div className="min-h-screen bg-background">
+      <div className="container py-8 md:py-10">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 lg:grid-rows-[auto_1fr] lg:items-start">
+          <div className="order-1 space-y-6 lg:col-span-3 lg:row-start-1">
+            <header>
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">
+                {PRACTICE_TRANSITION_SEMINAR_EYEBROW}
+              </p>
+              <h1 className="mt-3 text-4xl font-bold leading-tight text-foreground sm:text-5xl">
+                {PRACTICE_TRANSITION_SEMINAR_HEADLINE}
+              </h1>
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                {PRACTICE_TRANSITION_SEMINAR_INTRO}
+              </p>
+              <h2 className="mt-8 text-2xl font-bold text-foreground">
+                {PRACTICE_TRANSITION_SEMINAR_SUBHEAD}
+              </h2>
+            </header>
+            <SeminarEventPreview events={seriesEvents} />
           </div>
 
-          <div className="grid gap-3">
-            {events.map((event) => (
-              <Card
-                key={event.id}
-                className="border-white/20 bg-white/95 text-foreground shadow-lg"
-              >
-                <CardHeader className="p-5 pb-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <Badge className="bg-primary/10 text-primary hover:bg-primary/10">
-                      Registration Open
-                    </Badge>
-                    <span className="text-sm font-semibold text-primary">
-                      {event.city}
-                    </span>
-                  </div>
-                  <CardTitle className="text-xl">{event.date}</CardTitle>
-                  <CardDescription className="text-muted-foreground">
-                    {event.venueName}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="grid gap-3 p-5 pt-0 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-primary" />
-                    <span>{event.time}</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <MapPin className="mt-0.5 h-4 w-4 text-primary" />
-                    <span>{event.addressLines.join(", ")}</span>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <Section className="py-10 md:py-14">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.86fr)_minmax(320px,0.44fr)] lg:items-start">
-        <div>
-          <SectionTitle>Make Your Next Move With a Clearer Plan</SectionTitle>
-          <SectionSubtitle className="mb-0">
-            Whether you are preparing to sell, evaluating a partnership,
-            considering an acquisition, or simply trying to understand what
-            your practice is worth, the decisions you make now can shape your
-            financial future and your legacy.
-          </SectionSubtitle>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-          {practiceTransitionSeminarValuePoints.map((point) => (
-            <div
-              key={point}
-              className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 shadow-sm"
-            >
-              <CheckCircle2 className="mt-0.5 h-5 w-5 text-primary" />
-              <p className="text-sm font-medium text-foreground">{point}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </Section>
-
-    <Section id="register" background="light" className="scroll-mt-24">
-      <SeminarRegistration
-        events={events}
-        referenceDateIso={referenceDateIso}
-      />
-      {archivedEvents.length > 0 && (
-        <p className="mt-8 text-center text-sm text-muted-foreground">
-          {archivedEvents.length} completed seminar
-          {archivedEvents.length === 1 ? " is" : "s are"} archived and no
-          longer available for registration. See the complete history on the{" "}
-          <Link href="/events" className="font-medium text-primary underline underline-offset-4">
-            events page
-          </Link>
-          .
-        </p>
-      )}
-    </Section>
-
-    <Section>
-      <div className="mx-auto max-w-4xl text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-primary/80">
-          Trusted by Dental Professionals
-        </p>
-        <blockquote className="mt-4 text-2xl font-semibold leading-relaxed text-foreground md:text-3xl">
-          &quot;His detailed lessons on dental benefit contracts, practice
-          acquisition, and decision-making gave me clarity and confidence for
-          the years ahead.&quot;
-        </blockquote>
-        <div className="mt-5 text-sm text-muted-foreground">
-          <p className="font-semibold text-foreground">
-            {testimonial?.displayAuthorName ?? "Ankit Sidana"}
-          </p>
-          <p>{testimonial?.role ?? "Seminar Attendee"}</p>
-        </div>
-      </div>
-    </Section>
-
-    <Section background="light">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] lg:items-start">
-        <div>
-          <SectionTitle>What You&apos;ll Learn</SectionTitle>
-          <SectionSubtitle>
-            At this seminar, you&apos;ll learn how to approach a transition with a
-            more practical plan, a better grasp of value, and a clearer sense
-            of what needs to happen next.
-          </SectionSubtitle>
-        </div>
-        <div className="grid gap-4">
-          {practiceTransitionSeminarLearningPoints.map((point) => (
-            <div
-              key={point}
-              className="flex items-start gap-3 rounded-lg border border-border bg-card p-5 shadow-sm"
-            >
-              <CheckCircle2 className="mt-0.5 h-5 w-5 text-primary" />
-              <p className="font-medium text-foreground">{point}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </Section>
-
-    <Section>
-      <div className="mx-auto max-w-4xl">
-        <SectionTitle centered>Questions Before You Register?</SectionTitle>
-        <div className="grid gap-4">
-          {practiceTransitionSeminarFaqs.map((item) => (
-            <Card key={item.question}>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-xl">{item.question}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{item.answer}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-    </Section>
-
-    <Section background="primary" className="py-12 md:py-16">
-      <div className="mx-auto max-w-4xl text-center">
-        <Users className="mx-auto mb-4 h-10 w-10 text-blue-100" />
-        <SectionTitle centered className="text-white">
-          Ready to reserve your seat?
-        </SectionTitle>
-        <SectionSubtitle centered className="text-blue-50">
-          Choose the seminar date that fits your schedule, submit the form,
-          and PTI will follow up to confirm the details.
-        </SectionSubtitle>
-        <div className="flex flex-col justify-center gap-3 sm:flex-row">
-          <SeminarRegisterButton size="lg" variant="secondary">
-            Register for a Seminar
-          </SeminarRegisterButton>
-          <SeminarPhoneButton
-            location="seminar_footer"
-            size="lg"
-            variant="outline"
-            className="border-white bg-transparent text-white hover:bg-white hover:text-primary"
+          <div
+            id="register"
+            className="order-2 scroll-mt-24 lg:col-span-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--pti-header-height)+1rem)]"
           >
-            Call {PHONE_NUMBER}
-          </SeminarPhoneButton>
+            <SeminarRegistration
+              events={events}
+              referenceDateIso={referenceDateIso}
+            />
+          </div>
+
+          <div className="order-3 space-y-8 lg:col-span-3 lg:row-start-2">
+            <ul className="grid gap-3 sm:grid-cols-3">
+              {PRACTICE_TRANSITION_SEMINAR_FACTS.map((fact) => (
+                <li
+                  key={fact}
+                  className="rounded-lg border border-border bg-card px-4 py-3 text-center text-base font-medium text-foreground"
+                >
+                  {fact}
+                </li>
+              ))}
+            </ul>
+
+            {PENDING_LIZ_TERMS.enabled && (
+              <section className="rounded-xl border border-primary/20 bg-primary/5 p-5 md:p-6">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+                  Early registration special
+                </p>
+                <p className="mt-3 text-base leading-relaxed text-foreground">
+                  Register by {PENDING_LIZ_TERMS.earlyBirdDeadline} and save $
+                  {PENDING_LIZ_TERMS.earlyBirdSavings}.
+                </p>
+                <p className="mt-4 text-base leading-relaxed">
+                  {earlyBirdOpen ? (
+                    <>
+                      <span className="text-3xl font-bold text-primary">
+                        {formatCurrency(PENDING_LIZ_TERMS.earlyBirdPrice)}
+                      </span>{" "}
+                      <span className="text-base text-muted-foreground line-through">
+                        {formatCurrency(PENDING_LIZ_TERMS.standardPrice)}
+                      </span>{" "}
+                      <span className="text-base text-foreground">
+                        first participant
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-3xl font-bold text-primary">
+                        {formatCurrency(PENDING_LIZ_TERMS.standardPrice)}
+                      </span>{" "}
+                      <span className="text-base text-foreground">
+                        first participant
+                      </span>
+                    </>
+                  )}
+                </p>
+                <p className="mt-3 text-base leading-relaxed text-foreground">
+                  Additional attendees are{" "}
+                  {formatCurrency(PENDING_LIZ_TERMS.guestPrice)} each. Bring a
+                  partner, associate, or future successor.
+                </p>
+              </section>
+            )}
+
+            <section className="grid gap-5 sm:grid-cols-2">
+              {PRACTICE_TRANSITION_SEMINAR_BIOS.map((person) => (
+                <div key={person.name}>
+                  <h3 className="text-lg font-bold text-foreground">
+                    {person.name}
+                  </h3>
+                  <p className="mt-1 text-base font-medium text-primary">
+                    {person.title}
+                  </p>
+                  <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+                    {person.bio}
+                  </p>
+                </div>
+              ))}
+            </section>
+          </div>
         </div>
+
+        <section className="mt-10 rounded-xl border border-border bg-card p-5 md:p-6">
+          <h2 className="text-2xl font-bold text-foreground">
+            {SEMINAR_CANT_ATTEND_HEADING}
+          </h2>
+          <p className="mt-3 text-base leading-relaxed text-foreground">
+            {SEMINAR_CANT_ATTEND_LEAD}{" "}
+            <a
+              href={`tel:${PHONE_NUMBER_TEL}`}
+              className={`${cantAttendContactClass} whitespace-nowrap`}
+            >
+              {PHONE_NUMBER}
+            </a>{" "}
+            or{" "}
+            <a
+              href={`mailto:${SITE_CONTACT_EMAIL}`}
+              className={`${cantAttendContactClass} break-all`}
+            >
+              {SITE_CONTACT_EMAIL}
+            </a>{" "}
+            {SEMINAR_CANT_ATTEND_MID}{" "}
+            <strong className="font-bold">{SEMINAR_CANT_ATTEND_EMPHASIS}</strong>{" "}
+            {SEMINAR_CANT_ATTEND_TAIL}
+          </p>
+        </section>
+
+        <p className="mt-10">
+          <Link
+            href="/events"
+            className="inline-flex min-h-11 items-center text-base font-medium text-primary underline underline-offset-4"
+          >
+            ← Return to Events Page
+          </Link>
+        </p>
       </div>
-    </Section>
-  </div>
-);
+    </div>
+  );
+};
 
 export default PracticeTransitionSeminar;

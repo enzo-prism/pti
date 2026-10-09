@@ -28,6 +28,23 @@ export interface ReviewRecord {
 
 const googleReviews: ReviewRecord[] = [
   {
+    id: "google-eric-kaleka",
+    slug: "eric-kaleka-practice-growth-and-transitions",
+    source: "google",
+    category: "consulting",
+    rating: 5,
+    quote:
+      "I have worked with Michael Njo since 2012, when I was a young dentist just out of dental school and starting my first practice. Over the past 14 years, Michael has been alongside me through virtually every major stage of my professional and business journey.\n\nDuring that time, I have purchased a practice from a retiring dentist in El Segundo, built a new office from the ground up, sold my original practice, acquired another dental practice, and successfully merged that practice into our current operation. Through every acquisition, transition, expansion, and difficult decision, Michael has been an integral part of the process.\n\nWhat I value most about Michael is that his guidance has never been limited to simply helping me grow revenue. We have experienced consistent year-over-year growth, but more importantly, he helped me build a better business.\n\nEarly in my career, I was the type of business owner whose practice depended heavily on my personal involvement. If I wasn't there driving things forward, the business suffered. Michael helped me transition from that model into an organization with the systems, leadership, and structure to function successfully with or without me. That transformation has given me something even more valuable than financial growth: time and freedom. I now have the ability to pursue other interests both within and outside of dentistry without sacrificing the success of my practice.\n\nMichael has been a trusted advisor for nearly my entire professional career. He has been involved in many of the biggest decisions I have made in dentistry, and his strategic advice, perspective, and guidance have helped shape the business owner I am today.\n\nWhen I look back at where I started in 2012 and where my practice and career are today, I can confidently say that Michael has played an important role in that success. I am incredibly grateful for our relationship and would highly recommend him to any dentist who is serious not only about growing a successful practice, but about building a business that ultimately gives them greater freedom and opportunity.",
+    sourceAuthorName: "Eric Kaleka",
+    displayAuthorName: "Eric Kaleka",
+    storyTitle: "Practice Growth and Transitions Since 2012",
+    role: "Practice Owner",
+    sourceUrl: "https://www.google.com/maps/contrib/103946805655908307425/reviews?hl=en",
+    // Google sent its new-review notification on September 3, 2026.
+    sourceDateISO: "2026-09-03",
+    sortOrder: 0,
+  },
+  {
     id: "google-tanya-harris",
     slug: "tanya-harris-owner-to-associate-transition",
     source: "google",

@@ -1,0 +1,193 @@
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { describe, expect, it } from "vitest";
+import {
+  getSeminarFormEvents,
+  getSeminarSeriesCardEvents,
+  getUpcomingPracticeTransitionSeminarEvents,
+  PENDING_LIZ_TERMS,
+  SEMINAR_CANT_ATTEND_EMPHASIS,
+  SEMINAR_CANT_ATTEND_HEADING,
+  SEMINAR_CANT_ATTEND_LEAD,
+  SEMINAR_CANT_ATTEND_MID,
+  SEMINAR_CANT_ATTEND_TAIL,
+  SEMINAR_REGISTRATION_CONFIRMATION,
+} from "@/data/practiceTransitionSeminar";
+import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
+import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
+import { SeminarRegistration } from "./SeminarRegistration";
+import PracticeTransitionSeminar from "@/views/PracticeTransitionSeminar";
+
+const referenceDateIso = "2026-10-01T12:00:00-07:00";
+const events = getUpcomingPracticeTransitionSeminarEvents(new Date(referenceDateIso));
+
+const renderForm = () =>
+  renderToStaticMarkup(createElement(SeminarRegistration, { events, referenceDateIso }));
+
+describe("seminar registration rendered content", () => {
+  it("asks for a registration call and keeps the core required fields", () => {
+    const html = renderForm();
+    expect(html).toContain("Request your registration call");
+    expect(html).toContain("Call me to register");
+    expect(html).toContain("Registration is completed by phone");
+    expect(html).toContain(SEMINAR_REGISTRATION_CONFIRMATION);
+    expect(html).not.toContain(
+      "Thank you. PTI will call you to complete registration and payment."
+    );
+    expect(html).toContain("Do not enter payment-card information");
+    expect(html).toContain("Choose a seminar");
+    expect(html).toContain("whitespace-nowrap");
+    expect(html).toContain("Call me to register");
+    expect(html.match(/<button[^>]*type="submit"[^>]*>/)?.[0]).toContain("text-base");
+    expect(html).not.toContain("Request My Seat");
+    expect(html).not.toContain("within one business day");
+    for (const id of [
+      "seminar-name",
+      "seminar-phone",
+      "seminar-email",
+      "seminar-selected-event",
+      "seminar-best-time-to-call",
+      "seminar-attendee-count",
+    ]) {
+      expect(html.match(new RegExp(`<[^>]+id="${id}"[^>]*>`))?.[0]).toContain('required=""');
+    }
+    const paymentBox = html.match(/<[^>]+id="seminar-payment-consent"[^>]*>/)?.[0];
+    const smsBox = html.match(/<[^>]+id="seminar-sms-consent"[^>]*>/)?.[0];
+    expect(paymentBox).toContain('aria-required="true"');
+    expect(paymentBox).toContain('required=""');
+    expect(paymentBox).toContain('name="payment_consent"');
+    expect(paymentBox).toContain('value="yes"');
+    expect(smsBox).toContain('name="sms_consent"');
+    expect(smsBox).toContain('value="yes"');
+    expect(smsBox).not.toContain('required=""');
+    expect(smsBox).not.toContain('aria-required="true"');
+    expect(html).toContain("Required");
+    expect(html).toContain("cursor-pointer");
+    expect(html).toContain(
+      "PTI may contact me to finalize registration and payment by phone"
+    );
+    expect(html).toContain("Send me registration-related texts (optional)");
+    expect(html).toContain(
+      '<span class="whitespace-nowrap">(833) 784-1121</span>'
+    );
+    expect(html).not.toContain("seminar-practice-name");
+    expect(html).not.toContain("seminar-city-state");
+    expect(html).not.toContain("seminar-heard-about");
+  });
+
+  it("defaults the seminar select empty and lists only the 2027 card dates", () => {
+    const html = renderForm();
+    const formEvents = getSeminarFormEvents(events);
+    expect(events.map((event) => event.value)).toContain("october-2-2026-sacramento");
+    expect(html).not.toContain("october-2-2026-sacramento");
+    expect(html).not.toContain("October 2, 2026");
+    expect(html).toContain('value=""');
+    expect(html).toContain("Choose a seminar");
+    expect(formEvents.map((event) => event.value)).toEqual([
+      "march-12-2027-anaheim",
+      "july-30-2027-san-francisco",
+      "october-15-2027-sacramento",
+    ]);
+    for (const event of formEvents) {
+      expect(html).toContain(`value="${event.value}"`);
+      expect(html).toContain(event.label);
+    }
+  });
+
+  it("does not submit during render and only points at Formspree from the client handler", () => {
+    const html = renderForm();
+    expect(html).not.toContain('action="https://formspree.io');
+    expect(html).toContain('id="seminar-register-form"');
+  });
+});
+
+describe("seminar page one-screen layout", () => {
+  it("puts hero and 2027 cards before the form, then facts, pricing, and bios", () => {
+    const html = renderToStaticMarkup(
+      createElement(PracticeTransitionSeminar, { events, referenceDateIso })
+    );
+    const h1 = html.indexOf("Mastering Your Dental Transition");
+    const cards = html.indexOf("March 12, 2027");
+    const form = html.indexOf('id="seminar-register-form"');
+    const submit = html.indexOf("Call me to register");
+    const confirmation = html.indexOf(SEMINAR_REGISTRATION_CONFIRMATION);
+    const policy = html.indexOf("Cancellation policy");
+    const facts = html.indexOf("Breakfast and lunch included");
+    const pricing = html.indexOf("Early registration special");
+    const bio = html.indexOf("Dr. Michael Njo, DDS");
+    const cantAttend = html.indexOf(SEMINAR_CANT_ATTEND_HEADING);
+    const back = html.indexOf("Return to Events Page");
+
+    expect(h1).toBeGreaterThan(0);
+    expect(cards).toBeGreaterThan(h1);
+    expect(form).toBeGreaterThan(cards);
+    expect(submit).toBeGreaterThan(form);
+    expect(confirmation).toBeGreaterThan(submit);
+    expect(policy).toBeGreaterThan(form);
+    expect(policy).toBeLessThan(facts);
+    expect(facts).toBeGreaterThan(form);
+    expect(pricing).toBeGreaterThan(facts);
+    expect(bio).toBeGreaterThan(pricing);
+    expect(cantAttend).toBeGreaterThan(bio);
+    expect(back).toBeGreaterThan(cantAttend);
+    expect((html.match(/Cancellation policy/g) ?? []).length).toBe(1);
+    expect((html.match(/<h1\b/g) ?? []).length).toBe(1);
+    expect(html).toContain("lg:grid-rows-[auto_1fr]");
+  });
+
+  it("shows the 2027 series cards from data and pending Liz terms", () => {
+    const html = renderToStaticMarkup(
+      createElement(PracticeTransitionSeminar, { events, referenceDateIso })
+    );
+    const series = getSeminarSeriesCardEvents(events);
+    expect(series.map((event) => event.city)).toEqual([
+      "Anaheim",
+      "San Francisco",
+      "Sacramento",
+    ]);
+    for (const event of series) {
+      expect(html).toContain(event.city);
+      expect(html).toContain(event.date);
+      expect(html).toContain(event.venueName);
+    }
+    expect(html).toContain(String(PENDING_LIZ_TERMS.earlyBirdPrice));
+    expect(html).toContain(String(PENDING_LIZ_TERMS.standardPrice));
+    expect(html).toContain(PENDING_LIZ_TERMS.earlyBirdDeadline);
+    expect(html).not.toContain("What You");
+    expect(html).not.toContain("Questions Before You Register");
+    expect(html).not.toContain("Make Your Next Move");
+    expect(html).not.toContain("Trusted by Dental Professionals");
+    expect(html).not.toContain("Ready to register");
+    expect(html).not.toContain("Upcoming seminar dates");
+    expect(html).not.toContain("?event=");
+  });
+
+  it("adds Liz's can't-attend consultation block with 44px site contact links", () => {
+    const html = renderToStaticMarkup(
+      createElement(PracticeTransitionSeminar, { events, referenceDateIso })
+    );
+    const block = html.slice(
+      html.indexOf(SEMINAR_CANT_ATTEND_HEADING),
+      html.indexOf("Return to Events Page")
+    );
+    expect(block).toContain(SEMINAR_CANT_ATTEND_HEADING);
+    expect(block).toContain("<strong");
+    expect(block).toContain(`font-bold">${SEMINAR_CANT_ATTEND_EMPHASIS}</strong>`);
+    expect(block).toContain(SEMINAR_CANT_ATTEND_LEAD);
+    expect(block).toContain(SEMINAR_CANT_ATTEND_MID);
+    expect(block).toContain(SEMINAR_CANT_ATTEND_TAIL);
+    expect(block).toContain(`href="tel:${PHONE_NUMBER_TEL}"`);
+    expect(block).toContain(`href="mailto:${SITE_CONTACT_EMAIL}"`);
+    expect(block).toContain(PHONE_NUMBER);
+    expect(block).toContain(SITE_CONTACT_EMAIL);
+
+    const telMatch = block.match(
+      new RegExp(`<a[^>]*href="tel:${PHONE_NUMBER_TEL.replace("+", "\\+")}"[^>]*>`)
+    )?.[0];
+    const mailMatch = block.match(
+      new RegExp(`<a[^>]*href="mailto:${SITE_CONTACT_EMAIL}"[^>]*>`)
+    )?.[0];
+    expect(telMatch).toContain("min-h-11");
+    expect(mailMatch).toContain("min-h-11");
+  });
+});

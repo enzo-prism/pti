@@ -20,7 +20,6 @@ describe("page JSON-LD graph", () => {
         title: "Home",
         description: "Home",
         path: "/",
-        includeLocalBusinessSchema: true,
       })
     );
     const texas = graphOf(
@@ -32,15 +31,37 @@ describe("page JSON-LD graph", () => {
 
     expect(homeBusiness?.["@type"]).toBe("ProfessionalService");
     expect(texasBusiness?.["@type"]).toBe("ProfessionalService");
-    // Hours and coordinates stay on the pages about the office itself.
-    expect(homeBusiness).toHaveProperty("geo");
-    expect(texasBusiness).not.toHaveProperty("geo");
     expect(homeBusiness?.logo).toMatchObject({
       url: "https://practicetransitionsinstitute.com/lovable-uploads/pti-logo.webp",
       width: 480,
       height: 466,
     });
   });
+
+  it.each(["/", "/contact", "/locations/texas"])(
+    "keeps the postal contact address without claiming an office on %s",
+    (path) => {
+      const graph = graphOf(buildPageJsonLd({ title: "PTI", description: "PTI", path }));
+      const business = graph.find((node) => node["@id"] === BUSINESS_ID);
+
+      expect(business?.address).toEqual({
+        "@type": "PostalAddress",
+        name: "Mailing address",
+        streetAddress: "3182 Campus Drive #274",
+        addressLocality: "San Mateo",
+        addressRegion: "CA",
+        postalCode: "94403",
+        addressCountry: "US",
+      });
+      for (const property of ["geo", "hasMap", "openingHours", "openingHoursSpecification", "priceRange"]) {
+        expect(business).not.toHaveProperty(property);
+      }
+      expect(business).toHaveProperty("telephone");
+      expect(business?.contactPoint).toEqual(expect.arrayContaining([
+        expect.objectContaining({ email: "info@practicetransitions.com" }),
+      ]));
+    }
+  );
 
   it("does not advertise the retired sitelinks search box", () => {
     const graph = graphOf(buildPageJsonLd({ title: "Blog", description: "Blog", path: "/blog" }));
