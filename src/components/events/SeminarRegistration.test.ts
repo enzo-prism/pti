@@ -6,7 +6,15 @@ import {
   getSeminarSeriesCardEvents,
   getUpcomingPracticeTransitionSeminarEvents,
   PENDING_LIZ_TERMS,
+  SEMINAR_CANT_ATTEND_EMPHASIS,
+  SEMINAR_CANT_ATTEND_HEADING,
+  SEMINAR_CANT_ATTEND_LEAD,
+  SEMINAR_CANT_ATTEND_MID,
+  SEMINAR_CANT_ATTEND_TAIL,
+  SEMINAR_REGISTRATION_CONFIRMATION,
 } from "@/data/practiceTransitionSeminar";
+import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
+import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
 import { SeminarRegistration } from "./SeminarRegistration";
 import PracticeTransitionSeminar from "@/views/PracticeTransitionSeminar";
 
@@ -22,6 +30,10 @@ describe("seminar registration rendered content", () => {
     expect(html).toContain("Request your registration call");
     expect(html).toContain("Call me to register");
     expect(html).toContain("Registration is completed by phone");
+    expect(html).toContain(SEMINAR_REGISTRATION_CONFIRMATION);
+    expect(html).not.toContain(
+      "Thank you. PTI will call you to complete registration and payment."
+    );
     expect(html).toContain("Do not enter payment-card information");
     expect(html).toContain("Choose a seminar");
     expect(html).toContain("whitespace-nowrap");
@@ -97,21 +109,27 @@ describe("seminar page one-screen layout", () => {
     const h1 = html.indexOf("Mastering Your Dental Transition");
     const cards = html.indexOf("March 12, 2027");
     const form = html.indexOf('id="seminar-register-form"');
+    const submit = html.indexOf("Call me to register");
+    const confirmation = html.indexOf(SEMINAR_REGISTRATION_CONFIRMATION);
     const policy = html.indexOf("Cancellation policy");
     const facts = html.indexOf("Breakfast and lunch included");
     const pricing = html.indexOf("Early registration special");
     const bio = html.indexOf("Dr. Michael Njo, DDS");
+    const cantAttend = html.indexOf(SEMINAR_CANT_ATTEND_HEADING);
     const back = html.indexOf("Return to Events Page");
 
     expect(h1).toBeGreaterThan(0);
     expect(cards).toBeGreaterThan(h1);
     expect(form).toBeGreaterThan(cards);
+    expect(submit).toBeGreaterThan(form);
+    expect(confirmation).toBeGreaterThan(submit);
     expect(policy).toBeGreaterThan(form);
     expect(policy).toBeLessThan(facts);
     expect(facts).toBeGreaterThan(form);
     expect(pricing).toBeGreaterThan(facts);
     expect(bio).toBeGreaterThan(pricing);
-    expect(back).toBeGreaterThan(bio);
+    expect(cantAttend).toBeGreaterThan(bio);
+    expect(back).toBeGreaterThan(cantAttend);
     expect((html.match(/Cancellation policy/g) ?? []).length).toBe(1);
     expect((html.match(/<h1\b/g) ?? []).length).toBe(1);
     expect(html).toContain("lg:grid-rows-[auto_1fr]");
@@ -142,5 +160,34 @@ describe("seminar page one-screen layout", () => {
     expect(html).not.toContain("Ready to register");
     expect(html).not.toContain("Upcoming seminar dates");
     expect(html).not.toContain("?event=");
+  });
+
+  it("adds Liz's can't-attend consultation block with 44px site contact links", () => {
+    const html = renderToStaticMarkup(
+      createElement(PracticeTransitionSeminar, { events, referenceDateIso })
+    );
+    const block = html.slice(
+      html.indexOf(SEMINAR_CANT_ATTEND_HEADING),
+      html.indexOf("Return to Events Page")
+    );
+    expect(block).toContain(SEMINAR_CANT_ATTEND_HEADING);
+    expect(block).toContain("<strong");
+    expect(block).toContain(`font-bold">${SEMINAR_CANT_ATTEND_EMPHASIS}</strong>`);
+    expect(block).toContain(SEMINAR_CANT_ATTEND_LEAD);
+    expect(block).toContain(SEMINAR_CANT_ATTEND_MID);
+    expect(block).toContain(SEMINAR_CANT_ATTEND_TAIL);
+    expect(block).toContain(`href="tel:${PHONE_NUMBER_TEL}"`);
+    expect(block).toContain(`href="mailto:${SITE_CONTACT_EMAIL}"`);
+    expect(block).toContain(PHONE_NUMBER);
+    expect(block).toContain(SITE_CONTACT_EMAIL);
+
+    const telMatch = block.match(
+      new RegExp(`<a[^>]*href="tel:${PHONE_NUMBER_TEL.replace("+", "\\+")}"[^>]*>`)
+    )?.[0];
+    const mailMatch = block.match(
+      new RegExp(`<a[^>]*href="mailto:${SITE_CONTACT_EMAIL}"[^>]*>`)
+    )?.[0];
+    expect(telMatch).toContain("min-h-11");
+    expect(mailMatch).toContain("min-h-11");
   });
 });

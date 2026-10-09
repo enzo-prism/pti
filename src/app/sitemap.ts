@@ -37,7 +37,7 @@ const STATIC_ROUTES: StaticRoute[] = [
   { path: "/about", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-09-02" },
   { path: "/drnjo", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-09-02" },
   { path: "/events", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-09-08" },
-  { path: "/events/practice-transition-seminar", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-10-01" },
+  { path: "/events/practice-transition-seminar", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-10-09" },
   { path: "/events/leadership-retreat", changeFrequency: "monthly", priority: 0.4, lastModified: "2026-08-17" },
   { path: "/testimonials", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-10-01" },
   { path: "/gallery", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-09-02" },

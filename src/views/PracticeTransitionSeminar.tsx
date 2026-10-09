@@ -9,11 +9,21 @@ import {
   PRACTICE_TRANSITION_SEMINAR_HEADLINE,
   PRACTICE_TRANSITION_SEMINAR_INTRO,
   PRACTICE_TRANSITION_SEMINAR_SUBHEAD,
+  SEMINAR_CANT_ATTEND_EMPHASIS,
+  SEMINAR_CANT_ATTEND_HEADING,
+  SEMINAR_CANT_ATTEND_LEAD,
+  SEMINAR_CANT_ATTEND_MID,
+  SEMINAR_CANT_ATTEND_TAIL,
   getSeminarSeriesCardEvents,
   isPendingLizEarlyBirdOpen,
   type PracticeTransitionSeminarEvent,
 } from "@/data/practiceTransitionSeminar";
+import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
+import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
 import { formatCurrency } from "@/lib/seminarRegistration";
+
+const cantAttendContactClass =
+  "inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4";
 
 interface PracticeTransitionSeminarProps {
   events: PracticeTransitionSeminarEvent[];
@@ -130,6 +140,31 @@ const PracticeTransitionSeminar = ({
             </section>
           </div>
         </div>
+
+        <section className="mt-10 rounded-xl border border-border bg-card p-5 md:p-6">
+          <h2 className="text-2xl font-bold text-foreground">
+            {SEMINAR_CANT_ATTEND_HEADING}
+          </h2>
+          <p className="mt-3 text-base leading-relaxed text-foreground">
+            {SEMINAR_CANT_ATTEND_LEAD}{" "}
+            <a
+              href={`tel:${PHONE_NUMBER_TEL}`}
+              className={`${cantAttendContactClass} whitespace-nowrap`}
+            >
+              {PHONE_NUMBER}
+            </a>{" "}
+            or{" "}
+            <a
+              href={`mailto:${SITE_CONTACT_EMAIL}`}
+              className={`${cantAttendContactClass} break-all`}
+            >
+              {SITE_CONTACT_EMAIL}
+            </a>{" "}
+            {SEMINAR_CANT_ATTEND_MID}{" "}
+            <strong className="font-bold">{SEMINAR_CANT_ATTEND_EMPHASIS}</strong>{" "}
+            {SEMINAR_CANT_ATTEND_TAIL}
+          </p>
+        </section>
 
         <p className="mt-10">
           <Link

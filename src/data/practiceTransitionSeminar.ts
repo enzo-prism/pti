@@ -53,6 +53,19 @@ export const PRACTICE_TRANSITION_SEMINAR_BIOS = [
   },
 ] as const;
 
+/** Liz Armato, Oct 9 2026: what happens after a registrant submits. */
+export const SEMINAR_REGISTRATION_CONFIRMATION =
+  "A member of the PTI team will contact you to confirm and finalize your seminar registration.";
+
+export const SEMINAR_CANT_ATTEND_HEADING = "Can’t Attend the Seminar?";
+export const SEMINAR_CANT_ATTEND_LEAD =
+  "We can still help you. Contact us at";
+export const SEMINAR_CANT_ATTEND_MID = "to schedule a";
+export const SEMINAR_CANT_ATTEND_EMPHASIS =
+  "complimentary one-on-one consultation";
+export const SEMINAR_CANT_ATTEND_TAIL =
+  "to discuss your dental practice transition questions and explore solutions tailored to your needs.";
+
 /**
  * Liz Armato proposed seminar terms from the October 2026 one-screen mockup.
  * Not yet approved by Dr. Njo or Enzo. Toggle `enabled` to hide the pending

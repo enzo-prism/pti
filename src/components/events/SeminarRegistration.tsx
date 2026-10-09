@@ -12,6 +12,7 @@ import {
   PRACTICE_TRANSITION_SEMINAR_FORM_ID,
   PRACTICE_TRANSITION_SEMINAR_FORM_NAME,
   PRACTICE_TRANSITION_SEMINAR_FORM_PROVIDER,
+  SEMINAR_REGISTRATION_CONFIRMATION,
   getPracticeTransitionSeminarEvent,
   getSeminarCancellationPolicy,
   getSeminarFormEvents,
@@ -319,9 +320,7 @@ export const SeminarRegistration = ({
       });
       if (!response.ok) throw new Error(`Formspree returned ${response.status}`);
       setSubmitStatus("success");
-      setSubmitMessage(
-        "Thank you. PTI will call you to complete registration and payment. Your seat is confirmed after payment."
-      );
+      setSubmitMessage(SEMINAR_REGISTRATION_CONFIRMATION);
       setValues({
         ...buildDefaultFormValues(fresh.formEvents),
         selectedEvent: values.selectedEvent,
@@ -627,6 +626,10 @@ export const SeminarRegistration = ({
           >
             {submitStatus === "submitting" ? "Submitting..." : "Call me to register"}
           </Button>
+
+          <p className="text-base leading-relaxed text-muted-foreground">
+            {SEMINAR_REGISTRATION_CONFIRMATION}
+          </p>
 
           <p className="text-base leading-relaxed">
             Prefer to register now?{" "}
