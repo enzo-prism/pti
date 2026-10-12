@@ -12,7 +12,7 @@ cat .vercel/project.json
 vercel project inspect pti
 ```
 
-The production Git remote is `https://github.com/enzo-prism/pti.git`. Do not force-push a rewritten history from a scratch copy over `main`. Apply chrome/UX changes on top of current `main` so Search Console verification (`next.config.mjs` rewrites + `src/app/api/google-site-verification/` + the issued-token allowlist in `src/lib/googleSiteVerification.ts`) stays in place.
+The production Git remote is `https://github.com/enzo-prism/pti.git`. The Vercel project ID is `prj_qDSA7QllaQmMZjFzwViyDdGSz3BY`, in team `team_NbogaPSGlnnTm8RNaeS0B4Pl`. A projectless worktree may not have `.vercel/project.json`; verify the linked project with the authenticated Vercel project API instead of creating a new project. Do not force-push a rewritten history from a scratch copy over `main`. Fetch current `main` and apply chrome/UX changes on top of it so Search Console verification (`next.config.mjs` rewrites + `src/app/api/google-site-verification/` + the issued-token allowlist in `src/lib/googleSiteVerification.ts`) stays in place.
 
 2. Use the repository Node runtime (24.x) and install from the lockfile.
 3. Run the full local gate:
@@ -44,15 +44,18 @@ vercel inspect <deployment-url>
 vercel inspect https://practicetransitionsinstitute.com
 ```
 
+Verify that remote `main` equals the intended release SHA, the Vercel production deployment is `READY`, and its Git metadata has that same SHA. Resolve the stable custom domain to that deployment; a successful push or a ready preview alone does not confirm a production release. Record the SHA, deployment ID, live checks, and any operational gaps in the project shipped log.
+
 ## Live smoke checks
 
 Verify the stable public domain, not only an ephemeral Vercel URL:
 
 - `/` renders the acquisition-to-legacy homepage and no meaningful section remains hidden.
-- Header: at ~390px, Book and the hamburger are visible and tappable; at ~1024px the hamburger is used (no clipped desktop links); at ≥1280px the full nav, Services dropdown, phone number, and Book Consultation are visible. `/drnjo` uses the same Navbar.
+- Header: at ~390px, the primary action and hamburger are visible and tappable; at ~1024px the hamburger is used (no clipped desktop links); at ≥1280px the full nav, Services dropdown, phone number, and primary action are visible. The seminar route shows Reserve linking to `#register`; other routes show Book / Book Consultation. `/drnjo` uses the same Navbar.
 - Open the mobile menu with the cookie banner visible and confirm Book/Call are not covered. Skip-to-content appears above the header, including on notched iPhones.
 - `/events` lists only current seminars.
 - `/events/practice-transition-seminar` excludes expired registration choices and schema, and its Event JSON-LD `startDate` carries a Pacific offset (e.g. `T08:00:00-07:00`), not `Z`.
+- Seminar pricing and fresh Event offers match the current Pacific deadline: $247 through December 31, 2026, $397 from January 1, 2027, and $197 per additional attendee. Confirm callback/direct-call actions, required acknowledgement, separate optional SMS consent, and empty-form validation without sending a live lead. See `docs/registration-preview.md` for the rollover tests and open business follow-ups.
 - `/faq` and a service page such as `/services/selling` include the FAQ answer text in the page HTML, not only in JSON-LD.
 - `/events/leadership-retreat` is a completed-event archive.
 - `/services` renders the 3:2 workshop photo and the 1672:941 process photo sharply, with complete faces and no meaningful subject cropped at mobile or desktop widths.
@@ -83,4 +86,6 @@ Confirm the live response includes the configured HSTS, content-type, framing, r
 
 ## Dependency note
 
-The repository uses Next.js 15.5.26 with React 18 and Sharp 0.35.5. Dynamic blog and review routes await their parameters. A scoped override keeps Next.js's bundled PostCSS on the patched root version. Run `npm audit` when preparing a release; the September 29, 2026 verification reported zero vulnerabilities.
+The repository uses Next.js 15.5.27 with matching ESLint configuration, React 18, and Sharp 0.35.5. Dynamic blog and review routes await their parameters. A scoped override keeps Next.js's bundled PostCSS on the patched root version; ESLint's `brace-expansion` override uses 1.1.21.
+
+The October 12 release audit prompted the compatible Next.js patch and dependency updates. After those fixes, `npm audit` reports 10 findings (7 high, 3 moderate), and `--omit=dev` reports 7 (5 high, 2 moderate). The remaining chains involve Tailwind's glob/CSS build tooling (`braces` and `postcss-selector-parser`); `tailwindcss-animate` exposes the Tailwind peer chain in the production dependency audit. This is not a clean audit. Track the tooling remediation separately; do not force a Tailwind major migration or unsafe override into a registration release. Run both audit modes again for future releases because advisory data changes.

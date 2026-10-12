@@ -1,6 +1,6 @@
 # PTI Implementation Map
 
-This document records the current production architecture after the August 2026 site audit. Read it with the repository `AGENTS.md` before changing routes, events, analytics, long-form content, or service positioning.
+This document records the site architecture through the October 12, 2026 seminar registration update. Read it with the repository `AGENTS.md` before changing routes, events, analytics, long-form content, or service positioning.
 
 ## Route and service ownership
 
@@ -18,15 +18,18 @@ This document records the current production architecture after the August 2026 
 - Event JSON-LD emits wall-clock start/end times with the venue's offset (e.g. `2026-10-02T08:00:00-07:00`), a `Place` with a `PostalAddress`, and an `Offer` only when there is a real price and web URL. Past events stay `EventScheduled`; schema.org has no "completed" status.
 - `/events` builds its listing on the server (`buildEventListing`) and ships only the past-events toggle to the client, so server and browser never disagree about which events are past.
 - The seminar page remains a server view. `SeminarRegistration` owns the visible pricing and submitted quote in shared client state. It refreshes after hydration, on focus/visibility, at Pacific midnight, and before submission. Date-sensitive seminar and events HTML/structured data render on each request.
-- Current-event UI, registration choices, pricing, and Event schema exclude expired dates. Event routes refresh hourly.
+- Current-event UI, registration choices, pricing, and Event schema exclude expired dates. `/events` and the seminar route use `force-dynamic`; fresh responses evaluate dates and offers on each request. An already-open page's JSON-LD remains the original response while its visible form quote refreshes.
+- The 2027 schedule uses $247 through December 31, 2026 Pacific, $397 from January 1, and $197 per additional attendee. Historical 2026 events retain their own terms. The existing events page view, listing, and search UI are preserved.
 - The completed June 2026 Leadership Retreat is an archive, not an active registration funnel.
 
 ## Forms and lead handling
 
 - The contact and seminar forms submit to the existing Formspree workflows. Checklist requests share the contact inbox but report `form_id: practice_sale_checklist` to analytics.
-- Seminar submissions include `quoted_price` and `early_bird_applied`, so staff can see the price the registrant was shown.
+- Seminar submissions include `quoted_price`, `quoted_guest_price`, and `early_bird_applied`, so staff can see the price the registrant was shown. Groups of two to four show computed totals; five or more request PTI confirmation rather than showing a false exact group total.
 - Honeypots use neutral ids and labels so browser autofill never fills them. A filled honeypot goes to Formspree as `_gotcha` rather than getting a fake success, and is not counted as a lead.
 - Seminar registration validates bounded inputs, phone format, consent, current seminar selection, and deadline-aware pricing; success/error states move focus appropriately.
+- `SeminarPricing` and the form share a rendered reference time. `src/lib/seminarClock.ts` schedules the next Pacific midnight, including DST changes. Hydration, focus/visibility, selection, and pre-submit refreshes keep the quote current. A changed quote or expired date stops submission for review; the payload builder checks again before sending.
+- The form requests a callback and acknowledges that PTI confirms seats after payment. SMS consent is optional and separate. A successful Formspree response confirms receipt of the request, not payment, a completed callback, or inbox delivery. Runtime tests mock provider requests; actual delivery remains a separate operational check.
 - The readiness checklist offers immediate Print/Save-as-PDF access. Educational email consent is optional and separate from access to the checklist.
 - Never emit submitted names, emails, phone numbers, messages, or other personal data in analytics events.
 

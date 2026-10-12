@@ -65,7 +65,7 @@ export const SEMINAR_CANT_ATTEND_EMPHASIS =
 export const SEMINAR_CANT_ATTEND_TAIL =
   "to discuss your dental practice transition questions and explore solutions tailored to your needs.";
 
-/** Preview terms from Liz's October 2026 mockup; publication is a separate approval. */
+/** Cancellation terms from Liz's October 2026 registration mockup. */
 export const SEMINAR_CANCELLATION_MINIMUM_DAYS = 8;
 export const SEMINAR_LATE_CANCELLATION_FEE = 100;
 
