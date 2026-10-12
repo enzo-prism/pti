@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   buildSeminarStructuredEvent,
+  getSeminarPriceQuote,
   practiceTransitionSeminarEvents,
 } from "@/data/practiceTransitionSeminar";
 import { buildEventSchema } from "./structuredData";
@@ -76,6 +77,33 @@ describe("event structured data", () => {
 
     expect(beforeDeadline.offers).toMatchObject({ price: 297 });
     expect(afterDeadline.offers).toMatchObject({ price: 397 });
+  });
+
+  it("matches the displayed 2027 quote on both sides of the Pacific year-end cutoff", () => {
+    const seminars2027 = practiceTransitionSeminarEvents.filter((event) =>
+      event.date.endsWith("2027")
+    );
+    for (const referenceDate of [
+      new Date("2026-12-31T23:59:59-08:00"),
+      new Date("2027-01-01T00:00:00-08:00"),
+    ]) {
+      for (const event of seminars2027) {
+        const quote = getSeminarPriceQuote(event, referenceDate);
+        const schema = buildEventSchema(buildSeminarStructuredEvent(event, referenceDate));
+        expect(schema.offers).toMatchObject({
+          price: quote.primaryPrice,
+          priceCurrency: "USD",
+        });
+      }
+    }
+  });
+
+  it("removes the seminar offer after the seminar's Pacific calendar day", () => {
+    const schema = buildEventSchema(buildSeminarStructuredEvent(
+      sacramento2026,
+      new Date("2026-10-03T00:00:00-07:00")
+    ));
+    expect(schema).not.toHaveProperty("offers");
   });
 
   it("omits the offer when no price is published", () => {

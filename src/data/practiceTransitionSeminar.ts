@@ -26,10 +26,48 @@ export const PRACTICE_TRANSITION_SEMINAR_PAGE_TITLE =
   "Dental Practice Transition Seminar | PTI";
 export const PRACTICE_TRANSITION_SEMINAR_META_DESCRIPTION =
   "A one-day PTI seminar on buying, selling, and transitioning a dental practice. See current dates, locations, pricing, and how to register.";
-export const PRACTICE_TRANSITION_SEMINAR_EYEBROW =
-  "Practice Transitions Seminar";
+export const PRACTICE_TRANSITION_SEMINAR_EYEBROW = "2027 SEMINAR SERIES";
 export const PRACTICE_TRANSITION_SEMINAR_HEADLINE =
-  "Build a High-Value Practice Transition With Confidence";
+  "Mastering Your Dental Transition";
+export const PRACTICE_TRANSITION_SEMINAR_INTRO =
+  "Whether you're considering buying, expanding, bringing on a partner, or eventually selling, this one-day seminar gives you practical guidance to understand your options and make informed decisions.";
+export const PRACTICE_TRANSITION_SEMINAR_SUBHEAD =
+  "Three locations, one full day";
+export const PRACTICE_TRANSITION_SEMINAR_SERIES_YEAR = 2027;
+export const PRACTICE_TRANSITION_SEMINAR_FACTS = [
+  "8:00 AM to 3:00 PM",
+  "Breakfast and lunch included",
+  "Educational materials",
+] as const;
+export const PRACTICE_TRANSITION_SEMINAR_BIOS = [
+  {
+    name: "Dr. Michael Njo, DDS",
+    title: "Founder and Lead Transition Consultant",
+    bio: "More than 30 years of dental experience as both a practicing dentist and transition consultant.",
+  },
+  {
+    name: "Liz Armato",
+    title: "COO, Practice Transitions Institute",
+    bio: "Decades of experience in dental practice consulting and operations.",
+  },
+] as const;
+
+/** Liz Armato, Oct 9 2026: what happens after a registrant submits. */
+export const SEMINAR_REGISTRATION_CONFIRMATION =
+  "A member of the PTI team will contact you to confirm and finalize your seminar registration.";
+
+export const SEMINAR_CANT_ATTEND_HEADING = "Can’t Attend the Seminar?";
+export const SEMINAR_CANT_ATTEND_LEAD =
+  "We can still help you. Contact us at";
+export const SEMINAR_CANT_ATTEND_MID = "to schedule a";
+export const SEMINAR_CANT_ATTEND_EMPHASIS =
+  "complimentary one-on-one consultation";
+export const SEMINAR_CANT_ATTEND_TAIL =
+  "to discuss your dental practice transition questions and explore solutions tailored to your needs.";
+
+/** Preview terms from Liz's October 2026 mockup; publication is a separate approval. */
+export const SEMINAR_CANCELLATION_MINIMUM_DAYS = 8;
+export const SEMINAR_LATE_CANCELLATION_FEE = 100;
 
 export interface PracticeTransitionSeminarEvent {
   id: string;
@@ -84,8 +122,8 @@ export const practiceTransitionSeminarEvents: PracticeTransitionSeminarEvent[] =
     time: "8:00 AM - 3:00 PM",
     venueName: "The Phillips Group",
     addressLines: ["2300 E Katella Ave #405", "Anaheim, CA"],
-    earlyBirdDeadline: "February 12, 2027",
-    earlyBirdPrice: 297,
+    earlyBirdDeadline: "December 31, 2026",
+    earlyBirdPrice: 247,
     standardPrice: 397,
     guestPrice: 197,
   },
@@ -98,8 +136,8 @@ export const practiceTransitionSeminarEvents: PracticeTransitionSeminarEvent[] =
     time: "8:00 AM - 3:00 PM",
     venueName: "Kohan Group",
     addressLines: ["490 Post St., Ste 1135", "San Francisco, CA"],
-    earlyBirdDeadline: "June 30, 2027",
-    earlyBirdPrice: 297,
+    earlyBirdDeadline: "December 31, 2026",
+    earlyBirdPrice: 247,
     standardPrice: 397,
     guestPrice: 197,
   },
@@ -112,8 +150,8 @@ export const practiceTransitionSeminarEvents: PracticeTransitionSeminarEvent[] =
     time: "8:00 AM - 3:00 PM",
     venueName: "TDIC Headquarters",
     addressLines: ["1201 K St, 14th Floor", "Sacramento, CA"],
-    earlyBirdDeadline: "September 15, 2027",
-    earlyBirdPrice: 297,
+    earlyBirdDeadline: "December 31, 2026",
+    earlyBirdPrice: 247,
     standardPrice: 397,
     guestPrice: 197,
   },
@@ -155,6 +193,53 @@ export const getSeminarRegistrationPrice = (
   isSeminarEarlyBirdPriceAvailable(event, referenceDate)
     ? event.earlyBirdPrice
     : event.standardPrice;
+
+export interface SeminarPriceQuote {
+  primaryPrice: number;
+  guestPrice: number;
+  isPromotional: boolean;
+  promotionEndsOn: string;
+}
+
+/** One quote for the visible offer, form submission, and Event structured data. */
+export const getSeminarPriceQuote = (
+  event: PracticeTransitionSeminarEvent,
+  referenceDate: Date = new Date()
+): SeminarPriceQuote => ({
+  primaryPrice: getSeminarRegistrationPrice(event, referenceDate),
+  guestPrice: event.guestPrice,
+  isPromotional: isSeminarEarlyBirdPriceAvailable(event, referenceDate),
+  promotionEndsOn: event.earlyBirdDeadline,
+});
+
+export const getDisplayedSeminarPrice = (
+  event: PracticeTransitionSeminarEvent,
+  referenceDate: Date = new Date()
+) => getSeminarPriceQuote(event, referenceDate).primaryPrice;
+
+export const isDisplayedEarlyBird = (
+  event: PracticeTransitionSeminarEvent,
+  referenceDate: Date = new Date()
+) => getSeminarPriceQuote(event, referenceDate).isPromotional;
+
+export const getSeminarSeriesCardEvents = (
+  events: PracticeTransitionSeminarEvent[],
+  seriesYear = PRACTICE_TRANSITION_SEMINAR_SERIES_YEAR
+) => {
+  const series = events.filter((event) =>
+    event.date.endsWith(String(seriesYear))
+  );
+  return series.length > 0 ? series : events;
+};
+
+/** Form options match the 2027 cards; leftover 2026 dates stay off the select. */
+export const getSeminarFormEvents = (
+  events: PracticeTransitionSeminarEvent[]
+) => getSeminarSeriesCardEvents(events);
+
+export const getSeminarCancellationPolicy = () => {
+  return `Cancel at least ${SEMINAR_CANCELLATION_MINIMUM_DAYS} days before your seminar for a full 100% refund. Cancellations made within ${SEMINAR_CANCELLATION_MINIMUM_DAYS} days are subject to a $${SEMINAR_LATE_CANCELLATION_FEE} fee, which covers the cost of reserving your space. If we reschedule a seminar and you are unable to attend the new date, you will receive a 100% refund.`;
+};
 
 export const practiceTransitionSeminarLearningPoints = [
   "Increase your practice value before you sell",
@@ -223,7 +308,7 @@ export const buildSeminarStructuredEvent = (
   registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
   type: "seminar",
   detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
-  offerPrice: getSeminarRegistrationPrice(event, referenceDate),
+  offerPrice: getSeminarPriceQuote(event, referenceDate).primaryPrice,
   offerPriceCurrency: "USD",
-  registrationOpen: true,
+  registrationOpen: isEventUpcoming(event.date, referenceDate),
 });

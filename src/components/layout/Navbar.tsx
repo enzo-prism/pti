@@ -24,6 +24,7 @@ import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
 import {
   trackBookConsultationClick,
   trackPhoneCallClick,
+  trackEventRegistrationClick,
 } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import {
@@ -76,6 +77,7 @@ const Navbar = () => {
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const pathname = usePathname();
   const currentPath = pathname ?? "/";
+  const isSeminarPage = currentPath === "/events/practice-transition-seminar";
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobilePanelRef = useRef<HTMLDivElement>(null);
@@ -394,16 +396,17 @@ const Navbar = () => {
 
           <Button asChild className="h-11 min-h-11 shrink-0 px-3 sm:px-4">
             <Link
-              href="/contact"
-              aria-label="Book Consultation"
+              href={isSeminarPage ? "#register" : "/contact"}
+              aria-label={isSeminarPage ? "Reserve your seminar registration" : "Book Consultation"}
               aria-current={currentPath === "/contact" ? "page" : undefined}
               onClick={() => {
                 closeMenu();
-                trackBookConsultationClick("navbar_desktop");
+                if (isSeminarPage) trackEventRegistrationClick("Practice Transitions Seminar", "form");
+                else trackBookConsultationClick("navbar_desktop");
               }}
             >
-              <span className="sm:hidden">Book</span>
-              <span className="hidden sm:inline">Book Consultation</span>
+              <span className="sm:hidden">{isSeminarPage ? "Reserve" : "Book"}</span>
+              <span className="hidden sm:inline">{isSeminarPage ? "Reserve Registration" : "Book Consultation"}</span>
             </Link>
           </Button>
 

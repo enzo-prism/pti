@@ -17,7 +17,7 @@ This document records the current production architecture after the August 2026 
 - Every calendar decision uses Pacific time (`BUSINESS_TIME_ZONE`). Vercel and CI run in UTC and visitors' browsers run anywhere, so "today", early-bird cutoffs, and past/upcoming status are never read from the process or browser zone. The Vitest suite runs in UTC to match production.
 - Event JSON-LD emits wall-clock start/end times with the venue's offset (e.g. `2026-10-02T08:00:00-07:00`), a `Place` with a `PostalAddress`, and an `Offer` only when there is a real price and web URL. Past events stay `EventScheduled`; schema.org has no "completed" status.
 - `/events` builds its listing on the server (`buildEventListing`) and ships only the past-events toggle to the client, so server and browser never disagree about which events are past.
-- The seminar page is a server view. `SeminarRegistration` is the client form: it renders exactly what the server rendered, then re-checks open dates and pricing after hydration, since the page may be cached for up to an hour.
+- The seminar page remains a server view. `SeminarRegistration` owns the visible pricing and submitted quote in shared client state. It refreshes after hydration, on focus/visibility, at Pacific midnight, and before submission. Date-sensitive seminar and events HTML/structured data render on each request.
 - Current-event UI, registration choices, pricing, and Event schema exclude expired dates. Event routes refresh hourly.
 - The completed June 2026 Leadership Retreat is an archive, not an active registration funnel.
 

@@ -124,7 +124,8 @@ describe("events dataset", () => {
     for (const event of upcomingSeminars) {
       expect(event.registrationLink).toBe(PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH);
       expect(event.detailPath).toBe(PRACTICE_TRANSITION_SEMINAR_PATH);
-      expect(event.offerPrice).toBe(297);
+      const seminar = practiceTransitionSeminarEvents.find((candidate) => candidate.id === event.id)!;
+      expect(event.offerPrice).toBe(getSeminarRegistrationPrice(seminar, new Date("2026-08-17T12:00:00-07:00")));
       expect(event.offerPriceCurrency).toBe("USD");
     }
   });
@@ -180,6 +181,21 @@ describe("events dataset", () => {
       eventsAfterDeadline.find((event) => event.date === "October 2, 2026")
         ?.offerPrice
     ).toBe(397);
+  });
+
+  it("keeps 2027 event-hub offers aligned with the year-end preview promotion", () => {
+    for (const [referenceDate, expectedPrice] of [
+      [new Date("2026-12-31T23:59:59-08:00"), 247],
+      [new Date("2027-01-01T00:00:00-08:00"), 397],
+    ] as const) {
+      const seminars = getUpcomingRawEvents(referenceDate).filter((event) =>
+        event.detailPath === PRACTICE_TRANSITION_SEMINAR_PATH
+      );
+      expect(seminars).toHaveLength(3);
+      expect(seminars.map((event) => event.offerPrice)).toEqual([
+        expectedPrice, expectedPrice, expectedPrice,
+      ]);
+    }
   });
 
   it("uses confirmed venues for the 2026 San Francisco and Sacramento seminars", () => {

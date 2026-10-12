@@ -13,7 +13,8 @@ import {
 import { getFeaturedReviews } from "@/data/reviews";
 import { buildEventSchema } from "@/lib/structuredData";
 
-export const revalidate = 3600;
+// Date-sensitive pricing and Event offers must be fresh at the Pacific cutoff.
+export const dynamic = "force-dynamic";
 
 const title = "Dental Practice Transition Events & Workshops";
 const description =
