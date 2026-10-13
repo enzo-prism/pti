@@ -50,7 +50,7 @@ describe("contact details", () => {
     const offenders = sourceFiles(SRC)
       .filter((file) => !allowed.has(relative(SRC, file)))
       .filter((file) =>
-        /info@practicetransitions\.com|\(833\) ?784-1121|\+?1?8337841121/.test(
+        /info@practicetrans(?:itions|tions)(?:institute)?\.com|\(833\) ?784-1121|\+?1?8337841121/i.test(
           readFileSync(file, "utf8")
         )
       )

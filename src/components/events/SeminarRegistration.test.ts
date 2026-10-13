@@ -53,7 +53,7 @@ describe("registration preview", () => {
     expect(html).not.toContain("When it is my time to sell");
     expect(html).toContain("Can’t Attend the Seminar?");
     expect(html).toContain("complimentary one-on-one consultation");
-    expect(html).toContain('href="mailto:info@practicetransitions.com"');
+    expect(html).toContain('href="mailto:info@practicetransitionsinstitute.com"');
     expect(html.match(/<h1\b/g)).toHaveLength(1);
   });
 });

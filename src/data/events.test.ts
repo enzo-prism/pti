@@ -31,7 +31,7 @@ describe("events dataset", () => {
       location: "The Phillips Group, 2300 E. Katella Ave, Suite 405, Anaheim, CA",
       type: "workshop",
       registrationLink:
-        "mailto:info@practicetransitions.com?subject=Beyond%20the%20Chair%20Anaheim%20September%2025",
+        "mailto:info@practicetransitionsinstitute.com?subject=Beyond%20the%20Chair%20Anaheim%20September%2025",
       flyerImage: "/lovable-uploads/drnjo-2026/promotional-flyer-dental-strategies.webp",
     });
     expect(workshop?.description).toContain("Contact PTI to confirm a seat");
@@ -61,7 +61,7 @@ describe("events dataset", () => {
       location: "Fats Asia Bistro, Roseville, CA",
       type: "dinner",
       registrationLink:
-        "mailto:info@practicetransitions.com?subject=Roseville%20Dinner%20Availability",
+        "mailto:info@practicetransitionsinstitute.com?subject=Roseville%20Dinner%20Availability",
     });
     expect(dinner?.description).toContain("confirm current seat availability");
     expect(JSON.stringify(dinner)).not.toMatch(/registration is open|sold out/i);
@@ -89,7 +89,7 @@ describe("events dataset", () => {
       location: "Cancun, Mexico",
       type: "conference",
       registrationLink:
-        "mailto:info@practicetransitions.com?subject=Growth%20Summit%20Interest%20List",
+        "mailto:info@practicetransitionsinstitute.com?subject=Growth%20Summit%20Interest%20List",
     });
     expect(JSON.stringify(summit?.description)).toContain("Seats are limited");
     expect(JSON.stringify(summit?.description)).toContain(

@@ -114,7 +114,7 @@ describe("event structured data", () => {
       time: "6:00 PM - 9:00 PM",
       location: "Fats Asia Bistro, Roseville, CA",
       description: "A dinner.",
-      registrationLink: "mailto:info@practicetransitions.com",
+      registrationLink: "mailto:info@practicetransitionsinstitute.com",
       type: "dinner",
     });
 
@@ -130,7 +130,7 @@ describe("event structured data", () => {
       time: "5:30 PM PT • 8:30 PM ET",
       location: "Online",
       description: "A webinar.",
-      registrationLink: "mailto:info@practicetransitions.com",
+      registrationLink: "mailto:info@practicetransitionsinstitute.com",
       type: "webinar",
       offerPrice: 0,
     });

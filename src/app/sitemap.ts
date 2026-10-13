@@ -35,16 +35,16 @@ const STATIC_ROUTES: StaticRoute[] = [
   { path: "/resources/second-book", changeFrequency: "monthly", priority: 0.5, lastModified: "2026-09-02" },
   { path: "/resources/navigating-dental-insurance-podcast", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-09-01" },
   { path: "/about", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-09-02" },
-  { path: "/drnjo", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-09-02" },
-  { path: "/events", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-10-12" },
-  { path: "/events/practice-transition-seminar", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-10-12" },
+  { path: "/drnjo", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-10-13" },
+  { path: "/events", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-10-13" },
+  { path: "/events/practice-transition-seminar", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-10-13" },
   { path: "/events/leadership-retreat", changeFrequency: "monthly", priority: 0.4, lastModified: "2026-08-17" },
   { path: "/testimonials", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-09-29" },
   { path: "/gallery", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-09-02" },
   { path: "/faq", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-09-27" },
-  { path: "/contact", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-05-28" },
-  { path: "/privacy-policy", changeFrequency: "yearly", priority: 0.3, lastModified: "2026-08-17" },
-  { path: "/terms-of-service", changeFrequency: "yearly", priority: 0.3, lastModified: "2026-02-02" },
+  { path: "/contact", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-10-13" },
+  { path: "/privacy-policy", changeFrequency: "yearly", priority: 0.3, lastModified: "2026-10-13" },
+  { path: "/terms-of-service", changeFrequency: "yearly", priority: 0.3, lastModified: "2026-10-13" },
 ];
 
 const toUtcDate = (dateString: string) => new Date(`${dateString}T00:00:00Z`);

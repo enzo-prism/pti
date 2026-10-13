@@ -33,7 +33,7 @@ export const DEFAULT_OG_IMAGE = "/opengraph.png";
 export const BUSINESS_DESCRIPTION =
   "Practice Transitions Institute guides dentists through valuations, sales, partnerships, and associateships with personalized, end-to-end transition support.";
 
-export const SITE_CONTACT_EMAIL = "info@practicetransitions.com";
+export const SITE_CONTACT_EMAIL = "info@practicetransitionsinstitute.com";
 export const BUSINESS_ADDRESS = {
   streetAddress: "3182 Campus Drive #274",
   addressLocality: "San Mateo",

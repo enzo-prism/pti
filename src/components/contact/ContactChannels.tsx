@@ -52,7 +52,7 @@ export const ContactChannels = () => {
         </div>
         <span className={valueClasses}>{SITE_CONTACT_EMAIL}</span>
         <span className={helperClasses}>
-          PTI&apos;s established client inbox on PracticeTransitions.com
+          PTI&apos;s established client inbox
         </span>
       </a>
     </div>
