@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { getReviewBySlug } from "@/data/reviews";
 import { SeminarRegistration } from "@/components/events/SeminarRegistration";
@@ -83,8 +84,19 @@ const PracticeTransitionSeminar = ({
             {kevin && (
               <figure className="rounded-xl border border-primary/20 bg-primary/5 p-5 md:p-6">
                 <blockquote className="text-lg leading-relaxed text-foreground">“{kevinExcerpt}”</blockquote>
-                <figcaption className="mt-4 text-base font-semibold text-primary">
-                  {kevin.displayAuthorName} <span className="block font-normal text-muted-foreground">Seminar Attendee</span>
+                <figcaption className="mt-4 flex items-center gap-3 text-base font-semibold text-primary">
+                  <Image
+                    src="/lovable-uploads/kevin-barry-google-profile.png"
+                    alt="Kevin Barry"
+                    width={144}
+                    height={144}
+                    unoptimized
+                    className="h-14 w-14 shrink-0 rounded-full border border-primary/20 bg-white object-contain"
+                  />
+                  <span>
+                    {kevin.displayAuthorName}
+                    <span className="block font-normal text-muted-foreground">Seminar Attendee</span>
+                  </span>
                 </figcaption>
               </figure>
             )}
