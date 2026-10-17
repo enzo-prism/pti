@@ -219,8 +219,7 @@ describe("events dataset", () => {
     const sanFrancisco = rawEvents.find((event) => event.date === "July 30, 2027");
     const sacramento = rawEvents.find((event) => event.date === "October 15, 2027");
 
-    expect(sanFrancisco?.location).toContain("Kohan Group");
-    expect(sanFrancisco?.location).toContain("490 Post St.");
+    expect(sanFrancisco?.location).toBe("QUO, 1 Post Street, San Francisco, CA");
     expect(sacramento?.location).toContain("TDIC Headquarters");
     expect(sacramento?.location).toContain("1201 K St");
   });

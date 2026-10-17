@@ -370,7 +370,7 @@ export const SeminarRegistration = ({
       </h2>
       <p className="mt-2 text-base leading-relaxed text-muted-foreground">
         {formEvents.length > 0
-          ? "Registration is completed by phone. Tell us a little about you and we will call you at a time that works."
+          ? "Registration is completed by phone. Tell us a little about yourself and we will call you at a time that works."
           : "There are no seminar dates open right now. Contact PTI to ask about future dates."}
       </p>
 
