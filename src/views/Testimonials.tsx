@@ -352,7 +352,7 @@ const Testimonials = ({ reviews }: TestimonialsProps) => {
                     </Badge>
                   </div>
 
-                  <blockquote className="text-[0.95rem] leading-relaxed text-gray-700">
+                  <blockquote className="whitespace-pre-line text-[0.95rem] leading-relaxed text-gray-700">
                     <span
                       aria-hidden="true"
                       className="mr-0.5 font-serif text-xl leading-none text-primary/30"
