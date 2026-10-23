@@ -122,6 +122,22 @@ describe("event structured data", () => {
     expect(schema.location).toMatchObject({ name: "Fats Asia Bistro" });
   });
 
+  it("keeps an unconfirmed dinner time as a calendar date without inventing midnight", () => {
+    const schema = buildEventSchema({
+      id: "panel-of-experts-sacramento-2027",
+      title: "Panel of Experts Dinner",
+      date: "October 14, 2027",
+      time: "Time to be confirmed",
+      location: "Frank Fat's Restaurant, Sacramento, CA",
+      description: "Contact PTI for the time, program, and reservation details.",
+      registrationLink: "mailto:info@practicetransitionsinstitute.com",
+      type: "dinner",
+    });
+    expect(schema.startDate).toBe("2027-10-14");
+    expect(schema).not.toHaveProperty("endDate");
+    expect(schema).not.toHaveProperty("offers");
+  });
+
   it("keeps an explicit free price and never uses mailto: as a web URL", () => {
     const schema = buildEventSchema({
       id: "webinar",

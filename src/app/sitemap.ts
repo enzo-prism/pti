@@ -15,7 +15,7 @@ interface StaticRoute {
 // (copy, data, or what crawlers can read), not styling or refactors. Bump it
 // in the same commit as the content edit.
 const STATIC_ROUTES: StaticRoute[] = [
-  { path: "/", changeFrequency: "weekly", priority: 1.0, lastModified: "2026-08-17" },
+  { path: "/", changeFrequency: "weekly", priority: 1.0, lastModified: "2026-10-23" },
   { path: "/services", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-09-27" },
   { path: "/services/value", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-09-27" },
   { path: "/services/selling", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-09-27" },
@@ -36,7 +36,7 @@ const STATIC_ROUTES: StaticRoute[] = [
   { path: "/resources/navigating-dental-insurance-podcast", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-09-01" },
   { path: "/about", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-09-02" },
   { path: "/drnjo", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-10-13" },
-  { path: "/events", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-10-17" },
+  { path: "/events", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-10-23" },
   { path: "/events/practice-transition-seminar", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-10-17" },
   { path: "/events/leadership-retreat", changeFrequency: "monthly", priority: 0.4, lastModified: "2026-08-17" },
   { path: "/testimonials", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-10-22" },
