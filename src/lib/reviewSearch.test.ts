@@ -21,4 +21,18 @@ describe("review search", () => {
     expect(matchesReviewSearch(tanya, normalizeReviewSearch("Associateship"))).toBe(true);
     expect(matchesReviewSearch(tanya, normalizeReviewSearch("Google"))).toBe(true);
   });
+
+  it("finds Valentina despite pasted spaces and mixed case", () => {
+    const query = normalizeReviewSearch("  vAlEnTiNa HoLiNa  ");
+    expect(reviews.filter((review) => matchesReviewSearch(review, query)).map(
+      (review) => review.id
+    )).toEqual(["google-valentina-holina"]);
+  });
+
+  it("searches the seller category and source labels", () => {
+    const valentina = reviews.find((review) => review.id === "google-valentina-holina")!;
+    expect(matchesReviewSearch(valentina, normalizeReviewSearch("Seller"))).toBe(true);
+    expect(matchesReviewSearch(valentina, normalizeReviewSearch("Google"))).toBe(true);
+    expect(matchesReviewSearch(valentina, normalizeReviewSearch("Practice Seller"))).toBe(true);
+  });
 });

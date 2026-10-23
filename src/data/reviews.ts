@@ -28,6 +28,20 @@ export interface ReviewRecord {
 
 const googleReviews: ReviewRecord[] = [
   {
+    id: "google-valentina-holina",
+    slug: "valentina-holina-practice-sale",
+    source: "google",
+    category: "seller",
+    rating: 5,
+    quote:
+      "Michael Njo is truly a miracle worker!\n\nHis dedication, connections, and incredible tenacity are what set him apart. He knows how to get things done, overcome obstacles, and guide his clients across the finish line, no matter how challenging the journey becomes.\n\nThroughout the entire process of selling my dental practice, Michael demonstrated extraordinary patience, wisdom, professionalism, and knowledge. He was always there to offer guidance, reassurance, and support, practically holding my hand every step of the way.\n\nWhat makes Michael truly special is that he genuinely cares about his clients and never gives up on them. His experience, determination, and ability to make things happen are simply remarkable.\n\nIf you are looking for someone who will go above and beyond to get you to the finish line, Michael Njo is the person you want by your side. I cannot recommend him highly enough!",
+    sourceAuthorName: "Valentina Holina",
+    displayAuthorName: "Valentina Holina",
+    role: "Practice Seller",
+    // Google gives no exact date; this review was received Oct 19, 2026.
+    sortOrder: -2,
+  },
+  {
     id: "google-tanya-harris",
     slug: "tanya-harris-owner-to-associate-transition",
     source: "google",

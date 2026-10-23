@@ -16,10 +16,11 @@ This runbook documents the canonical review architecture used across PTI pages.
 
 Key rules:
 1. `id` and `slug` are stable identifiers and should not be regenerated for existing records.
-2. `quote` should remain source-exact unless a content correction is explicitly requested.
+2. `quote` should remain source-exact unless a content correction is explicitly requested. Preserve paragraph breaks; listing and detail views use `whitespace-pre-line`.
 3. `sourceAuthorName` preserves original source identity.
 4. `displayAuthorName` is the professional alias shown in UI.
 5. UI review-time labels are intentionally hidden.
+6. Google Business Profile reviews often have no exact publication date. Do not invent `sourceDateISO`. Use a lower `sortOrder` so newer received reviews sort first, and record the received date in a comment (Valentina Holina was received Oct 19, 2026, `sortOrder: -2`).
 
 ## Routing
 - Directory page: `src/app/(site)/testimonials/page.tsx`
@@ -54,8 +55,12 @@ All entry-point cards should link to canonical detail pages (`/testimonials/[slu
 - `src/data/reviews.test.ts`
   - id uniqueness
   - slug uniqueness
+  - newest undated Google review sorts first
   - featured slot ordering
   - distinct story titles for repeated first names
+- `src/lib/reviewSearch.test.ts`
+  - author match despite pasted spaces and mixed case
+  - category and source label search (associateship / seller / Google)
 - `src/app/sitemap.test.ts`
   - detail pages stay out of the sitemap while noindexed
 
@@ -76,6 +81,9 @@ Run:
 1. Add/update records in `src/data/reviews.ts`.
 2. Preserve existing `slug` values unless explicitly migrating URLs.
 3. Keep `sourceAuthorName` unchanged; adjust `displayAuthorName` for presentation only.
-4. Verify featured slot assignments still map to intended pages.
-5. Mirror the change to michaelnjodds.com.
-6. Run tests/lint/build and perform manual spot checks.
+4. Keep `quote` source-exact, including paragraph breaks. Quote-only Google reviews need no image field.
+5. For Google reviews without a publication date, omit `sourceDateISO`, set `sortOrder` so the newest received review sorts first, and comment the received date.
+6. Confirm `reviewLabels.ts` already has the source and category labels (add them only when introducing a new `ReviewSource` or `ReviewCategory`).
+7. Verify featured slot assignments still map to intended pages.
+8. Mirror the change to michaelnjodds.com.
+9. Run tests/lint/build and perform manual spot checks.
