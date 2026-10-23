@@ -105,7 +105,7 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 - Lead-focused key events emitted by the app include `generate_lead`, `book_consultation_click`, and `phone_call_click`.
 - Sitemap and robots are generated at runtime by `src/app/sitemap.ts` and `src/app/robots.ts`.
 - Social profiles (schema `sameAs`): set `NEXT_PUBLIC_SOCIAL_PROFILES` to a comma-separated list of profile URLs (Google Business Profile, LinkedIn, Facebook, YouTube). When unset, it defaults to the founder's official site so at least one verified identity link is emitted.
-- FAQ rich results: pages/sections expose a `{ question, answer }[]` array and pass `buildFAQSchema(...)` through `buildPageJsonLd`. Business structured data includes `geo` coordinates (`BUSINESS_GEO`).
+- FAQ rich results: pages/sections expose a `{ question, answer }[]` array and pass `buildFAQSchema(...)` through `buildPageJsonLd`. Business structured data labels the postal address as a mailing address and does not infer a customer-facing office, coordinates, opening hours, map, or price range.
 
 ## Deployment
 

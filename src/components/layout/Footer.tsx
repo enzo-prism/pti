@@ -8,7 +8,11 @@ import {
   PODCAST_INTERVIEW_PATH,
   PRACTICE_SALE_CHECKLIST_PATH,
 } from "@/lib/constants";
-import { SITE_CONTACT_EMAIL, BUSINESS_ADDRESS } from "@/lib/siteMetadata";
+import {
+  SITE_CONTACT_EMAIL,
+  BUSINESS_ADDRESS,
+  BUSINESS_ADDRESS_LABEL,
+} from "@/lib/siteMetadata";
 import { CookiePreferencesButton } from "@/components/privacy/CookiePreferencesButton";
 
 const exploreLinks = [
@@ -139,6 +143,7 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-sky-300" aria-hidden="true" />
                 <span className="text-sm not-italic leading-relaxed text-white/80">
+                  <span className="block font-medium">{BUSINESS_ADDRESS_LABEL}</span>
                   {BUSINESS_ADDRESS.streetAddress}
                   <br />
                   {BUSINESS_ADDRESS.addressLocality},{" "}

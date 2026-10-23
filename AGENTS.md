@@ -75,9 +75,9 @@ This is a Next.js 15 App Router site with React 18, TypeScript (strict), Tailwin
 
 - `src/lib/seo.ts` builds metadata; `src/components/StructuredData.tsx` renders JSON-LD (with `<` escaped).
 - `buildTitleTag` appends " | Practice Transitions Institute" or " | PTI" only when the result fits in 65 characters, and never cuts a title.
-- The business node is `ProfessionalService` on every page; `includeLocalBusinessSchema` only adds hours, geo, and map (homepage and `/contact`). Declare a page's own type with `pageType` (`ContactPage`, `ImageGallery`, `ProfilePage`, `AboutPage`, `CollectionPage`) instead of emitting a second node for the same URL.
+- The business node is `ProfessionalService` on every page; the Campus Drive address is mailing-only, so do not infer office hours, geo, map, or price range. Declare a page's own type with `pageType` (`ContactPage`, `ImageGallery`, `ProfilePage`, `AboutPage`, `CollectionPage`) instead of emitting a second node for the same URL.
 - `noindex` pages still `follow` in production. Sitemap `lastModified` is the date of the last significant content change; bump it in the same commit as the edit.
-- `src/lib/structuredData.ts` includes schemas for blog posts, events, contact, and FAQs (`buildFAQSchema`). The `ProfessionalService`/`LocalBusiness` schema carries `geo` (`BUSINESS_GEO` in `siteMetadata.ts`) and `sameAs`.
+- `src/lib/structuredData.ts` includes schemas for blog posts, events, contact, and FAQs (`buildFAQSchema`). The `ProfessionalService` schema carries the labeled mailing address and `sameAs`, without guessed office fields.
 - Canonical host is controlled by `NEXT_PUBLIC_CANONICAL_SITE_URL` in `src/lib/siteMetadata.ts`.
 - `sameAs` profiles come from `NEXT_PUBLIC_SOCIAL_PROFILES` (comma-separated URLs); when unset it defaults to the founder's official site. Set it in Vercel to add the Google Business Profile, LinkedIn, etc. without a code change.
 - FAQ pages/sections export a plain `{ question, answer }[]` array from the view and pass `buildFAQSchema(...)` into `buildPageJsonLd({ structuredData })` (see `/services/selling`, `/resources/how-much-is-my-dental-practice-worth`).

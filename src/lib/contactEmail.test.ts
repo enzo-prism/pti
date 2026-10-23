@@ -40,7 +40,6 @@ describe("public contact email", () => {
       title: "Contact PTI",
       description: "Contact information",
       path,
-      includeLocalBusinessSchema: path === "/contact",
     });
     const graph = jsonLd["@graph"] as Record<string, unknown>[];
     expect(graph.find((node) => node["@type"] === "ProfessionalService")).toMatchObject({

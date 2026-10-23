@@ -22,7 +22,6 @@ export default function Page() {
           title,
           description,
           path: "/",
-          includeLocalBusinessSchema: true,
         })}
       />
       <Home />
