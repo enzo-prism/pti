@@ -24,10 +24,25 @@ Runtime tests mount the real React form in jsdom, mock all submission fetches, a
 
 ## Open follow-ups
 
-- Confirm final commercial rules, seat/rate-lock meaning, cancellation boundaries, actual receiving inbox/callback coverage, and San Francisco venue. The release retains Kohan Group / 490 Post Street from current main; Liz's mockup says QUO / 1 Post Street. Do not silently replace the venue without confirmation.
+- Confirm final commercial rules, seat/rate-lock meaning, cancellation boundaries, and actual receiving inbox/callback coverage. The current 2027 San Francisco seminar is QUO / 1 Post Street, as recorded in the canonical schedule and venue tests. Kohan Group / 490 Post Street applies only to the archived July 17, 2026 event.
 - With explicit authorization to send the test, run a marked external delivery test and read back the intended recipient/provider result. Publication approval does not prove actual notification delivery, a completed callback, or payment.
 
 These follow-ups remain documented separately from the authorized website release. The existing Formspree endpoint and contact constants are retained.
+
+## Delivery verification, October 23, 2026
+
+The form posts to the existing seminar workflow `xlgzrjev`, separate from the general-contact/checklist workflow `mdajbelv`. Neither endpoint identifies its receiving inbox or proves delivery. Do not change either endpoint based on an assumed recipient.
+
+Before an external test, confirm the seminar receiving inbox, the PTI callback owner and backup, expected response time, and which record tracks callback and payment completion. Obtain approval for the exact marked test payload and submission; a local/browser test must mock the provider and send no notification.
+
+After an approved test, record these separately:
+
+1. Submission timestamp, selected seminar, displayed primary/additional-attendee prices, attendee count, and test marker (`_codex_test`).
+2. Provider acceptance record and receipt in the named receiving inbox. A 2xx provider response alone does not prove inbox receipt.
+3. Assigned callback owner, response/callback outcome, and any coverage handoff.
+4. Payment recorded by the PTI team and seat confirmation. No website checkout or test payment is part of this verification.
+
+Use synthetic contact information controlled by the tester and explicitly agreed recipients. Do not put card details in the form, email, test notes, analytics, or repository. Keep operational records containing personal data in the approved client system.
 
 ## Kevin Barry portrait, October 15, 2026
 
@@ -38,3 +53,9 @@ The original 144×144 PNG is stored at `public/lovable-uploads/kevin-barry-googl
 Release preparation also applied compatible dependency fixes, including Next.js and its ESLint configuration 15.5.27. The remaining audit findings are documented in `docs/deployment-runbook.md`; no forced framework or Tailwind major upgrade is part of this release.
 
 Unrelated address/schema, book-release timing, logo, Google Profile, and broader GHL work from the old draft are not included.
+
+## October 23 content preparation
+
+- Added the requested October 14, 2027 Sacramento Panel of Experts dinner at Frank Fat's Restaurant to the events dataset. Source: Dr. Njo's September 28 email. Time, program, street address, speaker list, pricing, and seat availability are unconfirmed and have not been invented. The card directs inquiries to PTI.
+- Prepared `/blog/peninsula-dental-society-merger` from Dr. Njo's September 17 email and supplied `TPDS.png`. The post preserves his supplied caption, attributes it to Michael Njo, DDS, and uses the original photograph at its full 1448×1086 frame, converted to WebP. October 23 is the publication preparation date, not the merger's effective date. The companion Njo site must carry the same source photograph and caption.
+- These additions and the dependency updates are local preparation. No new deployment, notification, registration, callback, payment, or client approval is implied.

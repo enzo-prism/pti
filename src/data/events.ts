@@ -23,6 +23,9 @@ const BEYOND_THE_CHAIR_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeUR
 const GARGLE_SUMMIT_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
   "Growth Summit Interest List"
 )}`;
+const SACRAMENTO_PANEL_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
+  "Sacramento Panel of Experts Dinner - October 14, 2027"
+)}`;
 const CALL_TO_REGISTER = `tel:${PHONE_NUMBER_TEL}`;
 
 // Event data with type definitions
@@ -125,6 +128,17 @@ const practiceTransitionEvents: RawEvent[] = practiceTransitionSeminarEvents.map
 );
 
 export const rawEvents: RawEvent[] = [
+  {
+    id: "panel-of-experts-sacramento-2027",
+    title: "Panel of Experts Dinner",
+    date: "October 14, 2027",
+    time: "Time to be confirmed",
+    location: "Frank Fat's Restaurant, Sacramento, CA",
+    description:
+      "A Panel of Experts dinner in Sacramento. Contact PTI for the time, program, and reservation details.",
+    type: "dinner",
+    registrationLink: SACRAMENTO_PANEL_MAILTO,
+  },
   {
     id: "beyond-the-chair-anaheim-2026",
     title: "The Dental Practice Beyond the Chair",

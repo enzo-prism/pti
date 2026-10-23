@@ -4,6 +4,29 @@ export const communityImpactPosts: Array<
   BlogPost & { featuredImageWidth?: number; featuredImageHeight?: number }
 > = [
   {
+    id: 48,
+    title: "The Peninsula Dental Society Merger",
+    excerpt:
+      "Dr. Michael Njo shares the results of collaboration through the merger of SMCDS and MPDS into The Peninsula Dental Society.",
+    category: "Community Impact",
+    // Publication preparation date, not the merger's legal effective date.
+    date: "2026-10-23",
+    readTime: "1 min read",
+    gradient: "bg-gradient-to-br from-primary via-sky-600 to-emerald-500",
+    slug: "peninsula-dental-society-merger",
+    author: "Michael Njo, DDS",
+    metaTitle: "The Peninsula Dental Society Merger | PTI",
+    metaDescription:
+      "Dr. Michael Njo celebrates collaboration through the SMCDS and MPDS merger and a stronger future for organized dentistry.",
+    featuredImage: "/lovable-uploads/drnjo-2026/peninsula-dental-society-merger.webp",
+    featuredImageAlt:
+      "Group gathered in front of The Peninsula Dental Society wall sign",
+    featuredImageFit: "contain",
+    featuredImageWidth: 1448,
+    featuredImageHeight: 1086,
+    content: `The results of collaboration—making organized dentistry stronger through the merger of SMCDS and MPDS. The Peninsula Dental Society emerges stronger, better connected, and better positioned to serve our members, our profession, and the communities we represent. Together, we are building a stronger future for dentistry!`,
+  },
+  {
     id: 47,
     title: "Congratulations, Dr. Diana Fat",
     excerpt:

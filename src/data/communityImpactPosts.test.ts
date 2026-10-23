@@ -11,8 +11,22 @@ const getPost = (slug: string) => {
 };
 
 describe("community impact posts", () => {
+  it("preserves the supplied Peninsula merger update and full-frame photograph", () => {
+    const post = getPost("peninsula-dental-society-merger");
+    expect(post).toMatchObject({
+      date: "2026-10-23",
+      author: "Michael Njo, DDS",
+      featuredImageFit: "contain",
+      featuredImageWidth: 1448,
+      featuredImageHeight: 1086,
+    });
+    expect(post.content).toBe("The results of collaboration—making organized dentistry stronger through the merger of SMCDS and MPDS. The Peninsula Dental Society emerges stronger, better connected, and better positioned to serve our members, our profession, and the communities we represent. Together, we are building a stronger future for dentistry!");
+    expect(existsSync(resolve(process.cwd(), `public${post.featuredImage}`))).toBe(true);
+    expect(post.cta).toBeUndefined();
+  });
+
   it("lists the Diana Fat Board of Regents congratulations without an event CTA", () => {
-    const post = communityImpactPosts[0];
+    const post = getPost("diana-fat-board-of-regents");
 
     expect(post).toMatchObject({
       id: 47,

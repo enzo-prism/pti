@@ -19,6 +19,26 @@ import {
 } from "@/data/practiceTransitionSeminar";
 
 describe("events dataset", () => {
+  it("lists the requested Sacramento dinner without inventing unconfirmed details", () => {
+    const dinner = rawEvents.find(
+      (event) => event.id === "panel-of-experts-sacramento-2027"
+    );
+    expect(dinner).toMatchObject({
+      title: "Panel of Experts Dinner",
+      date: "October 14, 2027",
+      time: "Time to be confirmed",
+      location: "Frank Fat's Restaurant, Sacramento, CA",
+      type: "dinner",
+    });
+    expect(dinner?.registrationLink).toContain("mailto:info@practicetransitionsinstitute.com");
+    expect(dinner).not.toHaveProperty("speakers");
+    expect(dinner).not.toHaveProperty("offerPrice");
+    const referenceDate = new Date("2027-10-14T12:00:00-07:00");
+    expect(getUpcomingRawEvents(referenceDate)).toContainEqual(dinner);
+    expect(getUpcomingRawEvents(new Date("2027-10-15T00:00:00-07:00")))
+      .not.toContainEqual(dinner);
+  });
+
   it("lists the Beyond the Chair Anaheim workshop without overstating availability", () => {
     const workshop = rawEvents.find(
       (event) => event.id === "beyond-the-chair-anaheim-2026"

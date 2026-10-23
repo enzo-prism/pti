@@ -180,6 +180,12 @@
     "type": "event"
   },
   {
+    "title": "Panel of Experts Dinner",
+    "excerpt": "October 14, 2027 in Frank Fat's Restaurant, Sacramento, CA. A Panel of Experts dinner in Sacramento. Contact PTI for the time, program, and reservation details.",
+    "url": "/events",
+    "type": "event"
+  },
+  {
     "title": "Mastering Your Dental Transition Into and Out of Practice",
     "excerpt": "October 15, 2027 in TDIC Headquarters, 1201 K St, 14th Floor, Sacramento, CA. Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day...",
     "url": "/events/practice-transition-seminar",
@@ -226,6 +232,12 @@
     "excerpt": "When buying a dental practice, key considerations include the practice's financial health, patient demographics and retention, location and facility condition, staff quality and retention, equipment...",
     "url": "/faq",
     "type": "faq"
+  },
+  {
+    "title": "The Peninsula Dental Society Merger",
+    "excerpt": "Dr. Michael Njo shares the results of collaboration through the merger of SMCDS and MPDS into The Peninsula Dental Society.",
+    "url": "/blog/peninsula-dental-society-merger",
+    "type": "post"
   },
   {
     "title": "Congratulations, Dr. Diana Fat",
