@@ -4,7 +4,7 @@ export const communityImpactPosts: Array<
   BlogPost & { featuredImageWidth?: number; featuredImageHeight?: number }
 > = [
   {
-    id: 48,
+    id: 54,
     title: "The Peninsula Dental Society Merger",
     excerpt:
       "Dr. Michael Njo shares the results of collaboration through the merger of SMCDS and MPDS into The Peninsula Dental Society.",

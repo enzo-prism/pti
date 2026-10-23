@@ -2,7 +2,7 @@ import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { communityImpactPosts } from "./communityImpactPosts";
-import { getBlogMetaDescription, getBlogMetaTitle } from "./blogPosts";
+import { blogPosts, getBlogMetaDescription, getBlogMetaTitle } from "./blogPosts";
 
 const getPost = (slug: string) => {
   const post = communityImpactPosts.find((candidate) => candidate.slug === slug);
@@ -11,6 +11,11 @@ const getPost = (slug: string) => {
 };
 
 describe("community impact posts", () => {
+  it("keeps identifiers unique across the combined blog listing", () => {
+    const ids = [...communityImpactPosts, ...blogPosts].map((post) => post.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
   it("preserves the supplied Peninsula merger update and full-frame photograph", () => {
     const post = getPost("peninsula-dental-society-merger");
     expect(post).toMatchObject({
