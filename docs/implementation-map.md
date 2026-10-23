@@ -72,6 +72,8 @@ Testimonial author names and sr-only table captions are unrelated and stay.
 
 ## Locations and structured data
 
+- Campus Drive is the confirmed mailing address, not a customer-facing office. Preserve its existing postal text; label it Mailing address in the footer and PostalAddress schema. Do not emit guessed office hours, coordinates, map or price range.
+
 - State content lives in `src/data/locations.ts` and must remain materially distinct and sourced.
 - California, Texas, and Florida are service-area pages, not verified office locations. Do not emit `LocalBusiness` office schema for them.
 - Register new public routes in `src/lib/routeBreadcrumbs.ts`, `src/app/sitemap.ts`, `public/llms.txt`, and the sitemap test.

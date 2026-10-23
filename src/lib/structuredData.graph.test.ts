@@ -20,7 +20,6 @@ describe("page JSON-LD graph", () => {
         title: "Home",
         description: "Home",
         path: "/",
-        includeLocalBusinessSchema: true,
       })
     );
     const texas = graphOf(
@@ -32,9 +31,20 @@ describe("page JSON-LD graph", () => {
 
     expect(homeBusiness?.["@type"]).toBe("ProfessionalService");
     expect(texasBusiness?.["@type"]).toBe("ProfessionalService");
-    // Hours and coordinates stay on the pages about the office itself.
-    expect(homeBusiness).toHaveProperty("geo");
-    expect(texasBusiness).not.toHaveProperty("geo");
+    const contact = graphOf(
+      buildPageJsonLd({ title: "Contact", description: "Contact", path: "/contact" })
+    );
+    const contactBusiness = contact.find((node) => node["@id"] === BUSINESS_ID);
+    for (const business of [homeBusiness, contactBusiness, texasBusiness]) {
+      expect(business?.address).toMatchObject({
+        "@type": "PostalAddress",
+        name: "Mailing address",
+        streetAddress: "3182 Campus Drive #274",
+      });
+      for (const field of ["geo", "openingHoursSpecification", "hasMap", "priceRange"]) {
+        expect(business).not.toHaveProperty(field);
+      }
+    }
     expect(homeBusiness?.logo).toMatchObject({
       url: "https://practicetransitionsinstitute.com/lovable-uploads/pti-logo.webp",
       width: 480,

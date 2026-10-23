@@ -23,7 +23,6 @@ export default function Page() {
           path: "/contact",
           pageType: "ContactPage",
           pageProperties: { mainEntity: { "@id": BUSINESS_ID } },
-          includeLocalBusinessSchema: true,
         })}
       />
       <Contact />

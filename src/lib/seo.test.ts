@@ -66,7 +66,6 @@ describe("SEO helpers", () => {
       title: "Contact PTI",
       description: "Reach out",
       path: "/contact",
-      includeLocalBusinessSchema: true,
     });
 
     const graph = jsonLd["@graph"];
