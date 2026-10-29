@@ -27,7 +27,7 @@ const montserrat = Montserrat({
 // Bump only when the favicon/icon assets actually change. Using a manual
 // version (instead of the per-build timestamp) lets browsers keep icons cached
 // across deploys rather than re-downloading all of them every release.
-const ICON_VERSION = "3";
+const ICON_VERSION = "4";
 const iconVersion = ICON_VERSION;
 
 export const metadata: Metadata = {

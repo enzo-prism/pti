@@ -1,3 +1,4 @@
+import { PTI_BRAND } from "@/lib/brand";
 import {
   blogPosts,
   getBlogMetaDescription,
@@ -31,9 +32,9 @@ export const LOGO_ID = `${buildAbsoluteUrl()}#logo`;
 const AREA_SERVED = "United States";
 
 const LOGO = {
-  path: "/lovable-uploads/pti-logo.webp",
-  width: 480,
-  height: 466,
+  path: PTI_BRAND.structuredLogo,
+  width: 1200,
+  height: 1153,
 } as const;
 
 /** Stable @id for a Person described on the page at `path` (e.g. /drnjo). */

@@ -1,3 +1,4 @@
+import { PTI_BRAND } from "@/lib/brand";
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
@@ -60,14 +61,14 @@ const Footer = () => {
               aria-label="Practice Transitions Institute home"
               className="inline-block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#06243f]"
             >
-              <span className="block h-12 w-auto overflow-hidden rounded-lg bg-white p-1.5">
+              <span className="block w-56 max-w-full overflow-hidden rounded-lg bg-white p-3">
                 <Image
-                  src="/lovable-uploads/pti-logo.webp"
+                  src={PTI_BRAND.horizontal}
                   alt="Practice Transitions Institute logo"
-                  width={480}
-                  height={466}
-                  className="h-full w-auto object-contain"
-                  sizes="48px"
+                  width={883}
+                  height={221}
+                  className="h-auto w-full object-contain"
+                  sizes="200px"
                 />
               </span>
             </Link>

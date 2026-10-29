@@ -1,5 +1,6 @@
 "use client";
 
+import { PTI_BRAND } from "@/lib/brand";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
@@ -140,14 +141,14 @@ const Blog = ({ posts }: BlogProps) => {
           <div className="max-w-5xl mx-auto">
             {/* Logo and Title - Mobile Optimized */}
             <div className="flex flex-col md:flex-row items-center justify-center mb-8 md:mb-12 text-center md:text-left">
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 mb-4 md:mb-0 md:mr-6">
+              <div className="bg-white rounded-xl p-3 md:p-4 mb-4 md:mb-0 md:mr-6">
                 <Image
-                  src="/lovable-uploads/pti-logo.webp"
+                  src={PTI_BRAND.compact}
                   alt="Practice Transitions Institute logo"
-                  width={480}
-                  height={466}
-                  className="w-12 h-12 md:w-16 md:h-16 object-contain"
-                  sizes="(min-width: 768px) 64px, 48px"
+                  width={842}
+                  height={311}
+                  className="w-28 h-auto md:w-40 object-contain"
+                  sizes="(min-width: 768px) 160px, 112px"
                   priority
                 />
               </div>
