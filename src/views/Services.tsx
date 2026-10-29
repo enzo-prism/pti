@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  GoldDivider,
   Section,
   SectionTitle,
   SectionSubtitle,
@@ -24,19 +25,19 @@ import { LOCATIONS } from "@/data/locations";
 import Image from "next/image";
 
 const serviceIconMap: Record<string, JSX.Element> = {
-  "Opinion of Value": <FileText className="h-8 w-8 text-blue-600" />,
-  "Selling a Practice": <DollarSign className="h-8 w-8 text-emerald-600" />,
-  "Selling to a DSO": <Building2 className="h-8 w-8 text-sky-600" />,
-  "Buying a Practice": <SearchCheck className="h-8 w-8 text-teal-600" />,
-  "Associateships and Buy-Ins": <Users className="h-8 w-8 text-orange-600" />,
-  Partnerships: <Handshake className="h-8 w-8 text-purple-600" />,
+  "Opinion of Value": <FileText className="h-6 w-6" />,
+  "Selling a Practice": <DollarSign className="h-6 w-6" />,
+  "Selling to a DSO": <Building2 className="h-6 w-6" />,
+  "Buying a Practice": <SearchCheck className="h-6 w-6" />,
+  "Associateships and Buy-Ins": <Users className="h-6 w-6" />,
+  Partnerships: <Handshake className="h-6 w-6" />,
 };
 
 const Services = () => {
   const services = serviceOfferings.map((offering) => ({
     ...offering,
     icon: serviceIconMap[offering.title] ?? (
-      <ArrowUpRight className="h-8 w-8 text-primary" />
+      <ArrowUpRight className="h-6 w-6" />
     ),
   }));
   const benefits = [
@@ -87,9 +88,10 @@ const Services = () => {
       <Section>
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="mb-3 text-3xl font-bold md:text-4xl">
               Choose the Path That Fits Your Goals
             </h2>
+            <GoldDivider className="mb-6" />
             <p className="text-gray-600 mb-4">
               Your practice is more than a business. It is the result of years
               of dedication and care. At Practice Transitions Institute, we help

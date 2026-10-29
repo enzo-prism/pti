@@ -24,6 +24,12 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 209 90% 25%; /* Updated to match primary color */
     --radius: 0.5rem;
+
+    /* Approved gold accent — decorative only; not a primary color */
+    --pti-gold: #C4A35A;
+    --pti-gold-text: #7A5F17;
+    --pti-gold-tint: #F8F4EB;
+    --pti-gold-hairline: color-mix(in srgb, #C4A35A 60%, transparent);
     
     /* Hero gradient colors - expanded beautiful palette */
     --hero-gradient-1: 209 90% 15%;  /* Deep midnight blue */

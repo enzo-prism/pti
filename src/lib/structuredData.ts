@@ -14,6 +14,7 @@ import {
   buildAbsoluteUrl,
   buildPostalAddress,
 } from "@/lib/siteMetadata";
+import { LOGO_MARK_BLUE_RASTER } from "@/lib/brandLogos";
 import { PHONE_NUMBER_TEL, PODCAST_INTERVIEW_PATH } from "@/lib/constants";
 import { PODCAST_INTERVIEW } from "@/data/podcastInterview";
 import {
@@ -31,9 +32,9 @@ export const LOGO_ID = `${buildAbsoluteUrl()}#logo`;
 const AREA_SERVED = "United States";
 
 const LOGO = {
-  path: "/lovable-uploads/pti-logo.webp",
-  width: 480,
-  height: 466,
+  path: LOGO_MARK_BLUE_RASTER.src,
+  width: LOGO_MARK_BLUE_RASTER.width,
+  height: LOGO_MARK_BLUE_RASTER.height,
 } as const;
 
 /** Stable @id for a Person described on the page at `path` (e.g. /drnjo). */

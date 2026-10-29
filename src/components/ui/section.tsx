@@ -2,6 +2,19 @@
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 
+export function GoldDivider({
+  className,
+}: {
+  className?: string;
+}) {
+  return (
+    <span
+      aria-hidden="true"
+      className={cn("block h-px w-11 bg-pti-gold", className)}
+    />
+  );
+}
+
 interface SectionProps {
   children: ReactNode;
   className?: string;
@@ -57,11 +70,13 @@ export function Section({
 export function SectionTitle({ 
   children, 
   className, 
-  centered = false 
+  centered = false,
+  divider = true,
 }: { 
   children: ReactNode; 
   className?: string;
   centered?: boolean;
+  divider?: boolean;
 }) {
   return (
     <h2 
@@ -72,6 +87,9 @@ export function SectionTitle({
       )}
     >
       {children}
+      {divider ? (
+        <GoldDivider className={cn("mt-3", centered && "mx-auto")} />
+      ) : null}
     </h2>
   );
 }

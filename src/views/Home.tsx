@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
+  GoldDivider,
   Section,
   SectionTitle,
   SectionSubtitle,
@@ -90,8 +91,10 @@ const Home = () => {
             <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-primary">
               Start With Your Goal
             </p>
+            <GoldDivider className="mx-auto mb-3" />
             <SectionTitle
               centered
+              divider={false}
               className="mb-4 text-balance text-2xl sm:text-3xl md:text-4xl"
             >
               Guidance built around the transition you are actually making
@@ -111,9 +114,14 @@ const Home = () => {
               >
                 <Link
                   href={path.href}
-                  className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 motion-reduce:transform-none sm:p-7"
+                  className={cn(
+                    "group flex h-full flex-col rounded-2xl border bg-white p-6 shadow-sm transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 motion-reduce:transform-none sm:p-7",
+                    index === 0
+                      ? "border-pti-gold-hairline hover:border-pti-gold-hairline"
+                      : "border-slate-200 hover:border-primary/30",
+                  )}
                 >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-pti-gold-tint text-primary">
                     <path.icon className="h-5 w-5" aria-hidden="true" />
                   </span>
                   <h3 className="mt-5 text-xl font-bold text-slate-950">
@@ -147,7 +155,8 @@ const Home = () => {
                 <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-primary sm:text-sm">
                   Inside PTI
                 </p>
-                <SectionTitle className="mb-0 text-2xl sm:text-3xl md:text-4xl">
+                <GoldDivider className="mb-3" />
+                <SectionTitle divider={false} className="mb-0 text-2xl sm:text-3xl md:text-4xl">
                   The people and partnerships behind every transition.
                 </SectionTitle>
               </div>
@@ -216,7 +225,7 @@ const Home = () => {
       <Section background="light" className="py-12 md:py-20 contain-layout">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
           <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
-            <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">
+            <SectionTitle centered className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">
               You&apos;ve built something great, now what?
             </SectionTitle>
           </ScrollReveal>
@@ -279,7 +288,7 @@ const Home = () => {
       <Section background="light" className="py-12 md:py-20">
         <div className="max-w-4xl mx-auto text-center mb-8 md:mb-12">
           <ScrollReveal direction="bounce" delay={100} intensity="normal">
-            <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-3 md:mb-4">
+            <SectionTitle centered className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-3 md:mb-4">
               Our Proven Process
             </SectionTitle>
           </ScrollReveal>
@@ -397,7 +406,7 @@ const Home = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
             <ScrollReveal direction="up" delay={100} intensity="subtle">
-              <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4">
+              <SectionTitle centered className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4">
                 Trusted by Dental Professionals
               </SectionTitle>
             </ScrollReveal>

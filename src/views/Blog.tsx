@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight, ClipboardCheck, Search, X } from "lucide-react";
 import Link from "next/link";
 import type { BlogPostSummary } from "@/data/blogPosts";
+import { LOGO_MARK_WHITE } from "@/lib/brandLogos";
 import { PRACTICE_SALE_CHECKLIST_PATH } from "@/lib/constants";
 import { formatLocalDate } from "@/lib/dateUtils";
 import {
@@ -142,13 +143,14 @@ const Blog = ({ posts }: BlogProps) => {
             <div className="flex flex-col md:flex-row items-center justify-center mb-8 md:mb-12 text-center md:text-left">
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 mb-4 md:mb-0 md:mr-6">
                 <Image
-                  src="/lovable-uploads/pti-logo.webp"
+                  src={LOGO_MARK_WHITE.src}
                   alt="Practice Transitions Institute logo"
-                  width={480}
-                  height={466}
-                  className="w-12 h-12 md:w-16 md:h-16 object-contain"
-                  sizes="(min-width: 768px) 64px, 48px"
+                  width={LOGO_MARK_WHITE.width}
+                  height={LOGO_MARK_WHITE.height}
+                  className="h-8 w-auto object-contain md:h-11"
+                  sizes="44px"
                   priority
+                  unoptimized
                 />
               </div>
               <div>

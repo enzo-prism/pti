@@ -127,7 +127,7 @@ const About = () => {
 
       <Section background="light" className="py-8 md:py-16">
         <div className="text-center mb-8">
-          <SectionTitle className="text-2xl md:text-4xl mb-3 md:mb-6">
+          <SectionTitle centered className="text-2xl md:text-4xl mb-3 md:mb-6">
             Meet Our Leadership Team
           </SectionTitle>
           <SectionSubtitle centered className="text-base md:text-lg px-4">
@@ -204,7 +204,7 @@ const About = () => {
 
       <Section background="light" className="py-8 md:py-16">
         <div className="text-center mb-8">
-          <SectionTitle className="text-2xl md:text-4xl mb-3 md:mb-6">
+          <SectionTitle centered className="text-2xl md:text-4xl mb-3 md:mb-6">
             Why Dentists Choose PTI
           </SectionTitle>
           <SectionSubtitle centered className="text-base md:text-lg px-4">

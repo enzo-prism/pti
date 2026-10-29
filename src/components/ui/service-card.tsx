@@ -30,7 +30,11 @@ export function ServiceCard({
       )}
       style={style}
     >
-      {icon && <div className="text-primary mb-4">{icon}</div>}
+      {icon && (
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-pti-gold-tint text-primary">
+          {icon}
+        </div>
+      )}
       <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
         {title}
       </h3>

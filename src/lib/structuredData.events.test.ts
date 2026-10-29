@@ -64,7 +64,7 @@ describe("event structured data", () => {
         addressCountry: "US",
       },
     });
-    expect(schema.image).toBe("https://practicetransitionsinstitute.com/opengraph.png");
+    expect(schema.image).toBe("https://practicetransitionsinstitute.com/opengraph-v4.png");
   });
 
   it("prices the seminar offer from the Pacific early-bird deadline", () => {

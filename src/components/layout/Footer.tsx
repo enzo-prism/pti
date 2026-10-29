@@ -13,6 +13,7 @@ import {
   BUSINESS_ADDRESS,
   BUSINESS_ADDRESS_LABEL,
 } from "@/lib/siteMetadata";
+import { LOGO_COMPACT_WHITE } from "@/lib/brandLogos";
 import { CookiePreferencesButton } from "@/components/privacy/CookiePreferencesButton";
 
 const exploreLinks = [
@@ -60,16 +61,15 @@ const Footer = () => {
               aria-label="Practice Transitions Institute home"
               className="inline-block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#06243f]"
             >
-              <span className="block h-12 w-auto overflow-hidden rounded-lg bg-white p-1.5">
-                <Image
-                  src="/lovable-uploads/pti-logo.webp"
-                  alt="Practice Transitions Institute logo"
-                  width={480}
-                  height={466}
-                  className="h-full w-auto object-contain"
-                  sizes="48px"
-                />
-              </span>
+              <Image
+                src={LOGO_COMPACT_WHITE.src}
+                alt="Practice Transitions Institute logo"
+                width={LOGO_COMPACT_WHITE.width}
+                height={LOGO_COMPACT_WHITE.height}
+                className="h-10 w-auto object-contain"
+                sizes="108px"
+                unoptimized
+              />
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/80">
               Your trusted partner in dental practice transitions — expert
