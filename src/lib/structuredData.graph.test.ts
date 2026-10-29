@@ -46,9 +46,9 @@ describe("page JSON-LD graph", () => {
       }
     }
     expect(homeBusiness?.logo).toMatchObject({
-      url: "https://practicetransitionsinstitute.com/lovable-uploads/pti-logo.webp",
-      width: 480,
-      height: 466,
+      url: "https://practicetransitionsinstitute.com/lovable-uploads/pti-mark-gold-website-blue.png",
+      width: 3000,
+      height: 1961,
     });
   });
 

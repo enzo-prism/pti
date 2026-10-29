@@ -31,6 +31,12 @@ export default {
 					DEFAULT: '#06437A', // Updated primary blue
 					foreground: '#FFFFFF'
 				},
+				'pti-gold': {
+					DEFAULT: 'var(--pti-gold)',
+					text: 'var(--pti-gold-text)',
+					tint: 'var(--pti-gold-tint)',
+					hairline: 'var(--pti-gold-hairline)',
+				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'

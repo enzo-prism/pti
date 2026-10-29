@@ -26,6 +26,7 @@ import {
   trackPhoneCallClick,
   trackEventRegistrationClick,
 } from "@/lib/analytics";
+import { LOGO_MARK_BLUE } from "@/lib/brandLogos";
 import { cn } from "@/lib/utils";
 import {
   DESKTOP_NAV_MEDIA,
@@ -254,7 +255,7 @@ const Navbar = () => {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-[80] border-b border-slate-200 bg-white/95 pt-[env(safe-area-inset-top)] shadow-sm backdrop-blur print:hidden"
+      className="sticky top-0 z-[80] border-b border-pti-gold-hairline bg-white/95 pt-[env(safe-area-inset-top)] shadow-sm backdrop-blur print:hidden"
     >
       <div className="container flex min-h-[4.5rem] items-center gap-2 py-2 sm:gap-3">
         <Link
@@ -264,13 +265,14 @@ const Navbar = () => {
           aria-label="Practice Transitions Institute home"
         >
           <Image
-            src="/lovable-uploads/pti-logo.webp"
+            src={LOGO_MARK_BLUE.src}
             alt=""
-            width={48}
-            height={47}
+            width={LOGO_MARK_BLUE.width}
+            height={LOGO_MARK_BLUE.height}
             priority
-            sizes="48px"
-            className="h-11 w-11 rounded-md bg-white object-contain sm:h-12 sm:w-12"
+            unoptimized
+            sizes="72px"
+            className="h-10 w-auto object-contain sm:h-12"
           />
           <span className="hidden whitespace-nowrap text-sm font-bold leading-none text-primary md:block xl:hidden 2xl:block">
             Practice Transitions Institute

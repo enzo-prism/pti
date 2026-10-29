@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { GoldDivider } from "@/components/ui/section";
+import { LOGO_STACKED_BLUE } from "@/lib/brandLogos";
 
 interface HeroContentProps {
   className?: string;
@@ -14,20 +16,22 @@ export const HeroContent: React.FC<HeroContentProps> = ({ className }) => {
       <div className="mb-5 sm:mb-6">
         <div className="mx-auto inline-block rounded-2xl bg-white p-3 shadow-xl sm:p-4">
           <Image
-            src="/lovable-uploads/pti-logo.webp"
+            src={LOGO_STACKED_BLUE.src}
             alt=""
-            width={480}
-            height={466}
-            className="h-24 w-24 object-contain sm:h-28 sm:w-28 md:h-32 md:w-32"
-            sizes="(min-width: 768px) 128px, (min-width: 640px) 112px, 96px"
+            width={LOGO_STACKED_BLUE.width}
+            height={LOGO_STACKED_BLUE.height}
+            className="h-auto w-[7.5rem] object-contain sm:w-36 md:w-40"
+            sizes="(min-width: 768px) 160px, (min-width: 640px) 144px, 120px"
             priority
+            unoptimized
           />
         </div>
       </div>
 
-      <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-blue-100 sm:text-base">
+      <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-blue-100 sm:text-base">
         Independent Guidance for Dentists
       </p>
+      <GoldDivider className="mx-auto mb-4" />
       <h1 className="text-balance text-3xl font-bold leading-tight text-white drop-shadow-lg sm:text-4xl md:text-5xl lg:text-6xl">
         Dental Practice Transitions, Guided From Acquisition to Legacy
       </h1>
