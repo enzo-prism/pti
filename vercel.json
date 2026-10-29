@@ -15,6 +15,10 @@
     {"source": "/client-testimonials/", "destination": "https://practicetransitionsinstitute.com/testimonials", "permanent": true},
     {"source": "/contact-us", "destination": "https://practicetransitionsinstitute.com/contact", "permanent": true},
     {"source": "/contact-us/", "destination": "https://practicetransitionsinstitute.com/contact", "permanent": true},
+    {"source": "/opengraph.png", "destination": "https://practicetransitionsinstitute.com/opengraph-v4.png", "permanent": true},
+    {"source": "/opengraph.png/", "destination": "https://practicetransitionsinstitute.com/opengraph-v4.png", "permanent": true},
+    {"source": "/lovable-uploads/pti-logo.webp", "destination": "https://practicetransitionsinstitute.com/lovable-uploads/pti-mark-gold-website-blue.png", "permanent": true},
+    {"source": "/lovable-uploads/pti-logo.webp/", "destination": "https://practicetransitionsinstitute.com/lovable-uploads/pti-mark-gold-website-blue.png", "permanent": true},
     {"source": "/updates/:splat", "destination": "https://practicetransitionsinstitute.com/blog/:splat", "permanent": true},
     {"source": "/updates/:splat/", "destination": "https://practicetransitionsinstitute.com/blog/:splat", "permanent": true},
     {

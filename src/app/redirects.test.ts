@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import sitemap from "./sitemap";
@@ -30,9 +30,14 @@ describe("vercel.json redirects", () => {
       const path = redirect.destination.replace(APEX, "");
       expect(sources.has(path), `${redirect.source} → ${path} chains`).toBe(false);
       if (!path.includes(":")) {
-        expect(livePaths.has(path), `${redirect.source} → ${path} is not a live page`).toBe(
-          true
+        const isLivePage = livePaths.has(path);
+        const isPublicFile = existsSync(
+          join(process.cwd(), "public", path.replace(/^\//, "")),
         );
+        expect(
+          isLivePage || isPublicFile,
+          `${redirect.source} → ${path} is not a live page or public file`,
+        ).toBe(true);
       }
     }
   });
@@ -43,6 +48,21 @@ describe("vercel.json redirects", () => {
       const twin = source.endsWith("/") ? source.slice(0, -1) : `${source}/`;
       expect(sources.has(twin), `${source} has no ${twin} twin`).toBe(true);
     }
+  });
+
+  it("keeps retired OG and triangle-logo URLs as one permanent hop", () => {
+    const bySource = Object.fromEntries(
+      legacyRedirects.map((redirect) => [redirect.source, redirect]),
+    );
+
+    expect(bySource["/opengraph.png"]).toMatchObject({
+      destination: `${APEX}/opengraph-v4.png`,
+      permanent: true,
+    });
+    expect(bySource["/lovable-uploads/pti-logo.webp"]).toMatchObject({
+      destination: `${APEX}/lovable-uploads/pti-mark-gold-website-blue.png`,
+      permanent: true,
+    });
   });
 
   it("applies legacy paths before the www host redirect", () => {
