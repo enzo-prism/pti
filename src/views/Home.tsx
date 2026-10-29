@@ -225,7 +225,7 @@ const Home = () => {
       <Section background="light" className="py-12 md:py-20 contain-layout">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
           <ScrollReveal direction="blur-in" delay={100} intensity="subtle">
-            <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">
+            <SectionTitle centered className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6">
               You&apos;ve built something great, now what?
             </SectionTitle>
           </ScrollReveal>
@@ -288,7 +288,7 @@ const Home = () => {
       <Section background="light" className="py-12 md:py-20">
         <div className="max-w-4xl mx-auto text-center mb-8 md:mb-12">
           <ScrollReveal direction="bounce" delay={100} intensity="normal">
-            <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-3 md:mb-4">
+            <SectionTitle centered className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-3 md:mb-4">
               Our Proven Process
             </SectionTitle>
           </ScrollReveal>
@@ -406,7 +406,7 @@ const Home = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
             <ScrollReveal direction="up" delay={100} intensity="subtle">
-              <SectionTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4">
+              <SectionTitle centered className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4">
                 Trusted by Dental Professionals
               </SectionTitle>
             </ScrollReveal>

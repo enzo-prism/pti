@@ -136,7 +136,7 @@ const Events = ({ events, workshopReview }: EventsProps) => {
         <Section background="light" className="py-12 md:py-16 lg:py-20">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
-              <SectionTitle>Host a Private Event</SectionTitle>
+              <SectionTitle centered>Host a Private Event</SectionTitle>
               <SectionSubtitle>
                 Looking for customized education for your dental society, study
                 club, or office?

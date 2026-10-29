@@ -28,7 +28,7 @@ export const CANONICAL_SITE_URL = normalizeSiteUrl(
     FALLBACK_SITE_URL
 );
 
-export const DEFAULT_OG_IMAGE = "/opengraph.png";
+export const DEFAULT_OG_IMAGE = "/opengraph-v4.png";
 
 export const BUSINESS_DESCRIPTION =
   "Practice Transitions Institute guides dentists through valuations, sales, partnerships, and associateships with personalized, end-to-end transition support.";

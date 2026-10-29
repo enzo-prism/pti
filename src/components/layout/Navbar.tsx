@@ -255,7 +255,7 @@ const Navbar = () => {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-[80] border-b border-pti-gold-hairline bg-white/95 pt-[env(safe-area-inset-top)] shadow-sm backdrop-blur print:hidden"
+      className="sticky top-0 z-[80] border-b border-pti-gold bg-white/95 pt-[env(safe-area-inset-top)] shadow-sm backdrop-blur print:hidden"
     >
       <div className="container flex min-h-[4.5rem] items-center gap-2 py-2 sm:gap-3">
         <Link
