@@ -1,5 +1,6 @@
 "use client";
 
+import { PTI_BRAND } from "@/lib/brand";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -254,7 +255,7 @@ const Navbar = () => {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-[80] border-b border-slate-200 bg-white/95 pt-[env(safe-area-inset-top)] shadow-sm backdrop-blur print:hidden"
+      className="sticky top-0 z-[80] border-b-2 border-[#C4A35A] bg-white/95 pt-[env(safe-area-inset-top)] shadow-sm backdrop-blur print:hidden"
     >
       <div className="container flex min-h-[4.5rem] items-center gap-2 py-2 sm:gap-3">
         <Link
@@ -264,10 +265,10 @@ const Navbar = () => {
           aria-label="Practice Transitions Institute home"
         >
           <Image
-            src="/lovable-uploads/pti-logo.webp"
+            src={PTI_BRAND.mark}
             alt=""
             width={48}
-            height={47}
+            height={32}
             priority
             sizes="48px"
             className="h-11 w-11 rounded-md bg-white object-contain sm:h-12 sm:w-12"
