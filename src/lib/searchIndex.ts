@@ -198,7 +198,7 @@ const STATIC_PAGE_RECORDS: StaticPageRecord[] = [
   {
     title: "Dental Practice Transitions Handbook, Second Edition",
     excerpt:
-      "The expanded second edition of Dr. Njo's handbook, with new advisor material and appendices.",
+      "Launching November 17, 2026: the expanded second edition of Dr. Njo's handbook, with new advisor material and appendices.",
     url: "/resources/second-book",
     type: "resource",
   },
