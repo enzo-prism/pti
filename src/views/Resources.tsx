@@ -33,9 +33,9 @@ const resources = [
   },
   {
     icon: <BookOpen className="h-6 w-6 text-slate-600" />,
-    title: "Handbook, Second Edition (Coming Soon)",
+    title: "Handbook, Second Edition (November 17)",
     description:
-      "The expanded second edition of the Dental Practice Transitions Handbook, with a foreword by Dr. Glenn Vo, new advisor material, and new appendices.",
+      "Launching November 17, 2026: the expanded handbook, with a foreword by Dr. Glenn Vo, new advisor material, and new appendices.",
     href: SECOND_BOOK_PATH,
     cta: "Preview the second edition",
   },
@@ -120,7 +120,7 @@ const Resources = () => {
           />
           <div>
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80">
-              Upcoming book
+              Coming <time dateTime="2026-11-17">November 17, 2026</time>
             </p>
             <h2 className="text-2xl font-bold leading-tight md:text-3xl">
               Dental Practice Transitions Handbook, Second Edition
@@ -128,7 +128,7 @@ const Resources = () => {
             <p className="mt-3 text-gray-600 leading-relaxed">
               Dr. Michael Njo&apos;s next book is an expanded second edition of
               the handbook: a new foreword by Dr. Glenn Vo, new advisor
-              material, and new appendices. Coming soon.
+              material, and new appendices.
             </p>
             <span className="mt-4 inline-flex items-center gap-1 font-semibold text-primary">
               Preview the second edition

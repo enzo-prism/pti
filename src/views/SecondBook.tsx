@@ -33,7 +33,7 @@ const SecondBook = () => {
       <section className="bg-gradient-to-b from-accent to-white px-4 pt-10 pb-12 md:pt-16 md:pb-16">
         <div className="container mx-auto max-w-4xl text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80 sm:text-sm">
-            Coming soon
+            Coming <time dateTime="2026-11-17">November 17, 2026</time>
           </p>
           <h1 className="text-3xl font-bold leading-tight md:text-5xl">
             Dental Practice Transitions Handbook, Second Edition
@@ -86,18 +86,16 @@ const SecondBook = () => {
               ))}
             </ul>
             <p className="mb-6 text-base leading-relaxed text-gray-600">
-              A release date has not been announced. Until then, the published
-              first edition of{" "}
-              <em>Dental Practice Transitions Handbook</em> remains the current
-              resource. It is the same book Dr. Njo signs at Panel of Experts
-              dinners and hands to General Practice Residency residents.
+              The Second Edition launches on{" "}
+              <time dateTime="2026-11-17">November 17, 2026</time>. Purchase details
+              will be shared when the new listing is confirmed.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg">
-                <Link href={HANDBOOK_PATH}>Read about the first edition</Link>
+                <Link href="/contact">Ask about the second edition</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <Link href="/contact">Ask about the second edition</Link>
+                <Link href={HANDBOOK_PATH}>Read about the first edition</Link>
               </Button>
             </div>
           </div>
