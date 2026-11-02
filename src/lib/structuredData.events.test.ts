@@ -17,7 +17,7 @@ describe("event structured data", () => {
       title: "Practice Transitions Seminar - San Francisco",
       date: "July 17, 2026",
       time: "8:00 AM - 3:00 PM",
-      location: "Kohan Group, 490 Post St., Ste 1135, San Francisco, CA",
+      location: "San Francisco, CA",
       description: "A one-day dental practice transition seminar.",
       registrationLink: "/events/practice-transition-seminar#register",
       type: "seminar",
@@ -48,17 +48,16 @@ describe("event structured data", () => {
     expect(schema.endDate).toBe("2026-10-02T15:00:00-07:00");
   });
 
-  it("describes the venue as a Place with a postal address", () => {
+  it("describes a city-only seminar location as a Place with a postal address", () => {
     const schema = buildEventSchema(
       buildSeminarStructuredEvent(sacramento2026, new Date("2026-09-27T12:00:00-07:00"))
     );
 
     expect(schema.location).toEqual({
       "@type": "Place",
-      name: "TDIC Headquarters",
+      name: "Sacramento, CA",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "1201 K St, 14th Floor",
         addressLocality: "Sacramento",
         addressRegion: "CA",
         addressCountry: "US",

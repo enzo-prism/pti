@@ -76,8 +76,8 @@ export interface PracticeTransitionSeminarEvent {
   city: string;
   date: string;
   time: string;
-  venueName: string;
-  addressLines: string[];
+  /** City and state only. Venue names stay off the site (Dr. Njo, Nov 2 2026). */
+  location: string;
   earlyBirdDeadline: string;
   earlyBirdPrice: number;
   standardPrice: number;
@@ -92,8 +92,7 @@ export const practiceTransitionSeminarEvents: PracticeTransitionSeminarEvent[] =
     city: "San Francisco",
     date: "July 17, 2026",
     time: "8:00 AM - 3:00 PM",
-    venueName: "Kohan Group",
-    addressLines: ["490 Post St., Ste 1135", "San Francisco, CA"],
+    location: "San Francisco, CA",
     earlyBirdDeadline: "June 17, 2026",
     earlyBirdPrice: 297,
     standardPrice: 397,
@@ -106,8 +105,7 @@ export const practiceTransitionSeminarEvents: PracticeTransitionSeminarEvent[] =
     city: "Sacramento",
     date: "October 2, 2026",
     time: "8:00 AM - 3:00 PM",
-    venueName: "TDIC Headquarters",
-    addressLines: ["1201 K St, 14th Floor", "Sacramento, CA"],
+    location: "Sacramento, CA",
     earlyBirdDeadline: "September 2, 2026",
     earlyBirdPrice: 297,
     standardPrice: 397,
@@ -120,8 +118,7 @@ export const practiceTransitionSeminarEvents: PracticeTransitionSeminarEvent[] =
     city: "Anaheim",
     date: "March 12, 2027",
     time: "8:00 AM - 3:00 PM",
-    venueName: "The Phillips Group",
-    addressLines: ["2300 E Katella Ave #405", "Anaheim, CA"],
+    location: "Anaheim, CA",
     earlyBirdDeadline: "December 31, 2026",
     earlyBirdPrice: 247,
     standardPrice: 397,
@@ -134,8 +131,7 @@ export const practiceTransitionSeminarEvents: PracticeTransitionSeminarEvent[] =
     city: "San Francisco",
     date: "July 30, 2027",
     time: "8:00 AM - 3:00 PM",
-    venueName: "QUO",
-    addressLines: ["1 Post Street", "San Francisco, CA"],
+    location: "San Francisco, CA",
     earlyBirdDeadline: "December 31, 2026",
     earlyBirdPrice: 247,
     standardPrice: 397,
@@ -148,8 +144,7 @@ export const practiceTransitionSeminarEvents: PracticeTransitionSeminarEvent[] =
     city: "Sacramento",
     date: "October 15, 2027",
     time: "8:00 AM - 3:00 PM",
-    venueName: "TDIC Headquarters",
-    addressLines: ["1201 K St, 14th Floor", "Sacramento, CA"],
+    location: "Sacramento, CA",
     earlyBirdDeadline: "December 31, 2026",
     earlyBirdPrice: 247,
     standardPrice: 397,
@@ -303,7 +298,7 @@ export const buildSeminarStructuredEvent = (
   title: `Practice Transitions Seminar - ${event.city}`,
   date: event.date,
   time: event.time,
-  location: `${event.venueName}, ${event.addressLines.join(", ")}`,
+  location: event.location,
   description: seminarEventDescription,
   registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
   type: "seminar",
