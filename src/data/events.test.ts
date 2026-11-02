@@ -218,30 +218,23 @@ describe("events dataset", () => {
     }
   });
 
-  it("uses confirmed venues for the 2026 San Francisco and Sacramento seminars", () => {
-    const sanFrancisco = rawEvents.find((event) => event.date === "July 17, 2026");
-    const sacramento = rawEvents.find((event) => event.date === "October 2, 2026");
+  it("lists every seminar date by city only, with no venue or firm names", () => {
+    const locationsByDate = Object.fromEntries(
+      rawEvents
+        .filter((event) => String(event.id).startsWith("pti-seminar-"))
+        .map((event) => [event.date, event.location])
+    );
 
-    expect(sanFrancisco?.location).toContain("Kohan Group");
-    expect(sanFrancisco?.location).toContain("490 Post St.");
-    expect(sacramento?.location).toContain("TDIC Headquarters");
-    expect(sacramento?.location).toContain("1201 K St");
-  });
-
-  it("uses the confirmed venue for the 2027 Anaheim seminar", () => {
-    const anaheim = rawEvents.find((event) => event.date === "March 12, 2027");
-
-    expect(anaheim?.location).toContain("The Phillips Group");
-    expect(anaheim?.location).toContain("2300 E Katella Ave #405");
-  });
-
-  it("uses confirmed venues for the 2027 San Francisco and Sacramento seminars", () => {
-    const sanFrancisco = rawEvents.find((event) => event.date === "July 30, 2027");
-    const sacramento = rawEvents.find((event) => event.date === "October 15, 2027");
-
-    expect(sanFrancisco?.location).toBe("QUO, 1 Post Street, San Francisco, CA");
-    expect(sacramento?.location).toContain("TDIC Headquarters");
-    expect(sacramento?.location).toContain("1201 K St");
+    expect(locationsByDate).toEqual({
+      "July 17, 2026": "San Francisco, CA",
+      "October 2, 2026": "Sacramento, CA",
+      "March 12, 2027": "Anaheim, CA",
+      "July 30, 2027": "San Francisco, CA",
+      "October 15, 2027": "Sacramento, CA",
+    });
+    for (const event of practiceTransitionSeminarEvents) {
+      expect(JSON.stringify(event)).not.toMatch(/TDIC|Kohan|Phillips|QUO|Post St|K St/);
+    }
   });
 
   it("attaches the Sacramento flyer and flyer copy only to the October 2 2026 date", () => {
@@ -262,23 +255,20 @@ describe("events dataset", () => {
       subtitle: "BEFORE YOU BUY, EXPAND, PARTNER, OR SELL / KNOW YOUR OPTIONS",
       standalone: true,
       time: "8:00 AM - 3:00 PM",
-      location: "TDIC Headquarters, 1201 K St, 14th Floor, Sacramento, CA",
+      location: "Sacramento, CA",
       registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
       detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
       flyerImage:
         "/lovable-uploads/drnjo-2026/pti-sacramento-seminar-2026-flyer.webp",
       flyerImageAlt:
-        "Practice Transitions Institute Sacramento seminar flyer, October 2 2026 at TDIC Headquarters.",
+        "Practice Transitions Institute Sacramento seminar flyer, October 2 2026.",
     });
     expect(typeof sacramento?.description).toBe("object");
     if (typeof sacramento?.description === "object") {
       expect(sacramento.description.intro).toContain(
         "evaluate today's transition landscape"
       );
-      expect(sacramento.description.intro).toContain("Special Sacramento guest: TDIC");
-      expect(sacramento.description.intro).toContain(
-        "from buying and expanding to transitioning and selling"
-      );
+      expect(sacramento.description.intro).not.toMatch(/TDIC/);
       expect(sacramento.description.learningPoints).toEqual([
         "Which transition path may be right for you: start-up, associate buy-in, partnership, private sale, or DSO",
         "When to begin preparing—and why timing can dramatically affect your options",

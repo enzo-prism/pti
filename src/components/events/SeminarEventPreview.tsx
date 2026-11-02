@@ -25,11 +25,8 @@ export const SeminarEventPreview = ({ events }: SeminarEventPreviewProps) => {
             {event.city}
           </p>
           <p className="mt-1 text-xl font-bold text-foreground">{event.date}</p>
-          <p className="mt-3 text-sm font-medium text-foreground">
-            {event.venueName}
-          </p>
-          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-            {event.addressLines.join(", ")}
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            {event.location}
           </p>
         </article>
       ))}

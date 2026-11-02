@@ -71,7 +71,7 @@ const practiceTransitionSeminarDescription = {
 
 const sacramentoSeminarDescription = {
   intro:
-    "Join Practice Transitions Institute for a practical seminar designed to help you evaluate today's transition landscape and make confident decisions about what comes next. Special Sacramento guest: TDIC. TDIC exclusively protects dentists, offering expert guidance as your practice and career evolve from buying and expanding to transitioning and selling.",
+    "Join Practice Transitions Institute for a practical seminar designed to help you evaluate today's transition landscape and make confident decisions about what comes next.",
   learningPointsHeading: "What you'll learn:",
   learningPoints: [
     "Which transition path may be right for you: start-up, associate buy-in, partnership, private sale, or DSO",
@@ -89,7 +89,7 @@ const practiceTransitionEvents: RawEvent[] = practiceTransitionSeminarEvents.map
       title: "Mastering Your Dental Transition Into and Out of Practice",
       date: event.date,
       time: event.time,
-      location: `${event.venueName}, ${event.addressLines.join(", ")}`,
+      location: event.location,
       description: practiceTransitionSeminarDescription,
       type: "seminar",
       registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
@@ -109,7 +109,7 @@ const practiceTransitionEvents: RawEvent[] = practiceTransitionSeminarEvents.map
       flyerImage:
         "/lovable-uploads/drnjo-2026/pti-sacramento-seminar-2026-flyer.webp",
       flyerImageAlt:
-        "Practice Transitions Institute Sacramento seminar flyer, October 2 2026 at TDIC Headquarters.",
+        "Practice Transitions Institute Sacramento seminar flyer, October 2 2026.",
       description: sacramentoSeminarDescription,
       speakers: [
         {

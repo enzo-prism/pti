@@ -105,8 +105,8 @@ const Events = ({ events, workshopReview }: EventsProps) => {
                 transition decisions.
               </p>
               <p className="text-base leading-relaxed text-gray-600">
-                PTI also hosted the July 17, 2026 San Francisco seminar at Kohan
-                Group. That same public teaching is what PTI brings to private
+                PTI also hosted the July 17, 2026 San Francisco seminar. That
+                same public teaching is what PTI brings to private
                 workshops and one-on-one consulting.
               </p>
             </div>
