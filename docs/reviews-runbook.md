@@ -21,6 +21,7 @@ Key rules:
 4. `displayAuthorName` is the professional alias shown in UI.
 5. UI review-time labels are intentionally hidden.
 6. Google Business Profile reviews often have no exact publication date. Do not invent `sourceDateISO`. Use a lower `sortOrder` so newer received reviews sort first, and record the received date in a comment (Valentina Holina was received Oct 19, 2026, `sortOrder: -2`).
+7. Letters of recommendation are `internal` records with the letter's own date in `sourceDateISO`, the full letter text as the quote (salutation through closing), and the writer's title in `role` and `company`. Personal contact details from the signature block stay off the site. Craig Yarborough's letter uses `sortOrder: -4` so it is featured first.
 
 ## Routing
 - Directory page: `src/app/(site)/testimonials/page.tsx`
