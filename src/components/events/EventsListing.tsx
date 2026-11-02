@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -45,14 +44,9 @@ interface EventsListingProps {
 }
 
 export const EventsListing = ({ events }: EventsListingProps) => {
-  const [showPastEvents, setShowPastEvents] = useState(false);
-
-  const filteredEvents = showPastEvents
-    ? events
-    : events.filter((event) => !event.isPast);
-
+  // Past events live in the year-by-year archive below (`PastEventsArchive`).
   const upcomingEvents = events.filter((event) => !event.isPast);
-  const pastEvents = events.filter((event) => event.isPast);
+  const hasPastEvents = events.some((event) => event.isPast);
 
   return (
     <Section className="py-12 md:py-16 lg:py-20">
@@ -64,20 +58,19 @@ export const EventsListing = ({ events }: EventsListingProps) => {
             Don&apos;t miss our latest educational opportunities
           </SectionSubtitle>
         </div>
-        {pastEvents.length > 0 && (
-          <button
-            type="button"
-            onClick={() => setShowPastEvents(!showPastEvents)}
+        {hasPastEvents && (
+          <a
+            href="#past-events"
             className="inline-flex min-h-11 items-center text-primary font-medium text-sm hover:text-primary/80 transition-colors"
           >
-            {showPastEvents ? "Hide Past Events" : "View Past Events"}
+            View Past Events
             <ChevronRight size={16} className="ml-1" />
-          </button>
+          </a>
         )}
       </div>
 
       {/* No Events Message */}
-      {upcomingEvents.length === 0 && !showPastEvents && (
+      {upcomingEvents.length === 0 && (
         <div className="text-center py-12 bg-gray-50 rounded-xl">
           <Calendar size={48} className="mx-auto text-gray-400 mb-4" />
           <h3 className="text-xl font-semibold text-gray-700 mb-2">
@@ -95,7 +88,7 @@ export const EventsListing = ({ events }: EventsListingProps) => {
 
       {/* Events List */}
       <div className="space-y-4 relative">
-        {filteredEvents.map((event) => {
+        {upcomingEvents.map((event) => {
           // Render multi-date event card for grouped events
           if (event.isEventGroup && event.eventDates) {
             return (
@@ -477,20 +470,6 @@ export const EventsListing = ({ events }: EventsListingProps) => {
         })}
       </div>
 
-      {/* Show Past Events Button */}
-      {!showPastEvents && pastEvents.length > 0 && (
-        <div className="mt-8 text-center">
-          <button
-            type="button"
-            onClick={() => setShowPastEvents(true)}
-            className="inline-flex min-h-11 items-center text-primary hover:text-primary/80 font-medium text-sm transition-colors"
-          >
-            View {pastEvents.length} Past{" "}
-            {pastEvents.length === 1 ? "Event" : "Events"}
-            <ChevronRight size={16} className="ml-1" />
-          </button>
-        </div>
-      )}
     </Section>
   );
 };

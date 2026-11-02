@@ -7,7 +7,9 @@ import { Button } from "@/components/ui/button";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { DrNjoPhotoCard } from "@/components/DrNjoPhotoCard";
 import { EventsListing } from "@/components/events/EventsListing";
+import { PastEventsArchive } from "@/components/events/PastEventsArchive";
 import { eventsSpeakingHighlightImages } from "@/data/drNjoGallery";
+import type { EventArchiveYear } from "@/data/eventArchive";
 import type { ListedEvent } from "@/data/events";
 import type { ReviewRecord } from "@/data/reviews";
 import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
@@ -15,10 +17,11 @@ import Image from "next/image";
 
 interface EventsProps {
   events: ListedEvent[];
+  archive: EventArchiveYear[];
   workshopReview?: ReviewRecord;
 }
 
-const Events = ({ events, workshopReview }: EventsProps) => {
+const Events = ({ events, archive, workshopReview }: EventsProps) => {
   const [laDinnerPhoto, rosevilleDinnerPhoto, bookSigningPhoto] =
     eventsSpeakingHighlightImages;
 
@@ -63,6 +66,8 @@ const Events = ({ events, workshopReview }: EventsProps) => {
         </Section>
 
         <EventsListing events={events} />
+
+        <PastEventsArchive years={archive} />
 
         <Section background="light" className="py-12 md:py-16">
           <div className="max-w-6xl mx-auto">
