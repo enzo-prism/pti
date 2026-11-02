@@ -203,6 +203,13 @@ const STATIC_PAGE_RECORDS: StaticPageRecord[] = [
     type: "resource",
   },
   {
+    title: "Books by Dr. Michael Njo",
+    excerpt:
+      "Dental Practice Transitions Handbook, its Second Edition launching November 17, 2026, and The Dental Exit Blueprint, where Dr. Njo is a contributing author.",
+    url: "/books",
+    type: "resource",
+  },
+  {
     title: "The Right Way to Go Out of Network",
     excerpt:
       "A podcast interview on navigating dental insurance and going out of network.",

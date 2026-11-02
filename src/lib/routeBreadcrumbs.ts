@@ -104,6 +104,10 @@ const ROUTE_BREADCRUMBS: Record<string, BreadcrumbNode[]> = {
       path: "/resources/dental-practice-transitions-handbook",
     },
   ],
+  "/books": [
+    HOME_CRUMB,
+    { name: "Books", path: "/books" },
+  ],
   "/resources/second-book": [
     HOME_CRUMB,
     { name: "Resources", path: "/resources" },
