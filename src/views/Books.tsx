@@ -104,7 +104,7 @@ const Books = () => {
                 Purchase details will be shared here when the new listing is
                 confirmed.
               </p>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Button asChild size="lg">
                   <Link href={SECOND_BOOK_PATH}>
                     Preview the second edition
@@ -149,7 +149,7 @@ const Books = () => {
                 dinners and the resource many seminar attendees start with
                 before a consultation.
               </p>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Button asChild size="lg" variant="outline">
                   <a
                     href={DENTAL_TRANSITIONS_HANDBOOK_URL}
@@ -206,7 +206,7 @@ const Books = () => {
               exit. Dr. Njo wrote two chapters: &ldquo;Know Your Exit
               Options&rdquo; and &ldquo;Plan What Comes Next.&rdquo;
             </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Button asChild size="lg">
                 <a
                   href={DENTAL_EXIT_BLUEPRINT_URL}

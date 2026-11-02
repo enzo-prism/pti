@@ -28,7 +28,7 @@ const STATIC_ROUTES: StaticRoute[] = [
   { path: "/locations/california", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-08-17" },
   { path: "/locations/texas", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-08-17" },
   { path: "/locations/florida", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-08-17" },
-  { path: "/resources", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-10-29" },
+  { path: "/resources", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-11-02" },
   { path: "/resources/practice-sale-readiness-checklist", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-06-11" },
   { path: "/resources/how-much-is-my-dental-practice-worth", changeFrequency: "monthly", priority: 0.8, lastModified: "2026-09-27" },
   { path: "/resources/dental-practice-transitions-handbook", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-09-01" },
