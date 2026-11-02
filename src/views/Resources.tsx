@@ -17,12 +17,21 @@ import {
   BookOpen,
 } from "lucide-react";
 import {
+  BOOKS_PATH,
   HANDBOOK_PATH,
   PODCAST_INTERVIEW_PATH,
   SECOND_BOOK_PATH,
 } from "@/lib/constants";
 
 const resources = [
+  {
+    icon: <BookOpen className="h-6 w-6 text-primary" />,
+    title: "Books by Dr. Njo",
+    description:
+      "Every book Dr. Michael Njo has written or contributed to, from the Dental Practice Transitions Handbook to The Dental Exit Blueprint.",
+    href: BOOKS_PATH,
+    cta: "See the books",
+  },
   {
     icon: <BookOpen className="h-6 w-6 text-amber-700" />,
     title: "Dental Practice Transitions Handbook",

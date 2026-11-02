@@ -10,7 +10,7 @@ describe("sitemap metadata", () => {
     const urls = entries.map((entry) => entry.url);
     const uniqueUrls = new Set(urls);
     const allBlogPosts = [...communityImpactPosts, ...blogPosts];
-    const expectedCount = 30 + allBlogPosts.filter((post) => post.slug).length;
+    const expectedCount = 31 + allBlogPosts.filter((post) => post.slug).length;
 
     expect(entries).toHaveLength(expectedCount);
     expect(uniqueUrls.size).toBe(entries.length);
@@ -41,6 +41,7 @@ describe("sitemap metadata", () => {
     expect(urls).toContain(
       "https://practicetransitionsinstitute.com/resources/second-book"
     );
+    expect(urls).toContain("https://practicetransitionsinstitute.com/books");
     expect(urls).toContain(
       "https://practicetransitionsinstitute.com/resources/navigating-dental-insurance-podcast"
     );
