@@ -10,6 +10,7 @@ import {
   buildSeminarStructuredEvent,
   practiceTransitionSeminarEvents,
 } from "@/data/practiceTransitionSeminar";
+import { buildEventArchive } from "@/data/eventArchive";
 import { getFeaturedReviews } from "@/data/reviews";
 import { buildEventSchema } from "@/lib/structuredData";
 
@@ -79,6 +80,7 @@ export default function Page() {
       />
       <Events
         events={buildEventListing(referenceDate)}
+        archive={buildEventArchive(referenceDate)}
         workshopReview={getFeaturedReviews("events")[0]}
       />
     </>
