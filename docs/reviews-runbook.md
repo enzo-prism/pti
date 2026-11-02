@@ -20,7 +20,7 @@ Key rules:
 3. `sourceAuthorName` preserves original source identity.
 4. `displayAuthorName` is the professional alias shown in UI.
 5. UI review-time labels are intentionally hidden.
-6. Google Business Profile reviews often have no exact publication date. Do not invent `sourceDateISO`. Use a lower `sortOrder` so newer received reviews sort first, and record the received date in a comment (Valentina Holina was received Oct 19, 2026, `sortOrder: -2`).
+6. Google Business Profile reviews often have no exact publication date. Do not invent `sourceDateISO`. Use a lower `sortOrder` so newer received reviews sort first, and record the received date in a comment (John Senat was received Oct 31, 2026, `sortOrder: -3`; Valentina Holina Oct 19, 2026, `sortOrder: -2`).
 
 ## Routing
 - Directory page: `src/app/(site)/testimonials/page.tsx`
