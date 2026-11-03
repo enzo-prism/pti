@@ -50,6 +50,7 @@ export const EventsListing = ({ events }: EventsListingProps) => {
   const filteredEvents = showPastEvents
     ? events
     : events.filter((event) => !event.isPast);
+  const firstPastIndex = filteredEvents.findIndex((event) => event.isPast);
 
   const upcomingEvents = events.filter((event) => !event.isPast);
   const pastEvents = events.filter((event) => event.isPast);
@@ -95,10 +96,22 @@ export const EventsListing = ({ events }: EventsListingProps) => {
 
       {/* Events List */}
       <div className="space-y-4 relative">
-        {filteredEvents.map((event) => {
+        {filteredEvents.map((event, index) => {
+          const previousEventsHeading =
+            index === firstPastIndex ? (
+              <div key="previous-events-heading" className="pt-10 pb-2">
+                <SectionTitle>Previous Events</SectionTitle>
+                <SectionSubtitle>
+                  Every program below has already taken place and sold out,
+                  including our 2025 events.
+                </SectionSubtitle>
+              </div>
+            ) : null;
+
           // Render multi-date event card for grouped events
           if (event.isEventGroup && event.eventDates) {
-            return (
+            return [
+              previousEventsHeading,
               <MultiDateEventCard
                 key={event.id}
                 title={event.title}
@@ -109,15 +122,16 @@ export const EventsListing = ({ events }: EventsListingProps) => {
                 isPast={event.isPast}
                 speakers={event.speakers}
                 getEventTypeColor={getEventTypeColor}
-              />
-            );
+              />,
+            ];
           }
           const dateLabel = event.dateDisplay ?? event.date;
           const requiresAvailabilityConfirmation =
             event.registrationLink.startsWith("mailto:");
 
           // Render single event card for individual events
-          return (
+          return [
+            previousEventsHeading,
             <div
               key={event.id}
               className={`relative rounded-xl transition-all duration-300 group z-10 ${
@@ -136,13 +150,13 @@ export const EventsListing = ({ events }: EventsListingProps) => {
               }
             >
               {/* Status Banner */}
-              <div
-                className={`absolute top-0 left-0 right-0 h-1 ${
-                  event.isPast
-                    ? "bg-gray-400"
-                    : "bg-gradient-to-r from-primary to-primary/70"
-                }`}
-              ></div>
+              {event.isPast ? (
+                <div className="absolute top-0 left-0 right-0 z-20 rounded-t-xl bg-gray-700 py-1.5 text-center text-[11px] font-bold uppercase tracking-[0.25em] text-white">
+                  Sold Out
+                </div>
+              ) : (
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary/70"></div>
+              )}
 
               {/* Overlay for webinar card to ensure text readability */}
               {event.type === "webinar" && !event.isPast && (
@@ -150,7 +164,9 @@ export const EventsListing = ({ events }: EventsListingProps) => {
               )}
 
               {/* Content wrapper with relative positioning */}
-              <div className="relative z-10 p-4 md:p-6">
+              <div
+                className={`relative z-10 p-4 md:p-6 ${event.isPast ? "pt-11 md:pt-12" : ""}`}
+              >
                 {/* Event Header */}
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
                   <div className="flex-1">
@@ -161,8 +177,8 @@ export const EventsListing = ({ events }: EventsListingProps) => {
                         {event.type}
                       </span>
                       {event.isPast ? (
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gray-200 text-gray-700 border border-gray-300">
-                          Event Completed
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gray-700 text-white border border-gray-700">
+                          Sold Out
                         </span>
                       ) : (
                         <span
@@ -472,8 +488,8 @@ export const EventsListing = ({ events }: EventsListingProps) => {
                   )}
                 </div>
               </div>
-            </div>
-          );
+            </div>,
+          ];
         })}
       </div>
 

@@ -55,7 +55,7 @@ describe("event structured data", () => {
 
     expect(schema.location).toEqual({
       "@type": "Place",
-      name: "TDIC Headquarters",
+      name: "Sacramento",
       address: {
         "@type": "PostalAddress",
         streetAddress: "1201 K St, 14th Floor",

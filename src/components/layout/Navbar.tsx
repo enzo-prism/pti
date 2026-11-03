@@ -59,6 +59,7 @@ const navItems = [
   { name: "Testimonials", path: "/testimonials", icon: Quote },
   { name: "Gallery", path: "/gallery", icon: Images },
   { name: "Events", path: "/events", icon: CalendarDays },
+  { name: "Books", path: "/books", icon: BookOpen },
 ];
 
 const extraMobileNavItems = [

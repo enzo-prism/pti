@@ -203,6 +203,13 @@ const STATIC_PAGE_RECORDS: StaticPageRecord[] = [
     type: "resource",
   },
   {
+    title: "Books by Dr. Michael Njo",
+    excerpt:
+      "Dr. Michael Njo's Dental Practice Transitions Handbook: the expanded Second Edition launching November 17, 2026, and the first edition on Amazon.",
+    url: "/books",
+    type: "page",
+  },
+  {
     title: "The Right Way to Go Out of Network",
     excerpt:
       "A podcast interview on navigating dental insurance and going out of network.",

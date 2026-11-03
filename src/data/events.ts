@@ -71,7 +71,7 @@ const practiceTransitionSeminarDescription = {
 
 const sacramentoSeminarDescription = {
   intro:
-    "Join Practice Transitions Institute for a practical seminar designed to help you evaluate today's transition landscape and make confident decisions about what comes next. Special Sacramento guest: TDIC. TDIC exclusively protects dentists, offering expert guidance as your practice and career evolve from buying and expanding to transitioning and selling.",
+    "Join Practice Transitions Institute in Sacramento for a practical seminar designed to help you evaluate today's transition landscape and make confident decisions about what comes next, with expert guidance for every stage of your practice and career, from buying and expanding to transitioning and selling.",
   learningPointsHeading: "What you'll learn:",
   learningPoints: [
     "Which transition path may be right for you: start-up, associate buy-in, partnership, private sale, or DSO",
@@ -109,7 +109,7 @@ const practiceTransitionEvents: RawEvent[] = practiceTransitionSeminarEvents.map
       flyerImage:
         "/lovable-uploads/drnjo-2026/pti-sacramento-seminar-2026-flyer.webp",
       flyerImageAlt:
-        "Practice Transitions Institute Sacramento seminar flyer, October 2 2026 at TDIC Headquarters.",
+        "Practice Transitions Institute Sacramento seminar flyer, October 2 2026 in Sacramento, CA.",
       description: sacramentoSeminarDescription,
       speakers: [
         {
@@ -302,6 +302,8 @@ export interface ListedEventDate {
 
 export interface ListedEvent extends RawEvent {
   isPast: boolean;
+  /** Past events are presented as sold out on /events. */
+  soldOut: boolean;
   isEventGroup?: boolean;
   eventDates?: ListedEventDate[];
 }
@@ -315,10 +317,14 @@ export interface ListedEvent extends RawEvent {
 export const buildEventListing = (
   referenceDate: Date = new Date()
 ): ListedEvent[] => {
-  const processedEvents: ListedEvent[] = rawEvents.map((event) => ({
-    ...event,
-    isPast: isEventPast(event.date, referenceDate),
-  }));
+  const processedEvents: ListedEvent[] = rawEvents.map((event) => {
+    const isPast = isEventPast(event.date, referenceDate);
+    return {
+      ...event,
+      isPast,
+      soldOut: isPast,
+    };
+  });
 
   // Standalone cards keep their own flyer and copy instead of merging into a
   // same-title series group.
@@ -381,6 +387,7 @@ export const buildEventListing = (
       time: representativeDate.time,
       location: representativeDate.location,
       isPast: upcomingDates.length === 0,
+      soldOut: upcomingDates.length === 0,
       isEventGroup: true,
       eventDates,
     });
