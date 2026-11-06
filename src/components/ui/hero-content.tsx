@@ -31,13 +31,13 @@ export const HeroContent: React.FC<HeroContentProps> = ({ className }) => {
       </p>
       <div className="mx-auto mb-5 h-0.5 w-14 rounded-full bg-[#C4A35A]" aria-hidden="true" />
       <h1 className="text-balance text-3xl font-bold leading-tight text-white drop-shadow-lg sm:text-4xl md:text-5xl lg:text-6xl">
-        Dental Practice Transitions, Guided From Acquisition to Legacy
+        Dental Practice Transition Consulting for Buyers and Sellers
       </h1>
 
       <p className="mx-auto mt-5 max-w-3xl text-pretty text-base leading-relaxed text-blue-50 sm:text-lg md:text-xl">
-        Get a clear valuation, practical deal guidance, and personal support for
-        selling, buying, associate buy-ins, partnerships, or evaluating a DSO
-        offer.
+        Led by Dr. Michael Njo, Practice Transitions Institute helps dentists
+        value a practice, compare sale options, evaluate DSO offers, and plan
+        ownership transitions with clear guidance and personal support.
       </p>
 
       <div className="mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
@@ -61,6 +61,12 @@ export const HeroContent: React.FC<HeroContentProps> = ({ className }) => {
           <Link href="/services">Explore Transition Services</Link>
         </Button>
       </div>
+      <p className="mx-auto mt-6 max-w-3xl text-sm leading-relaxed text-blue-50 sm:text-base">
+        A dentist&apos;s perspective. A published transition handbook.
+        Client experiences you can read in their own words.{" "}
+        <Link href="/drnjo" className="inline-flex min-h-11 items-center font-semibold underline underline-offset-4">Meet Dr. Njo</Link>
+        {" · "}<Link href="/case-studies" className="inline-flex min-h-11 items-center font-semibold underline underline-offset-4">Explore client stories</Link>
+      </p>
     </div>
   );
 };

@@ -1,35 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import { parseScenarioNumber } from "@/lib/scenarioInput";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { parseScenarioNumber } from "@/lib/scenarioInput";
 import { Calculator, Info } from "lucide-react";
 import { trackEvent, trackSelectCta } from "@/lib/analytics";
-
-type PracticeType = "general" | "specialty";
-
-// Illustrative assumptions, not observed transaction data or market benchmarks.
-const MODEL: Record<
-  PracticeType,
-  { collections: { low: number; high: number }; earnings: { low: number; high: number } }
-> = {
-  general: {
-    collections: { low: 0.6, high: 0.85 },
-    earnings: { low: 2.5, high: 4.0 },
-  },
-  specialty: {
-    collections: { low: 0.62, high: 0.9 },
-    earnings: { low: 3.0, high: 5.5 },
-  },
-};
+import { calculatePracticeValue, PRACTICE_VALUE_ASSUMPTIONS, type PracticeType } from "@/lib/practiceValue";
 
 const CALCULATION_SETTLE_MS = 1200;
 
-const DEFAULT_MARGIN = 40; // % of collections left as adjusted earnings (≈60% overhead)
+const DEFAULT_MARGIN = 40; // An editable scenario, not a typical market margin.
 
 const currency = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -56,33 +40,15 @@ export function PracticeValueCalculator() {
   useEffect(() => () => window.clearTimeout(trackTimerRef.current), []);
 
   const collections = parseNumber(collectionsInput);
-  const parsedMargin = parseScenarioNumber(marginInput);
-  const marginPct = parsedMargin && parsedMargin <= 100 ? parsedMargin : null;
+  const marginPct = (() => {
+    if (!/^\d+(\.\d+)?$/.test(marginInput)) return NaN;
+    return Number(marginInput);
+  })();
 
   const result = useMemo(() => {
-    if (!collections || !marginPct) return null;
+    if (!collections) return null;
 
-    const model = MODEL[practiceType];
-    const collLow = collections * model.collections.low;
-    const collHigh = collections * model.collections.high;
-
-    const adjustedEarnings = collections * (marginPct / 100);
-    const earnLow = adjustedEarnings * model.earnings.low;
-    const earnHigh = adjustedEarnings * model.earnings.high;
-
-    // Blend the collections method and the earnings method for the headline range.
-    const low = Math.round((collLow + earnLow) / 2);
-    const high = Math.round((collHigh + earnHigh) / 2);
-
-    return {
-      low: Math.min(low, high),
-      high: Math.max(low, high),
-      collLow,
-      collHigh,
-      earnLow,
-      earnHigh,
-      adjustedEarnings,
-    };
+    return calculatePracticeValue(collections, marginPct, practiceType);
   }, [collections, practiceType, marginPct]);
 
   // Record one calculation once the visitor stops typing. Tracking the first
@@ -113,7 +79,7 @@ export function PracticeValueCalculator() {
               Dental Practice Value Estimator
             </h2>
             <p className="text-sm text-blue-50/90">
-              Compare two illustrative scenarios; this is not a market valuation.
+              Explore how two illustrative methods respond to your assumptions.
             </p>
           </div>
         </div>
@@ -144,7 +110,7 @@ export function PracticeValueCalculator() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="profit-margin">Adjusted profit margin</Label>
+              <Label htmlFor="profit-margin">Owner benefit margin</Label>
               <div className="relative">
                 <Input
                   id="profit-margin"
@@ -153,14 +119,14 @@ export function PracticeValueCalculator() {
                   value={marginInput}
                   onChange={(event) => setMarginInput(event.target.value)}
                   aria-describedby="margin-help"
-                  aria-invalid={marginPct === null}
+                  aria-invalid={!Number.isFinite(marginPct) || marginPct < 0 || marginPct > 100}
                 />
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
                   %
                 </span>
               </div>
               <p id="margin-help" className="text-xs text-gray-500">
-                An assumption for this scenario, not a typical margin. It is not automatically EBITDA or seller’s discretionary earnings.
+                Owner benefit before owner-dentist pay, as a percentage of collections (0–100%). The default 40% is an example, not a market benchmark or adjusted EBITDA.
               </p>
             </div>
           </div>
@@ -200,23 +166,12 @@ export function PracticeValueCalculator() {
           </div>
         </div>
 
-        <details className="border-t border-gray-100 px-6 py-5">
-          <summary className="min-h-11 cursor-pointer font-semibold text-primary">How this scenario calculator works</summary>
-          <div className="mt-3 space-y-3 text-sm leading-relaxed text-gray-600">
-            <p>General-dentistry assumptions: 60–85% of annual collections and 2.5–4 times the entered adjusted earnings. Specialty assumptions: 62–90% and 3–5.5 times earnings. These fixed bands are illustrative inputs, not current-market data or a recommended asking price.</p>
-            <p>Adjusted earnings here means collections multiplied by the entered margin. Owner compensation, replacement-doctor pay, one-time expenses, debt, taxes, working capital and other normalizations are not assessed. This figure must not be treated as verified EBITDA or seller’s discretionary earnings.</p>
-            <p>The headline averages the two lower endpoints and the two upper endpoints with equal weight. That blend is an educational scenario, not a professional valuation method.</p>
-            <p>Example: $1,200,000 collections at a 40% assumed margin produces $480,000 scenario earnings. The general-dentistry collections range is $720,000–$1,020,000; the earnings range is $1,200,000–$1,920,000; the blended scenario is $960,000–$1,470,000.</p>
-            <p>No financial inputs are submitted by this calculator. Analytics, when enabled, receives only a broad collections bucket and practice type. A professional assessment should explain its evidence, normalization choices and applicable market before you rely on a value.</p>
-          </div>
-        </details>
-
         {/* Result */}
         <div className="border-t border-gray-100 bg-gray-50 px-6 py-6">
           {result ? (
             <div>
-              <p className="text-sm text-gray-600 mb-1">Illustrative blended range</p>
-              <p className="text-3xl md:text-4xl font-bold text-primary">
+              <p className="text-sm text-gray-600 mb-1">Illustrative combined range · equal weighting</p>
+              <p aria-live="polite" className="text-3xl md:text-4xl font-bold text-primary">
                 {currency.format(result.low)}
                 <span className="text-gray-400 font-normal"> – </span>
                 {currency.format(result.high)}
@@ -234,7 +189,7 @@ export function PracticeValueCalculator() {
                 </div>
                 <div className="bg-white rounded-lg border border-gray-200 p-4">
                   <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-1">
-                    Earnings-multiple method
+                    Owner-benefit multiple method
                   </p>
                   <p className="text-lg font-semibold text-gray-800">
                     {currency.format(Math.round(result.earnLow))} –{" "}
@@ -242,16 +197,22 @@ export function PracticeValueCalculator() {
                   </p>
                   <p className="text-xs text-gray-500 mt-1">
                     on ~{currency.format(Math.round(result.adjustedEarnings))} adjusted
-                    earnings
+                    owner benefit before owner-dentist pay
                   </p>
                 </div>
               </div>
             </div>
           ) : (
             <p className="text-gray-500 text-sm">
-              Enter positive annual collections and a margin greater than 0% and no more than 100% to compare scenarios.
+              Enter positive annual collections and a margin from 0 to 100% to explore a scenario.
             </p>
           )}
+
+          <details className="mt-5 text-sm leading-relaxed text-muted-foreground">
+            <summary className="min-h-11 cursor-pointer py-3 font-semibold text-primary">See the assumptions and calculation</summary>
+            <p>For {practiceType === "general" ? "general dentistry" : "specialty practices"}, this teaching model applies {PRACTICE_VALUE_ASSUMPTIONS[practiceType].collections.low * 100}–{PRACTICE_VALUE_ASSUMPTIONS[practiceType].collections.high * 100}% of collections and {PRACTICE_VALUE_ASSUMPTIONS[practiceType].earnings.low}–{PRACTICE_VALUE_ASSUMPTIONS[practiceType].earnings.high} times owner benefit. The combined range averages the two low endpoints and the two high endpoints equally. These assumptions are not current sales comparables.</p>
+            <p className="mt-3">Owner benefit and adjusted EBITDA are different measures. An earnings analysis for an institutional buyer must account for appropriate clinician compensation and other adjustments. This calculator does not model debt, real estate, taxes, transaction costs or contingent payments.</p>
+          </details>
 
           <div className="flex items-start gap-2 mt-5 text-xs text-gray-500 leading-relaxed">
             <Info className="h-4 w-4 flex-shrink-0 mt-0.5" />

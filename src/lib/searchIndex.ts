@@ -8,6 +8,7 @@
  * browser fetches the generated `public/search-index.json` instead.
  */
 
+import { transitionStories } from "@/data/transitionStories";
 import { blogPosts, toBlogPostSummary } from "@/data/blogPosts";
 import { communityImpactPosts } from "@/data/communityImpactPosts";
 import { getUpcomingRawEvents, type RawEvent } from "@/data/events";
@@ -233,6 +234,8 @@ const STATIC_PAGE_RECORDS: StaticPageRecord[] = [
 export function buildSearchIndex(referenceDate: Date = new Date()): SearchRecord[] {
   return [
     ...STATIC_PAGE_RECORDS,
+    { title: "Dental Practice Transition Client Stories", excerpt: "Client accounts of practice sales, purchases and partnership decisions.", url: "/case-studies", type: "page" },
+    ...transitionStories.map((story) => ({ title: story.title, excerpt: story.description, url: `/case-studies/${story.slug}`, type: "page" as const })),
     ...serviceRecords(),
     ...locationRecords(),
     ...eventRecords(referenceDate),

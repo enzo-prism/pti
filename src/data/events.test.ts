@@ -13,7 +13,7 @@ import {
   getSeminarRegistrationPrice,
   getUpcomingPracticeTransitionSeminarEvents,
   PRACTICE_TRANSITION_SEMINAR_PATH,
-  PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
+  getSeminarDetailPath,
   practiceTransitionSeminarEvents,
   practiceTransitionSeminarLearningPoints,
 } from "@/data/practiceTransitionSeminar";
@@ -27,7 +27,7 @@ describe("events dataset", () => {
       title: "Panel of Experts Dinner",
       date: "October 14, 2027",
       time: "Time to be confirmed",
-      location: "Frank Fat's Restaurant, Sacramento, CA",
+      location: "Sacramento, CA",
       type: "dinner",
     });
     expect(dinner?.registrationLink).toContain("mailto:info@practicetransitionsinstitute.com");
@@ -142,9 +142,9 @@ describe("events dataset", () => {
     ]);
 
     for (const event of upcomingSeminars) {
-      expect(event.registrationLink).toBe(PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH);
-      expect(event.detailPath).toBe(PRACTICE_TRANSITION_SEMINAR_PATH);
       const seminar = practiceTransitionSeminarEvents.find((candidate) => candidate.id === event.id)!;
+      expect(event.registrationLink).toBe(`${getSeminarDetailPath(seminar)}#register`);
+      expect(event.detailPath).toBe(getSeminarDetailPath(seminar));
       expect(event.offerPrice).toBe(getSeminarRegistrationPrice(seminar, new Date("2026-08-17T12:00:00-07:00")));
       expect(event.offerPriceCurrency).toBe("USD");
     }
@@ -152,7 +152,7 @@ describe("events dataset", () => {
 
   it("uses one seminar schedule as the source for event cards and registration", () => {
     const eventCardSeminars = rawEvents.filter(
-      (event) => event.detailPath === PRACTICE_TRANSITION_SEMINAR_PATH
+      (event) => event.detailPath?.startsWith(`${PRACTICE_TRANSITION_SEMINAR_PATH}/`)
     );
 
     expect(eventCardSeminars).toHaveLength(practiceTransitionSeminarEvents.length);
@@ -209,7 +209,7 @@ describe("events dataset", () => {
       [new Date("2027-01-01T00:00:00-08:00"), 397],
     ] as const) {
       const seminars = getUpcomingRawEvents(referenceDate).filter((event) =>
-        event.detailPath === PRACTICE_TRANSITION_SEMINAR_PATH
+        event.detailPath?.startsWith(`${PRACTICE_TRANSITION_SEMINAR_PATH}/`)
       );
       expect(seminars).toHaveLength(3);
       expect(seminars.map((event) => event.offerPrice)).toEqual([
@@ -218,30 +218,28 @@ describe("events dataset", () => {
     }
   });
 
-  it("uses the confirmed San Francisco venue and a city-only Sacramento location for the 2026 seminars", () => {
+  it("publishes city-only locations for the 2026 seminars", () => {
     const sanFrancisco = rawEvents.find((event) => event.date === "July 17, 2026");
     const sacramento = rawEvents.find((event) => event.date === "October 2, 2026");
 
-    expect(sanFrancisco?.location).toContain("Kohan Group");
-    expect(sanFrancisco?.location).toContain("490 Post St.");
+    expect(sanFrancisco?.location).toBe("San Francisco, CA");
     expect(sacramento?.location).not.toMatch(/TDIC/);
-    expect(sacramento?.location).toContain("1201 K St");
+    expect(sacramento?.location).toBe("Sacramento, CA");
   });
 
-  it("uses the confirmed venue for the 2027 Anaheim seminar", () => {
+  it("publishes a city-only location for the 2027 Anaheim seminar", () => {
     const anaheim = rawEvents.find((event) => event.date === "March 12, 2027");
 
-    expect(anaheim?.location).toContain("The Phillips Group");
-    expect(anaheim?.location).toContain("2300 E Katella Ave #405");
+    expect(anaheim?.location).toBe("Anaheim, CA");
   });
 
-  it("uses confirmed venues for the 2027 seminars, with a city-only Sacramento location", () => {
+  it("publishes city-only locations for the 2027 seminars", () => {
     const sanFrancisco = rawEvents.find((event) => event.date === "July 30, 2027");
     const sacramento = rawEvents.find((event) => event.date === "October 15, 2027");
 
-    expect(sanFrancisco?.location).toBe("QUO, 1 Post Street, San Francisco, CA");
+    expect(sanFrancisco?.location).toBe("San Francisco, CA");
     expect(sacramento?.location).not.toMatch(/TDIC/);
-    expect(sacramento?.location).toContain("1201 K St");
+    expect(sacramento?.location).toBe("Sacramento, CA");
   });
 
   it("attaches the Sacramento flyer and flyer copy only to the October 2 2026 date", () => {
@@ -262,9 +260,9 @@ describe("events dataset", () => {
       subtitle: "BEFORE YOU BUY, EXPAND, PARTNER, OR SELL / KNOW YOUR OPTIONS",
       standalone: true,
       time: "8:00 AM - 3:00 PM",
-      location: "Sacramento, 1201 K St, 14th Floor, Sacramento, CA",
-      registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
-      detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
+      location: "Sacramento, CA",
+      registrationLink: "/events/practice-transition-seminar/october-2-2026-sacramento#register",
+      detailPath: "/events/practice-transition-seminar/october-2-2026-sacramento",
       flyerImage:
         "/lovable-uploads/drnjo-2026/pti-sacramento-seminar-2026-flyer.webp",
       flyerImageAlt:

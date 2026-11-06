@@ -1,7 +1,6 @@
 import {
-  PRACTICE_TRANSITION_SEMINAR_PATH,
-  PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
   getSeminarRegistrationPrice,
+  getSeminarDetailPath,
   practiceTransitionSeminarEvents,
   practiceTransitionSeminarLearningPoints,
 } from "@/data/practiceTransitionSeminar";
@@ -89,11 +88,11 @@ const practiceTransitionEvents: RawEvent[] = practiceTransitionSeminarEvents.map
       title: "Mastering Your Dental Transition Into and Out of Practice",
       date: event.date,
       time: event.time,
-      location: `${event.venueName}, ${event.addressLines.join(", ")}`,
+      location: `${event.city}, CA`,
       description: practiceTransitionSeminarDescription,
       type: "seminar",
-      registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
-      detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
+      registrationLink: `${getSeminarDetailPath(event)}#register`,
+      detailPath: getSeminarDetailPath(event),
       offerPrice: event.earlyBirdPrice,
       offerPriceCurrency: "USD",
     };
@@ -133,7 +132,7 @@ export const rawEvents: RawEvent[] = [
     title: "Panel of Experts Dinner",
     date: "October 14, 2027",
     time: "Time to be confirmed",
-    location: "Frank Fat's Restaurant, Sacramento, CA",
+    location: "Sacramento, CA",
     description:
       "A Panel of Experts dinner in Sacramento. Contact PTI for the time, program, and reservation details.",
     type: "dinner",

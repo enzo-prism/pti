@@ -1,4 +1,6 @@
 import { BreadcrumbNode, HOME_CRUMB } from "./breadcrumbs";
+import { transitionStories } from "@/data/transitionStories";
+import { practiceTransitionSeminarEvents, getSeminarDetailPath } from "@/data/practiceTransitionSeminar";
 
 const normalizePath = (path: string) => {
   if (!path) return "/";
@@ -161,6 +163,14 @@ const ROUTE_BREADCRUMBS: Record<string, BreadcrumbNode[]> = {
     { name: "Dr. Njo", path: "/drnjo" },
   ],
 };
+
+ROUTE_BREADCRUMBS["/case-studies"] = [HOME_CRUMB, { name: "Client Stories", path: "/case-studies" }];
+for (const story of transitionStories) {
+  ROUTE_BREADCRUMBS[`/case-studies/${story.slug}`] = [...ROUTE_BREADCRUMBS["/case-studies"], { name: story.name, path: `/case-studies/${story.slug}` }];
+}
+for (const event of practiceTransitionSeminarEvents) {
+  ROUTE_BREADCRUMBS[getSeminarDetailPath(event)] = [...ROUTE_BREADCRUMBS["/events/practice-transition-seminar"], { name: `${event.city} · ${event.date}`, path: getSeminarDetailPath(event) }];
+}
 
 export const getBreadcrumbsForPath = (
   pathname: string

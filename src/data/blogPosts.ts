@@ -56,6 +56,7 @@ export const blogPosts: BlogPost[] = [
       "A complete, step-by-step walkthrough of selling a dental practice — from valuation and preparation to choosing a buyer, the letter of intent, due diligence, financing, and closing.",
     category: "Practice Transitions",
     date: "2026-07-12",
+    dateModified: "2026-11-06",
     readTime: "9 min read",
     gradient: "bg-gradient-to-br from-primary via-blue-600 to-cyan-500",
     slug: "how-to-sell-a-dental-practice-step-by-step",
@@ -70,7 +71,19 @@ export const blogPosts: BlogPost[] = [
       bookingUrl: "https://calendly.com/michael-dental-strategies/30min",
       bookingLabel: "Talk With Dr. Njo",
     },
-    content: `Selling your dental practice is likely the largest financial transaction of your career, and one of the most personal. Done well, it protects your legacy, your team, and your patients while maximizing what you walk away with. Done in a hurry, it leaves money and peace of mind on the table.
+    content: `## A practical sale milestone checklist
+
+| Milestone | Evidence to prepare | Next decision |
+| --- | --- | --- |
+| Understand value | Financial records, compensation adjustments, lease and operations | Agree on the valuation purpose and assumptions |
+| Choose a path | Your goals and complete buyer terms | Compare private sale, DSO and partnership options |
+| Negotiate an LOI | Price structure, diligence access and financing expectations | Review the proposed terms with your attorney |
+| Complete diligence | Requested records, lender requirements and lease questions | Resolve conditions before closing |
+| Plan the handoff | Team, patient and seller-transition arrangements | Document responsibilities and communication |
+
+In [Tony Choi's published client story](/case-studies/tony-choi-practice-sale), he describes attending a seminar, reading the handbook and then choosing PTI for his sale. His reported timeline is an individual experience, not a standard closing promise. Use your own financing, records and transition needs to build a realistic plan.
+
+Selling your dental practice is likely the largest financial transaction of your career, and one of the most personal. Done well, it protects your legacy, your team, and your patients while maximizing what you walk away with. Done in a hurry, it leaves money and peace of mind on the table.
 
 This guide walks through the sale process end to end, in the order the decisions actually come up. Wherever a step deserves its own deep dive, we link to a detailed article so you can go as far as you need.
 
@@ -2395,6 +2408,7 @@ Most problems come from unclear expectations, weak valuation methods, vague gove
       "Comparing a DSO sale with a private buyer sale? Learn how deal structure, timeline, legacy, work-back expectations, and valuation differ for dental practice owners in 2026.",
     category: "Practice Transitions",
     date: "2026-03-26",
+    dateModified: "2026-11-06",
     readTime: "8 min read",
     gradient: "bg-gradient-to-br from-primary via-sky-600 to-cyan-500",
     slug: "dso-vs-private-buyer-dental-practice",
@@ -2410,7 +2424,13 @@ Most problems come from unclear expectations, weak valuation methods, vague gove
         "https://calendly.com/michael-dental-strategies/dso-pricing-practice-transition-intro-call",
       bookingLabel: "Book a DSO Pricing Call",
     },
-    content: `If you are planning a dental practice transition in 2026, one of the biggest decisions is not just when to sell. It is who to sell to.
+    content: `## Start with proceeds and obligations
+
+Separate cash payable at closing from equity, earnouts, holdbacks and post-sale work. A larger headline price can include proceeds you cannot use immediately or may never receive in full. Review the actual structure with your attorney, CPA and transition advisor before choosing a buyer.
+
+Our [hypothetical offer comparison](/services/selling-to-a-dso#compare-offers) puts the components side by side. Use it as a question framework, then compare your own offers on the same basis. The [valuation guide](/resources/how-much-is-my-dental-practice-worth) explains why collections, owner benefit and adjusted earnings must also be distinguished.
+
+If you are planning a dental practice transition in 2026, one of the biggest decisions is not just when to sell. It is who to sell to.
 
 For many owners, the real choice comes down to two very different buyer types: a DSO or a private buyer. Both can lead to a successful closing, but they usually come with different expectations around valuation, structure, post-sale work, control, and legacy.
 
@@ -2706,7 +2726,7 @@ Practice Transitions Institute helps dentists evaluate both the numbers and the 
     gradient: "bg-gradient-to-br from-primary via-sky-600 to-cyan-500",
     slug: "dental-practice-letter-of-intent",
     author: "Practice Transitions Institute",
-    metaTitle: "Dental Practice Letter of Intent Guide | PTI",
+    metaTitle: "Dental Practice Letter of Intent: Checklist | PTI",
     sources: [
       {
         name: "Buy an existing business or franchise",
@@ -2716,17 +2736,20 @@ Practice Transitions Institute helps dentists evaluate both the numbers and the 
     ],
     disclaimer:
       "This article provides general educational information, not legal, tax, or financial advice. Whether an LOI provision is binding depends on its language and applicable law. Each party should obtain independent advice from a dental-experienced attorney before signing.",
-    content: `A dental practice letter of intent outlines the proposed price, assets, diligence period, financing and closing conditions, seller transition role, and any exclusivity, confidentiality or deposit terms. It is a starting framework for the transaction; your independent attorney should identify which provisions are binding before you sign.
+    content: `## The short answer and review checklist
 
-## Before signing: a practical LOI review checklist
+A dental practice letter of intent outlines the proposed business terms before the final purchase agreement. Ask your attorney which provisions create obligations before signing; confidentiality, exclusivity and deposits deserve particular attention.
 
-- Define what the price includes and excludes, including accounts receivable, equipment and any real estate.
-- Identify each condition still outstanding: financing, records review, lease assignment and other required approvals.
-- Put dates and responsibilities beside the diligence period, deposit terms, exclusivity and proposed closing.
-- Record what the seller is expected to do after closing, for how long and under what compensation arrangement.
-- Have each party’s independent attorney review the document and their CPA examine the transaction assumptions.
+Bring these questions to your advisor:
 
-Bring those questions to the [buyer advisory team](/services/buying), [seller advisory team](/services/selling), or [DSO offer review](/services/selling-to-a-dso) before you commit. Prepare the supporting records with the [due-diligence checklist](/blog/dental-practice-due-diligence-checklist).
+- What is included in the proposed price, and which proceeds are conditional?
+- Are the assets, receivables, lease and seller's transition duties described clearly?
+- What information can the buyer inspect, and by when?
+- What happens if financing, diligence or lease approval takes longer than expected?
+- When is a deposit refundable, and when does exclusivity end?
+- Who is responsible for each next step?
+
+Compare the [hypothetical DSO and private-buyer offers](/services/selling-to-a-dso#compare-offers), and assemble the [records needed before a sale](/blog/documents-before-selling-your-dental-practice). PTI helps organize the business questions; your attorney reviews the legal effect and your CPA reviews tax treatment.
 
 In a dental practice sale, the letter of intent is often treated like a simple first step. It is not.
 

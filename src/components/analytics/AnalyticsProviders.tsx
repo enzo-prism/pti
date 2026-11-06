@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { HotjarAnalytics } from "@/components/analytics/HotjarAnalytics";
 import { GA_MEASUREMENT_ID, isCanonicalProductionHost } from "@/lib/analytics";
+import { captureLeadAttribution } from "@/lib/leadAttribution";
 import {
   ANALYTICS_CONSENT_EVENT,
   getAnalyticsConsent,
@@ -18,6 +19,7 @@ export function AnalyticsProviders() {
   useEffect(() => {
     setConsent(getAnalyticsConsent());
     setOnCanonicalHost(isCanonicalProductionHost());
+    captureLeadAttribution();
 
     const handleConsentChange = (event: Event) => {
       const nextConsent = (event as CustomEvent<AnalyticsConsent>).detail;
@@ -26,6 +28,7 @@ export function AnalyticsProviders() {
         window.gtag?.("consent", "update", { analytics_storage: nextConsent === "accepted" ? "granted" : "denied" });
       }
       setConsent(nextConsent);
+      captureLeadAttribution();
     };
 
     window.addEventListener(ANALYTICS_CONSENT_EVENT, handleConsentChange);

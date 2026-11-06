@@ -1,4 +1,6 @@
 import { TransitionReadingPaths } from "@/components/resources/TransitionReadingPaths";
+import { DsoOfferExample } from "@/components/resources/DsoOfferExample";
+import { TransitionStories } from "@/components/TransitionStories";
 import Link from "next/link";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
@@ -276,9 +278,10 @@ const SellingToADso = () => {
           buttonUrl="/contact"
         />
       </Section>
-    <Section><div className="mx-auto max-w-4xl"><SectionTitle>Compare the complete offer, not only the headline price</SectionTitle><div className="overflow-x-auto"><table className="w-full text-left text-sm"><caption className="mb-4 text-left text-gray-600">Questions to ask of both DSO and private-buyer proposals</caption><thead><tr><th className="p-3">Decision</th><th className="p-3">What to establish before signing</th></tr></thead><tbody>{[["Cash and conditions", "How much is paid at closing, what is deferred, and what conditions can change it?"], ["Retained equity", "What rights, restrictions, liquidity options and downside risks attach to any equity you keep?"], ["Work after closing", "What clinical schedule, compensation, duration and termination terms are required?"], ["Patients and team", "Who controls staffing, systems and patient communication during the handover?"], ["Financing and certainty", "What approvals, diligence, financing and lease conditions remain before closing?"]].map(([label, question]) => <tr className="border-t border-gray-200" key={label}><th scope="row" className="p-3 align-top font-semibold">{label}</th><td className="p-3 leading-relaxed">{question}</td></tr>)}</tbody></table></div><p className="mt-5 text-gray-600">These are review questions, not assumptions about either buyer type. PTI helps examine the business terms; each party’s independent attorney and CPA address legal and tax consequences.</p></div></Section>
-    <TransitionReadingPaths audience="dso" />
-</>
+    <DsoOfferExample />
+      <TransitionStories />
+    <TransitionReadingPaths audience="seller" />
+    </>
   );
 };
 

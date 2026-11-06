@@ -19,6 +19,7 @@ import { CookiePreferencesButton } from "@/components/privacy/CookiePreferencesB
 const exploreLinks = [
   { name: "About Us", path: "/about" },
   { name: "Testimonials", path: "/testimonials" },
+  { name: "Client Stories", path: "/case-studies" },
   { name: "Gallery", path: "/gallery" },
   { name: "Events", path: "/events" },
   { name: "Blog", path: "/blog" },

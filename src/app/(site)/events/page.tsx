@@ -4,14 +4,9 @@ import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 import {
   buildEventListing,
   getUpcomingRawEvents,
-  type RawEvent,
 } from "@/data/events";
-import {
-  buildSeminarStructuredEvent,
-  practiceTransitionSeminarEvents,
-} from "@/data/practiceTransitionSeminar";
 import { getFeaturedReviews } from "@/data/reviews";
-import { buildEventSchema } from "@/lib/structuredData";
+import { buildAbsoluteUrl } from "@/lib/siteMetadata";
 
 // Date-sensitive pricing and Event offers must be fresh at the Pacific cutoff.
 export const dynamic = "force-dynamic";
@@ -19,44 +14,6 @@ export const dynamic = "force-dynamic";
 const title = "Dental Practice Transition Events & Workshops";
 const description =
   "Upcoming webinars, seminars, and workshops for dentists planning practice transitions.";
-
-const formatEventDescription = (event: RawEvent) => {
-  if (typeof event.description === "string") {
-    return event.description;
-  }
-  const points = event.description.learningPoints?.length
-    ? ` ${event.description.learningPoints.join(" ")}`
-    : "";
-  return `${event.description.intro}${points}`;
-};
-
-const getUpcomingEventSchemas = (referenceDate: Date) =>
-  getUpcomingRawEvents(referenceDate).map((event) => {
-    const seminar = practiceTransitionSeminarEvents.find(
-      (candidate) => candidate.id === event.id
-    );
-    if (seminar) {
-      return buildEventSchema(buildSeminarStructuredEvent(seminar, referenceDate));
-    }
-
-    return buildEventSchema({
-      id: event.id,
-      title: event.title,
-      date: event.date,
-      endDate: event.endDate,
-      time: event.time,
-      timeZone: event.timeZone,
-      location: event.location,
-      description: formatEventDescription(event),
-      registrationLink: event.registrationLink,
-      type: event.type,
-      isVirtual: event.type === "webinar",
-      detailPath: event.detailPath,
-      image: event.flyerImage,
-      offerPrice: event.offerPrice,
-      offerPriceCurrency: event.offerPriceCurrency,
-    });
-  });
 
 export const metadata = buildPageMetadata({
   title,
@@ -74,7 +31,8 @@ export default function Page() {
           title,
           description,
           path: "/events",
-          structuredData: getUpcomingEventSchemas(referenceDate),
+          pageType: "CollectionPage",
+          structuredData: [{ "@type": "ItemList", itemListElement: getUpcomingRawEvents(referenceDate).filter((event) => event.detailPath).map((event, index) => ({ "@type": "ListItem", position: index + 1, name: event.title, url: buildAbsoluteUrl(event.detailPath!) })) }],
         })}
       />
       <Events

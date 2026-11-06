@@ -16,6 +16,7 @@ import {
   SEMINAR_CANT_ATTEND_MID,
   SEMINAR_CANT_ATTEND_TAIL,
   getSeminarSeriesCardEvents,
+  practiceTransitionSeminarLearningPoints,
   type PracticeTransitionSeminarEvent,
 } from "@/data/practiceTransitionSeminar";
 import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "@/lib/constants";
@@ -27,11 +28,13 @@ const cantAttendContactClass =
 interface PracticeTransitionSeminarProps {
   events: PracticeTransitionSeminarEvent[];
   referenceDateIso: string;
+  selectedEvent?: PracticeTransitionSeminarEvent;
 }
 
 const PracticeTransitionSeminar = ({
   events,
   referenceDateIso,
+  selectedEvent,
 }: PracticeTransitionSeminarProps) => {
   const seriesEvents = getSeminarSeriesCardEvents(events);
   const kevin = getReviewBySlug("kevin-barry-seminar-detail");
@@ -47,16 +50,16 @@ const PracticeTransitionSeminar = ({
                 {PRACTICE_TRANSITION_SEMINAR_EYEBROW}
               </p>
               <h1 className="mt-3 text-4xl font-bold leading-tight text-foreground sm:text-5xl">
-                {PRACTICE_TRANSITION_SEMINAR_HEADLINE}
+                {selectedEvent ? `Dental Practice Transition Seminar in ${selectedEvent.city}` : PRACTICE_TRANSITION_SEMINAR_HEADLINE}
               </h1>
               <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
                 {PRACTICE_TRANSITION_SEMINAR_INTRO}
               </p>
               <h2 className="mt-8 text-2xl font-bold text-foreground">
-                {PRACTICE_TRANSITION_SEMINAR_SUBHEAD}
+                {selectedEvent ? selectedEvent.date : PRACTICE_TRANSITION_SEMINAR_SUBHEAD}
               </h2>
             </header>
-            <SeminarEventPreview events={seriesEvents} />
+            <SeminarEventPreview events={seriesEvents} showDetailLinks={!selectedEvent} />
           </div>
 
           <div
@@ -66,10 +69,16 @@ const PracticeTransitionSeminar = ({
             <SeminarRegistration
               events={events}
               referenceDateIso={referenceDateIso}
+              initialEventValue={selectedEvent?.value}
             />
           </div>
 
           <div className="order-3 space-y-8 lg:col-span-3 lg:row-start-2">
+            <section aria-labelledby="seminar-learning-heading">
+              <h2 id="seminar-learning-heading" className="text-2xl font-bold">What you will learn</h2>
+              <ul className="mt-4 list-disc space-y-3 pl-6 text-base leading-relaxed text-muted-foreground">{practiceTransitionSeminarLearningPoints.map((point) => <li key={point}>{point}</li>)}</ul>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">For dentists considering a purchase, sale, associate buy-in or partnership. You do not need to be ready to sell to attend. Your attorney, CPA and lender remain responsible for advice on your specific transaction.</p>
+            </section>
             <ul className="grid gap-3 sm:grid-cols-3">
               {PRACTICE_TRANSITION_SEMINAR_FACTS.map((fact) => (
                 <li

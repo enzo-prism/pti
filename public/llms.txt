@@ -59,3 +59,12 @@ Content guidance:
 ## Discovery
 - [Sitemap](https://practicetransitionsinstitute.com/sitemap.xml): XML sitemap.
 - [Robots](https://practicetransitionsinstitute.com/robots.txt): Crawl directives.
+
+## Client stories and individual seminars
+- [Client Stories](https://practicetransitionsinstitute.com/case-studies)
+- [Tony Choi: practice sale](https://practicetransitionsinstitute.com/case-studies/tony-choi-practice-sale)
+- [John Senat: practice ownership](https://practicetransitionsinstitute.com/case-studies/john-senat-practice-ownership)
+- [Lee Boese: sale and partnership guidance](https://practicetransitionsinstitute.com/case-studies/lee-boese-sale-and-partnership-guidance)
+- [Anaheim seminar, March 12, 2027](https://practicetransitionsinstitute.com/events/practice-transition-seminar/march-12-2027-anaheim)
+- [San Francisco seminar, July 30, 2027](https://practicetransitionsinstitute.com/events/practice-transition-seminar/july-30-2027-san-francisco)
+- [Sacramento seminar, October 15, 2027](https://practicetransitionsinstitute.com/events/practice-transition-seminar/october-15-2027-sacramento)

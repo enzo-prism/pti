@@ -250,6 +250,7 @@ export const buildBlogPostingSchema = (
   const authorSchema = authorProfile
     ? {
         "@type": authorProfile.type,
+        ...(authorProfile.type === "Organization" ? { "@id": BUSINESS_ID } : {}),
         ...(authorProfile.type === "Person" && authorProfile.url
           ? { "@id": buildPersonId(authorProfile.url) }
           : {}),
@@ -443,7 +444,7 @@ export const buildEventSchema = (
     organizer: {
       "@id": BUSINESS_ID,
     },
-    url: eventUrl,
+    url: event.detailPath ? buildAbsoluteUrl(event.detailPath) : eventUrl,
   };
 };
 

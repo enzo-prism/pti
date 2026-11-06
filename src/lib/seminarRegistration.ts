@@ -185,7 +185,7 @@ const buildMessage = (
       : values.heardAbout;
 
   return [
-    "New seminar registration received.",
+    "New seminar registration callback request received.",
     "",
     "Seminar:",
     selectedEventLabel,
@@ -268,6 +268,9 @@ export const buildSeminarFormPayload = (
 
   return {
     form_name: PRACTICE_TRANSITION_SEMINAR_FORM_NAME,
+    request_type: "seminar_callback",
+    registration_status: "callback_requested",
+    payment_status: "not_collected_online",
     name: values.name.trim(),
     email: values.email.trim(),
     phone: values.phone.trim(),
@@ -289,6 +292,7 @@ export const buildSeminarFormPayload = (
     payment_consent: values.paymentConsent ? "yes" : "no",
     sms_consent: values.smsConsent ? "yes" : "no",
     subject: `New PTI Seminar Registration - ${selectedEventLabel}`,
+    _subject: `New PTI Seminar Callback Request - ${selectedEventLabel}`,
     tags: "event-registration,practice-transition-seminar",
     message: buildMessage(values, selectedEventLabel, quote),
     submitted_at: context.submittedAt.toISOString(),

@@ -1,3 +1,4 @@
+import { TransitionStories } from "@/components/TransitionStories";
 import Link from "next/link";
 import {
   Section,
@@ -355,6 +356,7 @@ const Partnerships = () => {
           buttonUrl="/contact"
         />
       </Section>
+    <TransitionStories />
     </>
   );
 };

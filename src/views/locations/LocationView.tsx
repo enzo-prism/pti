@@ -84,6 +84,7 @@ const LocationView = ({ location }: { location: LocationContent }) => {
         </div>
       </Section>
 
+      {location.slug === "texas" && <Section><div className="mx-auto max-w-4xl"><h2 className="text-2xl font-bold">Prepare a Texas transition brief</h2><p className="mt-4 text-base leading-relaxed text-muted-foreground">Before comparing proposals in Dallas-Fort Worth, Houston, Austin or another Texas market, organize the information that makes your practice distinct.</p><ul className="mt-4 list-disc space-y-3 pl-6 text-base leading-relaxed text-muted-foreground"><li>Identify the local patient base, referral relationships, payer mix and competing practices relevant to your location.</li><li>Summarize collections, owner compensation, staffing costs, equipment needs and lease obligations.</li><li>Compare a private buyer and DSO on funding readiness, cash timing and work-back obligations.</li><li>Ask your Texas attorney about ownership, records custody, lease transfer and the required notifications.</li></ul><p className="mt-4 text-base leading-relaxed text-muted-foreground">Use the <Link href="/resources/practice-sale-readiness-checklist" className="font-semibold text-primary underline">sale readiness checklist</Link> and <Link href="/blog/dso-vs-private-buyer-dental-practice" className="font-semibold text-primary underline">buyer comparison guide</Link> to prepare a conversation with PTI and your local advisors.</p></div></Section>}
       {/* Local considerations */}
       <Section background="light">
         <SectionTitle centered>

@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { faqItems } from "@/data/faq";
+import Link from "next/link";
 
 const Faq = () => {
   return (
@@ -41,6 +42,7 @@ const Faq = () => {
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6 text-base">
                   <p className="text-gray-600">{item.answer}</p>
+                  {item.nextStep && <Link href={item.nextStep.href} className="mt-3 inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4">{item.nextStep.label}</Link>}
                 </AccordionContent>
               </AccordionItem>
             ))}

@@ -129,6 +129,18 @@ const PracticeWorth = () => {
       </Section>
 
       {/* Factors Section */}
+      <Section>
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-2xl font-bold md:text-3xl">The same collections can produce different answers</h2>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">Consider two hypothetical general practices, each collecting $1 million per year. At a 40% owner-benefit margin, owner benefit is $400,000. At 20%, it is $200,000. Collections are identical; the earnings input is not. These are teaching examples, not transactions or typical margins.</p>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">Using the calculator&apos;s stated assumptions, the collections method gives $600,000–$850,000 in both cases. The owner-benefit method gives $1 million–$1.6 million in the first case and $500,000–$800,000 in the second. Averaging those methods is simply this tool&apos;s educational convention; a professional valuation weighs the evidence for the specific practice.</p>
+          <h3 className="mt-7 text-xl font-semibold">Which earnings figure are you comparing?</h3>
+          <p className="mt-3 text-base leading-relaxed text-muted-foreground">Collections are money received by the practice. Owner benefit includes earnings available to an owner before paying that owner for clinical work. Adjusted EBITDA for a buyer uses a different earnings definition, including appropriate clinician compensation. Ask your advisor to reconcile the financial statements and explain each adjustment before comparing offers or multiples.</p>
+          <h3 className="mt-7 text-xl font-semibold">What to bring to a valuation conversation</h3>
+          <ul className="mt-3 list-disc space-y-2 pl-6 text-base leading-relaxed text-muted-foreground"><li>Recent financial statements, tax returns, production and collections reports.</li><li>Owner and associate compensation, recurring expenses, and proposed adjustments.</li><li>Patient activity, payer mix, staffing, equipment and lease information.</li><li>Your intended transition, timeline and any buyer proposal already received.</li></ul>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">Start with PTI&apos;s <Link href="/services/value" className="font-semibold text-primary underline">Opinion of Value scope</Link>, meet <Link href="/drnjo" className="font-semibold text-primary underline">Dr. Michael Njo</Link>, or read the <a href="https://www.ada.org/resources/careers/career-planning/what-makes-a-successful-sale" className="font-semibold text-primary underline">American Dental Association&apos;s guide to a successful sale</a>. A formal appraisal may be needed when a lender, court or another relying party requires one.</p>
+        </div>
+      </Section>
       <Section background="light">
         <SectionTitle centered>What Drives Dental Practice Value</SectionTitle>
         <SectionSubtitle centered>

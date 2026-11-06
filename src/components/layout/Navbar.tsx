@@ -79,7 +79,7 @@ const Navbar = () => {
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const pathname = usePathname();
   const currentPath = pathname ?? "/";
-  const isSeminarPage = currentPath === "/events/practice-transition-seminar";
+  const isSeminarPage = currentPath === "/events/practice-transition-seminar" || currentPath.startsWith("/events/practice-transition-seminar/");
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobilePanelRef = useRef<HTMLDivElement>(null);

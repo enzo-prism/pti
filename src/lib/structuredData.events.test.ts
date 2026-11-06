@@ -29,7 +29,7 @@ describe("event structured data", () => {
       "https://practicetransitionsinstitute.com/events/practice-transition-seminar#event-pti-seminar-san-francisco-2026"
     );
     expect(schema.url).toBe(
-      "https://practicetransitionsinstitute.com/events/practice-transition-seminar#event-pti-seminar-san-francisco-2026"
+      "https://practicetransitionsinstitute.com/events/practice-transition-seminar"
     );
     expect(schema.offers).toMatchObject({
       "@type": "Offer",
@@ -48,17 +48,16 @@ describe("event structured data", () => {
     expect(schema.endDate).toBe("2026-10-02T15:00:00-07:00");
   });
 
-  it("describes the venue as a Place with a postal address", () => {
+  it("keeps the public city-only location consistent in structured data", () => {
     const schema = buildEventSchema(
       buildSeminarStructuredEvent(sacramento2026, new Date("2026-09-27T12:00:00-07:00"))
     );
 
     expect(schema.location).toEqual({
       "@type": "Place",
-      name: "Sacramento",
+      name: "Sacramento, CA",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "1201 K St, 14th Floor",
         addressLocality: "Sacramento",
         addressRegion: "CA",
         addressCountry: "US",

@@ -1,5 +1,8 @@
 "use client";
 
+import { addLeadAttribution } from "@/lib/leadAttribution";
+import { submitLeadForm } from "@/lib/formSubmission";
+
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -94,6 +97,7 @@ const OptionalHint = () => (
 export const ContactForm = () => {
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const startedRef = useRef(false);
+  const submittingRef = useRef(false);
   const errorRef = useRef<HTMLDivElement>(null);
   const successRef = useRef<HTMLHeadingElement>(null);
 
@@ -130,6 +134,8 @@ export const ContactForm = () => {
   };
 
   const onSubmit = async (values: ContactFormValues) => {
+    if (submittingRef.current) return;
+    submittingRef.current = true;
     setSubmitState("idle");
 
     // A filled honeypot still goes to Formspree, which files it as spam, so a
@@ -149,6 +155,9 @@ export const ContactForm = () => {
       payload.append("interest", label);
     }
     payload.append("message", values.message);
+    payload.set("form_name", "PTI Contact Inquiry");
+    payload.set("lead_type", "contact");
+    addLeadAttribution(payload);
     payload.append(
       "consent",
       "Yes — consents to be contacted by email, text, and phone"
@@ -159,23 +168,16 @@ export const ContactForm = () => {
     }
 
     try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
-        method: "POST",
-        body: payload,
-        headers: { Accept: "application/json" },
-      });
-
-      if (response.ok) {
-        if (!honeypotFilled) {
-          trackContactFormSubmit("contact", FORM_ID, FORM_PROVIDER);
-        }
-        form.reset();
-        setSubmitState("success");
-      } else {
-        setSubmitState("error");
+      await submitLeadForm(FORMSPREE_ENDPOINT, payload);
+      if (!honeypotFilled) {
+        trackContactFormSubmit("contact", FORM_ID, FORM_PROVIDER);
       }
+      form.reset();
+      setSubmitState("success");
     } catch {
       setSubmitState("error");
+    } finally {
+      submittingRef.current = false;
     }
   };
 

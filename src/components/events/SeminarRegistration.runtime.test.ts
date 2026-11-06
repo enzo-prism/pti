@@ -4,12 +4,15 @@ import { createRoot, type Root } from "react-dom/client";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { getUpcomingPracticeTransitionSeminarEvents, SEMINAR_REGISTRATION_CONFIRMATION } from "@/data/practiceTransitionSeminar";
 import { SeminarRegistration } from "./SeminarRegistration";
+import { trackContactFormSubmit } from "@/lib/analytics";
+
+vi.mock("@/lib/analytics", () => ({ trackContactFormSubmit: vi.fn(), trackContactFormStart: vi.fn(), trackEvent: vi.fn(), trackPhoneCallClick: vi.fn() }));
 
 let root: Root;
 let container: HTMLDivElement;
 const beforeCutoff = "2026-12-31T23:59:59-08:00";
 const afterCutoff = "2027-01-01T00:01:00-08:00";
-const post = vi.fn(async (_url: string, _options: RequestInit) => ({ ok: true }));
+const post = vi.fn(async (_url: string, _options: RequestInit) => ({ ok: true, json: async () => ({ ok: true }) }));
 
 const setField = async (id: string, value: string) => {
   await act(async () => {
@@ -38,6 +41,7 @@ beforeEach(async () => {
   vi.stubGlobal("IS_REACT_ACT_ENVIRONMENT", true);
   vi.stubGlobal("fetch", post);
   post.mockClear();
+  vi.mocked(trackContactFormSubmit).mockClear();
   container = document.createElement("div");
   document.body.append(container);
   root = createRoot(container);
@@ -54,6 +58,18 @@ afterEach(async () => {
 });
 
 describe("live registration quote", () => {
+  it("keeps the form available and records no lead when provider acceptance fails", async () => {
+    await completeForm();
+    post.mockResolvedValueOnce({ ok: true, json: async () => ({ ok: false }) });
+    await submit();
+    expect(container.querySelector('[role="alert"]')?.textContent).toContain("We could not send the form");
+    expect(trackContactFormSubmit).not.toHaveBeenCalled();
+    expect(container.querySelector<HTMLInputElement>("#seminar-name")!.value).toBe("Preview Test");
+    await submit();
+    expect(container.querySelector('[role="status"]')?.textContent).toContain("Registration call requested");
+    expect(trackContactFormSubmit).toHaveBeenCalledExactlyOnceWith("seminar_callback", "practice_transition_seminar", "formspree");
+  });
+
   it("refreshes the visible price and removes promotion copy at midnight without interaction", async () => {
     expect(price()).toBe("$247");
     await act(async () => vi.advanceTimersByTimeAsync(1050));
@@ -79,6 +95,7 @@ describe("live registration quote", () => {
     expect(payload.early_bird_applied).toBe("no");
     expect(payload.sms_consent).toBe("no");
     expect(container.textContent).toContain(SEMINAR_REGISTRATION_CONFIRMATION);
+    expect(container.querySelector('[role="status"]')?.textContent).toContain("Registration call requested");
   });
 
   it("updates the quote on focus and keeps group totals consistent", async () => {
