@@ -72,6 +72,7 @@ export const buildBusinessSchema = (): JsonLdShape => {
     address: buildPostalAddress(),
     telephone: PHONE_NUMBER_TEL,
     areaServed: AREA_SERVED,
+    founder: { "@type": "Person", "@id": "https://michaelnjodds.com/#person", name: "Michael Njo, DDS", url: "https://michaelnjodds.com/michael-njo-dds" },
     contactPoint: [
       {
         "@type": "ContactPoint",

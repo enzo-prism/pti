@@ -1,3 +1,4 @@
+import { TransitionReadingPaths } from "@/components/resources/TransitionReadingPaths";
 import Link from "next/link";
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
@@ -180,7 +181,8 @@ const Books = () => {
           </div>
         </div>
       </Section>
-    </>
+    <TransitionReadingPaths audience="seller" />
+</>
   );
 };
 

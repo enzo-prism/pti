@@ -1,6 +1,6 @@
 # PTI Implementation Map
 
-This document records the site architecture through the October 12, 2026 seminar registration update. Read it with the repository `AGENTS.md` before changing routes, events, analytics, long-form content, or service positioning.
+This document records the site architecture through the November 6, 2026 SEO/AEO and measurement update. Read it with the repository `AGENTS.md` before changing routes, events, analytics, long-form content, or service positioning.
 
 ## Route and service ownership
 
@@ -37,7 +37,7 @@ This document records the site architecture through the October 12, 2026 seminar
 
 - `src/components/analytics/AnalyticsProviders.tsx` is the only provider mount.
 - `src/lib/consent.ts` owns the versioned browser preference.
-- Google Analytics, Hotjar, and Vercel Analytics stay unloaded until explicit consent and only run on the canonical production host.
+- Google Analytics loads unless declined, with Consent Mode v2 denying analytics storage by default in the EEA/UK/CH and granting it elsewhere. Advertising consent stays denied. Hotjar and Vercel Analytics require explicit acceptance. All providers remain limited to the canonical production host.
 - Blog search updates the URL with `history.replaceState` after typing settles, producing one page view per search rather than one per keystroke. The valuation calculator records one `calculate_practice_value` event after input settles.
 - `src/components/privacy/` owns the banner and footer preference control. Privacy-policy changes must stay aligned with the providers actually mounted.
 
@@ -103,3 +103,5 @@ git diff --check
 ```
 
 For production-sensitive changes, also verify `/`, `/events`, `/events/practice-transition-seminar`, `/services`, `/services/buying`, `/blog`, `/contact`, `sitemap.xml`, and `robots.txt` on the stable public domain. For chrome changes, check the header at 390px, 1024px, and 1280px, plus `/drnjo`.
+
+SEO/AEO release details and verification: [`docs/seo-aeo-release-2026-11-06.md`](seo-aeo-release-2026-11-06.md).

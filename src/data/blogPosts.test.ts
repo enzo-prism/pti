@@ -34,7 +34,7 @@ describe("blog editorial quality", () => {
     expect(revisedPosts).toHaveLength(EDITORIALLY_REVISED_POST_IDS.size);
 
     for (const post of revisedPosts) {
-      expect(post.dateModified).toBe("2026-08-17");
+      expect(post.dateModified).toBe(post.slug === "dental-practice-letter-of-intent" ? "2026-11-06" : "2026-08-17");
       expect(post.disclaimer).toMatch(/general educational information/i);
       expect(post).not.toHaveProperty("reviewedBy");
       for (const source of post.sources ?? []) {

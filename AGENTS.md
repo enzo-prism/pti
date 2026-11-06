@@ -85,7 +85,7 @@ This is a Next.js 15 App Router site with React 18, TypeScript (strict), Tailwin
 
 ## Analytics
 
-- `AnalyticsProviders` is mounted once from the root layout. Google Analytics, Hotjar, and Vercel Analytics load only after explicit consent on the canonical production host (`isCanonicalProductionHost`); privacy choices can be reset from the footer.
+- `AnalyticsProviders` is mounted once from the root layout. Google Analytics loads unless declined, with Consent Mode v2 denying analytics storage by default in the EEA/UK/CH and granting it elsewhere. Advertising consent stays denied. Hotjar and Vercel Analytics require explicit acceptance. All providers remain limited to the canonical production host. (`isCanonicalProductionHost`); privacy choices can be reset from the footer.
 - Form honeypots use neutral ids/labels ("Leave this field blank"), never "company", "url", or similar autofill targets. A filled honeypot is sent to Formspree as `_gotcha` (Formspree files it as spam) and is not tracked as a lead.
 - Custom events in `src/lib/analytics.ts` (lead generation, blog views, CTAs, series navigation).
 
@@ -152,3 +152,5 @@ This is a Next.js 15 App Router site with React 18, TypeScript (strict), Tailwin
 - `/services/buying` owns acquisition-advisory intent; keep it distinct from associate buy-ins.
 - Core service pages use `EngagementDetails` to explain deliverables, typical timing, roles, fees, representation/conflicts, and attorney/CPA coordination.
 - PTI owns detailed transition-service and transaction-proof search intent. Dr. Njo's personal site owns his full biography, education/speaking authority, and non-transactional Dental Strategies guidance.
+
+SEO/AEO release details and verification: [`docs/seo-aeo-release-2026-11-06.md`](docs/seo-aeo-release-2026-11-06.md).

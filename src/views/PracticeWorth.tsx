@@ -98,7 +98,7 @@ const PracticeWorth = () => {
               How Much Is My Dental Practice Worth?
             </h1>
             <p className="text-lg md:text-xl text-gray-700 mb-8 animate-fade-in animate-delay-100 leading-relaxed">
-              There is no single multiplier that answers this question honestly. Here is what actually determines your practice&apos;s value — and how to get a number you can rely on.
+              A dental practice’s value depends on sustainable cash flow, transferable goodwill, buyer financing, and transaction terms. Collections alone cannot establish the price. Use the scenarios below to organize questions, then obtain an assessment grounded in your records and market.
             </p>
             <div className="flex justify-center">
               <Button asChild size="lg">

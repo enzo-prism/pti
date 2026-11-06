@@ -1,3 +1,4 @@
+import { TransitionReadingPaths } from "@/components/resources/TransitionReadingPaths";
 import Link from "next/link";
 import {
   Section,
@@ -272,7 +273,8 @@ const LocationView = ({ location }: { location: LocationContent }) => {
           buttonUrl="/contact"
         />
       </Section>
-    </>
+    <TransitionReadingPaths audience="seller" />
+</>
   );
 };
 

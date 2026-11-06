@@ -6,13 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { parseScenarioNumber } from "@/lib/scenarioInput";
 import { Calculator, Info } from "lucide-react";
 import { trackEvent, trackSelectCta } from "@/lib/analytics";
 
 type PracticeType = "general" | "specialty";
 
-// Honest, widely-cited rule-of-thumb bands. These are intentionally broad —
-// they exist to educate, not to replace a professional Opinion of Value.
+// Illustrative assumptions, not observed transaction data or market benchmarks.
 const MODEL: Record<
   PracticeType,
   { collections: { low: number; high: number }; earnings: { low: number; high: number } }
@@ -37,12 +37,7 @@ const currency = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 0,
 });
 
-const parseNumber = (value: string): number | null => {
-  const cleaned = value.replace(/[^0-9.]/g, "");
-  if (!cleaned) return null;
-  const parsed = Number.parseFloat(cleaned);
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
-};
+const parseNumber = parseScenarioNumber;
 
 const collectionsBucket = (collections: number): string => {
   if (collections < 500_000) return "under_500k";
@@ -61,14 +56,11 @@ export function PracticeValueCalculator() {
   useEffect(() => () => window.clearTimeout(trackTimerRef.current), []);
 
   const collections = parseNumber(collectionsInput);
-  const marginPct = (() => {
-    const parsed = Number.parseFloat(marginInput.replace(/[^0-9.]/g, ""));
-    if (!Number.isFinite(parsed)) return DEFAULT_MARGIN;
-    return Math.min(60, Math.max(15, parsed));
-  })();
+  const parsedMargin = parseScenarioNumber(marginInput);
+  const marginPct = parsedMargin && parsedMargin <= 100 ? parsedMargin : null;
 
   const result = useMemo(() => {
-    if (!collections) return null;
+    if (!collections || !marginPct) return null;
 
     const model = MODEL[practiceType];
     const collLow = collections * model.collections.low;
@@ -121,7 +113,7 @@ export function PracticeValueCalculator() {
               Dental Practice Value Estimator
             </h2>
             <p className="text-sm text-blue-50/90">
-              A quick, ballpark range based on the two methods buyers use most.
+              Compare two illustrative scenarios; this is not a market valuation.
             </p>
           </div>
         </div>
@@ -143,6 +135,7 @@ export function PracticeValueCalculator() {
                   value={collectionsInput}
                   onChange={(event) => handleCollectionsChange(event.target.value)}
                   aria-describedby="collections-help"
+                  aria-invalid={collectionsInput !== "" && collections === null}
                 />
               </div>
               <p id="collections-help" className="text-xs text-gray-500">
@@ -160,13 +153,14 @@ export function PracticeValueCalculator() {
                   value={marginInput}
                   onChange={(event) => setMarginInput(event.target.value)}
                   aria-describedby="margin-help"
+                  aria-invalid={marginPct === null}
                 />
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
                   %
                 </span>
               </div>
               <p id="margin-help" className="text-xs text-gray-500">
-                Earnings left after overhead. Typical dental practices run 35–45%.
+                An assumption for this scenario, not a typical margin. It is not automatically EBITDA or seller’s discretionary earnings.
               </p>
             </div>
           </div>
@@ -206,11 +200,22 @@ export function PracticeValueCalculator() {
           </div>
         </div>
 
+        <details className="border-t border-gray-100 px-6 py-5">
+          <summary className="min-h-11 cursor-pointer font-semibold text-primary">How this scenario calculator works</summary>
+          <div className="mt-3 space-y-3 text-sm leading-relaxed text-gray-600">
+            <p>General-dentistry assumptions: 60–85% of annual collections and 2.5–4 times the entered adjusted earnings. Specialty assumptions: 62–90% and 3–5.5 times earnings. These fixed bands are illustrative inputs, not current-market data or a recommended asking price.</p>
+            <p>Adjusted earnings here means collections multiplied by the entered margin. Owner compensation, replacement-doctor pay, one-time expenses, debt, taxes, working capital and other normalizations are not assessed. This figure must not be treated as verified EBITDA or seller’s discretionary earnings.</p>
+            <p>The headline averages the two lower endpoints and the two upper endpoints with equal weight. That blend is an educational scenario, not a professional valuation method.</p>
+            <p>Example: $1,200,000 collections at a 40% assumed margin produces $480,000 scenario earnings. The general-dentistry collections range is $720,000–$1,020,000; the earnings range is $1,200,000–$1,920,000; the blended scenario is $960,000–$1,470,000.</p>
+            <p>No financial inputs are submitted by this calculator. Analytics, when enabled, receives only a broad collections bucket and practice type. A professional assessment should explain its evidence, normalization choices and applicable market before you rely on a value.</p>
+          </div>
+        </details>
+
         {/* Result */}
         <div className="border-t border-gray-100 bg-gray-50 px-6 py-6">
           {result ? (
             <div>
-              <p className="text-sm text-gray-600 mb-1">Estimated value range</p>
+              <p className="text-sm text-gray-600 mb-1">Illustrative blended range</p>
               <p className="text-3xl md:text-4xl font-bold text-primary">
                 {currency.format(result.low)}
                 <span className="text-gray-400 font-normal"> – </span>
@@ -244,7 +249,7 @@ export function PracticeValueCalculator() {
             </div>
           ) : (
             <p className="text-gray-500 text-sm">
-              Enter your annual collections above to see an estimated range.
+              Enter positive annual collections and a margin greater than 0% and no more than 100% to compare scenarios.
             </p>
           )}
 

@@ -15,10 +15,7 @@ This runbook covers the manual Google Analytics 4 (GA4) admin steps required aft
 ## 3. Mark Key Events
 1. Open **Admin** > **Data display** > **Events**.
 2. Wait until events appear from live traffic/test traffic.
-3. Mark these as key events:
-- `generate_lead`
-- `book_consultation_click`
-- `phone_call_click`
+3. Mark `generate_lead` as the confirmed-lead key event. Verified enabled on November 6, 2026 (property 502361992). Keep CTA/phone clicks as diagnostic engagement events; a click does not establish a completed enquiry.
 
 ## 4. Create Custom Dimensions
 Open **Admin** > **Data display** > **Custom definitions** > **Create custom dimension**.
@@ -48,7 +45,7 @@ Create event-scoped dimensions for:
 - Home -> Blog -> Blog post -> Events -> Contact page navigation.
 - Click navbar phone link.
 - Click navbar consultation CTA.
-- Submit Typeform contact form.
+- Validate Formspree form errors without submitting a live lead. Confirmed-lead behavior is covered by mocked-provider tests; use an explicitly coordinated real enquiry only when verifying inbox delivery.
 
 Expected validation:
 - Realtime shows `page_view` plus custom events.
@@ -60,7 +57,7 @@ Capture screenshots for:
 1. Web stream Measurement ID page.
 2. Enhanced measurement settings.
 3. Events list showing required events.
-4. Key events configuration showing all three lead-focused key events.
+4. Key events configuration showing the confirmed-lead key event.
 5. Custom definitions list containing all required dimensions.
 6. Internal traffic filter settings.
 7. Realtime report with active event traffic.

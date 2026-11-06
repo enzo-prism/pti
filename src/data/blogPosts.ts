@@ -2701,7 +2701,7 @@ Practice Transitions Institute helps dentists evaluate both the numbers and the 
       "Learn what a dental practice letter of intent should cover, which terms deserve careful review, and how a clear LOI can prevent expensive transition mistakes.",
     category: "Practice Transitions",
     date: "2026-03-17",
-    dateModified: "2026-08-17",
+    dateModified: "2026-11-06",
     readTime: "8 min read",
     gradient: "bg-gradient-to-br from-primary via-sky-600 to-cyan-500",
     slug: "dental-practice-letter-of-intent",
@@ -2716,7 +2716,19 @@ Practice Transitions Institute helps dentists evaluate both the numbers and the 
     ],
     disclaimer:
       "This article provides general educational information, not legal, tax, or financial advice. Whether an LOI provision is binding depends on its language and applicable law. Each party should obtain independent advice from a dental-experienced attorney before signing.",
-    content: `In a dental practice sale, the letter of intent is often treated like a simple first step. It is not.
+    content: `A dental practice letter of intent outlines the proposed price, assets, diligence period, financing and closing conditions, seller transition role, and any exclusivity, confidentiality or deposit terms. It is a starting framework for the transaction; your independent attorney should identify which provisions are binding before you sign.
+
+## Before signing: a practical LOI review checklist
+
+- Define what the price includes and excludes, including accounts receivable, equipment and any real estate.
+- Identify each condition still outstanding: financing, records review, lease assignment and other required approvals.
+- Put dates and responsibilities beside the diligence period, deposit terms, exclusivity and proposed closing.
+- Record what the seller is expected to do after closing, for how long and under what compensation arrangement.
+- Have each party’s independent attorney review the document and their CPA examine the transaction assumptions.
+
+Bring those questions to the [buyer advisory team](/services/buying), [seller advisory team](/services/selling), or [DSO offer review](/services/selling-to-a-dso) before you commit. Prepare the supporting records with the [due-diligence checklist](/blog/dental-practice-due-diligence-checklist).
+
+In a dental practice sale, the letter of intent is often treated like a simple first step. It is not.
 
 A well-structured LOI can bring clarity, align expectations, and make the rest of the transition smoother. A sloppy one can create confusion, bad leverage, or costly disputes before the purchase agreement is even drafted.
 

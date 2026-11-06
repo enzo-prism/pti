@@ -28,6 +28,9 @@ export const getAnalyticsConsent = (): AnalyticsConsent => {
   }
 };
 
+/** Google Analytics is opt-out; replay/behavior providers remain opt-in. */
+export const isGoogleAnalyticsAllowed = (): boolean => getAnalyticsConsent() !== "declined";
+
 export const hasAnalyticsConsent = (): boolean =>
   getAnalyticsConsent() === "accepted";
 

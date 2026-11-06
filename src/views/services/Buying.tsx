@@ -1,3 +1,4 @@
+import { TransitionReadingPaths } from "@/components/resources/TransitionReadingPaths";
 import Link from "next/link";
 import {
   BadgeDollarSign,
@@ -192,7 +193,8 @@ const Buying = () => (
         buttonUrl="/contact"
       />
     </Section>
-  </>
+  <TransitionReadingPaths audience="buyer" />
+</>
 );
 
 export default Buying;

@@ -73,9 +73,9 @@ Verify the stable public domain, not only an ephemeral Vercel URL:
 On the canonical host:
 
 1. Reset privacy choices from the footer.
-2. Confirm Google Analytics, Hotjar, and Vercel Analytics requests are absent before a decision.
-3. Decline and confirm they remain absent.
-4. Reset, accept, and confirm the configured providers load.
+2. Before a decision, confirm GA loads with the regional Consent Mode defaults and advertising consent denied; Hotjar and Vercel Analytics remain absent.
+3. Decline and confirm provider requests stop after the privacy reload.
+4. Reset, accept, and confirm the configured providers load with analytics storage granted.
 5. Do not submit a live lead solely to test analytics. Use non-submitting CTA/form-start interactions and confirm event properties contain no personal data.
 
 Preview hosts intentionally keep analytics disabled.

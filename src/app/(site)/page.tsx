@@ -1,9 +1,9 @@
 import Home from "@/views/Home";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
-import { BUSINESS_DESCRIPTION } from "@/lib/siteMetadata";
 
-const title = "Dental Practice Transition Consulting & Valuation";
+
+const title = "Dental Practice Transition Consultants | Dr. Michael Njo & PTI";
 const description =
   "Expert guidance for dentists buying, selling, partnering, or valuing a practice. PTI delivers end-to-end transition strategy, negotiation, and support.";
 

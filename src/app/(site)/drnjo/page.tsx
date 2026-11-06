@@ -15,7 +15,7 @@ const personSchema = buildPersonSchema({
   description:
     "Michael Njo, DDS is a dental practice transition expert, author, and lecturer with decades of clinical and consulting experience supporting dentists, students, and GPR residents.",
   image: "/lovable-uploads/d30c74a1-48bb-404e-9e9d-bc93119a695d.png",
-  sameAs: [MICHAEL_NJO_WEBSITE_URL],
+  sameAs: [`${MICHAEL_NJO_WEBSITE_URL.replace(/\/$/, "")}/michael-njo-dds`],
 });
 
 export const metadata = buildPageMetadata({

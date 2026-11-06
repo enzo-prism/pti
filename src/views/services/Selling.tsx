@@ -1,3 +1,4 @@
+import { TransitionReadingPaths } from "@/components/resources/TransitionReadingPaths";
 
 import Link from "next/link";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
@@ -238,7 +239,8 @@ const Selling = () => {
           buttonUrl="/contact"
         />
       </Section>
-    </>
+    <TransitionReadingPaths audience="seller" />
+</>
   );
 };
 

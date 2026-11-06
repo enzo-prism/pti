@@ -1,9 +1,10 @@
+import { handbookEditions } from "@/lib/handbookSchema";
 import Books from "@/views/Books";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 import { BOOKS_PATH } from "@/lib/constants";
 
-const title = "Books by Dr. Michael Njo";
+const title = "Dental Practice Transitions Handbook | Dr. Michael Njo";
 const description =
   "Dr. Michael Njo's Dental Practice Transitions Handbook: the expanded Second Edition launching November 17, 2026, and the first edition on Amazon.";
 const path = BOOKS_PATH;
@@ -22,6 +23,7 @@ export default function Page() {
           title,
           description,
           path,
+          structuredData: handbookEditions(),
         })}
       />
       <Books />

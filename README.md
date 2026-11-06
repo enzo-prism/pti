@@ -101,7 +101,7 @@ When editing long-form strings (blog posts, testimonials), preserve existing for
 - JSON-LD is rendered with `StructuredData` from `src/components/StructuredData.tsx`.
 - The business node is `ProfessionalService` on every page. Routes declare their own page type (`ContactPage`, `ImageGallery`, `ProfilePage`, …) through `buildPageJsonLd({ pageType })`.
 - Google Analytics 4 helpers live in `src/lib/analytics.ts`. Configure `NEXT_PUBLIC_GA_MEASUREMENT_ID` for the GA4 stream (legacy fallback ID remains during migration), and `NEXT_PUBLIC_HOTJAR_ID` optionally for Hotjar.
-- Google Analytics, Hotjar, and Vercel Analytics are consent-gated by the single root `AnalyticsProviders` mount and load only on the canonical production host. Visitors can reset the saved choice from the footer.
+- Google Analytics loads unless declined, with Consent Mode v2 denying analytics storage by default in the EEA/UK/CH and granting it elsewhere. Advertising consent stays denied. Hotjar and Vercel Analytics require explicit acceptance. All providers remain limited to the canonical production host. The single root `AnalyticsProviders` mount coordinates providers. Visitors can reset the saved choice from the footer.
 - Lead-focused key events emitted by the app include `generate_lead`, `book_consultation_click`, and `phone_call_click`.
 - Sitemap and robots are generated at runtime by `src/app/sitemap.ts` and `src/app/robots.ts`.
 - Social profiles (schema `sameAs`): set `NEXT_PUBLIC_SOCIAL_PROFILES` to a comma-separated list of profile URLs (Google Business Profile, LinkedIn, Facebook, YouTube). When unset, it defaults to the founder's official site so at least one verified identity link is emitted.
@@ -143,3 +143,5 @@ See `docs/deployment-runbook.md` for release and live-smoke procedures.
 - `docs/implementation-map.md`: current routing, events, analytics, editorial, service, and cross-site architecture.
 - `docs/deployment-runbook.md`: main-branch release, Vercel production deployment, and live verification.
 - `docs/registration-preview.md`: October 2026 seminar registration changes, canonical pricing, callback flow, and open follow-ups.
+
+SEO/AEO release details and verification: [`docs/seo-aeo-release-2026-11-06.md`](docs/seo-aeo-release-2026-11-06.md).

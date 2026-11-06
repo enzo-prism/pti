@@ -1,3 +1,4 @@
+import { handbookEditions } from "@/lib/handbookSchema";
 import SecondBook from "@/views/SecondBook";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
@@ -22,6 +23,7 @@ export default function Page() {
           title,
           description,
           path,
+          structuredData: handbookEditions(),
         })}
       />
       <SecondBook />
