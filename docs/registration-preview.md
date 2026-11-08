@@ -24,10 +24,20 @@ Runtime tests mount the real React form in jsdom, mock all submission fetches, a
 
 ## Open follow-ups
 
-- Confirm final commercial rules, seat/rate-lock meaning, cancellation boundaries, and actual receiving inbox/callback coverage. Historical source notes identify venues, but the November client direction is city-only public locations. Venue details are obtained from PTI; do not restore historic addresses in pages, schema or client props.
+- Confirm remaining seat/rate-lock meaning and callback backup coverage. Liz's October 29 email confirmed the intended callback inbox, response timing, secure bank payment process, Excel registration record, cancellation owner and inclusive eight-day cancellation counting; see the November 7 preparation below. Historical source notes identify venues, but the November client direction is city-only public locations. Venue details are obtained from PTI; do not restore historic addresses in pages, schema or client props.
 - With explicit authorization to send the test, run a marked external delivery test and read back the intended recipient/provider result. Publication approval does not prove actual notification delivery, a completed callback, or payment.
 
 These follow-ups remain documented separately from the authorized website release. The existing Formspree endpoint and contact constants are retained.
+
+## November 7 callback and payment wording preparation
+
+Source: Liz's [October 29 seminar registration handoff reply](https://mail.google.com/mail/u/?authuser=enzo%40design-prism.com#all/1a188c8327ae1889).
+
+- The intended inbox is `info@practicetransitionsinstitute.com`. Liz expects a response within a few hours during normal business hours or by the following business day. Registration and confirmation status are tracked in Excel; Liz handles cancellations/refunds.
+- Payment is expected within 24 hours of the registration request through the bank's secure online payment system. The website does not collect payment. Updated form introduction, required acknowledgement, FAQ, success guidance and notification payload remove the older claim that PTI takes payment by phone.
+- Cancellation guidance now says to count backward from the seminar date with the seminar day included as Day 8. The full refund by that deadline, $100 late-cancellation fee and refund if a rescheduled date cannot be attended are retained.
+- The form's success message acknowledges the callback request only after provider acceptance, explains the response/payment handoff, and keeps seat confirmation conditional on payment. It does not promise email delivery, successful payment, or a completed callback.
+- No bank payment URL, email autoresponder, provider recipient change or external test is added by this code preparation. Provider notification/response configuration and actual receipt must be verified separately. These changes are local and are not deployed.
 
 ## Delivery verification, October 23, 2026
 

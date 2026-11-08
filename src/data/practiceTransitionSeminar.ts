@@ -55,9 +55,9 @@ export const PRACTICE_TRANSITION_SEMINAR_BIOS = [
   },
 ] as const;
 
-/** Liz Armato, Oct 9 2026: what happens after a registrant submits. */
+/** Liz Armato, Oct 29 2026: callback timing and secure online payment handoff. */
 export const SEMINAR_REGISTRATION_CONFIRMATION =
-  "A member of the PTI team will contact you to confirm and finalize your seminar registration.";
+  "PTI will contact you within a few hours during normal business hours or by the next business day to finalize your registration and provide secure online payment instructions. Payment is expected within 24 hours of your registration request. Your seat is confirmed after payment.";
 
 export const SEMINAR_CANT_ATTEND_HEADING = "Can’t Attend the Seminar?";
 export const SEMINAR_CANT_ATTEND_LEAD =
@@ -68,7 +68,7 @@ export const SEMINAR_CANT_ATTEND_EMPHASIS =
 export const SEMINAR_CANT_ATTEND_TAIL =
   "to discuss your dental practice transition questions and explore solutions tailored to your needs.";
 
-/** Cancellation terms from Liz's October 2026 registration mockup. */
+/** Liz's October 2026 terms; October 29 clarified the seminar day is Day 8. */
 export const SEMINAR_CANCELLATION_MINIMUM_DAYS = 8;
 export const SEMINAR_LATE_CANCELLATION_FEE = 100;
 
@@ -241,7 +241,7 @@ export const getSeminarFormEvents = (
 ) => getSeminarSeriesCardEvents(events);
 
 export const getSeminarCancellationPolicy = () => {
-  return `Cancel at least ${SEMINAR_CANCELLATION_MINIMUM_DAYS} days before your seminar for a full 100% refund. Cancellations made within ${SEMINAR_CANCELLATION_MINIMUM_DAYS} days are subject to a $${SEMINAR_LATE_CANCELLATION_FEE} fee, which covers the cost of reserving your space. If we reschedule a seminar and you are unable to attend the new date, you will receive a 100% refund.`;
+  return `Cancel by the eight-day cancellation deadline for a full 100% refund. Count backward from the seminar date, including the seminar day as Day ${SEMINAR_CANCELLATION_MINIMUM_DAYS}. Cancellations after that deadline are subject to a $${SEMINAR_LATE_CANCELLATION_FEE} fee, which covers the cost of reserving your space. If we reschedule a seminar and you are unable to attend the new date, you will receive a 100% refund.`;
 };
 
 export const practiceTransitionSeminarLearningPoints = [
@@ -274,7 +274,7 @@ export const practiceTransitionSeminarFaqs = [
   {
     question: "How does payment work?",
     answer:
-      "Submit the registration form and PTI will call to confirm your seat and take payment by phone.",
+      "Submit the registration form and PTI will provide instructions for secure online payment through the bank's payment system. Payment is expected within 24 hours of your registration request. Your seat is confirmed after payment; this website does not collect payment.",
   },
   {
     question: "Can I bring additional attendees?",
