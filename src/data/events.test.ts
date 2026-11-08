@@ -39,6 +39,28 @@ describe("events dataset", () => {
       .not.toContainEqual(dinner);
   });
 
+  it("lists the 2027 Panel of Experts dinners by city without inventing details", () => {
+    const expected = [
+      ["panel-of-experts-los-angeles-jan-2027", "January 21, 2027", "Los Angeles, CA"],
+      ["panel-of-experts-los-angeles-may-2027", "May 20, 2027", "Los Angeles, CA"],
+      ["panel-of-experts-bakersfield-2027", "October 21, 2027", "Bakersfield, CA"],
+    ] as const;
+    for (const [id, date, location] of expected) {
+      const dinner = rawEvents.find((event) => event.id === id);
+      expect(dinner).toMatchObject({
+        title: "Panel of Experts Dinner",
+        date,
+        time: "Time to be confirmed",
+        location,
+        type: "dinner",
+      });
+      expect(dinner?.registrationLink).toContain("mailto:info@practicetransitionsinstitute.com");
+      expect(dinner).not.toHaveProperty("speakers");
+      expect(dinner).not.toHaveProperty("offerPrice");
+      expect(getUpcomingRawEvents(new Date("2026-11-08T12:00:00-08:00"))).toContainEqual(dinner);
+    }
+  });
+
   it("lists the Beyond the Chair Anaheim workshop without overstating availability", () => {
     const workshop = rawEvents.find(
       (event) => event.id === "beyond-the-chair-anaheim-2026"
@@ -400,9 +422,15 @@ describe("events dataset", () => {
     expect(sacramento?.location).not.toMatch(/TDIC/);
 
     const panel = listing.find(
-      (event) => event.id === "panel-of-experts-sacramento-2027"
+      (event) => event.title === "Panel of Experts Dinner"
     );
     expect(panel?.isPast).toBe(false);
     expect(panel?.soldOut).toBe(false);
+    expect(panel?.eventDates?.map((date) => [date.date, date.location])).toEqual([
+      ["January 21, 2027", "Los Angeles, CA"],
+      ["May 20, 2027", "Los Angeles, CA"],
+      ["October 14, 2027", "Sacramento, CA"],
+      ["October 21, 2027", "Bakersfield, CA"],
+    ]);
   });
 });
