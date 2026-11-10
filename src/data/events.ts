@@ -396,6 +396,20 @@ export const buildEventListing = (
       sortedGroup.find((event) => typeof event.description === "object") ||
       sortedGroup[0];
 
+    // Prefer existing series copy that does not single out one of its cities.
+    const groupCities = sortedGroup.map((event) =>
+      event.location.split(",")[0].trim().toLowerCase()
+    );
+    const description = typeof detailedEvent.description === "string"
+      ? sortedGroup.find((event) => {
+          const candidateDescription = event.description;
+          return typeof candidateDescription === "string" &&
+            !groupCities.some((city) =>
+              candidateDescription.toLowerCase().includes(city)
+            );
+        })?.description ?? detailedEvent.description
+      : detailedEvent.description;
+
     const eventDateMap = new Map<string, ListedEventDate>();
     for (const event of sortedGroup) {
       const key = createEventDateKey(event.date, event.time, event.location);
@@ -417,6 +431,7 @@ export const buildEventListing = (
 
     listing.push({
       ...detailedEvent,
+      description,
       id: sortedGroup[0].id,
       date: representativeDate.date,
       time: representativeDate.time,

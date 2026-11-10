@@ -417,7 +417,7 @@ export const MultiDateEventCard = ({
                     </a>
                   </Button>
                 </>
-              ) : registrationLink.startsWith("mailto:") ? (
+              ) : requiresAvailabilityConfirmation ? (
                 <>
                   <Button size="sm" className="flex-1 sm:flex-none" asChild>
                     <a
@@ -427,7 +427,7 @@ export const MultiDateEventCard = ({
                       }
                     >
                       <Mail size={16} className="mr-2" />
-                      Email us to register
+                      Confirm Availability
                     </a>
                   </Button>
                   <Button
@@ -437,16 +437,16 @@ export const MultiDateEventCard = ({
                     asChild
                   >
                     <a
-                      href={EVENT_REGISTRATION_MAILTO}
+                      href={`tel:${PHONE_NUMBER_TEL}`}
                       onClick={() =>
                         trackEventRegistrationClick(
                           normalizedEventName,
-                          "alternative_email",
+                          "phone",
                         )
                       }
                     >
-                      <Mail size={16} className="mr-2" />
-                      Alternative Email
+                      <Phone size={16} className="mr-2" />
+                      Call PTI
                     </a>
                   </Button>
                 </>
