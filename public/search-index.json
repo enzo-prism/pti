@@ -192,9 +192,21 @@
     "type": "location"
   },
   {
+    "title": "Panel of Experts Dinner",
+    "excerpt": "January 21, 2027 in Los Angeles, CA. A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
+    "url": "/events",
+    "type": "event"
+  },
+  {
     "title": "Mastering Your Dental Transition Into and Out of Practice",
     "excerpt": "March 12, 2027 in Anaheim, CA. Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day seminar gives you practical guidance for making...",
     "url": "/events/practice-transition-seminar/march-12-2027-anaheim",
+    "type": "event"
+  },
+  {
+    "title": "Panel of Experts Dinner",
+    "excerpt": "May 20, 2027 in Los Angeles, CA. A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
+    "url": "/events",
     "type": "event"
   },
   {
@@ -219,6 +231,12 @@
     "title": "Mastering Your Dental Transition Into and Out of Practice",
     "excerpt": "October 15, 2027 in Sacramento, CA. Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day seminar gives you practical guidance for...",
     "url": "/events/practice-transition-seminar/october-15-2027-sacramento",
+    "type": "event"
+  },
+  {
+    "title": "Panel of Experts Dinner",
+    "excerpt": "October 21, 2027 in Bakersfield, CA. A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
+    "url": "/events",
     "type": "event"
   },
   {

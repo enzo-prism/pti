@@ -22,9 +22,6 @@ const BEYOND_THE_CHAIR_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeUR
 const GARGLE_SUMMIT_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
   "Growth Summit Interest List"
 )}`;
-const SACRAMENTO_PANEL_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
-  "Sacramento Panel of Experts Dinner - October 14, 2027"
-)}`;
 const PANEL_OF_EXPERTS_2027_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
   "Panel of Experts Dinner 2027"
 )}`;
@@ -139,7 +136,7 @@ export const rawEvents: RawEvent[] = [
     description:
       "A Panel of Experts dinner in Sacramento. Contact PTI for the time, program, and reservation details.",
     type: "dinner",
-    registrationLink: SACRAMENTO_PANEL_MAILTO,
+    registrationLink: PANEL_OF_EXPERTS_2027_MAILTO,
   },
   {
     id: "panel-of-experts-los-angeles-jan-2027",
@@ -396,20 +393,6 @@ export const buildEventListing = (
       sortedGroup.find((event) => typeof event.description === "object") ||
       sortedGroup[0];
 
-    // Prefer existing series copy that does not single out one of its cities.
-    const groupCities = sortedGroup.map((event) =>
-      event.location.split(",")[0].trim().toLowerCase()
-    );
-    const description = typeof detailedEvent.description === "string"
-      ? sortedGroup.find((event) => {
-          const candidateDescription = event.description;
-          return typeof candidateDescription === "string" &&
-            !groupCities.some((city) =>
-              candidateDescription.toLowerCase().includes(city)
-            );
-        })?.description ?? detailedEvent.description
-      : detailedEvent.description;
-
     const eventDateMap = new Map<string, ListedEventDate>();
     for (const event of sortedGroup) {
       const key = createEventDateKey(event.date, event.time, event.location);
@@ -431,7 +414,6 @@ export const buildEventListing = (
 
     listing.push({
       ...detailedEvent,
-      description,
       id: sortedGroup[0].id,
       date: representativeDate.date,
       time: representativeDate.time,
