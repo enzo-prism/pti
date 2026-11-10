@@ -9,6 +9,15 @@ export const DENTAL_TRANSITIONS_HANDBOOK_URL =
   "https://www.amazon.com/Dental-Practice-Transitions-Handbook-Healthcare/dp/1627878718";
 export const HANDBOOK_PATH = "/resources/dental-practice-transitions-handbook";
 export const SECOND_BOOK_PATH = "/resources/second-book";
+export const BOOKS_PATH = "/books";
+/**
+ * TODO(book-launch): set this to the live Second Edition Kindle purchase
+ * link once Dr. Njo confirms the listing. Until then it stays null and the
+ * /books page links readers to the Second Edition resource page instead of
+ * a purchase URL.
+ */
+export const SECOND_EDITION_KINDLE_URL: string | null = null;
+export const SECOND_EDITION_KINDLE_PRICE = "$2.99";
 export const PODCAST_INTERVIEW_PATH =
   "/resources/navigating-dental-insurance-podcast";
 

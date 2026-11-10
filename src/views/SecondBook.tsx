@@ -1,3 +1,4 @@
+import { TransitionReadingPaths } from "@/components/resources/TransitionReadingPaths";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -101,7 +102,8 @@ const SecondBook = () => {
           </div>
         </div>
       </Section>
-    </>
+    <TransitionReadingPaths audience="buyer" />
+</>
   );
 };
 

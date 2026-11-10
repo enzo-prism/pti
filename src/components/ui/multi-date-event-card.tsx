@@ -102,14 +102,18 @@ export const MultiDateEventCard = ({
       }`}
     >
       {/* Status Banner */}
-      <div
-        className={`absolute top-0 left-0 right-0 h-1 ${
-          isPast ? "bg-gray-400" : "bg-gradient-to-r from-primary to-primary/70"
-        }`}
-      ></div>
+      {isPast ? (
+        <div className="absolute top-0 left-0 right-0 z-20 rounded-t-xl bg-gray-700 py-1.5 text-center text-[11px] font-bold uppercase tracking-[0.25em] text-white">
+          Sold Out
+        </div>
+      ) : (
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary/70"></div>
+      )}
 
       {/* Content wrapper */}
-      <div className="relative z-10 p-4 md:p-6">
+      <div
+        className={`relative z-10 p-4 md:p-6 ${isPast ? "pt-11 md:pt-12" : ""}`}
+      >
         {/* Event Header */}
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
           <div className="flex-1">
@@ -120,8 +124,8 @@ export const MultiDateEventCard = ({
                 {type}
               </span>
               {isPast ? (
-                <span className="inline-flex max-w-full items-center rounded-full border border-gray-300 bg-gray-200 px-3 py-1 text-center text-xs font-semibold leading-tight text-gray-700">
-                  Event Completed
+                <span className="inline-flex max-w-full items-center rounded-full border border-gray-700 bg-gray-700 px-3 py-1 text-center text-xs font-semibold leading-tight text-white">
+                  Sold Out
                 </span>
               ) : (
                 <span
@@ -322,8 +326,8 @@ export const MultiDateEventCard = ({
                           <span>{eventDate.location}</span>
                         </div>
                       </div>
-                      <span className="text-xs text-gray-500 mt-2 sm:mt-0 sm:ml-3">
-                        Completed
+                      <span className="text-xs font-semibold uppercase tracking-wide text-gray-600 mt-2 sm:mt-0 sm:ml-3">
+                        Sold Out
                       </span>
                     </div>
                   ))}

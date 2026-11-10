@@ -1,3 +1,4 @@
+import { TransitionStories } from "@/components/TransitionStories";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -179,6 +180,7 @@ const Resources = () => {
           buttonUrl="/contact"
         />
       </Section>
+    <TransitionStories />
     </>
   );
 };

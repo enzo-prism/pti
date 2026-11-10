@@ -74,6 +74,47 @@ describe("reviews dataset", () => {
     ]);
   });
 
+  it("includes John Senat's full buyer testimonial near the top", () => {
+    const review = getReviewBySlug("john-senat-practice-purchase");
+    expect(review).toMatchObject({
+      id: "internal-john-senat",
+      source: "internal",
+      category: "buyer",
+      rating: 5,
+      sourceAuthorName: "John Senat",
+      displayAuthorName: "John Senat",
+      role: "Practice Buyer",
+    });
+    expect(review?.quote).toContain(
+      "I decided to bring Michael on board because, from the very beginning, he gave me a sense of confidence, reassurance, and genuine support"
+    );
+    expect(review?.quote).toContain(
+      "Here's to a successful future and a lasting relationship built on trust, respect, and shared success!"
+    );
+    expect(reviews.indexOf(review!)).toBeLessThan(6);
+  });
+
+  it("features Craig Yarborough with his full UOP Dugoni letter", () => {
+    const review = getReviewBySlug(
+      "craig-s-yarborough-dds-mba-michael-many-thanks-for"
+    );
+    expect(review).toMatchObject({
+      sourceAuthorName: "Craig S. Yarborough, DDS, MBA",
+      displayAuthorName: "Craig S. Yarborough, DDS, MBA",
+      company:
+        "University of the Pacific, Arthur A. Dugoni School of Dentistry",
+    });
+    expect(review?.longForm?.body).toContain(
+      "Membership in the DBC increased six-fold"
+    );
+    expect(review?.longForm?.body).toContain("Dugoni Mixers");
+    expect(review?.longForm?.body).toContain("Annual Symposium");
+    expect(review?.longForm?.documentUrl).toBe(
+      "/documents/uop-yarborough-letter-of-recommendation-2026.pdf"
+    );
+    expect(reviews.indexOf(review!)).toBeLessThan(7);
+  });
+
   it("returns featured slots in deterministic order", () => {
     const homeReviews = getFeaturedReviews("home");
     expect(homeReviews.map((review) => review.id)).toEqual([

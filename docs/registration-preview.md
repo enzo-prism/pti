@@ -24,7 +24,7 @@ Runtime tests mount the real React form in jsdom, mock all submission fetches, a
 
 ## Open follow-ups
 
-- Confirm final commercial rules, seat/rate-lock meaning, cancellation boundaries, and actual receiving inbox/callback coverage. The current 2027 San Francisco seminar is QUO / 1 Post Street, as recorded in the canonical schedule and venue tests. Kohan Group / 490 Post Street applies only to the archived July 17, 2026 event.
+- Confirm final commercial rules, seat/rate-lock meaning, cancellation boundaries, and actual receiving inbox/callback coverage. Historical source notes identify venues, but the November client direction is city-only public locations. Venue details are obtained from PTI; do not restore historic addresses in pages, schema or client props.
 - With explicit authorization to send the test, run a marked external delivery test and read back the intended recipient/provider result. Publication approval does not prove actual notification delivery, a completed callback, or payment.
 
 These follow-ups remain documented separately from the authorized website release. The existing Formspree endpoint and contact constants are retained.

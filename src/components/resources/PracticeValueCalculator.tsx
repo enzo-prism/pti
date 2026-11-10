@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { parseScenarioNumber } from "@/lib/scenarioInput";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,28 +9,11 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Calculator, Info } from "lucide-react";
 import { trackEvent, trackSelectCta } from "@/lib/analytics";
-
-type PracticeType = "general" | "specialty";
-
-// Honest, widely-cited rule-of-thumb bands. These are intentionally broad —
-// they exist to educate, not to replace a professional Opinion of Value.
-const MODEL: Record<
-  PracticeType,
-  { collections: { low: number; high: number }; earnings: { low: number; high: number } }
-> = {
-  general: {
-    collections: { low: 0.6, high: 0.85 },
-    earnings: { low: 2.5, high: 4.0 },
-  },
-  specialty: {
-    collections: { low: 0.62, high: 0.9 },
-    earnings: { low: 3.0, high: 5.5 },
-  },
-};
+import { calculatePracticeValue, PRACTICE_VALUE_ASSUMPTIONS, type PracticeType } from "@/lib/practiceValue";
 
 const CALCULATION_SETTLE_MS = 1200;
 
-const DEFAULT_MARGIN = 40; // % of collections left as adjusted earnings (≈60% overhead)
+const DEFAULT_MARGIN = 40; // An editable scenario, not a typical market margin.
 
 const currency = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -37,12 +21,7 @@ const currency = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 0,
 });
 
-const parseNumber = (value: string): number | null => {
-  const cleaned = value.replace(/[^0-9.]/g, "");
-  if (!cleaned) return null;
-  const parsed = Number.parseFloat(cleaned);
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
-};
+const parseNumber = parseScenarioNumber;
 
 const collectionsBucket = (collections: number): string => {
   if (collections < 500_000) return "under_500k";
@@ -62,35 +41,14 @@ export function PracticeValueCalculator() {
 
   const collections = parseNumber(collectionsInput);
   const marginPct = (() => {
-    const parsed = Number.parseFloat(marginInput.replace(/[^0-9.]/g, ""));
-    if (!Number.isFinite(parsed)) return DEFAULT_MARGIN;
-    return Math.min(60, Math.max(15, parsed));
+    if (!/^\d+(\.\d+)?$/.test(marginInput)) return NaN;
+    return Number(marginInput);
   })();
 
   const result = useMemo(() => {
     if (!collections) return null;
 
-    const model = MODEL[practiceType];
-    const collLow = collections * model.collections.low;
-    const collHigh = collections * model.collections.high;
-
-    const adjustedEarnings = collections * (marginPct / 100);
-    const earnLow = adjustedEarnings * model.earnings.low;
-    const earnHigh = adjustedEarnings * model.earnings.high;
-
-    // Blend the collections method and the earnings method for the headline range.
-    const low = Math.round((collLow + earnLow) / 2);
-    const high = Math.round((collHigh + earnHigh) / 2);
-
-    return {
-      low: Math.min(low, high),
-      high: Math.max(low, high),
-      collLow,
-      collHigh,
-      earnLow,
-      earnHigh,
-      adjustedEarnings,
-    };
+    return calculatePracticeValue(collections, marginPct, practiceType);
   }, [collections, practiceType, marginPct]);
 
   // Record one calculation once the visitor stops typing. Tracking the first
@@ -121,7 +79,7 @@ export function PracticeValueCalculator() {
               Dental Practice Value Estimator
             </h2>
             <p className="text-sm text-blue-50/90">
-              A quick, ballpark range based on the two methods buyers use most.
+              Explore how two illustrative methods respond to your assumptions.
             </p>
           </div>
         </div>
@@ -143,6 +101,7 @@ export function PracticeValueCalculator() {
                   value={collectionsInput}
                   onChange={(event) => handleCollectionsChange(event.target.value)}
                   aria-describedby="collections-help"
+                  aria-invalid={collectionsInput !== "" && collections === null}
                 />
               </div>
               <p id="collections-help" className="text-xs text-gray-500">
@@ -151,7 +110,7 @@ export function PracticeValueCalculator() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="profit-margin">Adjusted profit margin</Label>
+              <Label htmlFor="profit-margin">Owner benefit margin</Label>
               <div className="relative">
                 <Input
                   id="profit-margin"
@@ -160,13 +119,14 @@ export function PracticeValueCalculator() {
                   value={marginInput}
                   onChange={(event) => setMarginInput(event.target.value)}
                   aria-describedby="margin-help"
+                  aria-invalid={!Number.isFinite(marginPct) || marginPct < 0 || marginPct > 100}
                 />
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
                   %
                 </span>
               </div>
               <p id="margin-help" className="text-xs text-gray-500">
-                Earnings left after overhead. Typical dental practices run 35–45%.
+                Owner benefit before owner-dentist pay, as a percentage of collections (0–100%). The default 40% is an example, not a market benchmark or adjusted EBITDA.
               </p>
             </div>
           </div>
@@ -210,8 +170,8 @@ export function PracticeValueCalculator() {
         <div className="border-t border-gray-100 bg-gray-50 px-6 py-6">
           {result ? (
             <div>
-              <p className="text-sm text-gray-600 mb-1">Estimated value range</p>
-              <p className="text-3xl md:text-4xl font-bold text-primary">
+              <p className="text-sm text-gray-600 mb-1">Illustrative combined range · equal weighting</p>
+              <p aria-live="polite" className="text-3xl md:text-4xl font-bold text-primary">
                 {currency.format(result.low)}
                 <span className="text-gray-400 font-normal"> – </span>
                 {currency.format(result.high)}
@@ -229,7 +189,7 @@ export function PracticeValueCalculator() {
                 </div>
                 <div className="bg-white rounded-lg border border-gray-200 p-4">
                   <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-1">
-                    Earnings-multiple method
+                    Owner-benefit multiple method
                   </p>
                   <p className="text-lg font-semibold text-gray-800">
                     {currency.format(Math.round(result.earnLow))} –{" "}
@@ -237,16 +197,22 @@ export function PracticeValueCalculator() {
                   </p>
                   <p className="text-xs text-gray-500 mt-1">
                     on ~{currency.format(Math.round(result.adjustedEarnings))} adjusted
-                    earnings
+                    owner benefit before owner-dentist pay
                   </p>
                 </div>
               </div>
             </div>
           ) : (
             <p className="text-gray-500 text-sm">
-              Enter your annual collections above to see an estimated range.
+              Enter positive annual collections and a margin from 0 to 100% to explore a scenario.
             </p>
           )}
+
+          <details className="mt-5 text-sm leading-relaxed text-muted-foreground">
+            <summary className="min-h-11 cursor-pointer py-3 font-semibold text-primary">See the assumptions and calculation</summary>
+            <p>For {practiceType === "general" ? "general dentistry" : "specialty practices"}, this teaching model applies {PRACTICE_VALUE_ASSUMPTIONS[practiceType].collections.low * 100}–{PRACTICE_VALUE_ASSUMPTIONS[practiceType].collections.high * 100}% of collections and {PRACTICE_VALUE_ASSUMPTIONS[practiceType].earnings.low}–{PRACTICE_VALUE_ASSUMPTIONS[practiceType].earnings.high} times owner benefit. The combined range averages the two low endpoints and the two high endpoints equally. These assumptions are not current sales comparables.</p>
+            <p className="mt-3">Owner benefit and adjusted EBITDA are different measures. An earnings analysis for an institutional buyer must account for appropriate clinician compensation and other adjustments. This calculator does not model debt, real estate, taxes, transaction costs or contingent payments.</p>
+          </details>
 
           <div className="flex items-start gap-2 mt-5 text-xs text-gray-500 leading-relaxed">
             <Info className="h-4 w-4 flex-shrink-0 mt-0.5" />

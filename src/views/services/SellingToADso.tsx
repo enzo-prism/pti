@@ -1,3 +1,6 @@
+import { TransitionReadingPaths } from "@/components/resources/TransitionReadingPaths";
+import { DsoOfferExample } from "@/components/resources/DsoOfferExample";
+import { TransitionStories } from "@/components/TransitionStories";
 import Link from "next/link";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Cta } from "@/components/ui/cta";
@@ -275,6 +278,9 @@ const SellingToADso = () => {
           buttonUrl="/contact"
         />
       </Section>
+    <DsoOfferExample />
+      <TransitionStories />
+    <TransitionReadingPaths audience="seller" />
     </>
   );
 };

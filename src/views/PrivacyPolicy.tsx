@@ -10,7 +10,7 @@ const PrivacyPolicy = () => {
             Privacy Policy
           </h1>
           <p className="text-center text-sm text-gray-500">
-            Last updated: August 17, 2026
+            Last updated: November 6, 2026
           </p>
 
           <p>
@@ -66,10 +66,13 @@ const PrivacyPolicy = () => {
             Cookies & Analytics
           </h2>
           <p>
-            Optional analytics remain off unless you select &ldquo;Accept
-            Analytics&rdquo; in our cookie preferences. If you accept, we use Google
-            Analytics, Hotjar, and Vercel Analytics to understand aggregate site
-            usage, identify usability problems, and improve site performance.
+            Google Analytics loads unless you select &ldquo;Decline Analytics&rdquo;.
+            Google Consent Mode keeps analytics storage denied for visitors in
+            the EEA, UK, and Switzerland until they accept; cookieless measurement
+            requests may still be sent. Advertising storage, user-data, and
+            personalization consent stay denied. Hotjar and Vercel Analytics load
+            only after you select &ldquo;Accept Analytics&rdquo;. We use these tools
+            to understand aggregate usage and improve the site.
             These providers may set cookies or process device, browser,
             interaction, and approximate location information under their own
             privacy terms.

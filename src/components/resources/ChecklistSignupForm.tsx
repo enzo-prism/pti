@@ -1,5 +1,8 @@
 "use client";
 
+import { addLeadAttribution } from "@/lib/leadAttribution";
+import { submitLeadForm } from "@/lib/formSubmission";
+
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AlertCircle, CheckCircle2, Loader2, Send } from "lucide-react";
@@ -29,6 +32,7 @@ export const ChecklistSignupForm = () => {
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [consent, setConsent] = useState(false);
   const startedRef = useRef(false);
+  const submittingRef = useRef(false);
   const statusRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -45,9 +49,13 @@ export const ChecklistSignupForm = () => {
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (submittingRef.current) return;
+    submittingRef.current = true;
 
     const formElement = event.currentTarget;
     const payload = new FormData(formElement);
+    addLeadAttribution(payload);
+    payload.set("lead_type", "checklist_download");
 
     // A filled honeypot still goes to Formspree, which files it as spam, so a
     // real visitor whose browser autofilled it is not silently dropped.
@@ -68,22 +76,15 @@ export const ChecklistSignupForm = () => {
 
     setSubmitState("submitting");
     try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
-        method: "POST",
-        body: payload,
-        headers: { Accept: "application/json" },
-      });
-
-      if (response.ok) {
-        if (!honeypotFilled) {
-          trackContactFormSubmit("checklist_download", FORM_ID, FORM_PROVIDER);
-        }
-        setSubmitState("success");
-      } else {
-        setSubmitState("error");
+      await submitLeadForm(FORMSPREE_ENDPOINT, payload);
+      if (!honeypotFilled) {
+        trackContactFormSubmit("checklist_download", FORM_ID, FORM_PROVIDER);
       }
+      setSubmitState("success");
     } catch {
       setSubmitState("error");
+    } finally {
+      submittingRef.current = false;
     }
   };
 

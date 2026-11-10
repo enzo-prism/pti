@@ -1,3 +1,5 @@
+import { TransitionReadingPaths } from "@/components/resources/TransitionReadingPaths";
+import { TransitionStories } from "@/components/TransitionStories";
 
 import Link from "next/link";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
@@ -101,6 +103,7 @@ const Value = () => {
         </div>
       </Section>
 
+      <Section><div className="mx-auto max-w-4xl"><h2 className="text-2xl font-bold">Understand the estimate before you use it</h2><p className="mt-4 text-base leading-relaxed text-muted-foreground">Our <Link href="/resources/how-much-is-my-dental-practice-worth" className="font-semibold text-primary underline">educational valuation guide and calculator</Link> explain the difference between collections, owner benefit and an earnings analysis. An Opinion of Value goes further: it examines your records, states its assumptions and explains its intended use. Confirm any lender or other third-party appraisal requirements before choosing an engagement.</p></div></Section>
       {/* What to Expect Section */}
       <Section>
         <SectionTitle centered>What to Expect from Our Valuation Process</SectionTitle>
@@ -216,6 +219,8 @@ const Value = () => {
           buttonUrl="/contact"
         />
       </Section>
+    <TransitionStories />
+    <TransitionReadingPaths audience="seller" />
     </>
   );
 };

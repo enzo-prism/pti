@@ -96,6 +96,12 @@
     "type": "resource"
   },
   {
+    "title": "Books by Dr. Michael Njo",
+    "excerpt": "Dr. Michael Njo's Dental Practice Transitions Handbook: the expanded Second Edition launching November 17, 2026, and the first edition on Amazon.",
+    "url": "/books",
+    "type": "page"
+  },
+  {
     "title": "The Right Way to Go Out of Network",
     "excerpt": "A podcast interview on navigating dental insurance and going out of network.",
     "url": "/resources/navigating-dental-insurance-podcast",
@@ -105,6 +111,30 @@
     "title": "Contact PTI for Dental Practice Transitions",
     "excerpt": "Book a confidential consultation with the Practice Transitions Institute team.",
     "url": "/contact",
+    "type": "page"
+  },
+  {
+    "title": "Dental Practice Transition Client Stories",
+    "excerpt": "Client accounts of practice sales, purchases and partnership decisions.",
+    "url": "/case-studies",
+    "type": "page"
+  },
+  {
+    "title": "From transition seminar to practice sale",
+    "excerpt": "Tony Choi describes choosing PTI after a seminar and handbook, finding a buyer, and completing his practice sale.",
+    "url": "/case-studies/tony-choi-practice-sale",
+    "type": "page"
+  },
+  {
+    "title": "Finding support on the path to practice ownership",
+    "excerpt": "John Senat describes the guidance and personal support that helped him prepare for dental practice ownership.",
+    "url": "/case-studies/john-senat-practice-ownership",
+    "type": "page"
+  },
+  {
+    "title": "Guidance through a sale and a difficult partnership",
+    "excerpt": "Dr. Lee Boese describes Michael Njo's role in a practice sale and support during a contentious partnership situation.",
+    "url": "/case-studies/lee-boese-sale-and-partnership-guidance",
     "type": "page"
   },
   {
@@ -163,14 +193,14 @@
   },
   {
     "title": "Mastering Your Dental Transition Into and Out of Practice",
-    "excerpt": "March 12, 2027 in The Phillips Group, 2300 E Katella Ave #405, Anaheim, CA. Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day...",
-    "url": "/events/practice-transition-seminar",
+    "excerpt": "March 12, 2027 in Anaheim, CA. Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day seminar gives you practical guidance for making...",
+    "url": "/events/practice-transition-seminar/march-12-2027-anaheim",
     "type": "event"
   },
   {
     "title": "Mastering Your Dental Transition Into and Out of Practice",
-    "excerpt": "July 30, 2027 in QUO, 1 Post Street, San Francisco, CA. Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day seminar gives you...",
-    "url": "/events/practice-transition-seminar",
+    "excerpt": "July 30, 2027 in San Francisco, CA. Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day seminar gives you practical guidance for...",
+    "url": "/events/practice-transition-seminar/july-30-2027-san-francisco",
     "type": "event"
   },
   {
@@ -181,14 +211,14 @@
   },
   {
     "title": "Panel of Experts Dinner",
-    "excerpt": "October 14, 2027 in Frank Fat's Restaurant, Sacramento, CA. A Panel of Experts dinner in Sacramento. Contact PTI for the time, program, and reservation details.",
+    "excerpt": "October 14, 2027 in Sacramento, CA. A Panel of Experts dinner in Sacramento. Contact PTI for the time, program, and reservation details.",
     "url": "/events",
     "type": "event"
   },
   {
     "title": "Mastering Your Dental Transition Into and Out of Practice",
-    "excerpt": "October 15, 2027 in TDIC Headquarters, 1201 K St, 14th Floor, Sacramento, CA. Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day...",
-    "url": "/events/practice-transition-seminar",
+    "excerpt": "October 15, 2027 in Sacramento, CA. Whether you are preparing to sell, buy, bring on a partner, or simply understand your practice's value, this one-day seminar gives you practical guidance for...",
+    "url": "/events/practice-transition-seminar/october-15-2027-sacramento",
     "type": "event"
   },
   {

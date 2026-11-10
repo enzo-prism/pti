@@ -36,6 +36,8 @@ import {
   type SeminarFormValues,
 } from "@/lib/seminarRegistration";
 import { cn } from "@/lib/utils";
+import { captureLeadAttribution } from "@/lib/leadAttribution";
+import { submitLeadForm } from "@/lib/formSubmission";
 
 const getFieldId = (field: keyof SeminarFormValues) =>
   `seminar-${field.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)}`;
@@ -43,26 +45,6 @@ const getFieldErrorId = (field: keyof SeminarFormValues) => `${getFieldId(field)
 const selectClass =
   "flex min-h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 const labelClass = "text-base font-medium";
-
-const buildAttribution = (): Record<string, string> => {
-  const params = new URLSearchParams(window.location.search);
-  const utmSource = params.get("utm_source") ?? "";
-  const utmMedium = params.get("utm_medium") ?? "";
-  const utmCampaign = params.get("utm_campaign") ?? "";
-  return {
-    page_url: window.location.href,
-    page_path: window.location.pathname,
-    referrer: document.referrer,
-    campaign_source: params.get("campaign_source") ?? utmSource,
-    campaign_medium: params.get("campaign_medium") ?? utmMedium,
-    campaign_name: params.get("campaign_name") ?? utmCampaign,
-    utm_source: utmSource,
-    utm_medium: utmMedium,
-    utm_campaign: utmCampaign,
-    utm_term: params.get("utm_term") ?? "",
-    utm_content: params.get("utm_content") ?? "",
-  };
-};
 
 const FieldError = ({
   field,
@@ -138,11 +120,13 @@ export const SeminarCancellationPolicy = ({
 interface SeminarRegistrationProps {
   events: PracticeTransitionSeminarEvent[];
   referenceDateIso: string;
+  initialEventValue?: string;
 }
 
 export const SeminarRegistration = ({
   events,
   referenceDateIso,
+  initialEventValue,
 }: SeminarRegistrationProps) => {
   const [availableEvents, setAvailableEvents] = useState(events);
   const [values, setValues] = useState<SeminarFormValues>(() =>
@@ -196,7 +180,7 @@ export const SeminarRegistration = ({
 
   useEffect(() => {
     const now = new Date();
-    const requestedValue = new URLSearchParams(window.location.search).get("event");
+    const requestedValue = new URLSearchParams(window.location.search).get("event") ?? initialEventValue;
     const refreshed = refreshSeminarRegistration(events, requestedValue ?? "", now, now);
     const formEvents = getSeminarFormEvents(refreshed.openEvents);
     const selected = getPracticeTransitionSeminarEvent(requestedValue ?? "", formEvents);
@@ -210,7 +194,7 @@ export const SeminarRegistration = ({
     setAvailableEvents(refreshed.openEvents);
     setValues((current) => ({ ...current, selectedEvent: selected?.value ?? "" }));
     setIsHydrated(true);
-  }, [events]);
+  }, [events, initialEventValue]);
 
   useEffect(() => {
     const refresh = () => {
@@ -317,13 +301,7 @@ export const SeminarRegistration = ({
     setSubmitMessage("");
     setScheduleMessage("");
     try {
-      const response = await fetch(PRACTICE_TRANSITION_SEMINAR_FORM_ENDPOINT, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(
+      await submitLeadForm(PRACTICE_TRANSITION_SEMINAR_FORM_ENDPOINT, JSON.stringify(
           buildSeminarFormPayload(values, fresh.formEvents, {
             submittedAt,
             displayedAt,
@@ -331,11 +309,9 @@ export const SeminarRegistration = ({
               process.env.NEXT_PUBLIC_VERCEL_ENV ??
               process.env.NODE_ENV ??
               "production",
-            attribution: buildAttribution(),
+            attribution: captureLeadAttribution(),
           })
-        ),
-      });
-      if (!response.ok) throw new Error(`Formspree returned ${response.status}`);
+        ));
       setSubmitStatus("success");
       setSubmitMessage(SEMINAR_REGISTRATION_CONFIRMATION);
       setValues({
@@ -345,7 +321,7 @@ export const SeminarRegistration = ({
       setErrors({});
       if (!values.gotcha) {
         trackContactFormSubmit(
-          "event_registration",
+          "seminar_callback",
           PRACTICE_TRANSITION_SEMINAR_FORM_ID,
           PRACTICE_TRANSITION_SEMINAR_FORM_PROVIDER
         );

@@ -72,6 +72,7 @@ export const buildBusinessSchema = (): JsonLdShape => {
     address: buildPostalAddress(),
     telephone: PHONE_NUMBER_TEL,
     areaServed: AREA_SERVED,
+    founder: { "@type": "Person", "@id": "https://michaelnjodds.com/#person", name: "Michael Njo, DDS", url: "https://michaelnjodds.com/michael-njo-dds" },
     contactPoint: [
       {
         "@type": "ContactPoint",
@@ -249,6 +250,7 @@ export const buildBlogPostingSchema = (
   const authorSchema = authorProfile
     ? {
         "@type": authorProfile.type,
+        ...(authorProfile.type === "Organization" ? { "@id": BUSINESS_ID } : {}),
         ...(authorProfile.type === "Person" && authorProfile.url
           ? { "@id": buildPersonId(authorProfile.url) }
           : {}),
@@ -442,7 +444,7 @@ export const buildEventSchema = (
     organizer: {
       "@id": BUSINESS_ID,
     },
-    url: eventUrl,
+    url: event.detailPath ? buildAbsoluteUrl(event.detailPath) : eventUrl,
   };
 };
 

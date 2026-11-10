@@ -51,7 +51,7 @@ This is a Next.js 15 App Router site with React 18, TypeScript (strict), Tailwin
   - All "today", past/upcoming, and early-bird decisions use Pacific time (`BUSINESS_TIME_ZONE` in `src/lib/dateUtils.ts`), never the server or browser zone. Event JSON-LD emits local wall time with the zone offset (`formatEventDateTime`). Give a `RawEvent` a `timeZone` when the venue is outside Pacific time.
   - `/events` builds its listing on the server (`buildEventListing`); only `EventsListing` (the past-events toggle) is a client component. The seminar page is a server view; `SeminarRegistration` owns the visible `SeminarPricing` and callback form in shared state. It refreshes after hydration, focus/visibility, selection changes, and Pacific midnight (`src/lib/seminarClock.ts`). A stale submit updates the visible quote and requires another reviewed submission. Payloads record `quoted_price`, `quoted_guest_price`, and `early_bird_applied`; form logic lives in `src/lib/seminarRegistration.ts`.
   - The seminar header action is **Reserve** and links to `#register`; other routes retain **Book** / **Book Consultation**. Reservations request a PTI callback; seats are confirmed after payment, and the website does not collect payment. See `docs/registration-preview.md` for terms and remaining follow-ups.
-  - Seminar Event JSON-LD comes from `buildSeminarStructuredEvent` on both `/events` and the seminar page, so the shared @id always describes the event the same way.
+  - Seminar Event JSON-LD comes from `buildSeminarStructuredEvent` only on its unique city/date detail route. `/events` and the seminar hub emit ItemList links, not duplicate Events. Public seminar locations are city-only, including serialized client props; do not restore firm names or street addresses without new client direction.
 - Testimonials: canonical reviews dataset in `src/data/reviews.ts` (see `docs/reviews-runbook.md`). Detail pages are `noindex,follow` and not in the sitemap (`REVIEW_DETAIL_PAGES_INDEXED`). No Review/AggregateRating JSON-LD is emitted.
 - Amazon reviews: `src/data/amazonReviews.ts`.
 - Lead magnet: `/resources/practice-sale-readiness-checklist` (`src/views/PracticeSaleChecklist.tsx`, form in `src/components/resources/`).
@@ -85,7 +85,7 @@ This is a Next.js 15 App Router site with React 18, TypeScript (strict), Tailwin
 
 ## Analytics
 
-- `AnalyticsProviders` is mounted once from the root layout. Google Analytics, Hotjar, and Vercel Analytics load only after explicit consent on the canonical production host (`isCanonicalProductionHost`); privacy choices can be reset from the footer.
+- `AnalyticsProviders` is mounted once from the root layout. Google Analytics loads unless declined, with Consent Mode v2 denying analytics storage by default in the EEA/UK/CH and granting it elsewhere. Advertising consent stays denied. Hotjar and Vercel Analytics require explicit acceptance. All providers remain limited to the canonical production host. (`isCanonicalProductionHost`); privacy choices can be reset from the footer.
 - Form honeypots use neutral ids/labels ("Leave this field blank"), never "company", "url", or similar autofill targets. A filled honeypot is sent to Formspree as `_gotcha` (Formspree files it as spam) and is not tracked as a lead.
 - Custom events in `src/lib/analytics.ts` (lead generation, blog views, CTAs, series navigation).
 
@@ -152,3 +152,5 @@ This is a Next.js 15 App Router site with React 18, TypeScript (strict), Tailwin
 - `/services/buying` owns acquisition-advisory intent; keep it distinct from associate buy-ins.
 - Core service pages use `EngagementDetails` to explain deliverables, typical timing, roles, fees, representation/conflicts, and attorney/CPA coordination.
 - PTI owns detailed transition-service and transaction-proof search intent. Dr. Njo's personal site owns his full biography, education/speaking authority, and non-transactional Dental Strategies guidance.
+
+SEO/AEO release details and verification: [`docs/seo-aeo-release-2026-11-06.md`](docs/seo-aeo-release-2026-11-06.md).

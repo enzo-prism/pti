@@ -1,8 +1,8 @@
 import { CANONICAL_SITE_URL } from "@/lib/siteMetadata";
-import { hasAnalyticsConsent } from "@/lib/consent";
+import { getAnalyticsConsent, isGoogleAnalyticsAllowed } from "@/lib/consent";
 
 type GtagFunction = (
-  command: "js" | "config" | "event",
+  command: "js" | "config" | "event" | "consent",
   target: string | Date,
   params?: Record<string, unknown>
 ) => void;
@@ -129,7 +129,8 @@ export const shouldEnableAnalytics = (): boolean => {
   if (
     !isProduction ||
     typeof window === "undefined" ||
-    !hasAnalyticsConsent() ||
+    !isGoogleAnalyticsAllowed() ||
+    (window as unknown as Record<string, unknown>)[`ga-disable-${GA_MEASUREMENT_ID}`] === true ||
     !isValidGaMeasurementId(GA_MEASUREMENT_ID)
   ) {
     return false;
@@ -149,6 +150,11 @@ export const initializeAnalytics = () => {
     return;
   }
 
+  const adsDenied = { ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" };
+  win.gtag?.("consent", "default", { ...adsDenied, analytics_storage: "granted" });
+  win.gtag?.("consent", "default", { ...adsDenied, analytics_storage: "denied", region: ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "IS", "LI", "NO", "GB", "CH"] });
+  // Only an explicit acceptance overrides Google's regional default.
+  if (getAnalyticsConsent() === "accepted") win.gtag?.("consent", "update", { analytics_storage: "granted" });
   win.gtag?.("js", new Date());
   win.gtag?.("config", GA_MEASUREMENT_ID, {
     send_page_view: false,

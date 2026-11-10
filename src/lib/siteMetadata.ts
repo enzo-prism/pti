@@ -48,15 +48,14 @@ export const DEFAULT_LOCALE = "en-US";
 // `sameAs` targets that consolidate the brand's identity for search engines.
 // Configure via NEXT_PUBLIC_SOCIAL_PROFILES (comma-separated URLs) to add the
 // firm's Google Business Profile, LinkedIn, Facebook, and YouTube without a code
-// change. When unset, we default to the founder's official professional site
-// (michaelnjodds.com) so at least one verified identity link is always emitted.
+// change. Only profiles of PTI itself belong here; the founder is a distinct entity.
 const parseSocialProfiles = (raw: string | undefined): string[] => {
   const configured = (raw ?? "")
     .split(",")
     .map((value) => value.trim())
     .filter((value) => /^https?:\/\//i.test(value));
 
-  return configured.length ? configured : [MICHAEL_NJO_WEBSITE_URL];
+  return configured;
 };
 
 export const SOCIAL_PROFILES: string[] = parseSocialProfiles(

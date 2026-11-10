@@ -75,7 +75,7 @@ export function CookieConsent() {
   }, [isOpen]);
 
   const chooseConsent = (choice: Exclude<AnalyticsConsent, "unset">) => {
-    const isWithdrawingConsent = consent === "accepted" && choice === "declined";
+    const isWithdrawingConsent = choice === "declined";
     saveAnalyticsConsent(choice);
     setConsent(choice);
     setIsOpen(false);
@@ -105,9 +105,10 @@ export function CookieConsent() {
             Your Privacy Choices
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-slate-700">
-            PTI uses optional analytics cookies from Google Analytics, Hotjar,
-            and Vercel to understand how the site is used. They stay off unless
-            you accept. Essential site features work either way. Read our{" "}
+            Google Analytics measures site usage unless you decline. In the EEA, UK,
+            and Switzerland, analytics storage stays denied until you accept.
+            Hotjar and Vercel Analytics stay off until you accept. Advertising
+            consent stays denied. Essential features work either way. Read our{" "}
             <Link
               href="/privacy-policy"
               className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"

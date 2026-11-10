@@ -13,7 +13,7 @@ import {
   getSeminarRegistrationPrice,
   getUpcomingPracticeTransitionSeminarEvents,
   PRACTICE_TRANSITION_SEMINAR_PATH,
-  PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
+  getSeminarDetailPath,
   practiceTransitionSeminarEvents,
   practiceTransitionSeminarLearningPoints,
 } from "@/data/practiceTransitionSeminar";
@@ -27,7 +27,7 @@ describe("events dataset", () => {
       title: "Panel of Experts Dinner",
       date: "October 14, 2027",
       time: "Time to be confirmed",
-      location: "Frank Fat's Restaurant, Sacramento, CA",
+      location: "Sacramento, CA",
       type: "dinner",
     });
     expect(dinner?.registrationLink).toContain("mailto:info@practicetransitionsinstitute.com");
@@ -56,7 +56,7 @@ describe("events dataset", () => {
     });
     expect(workshop?.description).toContain("Contact PTI to confirm a seat");
     expect(workshop?.description).toContain("Michael A. Njo, DDS");
-    expect(JSON.stringify(workshop)).not.toMatch(/registration is open|sold out/i);
+    expect(JSON.stringify(workshop)).not.toMatch(/registration is open/i);
     expect(
       getUpcomingRawEvents(new Date("2026-08-24T12:00:00-07:00")).some(
         (event) => event.id === workshop?.id
@@ -84,7 +84,7 @@ describe("events dataset", () => {
         "mailto:info@practicetransitionsinstitute.com?subject=Roseville%20Dinner%20Availability",
     });
     expect(dinner?.description).toContain("confirm current seat availability");
-    expect(JSON.stringify(dinner)).not.toMatch(/registration is open|sold out/i);
+    expect(JSON.stringify(dinner)).not.toMatch(/registration is open/i);
     expect(
       getUpcomingRawEvents(new Date("2026-08-21T12:00:00-07:00")).some(
         (event) => event.id === dinner?.id
@@ -115,7 +115,7 @@ describe("events dataset", () => {
     expect(JSON.stringify(summit?.description)).toContain(
       "Financial Freedom & Wealth Strategy"
     );
-    expect(JSON.stringify(summit)).not.toMatch(/registration is open|sold out/i);
+    expect(JSON.stringify(summit)).not.toMatch(/registration is open/i);
     expect(
       getUpcomingRawEvents(new Date("2027-09-01T12:00:00-07:00")).some(
         (event) => event.id === summit?.id
@@ -142,9 +142,9 @@ describe("events dataset", () => {
     ]);
 
     for (const event of upcomingSeminars) {
-      expect(event.registrationLink).toBe(PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH);
-      expect(event.detailPath).toBe(PRACTICE_TRANSITION_SEMINAR_PATH);
       const seminar = practiceTransitionSeminarEvents.find((candidate) => candidate.id === event.id)!;
+      expect(event.registrationLink).toBe(`${getSeminarDetailPath(seminar)}#register`);
+      expect(event.detailPath).toBe(getSeminarDetailPath(seminar));
       expect(event.offerPrice).toBe(getSeminarRegistrationPrice(seminar, new Date("2026-08-17T12:00:00-07:00")));
       expect(event.offerPriceCurrency).toBe("USD");
     }
@@ -152,7 +152,7 @@ describe("events dataset", () => {
 
   it("uses one seminar schedule as the source for event cards and registration", () => {
     const eventCardSeminars = rawEvents.filter(
-      (event) => event.detailPath === PRACTICE_TRANSITION_SEMINAR_PATH
+      (event) => event.detailPath?.startsWith(`${PRACTICE_TRANSITION_SEMINAR_PATH}/`)
     );
 
     expect(eventCardSeminars).toHaveLength(practiceTransitionSeminarEvents.length);
@@ -209,7 +209,7 @@ describe("events dataset", () => {
       [new Date("2027-01-01T00:00:00-08:00"), 397],
     ] as const) {
       const seminars = getUpcomingRawEvents(referenceDate).filter((event) =>
-        event.detailPath === PRACTICE_TRANSITION_SEMINAR_PATH
+        event.detailPath?.startsWith(`${PRACTICE_TRANSITION_SEMINAR_PATH}/`)
       );
       expect(seminars).toHaveLength(3);
       expect(seminars.map((event) => event.offerPrice)).toEqual([
@@ -218,30 +218,28 @@ describe("events dataset", () => {
     }
   });
 
-  it("uses confirmed venues for the 2026 San Francisco and Sacramento seminars", () => {
+  it("publishes city-only locations for the 2026 seminars", () => {
     const sanFrancisco = rawEvents.find((event) => event.date === "July 17, 2026");
     const sacramento = rawEvents.find((event) => event.date === "October 2, 2026");
 
-    expect(sanFrancisco?.location).toContain("Kohan Group");
-    expect(sanFrancisco?.location).toContain("490 Post St.");
-    expect(sacramento?.location).toContain("TDIC Headquarters");
-    expect(sacramento?.location).toContain("1201 K St");
+    expect(sanFrancisco?.location).toBe("San Francisco, CA");
+    expect(sacramento?.location).not.toMatch(/TDIC/);
+    expect(sacramento?.location).toBe("Sacramento, CA");
   });
 
-  it("uses the confirmed venue for the 2027 Anaheim seminar", () => {
+  it("publishes a city-only location for the 2027 Anaheim seminar", () => {
     const anaheim = rawEvents.find((event) => event.date === "March 12, 2027");
 
-    expect(anaheim?.location).toContain("The Phillips Group");
-    expect(anaheim?.location).toContain("2300 E Katella Ave #405");
+    expect(anaheim?.location).toBe("Anaheim, CA");
   });
 
-  it("uses confirmed venues for the 2027 San Francisco and Sacramento seminars", () => {
+  it("publishes city-only locations for the 2027 seminars", () => {
     const sanFrancisco = rawEvents.find((event) => event.date === "July 30, 2027");
     const sacramento = rawEvents.find((event) => event.date === "October 15, 2027");
 
-    expect(sanFrancisco?.location).toBe("QUO, 1 Post Street, San Francisco, CA");
-    expect(sacramento?.location).toContain("TDIC Headquarters");
-    expect(sacramento?.location).toContain("1201 K St");
+    expect(sanFrancisco?.location).toBe("San Francisco, CA");
+    expect(sacramento?.location).not.toMatch(/TDIC/);
+    expect(sacramento?.location).toBe("Sacramento, CA");
   });
 
   it("attaches the Sacramento flyer and flyer copy only to the October 2 2026 date", () => {
@@ -262,20 +260,20 @@ describe("events dataset", () => {
       subtitle: "BEFORE YOU BUY, EXPAND, PARTNER, OR SELL / KNOW YOUR OPTIONS",
       standalone: true,
       time: "8:00 AM - 3:00 PM",
-      location: "TDIC Headquarters, 1201 K St, 14th Floor, Sacramento, CA",
-      registrationLink: PRACTICE_TRANSITION_SEMINAR_REGISTER_PATH,
-      detailPath: PRACTICE_TRANSITION_SEMINAR_PATH,
+      location: "Sacramento, CA",
+      registrationLink: "/events/practice-transition-seminar/october-2-2026-sacramento#register",
+      detailPath: "/events/practice-transition-seminar/october-2-2026-sacramento",
       flyerImage:
         "/lovable-uploads/drnjo-2026/pti-sacramento-seminar-2026-flyer.webp",
       flyerImageAlt:
-        "Practice Transitions Institute Sacramento seminar flyer, October 2 2026 at TDIC Headquarters.",
+        "Practice Transitions Institute Sacramento seminar flyer, October 2 2026 in Sacramento, CA.",
     });
     expect(typeof sacramento?.description).toBe("object");
     if (typeof sacramento?.description === "object") {
       expect(sacramento.description.intro).toContain(
         "evaluate today's transition landscape"
       );
-      expect(sacramento.description.intro).toContain("Special Sacramento guest: TDIC");
+      expect(sacramento.description.intro).not.toMatch(/TDIC/);
       expect(sacramento.description.intro).toContain(
         "from buying and expanding to transitioning and selling"
       );
@@ -317,7 +315,7 @@ describe("events dataset", () => {
     expect(sacramento2027?.flyerImage).toBeUndefined();
     expect(sacramento2027?.standalone).toBeUndefined();
     expect(sacramento2027?.speakers).toBeUndefined();
-    expect(JSON.stringify(sacramento2027)).not.toMatch(/Special Sacramento guest/);
+    expect(JSON.stringify(sacramento2027)).not.toMatch(/TDIC/);
     expect(typeof sacramento2027?.description).toBe("object");
     if (typeof sacramento2027?.description === "object") {
       expect(sacramento2027.description.learningPoints).toEqual(
@@ -384,5 +382,27 @@ describe("events dataset", () => {
     );
     expect(sacramentoIndex).toBeGreaterThanOrEqual(0);
     expect(sacramentoIndex).toBeLessThan(firstPastIndex);
+  });
+
+  it("marks every past listing entry as sold out and never an upcoming one", () => {
+    const listing = buildEventListing(new Date("2026-11-03T12:00:00-08:00"));
+
+    expect(listing.length).toBeGreaterThan(0);
+    for (const event of listing) {
+      expect(event.soldOut).toBe(event.isPast);
+    }
+
+    const sacramento = listing.find(
+      (event) => event.id === "pti-seminar-sacramento-2026"
+    );
+    expect(sacramento?.isPast).toBe(true);
+    expect(sacramento?.soldOut).toBe(true);
+    expect(sacramento?.location).not.toMatch(/TDIC/);
+
+    const panel = listing.find(
+      (event) => event.id === "panel-of-experts-sacramento-2027"
+    );
+    expect(panel?.isPast).toBe(false);
+    expect(panel?.soldOut).toBe(false);
   });
 });

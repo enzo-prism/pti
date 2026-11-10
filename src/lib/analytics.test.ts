@@ -244,3 +244,28 @@ describe("analytics events", () => {
     expect(blockedEventCalls).toHaveLength(0);
   });
 });
+
+describe("measurement defaults and withdrawal", () => {
+  it("measures an unanswered banner with regional storage defaults before config", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    const { gtag } = mockBrowser({ analyticsConsent: "unset" });
+    const analytics = await loadAnalytics();
+    analytics.initializeAnalytics();
+    expect(analytics.shouldEnableAnalytics()).toBe(true);
+    const calls = gtag.mock.calls;
+    const regionDefault = calls.findIndex((c) => c[0] === "consent" && c[1] === "default" && (c[2] as {region?: string[]})?.region?.includes("GB"));
+    const config = calls.findIndex((c) => c[0] === "config");
+    expect(regionDefault).toBeGreaterThanOrEqual(0);
+    expect(regionDefault).toBeLessThan(config);
+    expect(calls[regionDefault][2]).toMatchObject({analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied"});
+    expect(calls.some((c) => c[0] === "consent" && c[1] === "update")).toBe(false);
+  });
+  it("does not send after an in-page withdrawal even if storage is stale", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    const { gtag } = mockBrowser();
+    const analytics = await loadAnalytics();
+    (window as unknown as Record<string, unknown>)[`ga-disable-${analytics.GA_MEASUREMENT_ID}`] = true;
+    analytics.trackContactFormSubmit();
+    expect(gtag).not.toHaveBeenCalled();
+  });
+});

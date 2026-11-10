@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { HotjarAnalytics } from "@/components/analytics/HotjarAnalytics";
-import { isCanonicalProductionHost } from "@/lib/analytics";
+import { GA_MEASUREMENT_ID, isCanonicalProductionHost } from "@/lib/analytics";
+import { captureLeadAttribution } from "@/lib/leadAttribution";
 import {
   ANALYTICS_CONSENT_EVENT,
   getAnalyticsConsent,
@@ -18,10 +19,16 @@ export function AnalyticsProviders() {
   useEffect(() => {
     setConsent(getAnalyticsConsent());
     setOnCanonicalHost(isCanonicalProductionHost());
+    captureLeadAttribution();
 
     const handleConsentChange = (event: Event) => {
       const nextConsent = (event as CustomEvent<AnalyticsConsent>).detail;
+      if (GA_MEASUREMENT_ID) {
+        (window as unknown as Record<string, unknown>)[`ga-disable-${GA_MEASUREMENT_ID}`] = nextConsent === "declined";
+        window.gtag?.("consent", "update", { analytics_storage: nextConsent === "accepted" ? "granted" : "denied" });
+      }
       setConsent(nextConsent);
+      captureLeadAttribution();
     };
 
     window.addEventListener(ANALYTICS_CONSENT_EVENT, handleConsentChange);
@@ -29,17 +36,14 @@ export function AnalyticsProviders() {
       window.removeEventListener(ANALYTICS_CONSENT_EVENT, handleConsentChange);
   }, []);
 
-  if (consent !== "accepted") {
-    return null;
-  }
+  if (!onCanonicalHost) return null;
 
   return (
     <>
       {/* GA and Hotjar gate themselves; Vercel Analytics needs the same
           canonical-host check so preview deployments are not tracked. */}
-      {onCanonicalHost && <Analytics />}
-      <GoogleAnalytics />
-      <HotjarAnalytics />
+      {consent !== "declined" ? <GoogleAnalytics /> : null}
+      {consent === "accepted" ? <><Analytics /><HotjarAnalytics /></> : null}
     </>
   );
 }

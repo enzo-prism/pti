@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, Download, Star } from "lucide-react";
 import { StructuredData } from "@/components/StructuredData";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -157,6 +157,32 @@ export default async function Page({ params }: { params: Promise<Params> }) {
               </blockquote>
             </CardContent>
           </Card>
+
+          {review.longForm ? (
+            <Card className="border border-gray-200 shadow-sm">
+              <CardContent className="p-8">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+                  {review.longForm.heading}
+                </h2>
+                <div className="text-gray-800 whitespace-pre-line leading-relaxed">
+                  {review.longForm.body}
+                </div>
+                {review.longForm.documentUrl ? (
+                  <p className="mt-6">
+                    <a
+                      href={review.longForm.documentUrl}
+                      download
+                      className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+                    >
+                      <Download className="h-4 w-4" aria-hidden="true" />
+                      {review.longForm.documentLabel ??
+                        "Download the full document (PDF)"}
+                    </a>
+                  </p>
+                ) : null}
+              </CardContent>
+            </Card>
+          ) : null}
 
           <Card className="border border-gray-100 bg-gray-50">
             <CardContent className="p-5">

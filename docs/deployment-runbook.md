@@ -54,7 +54,8 @@ Verify the stable public domain, not only an ephemeral Vercel URL:
 - Header: at ~390px, the primary action and hamburger are visible and tappable; at ~1024px the hamburger is used (no clipped desktop links); at ≥1280px the full nav, Services dropdown, phone number, and primary action are visible. The seminar route shows Reserve linking to `#register`; other routes show Book / Book Consultation. `/drnjo` uses the same Navbar.
 - Open the mobile menu with the cookie banner visible and confirm Book/Call are not covered. Skip-to-content appears above the header, including on notched iPhones.
 - `/events` lists only current seminars.
-- `/events/practice-transition-seminar` excludes expired registration choices and schema, and its Event JSON-LD `startDate` carries a Pacific offset (e.g. `T08:00:00-07:00`), not `Z`.
+- `/events/practice-transition-seminar` excludes expired registration choices and emits ItemList links. Each city/date detail page has one Event with a Pacific-offset startDate, matching canonical URL and preselected callback form.
+- `/case-studies` and all three stories render, link to their source and relevant services, and appear in sitemap and search. Raw testimonial details retain `noindex, follow`.
 - Seminar pricing and fresh Event offers match the current Pacific deadline: $247 through December 31, 2026, $397 from January 1, 2027, and $197 per additional attendee. Confirm callback/direct-call actions, required acknowledgement, separate optional SMS consent, and empty-form validation without sending a live lead. See `docs/registration-preview.md` for the rollover tests and open business follow-ups.
 - `/faq` and a service page such as `/services/selling` include the FAQ answer text in the page HTML, not only in JSON-LD.
 - `/events/leadership-retreat` is a completed-event archive.
@@ -73,9 +74,9 @@ Verify the stable public domain, not only an ephemeral Vercel URL:
 On the canonical host:
 
 1. Reset privacy choices from the footer.
-2. Confirm Google Analytics, Hotjar, and Vercel Analytics requests are absent before a decision.
-3. Decline and confirm they remain absent.
-4. Reset, accept, and confirm the configured providers load.
+2. Before a decision, confirm GA loads with the regional Consent Mode defaults and advertising consent denied; Hotjar and Vercel Analytics remain absent.
+3. Decline and confirm provider requests stop after the privacy reload.
+4. Reset, accept, and confirm the configured providers load with analytics storage granted.
 5. Do not submit a live lead solely to test analytics. Use non-submitting CTA/form-start interactions and confirm event properties contain no personal data.
 
 Preview hosts intentionally keep analytics disabled.
@@ -89,3 +90,7 @@ Confirm the live response includes the configured HSTS, content-type, framing, r
 The repository uses Next.js 15.5.28 with matching ESLint configuration, React 18, and Sharp 0.35.5. Dynamic blog and review routes await their parameters. A scoped override keeps Next.js's bundled PostCSS on the patched root version; ESLint's `brace-expansion` override uses 1.1.21.
 
 The October 23, 2026 local audit prompted compatible updates to Next.js/ESLint 15.5.28, sanitize-html 2.18.1, Vite 7.3.7, and Vitest 4.1.12. The full lockfile audit then reports 4 moderate findings; the production-only audit reports 3 moderate findings, with no high or critical findings in either mode. The remaining chain is `postcss-selector-parser <7.1.6` through Tailwind 3, `postcss-nested`, and `@tailwindcss/typography`. npm's proposed remediations require a Tailwind 4 migration and a typography downgrade; neither was forced into this release. This is not a clean audit. Run full and production-only audits again for future releases because advisory data changes, and track the CSS tooling migration separately.
+
+## November 6 SEO/AEO release
+
+See `docs/seo-aeo-release-2026-11-06.md` for changes, checks, audit corrections and outstanding business dependencies. The earlier audit counts above are historical; the current audit includes a Zod advisory and CSS tooling findings. Undici was patched to 8.12.4. Do not describe the current lockfile as having no high findings.
