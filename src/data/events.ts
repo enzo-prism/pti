@@ -25,6 +25,9 @@ const GARGLE_SUMMIT_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURICo
 const SACRAMENTO_PANEL_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
   "Sacramento Panel of Experts Dinner - October 14, 2027"
 )}`;
+const PANEL_OF_EXPERTS_2027_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
+  "Panel of Experts Dinner 2027"
+)}`;
 const CALL_TO_REGISTER = `tel:${PHONE_NUMBER_TEL}`;
 
 // Event data with type definitions
@@ -137,6 +140,39 @@ export const rawEvents: RawEvent[] = [
       "A Panel of Experts dinner in Sacramento. Contact PTI for the time, program, and reservation details.",
     type: "dinner",
     registrationLink: SACRAMENTO_PANEL_MAILTO,
+  },
+  {
+    id: "panel-of-experts-los-angeles-jan-2027",
+    title: "Panel of Experts Dinner",
+    date: "January 21, 2027",
+    time: "Time to be confirmed",
+    location: "Los Angeles, CA",
+    description:
+      "A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
+    type: "dinner",
+    registrationLink: PANEL_OF_EXPERTS_2027_MAILTO,
+  },
+  {
+    id: "panel-of-experts-los-angeles-may-2027",
+    title: "Panel of Experts Dinner",
+    date: "May 20, 2027",
+    time: "Time to be confirmed",
+    location: "Los Angeles, CA",
+    description:
+      "A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
+    type: "dinner",
+    registrationLink: PANEL_OF_EXPERTS_2027_MAILTO,
+  },
+  {
+    id: "panel-of-experts-bakersfield-2027",
+    title: "Panel of Experts Dinner",
+    date: "October 21, 2027",
+    time: "Time to be confirmed",
+    location: "Bakersfield, CA",
+    description:
+      "A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
+    type: "dinner",
+    registrationLink: PANEL_OF_EXPERTS_2027_MAILTO,
   },
   {
     id: "beyond-the-chair-anaheim-2026",
@@ -360,6 +396,20 @@ export const buildEventListing = (
       sortedGroup.find((event) => typeof event.description === "object") ||
       sortedGroup[0];
 
+    // Prefer existing series copy that does not single out one of its cities.
+    const groupCities = sortedGroup.map((event) =>
+      event.location.split(",")[0].trim().toLowerCase()
+    );
+    const description = typeof detailedEvent.description === "string"
+      ? sortedGroup.find((event) => {
+          const candidateDescription = event.description;
+          return typeof candidateDescription === "string" &&
+            !groupCities.some((city) =>
+              candidateDescription.toLowerCase().includes(city)
+            );
+        })?.description ?? detailedEvent.description
+      : detailedEvent.description;
+
     const eventDateMap = new Map<string, ListedEventDate>();
     for (const event of sortedGroup) {
       const key = createEventDateKey(event.date, event.time, event.location);
@@ -381,6 +431,7 @@ export const buildEventListing = (
 
     listing.push({
       ...detailedEvent,
+      description,
       id: sortedGroup[0].id,
       date: representativeDate.date,
       time: representativeDate.time,
