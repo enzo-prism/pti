@@ -167,4 +167,21 @@ describe("buildSearchIndex", () => {
       expect(post.url).toMatch(/^\/blog\/[a-z0-9-]+$/);
     }
   });
+
+  it("indexes each 2027 Panel of Experts dinner", () => {
+    const excerpts = records
+      .filter(
+        (result) =>
+          result.type === "event" && result.title === "Panel of Experts Dinner",
+      )
+      .map((result) => result.excerpt);
+    expect(excerpts).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining("January 21, 2027"),
+        expect.stringContaining("May 20, 2027"),
+        expect.stringContaining("October 14, 2027"),
+        expect.stringContaining("October 21, 2027"),
+      ]),
+    );
+  });
 });
