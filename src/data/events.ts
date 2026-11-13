@@ -139,22 +139,33 @@ export const rawEvents: RawEvent[] = [
     registrationLink: PANEL_OF_EXPERTS_2027_MAILTO,
   },
   {
-    id: "panel-of-experts-los-angeles-jan-2027",
+    id: "panel-of-experts-orange-county-jan-2027",
     title: "Panel of Experts Dinner",
     date: "January 21, 2027",
     time: "Time to be confirmed",
-    location: "Los Angeles, CA",
+    location: "Orange County, CA",
     description:
       "A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
     type: "dinner",
     registrationLink: PANEL_OF_EXPERTS_2027_MAILTO,
   },
   {
-    id: "panel-of-experts-los-angeles-may-2027",
+    id: "panel-of-experts-thousand-oaks-may-2027",
     title: "Panel of Experts Dinner",
     date: "May 20, 2027",
     time: "Time to be confirmed",
-    location: "Los Angeles, CA",
+    location: "Thousand Oaks, CA",
+    description:
+      "A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
+    type: "dinner",
+    registrationLink: PANEL_OF_EXPERTS_2027_MAILTO,
+  },
+  {
+    id: "panel-of-experts-pasadena-jul-2027",
+    title: "Panel of Experts Dinner",
+    date: "July 15, 2027",
+    time: "Time to be confirmed",
+    location: "Pasadena, CA",
     description:
       "A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
     type: "dinner",
