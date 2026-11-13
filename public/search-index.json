@@ -193,7 +193,7 @@
   },
   {
     "title": "Panel of Experts Dinner",
-    "excerpt": "January 21, 2027 in Los Angeles, CA. A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
+    "excerpt": "January 21, 2027 in Orange County, CA. A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
     "url": "/events",
     "type": "event"
   },
@@ -205,7 +205,13 @@
   },
   {
     "title": "Panel of Experts Dinner",
-    "excerpt": "May 20, 2027 in Los Angeles, CA. A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
+    "excerpt": "May 20, 2027 in Thousand Oaks, CA. A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
+    "url": "/events",
+    "type": "event"
+  },
+  {
+    "title": "Panel of Experts Dinner",
+    "excerpt": "July 15, 2027 in Pasadena, CA. A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
     "url": "/events",
     "type": "event"
   },

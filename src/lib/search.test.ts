@@ -177,11 +177,13 @@ describe("buildSearchIndex", () => {
       .map((result) => result.excerpt);
     expect(excerpts).toEqual(
       expect.arrayContaining([
-        expect.stringContaining("January 21, 2027"),
-        expect.stringContaining("May 20, 2027"),
-        expect.stringContaining("October 14, 2027"),
-        expect.stringContaining("October 21, 2027"),
+        expect.stringContaining("January 21, 2027 in Orange County, CA"),
+        expect.stringContaining("May 20, 2027 in Thousand Oaks, CA"),
+        expect.stringContaining("July 15, 2027 in Pasadena, CA"),
+        expect.stringContaining("October 14, 2027 in Sacramento, CA"),
+        expect.stringContaining("October 21, 2027 in Bakersfield, CA"),
       ]),
     );
+    expect(excerpts.join("\n")).not.toMatch(/Los Angeles/);
   });
 });

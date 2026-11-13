@@ -17,7 +17,9 @@ describe("grouped Panel of Experts card", () => {
       expect(group.description).toBe(
         "A Panel of Experts dinner. Contact PTI for the time, program, and reservation details."
       );
-      expect(group.description).not.toMatch(/Sacramento|Los Angeles|Bakersfield|January/i);
+      expect(group.description).not.toMatch(
+        /Sacramento|Los Angeles|Orange County|Thousand Oaks|Pasadena|Bakersfield|January/i
+      );
       expect(group.registrationLink).toBe(
         "mailto:info@practicetransitionsinstitute.com?subject=Panel%20of%20Experts%20Dinner%202027"
       );

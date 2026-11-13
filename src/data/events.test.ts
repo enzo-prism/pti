@@ -5,7 +5,9 @@ import {
   buildEventListing,
   getUpcomingRawEvents,
   rawEvents,
+  type RawEvent,
 } from "@/data/events";
+import { buildEventSchema } from "@/lib/structuredData";
 import { communityImpactPosts } from "@/data/communityImpactPosts";
 import { blogPosts } from "@/data/blogPosts";
 import {
@@ -41,8 +43,9 @@ describe("events dataset", () => {
 
   it("lists the 2027 Panel of Experts dinners by city without inventing details", () => {
     const expected = [
-      ["panel-of-experts-los-angeles-jan-2027", "January 21, 2027", "Los Angeles, CA"],
-      ["panel-of-experts-los-angeles-may-2027", "May 20, 2027", "Los Angeles, CA"],
+      ["panel-of-experts-orange-county-jan-2027", "January 21, 2027", "Orange County, CA"],
+      ["panel-of-experts-thousand-oaks-may-2027", "May 20, 2027", "Thousand Oaks, CA"],
+      ["panel-of-experts-pasadena-jul-2027", "July 15, 2027", "Pasadena, CA"],
       ["panel-of-experts-bakersfield-2027", "October 21, 2027", "Bakersfield, CA"],
     ] as const;
     for (const [id, date, location] of expected) {
@@ -427,10 +430,75 @@ describe("events dataset", () => {
     expect(panel?.isPast).toBe(false);
     expect(panel?.soldOut).toBe(false);
     expect(panel?.eventDates?.map((date) => [date.date, date.location])).toEqual([
-      ["January 21, 2027", "Los Angeles, CA"],
-      ["May 20, 2027", "Los Angeles, CA"],
+      ["January 21, 2027", "Orange County, CA"],
+      ["May 20, 2027", "Thousand Oaks, CA"],
+      ["July 15, 2027", "Pasadena, CA"],
       ["October 14, 2027", "Sacramento, CA"],
       ["October 21, 2027", "Bakersfield, CA"],
     ]);
   });
+
+  it("emits city-only JSON-LD locations for the 2027 Panel of Experts dinners", () => {
+    const expected = [
+      ["panel-of-experts-orange-county-jan-2027", "Orange County"],
+      ["panel-of-experts-thousand-oaks-may-2027", "Thousand Oaks"],
+      ["panel-of-experts-pasadena-jul-2027", "Pasadena"],
+      ["panel-of-experts-sacramento-2027", "Sacramento"],
+      ["panel-of-experts-bakersfield-2027", "Bakersfield"],
+    ] as const;
+    const dinners = rawEvents.filter(
+      (event) => event.title === "Panel of Experts Dinner"
+    );
+
+    expect(dinners.map((event) => event.id).sort()).toEqual(
+      [...expected.map(([id]) => id)].sort()
+    );
+    expect(dinners.map((event) => event.id)).not.toEqual(
+      expect.arrayContaining([
+        "panel-of-experts-los-angeles-jan-2027",
+        "panel-of-experts-los-angeles-may-2027",
+      ])
+    );
+
+    for (const [id, locality] of expected) {
+      const dinner = dinners.find((event) => event.id === id);
+      expect(dinner?.location).toBe(`${locality}, CA`);
+      expect(dinner?.location).not.toMatch(
+        /Los Angeles|firm|Ave|Street|Suite|Restaurant/i
+      );
+
+      const schema = buildEventSchema(toDinnerStructuredEvent(dinner!));
+      const location = schema.location as {
+        name?: string;
+        address?: Record<string, unknown>;
+      };
+      expect(location).toEqual({
+        "@type": "Place",
+        name: `${locality}, CA`,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: locality,
+          addressRegion: "CA",
+          addressCountry: "US",
+        },
+      });
+      expect(location.address).not.toHaveProperty("streetAddress");
+    }
+  });
 });
+
+function toDinnerStructuredEvent(event: RawEvent) {
+  return {
+    id: event.id,
+    title: event.title,
+    date: event.date,
+    time: event.time,
+    location: event.location,
+    description:
+      typeof event.description === "string"
+        ? event.description
+        : event.description.intro,
+    registrationLink: event.registrationLink,
+    type: event.type,
+  };
+}
