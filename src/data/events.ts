@@ -161,11 +161,11 @@ export const rawEvents: RawEvent[] = [
     registrationLink: PANEL_OF_EXPERTS_2027_MAILTO,
   },
   {
-    id: "panel-of-experts-pasadena-jul-2027",
+    id: "panel-of-experts-el-segundo-jul-2027",
     title: "Panel of Experts Dinner",
     date: "July 15, 2027",
     time: "Time to be confirmed",
-    location: "Pasadena, CA",
+    location: "El Segundo, CA",
     description:
       "A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
     type: "dinner",

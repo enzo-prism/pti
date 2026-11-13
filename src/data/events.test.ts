@@ -45,7 +45,7 @@ describe("events dataset", () => {
     const expected = [
       ["panel-of-experts-orange-county-jan-2027", "January 21, 2027", "Orange County, CA"],
       ["panel-of-experts-thousand-oaks-may-2027", "May 20, 2027", "Thousand Oaks, CA"],
-      ["panel-of-experts-pasadena-jul-2027", "July 15, 2027", "Pasadena, CA"],
+      ["panel-of-experts-el-segundo-jul-2027", "July 15, 2027", "El Segundo, CA"],
       ["panel-of-experts-bakersfield-2027", "October 21, 2027", "Bakersfield, CA"],
     ] as const;
     for (const [id, date, location] of expected) {
@@ -432,7 +432,7 @@ describe("events dataset", () => {
     expect(panel?.eventDates?.map((date) => [date.date, date.location])).toEqual([
       ["January 21, 2027", "Orange County, CA"],
       ["May 20, 2027", "Thousand Oaks, CA"],
-      ["July 15, 2027", "Pasadena, CA"],
+      ["July 15, 2027", "El Segundo, CA"],
       ["October 14, 2027", "Sacramento, CA"],
       ["October 21, 2027", "Bakersfield, CA"],
     ]);
@@ -442,7 +442,7 @@ describe("events dataset", () => {
     const expected = [
       ["panel-of-experts-orange-county-jan-2027", "Orange County"],
       ["panel-of-experts-thousand-oaks-may-2027", "Thousand Oaks"],
-      ["panel-of-experts-pasadena-jul-2027", "Pasadena"],
+      ["panel-of-experts-el-segundo-jul-2027", "El Segundo"],
       ["panel-of-experts-sacramento-2027", "Sacramento"],
       ["panel-of-experts-bakersfield-2027", "Bakersfield"],
     ] as const;
@@ -457,6 +457,7 @@ describe("events dataset", () => {
       expect.arrayContaining([
         "panel-of-experts-los-angeles-jan-2027",
         "panel-of-experts-los-angeles-may-2027",
+        "panel-of-experts-pasadena-jul-2027",
       ])
     );
 
@@ -464,7 +465,7 @@ describe("events dataset", () => {
       const dinner = dinners.find((event) => event.id === id);
       expect(dinner?.location).toBe(`${locality}, CA`);
       expect(dinner?.location).not.toMatch(
-        /Los Angeles|firm|Ave|Street|Suite|Restaurant/i
+        /Los Angeles|Pasadena|firm|Ave|Street|Suite|Restaurant/i
       );
 
       const schema = buildEventSchema(toDinnerStructuredEvent(dinner!));
