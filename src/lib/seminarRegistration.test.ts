@@ -176,6 +176,10 @@ describe("seminar registration payload", () => {
     );
     expect(payload.message).toContain("Best time to call:");
     expect(payload.message).toContain("Morning");
+    expect(payload.message).toContain("secure online payment instructions through the bank's payment system");
+    expect(payload.message).toContain("Payment is expected within 24 hours of the registration request");
+    expect(payload.message).toContain("no payment was collected by this website");
+    expect(payload.message).not.toContain("take payment by phone");
   });
 
   it("records the standard price after the Pacific early-registration deadline", () => {
@@ -295,11 +299,14 @@ describe("2027 seminar preview terms", () => {
     ]);
   });
 
-  it("retains the cancellation rules without the repeated contact instructions", () => {
+  it("uses Liz's inclusive cancellation deadline and retains the fee and reschedule refund", () => {
     const policy = getSeminarCancellationPolicy();
-    expect(policy).toContain("at least 8 days");
+    expect(policy).toContain("Cancel by the eight-day cancellation deadline for a full 100% refund");
+    expect(policy).toContain("Count backward from the seminar date, including the seminar day as Day 8");
+    expect(policy).toContain("Cancellations after that deadline");
     expect(policy).toContain("$100 fee");
     expect(policy).toContain("unable to attend the new date");
+    expect(policy).not.toContain("at least 8 days before");
     expect(policy).not.toContain("To cancel");
   });
 });
