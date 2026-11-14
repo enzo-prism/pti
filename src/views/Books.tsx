@@ -70,7 +70,7 @@ const Books = () => {
               handbook, with a new foreword by Dr. Glenn Vo, new advisor
               material, and new appendices of practical checklists and
               reference material for the current market. The Kindle edition
-              will be available for {SECOND_EDITION_KINDLE_PRICE} at launch.
+              is available to pre-order for {SECOND_EDITION_KINDLE_PRICE}.
             </p>
             {SECOND_EDITION_KINDLE_URL ? (
               <div className="flex flex-col gap-3 sm:flex-row">
@@ -80,7 +80,7 @@ const Books = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Buy the Kindle edition
+                    Pre-order on Kindle
                     <ExternalLink
                       className="ml-2 h-4 w-4"
                       aria-hidden="true"

@@ -48,7 +48,7 @@ const STATIC_ROUTES: StaticRoute[] = [
   { path: "/events/practice-transition-seminar", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-11-06" },
   { path: "/events/leadership-retreat", changeFrequency: "monthly", priority: 0.4, lastModified: "2026-08-17" },
   { path: "/testimonials", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-10-22" },
-  { path: "/books", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-11-06" },
+  { path: "/books", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-11-14" },
   { path: "/gallery", changeFrequency: "monthly", priority: 0.6, lastModified: "2026-09-02" },
   { path: "/faq", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-11-06" },
   { path: "/contact", changeFrequency: "monthly", priority: 0.7, lastModified: "2026-10-13" },
