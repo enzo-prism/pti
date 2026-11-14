@@ -11,12 +11,11 @@ export const HANDBOOK_PATH = "/resources/dental-practice-transitions-handbook";
 export const SECOND_BOOK_PATH = "/resources/second-book";
 export const BOOKS_PATH = "/books";
 /**
- * TODO(book-launch): set this to the live Second Edition Kindle purchase
- * link once Dr. Njo confirms the listing. Until then it stays null and the
- * /books page links readers to the Second Edition resource page instead of
- * a purchase URL.
+ * Second Edition Kindle pre-order listing, sent by Dr. Njo on Nov 14, 2026.
+ * Do not substitute the first-edition Amazon URL above.
  */
-export const SECOND_EDITION_KINDLE_URL: string | null = null;
+export const SECOND_EDITION_KINDLE_URL: string | null =
+  "https://www.amazon.com/dp/B0HRL1C1LZ";
 export const SECOND_EDITION_KINDLE_PRICE = "$2.99";
 export const PODCAST_INTERVIEW_PATH =
   "/resources/navigating-dental-insurance-podcast";
