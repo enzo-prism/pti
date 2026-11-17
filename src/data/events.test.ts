@@ -21,25 +21,26 @@ import {
 } from "@/data/practiceTransitionSeminar";
 
 describe("events dataset", () => {
-  it("lists the requested Sacramento dinner without inventing unconfirmed details", () => {
-    const dinner = rawEvents.find(
-      (event) => event.id === "panel-of-experts-sacramento-2027"
-    );
-    expect(dinner).toMatchObject({
-      title: "Panel of Experts Dinner",
-      date: "October 14, 2027",
-      time: "Time to be confirmed",
-      location: "Sacramento, CA",
-      type: "dinner",
-    });
-    expect(dinner?.registrationLink).toContain("mailto:info@practicetransitionsinstitute.com");
-    expect(dinner).not.toHaveProperty("speakers");
-    expect(dinner).not.toHaveProperty("offerPrice");
-    const referenceDate = new Date("2027-10-14T12:00:00-07:00");
-    expect(getUpcomingRawEvents(referenceDate)).toContainEqual(dinner);
-    expect(getUpcomingRawEvents(new Date("2027-10-15T00:00:00-07:00")))
-      .not.toContainEqual(dinner);
+  it("keeps Sacramento dinners out of PTI data, listings, and schema inputs", () => {
+    const referenceDate = new Date("2026-11-16T12:00:00-08:00");
+    for (const events of [rawEvents, getUpcomingRawEvents(referenceDate), buildEventListing(referenceDate)]) {
+      expect(events.some((event) => event.type === "dinner" && /Sacramento/i.test(JSON.stringify(event)))).toBe(false);
+    }
   });
+
+  it.each(["2026-08-01T12:00:00-07:00", "2026-11-16T12:00:00-08:00", "2027-10-01T12:00:00-07:00"])(
+    "keeps dinners below seminars in shared event lists as of %s", (date) => {
+      const referenceDate = new Date(date);
+      for (const events of [getUpcomingRawEvents(referenceDate), ...[false, true].map((isPast) =>
+        buildEventListing(referenceDate).filter((event) => event.isPast === isPast)
+      )]) {
+        const firstDinner = events.findIndex((event) => event.type === "dinner");
+        if (firstDinner >= 0) {
+          expect(events.slice(firstDinner).every((event) => event.type === "dinner")).toBe(true);
+        }
+      }
+    }
+  );
 
   it("lists the 2027 Panel of Experts dinners by city without inventing details", () => {
     const expected = [
@@ -57,7 +58,7 @@ describe("events dataset", () => {
         location,
         type: "dinner",
       });
-      expect(dinner?.registrationLink).toContain("mailto:info@practicetransitionsinstitute.com");
+      expect(dinner?.registrationLink).toContain("mailto:Michael@dental-strategies.com");
       expect(dinner).not.toHaveProperty("speakers");
       expect(dinner).not.toHaveProperty("offerPrice");
       expect(getUpcomingRawEvents(new Date("2026-11-08T12:00:00-08:00"))).toContainEqual(dinner);
@@ -106,7 +107,7 @@ describe("events dataset", () => {
       location: "Fats Asia Bistro, Roseville, CA",
       type: "dinner",
       registrationLink:
-        "mailto:info@practicetransitionsinstitute.com?subject=Roseville%20Dinner%20Availability",
+        "mailto:Michael@dental-strategies.com?subject=Roseville%20Dinner%20Availability",
     });
     expect(dinner?.description).toContain("confirm current seat availability");
     expect(JSON.stringify(dinner)).not.toMatch(/registration is open/i);
@@ -433,7 +434,6 @@ describe("events dataset", () => {
       ["January 21, 2027", "Orange County, CA"],
       ["May 20, 2027", "Thousand Oaks, CA"],
       ["July 15, 2027", "El Segundo, CA"],
-      ["October 14, 2027", "Sacramento, CA"],
       ["October 21, 2027", "Bakersfield, CA"],
     ]);
   });
@@ -443,7 +443,6 @@ describe("events dataset", () => {
       ["panel-of-experts-orange-county-jan-2027", "Orange County"],
       ["panel-of-experts-thousand-oaks-may-2027", "Thousand Oaks"],
       ["panel-of-experts-el-segundo-jul-2027", "El Segundo"],
-      ["panel-of-experts-sacramento-2027", "Sacramento"],
       ["panel-of-experts-bakersfield-2027", "Bakersfield"],
     ] as const;
     const dinners = rawEvents.filter(

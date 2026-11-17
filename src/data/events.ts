@@ -4,7 +4,7 @@ import {
   practiceTransitionSeminarEvents,
   practiceTransitionSeminarLearningPoints,
 } from "@/data/practiceTransitionSeminar";
-import { PHONE_NUMBER_TEL } from "@/lib/constants";
+import { MICHAEL_NJO_EMAIL, PHONE_NUMBER_TEL } from "@/lib/constants";
 import {
   createEventDateKey,
   isEventPast,
@@ -13,7 +13,7 @@ import {
 } from "@/lib/dateUtils";
 import { SITE_CONTACT_EMAIL } from "@/lib/siteMetadata";
 
-const ROSEVILLE_AVAILABILITY_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
+const ROSEVILLE_AVAILABILITY_MAILTO = `mailto:${MICHAEL_NJO_EMAIL}?subject=${encodeURIComponent(
   "Roseville Dinner Availability"
 )}`;
 const BEYOND_THE_CHAIR_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
@@ -22,7 +22,7 @@ const BEYOND_THE_CHAIR_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeUR
 const GARGLE_SUMMIT_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
   "Growth Summit Interest List"
 )}`;
-const PANEL_OF_EXPERTS_2027_MAILTO = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent(
+const PANEL_OF_EXPERTS_2027_MAILTO = `mailto:${MICHAEL_NJO_EMAIL}?subject=${encodeURIComponent(
   "Panel of Experts Dinner 2027"
 )}`;
 const CALL_TO_REGISTER = `tel:${PHONE_NUMBER_TEL}`;
@@ -127,17 +127,7 @@ const practiceTransitionEvents: RawEvent[] = practiceTransitionSeminarEvents.map
 );
 
 export const rawEvents: RawEvent[] = [
-  {
-    id: "panel-of-experts-sacramento-2027",
-    title: "Panel of Experts Dinner",
-    date: "October 14, 2027",
-    time: "Time to be confirmed",
-    location: "Sacramento, CA",
-    description:
-      "A Panel of Experts dinner in Sacramento. Contact PTI for the time, program, and reservation details.",
-    type: "dinner",
-    registrationLink: PANEL_OF_EXPERTS_2027_MAILTO,
-  },
+  // Keep the Sacramento Panel of Experts dinner off PTI until after the seminar.
   {
     id: "panel-of-experts-orange-county-jan-2027",
     title: "Panel of Experts Dinner",
@@ -145,7 +135,7 @@ export const rawEvents: RawEvent[] = [
     time: "Time to be confirmed",
     location: "Orange County, CA",
     description:
-      "A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
+      `A Panel of Experts dinner. Contact Michael at ${MICHAEL_NJO_EMAIL} for the time, program, and reservation details.`,
     type: "dinner",
     registrationLink: PANEL_OF_EXPERTS_2027_MAILTO,
   },
@@ -156,7 +146,7 @@ export const rawEvents: RawEvent[] = [
     time: "Time to be confirmed",
     location: "Thousand Oaks, CA",
     description:
-      "A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
+      `A Panel of Experts dinner. Contact Michael at ${MICHAEL_NJO_EMAIL} for the time, program, and reservation details.`,
     type: "dinner",
     registrationLink: PANEL_OF_EXPERTS_2027_MAILTO,
   },
@@ -167,7 +157,7 @@ export const rawEvents: RawEvent[] = [
     time: "Time to be confirmed",
     location: "El Segundo, CA",
     description:
-      "A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
+      `A Panel of Experts dinner. Contact Michael at ${MICHAEL_NJO_EMAIL} for the time, program, and reservation details.`,
     type: "dinner",
     registrationLink: PANEL_OF_EXPERTS_2027_MAILTO,
   },
@@ -178,7 +168,7 @@ export const rawEvents: RawEvent[] = [
     time: "Time to be confirmed",
     location: "Bakersfield, CA",
     description:
-      "A Panel of Experts dinner. Contact PTI for the time, program, and reservation details.",
+      `A Panel of Experts dinner. Contact Michael at ${MICHAEL_NJO_EMAIL} for the time, program, and reservation details.`,
     type: "dinner",
     registrationLink: PANEL_OF_EXPERTS_2027_MAILTO,
   },
@@ -203,7 +193,7 @@ export const rawEvents: RawEvent[] = [
     time: "6:00 PM - 9:00 PM",
     location: "Fats Asia Bistro, Roseville, CA",
     description:
-      "Join dentists and industry partners for an evening of practical conversation about building, valuing, and transitioning a dental practice. Contact PTI to confirm current seat availability.",
+      `Join dentists and industry partners for an evening of practical conversation about building, valuing, and transitioning a dental practice. Contact Michael at ${MICHAEL_NJO_EMAIL} to confirm current seat availability.`,
     type: "dinner",
     registrationLink: ROSEVILLE_AVAILABILITY_MAILTO,
   },
@@ -322,19 +312,25 @@ export const rawEvents: RawEvent[] = [
   ...practiceTransitionEvents,
 ];
 
+// Keep dinners below seminars and other programs; preserve date order within each tier.
+const compareDinnerPriority = (a: RawEvent, b: RawEvent): number =>
+  Number(a.type === "dinner") - Number(b.type === "dinner");
+
 export const getUpcomingRawEvents = (
   referenceDate: Date = new Date()
 ): RawEvent[] =>
   sortEventDates(
     rawEvents.filter((event) => !isEventPast(event.date, referenceDate))
-  ).map((event) => {
-    const seminar = practiceTransitionSeminarEvents.find(
-      (candidate) => candidate.id === event.id
-    );
-    return seminar
-      ? { ...event, offerPrice: getSeminarRegistrationPrice(seminar, referenceDate) }
-      : event;
-  });
+  )
+    .sort(compareDinnerPriority)
+    .map((event) => {
+      const seminar = practiceTransitionSeminarEvents.find(
+        (candidate) => candidate.id === event.id
+      );
+      return seminar
+        ? { ...event, offerPrice: getSeminarRegistrationPrice(seminar, referenceDate) }
+        : event;
+    });
 
 export interface ListedEventDate {
   date: string;
@@ -444,6 +440,8 @@ export const buildEventListing = (
     if (a.isPast !== b.isPast) {
       return a.isPast ? 1 : -1;
     }
+    const dinnerPriority = compareDinnerPriority(a, b);
+    if (dinnerPriority !== 0) return dinnerPriority;
     return parseEventDate(a.date).getTime() - parseEventDate(b.date).getTime();
   });
 };

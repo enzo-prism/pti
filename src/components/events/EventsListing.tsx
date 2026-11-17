@@ -399,17 +399,19 @@ export const EventsListing = ({ events }: EventsListingProps) => {
                             Confirm Availability
                           </a>
                         </Button>
-                        <Button
-                          asChild
-                          size="sm"
-                          variant="outline"
-                          className="flex-1 sm:flex-none"
-                        >
-                          <a href={`tel:${PHONE_NUMBER_TEL}`}>
-                            <Phone size={16} className="mr-2" />
-                            Call PTI
-                          </a>
-                        </Button>
+                        {event.type !== "dinner" && (
+                          <Button
+                            asChild
+                            size="sm"
+                            variant="outline"
+                            className="flex-1 sm:flex-none"
+                          >
+                            <a href={`tel:${PHONE_NUMBER_TEL}`}>
+                              <Phone size={16} className="mr-2" />
+                              Call PTI
+                            </a>
+                          </Button>
+                        )}
                       </>
                     ) : event.registrationLink.startsWith("http") ? (
                       <>

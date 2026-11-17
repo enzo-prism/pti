@@ -15,13 +15,13 @@ describe("grouped Panel of Experts card", () => {
       if (!group) throw new Error("Missing grouped Panel of Experts dinner");
 
       expect(group.description).toBe(
-        "A Panel of Experts dinner. Contact PTI for the time, program, and reservation details."
+        "A Panel of Experts dinner. Contact Michael at Michael@dental-strategies.com for the time, program, and reservation details."
       );
       expect(group.description).not.toMatch(
         /Sacramento|Los Angeles|Orange County|Thousand Oaks|Pasadena|El Segundo|Bakersfield|January/i
       );
       expect(group.registrationLink).toBe(
-        "mailto:info@practicetransitionsinstitute.com?subject=Panel%20of%20Experts%20Dinner%202027"
+        "mailto:Michael@dental-strategies.com?subject=Panel%20of%20Experts%20Dinner%202027"
       );
 
       const markup = renderToStaticMarkup(createElement(MultiDateEventCard, {
@@ -39,7 +39,8 @@ describe("grouped Panel of Experts card", () => {
         href: group.registrationLink,
         label: "Confirm Availability",
       });
-      expect(links).toContainEqual({ href: "tel:+18337841121", label: "Call PTI" });
+      expect(links.every((link) => link.href === group.registrationLink)).toBe(true);
+      expect(markup).not.toContain("Call PTI");
       expect(markup).not.toMatch(/Email us to register|Alternative Email/);
     }
   );
