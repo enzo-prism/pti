@@ -430,25 +430,27 @@ export const MultiDateEventCard = ({
                       Confirm Availability
                     </a>
                   </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1 sm:flex-none"
-                    asChild
-                  >
-                    <a
-                      href={`tel:${PHONE_NUMBER_TEL}`}
-                      onClick={() =>
-                        trackEventRegistrationClick(
-                          normalizedEventName,
-                          "phone",
-                        )
-                      }
+                  {type !== "dinner" && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="flex-1 sm:flex-none"
+                      asChild
                     >
-                      <Phone size={16} className="mr-2" />
-                      Call PTI
-                    </a>
-                  </Button>
+                      <a
+                        href={`tel:${PHONE_NUMBER_TEL}`}
+                        onClick={() =>
+                          trackEventRegistrationClick(
+                            normalizedEventName,
+                            "phone",
+                          )
+                        }
+                      >
+                        <Phone size={16} className="mr-2" />
+                        Call PTI
+                      </a>
+                    </Button>
+                  )}
                 </>
               ) : isInternalRegistrationLink ? (
                 <>

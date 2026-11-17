@@ -123,16 +123,16 @@ describe("event structured data", () => {
 
   it("keeps an unconfirmed dinner time as a calendar date without inventing midnight", () => {
     const schema = buildEventSchema({
-      id: "panel-of-experts-sacramento-2027",
+      id: "panel-of-experts-bakersfield-2027",
       title: "Panel of Experts Dinner",
-      date: "October 14, 2027",
+      date: "October 21, 2027",
       time: "Time to be confirmed",
-      location: "Frank Fat's Restaurant, Sacramento, CA",
-      description: "Contact PTI for the time, program, and reservation details.",
-      registrationLink: "mailto:info@practicetransitionsinstitute.com",
+      location: "Bakersfield, CA",
+      description: "Contact Michael for the time, program, and reservation details.",
+      registrationLink: "mailto:Michael@dental-strategies.com",
       type: "dinner",
     });
-    expect(schema.startDate).toBe("2027-10-14");
+    expect(schema.startDate).toBe("2027-10-21");
     expect(schema).not.toHaveProperty("endDate");
     expect(schema).not.toHaveProperty("offers");
   });
