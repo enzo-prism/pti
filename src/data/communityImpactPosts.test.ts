@@ -11,6 +11,19 @@ const getPost = (slug: string) => {
 };
 
 describe("community impact posts", () => {
+  it("publishes the Second Edition #1 Best Seller thank-you with the circled close-up and Amazon link", () => {
+    const post = getPost("dental-practice-transitions-handbook-second-edition-bestseller");
+    expect(post).toMatchObject({ id: 55, date: "2026-11-18", featuredImageWidth: 2000, featuredImageHeight: 1065 });
+    expect(post.content).toContain("/lovable-uploads/drnjo-2026/handbook-bestseller-circled-close-up.jpg");
+    expect(post.content).toContain("https://www.amazon.com/dp/B0HRL1C1LZ");
+    expect(post.cta).toBeUndefined();
+    for (const file of [post.featuredImage, "/lovable-uploads/drnjo-2026/handbook-bestseller-circled-close-up.jpg"]) {
+      expect(existsSync(resolve(process.cwd(), `public${file}`))).toBe(true);
+    }
+    expect(getBlogMetaTitle(post).length).toBeLessThanOrEqual(60);
+    expect(getBlogMetaDescription(post).length).toBeLessThanOrEqual(160);
+  });
+
   it("keeps identifiers unique across the combined blog listing", () => {
     const ids = [...communityImpactPosts, ...blogPosts].map((post) => post.id);
     expect(new Set(ids).size).toBe(ids.length);

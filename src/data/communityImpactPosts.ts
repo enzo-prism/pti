@@ -4,6 +4,34 @@ export const communityImpactPosts: Array<
   BlogPost & { featuredImageWidth?: number; featuredImageHeight?: number }
 > = [
   {
+    id: 55,
+    title: "Dental Practice Transitions Handbook, Second Edition, Hits #1 Best Seller",
+    excerpt:
+      "A thank-you from Dr. Njo as the Second Edition reaches Amazon’s #1 Best Seller spot in Dentistry.",
+    category: "Community Impact",
+    date: "2026-11-18",
+    readTime: "1 min read",
+    gradient: "bg-gradient-to-br from-primary via-sky-600 to-emerald-500",
+    slug: "dental-practice-transitions-handbook-second-edition-bestseller",
+    author: "Michael Njo, DDS",
+    metaTitle: "Practice Transitions Handbook Hits #1 Best Seller | PTI",
+    metaDescription:
+      "A thank-you from Dr. Njo as the Second Edition reaches Amazon’s #1 Best Seller spot in Dentistry.",
+    featuredImage: "/lovable-uploads/drnjo-2026/handbook-second-edition-bestseller-call.webp",
+    featuredImageAlt:
+      "Video call in which Nancy Coy shares the Amazon listing for Dr. Michael Njo’s Dental Practice Transitions Handbook, Second Edition, showing the #1 Best Seller badge in Dentistry, with Dr. Njo on the call.",
+    featuredImageFit: "contain",
+    featuredImageWidth: 2000,
+    featuredImageHeight: 1065,
+    content: `<div style="margin:1.5rem 0;"><img src="/lovable-uploads/drnjo-2026/handbook-bestseller-circled-close-up.jpg" width="420" height="80" alt="Amazon’s #1 Best Seller badge circled in red, followed by the category “in Dentistry.”" style="max-width:420px;width:100%;height:auto;object-fit:contain;" /></div>
+
+My dear friend and colleague, Nancy Coy, shared that my new book, Dental Practice Transitions Handbook: A Blueprint for Buying and Selling Healthcare Practices in Different Economic Climates, Second Edition, reached #1 Best Seller in Dentistry.
+
+Thank you to my colleagues, friends, clients, and future clients for ordering my book. Happy reading and learning!
+
+[Dental Practice Transitions Handbook, Second Edition, on Amazon](https://www.amazon.com/dp/B0HRL1C1LZ)`,
+  },
+  {
     id: 54,
     title: "The Peninsula Dental Society Merger",
     excerpt:
