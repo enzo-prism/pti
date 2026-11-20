@@ -63,10 +63,13 @@ describe("live registration quote", () => {
     post.mockResolvedValueOnce({ ok: true, json: async () => ({ ok: false }) });
     await submit();
     expect(container.querySelector('[role="alert"]')?.textContent).toContain("We could not send the form");
+    expect(container.textContent).not.toContain("Your callback request has been received");
     expect(trackContactFormSubmit).not.toHaveBeenCalled();
     expect(container.querySelector<HTMLInputElement>("#seminar-name")!.value).toBe("Preview Test");
     await submit();
     expect(container.querySelector('[role="status"]')?.textContent).toContain("Registration call requested");
+    expect(container.querySelector('[role="status"]')?.textContent).toContain("Your callback request has been received");
+    expect(container.querySelector('[role="status"]')?.textContent).toContain("Your seat is confirmed after payment");
     expect(trackContactFormSubmit).toHaveBeenCalledExactlyOnceWith("seminar_callback", "practice_transition_seminar", "formspree");
   });
 

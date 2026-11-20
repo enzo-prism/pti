@@ -21,6 +21,12 @@ describe("registration preview", () => {
     expect(html).toContain("Reserve your registration");
     expect(html).toContain(SEMINAR_REGISTRATION_CONFIRMATION);
     expect(html).toContain("PTI will contact me");
+    expect(html).toContain("secure online payment instructions");
+    expect(html).toContain("by the next business day");
+    expect(html).toContain("within 24 hours of your registration request");
+    expect(html).toContain("My seat is confirmed after payment");
+    expect(html).not.toContain("Your callback request has been received");
+    expect(html).not.toContain("take payment by phone");
     expect(html).not.toContain("PTI may contact me");
     expect(html).not.toContain("To cancel");
     expect(html).toContain("$100 fee");

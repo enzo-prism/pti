@@ -215,14 +215,15 @@ const buildMessage = (
     "",
     "Consent:",
     values.paymentConsent
-      ? "Understands PTI will call to confirm registration and take payment."
+      ? "Understands PTI will contact them to finalize registration and provide secure online payment instructions. Seat is confirmed after payment."
       : "Payment confirmation consent not provided.",
     values.smsConsent
       ? "Agreed to receive registration-related text messages."
       : "Did not opt into registration-related text messages.",
     "",
     "Follow-up:",
-    "Contact the registrant to finalize registration and take payment by phone.",
+    "Contact the registrant within a few hours during normal business hours or by the next business day to finalize registration and provide secure online payment instructions through the bank's payment system.",
+    "Payment is expected within 24 hours of the registration request. Confirm the seat after payment; no payment was collected by this website.",
   ].join("\n");
 };
 

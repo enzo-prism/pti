@@ -313,7 +313,7 @@ export const SeminarRegistration = ({
           })
         ));
       setSubmitStatus("success");
-      setSubmitMessage(SEMINAR_REGISTRATION_CONFIRMATION);
+      setSubmitMessage(`Your callback request has been received. ${SEMINAR_REGISTRATION_CONFIRMATION}`);
       setValues({
         ...buildDefaultFormValues(fresh.formEvents),
         selectedEvent: values.selectedEvent,
@@ -346,7 +346,7 @@ export const SeminarRegistration = ({
       </h2>
       <p className="mt-2 text-base leading-relaxed text-muted-foreground">
         {formEvents.length > 0
-          ? "Registration is completed by phone. Tell us a little about yourself and we will call you at a time that works for you."
+          ? "Request a callback to finalize your registration and receive secure online payment instructions. Tell us a little about yourself and we will call you at a time that works for you."
           : "There are no seminar dates open right now. Contact PTI to ask about future dates."}
       </p>
 
@@ -586,8 +586,8 @@ export const SeminarRegistration = ({
                   />
                 </span>
                 <span className="text-base leading-relaxed">
-                  I understand PTI will contact me to finalize registration and payment by
-                  phone. My seat is confirmed after payment.{" "}
+                  I understand PTI will contact me to finalize registration and provide
+                  secure online payment instructions. My seat is confirmed after payment.{" "}
                   <span className="font-semibold text-foreground">Required</span>
                 </span>
               </label>
