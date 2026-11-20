@@ -6,7 +6,7 @@ import { BOOKS_PATH } from "@/lib/constants";
 
 const title = "Dental Practice Transitions Handbook | Dr. Michael Njo";
 const description =
-  "Dr. Michael Njo's Dental Practice Transitions Handbook: the expanded Second Edition launching November 17, 2026, and the first edition on Amazon.";
+  "Dr. Michael Njo's Dental Practice Transitions Handbook: the expanded Second Edition, which reached #1 Best Seller in Dentistry on Amazon, and the first edition.";
 const path = BOOKS_PATH;
 
 export const metadata = buildPageMetadata({

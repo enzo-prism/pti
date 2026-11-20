@@ -12,12 +12,16 @@ export const HANDBOOK_PATH = "/resources/dental-practice-transitions-handbook";
 export const SECOND_BOOK_PATH = "/resources/second-book";
 export const BOOKS_PATH = "/books";
 /**
- * Second Edition Kindle pre-order listing, sent by Dr. Njo on Nov 14, 2026.
+ * Second Edition Kindle listing (ASIN B0HRL1C1LZ), sent by Dr. Njo on Nov 14,
+ * 2026. Published November 17, 2026; verified available on Amazon Nov 20.
  * Do not substitute the first-edition Amazon URL above.
  */
 export const SECOND_EDITION_KINDLE_URL: string | null =
   "https://www.amazon.com/dp/B0HRL1C1LZ";
 export const SECOND_EDITION_KINDLE_PRICE = "$2.99";
+export const SECOND_EDITION_ASIN = "B0HRL1C1LZ";
+export const SECOND_EDITION_PUBLISHED_ISO = "2026-11-17";
+export const SECOND_EDITION_PUBLISHED_LABEL = "November 17, 2026";
 export const PODCAST_INTERVIEW_PATH =
   "/resources/navigating-dental-insurance-podcast";
 

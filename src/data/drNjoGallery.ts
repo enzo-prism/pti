@@ -74,9 +74,9 @@ const drNjoGalleryIndex: Record<string, DrNjoGalleryImage> = {
   handbookSecondEditionComingSoon: {
     id: "handbookSecondEditionComingSoon",
     src: "/lovable-uploads/drnjo-2026/handbook-second-edition-coming-soon.webp",
-    alt: "Coming soon announcement for the expanded second edition of Dental Practice Transitions Handbook by Michael A. Njo, DDS, with a foreword by Dr. Glenn Vo",
+    alt: "Announcement graphic for the expanded second edition of Dental Practice Transitions Handbook by Michael A. Njo, DDS, with a foreword by Dr. Glenn Vo",
     caption:
-      "Coming soon: the expanded second edition of the Dental Practice Transitions Handbook, with a foreword by Dr. Glenn Vo.",
+      "The expanded second edition of the Dental Practice Transitions Handbook, with a foreword by Dr. Glenn Vo, published on Kindle November 17, 2026.",
     category: "speaking-authorship",
     fit: "contain",
     aspect: "portrait",
