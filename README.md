@@ -117,6 +117,7 @@ The canonical production source is GitHub [`enzo-prism/pti`](https://github.com/
 - **Security**: HSTS, content-type, framing, referrer, permissions, and opener policies are defined in `next.config.mjs`.
 - **Search Console**: HTML verification files are rewritten in `next.config.mjs` to `src/app/api/google-site-verification/`, which answers only for the tokens listed in `src/lib/googleSiteVerification.ts`. Do not drop that rewrite during chrome or UX work, and add a new owner's token there rather than loosening the match.
 - **Production host**: `https://practicetransitionsinstitute.com` (`www` permanently redirects to apex).
+- **IndexNow**: after a production deploy that changes content, run `npm run indexnow` (all sitemap URLs) or `npm run indexnow -- /path …` to notify Bing and other IndexNow engines (Bing results also feed Copilot and ChatGPT search). The key file `public/0699c286c5a8c9e46da789abc5f9b200.txt` must stay deployed; the script refuses to submit until it is live.
 
 Before production, run:
 

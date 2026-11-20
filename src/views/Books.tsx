@@ -14,6 +14,8 @@ import {
   SECOND_BOOK_PATH,
   SECOND_EDITION_KINDLE_PRICE,
   SECOND_EDITION_KINDLE_URL,
+  SECOND_EDITION_PUBLISHED_ISO,
+  SECOND_EDITION_PUBLISHED_LABEL,
 } from "@/lib/constants";
 
 const Books = () => {
@@ -40,7 +42,7 @@ const Books = () => {
           <div className="rounded-2xl border border-gray-200 bg-slate-50 p-4 shadow-sm sm:p-6">
             <Image
               src="/lovable-uploads/drnjo-2026/handbook-second-edition-coming-soon.webp"
-              alt="Coming soon announcement for the second edition of Dental Practice Transitions Handbook by Michael A. Njo, DDS, Founder of Practice Transitions Institute, with a foreword by Dr. Glenn Vo"
+              alt="Second edition announcement graphic for Dental Practice Transitions Handbook by Michael A. Njo, DDS, Founder of Practice Transitions Institute, with a foreword by Dr. Glenn Vo"
               width={1120}
               height={1400}
               className="h-auto w-full object-contain"
@@ -54,11 +56,13 @@ const Books = () => {
 
           <div>
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80 sm:text-sm">
-              Coming{" "}
-              <time dateTime="2026-11-17">November 17, 2026</time>
+              Second Edition · Published{" "}
+              <time dateTime={SECOND_EDITION_PUBLISHED_ISO}>
+                {SECOND_EDITION_PUBLISHED_LABEL}
+              </time>
             </p>
             <SectionTitle className="mb-4 text-left">
-              The Second Edition
+              The Second Edition, now on Kindle
             </SectionTitle>
             <SectionSubtitle className="mb-6 text-left">
               A Blueprint for Buying and Selling Healthcare Practices in
@@ -69,8 +73,10 @@ const Books = () => {
               A substantially expanded and rewritten 6 x 9 edition of the
               handbook, with a new foreword by Dr. Glenn Vo, new advisor
               material, and new appendices of practical checklists and
-              reference material for the current market. The Kindle edition
-              is available to pre-order for {SECOND_EDITION_KINDLE_PRICE}.
+              reference material for the current market. Edited by Catrise
+              Austin, it reached #1 Best Seller in Dentistry on Amazon shortly
+              after launch. The Kindle edition is currently{" "}
+              {SECOND_EDITION_KINDLE_PRICE}.
             </p>
             {SECOND_EDITION_KINDLE_URL ? (
               <div className="flex flex-col gap-3 sm:flex-row">
@@ -80,7 +86,7 @@ const Books = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Pre-order on Kindle
+                    Buy on Kindle
                     <ExternalLink
                       className="ml-2 h-4 w-4"
                       aria-hidden="true"
@@ -106,8 +112,7 @@ const Books = () => {
                   </Button>
                 </div>
                 <p className="mt-4 text-sm text-gray-500">
-                  Purchase details will be shared when the new listing is
-                  confirmed.
+                  Ask Dr. Njo&apos;s team for the current purchase link.
                 </p>
               </>
             )}

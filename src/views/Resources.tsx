@@ -34,11 +34,11 @@ const resources = [
   },
   {
     icon: <BookOpen className="h-6 w-6 text-slate-600" />,
-    title: "Handbook, Second Edition (November 17)",
+    title: "Handbook, Second Edition",
     description:
-      "Launching November 17, 2026: the expanded handbook, with a foreword by Dr. Glenn Vo, new advisor material, and new appendices.",
+      "Now on Kindle: the expanded handbook, with a foreword by Dr. Glenn Vo, new advisor material, and new appendices.",
     href: SECOND_BOOK_PATH,
-    cta: "Preview the second edition",
+    cta: "About the second edition",
   },
   {
     icon: <Headphones className="h-6 w-6 text-sky-700" />,
@@ -105,7 +105,7 @@ const Resources = () => {
         </div>
       </section>
 
-      {/* Upcoming book pictorial */}
+      {/* Second edition pictorial */}
       <Section className="pb-0">
         <Link
           href={SECOND_BOOK_PATH}
@@ -113,7 +113,7 @@ const Resources = () => {
         >
           <Image
             src="/lovable-uploads/drnjo-2026/handbook-second-edition-coming-soon.webp"
-            alt="Coming soon: Dental Practice Transitions Handbook, second edition, by Michael A. Njo, DDS, with a foreword by Dr. Glenn Vo"
+            alt="Second edition announcement graphic for Dental Practice Transitions Handbook by Michael A. Njo, DDS, with a foreword by Dr. Glenn Vo"
             width={1120}
             height={1400}
             className="h-auto w-full rounded-xl object-contain"
@@ -121,18 +121,19 @@ const Resources = () => {
           />
           <div>
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-primary/80">
-              Coming <time dateTime="2026-11-17">November 17, 2026</time>
+              Published <time dateTime="2026-11-17">November 17, 2026</time>
             </p>
             <h2 className="text-2xl font-bold leading-tight md:text-3xl">
               Dental Practice Transitions Handbook, Second Edition
             </h2>
             <p className="mt-3 text-gray-600 leading-relaxed">
-              Dr. Michael Njo&apos;s next book is an expanded second edition of
-              the handbook: a new foreword by Dr. Glenn Vo, new advisor
-              material, and new appendices.
+              The expanded second edition of Dr. Michael Njo&apos;s handbook is
+              now on Kindle and reached #1 Best Seller in Dentistry on Amazon.
+              It adds a new foreword by Dr. Glenn Vo, new advisor material, and
+              new appendices.
             </p>
             <span className="mt-4 inline-flex items-center gap-1 font-semibold text-primary">
-              Preview the second edition
+              About the second edition
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </span>
           </div>

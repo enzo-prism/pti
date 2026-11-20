@@ -19,6 +19,9 @@ import {
   HANDBOOK_PATH,
   PODCAST_INTERVIEW_PATH,
   SECOND_BOOK_PATH,
+  BOOKS_PATH,
+  SECOND_EDITION_PUBLISHED_ISO,
+  SECOND_EDITION_PUBLISHED_LABEL,
   PHONE_NUMBER,
   PHONE_NUMBER_TEL,
 } from "@/lib/constants";
@@ -72,6 +75,33 @@ const DrNjo = () => {
                 the trust built through decades of leadership across the dental
                 community.
               </p>
+
+              <div className="mx-auto max-w-lg rounded-xl border border-primary/20 bg-white/80 p-4 text-left md:mx-0">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary/80">
+                  New: Second Edition, published{" "}
+                  <time dateTime={SECOND_EDITION_PUBLISHED_ISO}>
+                    {SECOND_EDITION_PUBLISHED_LABEL}
+                  </time>
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  The expanded{" "}
+                  <a
+                    href={SECOND_BOOK_PATH}
+                    className="font-semibold text-primary underline underline-offset-4"
+                  >
+                    Dental Practice Transitions Handbook, Second Edition
+                  </a>{" "}
+                  is now on Kindle and reached #1 Best Seller in Dentistry on
+                  Amazon. Compare both editions on the{" "}
+                  <a
+                    href={BOOKS_PATH}
+                    className="font-semibold text-primary underline underline-offset-4"
+                  >
+                    books page
+                  </a>
+                  .
+                </p>
+              </div>
 
               <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center md:justify-start pt-4">
                 <Button
@@ -160,10 +190,12 @@ const DrNjo = () => {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
                 <div className="rounded-xl border border-gray-200 bg-white p-4">
                   <p className="text-sm font-semibold text-foreground">
-                    Published author
+                    Best-selling author
                   </p>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    Wrote the <em>Dental Practice Transitions Handbook</em>.
+                    Wrote the <em>Dental Practice Transitions Handbook</em>;
+                    the Second Edition reached #1 Best Seller in Dentistry on
+                    Amazon.
                   </p>
                 </div>
                 <div className="rounded-xl border border-gray-200 bg-white p-4">
@@ -243,7 +275,7 @@ const DrNjo = () => {
                   <a href={HANDBOOK_PATH}>View the Handbook</a>
                 </Button>
                 <Button asChild variant="outline">
-                  <a href={SECOND_BOOK_PATH}>Second edition (coming soon)</a>
+                  <a href={SECOND_BOOK_PATH}>Second edition, now on Kindle</a>
                 </Button>
                 <Button asChild variant="outline" className="sm:col-span-2">
                   <a href={PODCAST_INTERVIEW_PATH}>

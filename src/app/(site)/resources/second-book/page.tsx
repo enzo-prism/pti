@@ -1,13 +1,15 @@
 import { handbookEditions } from "@/lib/handbookSchema";
-import SecondBook from "@/views/SecondBook";
+import SecondBook, { secondBookFaqs } from "@/views/SecondBook";
+import { buildFAQSchema } from "@/lib/structuredData";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 import { SECOND_BOOK_PATH } from "@/lib/constants";
 
 const title = "Dental Practice Transitions Handbook, Second Edition";
 const description =
-  "Launching November 17, 2026: Dr. Michael Njo's expanded Dental Practice Transitions Handbook, Second Edition, with a foreword by Dr. Glenn Vo.";
+  "Dr. Michael Njo's expanded handbook, now on Kindle. It reached #1 Best Seller in Dentistry on Amazon and adds a foreword by Dr. Glenn Vo.";
 const path = SECOND_BOOK_PATH;
+const faqSchema = buildFAQSchema(secondBookFaqs);
 
 export const metadata = buildPageMetadata({
   title,
@@ -23,7 +25,9 @@ export default function Page() {
           title,
           description,
           path,
-          structuredData: handbookEditions(),
+          structuredData: faqSchema
+            ? [...handbookEditions(), faqSchema]
+            : handbookEditions(),
         })}
       />
       <SecondBook />

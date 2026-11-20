@@ -4,7 +4,7 @@ import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
 import { buildImageGalleryProperties } from "@/lib/structuredData";
 import { galleryPhotos } from "@/data/galleryImages";
 
-const title = "PTI Photo Gallery";
+const title = "Photo Gallery: Dr. Njo, Seminars & Events";
 const description =
   "Photos of PTI speaking engagements, dental-society leadership, published work, the team, and the relationships behind every dental practice transition.";
 

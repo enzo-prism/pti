@@ -199,14 +199,14 @@ const STATIC_PAGE_RECORDS: StaticPageRecord[] = [
   {
     title: "Dental Practice Transitions Handbook, Second Edition",
     excerpt:
-      "Launching November 17, 2026: the expanded second edition of Dr. Njo's handbook, with new advisor material and appendices.",
+      "Published November 17, 2026 on Kindle: the expanded second edition of Dr. Njo's handbook, which reached #1 Best Seller in Dentistry on Amazon.",
     url: "/resources/second-book",
     type: "resource",
   },
   {
     title: "Books by Dr. Michael Njo",
     excerpt:
-      "Dr. Michael Njo's Dental Practice Transitions Handbook: the expanded Second Edition launching November 17, 2026, and the first edition on Amazon.",
+      "Dr. Michael Njo's Dental Practice Transitions Handbook: the expanded Second Edition, now on Kindle, and the first edition on Amazon.",
     url: "/books",
     type: "page",
   },
