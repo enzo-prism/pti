@@ -1,4 +1,4 @@
-import { handbookEditions } from "@/lib/handbookSchema";
+import { handbookEditions, handbookTrailerVideo } from "@/lib/handbookSchema";
 import SecondBook, { secondBookFaqs } from "@/views/SecondBook";
 import { buildFAQSchema } from "@/lib/structuredData";
 import { StructuredData } from "@/components/StructuredData";
@@ -26,8 +26,8 @@ export default function Page() {
           description,
           path,
           structuredData: faqSchema
-            ? [...handbookEditions(), faqSchema]
-            : handbookEditions(),
+            ? [...handbookEditions(), handbookTrailerVideo(), faqSchema]
+            : [...handbookEditions(), handbookTrailerVideo()],
         })}
       />
       <SecondBook />
