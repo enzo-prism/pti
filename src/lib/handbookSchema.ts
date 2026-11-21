@@ -1,3 +1,4 @@
+import { HANDBOOK_TRAILER } from "@/data/bookTrailer";
 import { buildAbsoluteUrl } from "@/lib/siteMetadata";
 import {
   DENTAL_TRANSITIONS_HANDBOOK_URL,
@@ -64,4 +65,20 @@ export function handbookEditions() {
       award: "#1 Best Seller in Dentistry on Amazon (November 2026)",
     },
   ];
+}
+
+/** Trailer for the Second Edition. Stable @id lives on the second-edition page. */
+export function handbookTrailerVideo() {
+  return {
+    "@type": "VideoObject",
+    "@id": `${buildAbsoluteUrl(SECOND_BOOK_PATH)}#trailer`,
+    name: HANDBOOK_TRAILER.label,
+    description: HANDBOOK_TRAILER.description,
+    thumbnailUrl: buildAbsoluteUrl(HANDBOOK_TRAILER.posterPath),
+    contentUrl: buildAbsoluteUrl(HANDBOOK_TRAILER.src),
+    uploadDate: HANDBOOK_TRAILER.uploadDate,
+    duration: HANDBOOK_TRAILER.durationIso,
+    inLanguage: "en",
+    about: { "@id": SECOND_EDITION_BOOK_ID },
+  };
 }
