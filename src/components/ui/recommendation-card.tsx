@@ -2,14 +2,20 @@ import { ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { BookMeetingButton } from "@/components/BookMeetingButton";
-import {
-  HoverCard,
-  HoverCardTrigger,
-  HoverCardContent,
-} from "@/components/ui/hover-card";
 import { BookReviewCard } from "./book-review-card";
 import { amazonBookReviews } from "@/data/amazonReviews";
 import Image from "next/image";
+
+export type PublishedBook = {
+  image: string;
+  imageWidth: number;
+  imageHeight: number;
+  title: string;
+  description: string;
+  url: string;
+  eyebrow?: string;
+  compact?: boolean;
+};
 
 interface RecommendationCardProps {
   className?: string;
@@ -24,6 +30,7 @@ interface RecommendationCardProps {
   websiteUrl?: string;
   websiteLabel?: string;
   bookingUrl?: string;
+  books?: PublishedBook[];
   bookUrl?: string;
   bookImage?: string;
   bookTitle?: string;
@@ -44,12 +51,28 @@ export function RecommendationCard({
   websiteUrl,
   websiteLabel = "Visit Website",
   bookingUrl,
+  books,
   bookUrl,
   bookImage,
   bookTitle,
   bookDescription,
   showAmazonReviews = false,
 }: RecommendationCardProps) {
+  const publishedBooks: PublishedBook[] =
+    books ??
+    (bookImage && bookUrl
+      ? [
+          {
+            image: bookImage,
+            imageWidth: 560,
+            imageHeight: 360,
+            title: bookTitle || "Book cover",
+            description: bookDescription || "",
+            url: bookUrl,
+          },
+        ]
+      : []);
+
   return (
     <div className={cn("bg-white rounded-lg shadow-sm p-6 md:p-8", className)}>
       <div className="flex flex-col gap-6">
@@ -145,46 +168,15 @@ export function RecommendationCard({
             </div>
           )}
 
-          {bookImage && bookUrl && (
-            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-4 sm:p-5 mt-6">
-              <div className="grid gap-5 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center">
-                <div className="mx-auto w-full max-w-xl">
-                  <Image
-                    src={bookImage}
-                    alt={bookTitle || "Book cover"}
-                    width={560}
-                    height={360}
-                    className="w-full h-auto object-contain rounded-xl border border-gray-200 bg-white p-3 shadow-sm"
-                    sizes="(min-width: 1024px) 360px, 100vw"
-                  />
-                </div>
-                <div className="flex-1 text-center lg:text-left">
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary/80 mb-2">
-                    Published Resource
-                  </p>
-                  <h4 className="font-semibold text-xl mb-2 text-gray-900">
-                    {bookTitle}
-                  </h4>
-                  <p className="text-sm text-gray-600 mb-4 leading-relaxed">
-                    {bookDescription}
-                  </p>
-                  <Button
-                    asChild
-                    variant="default"
-                    size="sm"
-                    className="w-full sm:w-auto"
-                  >
-                    <a href={bookUrl} target="_blank" rel="noopener noreferrer">
-                      View on Amazon
-                    </a>
-                  </Button>
-                </div>
-              </div>
+          {publishedBooks.length > 0 && (
+            <div className="mt-6 space-y-4">
+              {publishedBooks.map((book) => (
+                <PublishedBookCard key={book.url} book={book} />
+              ))}
 
-              {/* Amazon Reviews Section */}
               {showAmazonReviews && amazonBookReviews.length > 0 && (
-                <div className="mt-6 pt-6 border-t border-gray-200">
-                  <h5 className="text-md font-semibold text-gray-900 mb-4">
+                <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4 sm:p-5">
+                  <h5 className="mb-4 text-md font-semibold text-gray-900">
                     What Amazon Readers Say
                   </h5>
                   <div className="grid gap-4">
@@ -198,10 +190,13 @@ export function RecommendationCard({
                   </div>
                   <div className="mt-4 text-center">
                     <a
-                      href={bookUrl}
+                      href={
+                        publishedBooks[publishedBooks.length - 1]?.url ??
+                        bookUrl
+                      }
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-primary hover:text-primary/80 font-medium"
+                      className="text-sm font-medium text-primary hover:text-primary/80"
                     >
                       Read all reviews on Amazon →
                     </a>
@@ -210,6 +205,85 @@ export function RecommendationCard({
               )}
             </div>
           )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PublishedBookCard({ book }: { book: PublishedBook }) {
+  const amazonLink = book.url.startsWith("http");
+  const eyebrow = book.eyebrow ?? "Published Resource";
+
+  return (
+    <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4 sm:p-5">
+      <div
+        className={cn(
+          "grid items-center",
+          book.compact
+            ? "gap-4 sm:grid-cols-[7.5rem_minmax(0,1fr)]"
+            : "gap-5 md:grid-cols-[minmax(0,0.38fr)_minmax(0,0.62fr)]",
+        )}
+      >
+        <div
+          className={cn(
+            "mx-auto w-full",
+            book.compact
+              ? "max-w-[11rem] sm:max-w-none"
+              : "max-w-[220px] md:max-w-none",
+          )}
+        >
+          <Image
+            src={book.image}
+            alt={book.title}
+            width={book.imageWidth}
+            height={book.imageHeight}
+            className={cn(
+              "h-auto w-full border border-gray-200 bg-white object-contain shadow-sm",
+              book.compact ? "rounded-lg p-1" : "rounded-xl",
+            )}
+            sizes={book.compact ? "120px" : "(min-width: 768px) 200px, 220px"}
+          />
+        </div>
+        <div
+          className={cn(
+            "text-center",
+            book.compact ? "sm:text-left" : "md:text-left",
+          )}
+        >
+          <p className="mb-1 text-xs font-semibold uppercase tracking-[0.22em] text-primary/80">
+            {eyebrow}
+          </p>
+          <h4
+            className={cn(
+              "mb-2 font-semibold text-gray-900",
+              book.compact ? "text-lg" : "text-xl",
+            )}
+          >
+            {book.title}
+          </h4>
+          <p
+            className={cn(
+              "text-sm leading-relaxed text-gray-600",
+              book.compact ? "mb-3" : "mb-4",
+            )}
+          >
+            {book.description}
+          </p>
+          <Button
+            asChild
+            variant={book.compact ? "outline" : "default"}
+            size="sm"
+            className="w-full sm:w-auto"
+          >
+            <a
+              href={book.url}
+              target={amazonLink ? "_blank" : undefined}
+              rel={amazonLink ? "noopener noreferrer" : undefined}
+            >
+              View on Amazon
+            </a>
+          </Button>
         </div>
       </div>
     </div>

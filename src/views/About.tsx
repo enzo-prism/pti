@@ -3,15 +3,37 @@ import { Users, Shield, Target, Star, Heart } from "lucide-react";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { BookMeetingButton } from "@/components/BookMeetingButton";
-import { RecommendationCard } from "@/components/ui/recommendation-card";
+import {
+  RecommendationCard,
+  type PublishedBook,
+} from "@/components/ui/recommendation-card";
 import {
   MICHAEL_NJO_WEBSITE_URL,
   DENTIST_RETREAT_URL,
   MICHAEL_NJO_CALENDLY_URL,
   DENTAL_TRANSITIONS_HANDBOOK_URL,
+  SECOND_BOOK_PATH,
+  SECOND_EDITION_KINDLE_URL,
 } from "@/lib/constants";
+import {
+  FIRST_EDITION_COVER,
+  SECOND_EDITION_COVER,
+} from "@/data/handbookCover";
 
-export const leaders = [
+type Leader = {
+  name: string;
+  role: string;
+  bio: string[];
+  hasNewInfo?: boolean;
+  image: string;
+  videoUrl?: string;
+  websiteUrl?: string;
+  websiteLabel?: string;
+  bookingUrl?: string;
+  books?: PublishedBook[];
+};
+
+export const leaders: Leader[] = [
   {
     name: "Dr. Michael Njo",
     role: "Founder & Transition Consultant",
@@ -24,11 +46,29 @@ export const leaders = [
     videoUrl: "https://youtu.be/Jes6h2F3yhc?si=sVQZKyw1uB5Fi5_F",
     websiteUrl: MICHAEL_NJO_WEBSITE_URL,
     bookingUrl: MICHAEL_NJO_CALENDLY_URL,
-    bookUrl: DENTAL_TRANSITIONS_HANDBOOK_URL,
-    bookImage: "/lovable-uploads/drnjo-2026/handbook-cover-spread.webp",
-    bookTitle: "Dental Practice Transitions Handbook",
-    bookDescription:
-      "A published framework for buying, selling, and transitioning dental practices with clarity in changing markets.",
+    books: [
+      {
+        image: SECOND_EDITION_COVER.src,
+        imageWidth: SECOND_EDITION_COVER.width,
+        imageHeight: SECOND_EDITION_COVER.height,
+        title: "Dental Practice Transitions Handbook, Second Edition",
+        description:
+          "A Blueprint for Buying and Selling Healthcare Practices in Different Economic Climates. Expanded second edition, now on Kindle, with a foreword by Dr. Glenn Vo.",
+        url: SECOND_EDITION_KINDLE_URL ?? SECOND_BOOK_PATH,
+        eyebrow: "Published Resource",
+      },
+      {
+        image: FIRST_EDITION_COVER.src,
+        imageWidth: FIRST_EDITION_COVER.width,
+        imageHeight: FIRST_EDITION_COVER.height,
+        title: "Dental Practice Transitions Handbook",
+        description:
+          "A published framework for buying, selling, and transitioning dental practices with clarity in changing markets.",
+        url: DENTAL_TRANSITIONS_HANDBOOK_URL,
+        eyebrow: "First edition",
+        compact: true,
+      },
+    ],
   },
   {
     name: "Liz Armato",
@@ -153,10 +193,7 @@ const About = () => {
                 websiteUrl={leader.websiteUrl}
                 websiteLabel={leader.websiteLabel}
                 bookingUrl={leader.bookingUrl}
-                bookUrl={leader.bookUrl}
-                bookImage={leader.bookImage}
-                bookTitle={leader.bookTitle}
-                bookDescription={leader.bookDescription}
+                books={leader.books}
                 showAmazonReviews={leader.name === "Dr. Michael Njo"}
               />
             </div>

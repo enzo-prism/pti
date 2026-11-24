@@ -13,6 +13,8 @@ import {
 } from "@/lib/handbookSchema";
 import { BOOKS_PATH, SECOND_BOOK_PATH } from "@/lib/constants";
 import { HANDBOOK_TRAILER } from "./bookTrailer";
+import { SECOND_EDITION_COVER } from "./handbookCover";
+import sharp from "sharp";
 
 const publicPath = (src: string) =>
   join(process.cwd(), "public", src.replace(/^\//, ""));
@@ -38,6 +40,19 @@ describe("handbook book trailer", () => {
     expect(statSync(posterFile).size).toBeGreaterThan(10_000);
   });
 
+  it("ships a native-resolution Second Edition front cover, not an upscale", async () => {
+    const coverFile = publicPath(SECOND_EDITION_COVER.src);
+    expect(existsSync(coverFile)).toBe(true);
+
+    const metadata = await sharp(coverFile).metadata();
+    expect(metadata.format).toBe("webp");
+    expect(metadata.width).toBe(SECOND_EDITION_COVER.width);
+    expect(metadata.height).toBe(SECOND_EDITION_COVER.height);
+    expect(metadata.width).toBe(488);
+    expect(metadata.height).toBe(732);
+    expect(metadata.width).toBeLessThanOrEqual(512);
+  });
+
   it("renders a labeled 16:9 player with native controls and no autoplay", () => {
     for (const view of [SecondBook, Books]) {
       const html = renderToStaticMarkup(createElement(view));
@@ -52,6 +67,15 @@ describe("handbook book trailer", () => {
       expect(video).toMatch(/playsinline/i);
       expect(video).toContain("aspect-video");
       expect(video).not.toContain("autoplay");
+
+      expect(html).toContain("handbook-second-edition-front-cover.webp");
+      expect(html).toContain(`alt="${SECOND_EDITION_COVER.alt}"`);
+      expect(html).toContain(
+        "md:grid-cols-[minmax(0,0.28fr)_minmax(0,0.72fr)]",
+      );
+      expect(html.indexOf("handbook-second-edition-front-cover.webp")).toBeLessThan(
+        html.indexOf(HANDBOOK_TRAILER.src),
+      );
     }
   });
 

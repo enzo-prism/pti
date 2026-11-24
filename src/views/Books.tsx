@@ -1,4 +1,4 @@
-import { BookTrailerPlayer } from "@/components/resources/BookTrailerPlayer";
+import { BookTrailerWithCover } from "@/components/resources/BookTrailerPlayer";
 import { TransitionReadingPaths } from "@/components/resources/TransitionReadingPaths";
 import Link from "next/link";
 import Image from "next/image";
@@ -39,8 +39,8 @@ const Books = () => {
       </section>
 
       <Section>
-        <div className="mx-auto mb-10 max-w-4xl">
-          <BookTrailerPlayer />
+        <div className="mx-auto mb-10 max-w-5xl">
+          <BookTrailerWithCover />
         </div>
         <div className="mx-auto grid max-w-5xl items-start gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
           <div className="rounded-2xl border border-gray-200 bg-slate-50 p-4 shadow-sm sm:p-6">
