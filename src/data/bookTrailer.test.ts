@@ -54,7 +54,7 @@ describe("handbook book trailer", () => {
   });
 
   it("renders a labeled 16:9 player with native controls and no autoplay", () => {
-    for (const view of [SecondBook, Books]) {
+    for (const view of [SecondBook]) {
       const html = renderToStaticMarkup(createElement(view));
       const video = videoMarkup(html);
 
@@ -77,6 +77,13 @@ describe("handbook book trailer", () => {
         html.indexOf(HANDBOOK_TRAILER.src),
       );
     }
+  });
+
+  it("shows the author recording placement and the purchase link in the client preview", () => {
+    const html = renderToStaticMarkup(createElement(Books));
+    expect(html).toContain("personal recording will appear here");
+    expect(html).toContain("B0HRL1C1LZ");
+    expect(html).not.toContain("<video");
   });
 
   it("emits VideoObject JSON-LD on the book pages that already have structured data", () => {

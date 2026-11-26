@@ -46,7 +46,9 @@ describe("vercel.json redirects", () => {
   });
 
   it("applies legacy paths before the www host redirect", () => {
-    const hostIndex = redirects.findIndex((redirect) => redirect.has);
+    const hostIndex = redirects.findIndex((redirect) =>
+      redirect.has?.some((condition) => condition.value === "www.practicetransitionsinstitute.com")
+    );
     expect(hostIndex).toBe(redirects.length - 1);
     expect(redirects[hostIndex]).toMatchObject({
       source: "/:path*",

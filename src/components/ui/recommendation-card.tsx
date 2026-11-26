@@ -169,7 +169,7 @@ export function RecommendationCard({
           )}
 
           {publishedBooks.length > 0 && (
-            <div className="mt-6 space-y-4">
+            <div id="handbook-editions" className="mt-6 scroll-mt-28 space-y-4">
               {publishedBooks.map((book) => (
                 <PublishedBookCard key={book.url} book={book} />
               ))}

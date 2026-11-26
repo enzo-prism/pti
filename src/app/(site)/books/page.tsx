@@ -1,4 +1,4 @@
-import { handbookEditions, handbookTrailerVideo } from "@/lib/handbookSchema";
+import { handbookEditions } from "@/lib/handbookSchema";
 import Books from "@/views/Books";
 import { StructuredData } from "@/components/StructuredData";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/seo";
@@ -23,7 +23,7 @@ export default function Page() {
           title,
           description,
           path,
-          structuredData: [...handbookEditions(), handbookTrailerVideo()],
+          structuredData: handbookEditions(),
         })}
       />
       <Books />
